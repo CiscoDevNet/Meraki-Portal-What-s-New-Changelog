@@ -1,8 +1,9 @@
+
 {
-	"items": [{
+	"items": [
+    {
 			"title": "API Changelog",
 			"items": [
-
 				{
 					"title": "What's New in 2019",
 					"content": "document/2019.html"
