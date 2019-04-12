@@ -6,19 +6,19 @@
 	"items": [
 	      {
 	       "title": "What's New in 2019",
-		"content": "document/2019.html"
+		"content": "/document/2019.html"
 	      },
 	     {
 	      "title": "What's New in 2018",
-	      "content": "document/2018.html"
+	      "content": "/document/2018.html"
 	     },
 	    {
 	     "title": "What's New in 2017",
-	     "content": "documents/2017.html"
+	     "content": "/documents/2017.html"
 	    },
 	    {
 	     "title": "What's New in 2016",
-	     "content": "documents/2016.html"
+	     "content": "/documents/2016.html"
 	    }
 	  ]
 	}		
