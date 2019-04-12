@@ -1,0 +1,64 @@
+
+<h2 id="meraki-solutions-update-for-march-2018">February 2019</h2>
+<div dir="ltr">
+<div dir="ltr">
+<table width="974" height="203">
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> <a href="https://api.meraki.com/api_docs#returns-the-switch-network-settings"></a><a href="https://api.meraki.com/api_docs#mx-1:1-nat-rules">MX 1:1 NAT rules</a><a href="https://api.meraki.com/api_docs#returns-the-switch-network-settings"></a></p>
+<pre class="language-markup">GET /networks/{networkId}/oneToOneNatRules
+PUT /networks/{networkId}/oneToOneNatRules</pre>
+<p dir="ltr"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> <a href="https://api.meraki.com/api_docs#mx-1:many-nat-rules">MX 1:Many NAT rules</a><a href="https://api.meraki.com/api_docs#returns-the-switch-network-settings"></a></p>
+<pre class="language-markup">GET /networks/{networkId}/oneToManyNatRules
+PUT /networks/{networkId}/oneToManyNatRules</pre>
+<p dir="ltr"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> <a href="https://api.meraki.com/api_docs#mx-port-forwarding-rules">MX port forwarding rules</a><a href="https://api.meraki.com/api_docs#returns-the-switch-network-settings"></a></p>
+<pre class="language-markup">GET /networks/{networkId}/portForwardingRules
+PUT /networks/{networkId}/portForwardingRules</pre>
+<p dir="ltr"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> <a href="https://api.meraki.com/api_docs#return-the-uplink-loss-and-latency-for-every-mx-in-the-organization-from-2---7-minutes-ago">Return the uplink loss and latency for every MX in the organization from 2 &#8211; 7 minutes ago</a></p>
+<pre class="language-markup">GET /organizations/{organizationId}/uplinksLossAndLatency</pre>
+<p dir="ltr"><span class="badge badge-primary" style="font-size: 15px;">Demo</span> <a href="/meraki/build/meraki-automation-demo-using-webex-teams/">Network Automation using WebEx Teams</a></p>
+<p dir="ltr"><span>An easy way for you to experience the power and ease of the Meraki Dashboard API, using a fully-hosted service that interacts with Cisco Webex Teams</span></p>
+<p dir="ltr"><span class="badge badge-info" style="font-size: 15px;">Enhancement</span>  <a href="https://dashboard.meraki.com/api_docs#list-the-dashboard-administrators-in-this-organization">New fields returned for /admins endpoint</a></p>
+<pre class="language-markup"><code class="language language-markup">"twoFactorAuthEnabled": false
+"lastActive": 1547401125
+"accountStatus": "ok"
+"hasApiKey": true
+</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 id="january-2019">January 2019</h2>
+<div dir="ltr">
+<div dir="ltr">
+<table width="974" height="203">
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> <a href="https://api.meraki.com/api_docs#returns-the-switch-network-settings"></a><a href="https://api.meraki.com/api_docs#return-the-content-filtering-settings-for-an-mx-network">Return or Update the content filtering settings for an MX network</a><a href="https://api.meraki.com/api_docs#returns-the-switch-network-settings"></a></p>
+<pre class="language-markup">GET /networks/[networkId]/contentFiltering
+PUT /networks/[networkId]/contentFiltering</pre>
+<p dir="ltr"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> <a href="https://api.meraki.com/api_docs#list-all-available-content-filtering-categories-for-an-mx-network">List all available content filtering categories for an MX network</a><a href="https://api.meraki.com/api_docs#returns-the-switch-network-settings"></a></p>
+<pre class="language-markup">GET /networks/[networkId]/contentFiltering/categories</pre>
+<p dir="ltr"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> <a href="https://api.meraki.com/api_docs#returns-the-switch-network-settings">Return or update switch combined power settings</a></p>
+<pre class="language-markup">GET /networks/[networkId]/switch/settings
+PUT /networks/[networkId]/switch/settings</pre>
+<p dir="ltr"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> <a href="https://api.meraki.com/api_docs#provisions-a-client-with-a-name-and-policy"> Provisions a client with a name and policy. Clients can be provisioned before they associate to the network</a></p>
+<pre class="language-markup"><code class="language language-markup">POST/networks/[networkId]/clients/provision</code></pre>
+<p dir="ltr"><span class="badge badge-info" style="font-size: 15px;">Enhancement</span>  <a href="https://dashboard.meraki.com/api_docs#update-the-attributes-of-a-device">Add or update notes for a Meraki device</a></p>
+<pre class="language-markup">GET/networks/[networkId]/devices
+GET /networks/[networkId]/devices/[serial]
+POST/networks/[networkId]/devices/claim
+PUT /networks/[networkId]/devices/[serial]
+
+<code class="language language-markup">"notes": "My AP's note"</code></pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2  id=""></h2>
