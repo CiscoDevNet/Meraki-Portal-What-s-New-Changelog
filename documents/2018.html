@@ -1,0 +1,269 @@
+
+<h2 id="december-2018">December 2018</h2>
+<div dir="ltr">
+<div dir="ltr">
+<table>
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><span class="badge badge-info" style="font-size: 15px;">Enhancement</span> <a href="https://dashboard.meraki.com/api_docs#modify-the-splash-page-settings-for-the-given-ssid">Enable/disable custom splash URL</a></p>
+<pre class="language-markup"><code class="language language-markup">"useSplashUrl": true</code></pre>
+<p dir="ltr"><span class="badge badge-info" style="font-size: 15px;">Enhancement</span> <a href="https://dashboard.meraki.com/api_docs#update-the-third-party-vpn-peers-for-an-organization">New parameters to configure thirdPartyVPNPeers</a></p>
+<p><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> <a href="https://dashboard.meraki.com/api_docs#get-the-uplink-loss-percentage-and-latency-in-milliseconds-for-a-wired-network-device">Get the uplink loss percentage and latency in milliseconds for a wired network device</a></p>
+<pre class="language-markup"><code class="language language-markup">GET /networks/[networkId]/devices/[serial]/lossAndLatencyHistory</code></pre>
+<p><span style="font-weight: 400;">This endpoint provides rich monitoring and reporting telemetry in the form of packet loss and packet latency over time for the WAN interfaces of MX devices, to which SLAs are often tied. </span><span style="font-weight: 400;"></span></p>
+<p><span class="badge badge-warning" style="font-size: 15px;">Integration</span>  <a href="/meraki/build/meraki-alerts-with-pagerduty/#h-l6idbksh1m1r">Meraki Webhooks with PagerDuty</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 id="-1"></h2>
+<h2 id="november-2018">November 2018</h2>
+<div dir="ltr">
+<div dir="ltr">
+<table>
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><span class="badge badge-info" style="font-size: 15px;">Enhancement</span> <a href="https://dashboard.meraki.com/api_docs#update-a-network">Parameter to disable the local status page for networks</a></p>
+<p dir="ltr"><span class="badge badge-info" style="font-size: 15px;">Enhancement</span> <a href="https://dashboard.meraki.com/api_docs#create-a-network">Create network endpoint – Added support for Systems Manager and Camera networks</a></p>
+<ul>
+<li dir="ltr">Note: valid network types are wireless, appliance, switch, phone, systemsManager, camera or a space-separated list of those for a combined network</li>
+</ul>
+<p><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> <a href="https://meraki.cisco.com/lib/pdf/meraki_datasheet_mv_sense.pdf">Introducing MV Sense API </a></p>
+<p>The MV Sense API allows developers to access three types of rich data insights</p>
+<ul>
+<li>Historical aggregate: How many people were in a given area at a specified time, and where exactly were they in the frame?</li>
+<li>Current snapshot: How many people are in a given area right now, and where exactly are they in the frame?</li>
+<li>Real-time feed: A stream of the number of people and their exact location in a frame, pushed out in sub-second intervals</li>
+</ul>
+<p><img src="https://dly3cfxfnwanw.cloudfront.net/uploads/2019/01/mvsense-shot-350x133.png" alt="" width="332" height="126" class="aligncenter wp-image-5425" srcset="https://dly3cfxfnwanw.cloudfront.net/uploads/2019/01/mvsense-shot-350x133.png 350w, https://dly3cfxfnwanw.cloudfront.net/uploads/2019/01/mvsense-shot.png 459w" sizes="(max-width: 332px) 100vw, 332px" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3 id="-2"></h3>
+<h2 id="october-2018">October 2018</h2>
+<div dir="ltr">
+<div dir="ltr">
+<table>
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> Introducing Meraki Webhooks for all alerts in the Meraki dashboard. We’re pleased to announce the availability of Meraki Webhook Alerts for all alerts within the dashboard. Setting up Webhook Alerts is very straightforward, see the <a href="/meraki/guides/webhooks/">reference guide</a> and <a href="https://documenter.getpostman.com/view/897512/RWaLwTY4" target="_blank" rel="noopener">Postman collection</a> to get started!</p>
+<p dir="ltr"><img src="https://dly3cfxfnwanw.cloudfront.net/uploads/2018/10/webhook-diagram.png" alt="" width="645" height="237" class="aligncenter wp-image-5248" srcset="https://dly3cfxfnwanw.cloudfront.net/uploads/2018/10/webhook-diagram.png 1922w, https://dly3cfxfnwanw.cloudfront.net/uploads/2018/10/webhook-diagram-350x129.png 350w, https://dly3cfxfnwanw.cloudfront.net/uploads/2018/10/webhook-diagram-768x282.png 768w, https://dly3cfxfnwanw.cloudfront.net/uploads/2018/10/webhook-diagram-1024x376.png 1024w" sizes="(max-width: 645px) 100vw, 645px" /></p>
+<p><strong><a href="https://dashboard.meraki.com/api_docs#list-the-syslog-servers-for-a-network"><span class="badge badge-success" style="font-size: 15px;"></span></a><a href="https://dashboard.meraki.com/api_docs#alert-settings"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> Configure Network Alerts</a></strong></p>
+<p><strong><a href="https://dashboard.meraki.com/api_docs#list-the-syslog-servers-for-a-network"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> Configure Syslog Server(s)</a></strong></p>
+<ul>
+<li>List the syslog servers for a network</li>
+<li>Update the syslog servers for a network</li>
+</ul>
+<p><a href="https://dashboard.meraki.com/api_docs#enable/disable-vlans-for-the-given-network"><strong><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> Enable / Disable VLANs for MX networks</strong></a></p>
+<p><a href="https://dashboard.meraki.com/api_docs#firewalled-services"><strong><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> Firewalled Services</strong></a></p>
+<ul>
+<li>List the appliance services and their accessibility rules</li>
+<li>Return the accessibility settings of the given service</li>
+<li>Updates the accessibility settings for the given service</li>
+</ul>
+<p><span class="badge badge-info" style="font-size: 15px;">Enhancement</span> Systems Manager list SM devices endpoint <span class="path">now supports new additional fields in the fields parameter</span></p>
+<pre><span class="method">GET</span><span> </span><span class="path">/networks/[network_id]/sm/devices?fields</span></pre>
+<ul>
+<li>autoTags</li>
+<li>ownerEmail</li>
+<li>ownerUsername</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h4 id="new-solution-guides-demos"></h4>
+<p dir="ltr"><strong><a class="row-title" href="/meraki/build/meraki-dashboard-alerts-with-google-sheets/" aria-label="“Meraki Dashboard Alerts with Google Sheets” (Edit)"><span class="badge badge-warning" style="font-size: 15px;">Integration</span> Meraki Dashboard Alerts with Google Sheets</a></strong></p>
+<p dir="ltr">Learn how to easily capture Meraki Dashboard alerts using webhooks and Google Sheets.</p>
+<p dir="ltr"><a href="/meraki/build/network-alerting-in-webex-teams-with-webhooks/"><strong><span class="badge badge-warning" style="font-size: 15px;">Integration</span> Network alerting in WebEx Teams with Webhooks</strong></a></p>
+<p dir="ltr">Ensure the entire team gets notified when there’s a network event by integrating Meraki alerts with your favorite collaboration app</p>
+<p dir="ltr"><strong><a href="/meraki/build/merakibeat-elastic-beats-plugin-for-meraki-wireless-health-apis/"><span class="badge badge-warning" style="font-size: 15px;">Integration</span> Merakibeat Elastic Beats plugin for Meraki Wireless Health APIs</a></strong></p>
+<p dir="ltr">A new Elastic Beats plugin for the Meraki Wireless Health API that makes it easy to boot-strap sending Stats<br />
+to elasticsearch or any of output service supported by <a href="https://www.elastic.co/guide/en/logstash/current/output-plugins.html">beats</a>.</p>
+<h2 id="september-2018">September 2018</h2>
+<div dir="ltr">
+<div dir="ltr">
+<table>
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><strong>New API Endpoints</strong></p>
+<p><strong><a href="https://dashboard.meraki.com/api_docs#display-the-splash-page-settings-for-the-given-ssid"><span class="badge badge-info" style="font-size: 15px;">Enhancement</span> Display the splash page settings for the given SSID</a></strong><strong><a href="https://dashboard.meraki.com/api_docs#modify-the-splash-page-settings-for-the-given-ssid"></a></strong></p>
+<p><strong><a href="https://dashboard.meraki.com/api_docs#modify-the-splash-page-settings-for-the-given-ssid"></a><a href="https://dashboard.meraki.com/api_docs#display-the-splash-page-settings-for-the-given-ssid"><span class="badge badge-info" style="font-size: 15px;">Enhancement</span></a> Modify the splash page settings for the given SSID</strong></p>
+<p><strong><a href="https://dashboard.meraki.com/api_docs#firewalled-services"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span> </a><a href="https://dashboard.meraki.com/api_docs#list-the-syslog-servers-for-a-network">List the syslog servers for a network</a></strong></p>
+<p><a href="https://dashboard.meraki.com/api_docs#firewalled-services"><strong><span class="badge badge-success" style="font-size: 15px;"></span></strong></a><strong><a href="https://dashboard.meraki.com/api_docs#firewalled-services"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span></a></strong><strong><a href="https://dashboard.meraki.com/api_docs#update-the-syslog-servers-for-a-network"> Update the syslog servers for a network</a> </strong></p>
+<p><a href="https://dashboard.meraki.com/api_docs#firewalled-services"><strong><span class="badge badge-success" style="font-size: 15px;"></span></strong></a><strong><a href="https://dashboard.meraki.com/api_docs#firewalled-services"><span class="badge badge-success" style="font-size: 15px;">New endpoint</span></a></strong><a href="https://dashboard.meraki.com/api_docs#cameras"><strong> Return a video link for the specified camera</strong></a></p>
+<p><strong><a href="https://dashboard.meraki.com/api_docs#modify-the-splash-page-settings-for-the-given-ssid"><span class="badge badge-info" style="font-size: 15px;">Enhancement</span></a></strong><strong><a href="https://dashboard.meraki.com/api_docs#return-the-inventory-for-an-organization"> Return the inventory for an organization</a></strong></p>
+<ul>
+<li>Now includes device name in JSON array:
+<ul>
+<li>
+<pre class="language-json"><code class="language language-json">[
+  {
+    "mac": "00:11:22:33:44:55",
+    "serial": "Q234-ABCD-5678",
+    "networkId": "N_24329156",
+    "model": "MR34",
+    "claimedAt": 1518365681.0,
+    "publicIp": "123.123.123.1",
+    <strong>"name": "My AP"</strong>
+  }
+]</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>As always, please see the <a href="https://documenter.getpostman.com/view/897512/2To9xm#whats-new">Postman Collection</a> for more details on these and all Dashboard API endpoints.</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2 id="july-2018">July 2018</h2>
+<div dir="ltr">
+<h3 id="api-feature-improvements-1">API Feature Improvements</h3>
+<div dir="ltr">
+<table>
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><b>Poll additional client statistics</b></p>
+<p dir="ltr"><span>The Dashboard API now allows you to poll for client statistics, including the client usage and statistics like traffic and latency history as well as security events. For the full list of Client endpoints, please visit the Meraki <a href="https://documenter.getpostman.com/view/897512/2To9xm#2eab9267-a040-cdc4-2d3e-f5e9cd76eef5">Postman collection</a>.</span></p>
+<p dir="ltr"><b>Meraki authentication users and login attempts</b></p>
+<p dir="ltr"><span>Poll for:</span></p>
+<ul>
+<li dir="ltr"><span>Authentication attempts against the Meraki authentication server via traditional cloud RADIUS or splash page</span></li>
+<li dir="ltr">Splash page login attempts</li>
+</ul>
+<p><b>Bluetooth clients</b></p>
+<p>Poll for all the Bluetooth clients seen by the access points in a Meraki network.</p>
+<p><em>As always, please see the <a href="https://documenter.getpostman.com/view/897512/2To9xm#whats-new">Postman Collection</a> for more details on these and all Dashboard API endpoints.</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3 id="new-solution-guides-demos-1">New Solution Guides &amp; Demos</h3>
+<p><strong><a href="/meraki/build/meraki-dashboard-reports-with-google-sheets/" target="_blank" rel="noopener">&gt; Meraki Dashboard Reports with Google Sheets</a></strong></p>
+<p><span>Easily import Meraki Network data into Google Sheets using the <a href="/meraki/guides/dashboard-api/" target="_blank" rel="noopener">Meraki Dashboard API</a>. This tool allows administrators to create reports for a single network, organization or across multiple networks or orgs. Built into the tool is reporting for:</span></p>
+<ul>
+<li>Organizations by API key</li>
+<li>Organizations</li>
+<li>Device Inventory</li>
+<li>Networks</li>
+<li>Devices</li>
+<li>License State</li>
+<li>Configuration Templates</li>
+<li>Group Policies</li>
+<li>SSIDs</li>
+<li>VLANs</li>
+</ul>
+<p>The source code and a clone-able demo is available <a href="/meraki/build/meraki-dashboard-reports-with-google-sheets/">here</a>.</p>
+<p><strong><a href="/meraki/build/captive-portal-with-mews-hospitality-pms/" target="_blank" rel="noopener">&gt; Captive Portal with Mews Hospitality PMS</a></strong></p>
+<p><span>Integrate a wireless network with a hotel PMS system, using the Meraki and Mews APIs. This guide serves as an example of what could easily be built when you have the power of cloud networking on your side.</span></p>
+<h2 id="-3"></h2>
+<h2 id="updates-for-may-2018">May 2018</h2>
+<div dir="ltr">
+<h3 id="api-feature-improvements-2">API Feature Improvements</h3>
+<div dir="ltr">
+<table>
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><b>Configure your Meraki network for compliance with GDPR regulations (EMEA only)</b></p>
+<p dir="ltr"><span>For Organizations hosted in the EMEA region, the Dashboard API now supports PII (Personally Identifiable Information) endpoints for GDPR compliance. More information is available <a href="https://documentation.meraki.com/zGeneral_Administration/Privacy_and_Security/GDPR_-_Data_Privacy_and_Protection">here</a> and the <a href="https://documenter.getpostman.com/view/897512/2To9xm#afe8868d-0fa1-45e0-bf10-299dffaac918">Postman collection</a> has also been updated.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3 id="new-solution-guides-demos-2">New Solution Guides &amp; Demos</h3>
+<table style="background-color: #ffffff; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: 1rem;">
+<tbody>
+<tr>
+<td><a href="/meraki/build/splunk/" target="_blank" rel="noopener"><strong>&gt; Create Custom Analytics Dashboards with Meraki and Splunk</strong></a></p>
+<p><span>Splunk can collect data from a Meraki network using the Scanning API to collect location data for Wi-Fi and bluetooth devices and using Syslog to collect syslog events for the MX security appliance. This <a href="/meraki/build/splunk/">integration guide</a> and <a href="/meraki/build/splunk-demo/">live demo</a> shows the potential for what is possible with Splunk and Meraki.</span></p>
+<p><strong><a href="/meraki/build/meraki-network-creator-with-servicenow-and-angular/" target="_blank" rel="noopener">&gt; Create Meraki Networks with ServiceNow and Angular</a></strong></p>
+<p><span>Explore a scenario in which a service provider would like to provide a custom Meraki tool where their operators can easily provision a network. The tool supports site details, binding a newly created network to a template and adding devices. The results are stored in a database table for use with other ServiceNow services.</span><span></span></p>
+<p><strong><a href="/meraki/build/puppet/" target="_blank" rel="noopener">&gt; Manage Administrators with the Meraki Puppet Module</a></strong></p>
+<p><span><span class="il">The new Cisco Meraki module for Puppet lets you define Meraki organization administrators across all of your networks and across multiple organizations, a task that can be tedious for large IT organizations with complex permissions such as service providers or large IT organizations.</span></span></p>
+<p><strong><a href="/meraki/build/yelp/#meraki-mr-setup-for-yelp-wi-fi" target="_blank" rel="noopener">&gt; Configure your Meraki Network to Support Yelp WiFi</a></strong></p>
+<p><span>This guide will walk you through the process of creating a Meraki Network configured to support Yelp WiFi. Once you have a Network created, you will be able to add access points and begin using them to create your Yelp WiFi hotspots.</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="-4"></h2>
+<h2 id="meraki-solutions-updates-in-april-2018">April 2018</h2>
+<h3 id="api-feature-improvements-3">API Feature Improvements</h3>
+<div dir="ltr">
+<table>
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><b>List the status of every Meraki device in the entire Organization</b></p>
+<p dir="ltr"><span>Our </span><span>Dashboard API</span><span> has been updated to allow users to pull Meraki node statuses for the entire Organization in one API call and in one JSON blob. This removes the requirement to make many (sometimes thousands) of API calls to retrieve this information, reducing overhead and restrictions from the API rate limit.</span></p>
+<p dir="ltr">This call returns the following attributes in array format:</p>
+<p dir="ltr"><img src="https://dly3cfxfnwanw.cloudfront.net/uploads/2018/04/org_all_devices-350x281.png" alt="" width="350" height="281" class="alignnone size-medium wp-image-4579" srcset="https://dly3cfxfnwanw.cloudfront.net/uploads/2018/04/org_all_devices-350x281.png 350w, https://dly3cfxfnwanw.cloudfront.net/uploads/2018/04/org_all_devices.png 653w" sizes="(max-width: 350px) 100vw, 350px" /></p>
+<p dir="ltr">Further documentation is available in the <a href="https://documenter.getpostman.com/view/897512/2To9xm#whats-new">Postman Collection</a>.</p>
+<p dir="ltr">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="new-solution-guides-demos-3">New Solution Guides &amp; Demos</h3>
+<table style="background-color: #ffffff; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: 1rem;">
+<tbody>
+<tr>
+<td><a href="/meraki/build/wayfinding-mapwize/#indoor-location-from-meraki">Wayfinding with Meraki and Mapwize</a></p>
+<p>Individuals often have a hard time finding their way indoors, as services like Google Maps don&#8217;t generally provide guidance. Mapwize&#8217;s indoor mapping platform allows you to use Meraki access points to navigate buildings like shopping malls, hospitals and more. This article will teach you how to create a custom map with Mapwize&#8217;s open-source platform and deploy it alongside Meraki access points and the Scanning API.</p>
+<p><a href="/meraki/build/investigo-spark-bot-with-meraki-scanning-api/">Investigo &#8211; Spark Bot with Meraki Scanning API [DEMO]</a></p>
+<p><span>Investigo is a bot for Spark, Cisco’s unified communications service, which enables customers to use wireless infrastructure to locate Wi-Fi capable assets. The Investigo is a mash-up bot that uses several solutions: Spark, Tropo and Meraki wireless access points, spanning from the enterprise to the Internet of Things world.</span></p>
+<p dir="ltr"><a href="/meraki/build/deep-links/#whats-a-deep-link" class="_self cvplbd" target="_self">What&#8217;s a &#8220;Deep Link?&#8221;</a></p>
+<p dir="ltr"><span>Learn about how to use deep links to navigate directly to a single client device, Meraki node, or switch port in the Dashboard via your existing system. These deep links can be constructed and accessed as long as a user is logged into Dashboard and can be injected to reduce the number of clicks a network operator needs to perform to reach the page he/she is looking for.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-5"></h2>
+<h2 id="meraki-solutions-update-for-march-2018-1">March 2018</h2>
+<h3 id="api-feature-improvements-4">API Feature Improvements</h3>
+<div dir="ltr">
+<table>
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><strong><span class="il">Clone</span> <span class="il">Network</span> via API</strong></p>
+<p dir="ltr"><span>Our </span><span>Dashboard API</span><span> has been updated to allow for users to copy the initial configuration from an existing <span class="il">network</span> when creating a <span class="il">network</span> via API. This is done via the new parameter, ‘</span><span>copyFromNetworkId</span><span>’. </span></p>
+<p dir="ltr"><span>This functions in the exact same way as the existing &#8216;<span class="il">Clone</span> from existing <span class="il">network</span>&#8216; option on the </span><span>Create <span class="il">Network</span></span><span> page in Dashboard. More information can be found on our </span><a href="http://mailstat.us/tr/t/udcxm8aljerr20n5/dd/https://dashboard.meraki.com/manage/support/api_docs#create-a-network" class="m_-5578561560221433972b4g-track-link" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=http://mailstat.us/tr/t/udcxm8aljerr20n5/dd/https://dashboard.meraki.com/manage/support/api_docs%23create-a-network&amp;source=gmail&amp;ust=1521640580962000&amp;usg=AFQjCNHuauwehwT2Em3nOVHw6GMPNGOXjg" rel="noopener"><span>API documentation</span></a><span>. This new endpoint is updated in the <a href="https://documenter.getpostman.com/view/897512/2To9xm#whats-new">Postman Collection</a>.</span></p>
+<p dir="ltr"><strong>MX Cellular Firewall Rules</strong></p>
+<p dir="ltr">This new endpoint allows you to return existing MX Cellular firewall rules as well as update those rules. Documentation is available in the <a href="https://documenter.getpostman.com/view/897512/2To9xm#whats-new">Postman Collection</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="new-solution-guides-demos-4">New Solution Guides &amp; Demos</h3>
+<table style="background-color: #ffffff; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: 1rem;">
+<tbody>
+<tr>
+<td><a href="/meraki/build/manage-administrators-across-organizations/">Manage Administrators Across Organizations</a></p>
+<p>Meraki users may encounter a scenario where they must manage multiple Meraki dashboard organizations, whether by necessity (scale) or for management purposes. A powerful Python script has been developed by our open source community in order to help our users quickly and programmatically add, delete, find, and list administrators across organizations.</p>
+<p dir="ltr"><a href="/meraki/build/node-red-and-meraki-apis-demo/" class="_self cvplbd" target="_self">Node-RED and Meraki APIs Demo</a></p>
+<p dir="ltr"><span>Interacting with APIs, the Internet of Things and building automation tools has never been so easy and fun. </span><a href="https://www.nodered.org/" target="_blank" rel="noopener">Node-RED</a><span> is an open source flow based editor built on NodeJS. If you are new to developing or would like a “low-code” experience for using Meraki APIs, this tool is perfect for you.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-6"></h2>
