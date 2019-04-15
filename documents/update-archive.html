@@ -1,0 +1,28 @@
+<h2 id="-6"></h2>
+<p>&nbsp;</p>
+<h2 id="updates-for-march-2017">Updates Archive</h2>
+<p>&nbsp;</p>
+<h3 id="api-feature-improvements-5">API Feature Improvements</h3>
+<div dir="ltr">
+<table>
+<tbody>
+<tr>
+<td>
+<p dir="ltr"><strong>DNS Settings now in the API</strong></p>
+<p>API Users can now configure DNS nameservers through our Dashboard API. The dnsNameservers parameter can be “upstream_dns”, “google_dns”, “opendns”, or a newline separated string of IP addresses or domain names. Remember to add a n separation between each of the values enclosed in quotes with no spaces.</p>
+<p>In curl this will would look like:</p>
+<pre>curl -X PUT -H "X-Cisco-Meraki-API-Key: &lt;&lt;redacted&gt;&gt;" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d 
+' {
+      "dnsNameservers"  :   "8.8.4.4n1.2.3.4n8.44.4.2n1.22.3.4n11.1.1.3n11.111.1.1n111.22.11.33"
+  } ' 
+"https://dashboard.meraki.com/api/v0/networks/L_11112222333444/vlans/1"
+
+</pre>
+<p><strong>Air Marshal WIPS added to API</strong></p>
+<p>Air Marshal scan results are now available via the Dashboard API. This enables separate applications to monitor for rogue and neighboring access points.</p>
+<p><img src="https://78.media.tumblr.com/f306fca15a0af9cc48003cf8579f4fe8/tumblr_inline_on4ro6xz0I1qz98bp_400.png" data-orig-height="93" data-orig-width="399" width="399" height="93" alt="image" /></p>
+<p><span style="font-family: inherit; font-size: inherit; background-color: transparent;">Documentation is available in the </span><a href="http://postman.meraki.com" style="font-family: inherit; font-size: inherit;">Postman Collection</a><span style="font-family: inherit; font-size: inherit; background-color: transparent;">.</span></td>
+</tr>
+</tbody>
+</table>
+</div>
