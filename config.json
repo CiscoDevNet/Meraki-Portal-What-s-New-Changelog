@@ -3,11 +3,11 @@
 		"title": "API Changelog",
 		"items": [{
 				"title": "What's New in 2019",
-				"content": "documents/2019.html"
+				"content": "documents/2019.md"
 			},
 			{
 				"title": "What's New in 2018",
-				"content": "documents/2018.html"
+				"content": "documents/2018.md"
 			},
 			{
 				"title": "Updates Archive",
