@@ -5,11 +5,11 @@
 	"items": [
 	      {
 	       "title":"What's New in 2019",
-		"content":"documents/2019.md"
+		"content":"documents/2019.html"
 	      },
 	     {
 	      "title": "What's New in 2018",
-	      "content":"documents/2018.md"
+	      "content":"documents/2018.html"
 	     },
 	     {
 	      "title": "Updates Archive",
