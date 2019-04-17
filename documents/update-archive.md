@@ -17,6 +17,8 @@ curl -X PUT -H "X-Cisco-Meraki-API-Key: <<redacted>>" -H "Content-Type: applicat
 
 **Air Marshal WIPS added to API**
 
+![](/images/tumblr_inline_on4ro6xz0I1qz98bp_400.png)
+
 Air Marshal scan results are now available via the Dashboard API. This enables separate applications to monitor for rogue and neighboring access points.
 
 Documentation is available in the [Postman Collection](http://postman.meraki.com)
