@@ -1,28 +1,29 @@
 {
-	"items": [{
-		"title": "API Changelog",
-		"items": [{
-				"title": "What's New in 2019",
-				"content": "documents/2019.html"
-			},
-			{
-				"title": "What's New in 2018",
-				"content": "documents/2018.html"
-			},
-			{
-				"title": "Updates Archive",
-				"content": "documents/update-archive.md"
-			},
-			{
-				"title": "What's New in 2017",
-				"content": "documents/2017.md"
-			},
-			{
-				"title": "What's New in 2016",
-				"content": "documents/2016.md"
-			}
-
-		]
-	}]
-}
-				
+	"items": [
+    {
+	"title": "API Changelog",
+	"items": [
+	      {
+	       "title":"What's New in 2019",
+		"content":"documents/2019.md"
+	      },
+	     {
+	      "title": "What's New in 2018",
+	      "content":"documents/2018.md"
+	     },
+	     {
+	      "title": "Updates Archive",
+	      "content": "documents/update-archive.md"
+	     },
+	    {
+	     "title": "What's New in 2017",
+	     "content":"documents/2017.md"
+	    },
+	    {
+	     "title": "What's New in 2016",
+	     "content":"documents/2016.md"
+	    }
+	  ]
+	}		
+      ]
+    }
