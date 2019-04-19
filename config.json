@@ -1,5 +1,4 @@
 {
-
 	"items": [
     {
 	"title": "API Changelog",
@@ -13,7 +12,7 @@
 	      "content":"documents/2018.md"
 	     },
 	     {
-	      "title": "Archive",
+	      "title": "What's New - Archive",
 	      "content": "documents/update-archive.md"
 	     }
 	  ]
