@@ -1,5 +1,3 @@
-## What's New Archive
-
 ## February 2017
 
 ### RADIUS Feature Enhancements
