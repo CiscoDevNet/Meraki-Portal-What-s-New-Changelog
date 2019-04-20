@@ -17,6 +17,10 @@
 	     }
 	  ]
 	}		
-      ]
-    }
+      ],
+      "config": { 
+	  "codeLayout": "two-columns", 
+	  "showCodeSwitch": false 
+      } 
+}
 
