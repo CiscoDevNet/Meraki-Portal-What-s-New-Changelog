@@ -19,7 +19,7 @@
 	}		
       ],
       "config": { 
-	  "codeLayout": "two-columns", 
+	  "codeLayout": "one-column", 
 	  "showCodeSwitch": false 
       } 
 }
