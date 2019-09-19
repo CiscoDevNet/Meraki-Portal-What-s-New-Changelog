@@ -1,6 +1,5 @@
 <script type="text/javascript" data-src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.7.0/marked.min.js"></script>
 <script type="text/javascript" class="pubhub-inlinescript">
-    debugger
     var markdown_url = PubHub.instance.store.getState().selected.item.config.markdown_url;
     $.get(markdown_url, function (res) {
         var fn = function () {
