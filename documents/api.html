@@ -1,0 +1,23 @@
+<script type="text/javascript" data-src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.7.0/marked.min.js"></script>
+<script type="text/javascript" class="pubhub-inlinescript">
+    debugger
+    var markdown_url = PubHub.instance.store.getState().selected.item.config.markdown_url;
+    $.get(markdown_url, function (res) {
+        var fn = function () {
+            if (window["marked"]) {
+
+                var content = $("<div>" + marked(res) + "</div>");
+                content.find("pre").each(function (i, v) {
+                    $(v).addClass("lang-markdown");
+                })
+
+                $("#changelog_content").html("").append(content)
+            } else {
+                setTimeout(fn, 300);
+            }
+        }
+        setTimeout(fn, 0);
+    })
+
+</script>
+<div id="changelog_content"></div>
