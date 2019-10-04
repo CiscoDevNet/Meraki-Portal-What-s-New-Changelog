@@ -1,46 +1,45 @@
 {
-  "items": [
-    {
-      "title": "API Changelog",
-      "items": [
-        {
-          "title": "2019",
-          "content": "documents/2019.md"
-        },
-        {
-          "title": "2018",
-          "content": "documents/2018.md"
-        },
-        {
-          "title": "Archive",
-          "content": "documents/update-archive.md"
-        }
-      ]
-    },
-    {
-      "title": "API Versions – Release Notes",
-      "items": [
-        {
-          "title": "0.3.0",
-          "content": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.3.0/spec2.json",
-          "type": "swagger3"
-        },
-        {
-          "title": "0.2.0",
-          "content": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.2.0/spec2.json",
-          "type": "swagger3"
-        },
-        {
-          "title": "0.1.0",
-          "content": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.1.0/spec2.json",
-          "type": "swagger3"
-        }
-      ]
-    },
-  ],
-  "config": {
-    "codeLayout": "one-column",
-    "showCodeSwitch": false
-  }
+   "items":[
+      {
+         "title":"API Changelog",
+         "items":[
+            {
+               "title":"2019",
+               "content":"documents/2019.md"
+            },
+            {
+               "title":"2018",
+               "content":"documents/2018.md"
+            },
+            {
+               "title":"Archive",
+               "content":"documents/update-archive.md"
+            }
+         ]
+      },
+      {
+         "title":"API Versions – Release Notes",
+         "items":[
+            {
+               "title":"0.3.0",
+               "content":"https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.3.0/spec2.json",
+               "type":"swagger3"
+            },
+            {
+               "title":"0.2.0",
+               "content":"https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.2.0/spec2.json",
+               "type":"swagger3"
+            },
+            {
+               "title":"0.1.0",
+               "content":"https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.1.0/spec2.json",
+               "type":"swagger3"
+            }
+         ]
+      }
+   ],
+   "config":{
+      "codeLayout":"one-column",
+      "showCodeSwitch":false
+   }
 }
-
