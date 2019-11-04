@@ -21,6 +21,14 @@
          "title":"OpenAPI Release Notes",
          "items": [
          {
+         "title": "0.5.0",
+         "content": "documents/api.html",
+         "type": "raw-html",
+         "config": {
+         "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.5.0/changelog.md"
+         }
+         },
+         {
          "title": "0.4.0",
          "content": "documents/api.html",
          "type": "raw-html",
