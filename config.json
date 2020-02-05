@@ -1,82 +1,90 @@
 {
-   "items":[
-      {
-         "title":"API Changelog",
-         "items":[
-            {
-               "title":"2020",
-               "content":"documents/2020.md"
-            },
-            {
-               "title":"2019",
-               "content":"documents/2019.md"
-            },
-            {
-               "title":"2018",
-               "content":"documents/2018.md"
-            },
-            {
-               "title":"Archive",
-               "content":"documents/update-archive.md"
-            }
-         ]
-      },
-      {
-         "title":"OpenAPI Release Notes",
-         "items": [
-         {
-         "title": "0.7.0 @latest",
-         "content": "documents/api.html",
-         "type": "raw-html",
-         "config": {
-         "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/changelog.md"
-         }
-         },
-         {
-         "title": "0.5.0",
-         "content": "documents/api.html",
-         "type": "raw-html",
-         "config": {
-         "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.6.0/changelog.md"
-         }
-         },
-         {
-         "title": "0.5.0",
-         "content": "documents/api.html",
-         "type": "raw-html",
-         "config": {
-         "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.5.0/changelog.md"
-         }
-         },
-         {
-         "title": "0.4.0",
-         "content": "documents/api.html",
-         "type": "raw-html",
-         "config": {
-         "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.4.0/changelog.md"
-         }
-         },
-         {
-         "title": "0.3.0",
-         "content": "documents/api.html",
-         "type": "raw-html",
-         "config": {
-         "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.3.0/changelog.md"
-         }
-         },
-         {
-         "title": "0.2.0",
-         "content": "documents/api.html",
-         "type": "raw-html",
-         "config": {
-         "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.2.0/changelog.md"
-         }
-      }
-         ]
-      }
-   ],
-   "config":{
-      "codeLayout":"one-column",
-      "showCodeSwitch":false
-   }
+  "items": [
+    {
+      "title": "API Changelog",
+      "items": [
+        {
+          "title": "2020",
+          "content": "documents/2020.md"
+        },
+        {
+          "title": "2019",
+          "content": "documents/2019.md"
+        },
+        {
+          "title": "2018",
+          "content": "documents/2018.md"
+        },
+        {
+          "title": "Archive",
+          "content": "documents/update-archive.md"
+        }
+      ]
+    },
+    {
+      "title": "OpenAPI Release Notes",
+      "items": [
+        {
+          "title": "0.8.0 @latest",
+          "content": "documents/api.html",
+          "type": "raw-html",
+          "config": {
+            "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/changelog.md"
+          }
+        },
+        {
+          "title": "0.7.0",
+          "content": "documents/api.html",
+          "type": "raw-html",
+          "config": {
+            "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.7.0/changelog.md"
+          }
+        },
+        {
+          "title": "0.6.0",
+          "content": "documents/api.html",
+          "type": "raw-html",
+          "config": {
+            "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.6.0/changelog.md"
+          }
+        },
+        {
+          "title": "0.5.0",
+          "content": "documents/api.html",
+          "type": "raw-html",
+          "config": {
+            "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.5.0/changelog.md"
+          }
+        },
+        {
+          "title": "0.4.0",
+          "content": "documents/api.html",
+          "type": "raw-html",
+          "config": {
+            "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.4.0/changelog.md"
+          }
+        },
+        {
+          "title": "0.3.0",
+          "content": "documents/api.html",
+          "type": "raw-html",
+          "config": {
+            "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.3.0/changelog.md"
+          }
+        },
+        {
+          "title": "0.2.0",
+          "content": "documents/api.html",
+          "type": "raw-html",
+          "config": {
+            "markdown_url": "https://raw.githubusercontent.com/meraki/openapi/master/openapi/0.2.0/changelog.md"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "codeLayout": "one-column",
+    "showCodeSwitch": false
+  }
 }
