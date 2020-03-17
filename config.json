@@ -26,11 +26,11 @@
       "items": [
         {
           "title": "0.9.0 @latest",
-          "content": "documents/api.html",
+          
           "type": "raw-html",
-          "config": {
-            "markdown_url": "changelog/0.9.0-changelog.md"
-          }
+          
+          "content": "changelog/0.9.0-changelog.md"
+          
         },
         {
           "title": "0.8.0",
