@@ -25,7 +25,11 @@
             "title": "OpenAPI Release Notes",
             "items": [
                 {
-                    "title": "0.9.0 @latest",
+                    "title": "0.10.0 @latest",
+                    "content": "changelog/0.10.0-changelog.md"
+                },
+                {
+                    "title": "0.9.0",
                     "content": "changelog/0.9.0-changelog.md"
                 },
                 {
