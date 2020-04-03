@@ -1,7 +1,7 @@
 {
     "items": [
         {
-            "title": "API Changelog",
+            "title": "API Release Notes",
             "items": [
                 {
                     "title": "2020",
@@ -22,7 +22,7 @@
             ]
         },
         {
-            "title": "OpenAPI Release Notes",
+            "title": "Changelog",
             "items": [
                 {
                     "title": "0.10.0 @latest",
