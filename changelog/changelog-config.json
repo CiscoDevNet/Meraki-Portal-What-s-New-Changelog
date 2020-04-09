@@ -5,7 +5,7 @@
         {
             "title": "Generally Available",
             "config":{
-                "overview":"gaOverview.md",
+                "overview":"gaOverview.md"
             },
             "items": [
                 {
