@@ -4,7 +4,9 @@
     "items": [
         {
             "title": "Generally Available",
-            "overview":"gaOverview.md",
+            "config":{
+                "overview":"gaOverview.md",
+            },
             "items": [
                 {
                     "content": "v0.10.0.md"
