@@ -1,8 +1,10 @@
 {
     "title": "API Changelog",
+    "overview": "changelogOverview.md",
     "items": [
         {
             "title": "Generally Available",
+            "overview":"gaOverview.md",
             "items": [
                 {
                     "content": "v0.10.0.md"
@@ -35,6 +37,7 @@
         },
         {
             "title": "Beta",
+            "overview":"betaOverview.md",
             "items": [
                 {
                     "content": "v1.0.0-beta.1.md"

@@ -1,0 +1,1 @@
+All minor changes are automatically inherited by the API, whereas major changes require a unique base URL.

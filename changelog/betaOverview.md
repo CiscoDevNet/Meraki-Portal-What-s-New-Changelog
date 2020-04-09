@@ -1,0 +1,1 @@
+These changes are reflected in organizations that have enabled the Beta API features. If you would like to participate in the beta, please join our [Early Access Program](/meraki/meraki-developer-early-access-program/#!developer-early-access-program/meraki-developer-early-access-program).
