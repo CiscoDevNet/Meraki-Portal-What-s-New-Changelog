@@ -69,10 +69,10 @@
                     "title": "Beta",
                     "items":[
                         {
-                            "content": "v1.0.0-beta.1.md"
+                            "content": "v1.0.0-beta.1-changelog.md"
                         },
                         {
-                            "content": "v1.0.0-beta.0.md"
+                            "content": "v1.0.0-beta.0-changelog.md"
                         }
                     ]
                 }
