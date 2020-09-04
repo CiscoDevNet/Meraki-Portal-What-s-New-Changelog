@@ -25,10 +25,6 @@
             "title": "API Changelog",
             "type": "config",
             "content": "changelog/changelog-config.json"
-        },
-        {
-            "title": "API Path Changes",
-            "content": "changelog/v0-v1-renames.md"
         }
     ],
     "config": {
