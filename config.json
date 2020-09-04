@@ -28,7 +28,6 @@
         },
         {
             "title": "API Path Changes",
-            "type": "config",
             "content": "changelog/v0-v1-renames.md"
         }
     ],
