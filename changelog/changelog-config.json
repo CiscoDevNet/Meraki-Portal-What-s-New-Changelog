@@ -74,6 +74,9 @@
             "title": "Beta",
             "items": [
                 {
+                    "content": "v1.10.0-beta.0.md"
+                },
+                {
                     "content": "v1.8.0-beta.0.md"
                 },
                 {
