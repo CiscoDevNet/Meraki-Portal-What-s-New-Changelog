@@ -9,6 +9,9 @@
             "title": "Generally Available",
             "items": [
                 {
+                    "content": "v1.16.0.md"
+                },
+                {
                     "content": "v1.15.0.md"
                 },
                 {
@@ -88,6 +91,12 @@
         {
             "title": "Beta",
             "items": [
+                {
+                    "content": "v1-beta.md"
+                },
+                {
+                    "content": "v1.16.0-beta.0.md"
+                },
                 {
                     "content": "v1.15.0-beta.0.md"
                 },
