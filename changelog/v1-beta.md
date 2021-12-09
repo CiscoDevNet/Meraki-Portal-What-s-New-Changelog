@@ -1,36 +1,46 @@
  - [What's Updated](#whats-updated)
+  * [\[ devices \]](#-devices-)
+    + [clients](#clients)
+      - [List the clients of a device, up to a maximum of a month ago](#list-the-clients-of-a-device-up-to-a-maximum-of-a-month-ago)
   * [\[ appliance \]](#-appliance-)
     + [vlans](#vlans)
       - [Add a VLAN](#add-a-vlan)
       - [Update a VLAN](#update-a-vlan)
   * [\[ networks \]](#-networks-)
+    + [clients](#clients-1)
+      - [List the clients that have used this network in the timespan](#list-the-clients-that-have-used-this-network-in-the-timespan)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
   * [\[ wireless \]](#-wireless-)
+    + [ssids](#ssids)
+      - [Update the attributes of an MR SSID](#update-the-attributes-of-an-mr-ssid)
     + [rfProfiles](#rfprofiles)
       - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
       - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
   * [\[ organizations \]](#-organizations-)
-    + [loginSecurity](#loginsecurity)
-      - [Update the login security settings for an organization](#update-the-login-security-settings-for-an-organization)
     + [devices](#devices)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
+    + [loginSecurity](#loginsecurity)
+      - [Update the login security settings for an organization](#update-the-login-security-settings-for-an-organization)
+    + [service](#service)
+      - [List the organizations that the user has privileges on](#list-the-organizations-that-the-user-has-privileges-on)
+      - [Return an organization](#return-an-organization)
 - [What's New](#whats-new)
   * [\[ appliance \]](#-appliance--1)
-    + [delegatedPrefixes](#delegatedprefixes)
-      - [Return current delegated IPv6 prefixes on an appliance.](#return-current-delegated-ipv6-prefixes-on-an-appliance)
-    + [vlanPrefixAssignments](#vlanprefixassignments)
-      - [Return prefixes assigned to all IPv6 enabled VLANs on an appliance.](#return-prefixes-assigned-to-all-ipv6-enabled-vlans-on-an-appliance)
-    + [ssids](#ssids)
+    + [ssids](#ssids-1)
       - [List the MX SSIDs in a network](#list-the-mx-ssids-in-a-network)
       - [Return a single MX SSID](#return-a-single-mx-ssid)
       - [Update the attributes of an MX SSID](#update-the-attributes-of-an-mx-ssid)
+    + [vlanPrefixAssignments](#vlanprefixassignments)
+      - [Return prefixes assigned to all IPv6 enabled VLANs on an appliance.](#return-prefixes-assigned-to-all-ipv6-enabled-vlans-on-an-appliance)
     + [staticDelegatedPrefixes](#staticdelegatedprefixes)
       - [List static delegated prefixes for a network](#list-static-delegated-prefixes-for-a-network)
       - [Add a static delegated prefix from a network](#add-a-static-delegated-prefix-from-a-network)
       - [Return a static delegated prefix from a network](#return-a-static-delegated-prefix-from-a-network)
       - [Update a static delegated prefix from a network](#update-a-static-delegated-prefix-from-a-network)
       - [Delete a static delegated prefix from a network](#delete-a-static-delegated-prefix-from-a-network)
+    + [delegatedPrefixes](#delegatedprefixes)
+      - [Return current delegated IPv6 prefixes on an appliance.](#return-current-delegated-ipv6-prefixes-on-an-appliance)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
       - [Return scanning API settings](#return-scanning-api-settings)
@@ -44,12 +54,12 @@
       - [Update a webhook payload template for a network](#update-a-webhook-payload-template-for-a-network)
       - [Destroy a webhook payload template for a network. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003' or 'wpt\_00004')](#destroy-a-webhook-payload-template-for-a-network-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-or-wpt_00004)
   * [\[ wireless \]](#-wireless--1)
-    + [devices](#devices-1)
-      - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
-    + [clients](#clients)
+    + [clients](#clients-2)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
+    + [devices](#devices-1)
+      - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
   * [\[ organizations \]](#-organizations--1)
@@ -65,16 +75,16 @@
       - [Updates a Policy Object.](#updates-a-policy-object)
       - [Deletes a Policy Object.](#deletes-a-policy-object)
   * [\[ sensor \]](#-sensor-)
+    + [readings](#readings)
+      - [Return all reported readings from sensors in a given timespan, sorted by timestamp](#return-all-reported-readings-from-sensors-in-a-given-timespan-sorted-by-timestamp)
     + [relationships](#relationships)
       - [List the sensor roles for a given device.](#list-the-sensor-roles-for-a-given-device)
       - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
       - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
     + [schedules](#schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
-    + [readings](#readings)
-      - [Return all reported readings from sensors in a given timespan, sorted by timestamp](#return-all-reported-readings-from-sensors-in-a-given-timespan-sorted-by-timestamp)
  
-Version **1.16.0** _to_ **1.16.0-beta.0**
+Version **1.16.0** _to_ **1.16.0-beta.1**
 
 * * *
 
@@ -82,7 +92,7 @@ Version **1.16.0** _to_ **1.16.0-beta.0**
 
 **23 - New**
 
-**8 - Updated**
+**14 - Updated**
 
 **556 - Total Endpoints**
 
@@ -94,6 +104,19 @@ Version **1.16.0** _to_ **1.16.0-beta.0**
 
 What's Updated
 ==============
+
+\[ devices \]
+-------------
+
+### clients
+
+#### List the clients of a device, up to a maximum of a month ago
+
+GET _`/devices/{serial}/clients`_
+
+> \- Response property `namedVlan` value added
+
+* * *
 
 \[ appliance \]
 ---------------
@@ -119,6 +142,18 @@ PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
 \[ networks \]
 --------------
 
+### clients
+
+#### List the clients that have used this network in the timespan
+
+GET _`/networks/{networkId}/clients`_
+
+> \- Optional param `vlan` added
+
+> \- Response property `namedVlan` value added
+
+* * *
+
 ### settings
 
 #### Update the settings for a network
@@ -133,6 +168,16 @@ PUT _`/networks/{networkId}/settings`_
 
 \[ wireless \]
 --------------
+
+### ssids
+
+#### Update the attributes of an MR SSID
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- Optional property `openRoamingCertificateId` Added
+
+* * *
 
 ### rfProfiles
 
@@ -155,16 +200,6 @@ PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 \[ organizations \]
 -------------------
 
-### loginSecurity
-
-#### Update the login security settings for an organization
-
-PUT _`/organizations/{organizationId}/loginSecurity`_
-
-> \- Optional property `apiAuthentication` Added
-
-* * *
-
 ### devices
 
 #### List the status of every Meraki device in the organization
@@ -175,68 +210,39 @@ GET _`/organizations/{organizationId}/devices/statuses`_
 
 * * *
 
+### loginSecurity
+
+#### Update the login security settings for an organization
+
+PUT _`/organizations/{organizationId}/loginSecurity`_
+
+> \- Optional property `apiAuthentication` Added
+
+* * *
+
+### service
+
+#### List the organizations that the user has privileges on
+
+GET _`/organizations`_
+
+> \- Response property `properties` value added
+
+* * *
+
+#### Return an organization
+
+GET _`/organizations/{organizationId}`_
+
+> \- Response property `properties` value added
+
+* * *
+
 What's New
 ==========
 
 \[ appliance \]
 ---------------
-
-### delegatedPrefixes
-
-PATH _`/devices/{serial}/appliance/delegatedPrefixes`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return current delegated IPv6 prefixes on an appliance.
-> 
-> **GET** `/devices/{serial}/appliance/delegatedPrefixes`  
-> 
->     [
->         {
->             "origin": "wan1",
->             "prefix": "2001:db8:3c4d:15::/64",
->             "usedCount": 2,
->             "freeCount": 253,
->             "method": "auto",
->             "description": "My ISP provider",
->             "preferred": true,
->             "expiresAt": "2018-05-12T00:00:00Z"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### vlanPrefixAssignments
-
-PATH _`/devices/{serial}/appliance/vlanPrefixAssignments`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return prefixes assigned to all IPv6 enabled VLANs on an appliance.
-> 
-> **GET** `/devices/{serial}/appliance/vlanPrefixAssignments`  
-> 
->     [
->         {
->             "vlanId": 100,
->             "vlanName": "My VLAN",
->             "origin": "wan1",
->             "originLabel": "WAN 1",
->             "originPrefix": "2001:db8:3c4d:15::/64",
->             "subnetPrefix": "2001:db8:3c4d:15::/64",
->             "mx_ip": "2001:db8:3c4d:15::1"
->         }
->     ]
-> 
-> * * *
-
-* * *
 
 ### ssids
 
@@ -325,6 +331,34 @@ PATH _`/networks/{networkId}/appliance/ssids/{number}`_
 >         "wpaEncryptionMode": "WPA2 only",
 >         "visible": true
 >     }
+> 
+> * * *
+
+* * *
+
+### vlanPrefixAssignments
+
+PATH _`/devices/{serial}/appliance/vlanPrefixAssignments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return prefixes assigned to all IPv6 enabled VLANs on an appliance.
+> 
+> **GET** `/devices/{serial}/appliance/vlanPrefixAssignments`  
+> 
+>     [
+>         {
+>             "vlanId": 100,
+>             "vlanName": "My VLAN",
+>             "origin": "wan1",
+>             "originLabel": "WAN 1",
+>             "originPrefix": "2001:db8:3c4d:15::/64",
+>             "subnetPrefix": "2001:db8:3c4d:15::/64",
+>             "mx_ip": "2001:db8:3c4d:15::1"
+>         }
+>     ]
 > 
 > * * *
 
@@ -440,6 +474,35 @@ PATH _`/networks/{networkId}/appliance/staticDelegatedPrefixes/{staticDelegatedP
 > #### Delete a static delegated prefix from a network
 > 
 > **DELETE** `/networks/{networkId}/appliance/staticDelegatedPrefixes/{staticDelegatedPrefixId}`  
+> 
+> * * *
+
+* * *
+
+### delegatedPrefixes
+
+PATH _`/devices/{serial}/appliance/delegatedPrefixes`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return current delegated IPv6 prefixes on an appliance.
+> 
+> **GET** `/devices/{serial}/appliance/delegatedPrefixes`  
+> 
+>     [
+>         {
+>             "origin": "wan1",
+>             "prefix": "2001:db8:3c4d:15::/64",
+>             "usedCount": 2,
+>             "freeCount": 253,
+>             "method": "auto",
+>             "description": "My ISP provider",
+>             "preferred": true,
+>             "expiresAt": "2018-05-12T00:00:00Z"
+>         }
+>     ]
 > 
 > * * *
 
@@ -656,47 +719,6 @@ PATH _`/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}`_
 \[ wireless \]
 --------------
 
-### devices
-
-PATH _`/networks/{networkId}/wireless/devices/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores of all APs on this network
-> 
-> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
-> 
->     [
->         {
->             "device": {
->                 "serial": "Q234-ABCD-0001"
->             },
->             "performance": {
->                 "latest": 80
->             },
->             "onboarding": {
->                 "latest": 20
->             }
->         },
->         {
->             "device": {
->                 "serial": "Q234-ABCD-0003"
->             },
->             "performance": {
->                 "latest": 30
->             },
->             "onboarding": {
->                 "latest": 90
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 ### clients
 
 PATH _`/networks/{networkId}/wireless/clients/healthScores`_
@@ -809,6 +831,47 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 >             "latest": 100
 >         }
 >     }
+> 
+> * * *
+
+* * *
+
+### devices
+
+PATH _`/networks/{networkId}/wireless/devices/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores of all APs on this network
+> 
+> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
+> 
+>     [
+>         {
+>             "device": {
+>                 "serial": "Q234-ABCD-0001"
+>             },
+>             "performance": {
+>                 "latest": 80
+>             },
+>             "onboarding": {
+>                 "latest": 20
+>             }
+>         },
+>         {
+>             "device": {
+>                 "serial": "Q234-ABCD-0003"
+>             },
+>             "performance": {
+>                 "latest": 30
+>             },
+>             "onboarding": {
+>                 "latest": 90
+>             }
+>         }
+>     ]
 > 
 > * * *
 
@@ -1052,6 +1115,38 @@ PATH _`/organizations/{organizationId}/policyObjects/{policyObjectId}`_
 \[ sensor \]
 ------------
 
+### readings
+
+PATH _`/organizations/{organizationId}/sensor/readings/history`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return all reported readings from sensors in a given timespan, sorted by timestamp
+> 
+> **GET** `/organizations/{organizationId}/sensor/readings/history`  
+> 
+>     [
+>         {
+>             "ts": "2021-10-18T23:54:48Z",
+>             "serial": "Q234-ABCD-5678",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "metric": "temperature",
+>             "temperature": {
+>                 "fahrenheit": 77.81,
+>                 "celsius": 25.45
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### relationships
 
 PATH _`/devices/{serial}/sensor/relationships`_
@@ -1155,38 +1250,6 @@ PATH _`/networks/{networkId}/sensor/schedules`_
 >         {
 >             "id": "124",
 >             "name": "Office hours"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### readings
-
-PATH _`/organizations/{organizationId}/sensor/readings/history`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return all reported readings from sensors in a given timespan, sorted by timestamp
-> 
-> **GET** `/organizations/{organizationId}/sensor/readings/history`  
-> 
->     [
->         {
->             "ts": "2021-10-18T23:54:48Z",
->             "serial": "Q234-ABCD-5678",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "metric": "temperature",
->             "temperature": {
->                 "fahrenheit": 77.81,
->                 "celsius": 25.45
->             }
 >         }
 >     ]
 > 
