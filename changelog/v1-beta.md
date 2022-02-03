@@ -1,15 +1,17 @@
  - [What's Updated](#whats-updated)
   * [\[ appliance \]](#-appliance-)
+    + [singleLan](#singlelan)
+      - [Update single LAN configuration](#update-single-lan-configuration)
     + [vlans](#vlans)
-      - [Add a VLAN](#add-a-vlan)
       - [Update a VLAN](#update-a-vlan)
+      - [Add a VLAN](#add-a-vlan)
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
   * [\[ wireless \]](#-wireless-)
     + [rfProfiles](#rfprofiles)
-      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
       - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
+      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
   * [\[ organizations \]](#-organizations-)
     + [loginSecurity](#loginsecurity)
       - [Update the login security settings for an organization](#update-the-login-security-settings-for-an-organization)
@@ -17,41 +19,39 @@
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
 - [What's New](#whats-new)
   * [\[ appliance \]](#-appliance--1)
-    + [delegatedPrefixes](#delegatedprefixes)
+    + [prefixes](#prefixes)
       - [Return current delegated IPv6 prefixes on an appliance.](#return-current-delegated-ipv6-prefixes-on-an-appliance)
-    + [vlanPrefixAssignments](#vlanprefixassignments)
       - [Return prefixes assigned to all IPv6 enabled VLANs on an appliance.](#return-prefixes-assigned-to-all-ipv6-enabled-vlans-on-an-appliance)
-    + [ssids](#ssids)
-      - [List the MX SSIDs in a network](#list-the-mx-ssids-in-a-network)
-      - [Return a single MX SSID](#return-a-single-mx-ssid)
-      - [Update the attributes of an MX SSID](#update-the-attributes-of-an-mx-ssid)
-    + [staticDelegatedPrefixes](#staticdelegatedprefixes)
       - [List static delegated prefixes for a network](#list-static-delegated-prefixes-for-a-network)
       - [Add a static delegated prefix from a network](#add-a-static-delegated-prefix-from-a-network)
       - [Return a static delegated prefix from a network](#return-a-static-delegated-prefix-from-a-network)
       - [Update a static delegated prefix from a network](#update-a-static-delegated-prefix-from-a-network)
       - [Delete a static delegated prefix from a network](#delete-a-static-delegated-prefix-from-a-network)
+    + [uplinks](#uplinks)
+      - [Return the uplink settings for an MX appliance](#return-the-uplink-settings-for-an-mx-appliance)
+      - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
+    + [firewall](#firewall)
+      - [Return the inbound cellular firewall rules for an MX network](#return-the-inbound-cellular-firewall-rules-for-an-mx-network)
+      - [Update the inbound cellular firewall rules of an MX network](#update-the-inbound-cellular-firewall-rules-of-an-mx-network)
+    + [ssids](#ssids)
+      - [List the MX SSIDs in a network](#list-the-mx-ssids-in-a-network)
+      - [Return a single MX SSID](#return-a-single-mx-ssid)
+      - [Update the attributes of an MX SSID](#update-the-attributes-of-an-mx-ssid)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
       - [Return scanning API settings](#return-scanning-api-settings)
       - [Change scanning API settings](#change-scanning-api-settings)
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
-    + [webhooks](#webhooks)
-      - [List the webhook payload templates for a network](#list-the-webhook-payload-templates-for-a-network)
-      - [Create a webhook payload template for a network](#create-a-webhook-payload-template-for-a-network)
-      - [Get the webhook payload template for a network](#get-the-webhook-payload-template-for-a-network)
-      - [Update a webhook payload template for a network](#update-a-webhook-payload-template-for-a-network)
-      - [Destroy a webhook payload template for a network. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003' or 'wpt\_00004')](#destroy-a-webhook-payload-template-for-a-network-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-or-wpt_00004)
   * [\[ wireless \]](#-wireless--1)
     + [devices](#devices-1)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [clients](#clients)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
   * [\[ organizations \]](#-organizations--1)
     + [policyObjects](#policyobjects)
       - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization)
@@ -65,17 +65,17 @@
       - [Updates a Policy Object.](#updates-a-policy-object)
       - [Deletes a Policy Object.](#deletes-a-policy-object)
   * [\[ sensor \]](#-sensor-)
-    + [relationships](#relationships)
-      - [List the sensor roles for a given device.](#list-the-sensor-roles-for-a-given-device)
-      - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
-      - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
     + [schedules](#schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
     + [readings](#readings)
       - [Return all reported readings from sensors in a given timespan, sorted by timestamp](#return-all-reported-readings-from-sensors-in-a-given-timespan-sorted-by-timestamp)
       - [Return the latest available reading for each metric from each sensor, sorted by sensor serial](#return-the-latest-available-reading-for-each-metric-from-each-sensor-sorted-by-sensor-serial)
+    + [relationships](#relationships)
+      - [List the sensor roles for a given device.](#list-the-sensor-roles-for-a-given-device)
+      - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
+      - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
  
-Version **1.17.0** _to_ **1.17.0-beta.0**
+Version **1.18.0** _to_ **1.18.0-beta.0**
 
 * * *
 
@@ -83,11 +83,11 @@ Version **1.17.0** _to_ **1.17.0-beta.0**
 
 **24 - New**
 
-**7 - Updated**
+**8 - Updated**
 
-**557 - Total Endpoints**
+**561 - Total Endpoints**
 
-**350 - Total Paths**
+**352 - Total Paths**
 
 * * *
 
@@ -99,19 +99,29 @@ What's Updated
 \[ appliance \]
 ---------------
 
-### vlans
+### singleLan
 
-#### Add a VLAN
+#### Update single LAN configuration
 
-POST _`/networks/{networkId}/appliance/vlans`_
+PUT _`/networks/{networkId}/appliance/singleLan`_
 
 > \- Optional property `ip6` Added
 
 * * *
 
+### vlans
+
 #### Update a VLAN
 
 PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
+
+> \- Optional property `ip6` Added
+
+* * *
+
+#### Add a VLAN
+
+POST _`/networks/{networkId}/appliance/vlans`_
 
 > \- Optional property `ip6` Added
 
@@ -135,17 +145,17 @@ PUT _`/networks/{networkId}/settings`_
 
 ### rfProfiles
 
-#### Creates new RF profile for this network
+#### Updates specified RF profile for this network
 
-POST _`/networks/{networkId}/wireless/rfProfiles`_
+PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 
 > \- Optional property `perSsidSettings` Added
 
 * * *
 
-#### Updates specified RF profile for this network
+#### Creates new RF profile for this network
 
-PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
+POST _`/networks/{networkId}/wireless/rfProfiles`_
 
 > \- Optional property `perSsidSettings` Added
 
@@ -180,9 +190,9 @@ What's New
 \[ appliance \]
 ---------------
 
-### delegatedPrefixes
+### prefixes
 
-PATH _`/devices/{serial}/appliance/delegatedPrefixes`_
+PATH _`/devices/{serial}/appliance/prefixes/delegated`_
 
 > \- Path added  
 >   
@@ -190,17 +200,21 @@ PATH _`/devices/{serial}/appliance/delegatedPrefixes`_
 > 
 > #### Return current delegated IPv6 prefixes on an appliance.
 > 
-> **GET** `/devices/{serial}/appliance/delegatedPrefixes`  
+> **GET** `/devices/{serial}/appliance/prefixes/delegated`  
 > 
 >     [
 >         {
->             "origin": "wan1",
+>             "origin": {
+>                 "interface": "wan1"
+>             },
 >             "prefix": "2001:db8:3c4d:15::/64",
->             "usedCount": 2,
->             "freeCount": 253,
+>             "counts": {
+>                 "assigned": 2,
+>                 "available": 253
+>             },
 >             "method": "auto",
 >             "description": "My ISP provider",
->             "preferred": true,
+>             "isPreferred": true,
 >             "expiresAt": "2018-05-12T00:00:00Z"
 >         }
 >     ]
@@ -209,9 +223,7 @@ PATH _`/devices/{serial}/appliance/delegatedPrefixes`_
 
 * * *
 
-### vlanPrefixAssignments
-
-PATH _`/devices/{serial}/appliance/vlanPrefixAssignments`_
+PATH _`/devices/{serial}/appliance/prefixes/delegated/vlanAssignments`_
 
 > \- Path added  
 >   
@@ -219,18 +231,316 @@ PATH _`/devices/{serial}/appliance/vlanPrefixAssignments`_
 > 
 > #### Return prefixes assigned to all IPv6 enabled VLANs on an appliance.
 > 
-> **GET** `/devices/{serial}/appliance/vlanPrefixAssignments`  
+> **GET** `/devices/{serial}/appliance/prefixes/delegated/vlanAssignments`  
 > 
 >     [
 >         {
->             "vlanId": 100,
->             "vlanName": "My VLAN",
->             "origin": "wan1",
->             "originLabel": "WAN 1",
->             "originPrefix": "2001:db8:3c4d:15::/64",
->             "subnetPrefix": "2001:db8:3c4d:15::/64",
->             "mx_ip": "2001:db8:3c4d:15::1",
->             "prefixStatus": "Active"
+>             "vlan": {
+>                 "id": 100,
+>                 "name": "My VLAN"
+>             },
+>             "origin": {
+>                 "interface": "wan1",
+>                 "prefix": "2001:db8:3c4d:15::/64"
+>             },
+>             "status": "Active",
+>             "ipv6": {
+>                 "prefix": "2001:db8:3c4d:15::/64",
+>                 "address": "2001:db8:3c4d:15::1"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/appliance/prefixes/delegated/statics`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List static delegated prefixes for a network
+> 
+> **GET** `/networks/{networkId}/appliance/prefixes/delegated/statics`  
+> 
+>     [
+>         {
+>             "staticDelegatedPrefixId": "1284392014819",
+>             "prefix": "2001:db8:3c4d:15::/64",
+>             "origin": {
+>                 "type": "internet",
+>                 "interfaces": [
+>                     "wan1"
+>                 ]
+>             },
+>             "description": "Prefix on WAN 1 of Long Island Office network",
+>             "createdAt": "2018-05-12T00:00:00Z",
+>             "updatedAt": "2018-05-12T00:00:00Z"
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add a static delegated prefix from a network
+> 
+> **POST** `/networks/{networkId}/appliance/prefixes/delegated/statics`  
+> 
+>     {
+>         "staticDelegatedPrefixId": "1284392014819",
+>         "prefix": "2001:db8:3c4d:15::/64",
+>         "origin": {
+>             "type": "internet",
+>             "interfaces": [
+>                 "wan1"
+>             ]
+>         },
+>         "description": "Prefix on WAN 1 of Long Island Office network",
+>         "createdAt": "2018-05-12T00:00:00Z",
+>         "updatedAt": "2018-05-12T00:00:00Z"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a static delegated prefix from a network
+> 
+> **GET** `/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`  
+> 
+>     {
+>         "staticDelegatedPrefixId": "1284392014819",
+>         "prefix": "2001:db8:3c4d:15::/64",
+>         "origin": {
+>             "type": "internet",
+>             "interfaces": [
+>                 "wan1"
+>             ]
+>         },
+>         "description": "Prefix on WAN 1 of Long Island Office network",
+>         "createdAt": "2018-05-12T00:00:00Z",
+>         "updatedAt": "2018-05-12T00:00:00Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update a static delegated prefix from a network
+> 
+> **PUT** `/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`  
+> 
+>     {
+>         "staticDelegatedPrefixId": "1284392014819",
+>         "prefix": "2001:db8:3c4d:15::/64",
+>         "origin": {
+>             "type": "internet",
+>             "interfaces": [
+>                 "wan1"
+>             ]
+>         },
+>         "description": "Prefix on WAN 1 of Long Island Office network",
+>         "createdAt": "2018-05-12T00:00:00Z",
+>         "updatedAt": "2018-05-12T00:00:00Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a static delegated prefix from a network
+> 
+> **DELETE** `/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`  
+> 
+> * * *
+
+* * *
+
+### uplinks
+
+PATH _`/devices/{serial}/appliance/uplinks/settings`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the uplink settings for an MX appliance
+> 
+> **GET** `/devices/{serial}/appliance/uplinks/settings`  
+> 
+>     {
+>         "interfaces": {
+>             "wan1": {
+>                 "enabled": true,
+>                 "svis": {
+>                     "ipv4": {
+>                         "assignmentMode": "dynamic"
+>                     },
+>                     "ipv6": {
+>                         "assignmentMode": "dynamic"
+>                     }
+>                 },
+>                 "pppoe": {
+>                     "enabled": true,
+>                     "authentication": {
+>                         "enabled": true,
+>                         "username": "username"
+>                     }
+>                 }
+>             },
+>             "wan2": {
+>                 "enabled": false,
+>                 "svis": {
+>                     "ipv4": {
+>                         "assignmentMode": "static",
+>                         "address": "9.10.11.10/16",
+>                         "gateway": "13.14.15.16",
+>                         "nameservers": {
+>                             "addresses": [
+>                                 "1.2.3.4"
+>                             ]
+>                         }
+>                     },
+>                     "ipv6": {
+>                         "assignmentMode": "static",
+>                         "address": "1:2:3::4",
+>                         "gateway": "1:2:3::5",
+>                         "nameservers": {
+>                             "addresses": [
+>                                 "1001:4860:4860::8888",
+>                                 "1001:4860:4860::8844"
+>                             ]
+>                         }
+>                     }
+>                 },
+>                 "pppoe": {
+>                     "enabled": false
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update the uplink settings for an MX appliance
+> 
+> **PUT** `/devices/{serial}/appliance/uplinks/settings`  
+> 
+>     {
+>         "interfaces": {
+>             "wan1": {
+>                 "enabled": true,
+>                 "svis": {
+>                     "ipv4": {
+>                         "assignmentMode": "dynamic"
+>                     },
+>                     "ipv6": {
+>                         "assignmentMode": "dynamic"
+>                     }
+>                 },
+>                 "pppoe": {
+>                     "enabled": true,
+>                     "authentication": {
+>                         "enabled": true,
+>                         "username": "username"
+>                     }
+>                 }
+>             },
+>             "wan2": {
+>                 "enabled": false,
+>                 "svis": {
+>                     "ipv4": {
+>                         "assignmentMode": "static",
+>                         "address": "9.10.11.10/16",
+>                         "gateway": "13.14.15.16",
+>                         "nameservers": {
+>                             "addresses": [
+>                                 "1.2.3.4"
+>                             ]
+>                         }
+>                     },
+>                     "ipv6": {
+>                         "assignmentMode": "static",
+>                         "address": "1:2:3::4",
+>                         "gateway": "1:2:3::5",
+>                         "nameservers": {
+>                             "addresses": [
+>                                 "1001:4860:4860::8888",
+>                                 "1001:4860:4860::8844"
+>                             ]
+>                         }
+>                     }
+>                 },
+>                 "pppoe": {
+>                     "enabled": false
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### firewall
+
+PATH _`/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the inbound cellular firewall rules for an MX network
+> 
+> **GET** `/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules`  
+> 
+>     [
+>         {
+>             "comment": "Allow TCP traffic to subnet with HTTP servers.",
+>             "policy": "allow",
+>             "protocol": "tcp",
+>             "destPort": "443",
+>             "destCidr": "192.168.1.0/24",
+>             "srcPort": "Any",
+>             "srcCidr": "Any",
+>             "syslogEnabled": false
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update the inbound cellular firewall rules of an MX network
+> 
+> **PUT** `/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules`  
+> 
+>     [
+>         {
+>             "comment": "Allow TCP traffic to subnet with HTTP servers.",
+>             "policy": "allow",
+>             "protocol": "tcp",
+>             "destPort": "443",
+>             "destCidr": "192.168.1.0/24",
+>             "srcPort": "Any",
+>             "srcCidr": "Any",
+>             "syslogEnabled": false
 >         }
 >     ]
 > 
@@ -325,121 +635,6 @@ PATH _`/networks/{networkId}/appliance/ssids/{number}`_
 >         "wpaEncryptionMode": "WPA2 only",
 >         "visible": true
 >     }
-> 
-> * * *
-
-* * *
-
-### staticDelegatedPrefixes
-
-PATH _`/networks/{networkId}/appliance/staticDelegatedPrefixes`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List static delegated prefixes for a network
-> 
-> **GET** `/networks/{networkId}/appliance/staticDelegatedPrefixes`  
-> 
->     [
->         {
->             "staticDelegatedPrefixId": "1284392014819",
->             "prefix": "2001:db8:3c4d:15::/64",
->             "origin": {
->                 "type": "internet",
->                 "interfaces": [
->                     "wan1"
->                 ]
->             },
->             "description": "Prefix on WAN 1 of Long Island Office network",
->             "createdAt": "2018-05-12T00:00:00Z",
->             "updatedAt": "2018-05-12T00:00:00Z"
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Add a static delegated prefix from a network
-> 
-> **POST** `/networks/{networkId}/appliance/staticDelegatedPrefixes`  
-> 
->     {
->         "staticDelegatedPrefixId": "1284392014819",
->         "prefix": "2001:db8:3c4d:15::/64",
->         "origin": {
->             "type": "internet",
->             "interfaces": [
->                 "wan1"
->             ]
->         },
->         "description": "Prefix on WAN 1 of Long Island Office network",
->         "createdAt": "2018-05-12T00:00:00Z",
->         "updatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/appliance/staticDelegatedPrefixes/{staticDelegatedPrefixId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a static delegated prefix from a network
-> 
-> **GET** `/networks/{networkId}/appliance/staticDelegatedPrefixes/{staticDelegatedPrefixId}`  
-> 
->     {
->         "staticDelegatedPrefixId": "1284392014819",
->         "prefix": "2001:db8:3c4d:15::/64",
->         "origin": {
->             "type": "internet",
->             "interfaces": [
->                 "wan1"
->             ]
->         },
->         "description": "Prefix on WAN 1 of Long Island Office network",
->         "createdAt": "2018-05-12T00:00:00Z",
->         "updatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update a static delegated prefix from a network
-> 
-> **PUT** `/networks/{networkId}/appliance/staticDelegatedPrefixes/{staticDelegatedPrefixId}`  
-> 
->     {
->         "staticDelegatedPrefixId": "1284392014819",
->         "prefix": "2001:db8:3c4d:15::/64",
->         "origin": {
->             "type": "internet",
->             "interfaces": [
->                 "wan1"
->             ]
->         },
->         "description": "Prefix on WAN 1 of Long Island Office network",
->         "createdAt": "2018-05-12T00:00:00Z",
->         "updatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a static delegated prefix from a network
-> 
-> **DELETE** `/networks/{networkId}/appliance/staticDelegatedPrefixes/{staticDelegatedPrefixId}`  
 > 
 > * * *
 
@@ -546,113 +741,6 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 
 * * *
 
-### webhooks
-
-PATH _`/networks/{networkId}/webhooks/payloadTemplates`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the webhook payload templates for a network
-> 
-> **GET** `/networks/{networkId}/webhooks/payloadTemplates`  
-> 
->     [
->         {
->             "payloadTemplateId": "wpt_343",
->             "type": "custom",
->             "name": "Weeb Hooks",
->             "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->             "headers": {
->                 "Content-Type": "application/json",
->                 "Accept": "application/some.url",
->                 "Authorization": "Bearer {{sharedSecret}}"
->             }
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create a webhook payload template for a network
-> 
-> **POST** `/networks/{networkId}/webhooks/payloadTemplates`  
-> 
->     {
->         "payloadTemplateId": "wpt_343",
->         "type": "custom",
->         "name": "Weeb Hooks",
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "headers": {
->             "Content-Type": "application/json",
->             "Accept": "application/some.url",
->             "Authorization": "Bearer {{sharedSecret}}"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get the webhook payload template for a network
-> 
-> **GET** `/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}`  
-> 
->     {
->         "payloadTemplateId": "wpt_343",
->         "type": "custom",
->         "name": "Weeb Hooks",
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "headers": {
->             "Content-Type": "application/json",
->             "Accept": "application/some.url",
->             "Authorization": "Bearer {{sharedSecret}}"
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update a webhook payload template for a network
-> 
-> **PUT** `/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}`  
-> 
->     {
->         "payloadTemplateId": "wpt_343",
->         "type": "custom",
->         "name": "Weeb Hooks",
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "headers": {
->             "Content-Type": "application/json",
->             "Accept": "application/some.url",
->             "Authorization": "Bearer {{sharedSecret}}"
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Destroy a webhook payload template for a network. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003' or 'wpt\_00004')
-> 
-> **DELETE** `/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}`  
-> 
-> * * *
-
-* * *
-
 \[ wireless \]
 --------------
 
@@ -692,6 +780,34 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 >             }
 >         }
 >     ]
+> 
+> * * *
+
+* * *
+
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-0001"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
+>         }
+>     }
 > 
 > * * *
 
@@ -807,34 +923,6 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 >         },
 >         "onboarding": {
 >             "latest": 100
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### healthScores
-
-PATH _`/devices/{serial}/wireless/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given AP on this network
-> 
-> **GET** `/devices/{serial}/wireless/healthScores`  
-> 
->     {
->         "device": {
->             "serial": "Q234-ABCD-0001"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
 >         }
 >     }
 > 
@@ -1052,89 +1140,6 @@ PATH _`/organizations/{organizationId}/policyObjects/{policyObjectId}`_
 \[ sensor \]
 ------------
 
-### relationships
-
-PATH _`/devices/{serial}/sensor/relationships`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the sensor roles for a given device.
-> 
-> **GET** `/devices/{serial}/sensor/relationships`  
-> 
->     [
->         {
->             "livestream": {
->                 "relatedDevices": [
->                     {
->                         "serial": "1234-ABCD-5678",
->                         "productType": "camera"
->                     }
->                 ]
->             }
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Assign one or more sensor roles to a given device.
-> 
-> **PUT** `/devices/{serial}/sensor/relationships`  
-> 
->     {
->         "livestream": {
->             "relatedDevices": [
->                 {
->                     "serial": "1234-ABCD-5678",
->                     "productType": "camera"
->                 }
->             ]
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/sensor/relationships`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the sensor roles for devices in a given network
-> 
-> **GET** `/networks/{networkId}/sensor/relationships`  
-> 
->     [
->         {
->             "device": {
->                 "name": "My sensor",
->                 "serial": "Q234-ABCD-5678",
->                 "productType": "sensor"
->             },
->             "relationships": {
->                 "livestream": {
->                     "relatedDevices": [
->                         {
->                             "serial": "1234-ABCD-5678",
->                             "productType": "camera"
->                         }
->                     ]
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 ### schedules
 
 PATH _`/networks/{networkId}/sensor/schedules`_
@@ -1221,6 +1226,89 @@ PATH _`/organizations/{organizationId}/sensor/readings/latest`_
 >                     }
 >                 }
 >             ]
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### relationships
+
+PATH _`/devices/{serial}/sensor/relationships`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the sensor roles for a given device.
+> 
+> **GET** `/devices/{serial}/sensor/relationships`  
+> 
+>     [
+>         {
+>             "livestream": {
+>                 "relatedDevices": [
+>                     {
+>                         "serial": "1234-ABCD-5678",
+>                         "productType": "camera"
+>                     }
+>                 ]
+>             }
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Assign one or more sensor roles to a given device.
+> 
+> **PUT** `/devices/{serial}/sensor/relationships`  
+> 
+>     {
+>         "livestream": {
+>             "relatedDevices": [
+>                 {
+>                     "serial": "1234-ABCD-5678",
+>                     "productType": "camera"
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/sensor/relationships`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the sensor roles for devices in a given network
+> 
+> **GET** `/networks/{networkId}/sensor/relationships`  
+> 
+>     [
+>         {
+>             "device": {
+>                 "name": "My sensor",
+>                 "serial": "Q234-ABCD-5678",
+>                 "productType": "sensor"
+>             },
+>             "relationships": {
+>                 "livestream": {
+>                     "relatedDevices": [
+>                         {
+>                             "serial": "1234-ABCD-5678",
+>                             "productType": "camera"
+>                         }
+>                     ]
+>                 }
+>             }
 >         }
 >     ]
 > 
