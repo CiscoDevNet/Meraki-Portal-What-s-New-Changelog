@@ -1,20 +1,21 @@
  - [What's Updated](#whats-updated)
+  * [\[ switch \]](#-switch-)
+    + [routing](#routing)
+      - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch)
+      - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch)
+    + [stacks](#stacks)
+      - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
+      - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
   * [\[ appliance \]](#-appliance-)
+    + [vlans](#vlans)
+      - [Add a VLAN](#add-a-vlan)
+      - [Update a VLAN](#update-a-vlan)
     + [singleLan](#singlelan)
       - [Update single LAN configuration](#update-single-lan-configuration)
-    + [vlans](#vlans)
-      - [Update a VLAN](#update-a-vlan)
-      - [Add a VLAN](#add-a-vlan)
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
-  * [\[ wireless \]](#-wireless-)
-    + [rfProfiles](#rfprofiles)
-      - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
-      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
   * [\[ organizations \]](#-organizations-)
-    + [loginSecurity](#loginsecurity)
-      - [Update the login security settings for an organization](#update-the-login-security-settings-for-an-organization)
     + [devices](#devices)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
 - [What's New](#whats-new)
@@ -43,15 +44,6 @@
       - [Change scanning API settings](#change-scanning-api-settings)
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
-  * [\[ wireless \]](#-wireless--1)
-    + [devices](#devices-1)
-      - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
-    + [clients](#clients)
-      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
-      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
-      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
   * [\[ organizations \]](#-organizations--1)
     + [policyObjects](#policyobjects)
       - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization)
@@ -68,26 +60,34 @@
     + [schedules](#schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
     + [readings](#readings)
-      - [Return all reported readings from sensors in a given timespan, sorted by timestamp](#return-all-reported-readings-from-sensors-in-a-given-timespan-sorted-by-timestamp)
-      - [Return the latest available reading for each metric from each sensor, sorted by sensor serial](#return-the-latest-available-reading-for-each-metric-from-each-sensor-sorted-by-sensor-serial)
+      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
     + [relationships](#relationships)
       - [List the sensor roles for a given device.](#list-the-sensor-roles-for-a-given-device)
       - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
       - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
+  * [\[ wireless \]](#-wireless-)
+    + [devices](#devices-1)
+      - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
+    + [clients](#clients)
+      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
+      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
+      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
  
-Version **1.18.0** _to_ **1.18.0-beta.0**
+Version **1.19.0** _to_ **1.19.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**24 - New**
+**23 - New**
 
-**8 - Updated**
+**9 - Updated**
 
-**561 - Total Endpoints**
+**564 - Total Endpoints**
 
-**352 - Total Paths**
+**355 - Total Paths**
 
 * * *
 
@@ -96,20 +96,57 @@ Version **1.18.0** _to_ **1.18.0-beta.0**
 What's Updated
 ==============
 
+\[ switch \]
+------------
+
+### routing
+
+#### Create a layer 3 interface for a switch
+
+POST _`/devices/{serial}/switch/routing/interfaces`_
+
+> \- Optional property `ospfV3` Added
+
+* * *
+
+#### Update a layer 3 interface for a switch
+
+PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
+
+> \- Optional property `ospfV3` Added
+
+* * *
+
+### stacks
+
+#### Create a layer 3 interface for a switch stack
+
+POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
+
+> \- Optional property `ospfV3` Added
+
+* * *
+
+#### Update a layer 3 interface for a switch stack
+
+PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
+
+> \- Optional property `ospfV3` Added
+
+* * *
+
 \[ appliance \]
 ---------------
 
-### singleLan
+### vlans
 
-#### Update single LAN configuration
+#### Add a VLAN
 
-PUT _`/networks/{networkId}/appliance/singleLan`_
+POST _`/networks/{networkId}/appliance/vlans`_
 
 > \- Optional property `ip6` Added
 
 * * *
-
-### vlans
 
 #### Update a VLAN
 
@@ -119,9 +156,11 @@ PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
 
 * * *
 
-#### Add a VLAN
+### singleLan
 
-POST _`/networks/{networkId}/appliance/vlans`_
+#### Update single LAN configuration
+
+PUT _`/networks/{networkId}/appliance/singleLan`_
 
 > \- Optional property `ip6` Added
 
@@ -140,39 +179,8 @@ PUT _`/networks/{networkId}/settings`_
 
 * * *
 
-\[ wireless \]
---------------
-
-### rfProfiles
-
-#### Updates specified RF profile for this network
-
-PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
-
-> \- Optional property `perSsidSettings` Added
-
-* * *
-
-#### Creates new RF profile for this network
-
-POST _`/networks/{networkId}/wireless/rfProfiles`_
-
-> \- Optional property `perSsidSettings` Added
-
-* * *
-
 \[ organizations \]
 -------------------
-
-### loginSecurity
-
-#### Update the login security settings for an organization
-
-PUT _`/organizations/{organizationId}/loginSecurity`_
-
-> \- Optional property `apiAuthentication` Added
-
-* * *
 
 ### devices
 
@@ -741,195 +749,6 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 
 * * *
 
-\[ wireless \]
---------------
-
-### devices
-
-PATH _`/networks/{networkId}/wireless/devices/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores of all APs on this network
-> 
-> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
-> 
->     [
->         {
->             "device": {
->                 "serial": "Q234-ABCD-0001"
->             },
->             "performance": {
->                 "latest": 80
->             },
->             "onboarding": {
->                 "latest": 20
->             }
->         },
->         {
->             "device": {
->                 "serial": "Q234-ABCD-0003"
->             },
->             "performance": {
->                 "latest": 30
->             },
->             "onboarding": {
->                 "latest": 90
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### healthScores
-
-PATH _`/devices/{serial}/wireless/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given AP on this network
-> 
-> **GET** `/devices/{serial}/wireless/healthScores`  
-> 
->     {
->         "device": {
->             "serial": "Q234-ABCD-0001"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### clients
-
-PATH _`/networks/{networkId}/wireless/clients/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for all clients on this network
-> 
-> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
-> 
->     [
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 80,
->                 "currentConnection": 100
->             },
->             "onboarding": {
->                 "latest": 100
->             }
->         },
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 30,
->                 "currentConnection": 50
->             },
->             "onboarding": {
->                 "latest": 70
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return counts of distinct wireless clients connecting to a network over time
-> 
-> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
-> 
->     [
->         {
->             "startTs": "2020-01-01T00:00:00Z",
->             "endTs": "2020-01-01T00:05:00Z",
->             "clientCounts": {
->                 "summary": {
->                     "prospective": 100,
->                     "successful": 75,
->                     "failed": 25
->                 },
->                 "connectionSteps": {
->                     "association": {
->                         "prospective": 100,
->                         "successful": 97,
->                         "failed": 3
->                     },
->                     "authentication": {
->                         "prospective": 97,
->                         "successful": 81,
->                         "failed": 16
->                     },
->                     "dhcp": {
->                         "prospective": 81,
->                         "successful": 75,
->                         "failed": 6
->                     },
->                     "dns": {
->                         "prospective": 75,
->                         "successful": 75,
->                         "failed": 0
->                     }
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
-> 
-> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
-> 
->     {
->         "mac": "22:33:44:55:66:77",
->         "clientId": "k74272e",
->         "performance": {
->             "latest": 80,
->             "currentConnection": 100
->         },
->         "onboarding": {
->             "latest": 100
->         }
->     }
-> 
-> * * *
-
-* * *
-
 \[ organizations \]
 -------------------
 
@@ -1169,63 +988,39 @@ PATH _`/networks/{networkId}/sensor/schedules`_
 
 ### readings
 
-PATH _`/organizations/{organizationId}/sensor/readings/history`_
+PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Return all reported readings from sensors in a given timespan, sorted by timestamp
+> #### Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order
 > 
-> **GET** `/organizations/{organizationId}/sensor/readings/history`  
+> **GET** `/organizations/{organizationId}/sensor/readings/history/byInterval`  
 > 
 >     [
 >         {
->             "ts": "2021-10-18T23:54:48Z",
+>             "startTs": "2022-01-07T23:00:00Z",
+>             "endTs": "2022-01-07T23:59:59Z",
 >             "serial": "Q234-ABCD-5678",
+>             "model": "MT11",
 >             "network": {
 >                 "id": "N_24329156",
 >                 "name": "Main Office"
 >             },
 >             "metric": "temperature",
 >             "temperature": {
->                 "fahrenheit": 77.81,
->                 "celsius": 25.45
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/sensor/readings/latest`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the latest available reading for each metric from each sensor, sorted by sensor serial
-> 
-> **GET** `/organizations/{organizationId}/sensor/readings/latest`  
-> 
->     [
->         {
->             "serial": "Q234-ABCD-5678",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "readings": [
->                 {
->                     "ts": "2021-10-18T23:54:48Z",
->                     "metric": "temperature",
->                     "temperature": {
->                         "fahrenheit": 77.81,
->                         "celsius": 25.45
->                     }
+>                 "fahrenheit": {
+>                     "minimum": 68.15,
+>                     "maximum": 74.91,
+>                     "average": 72.08
+>                 },
+>                 "celsius": {
+>                     "minimum": 20.08,
+>                     "maximum": 23.84,
+>                     "average": 72.08
 >                 }
->             ]
+>             }
 >         }
 >     ]
 > 
@@ -1311,6 +1106,195 @@ PATH _`/networks/{networkId}/sensor/relationships`_
 >             }
 >         }
 >     ]
+> 
+> * * *
+
+* * *
+
+\[ wireless \]
+--------------
+
+### devices
+
+PATH _`/networks/{networkId}/wireless/devices/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores of all APs on this network
+> 
+> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
+> 
+>     [
+>         {
+>             "device": {
+>                 "serial": "Q234-ABCD-0001"
+>             },
+>             "performance": {
+>                 "latest": 80
+>             },
+>             "onboarding": {
+>                 "latest": 20
+>             }
+>         },
+>         {
+>             "device": {
+>                 "serial": "Q234-ABCD-0003"
+>             },
+>             "performance": {
+>                 "latest": 30
+>             },
+>             "onboarding": {
+>                 "latest": 90
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-0001"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### clients
+
+PATH _`/networks/{networkId}/wireless/clients/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for all clients on this network
+> 
+> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
+> 
+>     [
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 80,
+>                 "currentConnection": 100
+>             },
+>             "onboarding": {
+>                 "latest": 100
+>             }
+>         },
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 30,
+>                 "currentConnection": 50
+>             },
+>             "onboarding": {
+>                 "latest": 70
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return counts of distinct wireless clients connecting to a network over time
+> 
+> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
+> 
+>     [
+>         {
+>             "startTs": "2020-01-01T00:00:00Z",
+>             "endTs": "2020-01-01T00:05:00Z",
+>             "clientCounts": {
+>                 "summary": {
+>                     "prospective": 100,
+>                     "successful": 75,
+>                     "failed": 25
+>                 },
+>                 "connectionSteps": {
+>                     "association": {
+>                         "prospective": 100,
+>                         "successful": 97,
+>                         "failed": 3
+>                     },
+>                     "authentication": {
+>                         "prospective": 97,
+>                         "successful": 81,
+>                         "failed": 16
+>                     },
+>                     "dhcp": {
+>                         "prospective": 81,
+>                         "successful": 75,
+>                         "failed": 6
+>                     },
+>                     "dns": {
+>                         "prospective": 75,
+>                         "successful": 75,
+>                         "failed": 0
+>                     }
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
+> 
+> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
+> 
+>     {
+>         "mac": "22:33:44:55:66:77",
+>         "clientId": "k74272e",
+>         "performance": {
+>             "latest": 80,
+>             "currentConnection": 100
+>         },
+>         "onboarding": {
+>             "latest": 100
+>         }
+>     }
 > 
 > * * *
 
