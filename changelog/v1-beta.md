@@ -16,9 +16,14 @@
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
   * [\[ organizations \]](#-organizations-)
+    + [networks](#networks)
+      - [List the networks that the user has privileges on in an organization](#list-the-networks-that-the-user-has-privileges-on-in-an-organization)
     + [devices](#devices)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
 - [What's New](#whats-new)
+  * [\[ switch \]](#-switch--1)
+    + [ports](#ports)
+      - [List the switchports in an organization](#list-the-switchports-in-an-organization)
   * [\[ appliance \]](#-appliance--1)
     + [prefixes](#prefixes)
       - [Return current delegated IPv6 prefixes on an appliance.](#return-current-delegated-ipv6-prefixes-on-an-appliance)
@@ -75,19 +80,19 @@
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
  
-Version **1.19.0** _to_ **1.19.0-beta.0**
+Version **1.20.0** _to_ **1.20.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**23 - New**
+**24 - New**
 
-**9 - Updated**
+**10 - Updated**
 
-**564 - Total Endpoints**
+**572 - Total Endpoints**
 
-**355 - Total Paths**
+**360 - Total Paths**
 
 * * *
 
@@ -182,6 +187,16 @@ PUT _`/networks/{networkId}/settings`_
 \[ organizations \]
 -------------------
 
+### networks
+
+#### List the networks that the user has privileges on in an organization
+
+GET _`/organizations/{organizationId}/networks`_
+
+> \- Optional param `isBoundToConfigTemplate` added
+
+* * *
+
 ### devices
 
 #### List the status of every Meraki device in the organization
@@ -194,6 +209,58 @@ GET _`/organizations/{organizationId}/devices/statuses`_
 
 What's New
 ==========
+
+\[ switch \]
+------------
+
+### ports
+
+PATH _`/organizations/{organizationId}/switch/ports/bySwitch`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the switchports in an organization
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/bySwitch`  
+> 
+>     {
+>         "portId": "1",
+>         "name": "My switch port",
+>         "tags": [
+>             "tag1",
+>             "tag2"
+>         ],
+>         "enabled": true,
+>         "poeEnabled": true,
+>         "type": "access",
+>         "vlan": 10,
+>         "voiceVlan": 20,
+>         "isolationEnabled": false,
+>         "rstpEnabled": true,
+>         "stpGuard": "disabled",
+>         "linkNegotiation": "Auto negotiate",
+>         "linkNegotiationCapabilities": [
+>             "Auto negotiate",
+>             "1 Gigabit full duplex (auto)"
+>         ],
+>         "portScheduleId": "1234",
+>         "udld": "Alert only",
+>         "adaptivePolicyGroupId": "123",
+>         "peerSgtCapable": false,
+>         "accessPolicyType": "Sticky MAC allow list",
+>         "stickyMacAllowList": [
+>             "34:56:fe:ce:8e:b0",
+>             "34:56:fe:ce:8e:b1"
+>         ],
+>         "stickyMacAllowListLimit": 5,
+>         "stormControlEnabled": true
+>     }
+> 
+> * * *
+
+* * *
 
 \[ appliance \]
 ---------------
@@ -254,7 +321,13 @@ PATH _`/devices/{serial}/appliance/prefixes/delegated/vlanAssignments`_
 >             "status": "Active",
 >             "ipv6": {
 >                 "prefix": "2001:db8:3c4d:15::/64",
->                 "address": "2001:db8:3c4d:15::1"
+>                 "address": "2001:db8:3c4d:15::1",
+>                 "linkLocal": {
+>                     "address": "2001:db8:3c4d:15::1"
+>                 },
+>                 "solicitedNodeMulticast": {
+>                     "address": "2001:db8:3c4d:15::1"
+>                 }
 >             }
 >         }
 >     ]
