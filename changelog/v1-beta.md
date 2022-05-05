@@ -3,6 +3,8 @@
     + [routing](#routing)
       - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch)
       - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch)
+    + [ports](#ports)
+      - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
     + [stacks](#stacks)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
@@ -16,14 +18,9 @@
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
   * [\[ organizations \]](#-organizations-)
-    + [networks](#networks)
-      - [List the networks that the user has privileges on in an organization](#list-the-networks-that-the-user-has-privileges-on-in-an-organization)
     + [devices](#devices)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
 - [What's New](#whats-new)
-  * [\[ switch \]](#-switch--1)
-    + [ports](#ports)
-      - [List the switchports in an organization](#list-the-switchports-in-an-organization)
   * [\[ appliance \]](#-appliance--1)
     + [prefixes](#prefixes)
       - [Return current delegated IPv6 prefixes on an appliance.](#return-current-delegated-ipv6-prefixes-on-an-appliance)
@@ -49,6 +46,8 @@
       - [Change scanning API settings](#change-scanning-api-settings)
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
+    + [policies](#policies)
+      - [Get policies for all clients with policies](#get-policies-for-all-clients-with-policies)
   * [\[ organizations \]](#-organizations--1)
     + [policyObjects](#policyobjects)
       - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization)
@@ -80,7 +79,7 @@
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
  
-Version **1.20.0** _to_ **1.20.0-beta.0**
+Version **1.21.0** _to_ **1.21.0-beta.0**
 
 * * *
 
@@ -90,9 +89,9 @@ Version **1.20.0** _to_ **1.20.0-beta.0**
 
 **10 - Updated**
 
-**572 - Total Endpoints**
+**573 - Total Endpoints**
 
-**360 - Total Paths**
+**361 - Total Paths**
 
 * * *
 
@@ -119,6 +118,16 @@ POST _`/devices/{serial}/switch/routing/interfaces`_
 PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
 
 > \- Optional property `ospfV3` Added
+
+* * *
+
+### ports
+
+#### List the switchports in an organization by switch
+
+GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
+
+> \- Optional param `extendedParams` added
 
 * * *
 
@@ -187,16 +196,6 @@ PUT _`/networks/{networkId}/settings`_
 \[ organizations \]
 -------------------
 
-### networks
-
-#### List the networks that the user has privileges on in an organization
-
-GET _`/organizations/{organizationId}/networks`_
-
-> \- Optional param `isBoundToConfigTemplate` added
-
-* * *
-
 ### devices
 
 #### List the status of every Meraki device in the organization
@@ -209,58 +208,6 @@ GET _`/organizations/{organizationId}/devices/statuses`_
 
 What's New
 ==========
-
-\[ switch \]
-------------
-
-### ports
-
-PATH _`/organizations/{organizationId}/switch/ports/bySwitch`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the switchports in an organization
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/bySwitch`  
-> 
->     {
->         "portId": "1",
->         "name": "My switch port",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "enabled": true,
->         "poeEnabled": true,
->         "type": "access",
->         "vlan": 10,
->         "voiceVlan": 20,
->         "isolationEnabled": false,
->         "rstpEnabled": true,
->         "stpGuard": "disabled",
->         "linkNegotiation": "Auto negotiate",
->         "linkNegotiationCapabilities": [
->             "Auto negotiate",
->             "1 Gigabit full duplex (auto)"
->         ],
->         "portScheduleId": "1234",
->         "udld": "Alert only",
->         "adaptivePolicyGroupId": "123",
->         "peerSgtCapable": false,
->         "accessPolicyType": "Sticky MAC allow list",
->         "stickyMacAllowList": [
->             "34:56:fe:ce:8e:b0",
->             "34:56:fe:ce:8e:b1"
->         ],
->         "stickyMacAllowListLimit": 5,
->         "stormControlEnabled": true
->     }
-> 
-> * * *
-
-* * *
 
 \[ appliance \]
 ---------------
@@ -817,6 +764,40 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 >             }
 >         ]
 >     }
+> 
+> * * *
+
+* * *
+
+### policies
+
+PATH _`/networks/{networkId}/policies/byClient`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get policies for all clients with policies
+> 
+> **GET** `/networks/{networkId}/policies/byClient`  
+> 
+>     [
+>         {
+>             "name": "my phone",
+>             "clientId": "abc",
+>             "assigned": [
+>                 {
+>                     "name": "Allowed",
+>                     "type": "ssid",
+>                     "ssid": [
+>                         {
+>                             "ssidNumber": 1
+>                         }
+>                     ]
+>                 }
+>             ]
+>         }
+>     ]
 > 
 > * * *
 
