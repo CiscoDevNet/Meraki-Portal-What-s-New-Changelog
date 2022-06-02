@@ -46,9 +46,14 @@
       - [Change scanning API settings](#change-scanning-api-settings)
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
-    + [policies](#policies)
-      - [Get policies for all clients with policies](#get-policies-for-all-clients-with-policies)
   * [\[ organizations \]](#-organizations--1)
+    + [earlyAccess](#earlyaccess)
+      - [List the available early access features for organization](#list-the-available-early-access-features-for-organization)
+      - [List the early access feature opt-ins for an organization](#list-the-early-access-feature-opt-ins-for-an-organization)
+      - [Create a new early access feature opt-in for an organization](#create-a-new-early-access-feature-opt-in-for-an-organization)
+      - [Show an early access feature opt-in for an organization](#show-an-early-access-feature-opt-in-for-an-organization)
+      - [Update an early access feature opt-in for an organization](#update-an-early-access-feature-opt-in-for-an-organization)
+      - [Delete an early access feature opt-in](#delete-an-early-access-feature-opt-in)
     + [policyObjects](#policyobjects)
       - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization)
       - [Creates a new Policy Object.](#creates-a-new-policy-object)
@@ -79,19 +84,19 @@
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
  
-Version **1.21.0** _to_ **1.21.0-beta.0**
+Version **1.22.0** _to_ **1.22.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**24 - New**
+**26 - New**
 
 **10 - Updated**
 
-**573 - Total Endpoints**
+**585 - Total Endpoints**
 
-**361 - Total Paths**
+**368 - Total Paths**
 
 * * *
 
@@ -769,33 +774,31 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 
 * * *
 
-### policies
+\[ organizations \]
+-------------------
 
-PATH _`/networks/{networkId}/policies/byClient`_
+### earlyAccess
+
+PATH _`/organizations/{organizationId}/earlyAccess/features`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Get policies for all clients with policies
+> #### List the available early access features for organization
 > 
-> **GET** `/networks/{networkId}/policies/byClient`  
+> **GET** `/organizations/{organizationId}/earlyAccess/features`  
 > 
 >     [
 >         {
->             "name": "my phone",
->             "clientId": "abc",
->             "assigned": [
->                 {
->                     "name": "Allowed",
->                     "type": "ssid",
->                     "ssid": [
->                         {
->                             "ssidNumber": 1
->                         }
->                     ]
->                 }
->             ]
+>             "id": "1",
+>             "shortName": "has_new_feature",
+>             "name": "New Feature Beta",
+>             "descriptions": {
+>                 "short": "New Feature Beta",
+>                 "long": "New Feature Beta long description. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+>             },
+>             "topic": "Dashboard"
 >         }
 >     ]
 > 
@@ -803,8 +806,98 @@ PATH _`/networks/{networkId}/policies/byClient`_
 
 * * *
 
-\[ organizations \]
--------------------
+PATH _`/organizations/{organizationId}/earlyAccess/features/optIns`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the early access feature opt-ins for an organization
+> 
+> **GET** `/organizations/{organizationId}/earlyAccess/features/optIns`  
+> 
+>     [
+>         {
+>             "id": "1",
+>             "shortName": "has_new_feature",
+>             "limitScopeToNetworks": [
+>                 "L_1234"
+>             ],
+>             "createdAt": "2022-05-01T04:07:15Z"
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a new early access feature opt-in for an organization
+> 
+> **POST** `/organizations/{organizationId}/earlyAccess/features/optIns`  
+> 
+>     {
+>         "id": "1",
+>         "shortName": "has_new_feature",
+>         "limitScopeToNetworks": [
+>             "L_1234"
+>         ],
+>         "createdAt": "2022-05-01T04:07:15Z"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Show an early access feature opt-in for an organization
+> 
+> **GET** `/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}`  
+> 
+>     {
+>         "id": "1",
+>         "shortName": "has_new_feature",
+>         "limitScopeToNetworks": [
+>             "L_1234"
+>         ],
+>         "createdAt": "2022-05-01T04:07:15Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an early access feature opt-in for an organization
+> 
+> **PUT** `/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}`  
+> 
+>     {
+>         "id": "1",
+>         "shortName": "has_new_feature",
+>         "limitScopeToNetworks": [
+>             "L_1234"
+>         ],
+>         "createdAt": "2022-05-01T04:07:15Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an early access feature opt-in
+> 
+> **DELETE** `/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}`  
+> 
+> * * *
+
+* * *
 
 ### policyObjects
 
