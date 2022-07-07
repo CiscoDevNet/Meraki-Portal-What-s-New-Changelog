@@ -47,13 +47,8 @@
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ organizations \]](#-organizations--1)
-    + [earlyAccess](#earlyaccess)
-      - [List the available early access features for organization](#list-the-available-early-access-features-for-organization)
-      - [List the early access feature opt-ins for an organization](#list-the-early-access-feature-opt-ins-for-an-organization)
-      - [Create a new early access feature opt-in for an organization](#create-a-new-early-access-feature-opt-in-for-an-organization)
-      - [Show an early access feature opt-in for an organization](#show-an-early-access-feature-opt-in-for-an-organization)
-      - [Update an early access feature opt-in for an organization](#update-an-early-access-feature-opt-in-for-an-organization)
-      - [Delete an early access feature opt-in](#delete-an-early-access-feature-opt-in)
+    + [devices](#devices-1)
+      - [List the power status information for devices in an organization. The data returned by this endpoint is updated every 5 minutes.](#list-the-power-status-information-for-devices-in-an-organization-the-data-returned-by-this-endpoint-is-updated-every-5-minutes)
     + [policyObjects](#policyobjects)
       - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization)
       - [Creates a new Policy Object.](#creates-a-new-policy-object)
@@ -75,7 +70,7 @@
       - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
       - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
   * [\[ wireless \]](#-wireless-)
-    + [devices](#devices-1)
+    + [devices](#devices-2)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
@@ -84,19 +79,19 @@
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
  
-Version **1.22.0** _to_ **1.22.0-beta.0**
+Version **1.23.0** _to_ **1.23.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**26 - New**
+**24 - New**
 
 **10 - Updated**
 
-**585 - Total Endpoints**
+**590 - Total Endpoints**
 
-**368 - Total Paths**
+**372 - Total Paths**
 
 * * *
 
@@ -731,6 +726,7 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 >                         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
 >                         "name": "Example Webhook Server",
 >                         "url": "https://www.example.com/my_custom_webhook",
+>                         "networkId": "N_12345678",
 >                         "validator": "xxx",
 >                         "validatedAt": "2018-02-11T00:00:00Z",
 >                         "sharedSecret": "******"
@@ -759,6 +755,7 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 >                     "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
 >                     "name": "Example Webhook Server",
 >                     "url": "https://www.example.com/my_custom_webhook",
+>                     "networkId": "N_12345678",
 >                     "validator": "xxx",
 >                     "validatedAt": "2018-02-11T00:00:00Z",
 >                     "sharedSecret": "******"
@@ -777,123 +774,41 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 \[ organizations \]
 -------------------
 
-### earlyAccess
+### devices
 
-PATH _`/organizations/{organizationId}/earlyAccess/features`_
+PATH _`/organizations/{organizationId}/devices/powerModules/statuses/byDevice`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List the available early access features for organization
+> #### List the power status information for devices in an organization. The data returned by this endpoint is updated every 5 minutes.
 > 
-> **GET** `/organizations/{organizationId}/earlyAccess/features`  
+> **GET** `/organizations/{organizationId}/devices/powerModules/statuses/byDevice`  
 > 
 >     [
 >         {
->             "id": "1",
->             "shortName": "has_new_feature",
->             "name": "New Feature Beta",
->             "descriptions": {
->                 "short": "New Feature Beta",
->                 "long": "New Feature Beta long description. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+>             "mac": "00:11:22:33:44:55",
+>             "name": "My AP",
+>             "network": {
+>                 "id": "N_24329156"
 >             },
->             "topic": "Dashboard"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/earlyAccess/features/optIns`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the early access feature opt-ins for an organization
-> 
-> **GET** `/organizations/{organizationId}/earlyAccess/features/optIns`  
-> 
->     [
->         {
->             "id": "1",
->             "shortName": "has_new_feature",
->             "limitScopeToNetworks": [
->                 "L_1234"
+>             "productType": "switch",
+>             "serial": "Q234-ABCD-5678",
+>             "tags": [
+>                 "tag1",
+>                 "tag2"
 >             ],
->             "createdAt": "2022-05-01T04:07:15Z"
+>             "slots": [
+>                 {
+>                     "number": 1,
+>                     "serial": "Q234-ABCD-5678",
+>                     "model": "PWR-C5-125WAC",
+>                     "status": "not connected"
+>                 }
+>             ]
 >         }
 >     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create a new early access feature opt-in for an organization
-> 
-> **POST** `/organizations/{organizationId}/earlyAccess/features/optIns`  
-> 
->     {
->         "id": "1",
->         "shortName": "has_new_feature",
->         "limitScopeToNetworks": [
->             "L_1234"
->         ],
->         "createdAt": "2022-05-01T04:07:15Z"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Show an early access feature opt-in for an organization
-> 
-> **GET** `/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}`  
-> 
->     {
->         "id": "1",
->         "shortName": "has_new_feature",
->         "limitScopeToNetworks": [
->             "L_1234"
->         ],
->         "createdAt": "2022-05-01T04:07:15Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update an early access feature opt-in for an organization
-> 
-> **PUT** `/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}`  
-> 
->     {
->         "id": "1",
->         "shortName": "has_new_feature",
->         "limitScopeToNetworks": [
->             "L_1234"
->         ],
->         "createdAt": "2022-05-01T04:07:15Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an early access feature opt-in
-> 
-> **DELETE** `/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}`  
 > 
 > * * *
 
@@ -1165,7 +1080,69 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 >                 "celsius": {
 >                     "minimum": 20.08,
 >                     "maximum": 23.84,
->                     "average": 72.08
+>                     "average": 22.27
+>                 }
+>             },
+>             "humidity": {
+>                 "relativePercentage": {
+>                     "minimum": 33,
+>                     "maximum": 35,
+>                     "average": 33
+>                 }
+>             },
+>             "water": {
+>                 "counts": {
+>                     "present": 6
+>                 }
+>             },
+>             "door": {
+>                 "counts": {
+>                     "open": 6
+>                 }
+>             },
+>             "tvoc": {
+>                 "concentration": {
+>                     "minimum": 221,
+>                     "maximum": 504,
+>                     "average": 440
+>                 }
+>             },
+>             "pm25": {
+>                 "concentration": {
+>                     "minimum": 0,
+>                     "maximum": 3,
+>                     "average": 1
+>                 }
+>             },
+>             "noise": {
+>                 "ambient": {
+>                     "level": {
+>                         "minimum": 22,
+>                         "maximum": 45,
+>                         "average": 31
+>                     }
+>                 }
+>             },
+>             "indoorAirQuality": {
+>                 "score": {
+>                     "minimum": 33,
+>                     "maximum": 35,
+>                     "average": 33
+>                 }
+>             },
+>             "button": {
+>                 "pressType": {
+>                     "counts": {
+>                         "short": 2,
+>                         "long": 4
+>                     }
+>                 }
+>             },
+>             "battery": {
+>                 "percentage": {
+>                     "minimum": 95,
+>                     "maximum": 97,
+>                     "average": 96
 >                 }
 >             }
 >         }
@@ -1276,24 +1253,13 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 >     [
 >         {
 >             "device": {
->                 "serial": "Q234-ABCD-0001"
+>                 "serial": "Q234-ABCD-5678"
 >             },
 >             "performance": {
 >                 "latest": 80
 >             },
 >             "onboarding": {
 >                 "latest": 20
->             }
->         },
->         {
->             "device": {
->                 "serial": "Q234-ABCD-0003"
->             },
->             "performance": {
->                 "latest": 30
->             },
->             "onboarding": {
->                 "latest": 90
 >             }
 >         }
 >     ]
@@ -1316,7 +1282,7 @@ PATH _`/devices/{serial}/wireless/healthScores`_
 > 
 >     {
 >         "device": {
->             "serial": "Q234-ABCD-0001"
+>             "serial": "Q234-ABCD-5678"
 >         },
 >         "performance": {
 >             "latest": 80
