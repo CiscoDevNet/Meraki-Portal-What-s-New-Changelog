@@ -47,8 +47,8 @@
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ organizations \]](#-organizations--1)
-    + [devices](#devices-1)
-      - [List the power status information for devices in an organization. The data returned by this endpoint is updated every 5 minutes.](#list-the-power-status-information-for-devices-in-an-organization-the-data-returned-by-this-endpoint-is-updated-every-5-minutes)
+    + [apiRequests](#apirequests)
+      - [Tracks organizations' API requests by response code across a given time period](#tracks-organizations-api-requests-by-response-code-across-a-given-time-period)
     + [policyObjects](#policyobjects)
       - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization)
       - [Creates a new Policy Object.](#creates-a-new-policy-object)
@@ -70,8 +70,9 @@
       - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
       - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
   * [\[ wireless \]](#-wireless-)
-    + [devices](#devices-2)
+    + [devices](#devices-1)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
+      - [Endpoint to see power status for wireless devices](#endpoint-to-see-power-status-for-wireless-devices)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [clients](#clients)
@@ -79,19 +80,19 @@
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
  
-Version **1.23.0** _to_ **1.23.0-beta.0**
+Version **1.24.0** _to_ **1.24.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**24 - New**
+**25 - New**
 
 **10 - Updated**
 
-**590 - Total Endpoints**
+**602 - Total Endpoints**
 
-**372 - Total Paths**
+**380 - Total Paths**
 
 * * *
 
@@ -598,10 +599,10 @@ PATH _`/networks/{networkId}/appliance/ssids`_
 >             "radiusServers": [
 >                 {
 >                     "host": "0.0.0.0",
->                     "port": "1000"
+>                     "port": 1000
 >                 }
 >             ],
->             "encryptionMode": "wpa-eap",
+>             "encryptionMode": "wpa",
 >             "wpaEncryptionMode": "WPA2 only",
 >             "visible": true
 >         }
@@ -630,10 +631,10 @@ PATH _`/networks/{networkId}/appliance/ssids/{number}`_
 >         "radiusServers": [
 >             {
 >                 "host": "0.0.0.0",
->                 "port": "1000"
+>                 "port": 1000
 >             }
 >         ],
->         "encryptionMode": "wpa-eap",
+>         "encryptionMode": "wpa",
 >         "wpaEncryptionMode": "WPA2 only",
 >         "visible": true
 >     }
@@ -656,10 +657,10 @@ PATH _`/networks/{networkId}/appliance/ssids/{number}`_
 >         "radiusServers": [
 >             {
 >                 "host": "0.0.0.0",
->                 "port": "1000"
+>                 "port": 1000
 >             }
 >         ],
->         "encryptionMode": "wpa-eap",
+>         "encryptionMode": "wpa",
 >         "wpaEncryptionMode": "WPA2 only",
 >         "visible": true
 >     }
@@ -774,37 +775,26 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 \[ organizations \]
 -------------------
 
-### devices
+### apiRequests
 
-PATH _`/organizations/{organizationId}/devices/powerModules/statuses/byDevice`_
+PATH _`/organizations/{organizationId}/apiRequests/overview/responseCodes/byInterval`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List the power status information for devices in an organization. The data returned by this endpoint is updated every 5 minutes.
+> #### Tracks organizations' API requests by response code across a given time period
 > 
-> **GET** `/organizations/{organizationId}/devices/powerModules/statuses/byDevice`  
+> **GET** `/organizations/{organizationId}/apiRequests/overview/responseCodes/byInterval`  
 > 
 >     [
 >         {
->             "mac": "00:11:22:33:44:55",
->             "name": "My AP",
->             "network": {
->                 "id": "N_24329156"
->             },
->             "productType": "switch",
->             "serial": "Q234-ABCD-5678",
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ],
->             "slots": [
+>             "startTs": "2018-02-11T00:00:00Z",
+>             "endTs": "2018-05-12T00:00:00Z",
+>             "counts": [
 >                 {
->                     "number": 1,
->                     "serial": "Q234-ABCD-5678",
->                     "model": "PWR-C5-125WAC",
->                     "status": "not connected"
+>                     "code": 200,
+>                     "count": 198938
 >                 }
 >             ]
 >         }
@@ -1260,6 +1250,55 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 >             },
 >             "onboarding": {
 >                 "latest": 20
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/devices/ethernet/statuses`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Endpoint to see power status for wireless devices
+> 
+> **GET** `/organizations/{organizationId}/wireless/devices/ethernet/statuses`  
+> 
+>     [
+>         {
+>             "serial": "Q234-ABCD-5678",
+>             "name": "My appliance",
+>             "network": {
+>                 "id": "N_24329156"
+>             },
+>             "power": {
+>                 "mode": "full",
+>                 "ac": {
+>                     "isConnected": false
+>                 },
+>                 "poe": {
+>                     "isConnected": true
+>                 }
+>             },
+>             "ports": [
+>                 {
+>                     "name": "Ethernet 0",
+>                     "poe": {
+>                         "standard": "802.3at"
+>                     },
+>                     "linkNegotiation": {
+>                         "duplex": "full",
+>                         "speed": 5000
+>                     }
+>                 }
+>             ],
+>             "aggregation": {
+>                 "enabled": true,
+>                 "speed": 10000
 >             }
 >         }
 >     ]
