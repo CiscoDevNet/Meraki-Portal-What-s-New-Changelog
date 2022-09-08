@@ -1,25 +1,49 @@
  - [What's Updated](#whats-updated)
+  * [\[ devices \]](#-devices-)
+    + [ping](#ping)
+      - [Enqueue a job to ping a target host from the device](#enqueue-a-job-to-ping-a-target-host-from-the-device)
+    + [pingDevice](#pingdevice)
+      - [Return a ping device job](#return-a-ping-device-job)
   * [\[ switch \]](#-switch-)
-    + [routing](#routing)
-      - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch)
-      - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch)
     + [ports](#ports)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
     + [stacks](#stacks)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
+    + [routing](#routing)
+      - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch)
+      - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch)
   * [\[ appliance \]](#-appliance-)
+    + [vpn](#vpn)
+      - [Return the site-to-site VPN settings of a network](#return-the-site-to-site-vpn-settings-of-a-network)
     + [vlans](#vlans)
       - [Add a VLAN](#add-a-vlan)
       - [Update a VLAN](#update-a-vlan)
     + [singleLan](#singlelan)
       - [Update single LAN configuration](#update-single-lan-configuration)
-  * [\[ networks \]](#-networks-)
     + [settings](#settings)
+      - [Return the appliance settings for a network](#return-the-appliance-settings-for-a-network)
+      - [Update the appliance settings for a network](#update-the-appliance-settings-for-a-network)
+  * [\[ networks \]](#-networks-)
+    + [settings](#settings-1)
       - [Update the settings for a network](#update-the-settings-for-a-network)
   * [\[ organizations \]](#-organizations-)
+    + [openapiSpec](#openapispec)
+      - [Return the OpenAPI 2.0 Specification of the organization's API documentation in JSON](#return-the-openapi-20-specification-of-the-organizations-api-documentation-in-json)
+    + [licenses](#licenses)
+      - [Assign SM seats to a network](#assign-sm-seats-to-a-network)
+      - [Renew SM seats of a license](#renew-sm-seats-of-a-license)
+      - [List the licenses for an organization](#list-the-licenses-for-an-organization)
+      - [Display a license](#display-a-license)
+      - [Update a license](#update-a-license)
     + [devices](#devices)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
+    + [webhooks](#webhooks)
+      - [Return a list of alert types to be used with managing webhook alerts](#return-a-list-of-alert-types-to-be-used-with-managing-webhook-alerts)
+  * [\[ sensor \]](#-sensor-)
+    + [readings](#readings)
+      - [Return all reported readings from sensors in a given timespan, sorted by timestamp](#return-all-reported-readings-from-sensors-in-a-given-timespan-sorted-by-timestamp)
+      - [Return the latest available reading for each metric from each sensor, sorted by sensor serial](#return-the-latest-available-reading-for-each-metric-from-each-sensor-sorted-by-sensor-serial)
 - [What's New](#whats-new)
   * [\[ appliance \]](#-appliance--1)
     + [prefixes](#prefixes)
@@ -49,6 +73,8 @@
   * [\[ organizations \]](#-organizations--1)
     + [apiRequests](#apirequests)
       - [Tracks organizations' API requests by response code across a given time period](#tracks-organizations-api-requests-by-response-code-across-a-given-time-period)
+    + [firmware](#firmware)
+      - [Get firmware upgrade information for an organization](#get-firmware-upgrade-information-for-an-organization)
     + [policyObjects](#policyobjects)
       - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization)
       - [Creates a new Policy Object.](#creates-a-new-policy-object)
@@ -60,39 +86,52 @@
       - [Shows details of a Policy Object.](#shows-details-of-a-policy-object)
       - [Updates a Policy Object.](#updates-a-policy-object)
       - [Deletes a Policy Object.](#deletes-a-policy-object)
-  * [\[ sensor \]](#-sensor-)
-    + [schedules](#schedules)
-      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
-    + [readings](#readings)
+    + [webhooks](#webhooks-1)
+      - [List the HTTP servers for this organization](#list-the-http-servers-for-this-organization)
+      - [Add an HTTP server to an organization](#add-an-http-server-to-an-organization)
+      - [Return an HTTP server for an organization](#return-an-http-server-for-an-organization)
+      - [Update an HTTP server for an organization](#update-an-http-server-for-an-organization)
+      - [Delete an HTTP server from an organization](#delete-an-http-server-from-an-organization)
+      - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
+      - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
+  * [\[ sensor \]](#-sensor--1)
+    + [readings](#readings-1)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
     + [relationships](#relationships)
       - [List the sensor roles for a given device.](#list-the-sensor-roles-for-a-given-device)
       - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
       - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
+    + [schedules](#schedules)
+      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
+  * [\[ administered \]](#-administered-)
+    + [identities](#identities)
+      - [Returns list of enabled early access features for the identity.](#returns-list-of-enabled-early-access-features-for-the-identity)
+      - [Enables the early access feature for the identity.](#enables-the-early-access-feature-for-the-identity)
+      - [Disables the early access feature for the identity.](#disables-the-early-access-feature-for-the-identity)
   * [\[ wireless \]](#-wireless-)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [devices](#devices-1)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
       - [Endpoint to see power status for wireless devices](#endpoint-to-see-power-status-for-wireless-devices)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [clients](#clients)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
  
-Version **1.24.0** _to_ **1.24.0-beta.0**
+Version **1.24.0** _to_ **1.24.0-beta.4**
 
 * * *
 
 **Summary of Changes**
 
-**25 - New**
+**32 - New**
 
-**10 - Updated**
+**27 - Updated**
 
-**602 - Total Endpoints**
+**613 - Total Endpoints**
 
-**380 - Total Paths**
+**387 - Total Paths**
 
 * * *
 
@@ -101,26 +140,31 @@ Version **1.24.0** _to_ **1.24.0-beta.0**
 What's Updated
 ==============
 
+\[ devices \]
+-------------
+
+### ping
+
+#### Enqueue a job to ping a target host from the device
+
+POST _`/devices/{serial}/liveTools/ping`_
+
+> \- Property `results` Deleted
+
+* * *
+
+### pingDevice
+
+#### Return a ping device job
+
+GET _`/devices/{serial}/liveTools/pingDevice/{id}`_
+
+> \- Response property `properties` value added
+
+* * *
+
 \[ switch \]
 ------------
-
-### routing
-
-#### Create a layer 3 interface for a switch
-
-POST _`/devices/{serial}/switch/routing/interfaces`_
-
-> \- Optional property `ospfV3` Added
-
-* * *
-
-#### Update a layer 3 interface for a switch
-
-PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
-
-> \- Optional property `ospfV3` Added
-
-* * *
 
 ### ports
 
@@ -150,8 +194,36 @@ PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
 
 * * *
 
+### routing
+
+#### Create a layer 3 interface for a switch
+
+POST _`/devices/{serial}/switch/routing/interfaces`_
+
+> \- Optional property `ospfV3` Added
+
+* * *
+
+#### Update a layer 3 interface for a switch
+
+PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
+
+> \- Optional property `ospfV3` Added
+
+* * *
+
 \[ appliance \]
 ---------------
+
+### vpn
+
+#### Return the site-to-site VPN settings of a network
+
+GET _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
+
+> \- Response property `properties` value added
+
+* * *
 
 ### vlans
 
@@ -181,6 +253,26 @@ PUT _`/networks/{networkId}/appliance/singleLan`_
 
 * * *
 
+### settings
+
+#### Return the appliance settings for a network
+
+GET _`/networks/{networkId}/appliance/settings`_
+
+> \- Response property `deploymentMode` value added
+
+> \- Response property `dynamicDns` value added
+
+* * *
+
+#### Update the appliance settings for a network
+
+PUT _`/networks/{networkId}/appliance/settings`_
+
+> \- Optional property `dynamicDns` Added
+
+* * *
+
 \[ networks \]
 --------------
 
@@ -197,6 +289,62 @@ PUT _`/networks/{networkId}/settings`_
 \[ organizations \]
 -------------------
 
+### openapiSpec
+
+#### Return the OpenAPI 2.0 Specification of the organization's API documentation in JSON
+
+GET _`/organizations/{organizationId}/openapiSpec`_
+
+> \- Response property `openapi` value added
+
+* * *
+
+### licenses
+
+#### Assign SM seats to a network
+
+POST _`/organizations/{organizationId}/licenses/assignSeats`_
+
+> \- Optional property `headLicenseId` Added
+
+* * *
+
+#### Renew SM seats of a license
+
+POST _`/organizations/{organizationId}/licenses/renewSeats`_
+
+> \- Optional property `headLicenseId` Added
+
+* * *
+
+#### List the licenses for an organization
+
+GET _`/organizations/{organizationId}/licenses`_
+
+> \- Optional property `headLicenseId` Added
+
+> \- Response property `headLicenseId` value added
+
+* * *
+
+#### Display a license
+
+GET _`/organizations/{organizationId}/licenses/{licenseId}`_
+
+> \- Optional property `headLicenseId` Added
+
+> \- Response property `headLicenseId` value added
+
+* * *
+
+#### Update a license
+
+PUT _`/organizations/{organizationId}/licenses/{licenseId}`_
+
+> \- Optional property `headLicenseId` Added
+
+* * *
+
 ### devices
 
 #### List the status of every Meraki device in the organization
@@ -204,6 +352,37 @@ PUT _`/networks/{networkId}/settings`_
 GET _`/organizations/{organizationId}/devices/statuses`_
 
 > \- Optional param `configurationUpdatedAfter` added
+
+* * *
+
+### webhooks
+
+#### Return a list of alert types to be used with managing webhook alerts
+
+GET _`/organizations/{organizationId}/webhooks/alertTypes`_
+
+> \- Response property `productTypes` value added
+
+* * *
+
+\[ sensor \]
+------------
+
+### readings
+
+#### Return all reported readings from sensors in a given timespan, sorted by timestamp
+
+GET _`/organizations/{organizationId}/sensor/readings/history`_
+
+> \- Response property `enum` value added
+
+* * *
+
+#### Return the latest available reading for each metric from each sensor, sorted by sensor serial
+
+GET _`/organizations/{organizationId}/sensor/readings/latest`_
+
+> \- Response property `enum` value added
 
 * * *
 
@@ -804,6 +983,49 @@ PATH _`/organizations/{organizationId}/apiRequests/overview/responseCodes/byInte
 
 * * *
 
+### firmware
+
+PATH _`/organizations/{organizationId}/firmware/upgrades`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get firmware upgrade information for an organization
+> 
+> **GET** `/organizations/{organizationId}/firmware/upgrades`  
+> 
+>     [
+>         {
+>             "upgradeId": "Event ID Number",
+>             "upgradeBatchId": "Batch ID Number",
+>             "network": {
+>                 "id": "L_1738",
+>                 "name": "Minions"
+>             },
+>             "status": "Completed",
+>             "time": "2022-11-01T00:00:00Z",
+>             "completedAt": "2020-11-05 15:50:05 UTC",
+>             "productType": "wireless",
+>             "toVersion": {
+>                 "id": "2888",
+>                 "shortName": "MR 11.2.1",
+>                 "releaseType": "stable",
+>                 "releaseDate": "2022-03-17T17:22:52Z"
+>             },
+>             "fromVersion": {
+>                 "id": "2887",
+>                 "shortName": "MR 11.2.1",
+>                 "releaseType": "stable",
+>                 "releaseDate": "2022-03-17T17:22:52Z"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### policyObjects
 
 PATH _`/organizations/{organizationId}/policyObjects`_
@@ -1008,35 +1230,151 @@ PATH _`/organizations/{organizationId}/policyObjects/{policyObjectId}`_
 
 * * *
 
-\[ sensor \]
-------------
+### webhooks
 
-### schedules
-
-PATH _`/networks/{networkId}/sensor/schedules`_
+PATH _`/organizations/{organizationId}/webhooks/httpServers`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Returns a list of all sensor schedules.
+> #### List the HTTP servers for this organization
 > 
-> **GET** `/networks/{networkId}/sensor/schedules`  
+> **GET** `/organizations/{organizationId}/webhooks/httpServers`  
 > 
 >     [
 >         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
+>             "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>             "name": "Example Webhook Server",
+>             "organizationId": "2930418",
+>             "url": "https://www.example.com/my_custom_webhook",
+>             "payloadTemplate": {
+>                 "id": "wpt_00001",
+>                 "name": "Meraki (included)"
+>             }
 >         }
 >     ]
 > 
 > * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add an HTTP server to an organization
+> 
+> **POST** `/organizations/{organizationId}/webhooks/httpServers`  
+> 
+>     {
+>         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>         "name": "Example Webhook Server",
+>         "organizationId": "2930418",
+>         "url": "https://www.example.com/my_custom_webhook",
+>         "payloadTemplate": {
+>             "id": "wpt_00001",
+>             "name": "Meraki (included)"
+>         }
+>     }
+> 
+> * * *
 
 * * *
+
+PATH _`/organizations/{organizationId}/webhooks/httpServers/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an HTTP server for an organization
+> 
+> **GET** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
+> 
+>     {
+>         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>         "name": "Example Webhook Server",
+>         "organizationId": "2930418",
+>         "url": "https://www.example.com/my_custom_webhook",
+>         "payloadTemplate": {
+>             "id": "wpt_00001",
+>             "name": "Meraki (included)"
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an HTTP server for an organization
+> 
+> **PUT** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
+> 
+>     {
+>         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>         "name": "Example Webhook Server",
+>         "organizationId": "2930418",
+>         "url": "https://www.example.com/my_custom_webhook",
+>         "payloadTemplate": {
+>             "id": "wpt_00001",
+>             "name": "Meraki (included)"
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an HTTP server from an organization
+> 
+> **DELETE** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/webhooks/webhookTests`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Send a test webhook for an organization
+> 
+> **POST** `/organizations/{organizationId}/webhooks/webhookTests`  
+> 
+>     {
+>         "id": "1234",
+>         "url": "https://www.example.com/path",
+>         "status": "enqueued"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the status of a webhook test for an organization
+> 
+> **GET** `/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`  
+> 
+>     {
+>         "id": "1234",
+>         "url": "https://www.example.com/path",
+>         "status": "enqueued"
+>     }
+> 
+> * * *
+
+* * *
+
+\[ sensor \]
+------------
 
 ### readings
 
@@ -1225,8 +1563,117 @@ PATH _`/networks/{networkId}/sensor/relationships`_
 
 * * *
 
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+\[ administered \]
+------------------
+
+### identities
+
+PATH _`/administered/identities/me/earlyAccess/features/optIns`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns list of enabled early access features for the identity.
+> 
+> **GET** `/administered/identities/me/earlyAccess/features/optIns`  
+> 
+>     [
+>         {
+>             "shortName": "has_cross_org_page_access"
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Enables the early access feature for the identity.
+> 
+> **POST** `/administered/identities/me/earlyAccess/features/optIns`  
+> 
+>     [
+>         {
+>             "shortName": "has_cross_org_page_access"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/administered/identities/me/earlyAccess/features/optIns/{featureShortName}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Disables the early access feature for the identity.
+> 
+> **DELETE** `/administered/identities/me/earlyAccess/features/optIns/{featureShortName}`  
+> 
+> * * *
+
+* * *
+
 \[ wireless \]
 --------------
+
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
+>         }
+>     }
+> 
+> * * *
+
+* * *
 
 ### devices
 
@@ -1302,34 +1749,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/ethernet/statuses`_
 >             }
 >         }
 >     ]
-> 
-> * * *
-
-* * *
-
-### healthScores
-
-PATH _`/devices/{serial}/wireless/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given AP on this network
-> 
-> **GET** `/devices/{serial}/wireless/healthScores`  
-> 
->     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
->         }
->     }
 > 
 > * * *
 
