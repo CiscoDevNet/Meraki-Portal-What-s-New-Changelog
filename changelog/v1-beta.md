@@ -1,69 +1,17 @@
  - [What's Updated](#whats-updated)
-  * [\[ devices \]](#-devices-)
-    + [ping](#ping)
-      - [Enqueue a job to ping a target host from the device](#enqueue-a-job-to-ping-a-target-host-from-the-device)
-    + [pingDevice](#pingdevice)
-      - [Return a ping device job](#return-a-ping-device-job)
+  * [\[ networks \]](#-networks-)
+    + [settings](#settings)
+      - [Update the settings for a network](#update-the-settings-for-a-network)
   * [\[ switch \]](#-switch-)
     + [ports](#ports)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
     + [stacks](#stacks)
-      - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
-    + [routing](#routing)
-      - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch)
-      - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch)
-  * [\[ appliance \]](#-appliance-)
-    + [vpn](#vpn)
-      - [Return the site-to-site VPN settings of a network](#return-the-site-to-site-vpn-settings-of-a-network)
-    + [vlans](#vlans)
-      - [Add a VLAN](#add-a-vlan)
-      - [Update a VLAN](#update-a-vlan)
-    + [singleLan](#singlelan)
-      - [Update single LAN configuration](#update-single-lan-configuration)
-    + [settings](#settings)
-      - [Return the appliance settings for a network](#return-the-appliance-settings-for-a-network)
-      - [Update the appliance settings for a network](#update-the-appliance-settings-for-a-network)
-  * [\[ networks \]](#-networks-)
-    + [settings](#settings-1)
-      - [Update the settings for a network](#update-the-settings-for-a-network)
+      - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
   * [\[ organizations \]](#-organizations-)
-    + [openapiSpec](#openapispec)
-      - [Return the OpenAPI 2.0 Specification of the organization's API documentation in JSON](#return-the-openapi-20-specification-of-the-organizations-api-documentation-in-json)
-    + [licenses](#licenses)
-      - [Assign SM seats to a network](#assign-sm-seats-to-a-network)
-      - [Renew SM seats of a license](#renew-sm-seats-of-a-license)
-      - [List the licenses for an organization](#list-the-licenses-for-an-organization)
-      - [Display a license](#display-a-license)
-      - [Update a license](#update-a-license)
     + [devices](#devices)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
-    + [webhooks](#webhooks)
-      - [Return a list of alert types to be used with managing webhook alerts](#return-a-list-of-alert-types-to-be-used-with-managing-webhook-alerts)
-  * [\[ sensor \]](#-sensor-)
-    + [readings](#readings)
-      - [Return all reported readings from sensors in a given timespan, sorted by timestamp](#return-all-reported-readings-from-sensors-in-a-given-timespan-sorted-by-timestamp)
-      - [Return the latest available reading for each metric from each sensor, sorted by sensor serial](#return-the-latest-available-reading-for-each-metric-from-each-sensor-sorted-by-sensor-serial)
 - [What's New](#whats-new)
-  * [\[ appliance \]](#-appliance--1)
-    + [prefixes](#prefixes)
-      - [Return current delegated IPv6 prefixes on an appliance.](#return-current-delegated-ipv6-prefixes-on-an-appliance)
-      - [Return prefixes assigned to all IPv6 enabled VLANs on an appliance.](#return-prefixes-assigned-to-all-ipv6-enabled-vlans-on-an-appliance)
-      - [List static delegated prefixes for a network](#list-static-delegated-prefixes-for-a-network)
-      - [Add a static delegated prefix from a network](#add-a-static-delegated-prefix-from-a-network)
-      - [Return a static delegated prefix from a network](#return-a-static-delegated-prefix-from-a-network)
-      - [Update a static delegated prefix from a network](#update-a-static-delegated-prefix-from-a-network)
-      - [Delete a static delegated prefix from a network](#delete-a-static-delegated-prefix-from-a-network)
-    + [uplinks](#uplinks)
-      - [Return the uplink settings for an MX appliance](#return-the-uplink-settings-for-an-mx-appliance)
-      - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
-    + [firewall](#firewall)
-      - [Return the inbound cellular firewall rules for an MX network](#return-the-inbound-cellular-firewall-rules-for-an-mx-network)
-      - [Update the inbound cellular firewall rules of an MX network](#update-the-inbound-cellular-firewall-rules-of-an-mx-network)
-    + [ssids](#ssids)
-      - [List the MX SSIDs in a network](#list-the-mx-ssids-in-a-network)
-      - [Return a single MX SSID](#return-a-single-mx-ssid)
-      - [Update the attributes of an MX SSID](#update-the-attributes-of-an-mx-ssid)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
       - [Return scanning API settings](#return-scanning-api-settings)
@@ -73,8 +21,6 @@
   * [\[ organizations \]](#-organizations--1)
     + [apiRequests](#apirequests)
       - [Tracks organizations' API requests by response code across a given time period](#tracks-organizations-api-requests-by-response-code-across-a-given-time-period)
-    + [firmware](#firmware)
-      - [Get firmware upgrade information for an organization](#get-firmware-upgrade-information-for-an-organization)
     + [policyObjects](#policyobjects)
       - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization)
       - [Creates a new Policy Object.](#creates-a-new-policy-object)
@@ -86,28 +32,28 @@
       - [Shows details of a Policy Object.](#shows-details-of-a-policy-object)
       - [Updates a Policy Object.](#updates-a-policy-object)
       - [Deletes a Policy Object.](#deletes-a-policy-object)
-    + [webhooks](#webhooks-1)
+    + [webhooks](#webhooks)
       - [List the HTTP servers for this organization](#list-the-http-servers-for-this-organization)
       - [Add an HTTP server to an organization](#add-an-http-server-to-an-organization)
       - [Return an HTTP server for an organization](#return-an-http-server-for-an-organization)
       - [Update an HTTP server for an organization](#update-an-http-server-for-an-organization)
       - [Delete an HTTP server from an organization](#delete-an-http-server-from-an-organization)
+      - [List the webhook payload templates for an organization](#list-the-webhook-payload-templates-for-an-organization)
+      - [Create a webhook payload template for an organization](#create-a-webhook-payload-template-for-an-organization)
+      - [Get the webhook payload template for an organization](#get-the-webhook-payload-template-for-an-organization)
+      - [Update a webhook payload template for an organization](#update-a-webhook-payload-template-for-an-organization)
+      - [Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')](#destroy-a-webhook-payload-template-for-an-organization-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-wpt_00004-wpt_00005-or-wpt_00006)
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
-  * [\[ sensor \]](#-sensor--1)
-    + [readings](#readings-1)
-      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
+  * [\[ sensor \]](#-sensor-)
     + [relationships](#relationships)
       - [List the sensor roles for a given device.](#list-the-sensor-roles-for-a-given-device)
       - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
       - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
     + [schedules](#schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
-  * [\[ administered \]](#-administered-)
-    + [identities](#identities)
-      - [Returns list of enabled early access features for the identity.](#returns-list-of-enabled-early-access-features-for-the-identity)
-      - [Enables the early access feature for the identity.](#enables-the-early-access-feature-for-the-identity)
-      - [Disables the early access feature for the identity.](#disables-the-early-access-feature-for-the-identity)
+    + [readings](#readings)
+      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
   * [\[ wireless \]](#-wireless-)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
@@ -119,19 +65,19 @@
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
  
-Version **1.24.0** _to_ **1.24.0-beta.4**
+Version **1.26.0** _to_ **1.26.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**32 - New**
+**23 - New**
 
-**27 - Updated**
+**5 - Updated**
 
-**613 - Total Endpoints**
+**635 - Total Endpoints**
 
-**387 - Total Paths**
+**398 - Total Paths**
 
 * * *
 
@@ -140,26 +86,16 @@ Version **1.24.0** _to_ **1.24.0-beta.4**
 What's Updated
 ==============
 
-\[ devices \]
--------------
+\[ networks \]
+--------------
 
-### ping
+### settings
 
-#### Enqueue a job to ping a target host from the device
+#### Update the settings for a network
 
-POST _`/devices/{serial}/liveTools/ping`_
+PUT _`/networks/{networkId}/settings`_
 
-> \- Property `results` Deleted
-
-* * *
-
-### pingDevice
-
-#### Return a ping device job
-
-GET _`/devices/{serial}/liveTools/pingDevice/{id}`_
-
-> \- Response property `properties` value added
+> \- Optional property `fips` Added
 
 * * *
 
@@ -178,14 +114,6 @@ GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
 
 ### stacks
 
-#### Create a layer 3 interface for a switch stack
-
-POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
-
-> \- Optional property `ospfV3` Added
-
-* * *
-
 #### Update a layer 3 interface for a switch stack
 
 PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
@@ -194,156 +122,16 @@ PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
 
 * * *
 
-### routing
+#### Create a layer 3 interface for a switch stack
 
-#### Create a layer 3 interface for a switch
-
-POST _`/devices/{serial}/switch/routing/interfaces`_
+POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 
 > \- Optional property `ospfV3` Added
-
-* * *
-
-#### Update a layer 3 interface for a switch
-
-PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
-
-> \- Optional property `ospfV3` Added
-
-* * *
-
-\[ appliance \]
----------------
-
-### vpn
-
-#### Return the site-to-site VPN settings of a network
-
-GET _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
-
-> \- Response property `properties` value added
-
-* * *
-
-### vlans
-
-#### Add a VLAN
-
-POST _`/networks/{networkId}/appliance/vlans`_
-
-> \- Optional property `ip6` Added
-
-* * *
-
-#### Update a VLAN
-
-PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
-
-> \- Optional property `ip6` Added
-
-* * *
-
-### singleLan
-
-#### Update single LAN configuration
-
-PUT _`/networks/{networkId}/appliance/singleLan`_
-
-> \- Optional property `ip6` Added
-
-* * *
-
-### settings
-
-#### Return the appliance settings for a network
-
-GET _`/networks/{networkId}/appliance/settings`_
-
-> \- Response property `deploymentMode` value added
-
-> \- Response property `dynamicDns` value added
-
-* * *
-
-#### Update the appliance settings for a network
-
-PUT _`/networks/{networkId}/appliance/settings`_
-
-> \- Optional property `dynamicDns` Added
-
-* * *
-
-\[ networks \]
---------------
-
-### settings
-
-#### Update the settings for a network
-
-PUT _`/networks/{networkId}/settings`_
-
-> \- Optional property `fips` Added
 
 * * *
 
 \[ organizations \]
 -------------------
-
-### openapiSpec
-
-#### Return the OpenAPI 2.0 Specification of the organization's API documentation in JSON
-
-GET _`/organizations/{organizationId}/openapiSpec`_
-
-> \- Response property `openapi` value added
-
-* * *
-
-### licenses
-
-#### Assign SM seats to a network
-
-POST _`/organizations/{organizationId}/licenses/assignSeats`_
-
-> \- Optional property `headLicenseId` Added
-
-* * *
-
-#### Renew SM seats of a license
-
-POST _`/organizations/{organizationId}/licenses/renewSeats`_
-
-> \- Optional property `headLicenseId` Added
-
-* * *
-
-#### List the licenses for an organization
-
-GET _`/organizations/{organizationId}/licenses`_
-
-> \- Optional property `headLicenseId` Added
-
-> \- Response property `headLicenseId` value added
-
-* * *
-
-#### Display a license
-
-GET _`/organizations/{organizationId}/licenses/{licenseId}`_
-
-> \- Optional property `headLicenseId` Added
-
-> \- Response property `headLicenseId` value added
-
-* * *
-
-#### Update a license
-
-PUT _`/organizations/{organizationId}/licenses/{licenseId}`_
-
-> \- Optional property `headLicenseId` Added
-
-* * *
 
 ### devices
 
@@ -355,498 +143,8 @@ GET _`/organizations/{organizationId}/devices/statuses`_
 
 * * *
 
-### webhooks
-
-#### Return a list of alert types to be used with managing webhook alerts
-
-GET _`/organizations/{organizationId}/webhooks/alertTypes`_
-
-> \- Response property `productTypes` value added
-
-* * *
-
-\[ sensor \]
-------------
-
-### readings
-
-#### Return all reported readings from sensors in a given timespan, sorted by timestamp
-
-GET _`/organizations/{organizationId}/sensor/readings/history`_
-
-> \- Response property `enum` value added
-
-* * *
-
-#### Return the latest available reading for each metric from each sensor, sorted by sensor serial
-
-GET _`/organizations/{organizationId}/sensor/readings/latest`_
-
-> \- Response property `enum` value added
-
-* * *
-
 What's New
 ==========
-
-\[ appliance \]
----------------
-
-### prefixes
-
-PATH _`/devices/{serial}/appliance/prefixes/delegated`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return current delegated IPv6 prefixes on an appliance.
-> 
-> **GET** `/devices/{serial}/appliance/prefixes/delegated`  
-> 
->     [
->         {
->             "origin": {
->                 "interface": "wan1"
->             },
->             "prefix": "2001:db8:3c4d:15::/64",
->             "counts": {
->                 "assigned": 2,
->                 "available": 253
->             },
->             "method": "auto",
->             "description": "My ISP provider",
->             "isPreferred": true,
->             "expiresAt": "2018-05-12T00:00:00Z"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/appliance/prefixes/delegated/vlanAssignments`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return prefixes assigned to all IPv6 enabled VLANs on an appliance.
-> 
-> **GET** `/devices/{serial}/appliance/prefixes/delegated/vlanAssignments`  
-> 
->     [
->         {
->             "vlan": {
->                 "id": 100,
->                 "name": "My VLAN"
->             },
->             "origin": {
->                 "interface": "wan1",
->                 "prefix": "2001:db8:3c4d:15::/64"
->             },
->             "status": "Active",
->             "ipv6": {
->                 "prefix": "2001:db8:3c4d:15::/64",
->                 "address": "2001:db8:3c4d:15::1",
->                 "linkLocal": {
->                     "address": "2001:db8:3c4d:15::1"
->                 },
->                 "solicitedNodeMulticast": {
->                     "address": "2001:db8:3c4d:15::1"
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/appliance/prefixes/delegated/statics`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List static delegated prefixes for a network
-> 
-> **GET** `/networks/{networkId}/appliance/prefixes/delegated/statics`  
-> 
->     [
->         {
->             "staticDelegatedPrefixId": "1284392014819",
->             "prefix": "2001:db8:3c4d:15::/64",
->             "origin": {
->                 "type": "internet",
->                 "interfaces": [
->                     "wan1"
->                 ]
->             },
->             "description": "Prefix on WAN 1 of Long Island Office network",
->             "createdAt": "2018-05-12T00:00:00Z",
->             "updatedAt": "2018-05-12T00:00:00Z"
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Add a static delegated prefix from a network
-> 
-> **POST** `/networks/{networkId}/appliance/prefixes/delegated/statics`  
-> 
->     {
->         "staticDelegatedPrefixId": "1284392014819",
->         "prefix": "2001:db8:3c4d:15::/64",
->         "origin": {
->             "type": "internet",
->             "interfaces": [
->                 "wan1"
->             ]
->         },
->         "description": "Prefix on WAN 1 of Long Island Office network",
->         "createdAt": "2018-05-12T00:00:00Z",
->         "updatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a static delegated prefix from a network
-> 
-> **GET** `/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`  
-> 
->     {
->         "staticDelegatedPrefixId": "1284392014819",
->         "prefix": "2001:db8:3c4d:15::/64",
->         "origin": {
->             "type": "internet",
->             "interfaces": [
->                 "wan1"
->             ]
->         },
->         "description": "Prefix on WAN 1 of Long Island Office network",
->         "createdAt": "2018-05-12T00:00:00Z",
->         "updatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update a static delegated prefix from a network
-> 
-> **PUT** `/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`  
-> 
->     {
->         "staticDelegatedPrefixId": "1284392014819",
->         "prefix": "2001:db8:3c4d:15::/64",
->         "origin": {
->             "type": "internet",
->             "interfaces": [
->                 "wan1"
->             ]
->         },
->         "description": "Prefix on WAN 1 of Long Island Office network",
->         "createdAt": "2018-05-12T00:00:00Z",
->         "updatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a static delegated prefix from a network
-> 
-> **DELETE** `/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`  
-> 
-> * * *
-
-* * *
-
-### uplinks
-
-PATH _`/devices/{serial}/appliance/uplinks/settings`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the uplink settings for an MX appliance
-> 
-> **GET** `/devices/{serial}/appliance/uplinks/settings`  
-> 
->     {
->         "interfaces": {
->             "wan1": {
->                 "enabled": true,
->                 "svis": {
->                     "ipv4": {
->                         "assignmentMode": "dynamic"
->                     },
->                     "ipv6": {
->                         "assignmentMode": "dynamic"
->                     }
->                 },
->                 "pppoe": {
->                     "enabled": true,
->                     "authentication": {
->                         "enabled": true,
->                         "username": "username"
->                     }
->                 }
->             },
->             "wan2": {
->                 "enabled": false,
->                 "svis": {
->                     "ipv4": {
->                         "assignmentMode": "static",
->                         "address": "9.10.11.10/16",
->                         "gateway": "13.14.15.16",
->                         "nameservers": {
->                             "addresses": [
->                                 "1.2.3.4"
->                             ]
->                         }
->                     },
->                     "ipv6": {
->                         "assignmentMode": "static",
->                         "address": "1:2:3::4",
->                         "gateway": "1:2:3::5",
->                         "nameservers": {
->                             "addresses": [
->                                 "1001:4860:4860::8888",
->                                 "1001:4860:4860::8844"
->                             ]
->                         }
->                     }
->                 },
->                 "pppoe": {
->                     "enabled": false
->                 }
->             }
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update the uplink settings for an MX appliance
-> 
-> **PUT** `/devices/{serial}/appliance/uplinks/settings`  
-> 
->     {
->         "interfaces": {
->             "wan1": {
->                 "enabled": true,
->                 "svis": {
->                     "ipv4": {
->                         "assignmentMode": "dynamic"
->                     },
->                     "ipv6": {
->                         "assignmentMode": "dynamic"
->                     }
->                 },
->                 "pppoe": {
->                     "enabled": true,
->                     "authentication": {
->                         "enabled": true,
->                         "username": "username"
->                     }
->                 }
->             },
->             "wan2": {
->                 "enabled": false,
->                 "svis": {
->                     "ipv4": {
->                         "assignmentMode": "static",
->                         "address": "9.10.11.10/16",
->                         "gateway": "13.14.15.16",
->                         "nameservers": {
->                             "addresses": [
->                                 "1.2.3.4"
->                             ]
->                         }
->                     },
->                     "ipv6": {
->                         "assignmentMode": "static",
->                         "address": "1:2:3::4",
->                         "gateway": "1:2:3::5",
->                         "nameservers": {
->                             "addresses": [
->                                 "1001:4860:4860::8888",
->                                 "1001:4860:4860::8844"
->                             ]
->                         }
->                     }
->                 },
->                 "pppoe": {
->                     "enabled": false
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### firewall
-
-PATH _`/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the inbound cellular firewall rules for an MX network
-> 
-> **GET** `/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules`  
-> 
->     [
->         {
->             "comment": "Allow TCP traffic to subnet with HTTP servers.",
->             "policy": "allow",
->             "protocol": "tcp",
->             "destPort": "443",
->             "destCidr": "192.168.1.0/24",
->             "srcPort": "Any",
->             "srcCidr": "Any",
->             "syslogEnabled": false
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update the inbound cellular firewall rules of an MX network
-> 
-> **PUT** `/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules`  
-> 
->     [
->         {
->             "comment": "Allow TCP traffic to subnet with HTTP servers.",
->             "policy": "allow",
->             "protocol": "tcp",
->             "destPort": "443",
->             "destCidr": "192.168.1.0/24",
->             "srcPort": "Any",
->             "srcCidr": "Any",
->             "syslogEnabled": false
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### ssids
-
-PATH _`/networks/{networkId}/appliance/ssids`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the MX SSIDs in a network
-> 
-> **GET** `/networks/{networkId}/appliance/ssids`  
-> 
->     [
->         {
->             "number": 1,
->             "name": "My SSID",
->             "enabled": true,
->             "defaultVlanId": 1,
->             "authMode": "8021x-radius",
->             "radiusServers": [
->                 {
->                     "host": "0.0.0.0",
->                     "port": 1000
->                 }
->             ],
->             "encryptionMode": "wpa",
->             "wpaEncryptionMode": "WPA2 only",
->             "visible": true
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/appliance/ssids/{number}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a single MX SSID
-> 
-> **GET** `/networks/{networkId}/appliance/ssids/{number}`  
-> 
->     {
->         "number": 1,
->         "name": "My SSID",
->         "enabled": true,
->         "defaultVlanId": 1,
->         "authMode": "8021x-radius",
->         "radiusServers": [
->             {
->                 "host": "0.0.0.0",
->                 "port": 1000
->             }
->         ],
->         "encryptionMode": "wpa",
->         "wpaEncryptionMode": "WPA2 only",
->         "visible": true
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update the attributes of an MX SSID
-> 
-> **PUT** `/networks/{networkId}/appliance/ssids/{number}`  
-> 
->     {
->         "number": 1,
->         "name": "My SSID",
->         "enabled": true,
->         "defaultVlanId": 1,
->         "authMode": "8021x-radius",
->         "radiusServers": [
->             {
->                 "host": "0.0.0.0",
->                 "port": 1000
->             }
->         ],
->         "encryptionMode": "wpa",
->         "wpaEncryptionMode": "WPA2 only",
->         "visible": true
->     }
-> 
-> * * *
-
-* * *
 
 \[ networks \]
 --------------
@@ -976,49 +274,6 @@ PATH _`/organizations/{organizationId}/apiRequests/overview/responseCodes/byInte
 >                     "count": 198938
 >                 }
 >             ]
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### firmware
-
-PATH _`/organizations/{organizationId}/firmware/upgrades`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get firmware upgrade information for an organization
-> 
-> **GET** `/organizations/{organizationId}/firmware/upgrades`  
-> 
->     [
->         {
->             "upgradeId": "Event ID Number",
->             "upgradeBatchId": "Batch ID Number",
->             "network": {
->                 "id": "L_1738",
->                 "name": "Minions"
->             },
->             "status": "Completed",
->             "time": "2022-11-01T00:00:00Z",
->             "completedAt": "2020-11-05 15:50:05 UTC",
->             "productType": "wireless",
->             "toVersion": {
->                 "id": "2888",
->                 "shortName": "MR 11.2.1",
->                 "releaseType": "stable",
->                 "releaseDate": "2022-03-17T17:22:52Z"
->             },
->             "fromVersion": {
->                 "id": "2887",
->                 "shortName": "MR 11.2.1",
->                 "releaseType": "stable",
->                 "releaseDate": "2022-03-17T17:22:52Z"
->             }
 >         }
 >     ]
 > 
@@ -1333,6 +588,115 @@ PATH _`/organizations/{organizationId}/webhooks/httpServers/{id}`_
 
 * * *
 
+PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the webhook payload templates for an organization
+> 
+> **GET** `/organizations/{organizationId}/webhooks/payloadTemplates`  
+> 
+>     [
+>         {
+>             "payloadTemplateId": "wpt_343",
+>             "type": "custom",
+>             "name": "Weeb Hooks",
+>             "headers": [
+>                 {
+>                     "name": "Authorization",
+>                     "template": "Bearer {{sharedSecret}}"
+>                 }
+>             ],
+>             "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}"
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a webhook payload template for an organization
+> 
+> **POST** `/organizations/{organizationId}/webhooks/payloadTemplates`  
+> 
+>     {
+>         "payloadTemplateId": "wpt_343",
+>         "type": "custom",
+>         "name": "Weeb Hooks",
+>         "headers": [
+>             {
+>                 "name": "Authorization",
+>                 "template": "Bearer {{sharedSecret}}"
+>             }
+>         ],
+>         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get the webhook payload template for an organization
+> 
+> **GET** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
+> 
+>     {
+>         "payloadTemplateId": "wpt_343",
+>         "type": "custom",
+>         "name": "Weeb Hooks",
+>         "headers": [
+>             {
+>                 "name": "Authorization",
+>                 "template": "Bearer {{sharedSecret}}"
+>             }
+>         ],
+>         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update a webhook payload template for an organization
+> 
+> **PUT** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
+> 
+>     {
+>         "payloadTemplateId": "wpt_343",
+>         "type": "custom",
+>         "name": "Weeb Hooks",
+>         "headers": [
+>             {
+>                 "name": "Authorization",
+>                 "template": "Bearer {{sharedSecret}}"
+>             }
+>         ],
+>         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')
+> 
+> **DELETE** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
+> 
+> * * *
+
+* * *
+
 PATH _`/organizations/{organizationId}/webhooks/webhookTests`_
 
 > \- Path added  
@@ -1375,110 +739,6 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 
 \[ sensor \]
 ------------
-
-### readings
-
-PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order
-> 
-> **GET** `/organizations/{organizationId}/sensor/readings/history/byInterval`  
-> 
->     [
->         {
->             "startTs": "2022-01-07T23:00:00Z",
->             "endTs": "2022-01-07T23:59:59Z",
->             "serial": "Q234-ABCD-5678",
->             "model": "MT11",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "metric": "temperature",
->             "temperature": {
->                 "fahrenheit": {
->                     "minimum": 68.15,
->                     "maximum": 74.91,
->                     "average": 72.08
->                 },
->                 "celsius": {
->                     "minimum": 20.08,
->                     "maximum": 23.84,
->                     "average": 22.27
->                 }
->             },
->             "humidity": {
->                 "relativePercentage": {
->                     "minimum": 33,
->                     "maximum": 35,
->                     "average": 33
->                 }
->             },
->             "water": {
->                 "counts": {
->                     "present": 6
->                 }
->             },
->             "door": {
->                 "counts": {
->                     "open": 6
->                 }
->             },
->             "tvoc": {
->                 "concentration": {
->                     "minimum": 221,
->                     "maximum": 504,
->                     "average": 440
->                 }
->             },
->             "pm25": {
->                 "concentration": {
->                     "minimum": 0,
->                     "maximum": 3,
->                     "average": 1
->                 }
->             },
->             "noise": {
->                 "ambient": {
->                     "level": {
->                         "minimum": 22,
->                         "maximum": 45,
->                         "average": 31
->                     }
->                 }
->             },
->             "indoorAirQuality": {
->                 "score": {
->                     "minimum": 33,
->                     "maximum": 35,
->                     "average": 33
->                 }
->             },
->             "button": {
->                 "pressType": {
->                     "counts": {
->                         "short": 2,
->                         "long": 4
->                     }
->                 }
->             },
->             "battery": {
->                 "percentage": {
->                     "minimum": 95,
->                     "maximum": 97,
->                     "average": 96
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
 
 ### relationships
 
@@ -1590,55 +850,105 @@ PATH _`/networks/{networkId}/sensor/schedules`_
 
 * * *
 
-\[ administered \]
-------------------
+### readings
 
-### identities
-
-PATH _`/administered/identities/me/earlyAccess/features/optIns`_
+PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Returns list of enabled early access features for the identity.
+> #### Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order
 > 
-> **GET** `/administered/identities/me/earlyAccess/features/optIns`  
-> 
->     [
->         {
->             "shortName": "has_cross_org_page_access"
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Enables the early access feature for the identity.
-> 
-> **POST** `/administered/identities/me/earlyAccess/features/optIns`  
+> **GET** `/organizations/{organizationId}/sensor/readings/history/byInterval`  
 > 
 >     [
 >         {
->             "shortName": "has_cross_org_page_access"
+>             "startTs": "2022-01-07T23:00:00Z",
+>             "endTs": "2022-01-07T23:59:59Z",
+>             "serial": "Q234-ABCD-5678",
+>             "model": "MT11",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "metric": "temperature",
+>             "battery": {
+>                 "percentage": {
+>                     "minimum": 95,
+>                     "maximum": 97,
+>                     "average": 96
+>                 }
+>             },
+>             "button": {
+>                 "pressType": {
+>                     "counts": {
+>                         "short": 2,
+>                         "long": 4
+>                     }
+>                 }
+>             },
+>             "door": {
+>                 "counts": {
+>                     "open": 6
+>                 }
+>             },
+>             "humidity": {
+>                 "relativePercentage": {
+>                     "minimum": 33,
+>                     "maximum": 35,
+>                     "average": 33
+>                 }
+>             },
+>             "indoorAirQuality": {
+>                 "score": {
+>                     "minimum": 33,
+>                     "maximum": 35,
+>                     "average": 33
+>                 }
+>             },
+>             "noise": {
+>                 "ambient": {
+>                     "level": {
+>                         "minimum": 22,
+>                         "maximum": 45,
+>                         "average": 31
+>                     }
+>                 }
+>             },
+>             "pm25": {
+>                 "concentration": {
+>                     "minimum": 0,
+>                     "maximum": 3,
+>                     "average": 1
+>                 }
+>             },
+>             "temperature": {
+>                 "fahrenheit": {
+>                     "minimum": 68.15,
+>                     "maximum": 74.91,
+>                     "average": 72.08
+>                 },
+>                 "celsius": {
+>                     "minimum": 20.08,
+>                     "maximum": 23.84,
+>                     "average": 22.27
+>                 }
+>             },
+>             "tvoc": {
+>                 "concentration": {
+>                     "minimum": 221,
+>                     "maximum": 504,
+>                     "average": 440
+>                 }
+>             },
+>             "water": {
+>                 "counts": {
+>                     "present": 6
+>                 }
+>             }
 >         }
 >     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/administered/identities/me/earlyAccess/features/optIns/{featureShortName}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Disables the early access feature for the identity.
-> 
-> **DELETE** `/administered/identities/me/earlyAccess/features/optIns/{featureShortName}`  
 > 
 > * * *
 
