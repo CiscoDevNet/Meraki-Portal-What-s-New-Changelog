@@ -21,17 +21,8 @@
   * [\[ organizations \]](#-organizations--1)
     + [apiRequests](#apirequests)
       - [Tracks organizations' API requests by response code across a given time period](#tracks-organizations-api-requests-by-response-code-across-a-given-time-period)
-    + [policyObjects](#policyobjects)
-      - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization)
-      - [Creates a new Policy Object.](#creates-a-new-policy-object)
-      - [Lists Policy Object Groups belonging to the organization.](#lists-policy-object-groups-belonging-to-the-organization)
-      - [Creates a new Policy Object Group.](#creates-a-new-policy-object-group)
-      - [Shows details of a Policy Object Group.](#shows-details-of-a-policy-object-group)
-      - [Updates a Policy Object Group.](#updates-a-policy-object-group)
-      - [Deletes a Policy Object Group.](#deletes-a-policy-object-group)
-      - [Shows details of a Policy Object.](#shows-details-of-a-policy-object)
-      - [Updates a Policy Object.](#updates-a-policy-object)
-      - [Deletes a Policy Object.](#deletes-a-policy-object)
+    + [cloud](#cloud)
+      - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
     + [webhooks](#webhooks)
       - [List the HTTP servers for this organization](#list-the-http-servers-for-this-organization)
       - [Add an HTTP server to an organization](#add-an-http-server-to-an-organization)
@@ -50,10 +41,10 @@
       - [List the sensor roles for a given device.](#list-the-sensor-roles-for-a-given-device)
       - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
       - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
-    + [schedules](#schedules)
-      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
     + [readings](#readings)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
+    + [schedules](#schedules)
+      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
   * [\[ wireless \]](#-wireless-)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
@@ -64,20 +55,23 @@
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
+  * [\[ appliance \]](#-appliance-)
+    + [uplinks](#uplinks)
+      - [Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.](#get-the-sent-and-received-bytes-for-each-uplink-of-all-wired-networks-within-an-organization-if-more-than-one-mx-was-active-during-the-specified-timespan-then-the-sent-and-received-bytes-will-be-aggregated-by-interface)
  
-Version **1.26.0** _to_ **1.26.0-beta.0**
+Version **1.27.0** _to_ **1.27.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**23 - New**
+**21 - New**
 
 **5 - Updated**
 
-**635 - Total Endpoints**
+**637 - Total Endpoints**
 
-**398 - Total Paths**
+**401 - Total Paths**
 
 * * *
 
@@ -281,205 +275,58 @@ PATH _`/organizations/{organizationId}/apiRequests/overview/responseCodes/byInte
 
 * * *
 
-### policyObjects
+### cloud
 
-PATH _`/organizations/{organizationId}/policyObjects`_
+PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Lists Policy Objects belonging to the organization.
+> #### List of source/destination traffic rules
 > 
-> **GET** `/organizations/{organizationId}/policyObjects`  
+> **GET** `/organizations/{organizationId}/cloud/connectivity/requirements`  
 > 
 >     [
 >         {
->             "id": "1234",
->             "name": "Web Servers - Datacenter 10",
->             "category": "network",
->             "type": "cidr",
->             "cidr": "10.0.0.0/24",
->             "created_at": "2018-05-12T00:00:00Z",
->             "updated_at": "2018-05-12T00:00:00Z",
->             "groupIds": [],
->             "networkIds": []
+>             "description": "Meraki cloud communication",
+>             "productTypes": [
+>                 "appliance",
+>                 "wireless",
+>                 "camera",
+>                 "switch"
+>             ],
+>             "rule": {
+>                 "sources": {
+>                     "includeAddressesInYourNetworks": false,
+>                     "addresses": [
+>                         {
+>                             "type": "ipv4",
+>                             "address": "209.206.48.0/20"
+>                         }
+>                     ]
+>                 },
+>                 "destinations": {
+>                     "includeAddressesInYourNetworks": false,
+>                     "includeAnyAddress": false,
+>                     "addresses": [
+>                         {
+>                             "type": "fqdn",
+>                             "address": "webhook.site"
+>                         }
+>                     ]
+>                 },
+>                 "ports": [
+>                     {
+>                         "port": "443",
+>                         "protocols": [
+>                             "TCP"
+>                         ]
+>                     }
+>                 ]
+>             }
 >         }
 >     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Creates a new Policy Object.
-> 
-> **POST** `/organizations/{organizationId}/policyObjects`  
-> 
->     {
->         "id": "1234",
->         "name": "Web Servers - Datacenter 10",
->         "category": "network",
->         "type": "cidr",
->         "cidr": "10.0.0.0/24",
->         "created_at": "2018-05-12T00:00:00Z",
->         "updated_at": "2018-05-12T00:00:00Z",
->         "groupIds": [],
->         "networkIds": []
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/policyObjects/groups`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Lists Policy Object Groups belonging to the organization.
-> 
-> **GET** `/organizations/{organizationId}/policyObjects/groups`  
-> 
->     [
->         {
->             "id": "1234",
->             "name": "Web Servers - Datacenter 10",
->             "category": "NetworkObjectGroup",
->             "created_at": "2018-05-12T00:00:00Z",
->             "updated_at": "2018-05-12T00:00:00Z",
->             "objectIds": [],
->             "networkIds": []
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Creates a new Policy Object Group.
-> 
-> **POST** `/organizations/{organizationId}/policyObjects/groups`  
-> 
->     {
->         "id": "1234",
->         "name": "Web Servers - Datacenter 10",
->         "category": "NetworkObjectGroup",
->         "created_at": "2018-05-12T00:00:00Z",
->         "updated_at": "2018-05-12T00:00:00Z",
->         "objectIds": [],
->         "networkIds": []
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Shows details of a Policy Object Group.
-> 
-> **GET** `/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}`  
-> 
->     {
->         "id": "1234",
->         "name": "Web Servers - Datacenter 10",
->         "category": "NetworkObjectGroup",
->         "created_at": "2018-05-12T00:00:00Z",
->         "updated_at": "2018-05-12T00:00:00Z",
->         "objectIds": [],
->         "networkIds": []
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Updates a Policy Object Group.
-> 
-> **PUT** `/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}`  
-> 
->     {
->         "id": "1234",
->         "name": "Web Servers - Datacenter 10",
->         "category": "NetworkObjectGroup",
->         "created_at": "2018-05-12T00:00:00Z",
->         "updated_at": "2018-05-12T00:00:00Z",
->         "objectIds": [],
->         "networkIds": []
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Deletes a Policy Object Group.
-> 
-> **DELETE** `/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}`  
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/policyObjects/{policyObjectId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Shows details of a Policy Object.
-> 
-> **GET** `/organizations/{organizationId}/policyObjects/{policyObjectId}`  
-> 
->     {
->         "id": "1234",
->         "name": "Web Servers - Datacenter 10",
->         "category": "network",
->         "type": "cidr",
->         "cidr": "10.0.0.0/24",
->         "created_at": "2018-05-12T00:00:00Z",
->         "updated_at": "2018-05-12T00:00:00Z",
->         "groupIds": [],
->         "networkIds": []
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Updates a Policy Object.
-> 
-> **PUT** `/organizations/{organizationId}/policyObjects/{policyObjectId}`  
-> 
->     {
->         "id": "1234",
->         "name": "Web Servers - Datacenter 10",
->         "category": "network",
->         "type": "cidr",
->         "cidr": "10.0.0.0/24",
->         "created_at": "2018-05-12T00:00:00Z",
->         "updated_at": "2018-05-12T00:00:00Z",
->         "groupIds": [],
->         "networkIds": []
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Deletes a Policy Object.
-> 
-> **DELETE** `/organizations/{organizationId}/policyObjects/{policyObjectId}`  
 > 
 > * * *
 
@@ -823,33 +670,6 @@ PATH _`/networks/{networkId}/sensor/relationships`_
 
 * * *
 
-### schedules
-
-PATH _`/networks/{networkId}/sensor/schedules`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a list of all sensor schedules.
-> 
-> **GET** `/networks/{networkId}/sensor/schedules`  
-> 
->     [
->         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 ### readings
 
 PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
@@ -947,6 +767,33 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 >                     "present": 6
 >                 }
 >             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
 >         }
 >     ]
 > 
@@ -1176,6 +1023,40 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 >             "latest": 100
 >         }
 >     }
+> 
+> * * *
+
+* * *
+
+\[ appliance \]
+---------------
+
+### uplinks
+
+PATH _`/organizations/{organizationId}/appliance/uplinks/usage/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.
+> 
+> **GET** `/organizations/{organizationId}/appliance/uplinks/usage/byNetwork`  
+> 
+>     [
+>         {
+>             "networkId": "N_24329156",
+>             "name": "Main Office",
+>             "byUplink": [
+>                 {
+>                     "serial": "Q234-ABCD-5678",
+>                     "interface": "wan1",
+>                     "sent": 200,
+>                     "received": 400
+>                 }
+>             ]
+>         }
+>     ]
 > 
 > * * *
 
