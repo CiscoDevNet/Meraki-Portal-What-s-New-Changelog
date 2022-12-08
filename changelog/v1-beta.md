@@ -19,6 +19,8 @@
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ organizations \]](#-organizations--1)
+    + [devices](#devices-1)
+      - [List the configuration status information for devices in an organization.](#list-the-configuration-status-information-for-devices-in-an-organization)
     + [apiRequests](#apirequests)
       - [Tracks organizations' API requests by response code across a given time period](#tracks-organizations-api-requests-by-response-code-across-a-given-time-period)
     + [cloud](#cloud)
@@ -48,9 +50,12 @@
   * [\[ wireless \]](#-wireless-)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
-    + [devices](#devices-1)
+    + [devices](#devices-2)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
-      - [Endpoint to see power status for wireless devices](#endpoint-to-see-power-status-for-wireless-devices)
+      - [Get average channel utilization for all bands in a network, split by AP](#get-average-channel-utilization-for-all-bands-in-a-network-split-by-ap)
+      - [Get average channel utilization across all bands for all networks in the organization](#get-average-channel-utilization-across-all-bands-for-all-networks-in-the-organization)
+      - [Get a time-series of average channel utilization for all bands, segmented by device.](#get-a-time-series-of-average-channel-utilization-for-all-bands-segmented-by-device)
+      - [Get a time-series of average channel utilization for all bands](#get-a-time-series-of-average-channel-utilization-for-all-bands)
     + [clients](#clients)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
@@ -59,19 +64,19 @@
     + [uplinks](#uplinks)
       - [Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.](#get-the-sent-and-received-bytes-for-each-uplink-of-all-wired-networks-within-an-organization-if-more-than-one-mx-was-active-during-the-specified-timespan-then-the-sent-and-received-bytes-will-be-aggregated-by-interface)
  
-Version **1.27.0** _to_ **1.27.0-beta.0**
+Version **1.28.0** _to_ **1.28.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**21 - New**
+**25 - New**
 
 **5 - Updated**
 
-**637 - Total Endpoints**
+**642 - Total Endpoints**
 
-**401 - Total Paths**
+**406 - Total Paths**
 
 * * *
 
@@ -245,6 +250,41 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 
 \[ organizations \]
 -------------------
+
+### devices
+
+PATH _`/organizations/{organizationId}/devices/configuration/statuses`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the configuration status information for devices in an organization.
+> 
+> **GET** `/organizations/{organizationId}/devices/configuration/statuses`  
+> 
+>     [
+>         {
+>             "mac": "00:11:22:33:44:55",
+>             "name": "My AP",
+>             "network": {
+>                 "id": "N_24329156"
+>             },
+>             "productType": "switch",
+>             "serial": "Q234-ABCD-5678",
+>             "tags": [
+>                 "tag1",
+>                 "tag2"
+>             ],
+>             "configurationStatus": {
+>                 "status": "UP_TO_DATE"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
 
 ### apiRequests
 
@@ -862,48 +902,145 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/wireless/devices/ethernet/statuses`_
+PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/byDevice`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Endpoint to see power status for wireless devices
+> #### Get average channel utilization for all bands in a network, split by AP
 > 
-> **GET** `/organizations/{organizationId}/wireless/devices/ethernet/statuses`  
+> **GET** `/organizations/{organizationId}/wireless/devices/channelUtilization/byDevice`  
 > 
 >     [
 >         {
 >             "serial": "Q234-ABCD-5678",
->             "name": "My appliance",
+>             "mac": "00:11:22:33:44:55",
+>             "byBand": [
+>                 {
+>                     "band": 5,
+>                     "wifi": {
+>                         "percentage": 33.84
+>                     },
+>                     "nonWifi": {
+>                         "percentage": 1.84
+>                     },
+>                     "total": {
+>                         "percentage": 32
+>                     }
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get average channel utilization across all bands for all networks in the organization
+> 
+> **GET** `/organizations/{organizationId}/wireless/devices/channelUtilization/byNetwork`  
+> 
+>     [
+>         {
 >             "network": {
 >                 "id": "N_24329156"
 >             },
->             "power": {
->                 "mode": "full",
->                 "ac": {
->                     "isConnected": false
->                 },
->                 "poe": {
->                     "isConnected": true
->                 }
->             },
->             "ports": [
+>             "byBand": [
 >                 {
->                     "name": "Ethernet 0",
->                     "poe": {
->                         "standard": "802.3at"
+>                     "band": 5,
+>                     "wifi": {
+>                         "percentage": 33.84
 >                     },
->                     "linkNegotiation": {
->                         "duplex": "full",
->                         "speed": 5000
+>                     "nonWifi": {
+>                         "percentage": 1.84
+>                     },
+>                     "total": {
+>                         "percentage": 32
 >                     }
 >                 }
->             ],
->             "aggregation": {
->                 "enabled": true,
->                 "speed": 10000
->             }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/history/byDevice/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get a time-series of average channel utilization for all bands, segmented by device.
+> 
+> **GET** `/organizations/{organizationId}/wireless/devices/channelUtilization/history/byDevice/byInterval`  
+> 
+>     [
+>         {
+>             "startTs": "2018-02-11T00:00:00Z",
+>             "endTs": "2018-05-12T00:00:00Z",
+>             "serial": "Q234-ABCD-5678",
+>             "mac": "00:11:22:33:44:55",
+>             "byBand": [
+>                 {
+>                     "band": 5,
+>                     "wifi": {
+>                         "percentage": 33.84
+>                     },
+>                     "nonWifi": {
+>                         "percentage": 1.84
+>                     },
+>                     "total": {
+>                         "percentage": 32
+>                     }
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/history/byNetwork/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get a time-series of average channel utilization for all bands
+> 
+> **GET** `/organizations/{organizationId}/wireless/devices/channelUtilization/history/byNetwork/byInterval`  
+> 
+>     [
+>         {
+>             "startTs": "2018-02-11T00:00:00Z",
+>             "endTs": "2018-05-12T00:00:00Z",
+>             "network": {
+>                 "id": "N_24329156"
+>             },
+>             "byBand": [
+>                 {
+>                     "band": 5,
+>                     "wifi": {
+>                         "percentage": 33.84
+>                     },
+>                     "nonWifi": {
+>                         "percentage": 1.84
+>                     },
+>                     "total": {
+>                         "percentage": 32
+>                     }
+>                 }
+>             ]
 >         }
 >     ]
 > 
