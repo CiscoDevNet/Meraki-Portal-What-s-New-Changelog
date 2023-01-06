@@ -2,6 +2,9 @@
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
+  * [\[ sm \]](#-sm-)
+    + [profiles](#profiles)
+      - [List all the profiles in the network](#list-all-the-profiles-in-the-network)
   * [\[ switch \]](#-switch-)
     + [ports](#ports)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
@@ -43,10 +46,10 @@
       - [List the sensor roles for a given device.](#list-the-sensor-roles-for-a-given-device)
       - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
       - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
-    + [readings](#readings)
-      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
     + [schedules](#schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
+    + [readings](#readings)
+      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
   * [\[ wireless \]](#-wireless-)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
@@ -64,7 +67,7 @@
     + [uplinks](#uplinks)
       - [Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.](#get-the-sent-and-received-bytes-for-each-uplink-of-all-wired-networks-within-an-organization-if-more-than-one-mx-was-active-during-the-specified-timespan-then-the-sent-and-received-bytes-will-be-aggregated-by-interface)
  
-Version **1.28.0** _to_ **1.28.0-beta.0**
+Version **1.29.0** _to_ **v1.29.0-beta.0**
 
 * * *
 
@@ -72,11 +75,11 @@ Version **1.28.0** _to_ **1.28.0-beta.0**
 
 **25 - New**
 
-**5 - Updated**
+**6 - Updated**
 
-**642 - Total Endpoints**
+**645 - Total Endpoints**
 
-**406 - Total Paths**
+**409 - Total Paths**
 
 * * *
 
@@ -95,6 +98,19 @@ What's Updated
 PUT _`/networks/{networkId}/settings`_
 
 > \- Optional property `fips` Added
+
+* * *
+
+\[ sm \]
+--------
+
+### profiles
+
+#### List all the profiles in the network
+
+GET _`/networks/{networkId}/sm/profiles`_
+
+> \- Summary changed from `List all profiles in a network` to `List all the profiles in the network`
 
 * * *
 
@@ -710,6 +726,33 @@ PATH _`/networks/{networkId}/sensor/relationships`_
 
 * * *
 
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### readings
 
 PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
@@ -807,33 +850,6 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 >                     "present": 6
 >                 }
 >             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### schedules
-
-PATH _`/networks/{networkId}/sensor/schedules`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a list of all sensor schedules.
-> 
-> **GET** `/networks/{networkId}/sensor/schedules`  
-> 
->     [
->         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
 >         }
 >     ]
 > 
