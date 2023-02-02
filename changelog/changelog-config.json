@@ -9,6 +9,9 @@
             "title": "Generally Available",
             "items": [
                 {
+                    "content": "v1.30.0.md"
+                },
+                {
                     "content": "v1.29.0.md"
                 },
                 {
@@ -132,6 +135,9 @@
             "items": [
                 {
                     "content": "v1-beta.md"
+                },
+                {
+                    "content": "v1.30.0-beta.0.md"
                 },
                 {
                     "content": "v1.29.0-beta.0.md"

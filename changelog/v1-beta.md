@@ -2,9 +2,6 @@
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
-  * [\[ sm \]](#-sm-)
-    + [profiles](#profiles)
-      - [List all the profiles in the network](#list-all-the-profiles-in-the-network)
   * [\[ switch \]](#-switch-)
     + [ports](#ports)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
@@ -24,8 +21,6 @@
   * [\[ organizations \]](#-organizations--1)
     + [devices](#devices-1)
       - [List the configuration status information for devices in an organization.](#list-the-configuration-status-information-for-devices-in-an-organization)
-    + [apiRequests](#apirequests)
-      - [Tracks organizations' API requests by response code across a given time period](#tracks-organizations-api-requests-by-response-code-across-a-given-time-period)
     + [cloud](#cloud)
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
     + [webhooks](#webhooks)
@@ -41,45 +36,41 @@
       - [Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')](#destroy-a-webhook-payload-template-for-an-organization-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-wpt_00004-wpt_00005-or-wpt_00006)
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
-  * [\[ sensor \]](#-sensor-)
-    + [relationships](#relationships)
-      - [List the sensor roles for a given device.](#list-the-sensor-roles-for-a-given-device)
-      - [Assign one or more sensor roles to a given device.](#assign-one-or-more-sensor-roles-to-a-given-device)
-      - [List the sensor roles for devices in a given network](#list-the-sensor-roles-for-devices-in-a-given-network)
-    + [schedules](#schedules)
-      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
-    + [readings](#readings)
-      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
   * [\[ wireless \]](#-wireless-)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [devices](#devices-2)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
       - [Get average channel utilization for all bands in a network, split by AP](#get-average-channel-utilization-for-all-bands-in-a-network-split-by-ap)
       - [Get average channel utilization across all bands for all networks in the organization](#get-average-channel-utilization-across-all-bands-for-all-networks-in-the-organization)
       - [Get a time-series of average channel utilization for all bands, segmented by device.](#get-a-time-series-of-average-channel-utilization-for-all-bands-segmented-by-device)
       - [Get a time-series of average channel utilization for all bands](#get-a-time-series-of-average-channel-utilization-for-all-bands)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [clients](#clients)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
+  * [\[ sensor \]](#-sensor-)
+    + [readings](#readings)
+      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
+    + [schedules](#schedules)
+      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
   * [\[ appliance \]](#-appliance-)
     + [uplinks](#uplinks)
       - [Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.](#get-the-sent-and-received-bytes-for-each-uplink-of-all-wired-networks-within-an-organization-if-more-than-one-mx-was-active-during-the-specified-timespan-then-the-sent-and-received-bytes-will-be-aggregated-by-interface)
  
-Version **1.29.0** _to_ **v1.29.0-beta.0**
+Version **v1.30.0** _to_ **v1.30.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**25 - New**
+**22 - New**
 
-**6 - Updated**
+**5 - Updated**
 
-**645 - Total Endpoints**
+**644 - Total Endpoints**
 
-**409 - Total Paths**
+**408 - Total Paths**
 
 * * *
 
@@ -98,19 +89,6 @@ What's Updated
 PUT _`/networks/{networkId}/settings`_
 
 > \- Optional property `fips` Added
-
-* * *
-
-\[ sm \]
---------
-
-### profiles
-
-#### List all the profiles in the network
-
-GET _`/networks/{networkId}/sm/profiles`_
-
-> \- Summary changed from `List all profiles in a network` to `List all the profiles in the network`
 
 * * *
 
@@ -302,35 +280,6 @@ PATH _`/organizations/{organizationId}/devices/configuration/statuses`_
 
 * * *
 
-### apiRequests
-
-PATH _`/organizations/{organizationId}/apiRequests/overview/responseCodes/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Tracks organizations' API requests by response code across a given time period
-> 
-> **GET** `/organizations/{organizationId}/apiRequests/overview/responseCodes/byInterval`  
-> 
->     [
->         {
->             "startTs": "2018-02-11T00:00:00Z",
->             "endTs": "2018-05-12T00:00:00Z",
->             "counts": [
->                 {
->                     "code": 200,
->                     "count": 198938
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 ### cloud
 
 PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
@@ -512,7 +461,13 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
 >                     "template": "Bearer {{sharedSecret}}"
 >                 }
 >             ],
->             "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}"
+>             "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
+>             "allNetworks": true,
+>             "allowNetworkModify": true,
+>             "allowedNetworks": [
+>                 "N_1234",
+>                 "L_5678"
+>             ]
 >         }
 >     ]
 > 
@@ -535,7 +490,13 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
 >                 "template": "Bearer {{sharedSecret}}"
 >             }
 >         ],
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}"
+>         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
+>         "allNetworks": true,
+>         "allowNetworkModify": true,
+>         "allowedNetworks": [
+>             "N_1234",
+>             "L_5678"
+>         ]
 >     }
 > 
 > * * *
@@ -562,7 +523,13 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 >                 "template": "Bearer {{sharedSecret}}"
 >             }
 >         ],
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}"
+>         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
+>         "allNetworks": true,
+>         "allowNetworkModify": true,
+>         "allowedNetworks": [
+>             "N_1234",
+>             "L_5678"
+>         ]
 >     }
 > 
 > * * *
@@ -584,7 +551,13 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 >                 "template": "Bearer {{sharedSecret}}"
 >             }
 >         ],
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}"
+>         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
+>         "allNetworks": true,
+>         "allowNetworkModify": true,
+>         "allowedNetworks": [
+>             "N_1234",
+>             "L_5678"
+>         ]
 >     }
 > 
 > * * *
@@ -640,253 +613,8 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 
 * * *
 
-\[ sensor \]
-------------
-
-### relationships
-
-PATH _`/devices/{serial}/sensor/relationships`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the sensor roles for a given device.
-> 
-> **GET** `/devices/{serial}/sensor/relationships`  
-> 
->     [
->         {
->             "livestream": {
->                 "relatedDevices": [
->                     {
->                         "serial": "1234-ABCD-5678",
->                         "productType": "camera"
->                     }
->                 ]
->             }
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Assign one or more sensor roles to a given device.
-> 
-> **PUT** `/devices/{serial}/sensor/relationships`  
-> 
->     {
->         "livestream": {
->             "relatedDevices": [
->                 {
->                     "serial": "1234-ABCD-5678",
->                     "productType": "camera"
->                 }
->             ]
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/sensor/relationships`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the sensor roles for devices in a given network
-> 
-> **GET** `/networks/{networkId}/sensor/relationships`  
-> 
->     [
->         {
->             "device": {
->                 "name": "My sensor",
->                 "serial": "Q234-ABCD-5678",
->                 "productType": "sensor"
->             },
->             "relationships": {
->                 "livestream": {
->                     "relatedDevices": [
->                         {
->                             "serial": "1234-ABCD-5678",
->                             "productType": "camera"
->                         }
->                     ]
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### schedules
-
-PATH _`/networks/{networkId}/sensor/schedules`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a list of all sensor schedules.
-> 
-> **GET** `/networks/{networkId}/sensor/schedules`  
-> 
->     [
->         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### readings
-
-PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order
-> 
-> **GET** `/organizations/{organizationId}/sensor/readings/history/byInterval`  
-> 
->     [
->         {
->             "startTs": "2022-01-07T23:00:00Z",
->             "endTs": "2022-01-07T23:59:59Z",
->             "serial": "Q234-ABCD-5678",
->             "model": "MT11",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "metric": "temperature",
->             "battery": {
->                 "percentage": {
->                     "minimum": 95,
->                     "maximum": 97,
->                     "average": 96
->                 }
->             },
->             "button": {
->                 "pressType": {
->                     "counts": {
->                         "short": 2,
->                         "long": 4
->                     }
->                 }
->             },
->             "door": {
->                 "counts": {
->                     "open": 6
->                 }
->             },
->             "humidity": {
->                 "relativePercentage": {
->                     "minimum": 33,
->                     "maximum": 35,
->                     "average": 33
->                 }
->             },
->             "indoorAirQuality": {
->                 "score": {
->                     "minimum": 33,
->                     "maximum": 35,
->                     "average": 33
->                 }
->             },
->             "noise": {
->                 "ambient": {
->                     "level": {
->                         "minimum": 22,
->                         "maximum": 45,
->                         "average": 31
->                     }
->                 }
->             },
->             "pm25": {
->                 "concentration": {
->                     "minimum": 0,
->                     "maximum": 3,
->                     "average": 1
->                 }
->             },
->             "temperature": {
->                 "fahrenheit": {
->                     "minimum": 68.15,
->                     "maximum": 74.91,
->                     "average": 72.08
->                 },
->                 "celsius": {
->                     "minimum": 20.08,
->                     "maximum": 23.84,
->                     "average": 22.27
->                 }
->             },
->             "tvoc": {
->                 "concentration": {
->                     "minimum": 221,
->                     "maximum": 504,
->                     "average": 440
->                 }
->             },
->             "water": {
->                 "counts": {
->                     "present": 6
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 \[ wireless \]
 --------------
-
-### healthScores
-
-PATH _`/devices/{serial}/wireless/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given AP on this network
-> 
-> **GET** `/devices/{serial}/wireless/healthScores`  
-> 
->     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
->         }
->     }
-> 
-> * * *
-
-* * *
 
 ### devices
 
@@ -1064,6 +792,34 @@ PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/histo
 
 * * *
 
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
 ### clients
 
 PATH _`/networks/{networkId}/wireless/clients/healthScores`_
@@ -1176,6 +932,140 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 >             "latest": 100
 >         }
 >     }
+> 
+> * * *
+
+* * *
+
+\[ sensor \]
+------------
+
+### readings
+
+PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order
+> 
+> **GET** `/organizations/{organizationId}/sensor/readings/history/byInterval`  
+> 
+>     [
+>         {
+>             "startTs": "2022-01-07T23:00:00Z",
+>             "endTs": "2022-01-07T23:59:59Z",
+>             "serial": "Q234-ABCD-5678",
+>             "model": "MT11",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "metric": "temperature",
+>             "battery": {
+>                 "percentage": {
+>                     "minimum": 95,
+>                     "maximum": 97,
+>                     "average": 96
+>                 }
+>             },
+>             "button": {
+>                 "pressType": {
+>                     "counts": {
+>                         "short": 2,
+>                         "long": 4
+>                     }
+>                 }
+>             },
+>             "door": {
+>                 "counts": {
+>                     "open": 6
+>                 }
+>             },
+>             "humidity": {
+>                 "relativePercentage": {
+>                     "minimum": 33,
+>                     "maximum": 35,
+>                     "average": 33
+>                 }
+>             },
+>             "indoorAirQuality": {
+>                 "score": {
+>                     "minimum": 33,
+>                     "maximum": 35,
+>                     "average": 33
+>                 }
+>             },
+>             "noise": {
+>                 "ambient": {
+>                     "level": {
+>                         "minimum": 22,
+>                         "maximum": 45,
+>                         "average": 31
+>                     }
+>                 }
+>             },
+>             "pm25": {
+>                 "concentration": {
+>                     "minimum": 0,
+>                     "maximum": 3,
+>                     "average": 1
+>                 }
+>             },
+>             "temperature": {
+>                 "fahrenheit": {
+>                     "minimum": 68.15,
+>                     "maximum": 74.91,
+>                     "average": 72.08
+>                 },
+>                 "celsius": {
+>                     "minimum": 20.08,
+>                     "maximum": 23.84,
+>                     "average": 22.27
+>                 }
+>             },
+>             "tvoc": {
+>                 "concentration": {
+>                     "minimum": 221,
+>                     "maximum": 504,
+>                     "average": 440
+>                 }
+>             },
+>             "water": {
+>                 "counts": {
+>                     "present": 6
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
+>         }
+>     ]
 > 
 > * * *
 
