@@ -58,7 +58,7 @@
     + [uplinks](#uplinks)
       - [Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.](#get-the-sent-and-received-bytes-for-each-uplink-of-all-wired-networks-within-an-organization-if-more-than-one-mx-was-active-during-the-specified-timespan-then-the-sent-and-received-bytes-will-be-aggregated-by-interface)
  
-Version **v1.30.0** _to_ **v1.30.0-beta.0**
+Version **v1.31.0** _to_ **v1.31.0-beta.0**
 
 * * *
 
@@ -68,9 +68,9 @@ Version **v1.30.0** _to_ **v1.30.0-beta.0**
 
 **5 - Updated**
 
-**644 - Total Endpoints**
+**645 - Total Endpoints**
 
-**408 - Total Paths**
+**409 - Total Paths**
 
 * * *
 
@@ -462,9 +462,10 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
 >                 }
 >             ],
 >             "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->             "allNetworks": true,
->             "allowNetworkModify": true,
->             "allowedNetworks": [
+>             "sharing": {},
+>             "withAll": true,
+>             "adminsCanModify": true,
+>             "ids": [
 >                 "N_1234",
 >                 "L_5678"
 >             ]
@@ -491,9 +492,10 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
 >             }
 >         ],
 >         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "allNetworks": true,
->         "allowNetworkModify": true,
->         "allowedNetworks": [
+>         "sharing": {},
+>         "withAll": true,
+>         "adminsCanModify": true,
+>         "ids": [
 >             "N_1234",
 >             "L_5678"
 >         ]
@@ -524,9 +526,10 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 >             }
 >         ],
 >         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "allNetworks": true,
->         "allowNetworkModify": true,
->         "allowedNetworks": [
+>         "sharing": {},
+>         "withAll": true,
+>         "adminsCanModify": true,
+>         "ids": [
 >             "N_1234",
 >             "L_5678"
 >         ]
@@ -552,9 +555,10 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 >             }
 >         ],
 >         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "allNetworks": true,
->         "allowNetworkModify": true,
->         "allowedNetworks": [
+>         "sharing": {},
+>         "withAll": true,
+>         "adminsCanModify": true,
+>         "ids": [
 >             "N_1234",
 >             "L_5678"
 >         ]
