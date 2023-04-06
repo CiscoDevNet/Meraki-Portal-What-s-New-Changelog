@@ -20,7 +20,7 @@
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ organizations \]](#-organizations--1)
     + [devices](#devices-1)
-      - [List the configuration status information for devices in an organization.](#list-the-configuration-status-information-for-devices-in-an-organization)
+      - [List the provisioning statuses information for devices in an organization.](#list-the-provisioning-statuses-information-for-devices-in-an-organization)
     + [cloud](#cloud)
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
     + [webhooks](#webhooks)
@@ -37,14 +37,14 @@
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
   * [\[ wireless \]](#-wireless-)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [devices](#devices-2)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
       - [Get average channel utilization for all bands in a network, split by AP](#get-average-channel-utilization-for-all-bands-in-a-network-split-by-ap)
       - [Get average channel utilization across all bands for all networks in the organization](#get-average-channel-utilization-across-all-bands-for-all-networks-in-the-organization)
       - [Get a time-series of average channel utilization for all bands, segmented by device.](#get-a-time-series-of-average-channel-utilization-for-all-bands-segmented-by-device)
       - [Get a time-series of average channel utilization for all bands](#get-a-time-series-of-average-channel-utilization-for-all-bands)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [clients](#clients)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
@@ -57,20 +57,27 @@
   * [\[ appliance \]](#-appliance-)
     + [uplinks](#uplinks)
       - [Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.](#get-the-sent-and-received-bytes-for-each-uplink-of-all-wired-networks-within-an-organization-if-more-than-one-mx-was-active-during-the-specified-timespan-then-the-sent-and-received-bytes-will-be-aggregated-by-interface)
+  * [\[ secureConnect \]](#-secureconnect-)
+    + [privateApplications](#privateapplications)
+      - [Provides a list of private applications for an Organization.](#provides-a-list-of-private-applications-for-an-organization)
+      - [Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.](#adds-a-new-private-application-to-the-organization-a-maximum-of-300-private-applications-are-allowed-for-an-organization)
+      - [Return the details of a specific private application](#return-the-details-of-a-specific-private-application)
+      - [Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.](#updates-a-specific-private-application-updates-can-be-made-to-name-description-destinations-app-protocol-sni-and-ssl-verification-application-groups-can-be-added-or-removed)
+      - [Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.](#deletes-a-specific-private-application-delink-the-application-from-any-application-groups-before-deleting-the-app-cascade-delete-application-group-if-this-is-the-only-application-in-the-group)
  
-Version **v1.31.0** _to_ **v1.31.0-beta.0**
+Version **1.32.0** _to_ **1.32.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**22 - New**
+**24 - New**
 
 **5 - Updated**
 
-**645 - Total Endpoints**
+**651 - Total Endpoints**
 
-**409 - Total Paths**
+**412 - Total Paths**
 
 * * *
 
@@ -247,15 +254,15 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 
 ### devices
 
-PATH _`/organizations/{organizationId}/devices/configuration/statuses`_
+PATH _`/organizations/{organizationId}/devices/provisioning/statuses`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List the configuration status information for devices in an organization.
+> #### List the provisioning statuses information for devices in an organization.
 > 
-> **GET** `/organizations/{organizationId}/devices/configuration/statuses`  
+> **GET** `/organizations/{organizationId}/devices/provisioning/statuses`  
 > 
 >     [
 >         {
@@ -266,13 +273,11 @@ PATH _`/organizations/{organizationId}/devices/configuration/statuses`_
 >             },
 >             "productType": "switch",
 >             "serial": "Q234-ABCD-5678",
+>             "status": "complete",
 >             "tags": [
 >                 "tag1",
 >                 "tag2"
->             ],
->             "configurationStatus": {
->                 "status": "UP_TO_DATE"
->             }
+>             ]
 >         }
 >     ]
 > 
@@ -620,6 +625,34 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 \[ wireless \]
 --------------
 
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
 ### devices
 
 PATH _`/networks/{networkId}/wireless/devices/healthScores`_
@@ -791,34 +824,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/histo
 >             ]
 >         }
 >     ]
-> 
-> * * *
-
-* * *
-
-### healthScores
-
-PATH _`/devices/{serial}/wireless/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given AP on this network
-> 
-> **GET** `/devices/{serial}/wireless/healthScores`  
-> 
->     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
->         }
->     }
 > 
 > * * *
 
@@ -1104,6 +1109,193 @@ PATH _`/organizations/{organizationId}/appliance/uplinks/usage/byNetwork`_
 >             ]
 >         }
 >     ]
+> 
+> * * *
+
+* * *
+
+\[ secureConnect \]
+-------------------
+
+### privateApplications
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of private applications for an Organization.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplications`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "applicationId": "183456",
+>                 "name": "Jira",
+>                 "description": "Jira App For My Org",
+>                 "destinations": [
+>                     {
+>                         "destinationAddr": [
+>                             "172.6.0.0/32",
+>                             "255.100.100.0/24"
+>                         ],
+>                         "protocolPorts": [
+>                             {
+>                                 "protocol": "TCP",
+>                                 "ports": "80-82"
+>                             }
+>                         ],
+>                         "accessType": "network"
+>                     }
+>                 ],
+>                 "appProtocol": "https",
+>                 "sni": "xyz123.jira.com",
+>                 "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>                 "sslVerificationEnabled": true,
+>                 "applicationGroupIds": [
+>                     "12345"
+>                 ],
+>                 "createdAt": "2021-12-13T16:07:07.222Z",
+>                 "modifiedAt": "2021-12-13T16:07:07.222Z"
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/privateApplications`  
+> 
+>     {
+>         "applicationId": "183456",
+>         "name": "Jira",
+>         "description": "Jira App For My Org",
+>         "destinations": [
+>             {
+>                 "destinationAddr": [
+>                     "172.6.0.0/32",
+>                     "255.100.100.0/24"
+>                 ],
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "TCP",
+>                         "ports": "80-82"
+>                     }
+>                 ],
+>                 "accessType": "network"
+>             }
+>         ],
+>         "appProtocol": "https",
+>         "sni": "xyz123.jira.com",
+>         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>         "sslVerificationEnabled": true,
+>         "applicationGroupIds": [
+>             "12345"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of a specific private application
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+>     {
+>         "applicationId": "183456",
+>         "name": "Jira",
+>         "description": "Jira App For My Org",
+>         "destinations": [
+>             {
+>                 "destinationAddr": [
+>                     "172.6.0.0/32",
+>                     "255.100.100.0/24"
+>                 ],
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "TCP",
+>                         "ports": "80-82"
+>                     }
+>                 ],
+>                 "accessType": "network"
+>             }
+>         ],
+>         "appProtocol": "https",
+>         "sni": "xyz123.jira.com",
+>         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>         "sslVerificationEnabled": true,
+>         "applicationGroupIds": [
+>             "12345"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.
+> 
+> **PUT** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+>     {
+>         "applicationId": "183456",
+>         "name": "Jira",
+>         "description": "Jira App For My Org",
+>         "destinations": [
+>             {
+>                 "destinationAddr": [
+>                     "172.6.0.0/32",
+>                     "255.100.100.0/24"
+>                 ],
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "TCP",
+>                         "ports": "80-82"
+>                     }
+>                 ],
+>                 "accessType": "network"
+>             }
+>         ],
+>         "appProtocol": "https",
+>         "sni": "xyz123.jira.com",
+>         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>         "sslVerificationEnabled": true,
+>         "applicationGroupIds": [
+>             "12345"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
 > 
 > * * *
 
