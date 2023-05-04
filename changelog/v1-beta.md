@@ -18,9 +18,10 @@
       - [Change scanning API settings](#change-scanning-api-settings)
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
+  * [\[ switch \]](#-switch--1)
+    + [ports](#ports-1)
+      - [List the switchports in an organization](#list-the-switchports-in-an-organization)
   * [\[ organizations \]](#-organizations--1)
-    + [devices](#devices-1)
-      - [List the provisioning statuses information for devices in an organization.](#list-the-provisioning-statuses-information-for-devices-in-an-organization)
     + [cloud](#cloud)
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
     + [webhooks](#webhooks)
@@ -39,7 +40,7 @@
   * [\[ wireless \]](#-wireless-)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
-    + [devices](#devices-2)
+    + [devices](#devices-1)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
       - [Get average channel utilization for all bands in a network, split by AP](#get-average-channel-utilization-for-all-bands-in-a-network-split-by-ap)
       - [Get average channel utilization across all bands for all networks in the organization](#get-average-channel-utilization-across-all-bands-for-all-networks-in-the-organization)
@@ -50,10 +51,10 @@
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
   * [\[ sensor \]](#-sensor-)
-    + [readings](#readings)
-      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
     + [schedules](#schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
+    + [readings](#readings)
+      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
   * [\[ appliance \]](#-appliance-)
     + [uplinks](#uplinks)
       - [Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.](#get-the-sent-and-received-bytes-for-each-uplink-of-all-wired-networks-within-an-organization-if-more-than-one-mx-was-active-during-the-specified-timespan-then-the-sent-and-received-bytes-will-be-aggregated-by-interface)
@@ -64,20 +65,22 @@
       - [Return the details of a specific private application](#return-the-details-of-a-specific-private-application)
       - [Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.](#updates-a-specific-private-application-updates-can-be-made-to-name-description-destinations-app-protocol-sni-and-ssl-verification-application-groups-can-be-added-or-removed)
       - [Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.](#deletes-a-specific-private-application-delink-the-application-from-any-application-groups-before-deleting-the-app-cascade-delete-application-group-if-this-is-the-only-application-in-the-group)
+    + [remoteAccessLog](#remoteaccesslog)
+      - [List the latest 5000 events logged by remote access.](#list-the-latest-5000-events-logged-by-remote-access)
  
-Version **1.32.0** _to_ **1.32.0-beta.0**
+Version **1.33.0** _to_ **1.33.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**24 - New**
+**25 - New**
 
 **5 - Updated**
 
-**651 - Total Endpoints**
+**656 - Total Endpoints**
 
-**412 - Total Paths**
+**416 - Total Paths**
 
 * * *
 
@@ -249,34 +252,95 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 
 * * *
 
-\[ organizations \]
--------------------
+\[ switch \]
+------------
 
-### devices
+### ports
 
-PATH _`/organizations/{organizationId}/devices/provisioning/statuses`_
+PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List the provisioning statuses information for devices in an organization.
+> #### List the switchports in an organization
 > 
-> **GET** `/organizations/{organizationId}/devices/provisioning/statuses`  
+> **GET** `/organizations/{organizationId}/switch/ports/statuses/bySwitch`  
 > 
 >     [
 >         {
->             "mac": "00:11:22:33:44:55",
->             "name": "My AP",
+>             "name": "Example Switch",
+>             "serial": "Q555-5555-5555",
+>             "mac": "01:23:45:67",
 >             "network": {
->                 "id": "N_24329156"
+>                 "name": "Example Network",
+>                 "id": "N_12345"
 >             },
->             "productType": "switch",
->             "serial": "Q234-ABCD-5678",
->             "status": "complete",
->             "tags": [
->                 "tag1",
->                 "tag2"
+>             "model": "MS120-8",
+>             "ports": [
+>                 {
+>                     "portId": "1",
+>                     "enabled": true,
+>                     "status": "Connected",
+>                     "isUplink": false,
+>                     "errors": [
+>                         "PoE overload",
+>                         "Very high proportion of CRC errors"
+>                     ],
+>                     "warnings": [
+>                         "SecureConnect authentication in progress",
+>                         "PoE port was denied power",
+>                         "High proportion of CRC errors"
+>                     ],
+>                     "speed": "10 Gbps",
+>                     "duplex": "full",
+>                     "usageInKb": {
+>                         "total": 40867,
+>                         "sent": 23008,
+>                         "recv": 17859
+>                     },
+>                     "cdp": {
+>                         "systemName": "",
+>                         "platform": "MS350-24X",
+>                         "deviceId": "0c8ddbddee:ff",
+>                         "portId": "Port 20",
+>                         "nativeVlan": 1,
+>                         "address": "10.0,0.1",
+>                         "managementAddress": "10.0.0.100",
+>                         "version": "1",
+>                         "vtpManagementDomain": "",
+>                         "capabilities": "Switch"
+>                     },
+>                     "lldp": {
+>                         "systemName": "MS350-24X - Test",
+>                         "systemDescription": "MS350-24X Cloud Managed PoE Switch",
+>                         "chassisId": "0c:8d:db:dd:ee:ff",
+>                         "portId": "20",
+>                         "managementVlan": 1,
+>                         "portVlan": 1,
+>                         "managementAddress": "10.0.0.100",
+>                         "portDescription": "Port 20",
+>                         "systemCapabilities": "switch"
+>                     },
+>                     "clientCount": 10,
+>                     "powerUsageInWh": 55.9,
+>                     "trafficInKbps": {
+>                         "total": 2.2,
+>                         "sent": 1.2,
+>                         "recv": 1
+>                     },
+>                     "securePort": {
+>                         "enabled": true,
+>                         "active": true,
+>                         "authenticationStatus": "Authentication in progress",
+>                         "configOverrides": {
+>                             "type": "trunk",
+>                             "vlan": 12,
+>                             "voiceVlan": 34,
+>                             "allowedVlans": "all"
+>                         }
+>                     }
+>                 }
 >             ]
 >         }
 >     ]
@@ -284,6 +348,9 @@ PATH _`/organizations/{organizationId}/devices/provisioning/statuses`_
 > * * *
 
 * * *
+
+\[ organizations \]
+-------------------
 
 ### cloud
 
@@ -459,7 +526,7 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
 >         {
 >             "payloadTemplateId": "wpt_343",
 >             "type": "custom",
->             "name": "Weeb Hooks",
+>             "name": "Custom Template",
 >             "headers": [
 >                 {
 >                     "name": "Authorization",
@@ -489,7 +556,7 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
 >     {
 >         "payloadTemplateId": "wpt_343",
 >         "type": "custom",
->         "name": "Weeb Hooks",
+>         "name": "Custom Template",
 >         "headers": [
 >             {
 >                 "name": "Authorization",
@@ -523,7 +590,7 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 >     {
 >         "payloadTemplateId": "wpt_343",
 >         "type": "custom",
->         "name": "Weeb Hooks",
+>         "name": "Custom Template",
 >         "headers": [
 >             {
 >                 "name": "Authorization",
@@ -552,7 +619,7 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 >     {
 >         "payloadTemplateId": "wpt_343",
 >         "type": "custom",
->         "name": "Weeb Hooks",
+>         "name": "Custom Template",
 >         "headers": [
 >             {
 >                 "name": "Authorization",
@@ -697,6 +764,9 @@ PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/byDev
 >         {
 >             "serial": "Q234-ABCD-5678",
 >             "mac": "00:11:22:33:44:55",
+>             "network": {
+>                 "id": "N_24329156"
+>             },
 >             "byBand": [
 >                 {
 >                     "band": 5,
@@ -770,6 +840,9 @@ PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/histo
 >             "endTs": "2018-05-12T00:00:00Z",
 >             "serial": "Q234-ABCD-5678",
 >             "mac": "00:11:22:33:44:55",
+>             "network": {
+>                 "id": "N_24329156"
+>             },
 >             "byBand": [
 >                 {
 >                     "band": 5,
@@ -949,6 +1022,33 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 \[ sensor \]
 ------------
 
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### readings
 
 PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
@@ -1053,33 +1153,6 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 
 * * *
 
-### schedules
-
-PATH _`/networks/{networkId}/sensor/schedules`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a list of all sensor schedules.
-> 
-> **GET** `/networks/{networkId}/sensor/schedules`  
-> 
->     [
->         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 \[ appliance \]
 ---------------
 
@@ -1130,7 +1203,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
 > **GET** `/organizations/{organizationId}/secureConnect/privateApplications`  
 > 
 >     {
->         "items": [
+>         "data": [
 >             {
 >                 "applicationId": "183456",
 >                 "name": "Jira",
@@ -1155,7 +1228,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
 >                 "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
 >                 "sslVerificationEnabled": true,
 >                 "applicationGroupIds": [
->                     "12345"
+>                     "1122321"
 >                 ],
 >                 "createdAt": "2021-12-13T16:07:07.222Z",
 >                 "modifiedAt": "2021-12-13T16:07:07.222Z"
@@ -1199,7 +1272,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
 >         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
 >         "sslVerificationEnabled": true,
 >         "applicationGroupIds": [
->             "12345"
+>             "1122321"
 >         ],
 >         "createdAt": "2021-12-13T16:07:07.222Z",
 >         "modifiedAt": "2021-12-13T16:07:07.222Z"
@@ -1243,7 +1316,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
 >         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
 >         "sslVerificationEnabled": true,
 >         "applicationGroupIds": [
->             "12345"
+>             "1122321"
 >         ],
 >         "createdAt": "2021-12-13T16:07:07.222Z",
 >         "modifiedAt": "2021-12-13T16:07:07.222Z"
@@ -1282,7 +1355,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
 >         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
 >         "sslVerificationEnabled": true,
 >         "applicationGroupIds": [
->             "12345"
+>             "1122321"
 >         ],
 >         "createdAt": "2021-12-13T16:07:07.222Z",
 >         "modifiedAt": "2021-12-13T16:07:07.222Z"
@@ -1296,6 +1369,52 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
 > #### Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.
 > 
 > **DELETE** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+> * * *
+
+* * *
+
+### remoteAccessLog
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLog`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the latest 5000 events logged by remote access.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLog`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "osversion": "win-10.0.19044",
+>                 "internalip": "10.0.1.5",
+>                 "connecttimestamp": 1667252442,
+>                 "identities": [
+>                     {
+>                         "id": "1173502975",
+>                         "type": {
+>                             "id": "7",
+>                             "type": "directory_user",
+>                             "label": "AD Users"
+>                         },
+>                         "label": "sample-remote-access@cisco.com",
+>                         "deleted": false
+>                     }
+>                 ],
+>                 "reason": "ACCT_DISC_USER_REQ",
+>                 "failedreasons": [],
+>                 "connectionevent": "disconnected",
+>                 "anyconnectversion": "4.10.05095",
+>                 "timestamp": 1667252458
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
 > 
 > * * *
 
