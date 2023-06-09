@@ -8,6 +8,12 @@
     + [stacks](#stacks)
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
+  * [\[ wireless \]](#-wireless-)
+    + [rfProfiles](#rfprofiles)
+      - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
+      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
+      - [List RF profiles for this network](#list-rf-profiles-for-this-network)
+      - [Return a RF profile](#return-a-rf-profile)
   * [\[ organizations \]](#-organizations-)
     + [devices](#devices)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
@@ -21,9 +27,43 @@
   * [\[ switch \]](#-switch--1)
     + [ports](#ports-1)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
+  * [\[ wireless \]](#-wireless--1)
+    + [clients](#clients)
+      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
+      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
+      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
+    + [ethernet](#ethernet)
+      - [List the AP port profiles for this network](#list-the-ap-port-profiles-for-this-network)
+      - [Create an AP port profile](#create-an-ap-port-profile)
+      - [Unassign AP port profile from APs or template child networks](#unassign-ap-port-profile-from-aps-or-template-child-networks)
+      - [Assign AP port profile to APs or template child networks](#assign-ap-port-profile-to-aps-or-template-child-networks)
+      - [Set the AP port profile to be default for this network](#set-the-ap-port-profile-to-be-default-for-this-network)
+      - [Show the AP port profile by ID for this network](#show-the-ap-port-profile-by-id-for-this-network)
+      - [Update the AP port profile by ID for this network](#update-the-ap-port-profile-by-id-for-this-network)
+      - [Delete an AP port profile](#delete-an-ap-port-profile)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
+    + [devices](#devices-1)
+      - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
   * [\[ organizations \]](#-organizations--1)
+    + [certificates](#certificates)
+      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
+      - [Import certificate for this organization](#import-certificate-for-this-organization)
+      - [Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.](#query-for-details-on-the-organizations-radsec-device-certificate-authority-certificates-cas-the-primary-ca-signs-all-the-certificates-that-devices-present-when-establishing-a-secure-connection-to-radius-servers-via-radsec-protocol-this-api-returns-an-array-of-the-status-of-all-of-the-cas-as-well-as-their-contents-if-theyve-been-generated-an-organization-will-have-at-most-one-ca-unless-the-ca-is-being-rotated)
+      - [Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.](#create-an-organizations-radsec-device-certificate-authority-ca-call-this-endpoint-when-turning-on-radsec-in-the-firmware-for-the-first-time-calling-this-endpoint-starts-an-asynchronous-process-to-generate-the-ca-call-get-afterwards-to-retrieve-the-contents-of-the-ca-note-this-ca-is-generated-and-controlled-by-meraki-subsequent-calls-will-not-generate-a-new-ca)
+      - [Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.](#query-for-details-on-an-organizations-radsec-device-certificate-authority-ca-with-the-given-id-this-api-returns-the-status-of-the-ca-as-well-as-the-contents-of-the-ca-if-its-been-generated)
+      - [Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.](#update-an-organizations-radsec-device-certificate-authority-ca-state-note-this-ca-is-generated-and-controlled-by-meraki-call-this-endpoint-to-update-the-state-to-trusted-at-which-point-meraki-will-generate-device-certificates-trusted-means-the-ca-is-placed-on-your-radsec-servers-and-devices-establishing-a-secure-connection-using-certs-signed-by-this-ca-will-pass-verification)
+      - [Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
+      - [Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-all-delta-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
+      - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
+      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
+      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
     + [cloud](#cloud)
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
+    + [policies](#policies)
+      - [Get policies for all clients with policies](#get-policies-for-all-clients-with-policies)
+    + [devices](#devices-2)
+      - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
     + [webhooks](#webhooks)
       - [List the HTTP servers for this organization](#list-the-http-servers-for-this-organization)
       - [Add an HTTP server to an organization](#add-an-http-server-to-an-organization)
@@ -37,19 +77,6 @@
       - [Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')](#destroy-a-webhook-payload-template-for-an-organization-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-wpt_00004-wpt_00005-or-wpt_00006)
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
-  * [\[ wireless \]](#-wireless-)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
-    + [devices](#devices-1)
-      - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
-      - [Get average channel utilization for all bands in a network, split by AP](#get-average-channel-utilization-for-all-bands-in-a-network-split-by-ap)
-      - [Get average channel utilization across all bands for all networks in the organization](#get-average-channel-utilization-across-all-bands-for-all-networks-in-the-organization)
-      - [Get a time-series of average channel utilization for all bands, segmented by device.](#get-a-time-series-of-average-channel-utilization-for-all-bands-segmented-by-device)
-      - [Get a time-series of average channel utilization for all bands](#get-a-time-series-of-average-channel-utilization-for-all-bands)
-    + [clients](#clients)
-      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
-      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
-      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
   * [\[ sensor \]](#-sensor-)
     + [schedules](#schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
@@ -58,7 +85,15 @@
   * [\[ appliance \]](#-appliance-)
     + [uplinks](#uplinks)
       - [Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.](#get-the-sent-and-received-bytes-for-each-uplink-of-all-wired-networks-within-an-organization-if-more-than-one-mx-was-active-during-the-specified-timespan-then-the-sent-and-received-bytes-will-be-aggregated-by-interface)
+    + [trafficShaping](#trafficshaping)
+      - [Display VPN exclusion configurations for MX networks.](#display-vpn-exclusion-configurations-for-mx-networks)
   * [\[ secureConnect \]](#-secureconnect-)
+    + [privateApplicationGroups](#privateapplicationgroups)
+      - [Provides a list of private application groups for an Organization](#provides-a-list-of-private-application-groups-for-an-organization)
+      - [Creates a group of private applications to apply to policy. A maximum of 300 private application groups are allowed for an organization.](#creates-a-group-of-private-applications-to-apply-to-policy-a-maximum-of-300-private-application-groups-are-allowed-for-an-organization)
+      - [Return the details of a specific private application group](#return-the-details-of-a-specific-private-application-group)
+      - [Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.](#update-an-application-group-in-an-organization-updates-are-allowed-on-group-name-and-group-description-applications-can-be-added-or-removed-group-type-and-policy-cannot-be-changed)
+      - [Deletes private application group from an Organization. Detaches application from groups before deleting](#deletes-private-application-group-from-an-organization-detaches-application-from-groups-before-deleting)
     + [privateApplications](#privateapplications)
       - [Provides a list of private applications for an Organization.](#provides-a-list-of-private-applications-for-an-organization)
       - [Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.](#adds-a-new-private-application-to-the-organization-a-maximum-of-300-private-applications-are-allowed-for-an-organization)
@@ -68,19 +103,19 @@
     + [remoteAccessLog](#remoteaccesslog)
       - [List the latest 5000 events logged by remote access.](#list-the-latest-5000-events-logged-by-remote-access)
  
-Version **1.33.0** _to_ **1.33.0-beta.0**
+Version **1.34.0** _to_ **1.34.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**25 - New**
+**39 - New**
 
-**5 - Updated**
+**19 - Updated**
 
-**656 - Total Endpoints**
+**690 - Total Endpoints**
 
-**416 - Total Paths**
+**437 - Total Paths**
 
 * * *
 
@@ -130,6 +165,63 @@ PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
 POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 
 > \- Optional property `ospfV3` Added
+
+* * *
+
+\[ wireless \]
+--------------
+
+### rfProfiles
+
+#### Updates specified RF profile for this network
+
+PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
+
+> \- Optional property `isIndoorDefault` Added
+
+> \- Optional property `isOutdoorDefaut` Added
+
+> \- Optional property `isIndoorDefault` Added
+
+> \- Optional property `isOutdoorDefault` Added
+
+* * *
+
+#### Creates new RF profile for this network
+
+POST _`/networks/{networkId}/wireless/rfProfiles`_
+
+> \- Optional property `isIndoorDefault` Added
+
+> \- Optional property `isOutdoorDefault` Added
+
+* * *
+
+#### List RF profiles for this network
+
+GET _`/networks/{networkId}/wireless/rfProfiles`_
+
+> \- Optional property `isIndoorDefault` Added
+
+> \- Optional property `isOutdoorDefault` Added
+
+> \- Response property `isIndoorDefault` value added
+
+> \- Response property `isOutdoorDefault` value added
+
+* * *
+
+#### Return a RF profile
+
+GET _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
+
+> \- Optional property `isIndoorDefault` Added
+
+> \- Optional property `isOutdoorDefault` Added
+
+> \- Response property `isIndoorDefault` value added
+
+> \- Response property `isOutdoorDefault` value added
 
 * * *
 
@@ -349,8 +441,724 @@ PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 
 * * *
 
+\[ wireless \]
+--------------
+
+### clients
+
+PATH _`/networks/{networkId}/wireless/clients/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for all clients on this network
+> 
+> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
+> 
+>     [
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 80,
+>                 "currentConnection": 100
+>             },
+>             "onboarding": {
+>                 "latest": 100
+>             }
+>         },
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 30,
+>                 "currentConnection": 50
+>             },
+>             "onboarding": {
+>                 "latest": 70
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return counts of distinct wireless clients connecting to a network over time
+> 
+> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
+> 
+>     [
+>         {
+>             "startTs": "2020-01-01T00:00:00Z",
+>             "endTs": "2020-01-01T00:05:00Z",
+>             "clientCounts": {
+>                 "summary": {
+>                     "prospective": 100,
+>                     "successful": 75,
+>                     "failed": 25
+>                 },
+>                 "connectionSteps": {
+>                     "association": {
+>                         "prospective": 100,
+>                         "successful": 97,
+>                         "failed": 3
+>                     },
+>                     "authentication": {
+>                         "prospective": 97,
+>                         "successful": 81,
+>                         "failed": 16
+>                     },
+>                     "dhcp": {
+>                         "prospective": 81,
+>                         "successful": 75,
+>                         "failed": 6
+>                     },
+>                     "dns": {
+>                         "prospective": 75,
+>                         "successful": 75,
+>                         "failed": 0
+>                     }
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
+> 
+> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
+> 
+>     {
+>         "mac": "22:33:44:55:66:77",
+>         "clientId": "k74272e",
+>         "performance": {
+>             "latest": 80,
+>             "currentConnection": 100
+>         },
+>         "onboarding": {
+>             "latest": 100
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### ethernet
+
+PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the AP port profiles for this network
+> 
+> **GET** `/networks/{networkId}/wireless/ethernet/ports/profiles`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Ap Port Profile Name",
+>             "isDefault": false,
+>             "ports": [
+>                 {
+>                     "name": "port 1",
+>                     "portNumber": 1,
+>                     "enabled": true,
+>                     "ssidNumber": 1
+>                 }
+>             ],
+>             "usbPorts": [
+>                 {
+>                     "name": "usb port",
+>                     "portNumber": 5,
+>                     "enabled": true,
+>                     "ssidNumber": 5
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create an AP port profile
+> 
+> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles`  
+> 
+>     {
+>         "id": "123",
+>         "name": "Ap Port Profile Name",
+>         "isDefault": false,
+>         "ports": [
+>             {
+>                 "name": "port 1",
+>                 "portNumber": 1,
+>                 "enabled": true,
+>                 "ssidNumber": 1
+>             }
+>         ],
+>         "usbPorts": [
+>             {
+>                 "name": "usb port",
+>                 "portNumber": 5,
+>                 "enabled": true,
+>                 "ssidNumber": 5
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/unassignAps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Unassign AP port profile from APs or template child networks
+> 
+> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/unassignAps`  
+> 
+>     {
+>         "updatedNodes": [
+>             100,
+>             101,
+>             102
+>         ],
+>         "childNodeGroups": [
+>             "1",
+>             "2",
+>             "3"
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/assignAps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Assign AP port profile to APs or template child networks
+> 
+> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/assignAps`  
+> 
+>     {
+>         "updatedNodes": [
+>             100,
+>             101,
+>             102
+>         ],
+>         "childNodeGroups": [
+>             "1",
+>             "2",
+>             "3"
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/setDefault`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Set the AP port profile to be default for this network
+> 
+> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/setDefault`  
+> 
+>     {
+>         "id": "123",
+>         "name": "Ap Port Profile Name",
+>         "isDefault": false,
+>         "ports": [
+>             {
+>                 "name": "port 1",
+>                 "portNumber": 1,
+>                 "enabled": true,
+>                 "ssidNumber": 1
+>             }
+>         ],
+>         "usbPorts": [
+>             {
+>                 "name": "usb port",
+>                 "portNumber": 5,
+>                 "enabled": true,
+>                 "ssidNumber": 5
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Show the AP port profile by ID for this network
+> 
+> **GET** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
+> 
+>     {
+>         "id": "123",
+>         "name": "Ap Port Profile Name",
+>         "isDefault": false,
+>         "ports": [
+>             {
+>                 "name": "port 1",
+>                 "portNumber": 1,
+>                 "enabled": true,
+>                 "ssidNumber": 1
+>             }
+>         ],
+>         "usbPorts": [
+>             {
+>                 "name": "usb port",
+>                 "portNumber": 5,
+>                 "enabled": true,
+>                 "ssidNumber": 5
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update the AP port profile by ID for this network
+> 
+> **PUT** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
+> 
+>     {
+>         "id": "123",
+>         "name": "Ap Port Profile Name",
+>         "isDefault": false,
+>         "ports": [
+>             {
+>                 "name": "port 1",
+>                 "portNumber": 1,
+>                 "enabled": true,
+>                 "ssidNumber": 1
+>             }
+>         ],
+>         "usbPorts": [
+>             {
+>                 "name": "usb port",
+>                 "portNumber": 5,
+>                 "enabled": true,
+>                 "ssidNumber": 5
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an AP port profile
+> 
+> **DELETE** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
+> 
+> * * *
+
+* * *
+
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### devices
+
+PATH _`/networks/{networkId}/wireless/devices/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores of all APs on this network
+> 
+> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
+> 
+>     [
+>         {
+>             "device": {
+>                 "serial": "Q234-ABCD-5678"
+>             },
+>             "performance": {
+>                 "latest": 80
+>             },
+>             "onboarding": {
+>                 "latest": 20
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 \[ organizations \]
 -------------------
+
+### certificates
+
+PATH _`/organizations/{organizationId}/certificates`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Gets all or specific certificates for an organization
+> 
+> **GET** `/organizations/{organizationId}/certificates`  
+> 
+>     {
+>         "certificateId": "1284392014819",
+>         "description": "friendly description",
+>         "parentCertificateId": "1284392014818",
+>         "source": "NAC",
+>         "fields": {
+>             "validity": {
+>                 "start": "2022-09-01T12:00:00Z",
+>                 "end": "2022-10-01T12:00:00Z"
+>             },
+>             "subject": {
+>                 "commonName": "subjectRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
+>             "issuer": {
+>                 "commonName": "issuerRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "serial": "7C 08 29 E8 CC",
+>             "policy": "policy string here",
+>             "version": "1.2.3.4",
+>             "hashes": [
+>                 {
+>                     "algorithm": "SHA1",
+>                     "hash": "hash text here"
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/import`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Import certificate for this organization
+> 
+> **POST** `/organizations/{organizationId}/certificates/import`  
+> 
+>     {
+>         "certificateId": "1284392014819",
+>         "description": "friendly description",
+>         "parentCertificateId": "1284392014818",
+>         "source": "NAC",
+>         "fields": {
+>             "validity": {
+>                 "start": "2022-09-01T12:00:00Z",
+>                 "end": "2022-10-01T12:00:00Z"
+>             },
+>             "subject": {
+>                 "commonName": "subjectRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
+>             "issuer": {
+>                 "commonName": "issuerRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "serial": "7C 08 29 E8 CC",
+>             "policy": "policy string here",
+>             "version": "1.2.3.4",
+>             "hashes": [
+>                 {
+>                     "algorithm": "SHA1",
+>                     "hash": "hash text here"
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.
+> 
+> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`  
+> 
+>     [
+>         {
+>             "authorityId": "1234",
+>             "status": "trusted",
+>             "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.
+> 
+> **POST** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`  
+> 
+>     {
+>         "authorityId": "1234",
+>         "status": "generating",
+>         "contents": ""
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.
+> 
+> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`  
+> 
+>     {
+>         "authorityId": "1234",
+>         "status": "trusted",
+>         "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.
+> 
+> **PUT** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`  
+> 
+>     {
+>         "authorityId": "1234",
+>         "status": "trusted",
+>         "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.
+> 
+> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList`  
+> 
+>     {
+>         "crl": "-----BEGIN X509 CRL-----\nMIICVjCCAj8CAQEwQQD\n...\n-----END X509 CRL-----\n"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList/deltas`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.
+> 
+> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList/deltas`  
+> 
+>     {
+>         "deltaCrls": [
+>             "-----BEGIN X509 CRL-----\nMIICVjCCAj8CAQEwQQD\n...\n-----END X509 CRL-----\n",
+>             "-----BEGIN X509 CRL-----\nPil0f9yaXcNbMUmaGlV\n...\n-----END X509 CRL-----\n",
+>             "-----BEGIN X509 CRL-----\n8G2kAJf816ARjULLwz1\n...\n-----END X509 CRL-----\n",
+>             "-----BEGIN X509 CRL-----\nnUxCohSdUMzAKBgNVHR\n...\n-----END X509 CRL-----\n"
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/{certificateId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a certificate's description for an organization
+> 
+> **PUT** `/organizations/{organizationId}/certificates/{certificateId}`  
+> 
+>     {
+>         "certificateId": "1284392014819",
+>         "description": "friendly description",
+>         "parentCertificateId": "1284392014818",
+>         "source": "NAC",
+>         "fields": {
+>             "validity": {
+>                 "start": "2022-09-01T12:00:00Z",
+>                 "end": "2022-10-01T12:00:00Z"
+>             },
+>             "subject": {
+>                 "commonName": "subjectRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
+>             "issuer": {
+>                 "commonName": "issuerRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "serial": "7C 08 29 E8 CC",
+>             "policy": "policy string here",
+>             "version": "1.2.3.4",
+>             "hashes": [
+>                 {
+>                     "algorithm": "SHA1",
+>                     "hash": "hash text here"
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a certificate for an organization
+> 
+> **DELETE** `/organizations/{organizationId}/certificates/{certificateId}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/{certificateId}/contents`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Download the trusted certificate by certificate id.
+> 
+> **GET** `/organizations/{organizationId}/certificates/{certificateId}/contents`  
+> 
+>     {
+>         "contents": "-----BEGIN CERTIFICATE-----MIIHvjCCBqagAwIBAgIQB4CbtQD3es3UQ988CCKGPjANBgkqhkiG9w0BAQsFADBPMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMSkwJwYDVQQDEyBEaWdpQ2VydCBUTFMgUlNBIFNIQTI1NiAyMDIwIENBMTAeFw0yMjA4MTAwMDAwMDBaFw0yMzA4MDkyMzU5NTlaMG4xCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRMwEQYDVQQKEwpNZXJha2kgTExDMR0wGwYDVQQDExRyYWRpdXMuZGV2LmlrYXJlbS5pbzCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBANSxcK8g9J3nRwDqNurYbXDieo5vHw5wWO4m3uJSvWtQ+zDMZzjEhA6ix3VfftGLLE+0C99a9B2oOubZgO/sAIJmLD6Oz25bUinAtzuEmOQiqZ8OZjYZd//emPOty7POZSU5C3rGUX0ESzrStL20iJoGzyA0U9clI+14yZCyXY1+Th3VSQCvGs/DmOMPn+MdBoMXIgzVk7+wjMr53fN6H8Q26y52NlLTmAxum2L7ag4owTecURzC6-----END CERTIFICATE-----"
+>     }
+> 
+> * * *
+
+* * *
 
 ### cloud
 
@@ -401,6 +1209,96 @@ PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
 >                         ]
 >                     }
 >                 ]
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### policies
+
+PATH _`/organizations/{organizationId}/policies/assignments/byClient`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get policies for all clients with policies
+> 
+> **GET** `/organizations/{organizationId}/policies/assignments/byClient`  
+> 
+>     [
+>         {
+>             "name": "Miles's phone",
+>             "clientId": "k74272e",
+>             "mac": "22:33:44:55:66:77",
+>             "networkId": "N_24329156",
+>             "assigned": [
+>                 {
+>                     "name": "My group policy",
+>                     "type": "Group",
+>                     "id": "102",
+>                     "limitTo": [
+>                         {
+>                             "appliance": false,
+>                             "ssids": [
+>                                 {
+>                                     "number": 1
+>                                 }
+>                             ]
+>                         }
+>                     ]
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### devices
+
+PATH _`/organizations/{organizationId}/devices/availabilities/history`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the availability history information for devices in an organization.
+> 
+> **GET** `/organizations/{organizationId}/devices/availabilities/history`  
+> 
+>     [
+>         {
+>             "ts": "2018-02-11T00:00:00.090210Z",
+>             "category": "status",
+>             "device": {
+>                 "serial": "Q234-ABCD-5678",
+>                 "name": "My AP",
+>                 "productType": "wireless",
+>                 "model": "MR34"
+>             },
+>             "details": {
+>                 "old": [
+>                     {
+>                         "name": "status",
+>                         "value": "online"
+>                     }
+>                 ],
+>                 "new": [
+>                     {
+>                         "name": "status",
+>                         "value": "offline"
+>                     }
+>                 ]
+>             },
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office",
+>                 "url": "https://n1.meraki.com//n//manage/nodes/list"
 >             }
 >         }
 >     ]
@@ -689,336 +1587,6 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 
 * * *
 
-\[ wireless \]
---------------
-
-### healthScores
-
-PATH _`/devices/{serial}/wireless/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given AP on this network
-> 
-> **GET** `/devices/{serial}/wireless/healthScores`  
-> 
->     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### devices
-
-PATH _`/networks/{networkId}/wireless/devices/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores of all APs on this network
-> 
-> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
-> 
->     [
->         {
->             "device": {
->                 "serial": "Q234-ABCD-5678"
->             },
->             "performance": {
->                 "latest": 80
->             },
->             "onboarding": {
->                 "latest": 20
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get average channel utilization for all bands in a network, split by AP
-> 
-> **GET** `/organizations/{organizationId}/wireless/devices/channelUtilization/byDevice`  
-> 
->     [
->         {
->             "serial": "Q234-ABCD-5678",
->             "mac": "00:11:22:33:44:55",
->             "network": {
->                 "id": "N_24329156"
->             },
->             "byBand": [
->                 {
->                     "band": 5,
->                     "wifi": {
->                         "percentage": 33.84
->                     },
->                     "nonWifi": {
->                         "percentage": 1.84
->                     },
->                     "total": {
->                         "percentage": 32
->                     }
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/byNetwork`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get average channel utilization across all bands for all networks in the organization
-> 
-> **GET** `/organizations/{organizationId}/wireless/devices/channelUtilization/byNetwork`  
-> 
->     [
->         {
->             "network": {
->                 "id": "N_24329156"
->             },
->             "byBand": [
->                 {
->                     "band": 5,
->                     "wifi": {
->                         "percentage": 33.84
->                     },
->                     "nonWifi": {
->                         "percentage": 1.84
->                     },
->                     "total": {
->                         "percentage": 32
->                     }
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/history/byDevice/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get a time-series of average channel utilization for all bands, segmented by device.
-> 
-> **GET** `/organizations/{organizationId}/wireless/devices/channelUtilization/history/byDevice/byInterval`  
-> 
->     [
->         {
->             "startTs": "2018-02-11T00:00:00Z",
->             "endTs": "2018-05-12T00:00:00Z",
->             "serial": "Q234-ABCD-5678",
->             "mac": "00:11:22:33:44:55",
->             "network": {
->                 "id": "N_24329156"
->             },
->             "byBand": [
->                 {
->                     "band": 5,
->                     "wifi": {
->                         "percentage": 33.84
->                     },
->                     "nonWifi": {
->                         "percentage": 1.84
->                     },
->                     "total": {
->                         "percentage": 32
->                     }
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/devices/channelUtilization/history/byNetwork/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get a time-series of average channel utilization for all bands
-> 
-> **GET** `/organizations/{organizationId}/wireless/devices/channelUtilization/history/byNetwork/byInterval`  
-> 
->     [
->         {
->             "startTs": "2018-02-11T00:00:00Z",
->             "endTs": "2018-05-12T00:00:00Z",
->             "network": {
->                 "id": "N_24329156"
->             },
->             "byBand": [
->                 {
->                     "band": 5,
->                     "wifi": {
->                         "percentage": 33.84
->                     },
->                     "nonWifi": {
->                         "percentage": 1.84
->                     },
->                     "total": {
->                         "percentage": 32
->                     }
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### clients
-
-PATH _`/networks/{networkId}/wireless/clients/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for all clients on this network
-> 
-> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
-> 
->     [
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 80,
->                 "currentConnection": 100
->             },
->             "onboarding": {
->                 "latest": 100
->             }
->         },
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 30,
->                 "currentConnection": 50
->             },
->             "onboarding": {
->                 "latest": 70
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return counts of distinct wireless clients connecting to a network over time
-> 
-> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
-> 
->     [
->         {
->             "startTs": "2020-01-01T00:00:00Z",
->             "endTs": "2020-01-01T00:05:00Z",
->             "clientCounts": {
->                 "summary": {
->                     "prospective": 100,
->                     "successful": 75,
->                     "failed": 25
->                 },
->                 "connectionSteps": {
->                     "association": {
->                         "prospective": 100,
->                         "successful": 97,
->                         "failed": 3
->                     },
->                     "authentication": {
->                         "prospective": 97,
->                         "successful": 81,
->                         "failed": 16
->                     },
->                     "dhcp": {
->                         "prospective": 81,
->                         "successful": 75,
->                         "failed": 6
->                     },
->                     "dns": {
->                         "prospective": 75,
->                         "successful": 75,
->                         "failed": 0
->                     }
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
-> 
-> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
-> 
->     {
->         "mac": "22:33:44:55:66:77",
->         "clientId": "k74272e",
->         "performance": {
->             "latest": 80,
->             "currentConnection": 100
->         },
->         "onboarding": {
->             "latest": 100
->         }
->     }
-> 
-> * * *
-
-* * *
-
 \[ sensor \]
 ------------
 
@@ -1187,8 +1755,155 @@ PATH _`/organizations/{organizationId}/appliance/uplinks/usage/byNetwork`_
 
 * * *
 
+### trafficShaping
+
+PATH _`/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Display VPN exclusion configurations for MX networks.
+> 
+> **GET** `/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions`  
+> 
+>     [
+>         {
+>             "networkId": "N_24329156",
+>             "customFilters": [
+>                 {
+>                     "protocol": "tcp",
+>                     "destination": "192.168.3.0/24",
+>                     "port": "8000"
+>                 }
+>             ],
+>             "presetFilters": [
+>                 {
+>                     "id": "meraki:vpnExclusion/application/2",
+>                     "name": "O365 - Skype"
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 \[ secureConnect \]
 -------------------
+
+### privateApplicationGroups
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of private application groups for an Organization
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "applicationGroupId": "1122321",
+>                 "name": "Westcoast Data Center",
+>                 "description": "Private applications in Westcoast Data Center",
+>                 "applicationIds": [
+>                     "183456",
+>                     "123568"
+>                 ],
+>                 "createdAt": "2021-12-13T16:07:07.222Z",
+>                 "modifiedAt": "2021-12-13T16:07:07.222Z"
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Creates a group of private applications to apply to policy. A maximum of 300 private application groups are allowed for an organization.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
+> 
+>     {
+>         "applicationGroupId": "1122321",
+>         "name": "Westcoast Data Center",
+>         "description": "Private applications in Westcoast Data Center",
+>         "applicationIds": [
+>             "183456",
+>             "123568"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of a specific private application group
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+>     {
+>         "applicationGroupId": "1122321",
+>         "name": "Westcoast Data Center",
+>         "description": "Private applications in Westcoast Data Center",
+>         "applicationIds": [
+>             "183456",
+>             "123568"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.
+> 
+> **PUT** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+>     {
+>         "applicationGroupId": "1122321",
+>         "name": "Westcoast Data Center",
+>         "description": "Private applications in Westcoast Data Center",
+>         "applicationIds": [
+>             "183456",
+>             "123568"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes private application group from an Organization. Detaches application from groups before deleting
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+> * * *
+
+* * *
 
 ### privateApplications
 
