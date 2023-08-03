@@ -1,4 +1,10 @@
  - [What's Updated](#whats-updated)
+  * [\[ devices \]](#-devices-)
+    + [ping](#ping)
+      - [Enqueue a job to ping a target host from the device](#enqueue-a-job-to-ping-a-target-host-from-the-device)
+    + [pingDevice](#pingdevice)
+      - [Enqueue a job to check connectivity status to the device](#enqueue-a-job-to-check-connectivity-status-to-the-device)
+      - [Return a ping device job](#return-a-ping-device-job)
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
@@ -6,17 +12,21 @@
     + [ports](#ports)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
     + [stacks](#stacks)
-      - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
+      - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
   * [\[ wireless \]](#-wireless-)
     + [rfProfiles](#rfprofiles)
-      - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
       - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
       - [List RF profiles for this network](#list-rf-profiles-for-this-network)
       - [Return a RF profile](#return-a-rf-profile)
+      - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
   * [\[ organizations \]](#-organizations-)
     + [devices](#devices)
+      - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
+    + [actionBatches](#actionbatches)
+      - [Create an action batch](#create-an-action-batch)
+      - [Return an action batch](#return-an-action-batch)
 - [What's New](#whats-new)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
@@ -26,12 +36,13 @@
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ switch \]](#-switch--1)
     + [ports](#ports-1)
+      - [Returns the counts of all active ports for the requested timespan, grouped by speed. The number of inactive ports, and the total number of ports is also provided.](#returns-the-counts-of-all-active-ports-for-the-requested-timespan-grouped-by-speed-the-number-of-inactive-ports-and-the-total-number-of-ports-is-also-provided)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
+    + [summary](#summary)
+      - [Returns the total PoE power draw for all switch ports in the organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.](#returns-the-total-poe-power-draw-for-all-switch-ports-in-the-organization-over-the-requested-timespan-by-default-the-last-24-hours-the-returned-array-is-a-newest-first-list-of-intervals-the-time-between-intervals-depends-on-the-requested-timespan-with-20-minute-intervals-used-for-timespans-up-to-1-day-4-hour-intervals-used-for-timespans-up-to-2-weeks-and-1-day-intervals-for-timespans-larger-than-2-weeks)
   * [\[ wireless \]](#-wireless--1)
-    + [clients](#clients)
-      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
-      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
-      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [ethernet](#ethernet)
       - [List the AP port profiles for this network](#list-the-ap-port-profiles-for-this-network)
       - [Create an AP port profile](#create-an-ap-port-profile)
@@ -41,10 +52,12 @@
       - [Show the AP port profile by ID for this network](#show-the-ap-port-profile-by-id-for-this-network)
       - [Update the AP port profile by ID for this network](#update-the-ap-port-profile-by-id-for-this-network)
       - [Delete an AP port profile](#delete-an-ap-port-profile)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [devices](#devices-1)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
+    + [clients](#clients)
+      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
+      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
+      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
   * [\[ organizations \]](#-organizations--1)
     + [certificates](#certificates)
       - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
@@ -62,9 +75,8 @@
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
     + [policies](#policies)
       - [Get policies for all clients with policies](#get-policies-for-all-clients-with-policies)
-    + [devices](#devices-2)
-      - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
     + [webhooks](#webhooks)
+      - [Return the status of an API callback](#return-the-status-of-an-api-callback)
       - [List the HTTP servers for this organization](#list-the-http-servers-for-this-organization)
       - [Add an HTTP server to an organization](#add-an-http-server-to-an-organization)
       - [Return an HTTP server for an organization](#return-an-http-server-for-an-organization)
@@ -80,13 +92,30 @@
   * [\[ sensor \]](#-sensor-)
     + [schedules](#schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
+    + [commands](#commands)
+      - [Returns a historical log of all commands](#returns-a-historical-log-of-all-commands)
+      - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
+      - [Returns information about the command's execution, including the status](#returns-information-about-the-commands-execution-including-the-status)
     + [readings](#readings)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
   * [\[ appliance \]](#-appliance-)
-    + [uplinks](#uplinks)
-      - [Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.](#get-the-sent-and-received-bytes-for-each-uplink-of-all-wired-networks-within-an-organization-if-more-than-one-mx-was-active-during-the-specified-timespan-then-the-sent-and-received-bytes-will-be-aggregated-by-interface)
     + [trafficShaping](#trafficshaping)
-      - [Display VPN exclusion configurations for MX networks.](#display-vpn-exclusion-configurations-for-mx-networks)
+      - [Update VPN exclusion rules for an MX network.](#update-vpn-exclusion-rules-for-an-mx-network)
+      - [Display VPN exclusion rules for MX networks.](#display-vpn-exclusion-rules-for-mx-networks)
+  * [\[ camera \]](#-camera-)
+    + [permissions](#permissions)
+      - [List the permissions scopes for this organization](#list-the-permissions-scopes-for-this-organization)
+      - [Retrieve a single permission scope](#retrieve-a-single-permission-scope)
+    + [roles](#roles)
+      - [List all the roles in this organization](#list-all-the-roles-in-this-organization)
+      - [Creates new role for this organization.](#creates-new-role-for-this-organization)
+      - [Retrieve a single role](#retrieve-a-single-role)
+      - [Update an existing role in this organization.](#update-an-existing-role-in-this-organization)
+      - [Delete an existing role for this organization.](#delete-an-existing-role-for-this-organization)
+  * [\[ insight \]](#-insight-)
+    + [webApps](#webapps)
+      - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
+      - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
   * [\[ secureConnect \]](#-secureconnect-)
     + [privateApplicationGroups](#privateapplicationgroups)
       - [Provides a list of private application groups for an Organization](#provides-a-list-of-private-application-groups-for-an-organization)
@@ -103,19 +132,19 @@
     + [remoteAccessLog](#remoteaccesslog)
       - [List the latest 5000 events logged by remote access.](#list-the-latest-5000-events-logged-by-remote-access)
  
-Version **1.34.0** _to_ **1.34.0-beta.0**
+Version **1.36.0** _to_ **1.36.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**39 - New**
+**48 - New**
 
-**19 - Updated**
+**41 - Updated**
 
-**690 - Total Endpoints**
+**705 - Total Endpoints**
 
-**437 - Total Paths**
+**447 - Total Paths**
 
 * * *
 
@@ -123,6 +152,43 @@ Version **1.34.0** _to_ **1.34.0-beta.0**
 
 What's Updated
 ==============
+
+\[ devices \]
+-------------
+
+### ping
+
+#### Enqueue a job to ping a target host from the device
+
+POST _`/devices/{serial}/liveTools/ping`_
+
+> \- Optional property `callback` Added
+
+> \- Optional property `callback` Added
+
+* * *
+
+### pingDevice
+
+#### Enqueue a job to check connectivity status to the device
+
+POST _`/devices/{serial}/liveTools/pingDevice`_
+
+> \- Optional property `callback` Added
+
+> \- Optional property `callback` Added
+
+* * *
+
+#### Return a ping device job
+
+GET _`/devices/{serial}/liveTools/pingDevice/{id}`_
+
+> \- Optional property `callback` Added
+
+> \- Response property `callback` value added
+
+* * *
 
 \[ networks \]
 --------------
@@ -152,17 +218,17 @@ GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
 
 ### stacks
 
-#### Update a layer 3 interface for a switch stack
+#### Create a layer 3 interface for a switch stack
 
-PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
+POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 
 > \- Optional property `ospfV3` Added
 
 * * *
 
-#### Create a layer 3 interface for a switch stack
+#### Update a layer 3 interface for a switch stack
 
-POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
+PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
 
 > \- Optional property `ospfV3` Added
 
@@ -172,20 +238,6 @@ POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 --------------
 
 ### rfProfiles
-
-#### Updates specified RF profile for this network
-
-PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
-
-> \- Optional property `isIndoorDefault` Added
-
-> \- Optional property `isOutdoorDefaut` Added
-
-> \- Optional property `isIndoorDefault` Added
-
-> \- Optional property `isOutdoorDefault` Added
-
-* * *
 
 #### Creates new RF profile for this network
 
@@ -225,16 +277,82 @@ GET _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 
 * * *
 
+#### Updates specified RF profile for this network
+
+PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
+
+> \- Optional property `isIndoorDefault` Added
+
+> \- Optional property `isOutdoorDefaut` Added
+
+> \- Optional property `isIndoorDefault` Added
+
+> \- Optional property `isOutdoorDefault` Added
+
+* * *
+
 \[ organizations \]
 -------------------
 
 ### devices
+
+#### List the availability history information for devices in an organization.
+
+GET _`/organizations/{organizationId}/devices/availabilities/changeHistory`_
+
+> \- Optional param `categories` added
+
+> \- Optional param `networkTags` added
+
+> \- Optional param `networkTagsFilterType` added
+
+> \- Optional param `t0Beta` added
+
+> \- Optional param `t1Beta` added
+
+> \- Optional param `timespanBeta` added
+
+> \- Optional param `deviceTags` added
+
+> \- Optional param `deviceTagsFilterType` added
+
+> \- Optional property `tags` Added
+
+> \- Optional property `category` Added
+
+> \- Response property `tags` value added
+
+> \- Response property `category` value added
+
+* * *
 
 #### List the status of every Meraki device in the organization
 
 GET _`/organizations/{organizationId}/devices/statuses`_
 
 > \- Optional param `configurationUpdatedAfter` added
+
+* * *
+
+### actionBatches
+
+#### Create an action batch
+
+POST _`/organizations/{organizationId}/actionBatches`_
+
+> \- Optional property `callback` Added
+
+> \- Optional property `callback` Added
+
+* * *
+
+#### Return an action batch
+
+GET _`/organizations/{organizationId}/actionBatches/{actionBatchId}`_
+
+> \- Optional property `callback` Added
+
+> \- Response property `callback` value added
 
 * * *
 
@@ -349,6 +467,68 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 
 ### ports
 
+PATH _`/organizations/{organizationId}/switch/ports/overview`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns the counts of all active ports for the requested timespan, grouped by speed. The number of inactive ports, and the total number of ports is also provided.
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/overview`  
+> 
+>     {
+>         "counts": {
+>             "total": 120,
+>             "byStatus": {
+>                 "active": {
+>                     "total": 87,
+>                     "byMediaAndLinkSpeed": {
+>                         "rj45": {
+>                             "10": 0,
+>                             "100": 0,
+>                             "1000": 24,
+>                             "2500": 0,
+>                             "5000": 0,
+>                             "10000": 0,
+>                             "20000": 0,
+>                             "40000": 0,
+>                             "100000": 0,
+>                             "total": 24
+>                         },
+>                         "sfp": {
+>                             "10": 2,
+>                             "100": 6,
+>                             "1000": 40,
+>                             "2500": 0,
+>                             "5000": 0,
+>                             "10000": 10,
+>                             "20000": 0,
+>                             "40000": 1,
+>                             "100000": 0,
+>                             "total": 63
+>                         }
+>                     }
+>                 },
+>                 "inactive": {
+>                     "total": 33,
+>                     "byMedia": {
+>                         "rj45": {
+>                             "total": 16
+>                         },
+>                         "sfp": {
+>                             "total": 17
+>                         }
+>                     }
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
 PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 
 > \- Path added  
@@ -441,8 +621,331 @@ PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 
 * * *
 
+### summary
+
+PATH _`/organizations/{organizationId}/summary/switch/power/history`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns the total PoE power draw for all switch ports in the organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.
+> 
+> **GET** `/organizations/{organizationId}/summary/switch/power/history`  
+> 
+>     [
+>         {
+>             "ts": "2021-06-20T01:00:00.000Z",
+>             "draw": 5.4321
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 \[ wireless \]
 --------------
+
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### ethernet
+
+PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the AP port profiles for this network
+> 
+> **GET** `/networks/{networkId}/wireless/ethernet/ports/profiles`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Ap Port Profile Name",
+>             "isDefault": false,
+>             "ports": [
+>                 {
+>                     "name": "port 1",
+>                     "portNumber": 1,
+>                     "enabled": true,
+>                     "ssidNumber": 1,
+>                     "pskGroupId": 123
+>                 }
+>             ],
+>             "usbPorts": [
+>                 {
+>                     "name": "usb port",
+>                     "portNumber": 5,
+>                     "enabled": true,
+>                     "ssidNumber": 5
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create an AP port profile
+> 
+> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles`  
+> 
+>     {
+>         "id": "123",
+>         "name": "Ap Port Profile Name",
+>         "isDefault": false,
+>         "ports": [
+>             {
+>                 "name": "port 1",
+>                 "portNumber": 1,
+>                 "enabled": true,
+>                 "ssidNumber": 1,
+>                 "pskGroupId": 123
+>             }
+>         ],
+>         "usbPorts": [
+>             {
+>                 "name": "usb port",
+>                 "portNumber": 5,
+>                 "enabled": true,
+>                 "ssidNumber": 5
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/unassignAps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Unassign AP port profile from APs or template child networks
+> 
+> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/unassignAps`  
+> 
+>     {
+>         "updatedNodes": [
+>             100,
+>             101,
+>             102
+>         ],
+>         "childNodeGroups": [
+>             "1",
+>             "2",
+>             "3"
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/assignAps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Assign AP port profile to APs or template child networks
+> 
+> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/assignAps`  
+> 
+>     {
+>         "updatedNodes": [
+>             100,
+>             101,
+>             102
+>         ],
+>         "childNodeGroups": [
+>             "1",
+>             "2",
+>             "3"
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/setDefault`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Set the AP port profile to be default for this network
+> 
+> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/setDefault`  
+> 
+>     {
+>         "id": "123",
+>         "name": "Ap Port Profile Name",
+>         "isDefault": false,
+>         "ports": [
+>             {
+>                 "name": "port 1",
+>                 "portNumber": 1,
+>                 "enabled": true,
+>                 "ssidNumber": 1,
+>                 "pskGroupId": 123
+>             }
+>         ],
+>         "usbPorts": [
+>             {
+>                 "name": "usb port",
+>                 "portNumber": 5,
+>                 "enabled": true,
+>                 "ssidNumber": 5
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Show the AP port profile by ID for this network
+> 
+> **GET** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
+> 
+>     {
+>         "id": "123",
+>         "name": "Ap Port Profile Name",
+>         "isDefault": false,
+>         "ports": [
+>             {
+>                 "name": "port 1",
+>                 "portNumber": 1,
+>                 "enabled": true,
+>                 "ssidNumber": 1,
+>                 "pskGroupId": 123
+>             }
+>         ],
+>         "usbPorts": [
+>             {
+>                 "name": "usb port",
+>                 "portNumber": 5,
+>                 "enabled": true,
+>                 "ssidNumber": 5
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update the AP port profile by ID for this network
+> 
+> **PUT** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
+> 
+>     {
+>         "id": "123",
+>         "name": "Ap Port Profile Name",
+>         "isDefault": false,
+>         "ports": [
+>             {
+>                 "name": "port 1",
+>                 "portNumber": 1,
+>                 "enabled": true,
+>                 "ssidNumber": 1,
+>                 "pskGroupId": 123
+>             }
+>         ],
+>         "usbPorts": [
+>             {
+>                 "name": "usb port",
+>                 "portNumber": 5,
+>                 "enabled": true,
+>                 "ssidNumber": 5
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an AP port profile
+> 
+> **DELETE** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
+> 
+> * * *
+
+* * *
+
+### devices
+
+PATH _`/networks/{networkId}/wireless/devices/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores of all APs on this network
+> 
+> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
+> 
+>     [
+>         {
+>             "device": {
+>                 "serial": "Q234-ABCD-5678"
+>             },
+>             "performance": {
+>                 "latest": 80
+>             },
+>             "onboarding": {
+>                 "latest": 20
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
 
 ### clients
 
@@ -556,301 +1059,6 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 >             "latest": 100
 >         }
 >     }
-> 
-> * * *
-
-* * *
-
-### ethernet
-
-PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the AP port profiles for this network
-> 
-> **GET** `/networks/{networkId}/wireless/ethernet/ports/profiles`  
-> 
->     [
->         {
->             "id": "123",
->             "name": "Ap Port Profile Name",
->             "isDefault": false,
->             "ports": [
->                 {
->                     "name": "port 1",
->                     "portNumber": 1,
->                     "enabled": true,
->                     "ssidNumber": 1
->                 }
->             ],
->             "usbPorts": [
->                 {
->                     "name": "usb port",
->                     "portNumber": 5,
->                     "enabled": true,
->                     "ssidNumber": 5
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create an AP port profile
-> 
-> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles`  
-> 
->     {
->         "id": "123",
->         "name": "Ap Port Profile Name",
->         "isDefault": false,
->         "ports": [
->             {
->                 "name": "port 1",
->                 "portNumber": 1,
->                 "enabled": true,
->                 "ssidNumber": 1
->             }
->         ],
->         "usbPorts": [
->             {
->                 "name": "usb port",
->                 "portNumber": 5,
->                 "enabled": true,
->                 "ssidNumber": 5
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/unassignAps`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Unassign AP port profile from APs or template child networks
-> 
-> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/unassignAps`  
-> 
->     {
->         "updatedNodes": [
->             100,
->             101,
->             102
->         ],
->         "childNodeGroups": [
->             "1",
->             "2",
->             "3"
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/assignAps`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Assign AP port profile to APs or template child networks
-> 
-> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/assignAps`  
-> 
->     {
->         "updatedNodes": [
->             100,
->             101,
->             102
->         ],
->         "childNodeGroups": [
->             "1",
->             "2",
->             "3"
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/setDefault`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Set the AP port profile to be default for this network
-> 
-> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/setDefault`  
-> 
->     {
->         "id": "123",
->         "name": "Ap Port Profile Name",
->         "isDefault": false,
->         "ports": [
->             {
->                 "name": "port 1",
->                 "portNumber": 1,
->                 "enabled": true,
->                 "ssidNumber": 1
->             }
->         ],
->         "usbPorts": [
->             {
->                 "name": "usb port",
->                 "portNumber": 5,
->                 "enabled": true,
->                 "ssidNumber": 5
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Show the AP port profile by ID for this network
-> 
-> **GET** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
-> 
->     {
->         "id": "123",
->         "name": "Ap Port Profile Name",
->         "isDefault": false,
->         "ports": [
->             {
->                 "name": "port 1",
->                 "portNumber": 1,
->                 "enabled": true,
->                 "ssidNumber": 1
->             }
->         ],
->         "usbPorts": [
->             {
->                 "name": "usb port",
->                 "portNumber": 5,
->                 "enabled": true,
->                 "ssidNumber": 5
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update the AP port profile by ID for this network
-> 
-> **PUT** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
-> 
->     {
->         "id": "123",
->         "name": "Ap Port Profile Name",
->         "isDefault": false,
->         "ports": [
->             {
->                 "name": "port 1",
->                 "portNumber": 1,
->                 "enabled": true,
->                 "ssidNumber": 1
->             }
->         ],
->         "usbPorts": [
->             {
->                 "name": "usb port",
->                 "portNumber": 5,
->                 "enabled": true,
->                 "ssidNumber": 5
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an AP port profile
-> 
-> **DELETE** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
-> 
-> * * *
-
-* * *
-
-### healthScores
-
-PATH _`/devices/{serial}/wireless/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given AP on this network
-> 
-> **GET** `/devices/{serial}/wireless/healthScores`  
-> 
->     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### devices
-
-PATH _`/networks/{networkId}/wireless/devices/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores of all APs on this network
-> 
-> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
-> 
->     [
->         {
->             "device": {
->                 "serial": "Q234-ABCD-5678"
->             },
->             "performance": {
->                 "latest": 80
->             },
->             "onboarding": {
->                 "latest": 20
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -1259,55 +1467,42 @@ PATH _`/organizations/{organizationId}/policies/assignments/byClient`_
 
 * * *
 
-### devices
+### webhooks
 
-PATH _`/organizations/{organizationId}/devices/availabilities/history`_
+PATH _`/organizations/{organizationId}/webhooks/callbacks/statuses/{callbackId}`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List the availability history information for devices in an organization.
+> #### Return the status of an API callback
 > 
-> **GET** `/organizations/{organizationId}/devices/availabilities/history`  
+> **GET** `/organizations/{organizationId}/webhooks/callbacks/statuses/{callbackId}`  
 > 
->     [
->         {
->             "ts": "2018-02-11T00:00:00.090210Z",
->             "category": "status",
->             "device": {
->                 "serial": "Q234-ABCD-5678",
->                 "name": "My AP",
->                 "productType": "wireless",
->                 "model": "MR34"
+>     {
+>         "callbackId": "1284392014819",
+>         "status": "completed",
+>         "errors": [
+>             "Callback failed"
+>         ],
+>         "createdBy": {
+>             "adminId": "212406"
+>         },
+>         "webhook": {
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "httpServer": {
+>                 "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vd2ViaG9va3M="
 >             },
->             "details": {
->                 "old": [
->                     {
->                         "name": "status",
->                         "value": "online"
->                     }
->                 ],
->                 "new": [
->                     {
->                         "name": "status",
->                         "value": "offline"
->                     }
->                 ]
+>             "payloadTemplate": {
+>                 "id": "wpt_2100"
 >             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office",
->                 "url": "https://n1.meraki.com//n//manage/nodes/list"
->             }
+>             "sentAt": "2018-02-11T00:00:00.090210Z"
 >         }
->     ]
+>     }
 > 
 > * * *
 
 * * *
-
-### webhooks
 
 PATH _`/organizations/{organizationId}/webhooks/httpServers`_
 
@@ -1617,6 +1812,101 @@ PATH _`/networks/{networkId}/sensor/schedules`_
 
 * * *
 
+### commands
+
+PATH _`/devices/{serial}/sensor/commands`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a historical log of all commands
+> 
+> **GET** `/devices/{serial}/sensor/commands`  
+> 
+>     [
+>         {
+>             "commandId": "1284392014819",
+>             "createdAt": "2018-02-11T00:00:00Z",
+>             "completedAt": "2018-05-12T00:00:00Z",
+>             "createdBy": {
+>                 "adminId": "212406",
+>                 "name": "Miles Meraki",
+>                 "email": "miles@meraki.com"
+>             },
+>             "operation": "disableDownstreamPower",
+>             "status": "completed",
+>             "gateway": {
+>                 "serial": "Q234-ABCD-5678",
+>                 "name": "My camera"
+>             },
+>             "errors": []
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Sends a command to a sensor
+> 
+> **POST** `/devices/{serial}/sensor/commands`  
+> 
+>     {
+>         "commandId": "1284392014819",
+>         "createdAt": "2018-02-11T00:00:00Z",
+>         "completedAt": "2018-05-12T00:00:00Z",
+>         "createdBy": {
+>             "adminId": "212406",
+>             "name": "Miles Meraki",
+>             "email": "miles@meraki.com"
+>         },
+>         "operation": "disableDownstreamPower",
+>         "status": "completed",
+>         "gateway": {
+>             "serial": "Q234-ABCD-5678",
+>             "name": "My camera"
+>         },
+>         "errors": []
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/sensor/commands/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns information about the command's execution, including the status
+> 
+> **GET** `/devices/{serial}/sensor/commands/{id}`  
+> 
+>     {
+>         "commandId": "1284392014819",
+>         "createdAt": "2018-02-11T00:00:00Z",
+>         "completedAt": "2018-05-12T00:00:00Z",
+>         "createdBy": {
+>             "adminId": "212406",
+>             "name": "Miles Meraki",
+>             "email": "miles@meraki.com"
+>         },
+>         "operation": "disableDownstreamPower",
+>         "status": "completed",
+>         "gateway": {
+>             "serial": "Q234-ABCD-5678",
+>             "name": "My camera"
+>         },
+>         "errors": []
+>     }
+> 
+> * * *
+
+* * *
+
 ### readings
 
 PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
@@ -1724,28 +2014,65 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 \[ appliance \]
 ---------------
 
-### uplinks
+### trafficShaping
 
-PATH _`/organizations/{organizationId}/appliance/uplinks/usage/byNetwork`_
+PATH _`/networks/{networkId}/appliance/trafficShaping/vpnExclusions`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Get the sent and received bytes for each uplink of all wired networks within an organization. If more than one MX was active during the specified timespan, then the sent and received bytes will be aggregated by interface.
+> #### Update VPN exclusion rules for an MX network.
 > 
-> **GET** `/organizations/{organizationId}/appliance/uplinks/usage/byNetwork`  
+> **PUT** `/networks/{networkId}/appliance/trafficShaping/vpnExclusions`  
+> 
+>     {
+>         "networkId": "N_24329156",
+>         "networkName": "Main Office",
+>         "custom": [
+>             {
+>                 "protocol": "tcp",
+>                 "destination": "192.168.3.0/24",
+>                 "port": "8000"
+>             }
+>         ],
+>         "majorApplications": [
+>             {
+>                 "id": "meraki:vpnExclusion/application/2",
+>                 "name": "Office 365 Sharepoint"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Display VPN exclusion rules for MX networks.
+> 
+> **GET** `/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork`  
 > 
 >     [
 >         {
 >             "networkId": "N_24329156",
->             "name": "Main Office",
->             "byUplink": [
+>             "networkName": "Main Office",
+>             "custom": [
 >                 {
->                     "serial": "Q234-ABCD-5678",
->                     "interface": "wan1",
->                     "sent": 200,
->                     "received": 400
+>                     "protocol": "tcp",
+>                     "destination": "192.168.3.0/24",
+>                     "port": "8000"
+>                 }
+>             ],
+>             "majorApplications": [
+>                 {
+>                     "id": "meraki:vpnExclusion/application/2",
+>                     "name": "Office 365 Sharepoint"
 >                 }
 >             ]
 >         }
@@ -1755,36 +2082,289 @@ PATH _`/organizations/{organizationId}/appliance/uplinks/usage/byNetwork`_
 
 * * *
 
-### trafficShaping
+\[ camera \]
+------------
 
-PATH _`/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions`_
+### permissions
+
+PATH _`/organizations/{organizationId}/camera/permissions`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Display VPN exclusion configurations for MX networks.
+> #### List the permissions scopes for this organization
 > 
-> **GET** `/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions`  
+> **GET** `/organizations/{organizationId}/camera/permissions`  
 > 
 >     [
 >         {
->             "networkId": "N_24329156",
->             "customFilters": [
+>             "id": "1234",
+>             "name": "camera_video",
+>             "level": "live_video"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/camera/permissions/{permissionScopeId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Retrieve a single permission scope
+> 
+> **GET** `/organizations/{organizationId}/camera/permissions/{permissionScopeId}`  
+> 
+>     {
+>         "id": "1234",
+>         "name": "camera_video",
+>         "level": "live_video"
+>     }
+> 
+> * * *
+
+* * *
+
+### roles
+
+PATH _`/organizations/{organizationId}/camera/roles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List all the roles in this organization
+> 
+> **GET** `/organizations/{organizationId}/camera/roles`  
+> 
+>     [
+>         {
+>             "name": "Security_Guard",
+>             "appliedOnDevices": [
 >                 {
->                     "protocol": "tcp",
->                     "destination": "192.168.3.0/24",
->                     "port": "8000"
+>                     "tag": "reception-desk",
+>                     "id": "",
+>                     "permissionScopeId": "1",
+>                     "permissionScope": "camera-video",
+>                     "permissionLevel": "view_and_export"
 >                 }
 >             ],
->             "presetFilters": [
+>             "appliedOnNetworks": [
 >                 {
->                     "id": "meraki:vpnExclusion/application/2",
->                     "name": "O365 - Skype"
+>                     "tag": "",
+>                     "id": "2568",
+>                     "permissionScopeId": "2",
+>                     "permissionScope": "camera-video",
+>                     "permissionLevel": "view"
+>                 }
+>             ],
+>             "appliedOrgWide": [
+>                 {
+>                     "tag": "building-a",
+>                     "permissionScopeId": "2",
+>                     "permissionScope": "camera_video",
+>                     "permissionLevel": "view_live"
 >                 }
 >             ]
 >         }
 >     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Creates new role for this organization.
+> 
+> **POST** `/organizations/{organizationId}/camera/roles`  
+> 
+>     {
+>         "name": "Security_Guard",
+>         "appliedOnDevices": [
+>             {
+>                 "tag": "reception-desk",
+>                 "id": "",
+>                 "permissionScopeId": "1",
+>                 "permissionScope": "camera-video",
+>                 "permissionLevel": "view_and_export"
+>             }
+>         ],
+>         "appliedOnNetworks": [
+>             {
+>                 "tag": "",
+>                 "id": "2568",
+>                 "permissionScopeId": "2",
+>                 "permissionScope": "camera-video",
+>                 "permissionLevel": "view"
+>             }
+>         ],
+>         "appliedOrgWide": [
+>             {
+>                 "tag": "building-a",
+>                 "permissionScopeId": "2",
+>                 "permissionScope": "camera_video",
+>                 "permissionLevel": "view_live"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/camera/roles/{roleId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Retrieve a single role
+> 
+> **GET** `/organizations/{organizationId}/camera/roles/{roleId}`  
+> 
+>     {
+>         "name": "Security_Guard",
+>         "appliedOnDevices": [
+>             {
+>                 "tag": "reception-desk",
+>                 "id": "",
+>                 "permissionScopeId": "1",
+>                 "permissionScope": "camera-video",
+>                 "permissionLevel": "view_and_export"
+>             }
+>         ],
+>         "appliedOnNetworks": [
+>             {
+>                 "tag": "",
+>                 "id": "2568",
+>                 "permissionScopeId": "2",
+>                 "permissionScope": "camera-video",
+>                 "permissionLevel": "view"
+>             }
+>         ],
+>         "appliedOrgWide": [
+>             {
+>                 "tag": "building-a",
+>                 "permissionScopeId": "2",
+>                 "permissionScope": "camera_video",
+>                 "permissionLevel": "view_live"
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an existing role in this organization.
+> 
+> **PUT** `/organizations/{organizationId}/camera/roles/{roleId}`  
+> 
+>     {
+>         "name": "Security_Guard",
+>         "appliedOnDevices": [
+>             {
+>                 "tag": "reception-desk",
+>                 "id": "",
+>                 "permissionScopeId": "1",
+>                 "permissionScope": "camera-video",
+>                 "permissionLevel": "view_and_export"
+>             }
+>         ],
+>         "appliedOnNetworks": [
+>             {
+>                 "tag": "",
+>                 "id": "2568",
+>                 "permissionScopeId": "2",
+>                 "permissionScope": "camera-video",
+>                 "permissionLevel": "view"
+>             }
+>         ],
+>         "appliedOrgWide": [
+>             {
+>                 "tag": "building-a",
+>                 "permissionScopeId": "2",
+>                 "permissionScope": "camera_video",
+>                 "permissionLevel": "view_live"
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an existing role for this organization.
+> 
+> **DELETE** `/organizations/{organizationId}/camera/roles/{roleId}`  
+> 
+> * * *
+
+* * *
+
+\[ insight \]
+-------------
+
+### webApps
+
+PATH _`/organizations/{organizationId}/insight/webApps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lists all default web applications rules with counter set rule ids
+> 
+> **GET** `/organizations/{organizationId}/insight/webApps`  
+> 
+>     [
+>         {
+>             "counterSetRuleId": "12345",
+>             "name": "Meraki HTTPS",
+>             "category": "Remote monitoring & management",
+>             "thresholds": {
+>                 "goodput": "20000",
+>                 "responseDelay": "3000"
+>             },
+>             "expression": "http_host[*.example.com] or http_host",
+>             "signature": {
+>                 "signatureType": "custom_host",
+>                 "host": "exampled.com",
+>                 "port": "123",
+>                 "net": "10.0.2.1/20"
+>             }
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add a custom web application for Insight to be able to track
+> 
+> **POST** `/organizations/{organizationId}/insight/webApps`  
+> 
+>     {
+>         "counterSetRuleId": "12345",
+>         "name": "Meraki HTTPS",
+>         "category": "Remote monitoring & management",
+>         "thresholds": {
+>             "goodput": "20000",
+>             "responseDelay": "3000"
+>         },
+>         "expression": "http_host[*.example.com] or http_host",
+>         "signature": {
+>             "signatureType": "custom_host",
+>             "host": "exampled.com"
+>         }
+>     }
 > 
 > * * *
 
