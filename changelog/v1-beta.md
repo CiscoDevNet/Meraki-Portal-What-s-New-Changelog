@@ -5,15 +5,23 @@
     + [pingDevice](#pingdevice)
       - [Enqueue a job to check connectivity status to the device](#enqueue-a-job-to-check-connectivity-status-to-the-device)
       - [Return a ping device job](#return-a-ping-device-job)
+  * [\[ appliance \]](#-appliance-)
+    + [trafficShaping](#trafficshaping)
+      - [Show uplink selection settings for an MX network](#show-uplink-selection-settings-for-an-mx-network)
+      - [Update uplink selection settings for an MX network](#update-uplink-selection-settings-for-an-mx-network)
+    + [ports](#ports)
+      - [List per-port VLAN settings for all ports of a MX.](#list-per-port-vlan-settings-for-all-ports-of-a-mx)
+      - [Return per-port VLAN settings for a single MX port.](#return-per-port-vlan-settings-for-a-single-mx-port)
+      - [Update the per-port VLAN settings for a single MX port.](#update-the-per-port-vlan-settings-for-a-single-mx-port)
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
   * [\[ switch \]](#-switch-)
-    + [ports](#ports)
-      - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
     + [stacks](#stacks)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
+    + [ports](#ports-1)
+      - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
   * [\[ wireless \]](#-wireless-)
     + [rfProfiles](#rfprofiles)
       - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
@@ -27,6 +35,10 @@
     + [actionBatches](#actionbatches)
       - [Create an action batch](#create-an-action-batch)
       - [Return an action batch](#return-an-action-batch)
+  * [\[ insight \]](#-insight-)
+    + [applications](#applications)
+      - [Add an Insight tracked application](#add-an-insight-tracked-application)
+      - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
 - [What's New](#whats-new)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
@@ -35,7 +47,7 @@
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ switch \]](#-switch--1)
-    + [ports](#ports-1)
+    + [ports](#ports-2)
       - [Returns the counts of all active ports for the requested timespan, grouped by speed. The number of inactive ports, and the total number of ports is also provided.](#returns-the-counts-of-all-active-ports-for-the-requested-timespan-grouped-by-speed-the-number-of-inactive-ports-and-the-total-number-of-ports-is-also-provided)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
     + [summary](#summary)
@@ -43,17 +55,11 @@
   * [\[ wireless \]](#-wireless--1)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
-    + [ethernet](#ethernet)
-      - [List the AP port profiles for this network](#list-the-ap-port-profiles-for-this-network)
-      - [Create an AP port profile](#create-an-ap-port-profile)
-      - [Unassign AP port profile from APs or template child networks](#unassign-ap-port-profile-from-aps-or-template-child-networks)
-      - [Assign AP port profile to APs or template child networks](#assign-ap-port-profile-to-aps-or-template-child-networks)
-      - [Set the AP port profile to be default for this network](#set-the-ap-port-profile-to-be-default-for-this-network)
-      - [Show the AP port profile by ID for this network](#show-the-ap-port-profile-by-id-for-this-network)
-      - [Update the AP port profile by ID for this network](#update-the-ap-port-profile-by-id-for-this-network)
-      - [Delete an AP port profile](#delete-an-ap-port-profile)
     + [devices](#devices-1)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
+      - [Get average packet loss for all clients in the organization](#get-average-packet-loss-for-all-clients-in-the-organization)
+      - [Get average packet loss for all devices in the organization](#get-average-packet-loss-for-all-devices-in-the-organization)
+      - [Get average packet loss for all networks in the organization](#get-average-packet-loss-for-all-networks-in-the-organization)
     + [clients](#clients)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
@@ -89,33 +95,22 @@
       - [Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')](#destroy-a-webhook-payload-template-for-an-organization-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-wpt_00004-wpt_00005-or-wpt_00006)
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
+  * [\[ insight \]](#-insight--1)
+    + [applications](#applications-1)
+      - [Update an Insight tracked application](#update-an-insight-tracked-application)
+    + [webApps](#webapps)
+      - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
+      - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
+      - [Delete a custom web application by counter set rule id.](#delete-a-custom-web-application-by-counter-set-rule-id)
   * [\[ sensor \]](#-sensor-)
-    + [schedules](#schedules)
-      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
     + [commands](#commands)
       - [Returns a historical log of all commands](#returns-a-historical-log-of-all-commands)
       - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
       - [Returns information about the command's execution, including the status](#returns-information-about-the-commands-execution-including-the-status)
+    + [schedules](#schedules)
+      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
     + [readings](#readings)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
-  * [\[ appliance \]](#-appliance-)
-    + [trafficShaping](#trafficshaping)
-      - [Update VPN exclusion rules for an MX network.](#update-vpn-exclusion-rules-for-an-mx-network)
-      - [Display VPN exclusion rules for MX networks.](#display-vpn-exclusion-rules-for-mx-networks)
-  * [\[ camera \]](#-camera-)
-    + [permissions](#permissions)
-      - [List the permissions scopes for this organization](#list-the-permissions-scopes-for-this-organization)
-      - [Retrieve a single permission scope](#retrieve-a-single-permission-scope)
-    + [roles](#roles)
-      - [List all the roles in this organization](#list-all-the-roles-in-this-organization)
-      - [Creates new role for this organization.](#creates-new-role-for-this-organization)
-      - [Retrieve a single role](#retrieve-a-single-role)
-      - [Update an existing role in this organization.](#update-an-existing-role-in-this-organization)
-      - [Delete an existing role for this organization.](#delete-an-existing-role-for-this-organization)
-  * [\[ insight \]](#-insight-)
-    + [webApps](#webapps)
-      - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
-      - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
   * [\[ secureConnect \]](#-secureconnect-)
     + [privateApplicationGroups](#privateapplicationgroups)
       - [Provides a list of private application groups for an Organization](#provides-a-list-of-private-application-groups-for-an-organization)
@@ -132,19 +127,19 @@
     + [remoteAccessLog](#remoteaccesslog)
       - [List the latest 5000 events logged by remote access.](#list-the-latest-5000-events-logged-by-remote-access)
  
-Version **1.36.0** _to_ **1.36.0-beta.0**
+Version **1.37.0** _to_ **1.37.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**48 - New**
+**42 - New**
 
-**41 - Updated**
+**54 - Updated**
 
-**705 - Total Endpoints**
+**712 - Total Endpoints**
 
-**447 - Total Paths**
+**453 - Total Paths**
 
 * * *
 
@@ -190,6 +185,67 @@ GET _`/devices/{serial}/liveTools/pingDevice/{id}`_
 
 * * *
 
+\[ appliance \]
+---------------
+
+### trafficShaping
+
+#### Show uplink selection settings for an MX network
+
+GET _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
+
+> \- Optional property `id` Added
+
+> \- Optional property `name` Added
+
+> \- Response property `id` value added
+
+> \- Response property `name` value added
+
+* * *
+
+#### Update uplink selection settings for an MX network
+
+PUT _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
+
+> \- Optional property `id` Added
+
+> \- Optional property `name` Added
+
+* * *
+
+### ports
+
+#### List per-port VLAN settings for all ports of a MX.
+
+GET _`/networks/{networkId}/appliance/ports`_
+
+> \- Optional property `peerSgtCapable` Added
+
+> \- Response property `peerSgtCapable` value added
+
+* * *
+
+#### Return per-port VLAN settings for a single MX port.
+
+GET _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- Optional property `peerSgtCapable` Added
+
+> \- Response property `peerSgtCapable` value added
+
+* * *
+
+#### Update the per-port VLAN settings for a single MX port.
+
+PUT _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- Optional property `peerSgtCapable` Added
+
+> \- Optional property `peerSgtCapable` Added
+
+* * *
+
 \[ networks \]
 --------------
 
@@ -206,16 +262,6 @@ PUT _`/networks/{networkId}/settings`_
 \[ switch \]
 ------------
 
-### ports
-
-#### List the switchports in an organization by switch
-
-GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
-
-> \- Optional param `extendedParams` added
-
-* * *
-
 ### stacks
 
 #### Create a layer 3 interface for a switch stack
@@ -231,6 +277,16 @@ POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
 
 > \- Optional property `ospfV3` Added
+
+* * *
+
+### ports
+
+#### List the switchports in an organization by switch
+
+GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
+
+> \- Optional param `extendedParams` added
 
 * * *
 
@@ -353,6 +409,40 @@ GET _`/organizations/{organizationId}/actionBatches/{actionBatchId}`_
 > \- Optional property `callback` Added
 
 > \- Response property `callback` value added
+
+* * *
+
+\[ insight \]
+-------------
+
+### applications
+
+#### Add an Insight tracked application
+
+POST _`/organizations/{organizationId}/insight/applications`_
+
+> \- Added endpoint method  
+> 
+> #### Add an Insight tracked application
+> 
+> _createOrganizationInsightApplication_
+> 
+>     {
+>         "applicationId": "19.12",
+>         "name": "Meraki HTTPS",
+>         "thresholds": {
+>             "type": "smart",
+>             "byNetwork": [
+>                 {
+>                     "networkId": "N_12345678",
+>                     "goodput": 50000,
+>                     "responseDuration": 1000
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
 
 * * *
 
@@ -675,248 +765,6 @@ PATH _`/devices/{serial}/wireless/healthScores`_
 
 * * *
 
-### ethernet
-
-PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the AP port profiles for this network
-> 
-> **GET** `/networks/{networkId}/wireless/ethernet/ports/profiles`  
-> 
->     [
->         {
->             "id": "123",
->             "name": "Ap Port Profile Name",
->             "isDefault": false,
->             "ports": [
->                 {
->                     "name": "port 1",
->                     "portNumber": 1,
->                     "enabled": true,
->                     "ssidNumber": 1,
->                     "pskGroupId": 123
->                 }
->             ],
->             "usbPorts": [
->                 {
->                     "name": "usb port",
->                     "portNumber": 5,
->                     "enabled": true,
->                     "ssidNumber": 5
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create an AP port profile
-> 
-> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles`  
-> 
->     {
->         "id": "123",
->         "name": "Ap Port Profile Name",
->         "isDefault": false,
->         "ports": [
->             {
->                 "name": "port 1",
->                 "portNumber": 1,
->                 "enabled": true,
->                 "ssidNumber": 1,
->                 "pskGroupId": 123
->             }
->         ],
->         "usbPorts": [
->             {
->                 "name": "usb port",
->                 "portNumber": 5,
->                 "enabled": true,
->                 "ssidNumber": 5
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/unassignAps`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Unassign AP port profile from APs or template child networks
-> 
-> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/unassignAps`  
-> 
->     {
->         "updatedNodes": [
->             100,
->             101,
->             102
->         ],
->         "childNodeGroups": [
->             "1",
->             "2",
->             "3"
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/assignAps`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Assign AP port profile to APs or template child networks
-> 
-> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/assignAps`  
-> 
->     {
->         "updatedNodes": [
->             100,
->             101,
->             102
->         ],
->         "childNodeGroups": [
->             "1",
->             "2",
->             "3"
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/setDefault`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Set the AP port profile to be default for this network
-> 
-> **POST** `/networks/{networkId}/wireless/ethernet/ports/profiles/{id}/setDefault`  
-> 
->     {
->         "id": "123",
->         "name": "Ap Port Profile Name",
->         "isDefault": false,
->         "ports": [
->             {
->                 "name": "port 1",
->                 "portNumber": 1,
->                 "enabled": true,
->                 "ssidNumber": 1,
->                 "pskGroupId": 123
->             }
->         ],
->         "usbPorts": [
->             {
->                 "name": "usb port",
->                 "portNumber": 5,
->                 "enabled": true,
->                 "ssidNumber": 5
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Show the AP port profile by ID for this network
-> 
-> **GET** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
-> 
->     {
->         "id": "123",
->         "name": "Ap Port Profile Name",
->         "isDefault": false,
->         "ports": [
->             {
->                 "name": "port 1",
->                 "portNumber": 1,
->                 "enabled": true,
->                 "ssidNumber": 1,
->                 "pskGroupId": 123
->             }
->         ],
->         "usbPorts": [
->             {
->                 "name": "usb port",
->                 "portNumber": 5,
->                 "enabled": true,
->                 "ssidNumber": 5
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update the AP port profile by ID for this network
-> 
-> **PUT** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
-> 
->     {
->         "id": "123",
->         "name": "Ap Port Profile Name",
->         "isDefault": false,
->         "ports": [
->             {
->                 "name": "port 1",
->                 "portNumber": 1,
->                 "enabled": true,
->                 "ssidNumber": 1,
->                 "pskGroupId": 123
->             }
->         ],
->         "usbPorts": [
->             {
->                 "name": "usb port",
->                 "portNumber": 5,
->                 "enabled": true,
->                 "ssidNumber": 5
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an AP port profile
-> 
-> **DELETE** `/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`  
-> 
-> * * *
-
-* * *
-
 ### devices
 
 PATH _`/networks/{networkId}/wireless/devices/healthScores`_
@@ -939,6 +787,114 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 >             },
 >             "onboarding": {
 >                 "latest": 20
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/devices/packetLoss/byClient`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get average packet loss for all clients in the organization
+> 
+> **GET** `/organizations/{organizationId}/wireless/devices/packetLoss/byClient`  
+> 
+>     [
+>         {
+>             "downlink": {
+>                 "totalPackets": 1000,
+>                 "lostPackets": 10,
+>                 "lossRate": 0.01
+>             },
+>             "uplink": {
+>                 "totalPackets": 1200,
+>                 "lostPackets": 15,
+>                 "lossRate": 0.013
+>             },
+>             "client": {
+>                 "clientId": "k74272e",
+>                 "mac": "22:33:44:55:66:77"
+>             },
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/devices/packetLoss/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get average packet loss for all devices in the organization
+> 
+> **GET** `/organizations/{organizationId}/wireless/devices/packetLoss/byDevice`  
+> 
+>     [
+>         {
+>             "downlink": {
+>                 "totalPackets": 1000,
+>                 "lostPackets": 10,
+>                 "lossRate": 0.01
+>             },
+>             "uplink": {
+>                 "totalPackets": 1200,
+>                 "lostPackets": 15,
+>                 "lossRate": 0.013
+>             },
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "device": {
+>                 "name": "My AP",
+>                 "serial": "Q234-ABCD-5678",
+>                 "mac": "00:11:22:33:44:55"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get average packet loss for all networks in the organization
+> 
+> **GET** `/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork`  
+> 
+>     [
+>         {
+>             "downlink": {
+>                 "totalPackets": 1000,
+>                 "lostPackets": 10,
+>                 "lossRate": 0.01
+>             },
+>             "uplink": {
+>                 "totalPackets": 1200,
+>                 "lostPackets": 15,
+>                 "lossRate": 0.013
+>             },
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
 >             }
 >         }
 >     ]
@@ -1782,35 +1738,115 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 
 * * *
 
-\[ sensor \]
-------------
+\[ insight \]
+-------------
 
-### schedules
+### applications
 
-PATH _`/networks/{networkId}/sensor/schedules`_
+PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Returns a list of all sensor schedules.
+> #### Update an Insight tracked application
 > 
-> **GET** `/networks/{networkId}/sensor/schedules`  
+> **PUT** `/organizations/{organizationId}/insight/applications/{applicationId}`  
 > 
->     [
->         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
+>     {
+>         "applicationId": "19.12",
+>         "name": "Meraki HTTPS",
+>         "thresholds": {
+>             "type": "smart",
+>             "byNetwork": [
+>                 {
+>                     "networkId": "N_12345678",
+>                     "goodput": 50000,
+>                     "responseDuration": 1000
+>                 }
+>             ]
 >         }
->     ]
+>     }
 > 
 > * * *
 
 * * *
+
+### webApps
+
+PATH _`/organizations/{organizationId}/insight/webApps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lists all default web applications rules with counter set rule ids
+> 
+> **GET** `/organizations/{organizationId}/insight/webApps`  
+> 
+>     [
+>         {
+>             "counterSetRuleId": "12345",
+>             "name": "Meraki HTTPS",
+>             "category": "Remote monitoring & management",
+>             "thresholds": {
+>                 "goodput": "20000",
+>                 "responseDelay": "3000"
+>             },
+>             "expression": "http_host[*.example.com] or http_host",
+>             "signature": {
+>                 "signatureType": "custom_host",
+>                 "host": "exampled.com",
+>                 "port": "123",
+>                 "net": "10.0.2.1/20"
+>             }
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add a custom web application for Insight to be able to track
+> 
+> **POST** `/organizations/{organizationId}/insight/webApps`  
+> 
+>     {
+>         "counterSetRuleId": "12345",
+>         "name": "Meraki HTTPS",
+>         "category": "Remote monitoring & management",
+>         "thresholds": {
+>             "goodput": "20000",
+>             "responseDelay": "3000"
+>         },
+>         "expression": "http_host[*.example.com] or http_host",
+>         "signature": {
+>             "signatureType": "custom_host",
+>             "host": "exampled.com"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Delete a custom web application by counter set rule id.
+> 
+> **DELETE** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
+> 
+> * * *
+
+* * *
+
+\[ sensor \]
+------------
 
 ### commands
 
@@ -1902,6 +1938,33 @@ PATH _`/devices/{serial}/sensor/commands/{id}`_
 >         },
 >         "errors": []
 >     }
+> 
+> * * *
+
+* * *
+
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
+>         }
+>     ]
 > 
 > * * *
 
@@ -2006,365 +2069,6 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 >             }
 >         }
 >     ]
-> 
-> * * *
-
-* * *
-
-\[ appliance \]
----------------
-
-### trafficShaping
-
-PATH _`/networks/{networkId}/appliance/trafficShaping/vpnExclusions`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update VPN exclusion rules for an MX network.
-> 
-> **PUT** `/networks/{networkId}/appliance/trafficShaping/vpnExclusions`  
-> 
->     {
->         "networkId": "N_24329156",
->         "networkName": "Main Office",
->         "custom": [
->             {
->                 "protocol": "tcp",
->                 "destination": "192.168.3.0/24",
->                 "port": "8000"
->             }
->         ],
->         "majorApplications": [
->             {
->                 "id": "meraki:vpnExclusion/application/2",
->                 "name": "Office 365 Sharepoint"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Display VPN exclusion rules for MX networks.
-> 
-> **GET** `/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork`  
-> 
->     [
->         {
->             "networkId": "N_24329156",
->             "networkName": "Main Office",
->             "custom": [
->                 {
->                     "protocol": "tcp",
->                     "destination": "192.168.3.0/24",
->                     "port": "8000"
->                 }
->             ],
->             "majorApplications": [
->                 {
->                     "id": "meraki:vpnExclusion/application/2",
->                     "name": "Office 365 Sharepoint"
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-\[ camera \]
-------------
-
-### permissions
-
-PATH _`/organizations/{organizationId}/camera/permissions`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the permissions scopes for this organization
-> 
-> **GET** `/organizations/{organizationId}/camera/permissions`  
-> 
->     [
->         {
->             "id": "1234",
->             "name": "camera_video",
->             "level": "live_video"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/camera/permissions/{permissionScopeId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Retrieve a single permission scope
-> 
-> **GET** `/organizations/{organizationId}/camera/permissions/{permissionScopeId}`  
-> 
->     {
->         "id": "1234",
->         "name": "camera_video",
->         "level": "live_video"
->     }
-> 
-> * * *
-
-* * *
-
-### roles
-
-PATH _`/organizations/{organizationId}/camera/roles`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List all the roles in this organization
-> 
-> **GET** `/organizations/{organizationId}/camera/roles`  
-> 
->     [
->         {
->             "name": "Security_Guard",
->             "appliedOnDevices": [
->                 {
->                     "tag": "reception-desk",
->                     "id": "",
->                     "permissionScopeId": "1",
->                     "permissionScope": "camera-video",
->                     "permissionLevel": "view_and_export"
->                 }
->             ],
->             "appliedOnNetworks": [
->                 {
->                     "tag": "",
->                     "id": "2568",
->                     "permissionScopeId": "2",
->                     "permissionScope": "camera-video",
->                     "permissionLevel": "view"
->                 }
->             ],
->             "appliedOrgWide": [
->                 {
->                     "tag": "building-a",
->                     "permissionScopeId": "2",
->                     "permissionScope": "camera_video",
->                     "permissionLevel": "view_live"
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Creates new role for this organization.
-> 
-> **POST** `/organizations/{organizationId}/camera/roles`  
-> 
->     {
->         "name": "Security_Guard",
->         "appliedOnDevices": [
->             {
->                 "tag": "reception-desk",
->                 "id": "",
->                 "permissionScopeId": "1",
->                 "permissionScope": "camera-video",
->                 "permissionLevel": "view_and_export"
->             }
->         ],
->         "appliedOnNetworks": [
->             {
->                 "tag": "",
->                 "id": "2568",
->                 "permissionScopeId": "2",
->                 "permissionScope": "camera-video",
->                 "permissionLevel": "view"
->             }
->         ],
->         "appliedOrgWide": [
->             {
->                 "tag": "building-a",
->                 "permissionScopeId": "2",
->                 "permissionScope": "camera_video",
->                 "permissionLevel": "view_live"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/camera/roles/{roleId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Retrieve a single role
-> 
-> **GET** `/organizations/{organizationId}/camera/roles/{roleId}`  
-> 
->     {
->         "name": "Security_Guard",
->         "appliedOnDevices": [
->             {
->                 "tag": "reception-desk",
->                 "id": "",
->                 "permissionScopeId": "1",
->                 "permissionScope": "camera-video",
->                 "permissionLevel": "view_and_export"
->             }
->         ],
->         "appliedOnNetworks": [
->             {
->                 "tag": "",
->                 "id": "2568",
->                 "permissionScopeId": "2",
->                 "permissionScope": "camera-video",
->                 "permissionLevel": "view"
->             }
->         ],
->         "appliedOrgWide": [
->             {
->                 "tag": "building-a",
->                 "permissionScopeId": "2",
->                 "permissionScope": "camera_video",
->                 "permissionLevel": "view_live"
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update an existing role in this organization.
-> 
-> **PUT** `/organizations/{organizationId}/camera/roles/{roleId}`  
-> 
->     {
->         "name": "Security_Guard",
->         "appliedOnDevices": [
->             {
->                 "tag": "reception-desk",
->                 "id": "",
->                 "permissionScopeId": "1",
->                 "permissionScope": "camera-video",
->                 "permissionLevel": "view_and_export"
->             }
->         ],
->         "appliedOnNetworks": [
->             {
->                 "tag": "",
->                 "id": "2568",
->                 "permissionScopeId": "2",
->                 "permissionScope": "camera-video",
->                 "permissionLevel": "view"
->             }
->         ],
->         "appliedOrgWide": [
->             {
->                 "tag": "building-a",
->                 "permissionScopeId": "2",
->                 "permissionScope": "camera_video",
->                 "permissionLevel": "view_live"
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an existing role for this organization.
-> 
-> **DELETE** `/organizations/{organizationId}/camera/roles/{roleId}`  
-> 
-> * * *
-
-* * *
-
-\[ insight \]
--------------
-
-### webApps
-
-PATH _`/organizations/{organizationId}/insight/webApps`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Lists all default web applications rules with counter set rule ids
-> 
-> **GET** `/organizations/{organizationId}/insight/webApps`  
-> 
->     [
->         {
->             "counterSetRuleId": "12345",
->             "name": "Meraki HTTPS",
->             "category": "Remote monitoring & management",
->             "thresholds": {
->                 "goodput": "20000",
->                 "responseDelay": "3000"
->             },
->             "expression": "http_host[*.example.com] or http_host",
->             "signature": {
->                 "signatureType": "custom_host",
->                 "host": "exampled.com",
->                 "port": "123",
->                 "net": "10.0.2.1/20"
->             }
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Add a custom web application for Insight to be able to track
-> 
-> **POST** `/organizations/{organizationId}/insight/webApps`  
-> 
->     {
->         "counterSetRuleId": "12345",
->         "name": "Meraki HTTPS",
->         "category": "Remote monitoring & management",
->         "thresholds": {
->             "goodput": "20000",
->             "responseDelay": "3000"
->         },
->         "expression": "http_host[*.example.com] or http_host",
->         "signature": {
->             "signatureType": "custom_host",
->             "host": "exampled.com"
->         }
->     }
 > 
 > * * *
 
@@ -2525,8 +2229,8 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
 >                 "applicationGroupIds": [
 >                     "1122321"
 >                 ],
->                 "createdAt": "2021-12-13T16:07:07.222Z",
->                 "modifiedAt": "2021-12-13T16:07:07.222Z"
+>                 "createdAt": "2021-12-13T16:07:07.222000Z",
+>                 "modifiedAt": "2021-12-13T16:07:07.222000Z"
 >             }
 >         ],
 >         "meta": {
@@ -2569,8 +2273,8 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
 >         "applicationGroupIds": [
 >             "1122321"
 >         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>         "createdAt": "2021-12-13T16:07:07.222000Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222000Z"
 >     }
 > 
 > * * *
@@ -2652,8 +2356,8 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
 >         "applicationGroupIds": [
 >             "1122321"
 >         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>         "createdAt": "2021-12-13T16:07:07.222000Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222000Z"
 >     }
 > 
 > * * *
