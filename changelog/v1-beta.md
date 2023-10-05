@@ -23,6 +23,8 @@
     + [ports](#ports-1)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
   * [\[ wireless \]](#-wireless-)
+    + [ssids](#ssids)
+      - [Update the attributes of an MR SSID](#update-the-attributes-of-an-mr-ssid)
     + [rfProfiles](#rfprofiles)
       - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
       - [List RF profiles for this network](#list-rf-profiles-for-this-network)
@@ -47,19 +49,24 @@
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ switch \]](#-switch--1)
+    + [summary](#summary)
+      - [Returns the total PoE power draw for all switch ports in the organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.](#returns-the-total-poe-power-draw-for-all-switch-ports-in-the-organization-over-the-requested-timespan-by-default-the-last-24-hours-the-returned-array-is-a-newest-first-list-of-intervals-the-time-between-intervals-depends-on-the-requested-timespan-with-20-minute-intervals-used-for-timespans-up-to-1-day-4-hour-intervals-used-for-timespans-up-to-2-weeks-and-1-day-intervals-for-timespans-larger-than-2-weeks)
     + [ports](#ports-2)
       - [Returns the counts of all active ports for the requested timespan, grouped by speed. The number of inactive ports, and the total number of ports is also provided.](#returns-the-counts-of-all-active-ports-for-the-requested-timespan-grouped-by-speed-the-number-of-inactive-ports-and-the-total-number-of-ports-is-also-provided)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
-    + [summary](#summary)
-      - [Returns the total PoE power draw for all switch ports in the organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.](#returns-the-total-poe-power-draw-for-all-switch-ports-in-the-organization-over-the-requested-timespan-by-default-the-last-24-hours-the-returned-array-is-a-newest-first-list-of-intervals-the-time-between-intervals-depends-on-the-requested-timespan-with-20-minute-intervals-used-for-timespans-up-to-1-day-4-hour-intervals-used-for-timespans-up-to-2-weeks-and-1-day-intervals-for-timespans-larger-than-2-weeks)
   * [\[ wireless \]](#-wireless--1)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
+    + [radio](#radio)
+      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
     + [devices](#devices-1)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
-      - [Get average packet loss for all clients in the organization](#get-average-packet-loss-for-all-clients-in-the-organization)
-      - [Get average packet loss for all devices in the organization](#get-average-packet-loss-for-all-devices-in-the-organization)
-      - [Get average packet loss for all networks in the organization](#get-average-packet-loss-for-all-networks-in-the-organization)
+      - [Get average packet loss for the given timespan for all clients in the organization.](#get-average-packet-loss-for-the-given-timespan-for-all-clients-in-the-organization)
+      - [Get average packet loss for the given timespan for all devices in the organization. Does not include device's own traffic.](#get-average-packet-loss-for-the-given-timespan-for-all-devices-in-the-organization-does-not-include-devices-own-traffic)
+      - [Get average packet loss for the given timespan for all networks in the organization.](#get-average-packet-loss-for-the-given-timespan-for-all-networks-in-the-organization)
+    + [autoRf](#autorf)
+      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
+      - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
     + [clients](#clients)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
@@ -81,6 +88,8 @@
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
     + [policies](#policies)
       - [Get policies for all clients with policies](#get-policies-for-all-clients-with-policies)
+    + [support](#support)
+      - [Returns the organization's sales representatives](#returns-the-organizations-sales-representatives)
     + [webhooks](#webhooks)
       - [Return the status of an API callback](#return-the-status-of-an-api-callback)
       - [List the HTTP servers for this organization](#list-the-http-servers-for-this-organization)
@@ -101,6 +110,7 @@
     + [webApps](#webapps)
       - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
       - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
+      - [Update a custom web application for Insight to be able to track](#update-a-custom-web-application-for-insight-to-be-able-to-track)
       - [Delete a custom web application by counter set rule id.](#delete-a-custom-web-application-by-counter-set-rule-id)
   * [\[ sensor \]](#-sensor-)
     + [commands](#commands)
@@ -126,20 +136,25 @@
       - [Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.](#deletes-a-specific-private-application-delink-the-application-from-any-application-groups-before-deleting-the-app-cascade-delete-application-group-if-this-is-the-only-application-in-the-group)
     + [remoteAccessLog](#remoteaccesslog)
       - [List the latest 5000 events logged by remote access.](#list-the-latest-5000-events-logged-by-remote-access)
+    + [remoteAccessLogsExports](#remoteaccesslogsexports)
+      - [Provides a list of remote access logs exports for an Organization](#provides-a-list-of-remote-access-logs-exports-for-an-organization)
+      - [Creates a export for a provided timestamp interval.](#creates-a-export-for-a-provided-timestamp-interval)
+      - [Redirects to the download link of the completed export.](#redirects-to-the-download-link-of-the-completed-export)
+      - [Return the details of a specific remote access logs export](#return-the-details-of-a-specific-remote-access-logs-export)
  
-Version **1.37.0** _to_ **1.37.0-beta.0**
+Version **1.38.0** _to_ **1.38.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**42 - New**
+**49 - New**
 
-**54 - Updated**
+**55 - Updated**
 
-**712 - Total Endpoints**
+**729 - Total Endpoints**
 
-**453 - Total Paths**
+**465 - Total Paths**
 
 * * *
 
@@ -292,6 +307,16 @@ GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
 
 \[ wireless \]
 --------------
+
+### ssids
+
+#### Update the attributes of an MR SSID
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- Optional property `radiusRadsecTlsIdleTimeout` Added
+
+* * *
 
 ### rfProfiles
 
@@ -555,6 +580,29 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 \[ switch \]
 ------------
 
+### summary
+
+PATH _`/organizations/{organizationId}/summary/switch/power/history`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns the total PoE power draw for all switch ports in the organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.
+> 
+> **GET** `/organizations/{organizationId}/summary/switch/power/history`  
+> 
+>     [
+>         {
+>             "ts": "2021-06-20T01:00:00.000Z",
+>             "draw": 5.4321
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### ports
 
 PATH _`/organizations/{organizationId}/switch/ports/overview`_
@@ -711,29 +759,6 @@ PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 
 * * *
 
-### summary
-
-PATH _`/organizations/{organizationId}/summary/switch/power/history`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns the total PoE power draw for all switch ports in the organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.
-> 
-> **GET** `/organizations/{organizationId}/summary/switch/power/history`  
-> 
->     [
->         {
->             "ts": "2021-06-20T01:00:00.000Z",
->             "draw": 5.4321
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 \[ wireless \]
 --------------
 
@@ -758,6 +783,49 @@ PATH _`/devices/{serial}/wireless/healthScores`_
 >         },
 >         "onboarding": {
 >             "latest": 20
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### radio
+
+PATH _`/networks/{networkId}/wireless/radio/autoRf`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update the AutoRF settings for a wireless network
+> 
+> **PUT** `/networks/{networkId}/wireless/radio/autoRf`  
+> 
+>     {
+>         "networkId": "L_12345",
+>         "name": "My Network",
+>         "timeZone": "America/Los_Angeles",
+>         "busyHour": {
+>             "schedule": {
+>                 "mode": "automatic",
+>                 "automatic": {
+>                     "start": "08:00",
+>                     "end": "17:00"
+>                 },
+>                 "manual": {
+>                     "start": "10:00",
+>                     "end": "15:00"
+>                 }
+>             },
+>             "minimizeChanges": {
+>                 "enabled": true
+>             }
+>         },
+>         "channel": {
+>             "avoidance": {
+>                 "enabled": true
+>             }
 >         }
 >     }
 > 
@@ -801,24 +869,24 @@ PATH _`/organizations/{organizationId}/wireless/devices/packetLoss/byClient`_
 >   
 > \- New endpoint
 > 
-> #### Get average packet loss for all clients in the organization
+> #### Get average packet loss for the given timespan for all clients in the organization.
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/packetLoss/byClient`  
 > 
 >     [
 >         {
->             "downlink": {
->                 "totalPackets": 1000,
->                 "lostPackets": 10,
->                 "lossRate": 0.01
+>             "downstream": {
+>                 "total": 1000,
+>                 "lost": 10,
+>                 "lossPercentage": 1
 >             },
->             "uplink": {
->                 "totalPackets": 1200,
->                 "lostPackets": 15,
->                 "lossRate": 0.013
+>             "upstream": {
+>                 "total": 1200,
+>                 "lost": 15,
+>                 "lossPercentage": 1.3
 >             },
 >             "client": {
->                 "clientId": "k74272e",
+>                 "id": "k74272e",
 >                 "mac": "22:33:44:55:66:77"
 >             },
 >             "network": {
@@ -838,21 +906,21 @@ PATH _`/organizations/{organizationId}/wireless/devices/packetLoss/byDevice`_
 >   
 > \- New endpoint
 > 
-> #### Get average packet loss for all devices in the organization
+> #### Get average packet loss for the given timespan for all devices in the organization. Does not include device's own traffic.
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/packetLoss/byDevice`  
 > 
 >     [
 >         {
->             "downlink": {
->                 "totalPackets": 1000,
->                 "lostPackets": 10,
->                 "lossRate": 0.01
+>             "downstream": {
+>                 "total": 1000,
+>                 "lost": 10,
+>                 "lossPercentage": 1
 >             },
->             "uplink": {
->                 "totalPackets": 1200,
->                 "lostPackets": 15,
->                 "lossRate": 0.013
+>             "upstream": {
+>                 "total": 1200,
+>                 "lost": 15,
+>                 "lossPercentage": 1.3
 >             },
 >             "network": {
 >                 "id": "N_24329156",
@@ -876,25 +944,113 @@ PATH _`/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork`_
 >   
 > \- New endpoint
 > 
-> #### Get average packet loss for all networks in the organization
+> #### Get average packet loss for the given timespan for all networks in the organization.
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork`  
 > 
 >     [
 >         {
->             "downlink": {
->                 "totalPackets": 1000,
->                 "lostPackets": 10,
->                 "lossRate": 0.01
+>             "downstream": {
+>                 "total": 1000,
+>                 "lost": 10,
+>                 "lossPercentage": 1
 >             },
->             "uplink": {
->                 "totalPackets": 1200,
->                 "lostPackets": 15,
->                 "lossRate": 0.013
+>             "upstream": {
+>                 "total": 1200,
+>                 "lost": 15,
+>                 "lossPercentage": 1.3
 >             },
 >             "network": {
 >                 "id": "N_24329156",
 >                 "name": "Main Office"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### autoRf
+
+PATH _`/organizations/{organizationId}/wireless/autoRf/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the AutoRF settings of an organization by network
+> 
+> **GET** `/organizations/{organizationId}/wireless/autoRf/byNetwork`  
+> 
+>     [
+>         {
+>             "networkId": "L_12345",
+>             "name": "My Network",
+>             "timeZone": "America/Los_Angeles",
+>             "busyHour": {
+>                 "schedule": {
+>                     "mode": "automatic",
+>                     "automatic": {
+>                         "start": "08:00",
+>                         "end": "17:00"
+>                     },
+>                     "manual": {
+>                         "start": "10:00",
+>                         "end": "15:00"
+>                     }
+>                 },
+>                 "minimizeChanges": {
+>                     "enabled": true
+>                 }
+>             },
+>             "channel": {
+>                 "avoidance": {
+>                     "enabled": true
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/autoRf/channels/planning/activities`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the channel planning activities of an organization
+> 
+> **GET** `/organizations/{organizationId}/wireless/autoRf/channels/planning/activities`  
+> 
+>     [
+>         {
+>             "startedAt": "2018-02-11T00:00:00Z",
+>             "endsAt": "2018-05-12T00:00:00Z",
+>             "type": "avoid",
+>             "reason": "dfs",
+>             "band": "5 Ghz",
+>             "channel": 44,
+>             "severity": 6,
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office",
+>                 "tags": [
+>                     "tag1",
+>                     "tag2"
+>                 ]
+>             },
+>             "device": {
+>                 "name": "My AP",
+>                 "serial": "Q234-ABCD-5678",
+>                 "mac": "00:11:22:33:44:55",
+>                 "tags": [
+>                     "tag1",
+>                     "tag2"
+>                 ]
 >             }
 >         }
 >     ]
@@ -1423,6 +1579,30 @@ PATH _`/organizations/{organizationId}/policies/assignments/byClient`_
 
 * * *
 
+### support
+
+PATH _`/organizations/{organizationId}/support/salesRepresentatives`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns the organization's sales representatives
+> 
+> **GET** `/organizations/{organizationId}/support/salesRepresentatives`  
+> 
+>     [
+>         {
+>             "name": "Miles Meraki",
+>             "email": "miles@meraki.com",
+>             "phone": "+15555555555"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### webhooks
 
 PATH _`/organizations/{organizationId}/webhooks/callbacks/statuses/{callbackId}`_
@@ -1834,6 +2014,30 @@ PATH _`/organizations/{organizationId}/insight/webApps`_
 PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`_
 
 > \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a custom web application for Insight to be able to track
+> 
+> **PUT** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
+> 
+>     {
+>         "counterSetRuleId": "12345",
+>         "name": "Meraki HTTPS",
+>         "category": "Remote monitoring & management",
+>         "thresholds": {
+>             "goodput": "20000",
+>             "responseDelay": "3000"
+>         },
+>         "expression": "http_host[*.example.com] or http_host",
+>         "signature": {
+>             "signatureType": "custom_host",
+>             "host": "exampled.com"
+>         }
+>     }
+> 
+> * * *
+> 
 >   
 > \- New endpoint
 > 
@@ -2412,6 +2616,124 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLog`_
 >         ],
 >         "meta": {
 >             "total": 1
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### remoteAccessLogsExports
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of remote access logs exports for an Organization
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "id": "123",
+>                 "from": "2023-05-16 04:23:43 UTC",
+>                 "to": "2023-06-14 04:23:52 UTC",
+>                 "userEmail": "joe@meraki.net",
+>                 "status": "new",
+>                 "metadata": {
+>                     "fileCount": 0,
+>                     "logCount": 0,
+>                     "currentFileLogCount": 0,
+>                     "generatorCount": 0,
+>                     "limitReached": false,
+>                     "startedAt": "2023-05-15 21:23:43.388597",
+>                     "endedAt": "2023-05-15 21:23:43.388597",
+>                     "duration": 60
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Creates a export for a provided timestamp interval.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
+> 
+>     {
+>         "id": "123",
+>         "from": "2023-05-16 04:23:43 UTC",
+>         "to": "2023-06-14 04:23:52 UTC",
+>         "userEmail": "joe@meraki.net",
+>         "status": "new",
+>         "metadata": {
+>             "fileCount": 0,
+>             "logCount": 0,
+>             "currentFileLogCount": 0,
+>             "generatorCount": 0,
+>             "limitReached": false,
+>             "startedAt": "2023-05-15 21:23:43.388597",
+>             "endedAt": "2023-05-15 21:23:43.388597",
+>             "duration": 60
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Redirects to the download link of the completed export.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`  
+> 
+>     {
+>         "link": "download"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of a specific remote access logs export
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`  
+> 
+>     {
+>         "id": "123",
+>         "from": "2023-05-16 04:23:43 UTC",
+>         "to": "2023-06-14 04:23:52 UTC",
+>         "userEmail": "joe@meraki.net",
+>         "status": "new",
+>         "metadata": {
+>             "fileCount": 0,
+>             "logCount": 0,
+>             "currentFileLogCount": 0,
+>             "generatorCount": 0,
+>             "limitReached": false,
+>             "startedAt": "2023-05-15 21:23:43.388597",
+>             "endedAt": "2023-05-15 21:23:43.388597",
+>             "duration": 60
 >         }
 >     }
 > 
