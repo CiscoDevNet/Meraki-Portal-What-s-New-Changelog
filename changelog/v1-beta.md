@@ -1,11 +1,11 @@
  - [What's Updated](#whats-updated)
-  * [\[ devices \]](#-devices-)
-    + [ping](#ping)
-      - [Enqueue a job to ping a target host from the device](#enqueue-a-job-to-ping-a-target-host-from-the-device)
-    + [pingDevice](#pingdevice)
-      - [Enqueue a job to check connectivity status to the device](#enqueue-a-job-to-check-connectivity-status-to-the-device)
-      - [Return a ping device job](#return-a-ping-device-job)
   * [\[ appliance \]](#-appliance-)
+    + [uplinks](#uplinks)
+      - [Return the uplink settings for an MX appliance](#return-the-uplink-settings-for-an-mx-appliance)
+      - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
+    + [vlans](#vlans)
+      - [Update a VLAN](#update-a-vlan)
+      - [Add a VLAN](#add-a-vlan)
     + [trafficShaping](#trafficshaping)
       - [Show uplink selection settings for an MX network](#show-uplink-selection-settings-for-an-mx-network)
       - [Update uplink selection settings for an MX network](#update-uplink-selection-settings-for-an-mx-network)
@@ -13,35 +13,48 @@
       - [List per-port VLAN settings for all ports of a MX.](#list-per-port-vlan-settings-for-all-ports-of-a-mx)
       - [Return per-port VLAN settings for a single MX port.](#return-per-port-vlan-settings-for-a-single-mx-port)
       - [Update the per-port VLAN settings for a single MX port.](#update-the-per-port-vlan-settings-for-a-single-mx-port)
+  * [\[ devices \]](#-devices-)
+    + [pingDevice](#pingdevice)
+      - [Return a ping device job](#return-a-ping-device-job)
+      - [Enqueue a job to check connectivity status to the device](#enqueue-a-job-to-check-connectivity-status-to-the-device)
+    + [ping](#ping)
+      - [Enqueue a job to ping a target host from the device](#enqueue-a-job-to-ping-a-target-host-from-the-device)
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
   * [\[ switch \]](#-switch-)
     + [stacks](#stacks)
-      - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
+      - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
     + [ports](#ports-1)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
   * [\[ wireless \]](#-wireless-)
     + [ssids](#ssids)
       - [Update the attributes of an MR SSID](#update-the-attributes-of-an-mr-ssid)
     + [rfProfiles](#rfprofiles)
-      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
       - [List RF profiles for this network](#list-rf-profiles-for-this-network)
       - [Return a RF profile](#return-a-rf-profile)
       - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
+      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
   * [\[ organizations \]](#-organizations-)
     + [devices](#devices)
       - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
     + [actionBatches](#actionbatches)
-      - [Create an action batch](#create-an-action-batch)
       - [Return an action batch](#return-an-action-batch)
+      - [Create an action batch](#create-an-action-batch)
   * [\[ insight \]](#-insight-)
     + [applications](#applications)
       - [Add an Insight tracked application](#add-an-insight-tracked-application)
       - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
 - [What's New](#whats-new)
+  * [\[ appliance \]](#-appliance--1)
+    + [cloudControlCenter](#cloudcontrolcenter)
+      - [List the AWS deploy options for a vMX deployment](#list-the-aws-deploy-options-for-a-vmx-deployment)
+  * [\[ devices \]](#-devices--1)
+    + [wakeOnLan](#wakeonlan)
+      - [Enqueue a job to send a Wake-on-LAN packet from the device](#enqueue-a-job-to-send-a-wake-on-lan-packet-from-the-device)
+      - [Return a Wake-on-LAN job](#return-a-wake-on-lan-job)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
       - [Return scanning API settings](#return-scanning-api-settings)
@@ -61,9 +74,6 @@
       - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
     + [devices](#devices-1)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
-      - [Get average packet loss for the given timespan for all clients in the organization.](#get-average-packet-loss-for-the-given-timespan-for-all-clients-in-the-organization)
-      - [Get average packet loss for the given timespan for all devices in the organization. Does not include device's own traffic.](#get-average-packet-loss-for-the-given-timespan-for-all-devices-in-the-organization-does-not-include-devices-own-traffic)
-      - [Get average packet loss for the given timespan for all networks in the organization.](#get-average-packet-loss-for-the-given-timespan-for-all-networks-in-the-organization)
     + [autoRf](#autorf)
       - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
@@ -86,6 +96,9 @@
       - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
     + [cloud](#cloud)
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
+    + [inventory](#inventory)
+      - [Swap the devices identified by devices.old with a devices.new, then perform the :afterAction on the devices.old.](#swap-the-devices-identified-by-devicesold-with-a-devicesnew-then-perform-the-afteraction-on-the-devicesold)
+      - [List of device swaps for a given request ID ({id}).](#list-of-device-swaps-for-a-given-request-id-id)
     + [policies](#policies)
       - [Get policies for all clients with policies](#get-policies-for-all-clients-with-policies)
     + [support](#support)
@@ -105,13 +118,14 @@
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
   * [\[ insight \]](#-insight--1)
-    + [applications](#applications-1)
-      - [Update an Insight tracked application](#update-an-insight-tracked-application)
     + [webApps](#webapps)
       - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
       - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
       - [Update a custom web application for Insight to be able to track](#update-a-custom-web-application-for-insight-to-be-able-to-track)
       - [Delete a custom web application by counter set rule id.](#delete-a-custom-web-application-by-counter-set-rule-id)
+    + [applications](#applications-1)
+      - [Update an Insight tracked application](#update-an-insight-tracked-application)
+      - [Delete an Insight tracked application](#delete-an-insight-tracked-application)
   * [\[ sensor \]](#-sensor-)
     + [commands](#commands)
       - [Returns a historical log of all commands](#returns-a-historical-log-of-all-commands)
@@ -134,6 +148,8 @@
       - [Return the details of a specific private application](#return-the-details-of-a-specific-private-application)
       - [Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.](#updates-a-specific-private-application-updates-can-be-made-to-name-description-destinations-app-protocol-sni-and-ssl-verification-application-groups-can-be-added-or-removed)
       - [Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.](#deletes-a-specific-private-application-delink-the-application-from-any-application-groups-before-deleting-the-app-cascade-delete-application-group-if-this-is-the-only-application-in-the-group)
+    + [publicApplications](#publicapplications)
+      - [Provides a list of public applications for an Organization.](#provides-a-list-of-public-applications-for-an-organization)
     + [remoteAccessLog](#remoteaccesslog)
       - [List the latest 5000 events logged by remote access.](#list-the-latest-5000-events-logged-by-remote-access)
     + [remoteAccessLogsExports](#remoteaccesslogsexports)
@@ -142,19 +158,19 @@
       - [Redirects to the download link of the completed export.](#redirects-to-the-download-link-of-the-completed-export)
       - [Return the details of a specific remote access logs export](#return-the-details-of-a-specific-remote-access-logs-export)
  
-Version **1.38.0** _to_ **1.38.0-beta.0**
+Version **1.39.0** _to_ **1.39.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**49 - New**
+**52 - New**
 
-**55 - Updated**
+**65 - Updated**
 
-**729 - Total Endpoints**
+**736 - Total Endpoints**
 
-**465 - Total Paths**
+**471 - Total Paths**
 
 * * *
 
@@ -163,45 +179,54 @@ Version **1.38.0** _to_ **1.38.0-beta.0**
 What's Updated
 ==============
 
-\[ devices \]
--------------
-
-### ping
-
-#### Enqueue a job to ping a target host from the device
-
-POST _`/devices/{serial}/liveTools/ping`_
-
-> \- Optional property `callback` Added
-
-> \- Optional property `callback` Added
-
-* * *
-
-### pingDevice
-
-#### Enqueue a job to check connectivity status to the device
-
-POST _`/devices/{serial}/liveTools/pingDevice`_
-
-> \- Optional property `callback` Added
-
-> \- Optional property `callback` Added
-
-* * *
-
-#### Return a ping device job
-
-GET _`/devices/{serial}/liveTools/pingDevice/{id}`_
-
-> \- Optional property `callback` Added
-
-> \- Response property `callback` value added
-
-* * *
-
 \[ appliance \]
 ---------------
+
+### uplinks
+
+#### Return the uplink settings for an MX appliance
+
+GET _`/devices/{serial}/appliance/uplinks/settings`_
+
+> \- Optional property `sgt` Added
+
+> \- Optional property `sgt` Added
+
+> \- Response property `sgt` value added
+
+> \- Response property `sgt` value added
+
+* * *
+
+#### Update the uplink settings for an MX appliance
+
+PUT _`/devices/{serial}/appliance/uplinks/settings`_
+
+> \- Optional property `sgt` Added
+
+> \- Optional property `sgt` Added
+
+> \- Optional property `sgt` Added
+
+* * *
+
+### vlans
+
+#### Update a VLAN
+
+PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
+
+> \- Optional property `adaptivePolicyGroupId` Added
+
+* * *
+
+#### Add a VLAN
+
+POST _`/networks/{networkId}/appliance/vlans`_
+
+> \- Optional property `adaptivePolicyGroupId` Added
+
+* * *
 
 ### trafficShaping
 
@@ -257,7 +282,46 @@ PUT _`/networks/{networkId}/appliance/ports/{portId}`_
 
 > \- Optional property `peerSgtCapable` Added
 
+> \- Optional property `adaptivePolicyGroupId` Added
+
 > \- Optional property `peerSgtCapable` Added
+
+* * *
+
+\[ devices \]
+-------------
+
+### pingDevice
+
+#### Return a ping device job
+
+GET _`/devices/{serial}/liveTools/pingDevice/{id}`_
+
+> \- Optional property `callback` Added
+
+> \- Response property `callback` value added
+
+* * *
+
+#### Enqueue a job to check connectivity status to the device
+
+POST _`/devices/{serial}/liveTools/pingDevice`_
+
+> \- Optional property `callback` Added
+
+> \- Optional property `callback` Added
+
+* * *
+
+### ping
+
+#### Enqueue a job to ping a target host from the device
+
+POST _`/devices/{serial}/liveTools/ping`_
+
+> \- Optional property `callback` Added
+
+> \- Optional property `callback` Added
 
 * * *
 
@@ -279,17 +343,17 @@ PUT _`/networks/{networkId}/settings`_
 
 ### stacks
 
-#### Create a layer 3 interface for a switch stack
+#### Update a layer 3 interface for a switch stack
 
-POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
+PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
 
 > \- Optional property `ospfV3` Added
 
 * * *
 
-#### Update a layer 3 interface for a switch stack
+#### Create a layer 3 interface for a switch stack
 
-PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
+POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 
 > \- Optional property `ospfV3` Added
 
@@ -319,16 +383,6 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
 * * *
 
 ### rfProfiles
-
-#### Creates new RF profile for this network
-
-POST _`/networks/{networkId}/wireless/rfProfiles`_
-
-> \- Optional property `isIndoorDefault` Added
-
-> \- Optional property `isOutdoorDefault` Added
-
-* * *
 
 #### List RF profiles for this network
 
@@ -364,7 +418,17 @@ PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 
 > \- Optional property `isIndoorDefault` Added
 
-> \- Optional property `isOutdoorDefaut` Added
+> \- Optional property `isOutdoorDefault` Added
+
+> \- Optional property `isIndoorDefault` Added
+
+> \- Optional property `isOutdoorDefault` Added
+
+* * *
+
+#### Creates new RF profile for this network
+
+POST _`/networks/{networkId}/wireless/rfProfiles`_
 
 > \- Optional property `isIndoorDefault` Added
 
@@ -417,16 +481,6 @@ GET _`/organizations/{organizationId}/devices/statuses`_
 
 ### actionBatches
 
-#### Create an action batch
-
-POST _`/organizations/{organizationId}/actionBatches`_
-
-> \- Optional property `callback` Added
-
-> \- Optional property `callback` Added
-
-* * *
-
 #### Return an action batch
 
 GET _`/organizations/{organizationId}/actionBatches/{actionBatchId}`_
@@ -434,6 +488,16 @@ GET _`/organizations/{organizationId}/actionBatches/{actionBatchId}`_
 > \- Optional property `callback` Added
 
 > \- Response property `callback` value added
+
+* * *
+
+#### Create an action batch
+
+POST _`/organizations/{organizationId}/actionBatches`_
+
+> \- Optional property `callback` Added
+
+> \- Optional property `callback` Added
 
 * * *
 
@@ -473,6 +537,120 @@ POST _`/organizations/{organizationId}/insight/applications`_
 
 What's New
 ==========
+
+\[ appliance \]
+---------------
+
+### cloudControlCenter
+
+PATH _`/organizations/{organizationId}/appliance/cloudControlCenter/aws/deployments/options`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the AWS deploy options for a vMX deployment
+> 
+> **GET** `/organizations/{organizationId}/appliance/cloudControlCenter/aws/deployments/options`  
+> 
+>     {
+>         "zones": [
+>             {
+>                 "id": "use1-az1",
+>                 "name": "us-east-1a"
+>             }
+>         ],
+>         "subnets": [
+>             {
+>                 "id": "subnet-07c45767582cffd51",
+>                 "name": "",
+>                 "vpcId": "vpc-0f17f946a3cb29f43",
+>                 "azId": "use1-az1",
+>                 "cidrBlock": "172.31.0.0/16"
+>             }
+>         ],
+>         "vpcs": [
+>             {
+>                 "id": "vpc-0f17f946a3cb29f43",
+>                 "name": "",
+>                 "cidrBlock": "172.31.0.0/16"
+>             }
+>         ],
+>         "securityGroups": [
+>             {
+>                 "id": "sg-0a6c3ea061632128e",
+>                 "name": "Cisco Meraki vMX-15.41.0-AutogenByAWSMP--1",
+>                 "description": "This security group was generated by AWS Marketplace and is based on recommended settings for Cisco Meraki vMX version 15.41.0 provided by Cisco",
+>                 "vpcId": "vpc-0f17f946a3cb29f43"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+\[ devices \]
+-------------
+
+### wakeOnLan
+
+PATH _`/devices/{serial}/liveTools/wakeOnLan`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to send a Wake-on-LAN packet from the device
+> 
+> **POST** `/devices/{serial}/liveTools/wakeOnLan`  
+> 
+>     {
+>         "wakeOnLanId": "123",
+>         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/wakeOnLan/1738",
+>         "status": "pending",
+>         "estimatedCompletedAt": "2018-02-11T00:00:00.090210Z",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "vlanId": 12,
+>             "mac": "00:11:22:33:44:55"
+>         },
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a Wake-on-LAN job
+> 
+> **GET** `/devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId}`  
+> 
+>     {
+>         "wakeOnLanId": "123",
+>         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/wakeOnLan/1738",
+>         "status": "pending",
+>         "estimatedCompletedAt": "2018-02-11T00:00:00.090210Z",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "vlanId": 12,
+>             "mac": "00:11:22:33:44:55"
+>         }
+>     }
+> 
+> * * *
+
+* * *
 
 \[ networks \]
 --------------
@@ -855,114 +1033,6 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 >             },
 >             "onboarding": {
 >                 "latest": 20
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/devices/packetLoss/byClient`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get average packet loss for the given timespan for all clients in the organization.
-> 
-> **GET** `/organizations/{organizationId}/wireless/devices/packetLoss/byClient`  
-> 
->     [
->         {
->             "downstream": {
->                 "total": 1000,
->                 "lost": 10,
->                 "lossPercentage": 1
->             },
->             "upstream": {
->                 "total": 1200,
->                 "lost": 15,
->                 "lossPercentage": 1.3
->             },
->             "client": {
->                 "id": "k74272e",
->                 "mac": "22:33:44:55:66:77"
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/devices/packetLoss/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get average packet loss for the given timespan for all devices in the organization. Does not include device's own traffic.
-> 
-> **GET** `/organizations/{organizationId}/wireless/devices/packetLoss/byDevice`  
-> 
->     [
->         {
->             "downstream": {
->                 "total": 1000,
->                 "lost": 10,
->                 "lossPercentage": 1
->             },
->             "upstream": {
->                 "total": 1200,
->                 "lost": 15,
->                 "lossPercentage": 1.3
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "device": {
->                 "name": "My AP",
->                 "serial": "Q234-ABCD-5678",
->                 "mac": "00:11:22:33:44:55"
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get average packet loss for the given timespan for all networks in the organization.
-> 
-> **GET** `/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork`  
-> 
->     [
->         {
->             "downstream": {
->                 "total": 1000,
->                 "lost": 10,
->                 "lossPercentage": 1
->             },
->             "upstream": {
->                 "total": 1200,
->                 "lost": 15,
->                 "lossPercentage": 1.3
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
 >             }
 >         }
 >     ]
@@ -1537,6 +1607,92 @@ PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
 
 * * *
 
+### inventory
+
+PATH _`/organizations/{organizationId}/inventory/devices/swaps/bulk`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Swap the devices identified by devices.old with a devices.new, then perform the :afterAction on the devices.old.
+> 
+> **POST** `/organizations/{organizationId}/inventory/devices/swaps/bulk`  
+> 
+>     {
+>         "jobId": "1284392014819",
+>         "swaps": [
+>             {
+>                 "id": "1284392014819",
+>                 "devices": {
+>                     "old": {
+>                         "mac": "00:11:22:33:44:55",
+>                         "serial": "Q234-ABCD-5678",
+>                         "model": "MR34",
+>                         "name": "My AP"
+>                     },
+>                     "new": {
+>                         "mac": "00:11:22:33:44:55",
+>                         "serial": "Q234-ABCD-5678",
+>                         "model": "MR34",
+>                         "name": "My AP"
+>                     }
+>                 },
+>                 "status": "complete",
+>                 "afterAction": "remove from network",
+>                 "createdAt": "2023-04-24T12:40:11Z",
+>                 "completedAt": "2023-04-24T12:40:12Z",
+>                 "errors": []
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/inventory/devices/swaps/bulk/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List of device swaps for a given request ID ({id}).
+> 
+> **GET** `/organizations/{organizationId}/inventory/devices/swaps/bulk/{id}`  
+> 
+>     {
+>         "jobId": "1284392014819",
+>         "swaps": [
+>             {
+>                 "id": "1284392014819",
+>                 "devices": {
+>                     "old": {
+>                         "mac": "00:11:22:33:44:55",
+>                         "serial": "Q234-ABCD-5678",
+>                         "model": "MR34",
+>                         "name": "My AP"
+>                     },
+>                     "new": {
+>                         "mac": "00:11:22:33:44:55",
+>                         "serial": "Q234-ABCD-5678",
+>                         "model": "MR34",
+>                         "name": "My AP"
+>                     }
+>                 },
+>                 "status": "complete",
+>                 "afterAction": "remove from network",
+>                 "createdAt": "2023-04-24T12:40:11Z",
+>                 "completedAt": "2023-04-24T12:40:12Z",
+>                 "errors": []
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
 ### policies
 
 PATH _`/organizations/{organizationId}/policies/assignments/byClient`_
@@ -1921,37 +2077,6 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 \[ insight \]
 -------------
 
-### applications
-
-PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update an Insight tracked application
-> 
-> **PUT** `/organizations/{organizationId}/insight/applications/{applicationId}`  
-> 
->     {
->         "applicationId": "19.12",
->         "name": "Meraki HTTPS",
->         "thresholds": {
->             "type": "smart",
->             "byNetwork": [
->                 {
->                     "networkId": "N_12345678",
->                     "goodput": 50000,
->                     "responseDuration": 1000
->                 }
->             ]
->         }
->     }
-> 
-> * * *
-
-* * *
-
 ### webApps
 
 PATH _`/organizations/{organizationId}/insight/webApps`_
@@ -2044,6 +2169,46 @@ PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`
 > #### Delete a custom web application by counter set rule id.
 > 
 > **DELETE** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
+> 
+> * * *
+
+* * *
+
+### applications
+
+PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an Insight tracked application
+> 
+> **PUT** `/organizations/{organizationId}/insight/applications/{applicationId}`  
+> 
+>     {
+>         "applicationId": "19.12",
+>         "name": "Meraki HTTPS",
+>         "thresholds": {
+>             "type": "smart",
+>             "byNetwork": [
+>                 {
+>                     "networkId": "N_12345678",
+>                     "goodput": 50000,
+>                     "responseDuration": 1000
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an Insight tracked application
+> 
+> **DELETE** `/organizations/{organizationId}/insight/applications/{applicationId}`  
 > 
 > * * *
 
@@ -2572,6 +2737,38 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
 > #### Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.
 > 
 > **DELETE** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+> * * *
+
+* * *
+
+### publicApplications
+
+PATH _`/organizations/{organizationId}/secureConnect/publicApplications`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of public applications for an Organization.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/publicApplications`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "id": "ABCDEFG",
+>                 "name": "Snapcraft",
+>                 "lastDetected": "2021-12-13T16:07:07.222Z",
+>                 "risk": "medium",
+>                 "category": "Application Development and Testing",
+>                 "appType": "paas"
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
 > 
 > * * *
 
