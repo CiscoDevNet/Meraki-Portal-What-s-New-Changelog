@@ -13,12 +13,6 @@
       - [List per-port VLAN settings for all ports of a MX.](#list-per-port-vlan-settings-for-all-ports-of-a-mx)
       - [Return per-port VLAN settings for a single MX port.](#return-per-port-vlan-settings-for-a-single-mx-port)
       - [Update the per-port VLAN settings for a single MX port.](#update-the-per-port-vlan-settings-for-a-single-mx-port)
-  * [\[ devices \]](#-devices-)
-    + [pingDevice](#pingdevice)
-      - [Return a ping device job](#return-a-ping-device-job)
-      - [Enqueue a job to check connectivity status to the device](#enqueue-a-job-to-check-connectivity-status-to-the-device)
-    + [ping](#ping)
-      - [Enqueue a job to ping a target host from the device](#enqueue-a-job-to-ping-a-target-host-from-the-device)
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
@@ -40,21 +34,11 @@
     + [devices](#devices)
       - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
-    + [actionBatches](#actionbatches)
-      - [Return an action batch](#return-an-action-batch)
-      - [Create an action batch](#create-an-action-batch)
   * [\[ insight \]](#-insight-)
     + [applications](#applications)
       - [Add an Insight tracked application](#add-an-insight-tracked-application)
       - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
 - [What's New](#whats-new)
-  * [\[ appliance \]](#-appliance--1)
-    + [cloudControlCenter](#cloudcontrolcenter)
-      - [List the AWS deploy options for a vMX deployment](#list-the-aws-deploy-options-for-a-vmx-deployment)
-  * [\[ devices \]](#-devices--1)
-    + [wakeOnLan](#wakeonlan)
-      - [Enqueue a job to send a Wake-on-LAN packet from the device](#enqueue-a-job-to-send-a-wake-on-lan-packet-from-the-device)
-      - [Return a Wake-on-LAN job](#return-a-wake-on-lan-job)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
       - [Return scanning API settings](#return-scanning-api-settings)
@@ -62,25 +46,23 @@
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ switch \]](#-switch--1)
-    + [summary](#summary)
-      - [Returns the total PoE power draw for all switch ports in the organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.](#returns-the-total-poe-power-draw-for-all-switch-ports-in-the-organization-over-the-requested-timespan-by-default-the-last-24-hours-the-returned-array-is-a-newest-first-list-of-intervals-the-time-between-intervals-depends-on-the-requested-timespan-with-20-minute-intervals-used-for-timespans-up-to-1-day-4-hour-intervals-used-for-timespans-up-to-2-weeks-and-1-day-intervals-for-timespans-larger-than-2-weeks)
     + [ports](#ports-2)
-      - [Returns the counts of all active ports for the requested timespan, grouped by speed. The number of inactive ports, and the total number of ports is also provided.](#returns-the-counts-of-all-active-ports-for-the-requested-timespan-grouped-by-speed-the-number-of-inactive-ports-and-the-total-number-of-ports-is-also-provided)
+      - [Returns the counts of all active ports for the requested timespan, grouped by speed. An active port is a port that at any point during the timeframe is observed to be connected to a responsive device and isn't configured to be disabled. For a port that is observed at multiple speeds during the timeframe, it will be counted at the highest speed observed. The number of inactive ports, and the total number of ports are also provided. Only ports on switches online during the timeframe will be represented and a port is only guaranteed to be present if its switch was online for at least 6 hours of the timeframe.](#returns-the-counts-of-all-active-ports-for-the-requested-timespan-grouped-by-speed-an-active-port-is-a-port-that-at-any-point-during-the-timeframe-is-observed-to-be-connected-to-a-responsive-device-and-isnt-configured-to-be-disabled-for-a-port-that-is-observed-at-multiple-speeds-during-the-timeframe-it-will-be-counted-at-the-highest-speed-observed-the-number-of-inactive-ports-and-the-total-number-of-ports-are-also-provided-only-ports-on-switches-online-during-the-timeframe-will-be-represented-and-a-port-is-only-guaranteed-to-be-present-if-its-switch-was-online-for-at-least-6-hours-of-the-timeframe)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
   * [\[ wireless \]](#-wireless--1)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
+    + [clients](#clients)
+      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
+      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
+      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
     + [radio](#radio)
       - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [devices](#devices-1)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
     + [autoRf](#autorf)
       - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
-    + [clients](#clients)
-      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
-      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
-      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
   * [\[ organizations \]](#-organizations--1)
     + [certificates](#certificates)
       - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
@@ -104,7 +86,6 @@
     + [support](#support)
       - [Returns the organization's sales representatives](#returns-the-organizations-sales-representatives)
     + [webhooks](#webhooks)
-      - [Return the status of an API callback](#return-the-status-of-an-api-callback)
       - [List the HTTP servers for this organization](#list-the-http-servers-for-this-organization)
       - [Add an HTTP server to an organization](#add-an-http-server-to-an-organization)
       - [Return an HTTP server for an organization](#return-an-http-server-for-an-organization)
@@ -118,6 +99,8 @@
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
   * [\[ insight \]](#-insight--1)
+    + [speedTestResults](#speedtestresults)
+      - [List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.](#list-the-speed-tests-for-the-given-devices-under-this-organization-only-valid-for-organizations-with-meraki-insight)
     + [webApps](#webapps)
       - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
       - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
@@ -126,15 +109,30 @@
     + [applications](#applications-1)
       - [Update an Insight tracked application](#update-an-insight-tracked-application)
       - [Delete an Insight tracked application](#delete-an-insight-tracked-application)
+  * [\[ devices \]](#-devices-)
+    + [wakeOnLan](#wakeonlan)
+      - [Enqueue a job to send a Wake-on-LAN packet from the device](#enqueue-a-job-to-send-a-wake-on-lan-packet-from-the-device)
+      - [Return a Wake-on-LAN job](#return-a-wake-on-lan-job)
+    + [speedTest](#speedtest)
+      - [Enqueue a job to execute a speed test from a device](#enqueue-a-job-to-execute-a-speed-test-from-a-device)
+      - [Returns a speed test result in megabits per second. If test is not complete, no results are present.](#returns-a-speed-test-result-in-megabits-per-second-if-test-is-not-complete-no-results-are-present)
   * [\[ sensor \]](#-sensor-)
+    + [schedules](#schedules)
+      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
     + [commands](#commands)
       - [Returns a historical log of all commands](#returns-a-historical-log-of-all-commands)
       - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
       - [Returns information about the command's execution, including the status](#returns-information-about-the-commands-execution-including-the-status)
-    + [schedules](#schedules)
-      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
+    + [alerts](#alerts)
+      - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
     + [readings](#readings)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
+  * [\[ camera \]](#-camera-)
+    + [detections](#detections)
+      - [Returns analytics data for timespans](#returns-analytics-data-for-timespans)
+    + [boundaries](#boundaries)
+      - [Returns all configured area boundaries of cameras](#returns-all-configured-area-boundaries-of-cameras)
+      - [Returns all configured crossingline boundaries of cameras](#returns-all-configured-crossingline-boundaries-of-cameras)
   * [\[ secureConnect \]](#-secureconnect-)
     + [privateApplicationGroups](#privateapplicationgroups)
       - [Provides a list of private application groups for an Organization](#provides-a-list-of-private-application-groups-for-an-organization)
@@ -158,19 +156,19 @@
       - [Redirects to the download link of the completed export.](#redirects-to-the-download-link-of-the-completed-export)
       - [Return the details of a specific remote access logs export](#return-the-details-of-a-specific-remote-access-logs-export)
  
-Version **1.39.0** _to_ **1.39.0-beta.0**
+Version **1.40.0** _to_ **1.40.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**52 - New**
+**56 - New**
 
-**65 - Updated**
+**55 - Updated**
 
-**736 - Total Endpoints**
+**742 - Total Endpoints**
 
-**471 - Total Paths**
+**477 - Total Paths**
 
 * * *
 
@@ -285,43 +283,6 @@ PUT _`/networks/{networkId}/appliance/ports/{portId}`_
 > \- Optional property `adaptivePolicyGroupId` Added
 
 > \- Optional property `peerSgtCapable` Added
-
-* * *
-
-\[ devices \]
--------------
-
-### pingDevice
-
-#### Return a ping device job
-
-GET _`/devices/{serial}/liveTools/pingDevice/{id}`_
-
-> \- Optional property `callback` Added
-
-> \- Response property `callback` value added
-
-* * *
-
-#### Enqueue a job to check connectivity status to the device
-
-POST _`/devices/{serial}/liveTools/pingDevice`_
-
-> \- Optional property `callback` Added
-
-> \- Optional property `callback` Added
-
-* * *
-
-### ping
-
-#### Enqueue a job to ping a target host from the device
-
-POST _`/devices/{serial}/liveTools/ping`_
-
-> \- Optional property `callback` Added
-
-> \- Optional property `callback` Added
 
 * * *
 
@@ -479,28 +440,6 @@ GET _`/organizations/{organizationId}/devices/statuses`_
 
 * * *
 
-### actionBatches
-
-#### Return an action batch
-
-GET _`/organizations/{organizationId}/actionBatches/{actionBatchId}`_
-
-> \- Optional property `callback` Added
-
-> \- Response property `callback` value added
-
-* * *
-
-#### Create an action batch
-
-POST _`/organizations/{organizationId}/actionBatches`_
-
-> \- Optional property `callback` Added
-
-> \- Optional property `callback` Added
-
-* * *
-
 \[ insight \]
 -------------
 
@@ -537,120 +476,6 @@ POST _`/organizations/{organizationId}/insight/applications`_
 
 What's New
 ==========
-
-\[ appliance \]
----------------
-
-### cloudControlCenter
-
-PATH _`/organizations/{organizationId}/appliance/cloudControlCenter/aws/deployments/options`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the AWS deploy options for a vMX deployment
-> 
-> **GET** `/organizations/{organizationId}/appliance/cloudControlCenter/aws/deployments/options`  
-> 
->     {
->         "zones": [
->             {
->                 "id": "use1-az1",
->                 "name": "us-east-1a"
->             }
->         ],
->         "subnets": [
->             {
->                 "id": "subnet-07c45767582cffd51",
->                 "name": "",
->                 "vpcId": "vpc-0f17f946a3cb29f43",
->                 "azId": "use1-az1",
->                 "cidrBlock": "172.31.0.0/16"
->             }
->         ],
->         "vpcs": [
->             {
->                 "id": "vpc-0f17f946a3cb29f43",
->                 "name": "",
->                 "cidrBlock": "172.31.0.0/16"
->             }
->         ],
->         "securityGroups": [
->             {
->                 "id": "sg-0a6c3ea061632128e",
->                 "name": "Cisco Meraki vMX-15.41.0-AutogenByAWSMP--1",
->                 "description": "This security group was generated by AWS Marketplace and is based on recommended settings for Cisco Meraki vMX version 15.41.0 provided by Cisco",
->                 "vpcId": "vpc-0f17f946a3cb29f43"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-\[ devices \]
--------------
-
-### wakeOnLan
-
-PATH _`/devices/{serial}/liveTools/wakeOnLan`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to send a Wake-on-LAN packet from the device
-> 
-> **POST** `/devices/{serial}/liveTools/wakeOnLan`  
-> 
->     {
->         "wakeOnLanId": "123",
->         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/wakeOnLan/1738",
->         "status": "pending",
->         "estimatedCompletedAt": "2018-02-11T00:00:00.090210Z",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "vlanId": 12,
->             "mac": "00:11:22:33:44:55"
->         },
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a Wake-on-LAN job
-> 
-> **GET** `/devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId}`  
-> 
->     {
->         "wakeOnLanId": "123",
->         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/wakeOnLan/1738",
->         "status": "pending",
->         "estimatedCompletedAt": "2018-02-11T00:00:00.090210Z",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "vlanId": 12,
->             "mac": "00:11:22:33:44:55"
->         }
->     }
-> 
-> * * *
-
-* * *
 
 \[ networks \]
 --------------
@@ -758,29 +583,6 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 \[ switch \]
 ------------
 
-### summary
-
-PATH _`/organizations/{organizationId}/summary/switch/power/history`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns the total PoE power draw for all switch ports in the organization over the requested timespan (by default the last 24 hours). The returned array is a newest-first list of intervals. The time between intervals depends on the requested timespan with 20 minute intervals used for timespans up to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals for timespans larger than 2 weeks.
-> 
-> **GET** `/organizations/{organizationId}/summary/switch/power/history`  
-> 
->     [
->         {
->             "ts": "2021-06-20T01:00:00.000Z",
->             "draw": 5.4321
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 ### ports
 
 PATH _`/organizations/{organizationId}/switch/ports/overview`_
@@ -789,7 +591,7 @@ PATH _`/organizations/{organizationId}/switch/ports/overview`_
 >   
 > \- New endpoint
 > 
-> #### Returns the counts of all active ports for the requested timespan, grouped by speed. The number of inactive ports, and the total number of ports is also provided.
+> #### Returns the counts of all active ports for the requested timespan, grouped by speed. An active port is a port that at any point during the timeframe is observed to be connected to a responsive device and isn't configured to be disabled. For a port that is observed at multiple speeds during the timeframe, it will be counted at the highest speed observed. The number of inactive ports, and the total number of ports are also provided. Only ports on switches online during the timeframe will be represented and a port is only guaranteed to be present if its switch was online for at least 6 hours of the timeframe.
 > 
 > **GET** `/organizations/{organizationId}/switch/ports/overview`  
 > 
@@ -876,7 +678,7 @@ PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 >                         "Very high proportion of CRC errors"
 >                     ],
 >                     "warnings": [
->                         "SecureConnect authentication in progress",
+>                         "SecurePort authentication in progress",
 >                         "PoE port was denied power",
 >                         "High proportion of CRC errors"
 >                     ],
@@ -940,27 +742,116 @@ PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 \[ wireless \]
 --------------
 
-### healthScores
+### clients
 
-PATH _`/devices/{serial}/wireless/healthScores`_
+PATH _`/networks/{networkId}/wireless/clients/healthScores`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Fetch the health scores for a given AP on this network
+> #### Fetch the health scores for all clients on this network
 > 
-> **GET** `/devices/{serial}/wireless/healthScores`  
+> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
+> 
+>     [
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 80,
+>                 "currentConnection": 100
+>             },
+>             "onboarding": {
+>                 "latest": 100
+>             }
+>         },
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 30,
+>                 "currentConnection": 50
+>             },
+>             "onboarding": {
+>                 "latest": 70
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return counts of distinct wireless clients connecting to a network over time
+> 
+> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
+> 
+>     [
+>         {
+>             "startTs": "2020-01-01T00:00:00Z",
+>             "endTs": "2020-01-01T00:05:00Z",
+>             "clientCounts": {
+>                 "summary": {
+>                     "prospective": 100,
+>                     "successful": 75,
+>                     "failed": 25
+>                 },
+>                 "connectionSteps": {
+>                     "association": {
+>                         "prospective": 100,
+>                         "successful": 97,
+>                         "failed": 3
+>                     },
+>                     "authentication": {
+>                         "prospective": 97,
+>                         "successful": 81,
+>                         "failed": 16
+>                     },
+>                     "dhcp": {
+>                         "prospective": 81,
+>                         "successful": 75,
+>                         "failed": 6
+>                     },
+>                     "dns": {
+>                         "prospective": 75,
+>                         "successful": 75,
+>                         "failed": 0
+>                     }
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
+> 
+> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
 > 
 >     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
+>         "mac": "22:33:44:55:66:77",
+>         "clientId": "k74272e",
 >         "performance": {
->             "latest": 80
+>             "latest": 80,
+>             "currentConnection": 100
 >         },
 >         "onboarding": {
->             "latest": 20
+>             "latest": 100
 >         }
 >     }
 > 
@@ -1004,6 +895,34 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
 >             "avoidance": {
 >                 "enabled": true
 >             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
 >         }
 >     }
 > 
@@ -1124,123 +1043,6 @@ PATH _`/organizations/{organizationId}/wireless/autoRf/channels/planning/activit
 >             }
 >         }
 >     ]
-> 
-> * * *
-
-* * *
-
-### clients
-
-PATH _`/networks/{networkId}/wireless/clients/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for all clients on this network
-> 
-> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
-> 
->     [
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 80,
->                 "currentConnection": 100
->             },
->             "onboarding": {
->                 "latest": 100
->             }
->         },
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 30,
->                 "currentConnection": 50
->             },
->             "onboarding": {
->                 "latest": 70
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return counts of distinct wireless clients connecting to a network over time
-> 
-> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
-> 
->     [
->         {
->             "startTs": "2020-01-01T00:00:00Z",
->             "endTs": "2020-01-01T00:05:00Z",
->             "clientCounts": {
->                 "summary": {
->                     "prospective": 100,
->                     "successful": 75,
->                     "failed": 25
->                 },
->                 "connectionSteps": {
->                     "association": {
->                         "prospective": 100,
->                         "successful": 97,
->                         "failed": 3
->                     },
->                     "authentication": {
->                         "prospective": 97,
->                         "successful": 81,
->                         "failed": 16
->                     },
->                     "dhcp": {
->                         "prospective": 81,
->                         "successful": 75,
->                         "failed": 6
->                     },
->                     "dns": {
->                         "prospective": 75,
->                         "successful": 75,
->                         "failed": 0
->                     }
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
-> 
-> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
-> 
->     {
->         "mac": "22:33:44:55:66:77",
->         "clientId": "k74272e",
->         "performance": {
->             "latest": 80,
->             "currentConnection": 100
->         },
->         "onboarding": {
->             "latest": 100
->         }
->     }
 > 
 > * * *
 
@@ -1761,41 +1563,6 @@ PATH _`/organizations/{organizationId}/support/salesRepresentatives`_
 
 ### webhooks
 
-PATH _`/organizations/{organizationId}/webhooks/callbacks/statuses/{callbackId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the status of an API callback
-> 
-> **GET** `/organizations/{organizationId}/webhooks/callbacks/statuses/{callbackId}`  
-> 
->     {
->         "callbackId": "1284392014819",
->         "status": "completed",
->         "errors": [
->             "Callback failed"
->         ],
->         "createdBy": {
->             "adminId": "212406"
->         },
->         "webhook": {
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "httpServer": {
->                 "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vd2ViaG9va3M="
->             },
->             "payloadTemplate": {
->                 "id": "wpt_2100"
->             },
->             "sentAt": "2018-02-11T00:00:00.090210Z"
->         }
->     }
-> 
-> * * *
-
-* * *
-
 PATH _`/organizations/{organizationId}/webhooks/httpServers`_
 
 > \- Path added  
@@ -2077,6 +1844,41 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 \[ insight \]
 -------------
 
+### speedTestResults
+
+PATH _`/organizations/{organizationId}/insight/speedTestResults`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.
+> 
+> **GET** `/organizations/{organizationId}/insight/speedTestResults`  
+> 
+>     [
+>         {
+>             "speedTestId": "1284392014819",
+>             "networkId": "N_24329156",
+>             "request": {
+>                 "serial": "Q234-ABCD-5678",
+>                 "interface": "wan1"
+>             },
+>             "results": {
+>                 "speeds": {
+>                     "average": 247.279,
+>                     "maximum": 983.611,
+>                     "minimum": 71.606
+>                 }
+>             },
+>             "startedAt": "2021-12-08T20:07:13Z"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### webApps
 
 PATH _`/organizations/{organizationId}/insight/webApps`_
@@ -2214,8 +2016,165 @@ PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
 
 * * *
 
+\[ devices \]
+-------------
+
+### wakeOnLan
+
+PATH _`/devices/{serial}/liveTools/wakeOnLan`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to send a Wake-on-LAN packet from the device
+> 
+> **POST** `/devices/{serial}/liveTools/wakeOnLan`  
+> 
+>     {
+>         "wakeOnLanId": "123",
+>         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/wakeOnLan/1738",
+>         "status": "complete",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "vlanId": 12,
+>             "mac": "00:11:22:33:44:55"
+>         },
+>         "error": "The device is unreachable.",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a Wake-on-LAN job
+> 
+> **GET** `/devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId}`  
+> 
+>     {
+>         "wakeOnLanId": "123",
+>         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/wakeOnLan/1738",
+>         "status": "complete",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "vlanId": 12,
+>             "mac": "00:11:22:33:44:55"
+>         },
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
+### speedTest
+
+PATH _`/devices/{serial}/liveTools/speedTest`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to execute a speed test from a device
+> 
+> **POST** `/devices/{serial}/liveTools/speedTest`  
+> 
+>     {
+>         "speedTestId": "1284392014819",
+>         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "interface": "wan1"
+>         },
+>         "status": "complete",
+>         "startedAt": "2021-10-01T15:55:39.000000Z",
+>         "completionTimeEstimateSecs": 60,
+>         "results": {
+>             "speeds": {
+>                 "average": 123.45,
+>                 "maximum": 400.12,
+>                 "minimum": 1.1
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/speedTest/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a speed test result in megabits per second. If test is not complete, no results are present.
+> 
+> **GET** `/devices/{serial}/liveTools/speedTest/{id}`  
+> 
+>     {
+>         "speedTestId": "1284392014819",
+>         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "interface": "wan1"
+>         },
+>         "status": "complete",
+>         "startedAt": "2021-10-01T15:55:39.000000Z",
+>         "completionTimeEstimateSecs": 60,
+>         "results": {
+>             "speeds": {
+>                 "average": 123.45,
+>                 "maximum": 400.12,
+>                 "minimum": 1.1
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
 \[ sensor \]
 ------------
+
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
 
 ### commands
 
@@ -2312,26 +2271,136 @@ PATH _`/devices/{serial}/sensor/commands/{id}`_
 
 * * *
 
-### schedules
+### alerts
 
-PATH _`/networks/{networkId}/sensor/schedules`_
+PATH _`/organizations/{organizationId}/sensor/alerts`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Returns a list of all sensor schedules.
+> #### Return a list of sensor alert events
 > 
-> **GET** `/networks/{networkId}/sensor/schedules`  
+> **GET** `/organizations/{organizationId}/sensor/alerts`  
 > 
 >     [
 >         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
+>             "startTs": "2018-02-11T00:00:00.090210Z",
+>             "sensor": {
+>                 "name": "My sensor",
+>                 "serial": "Q234-ABCD-5678",
+>                 "model": "MT10",
+>                 "url": "http://example.com"
+>             },
+>             "trigger": {
+>                 "ts": "2021-10-18T23:54:48Z",
+>                 "metric": "temperature",
+>                 "battery": {
+>                     "percentage": 91
+>                 },
+>                 "button": {
+>                     "pressType": "short"
+>                 },
+>                 "door": {
+>                     "open": true
+>                 },
+>                 "humidity": {
+>                     "relativePercentage": 34
+>                 },
+>                 "indoorAirQuality": {
+>                     "score": 89
+>                 },
+>                 "noise": {
+>                     "ambient": {
+>                         "level": 45
+>                     }
+>                 },
+>                 "pm25": {
+>                     "concentration": 100
+>                 },
+>                 "temperature": {
+>                     "fahrenheit": 77.81,
+>                     "celsius": 25.45
+>                 },
+>                 "tvoc": {
+>                     "concentration": 100
+>                 },
+>                 "water": {
+>                     "present": true
+>                 }
+>             },
+>             "profile": {
+>                 "id": "1",
+>                 "name": "Too hot",
+>                 "condition": {
+>                     "metric": "temperature",
+>                     "threshold": {
+>                         "temperature": {
+>                             "quality": "good",
+>                             "fahrenheit": 67,
+>                             "celsius": 24
+>                         },
+>                         "humidity": {
+>                             "quality": "good",
+>                             "relativePercentage": 25
+>                         },
+>                         "water": {
+>                             "present": true
+>                         },
+>                         "door": {
+>                             "open": true
+>                         },
+>                         "tvoc": {
+>                             "quality": "good",
+>                             "concentration": 1000
+>                         },
+>                         "co2": {
+>                             "quality": "good",
+>                             "concentration": 800
+>                         },
+>                         "pm25": {
+>                             "quality": "good",
+>                             "concentration": 41
+>                         },
+>                         "noise": {
+>                             "ambient": {
+>                                 "level": 65
+>                             }
+>                         },
+>                         "indoorAirQuality": {
+>                             "score": 80
+>                         },
+>                         "realPower": {
+>                             "draw": 9.9
+>                         },
+>                         "apparentPower": {
+>                             "draw": 11
+>                         },
+>                         "powerFactor": {
+>                             "percentage": 11
+>                         },
+>                         "current": {
+>                             "draw": 0.12
+>                         },
+>                         "voltage": {
+>                             "level": 120
+>                         },
+>                         "frequency": {
+>                             "level": 50
+>                         },
+>                         "upstreamPower": {
+>                             "outageDetected": true
+>                         }
+>                     },
+>                     "direction": "above",
+>                     "duration": 60
+>                 }
+>             },
+>             "snapshotCamera": {
+>                 "serial": "QAAA-AAAA-AAAA",
+>                 "name": "Camera",
+>                 "url": "http://example.com"
+>             }
 >         }
 >     ]
 > 
@@ -2435,6 +2504,117 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 >                 "counts": {
 >                     "present": 6
 >                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+\[ camera \]
+------------
+
+### detections
+
+PATH _`/organizations/{organizationId}/camera/detections/history/byBoundary/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns analytics data for timespans
+> 
+> **GET** `/organizations/{organizationId}/camera/detections/history/byBoundary/byInterval`  
+> 
+>     [
+>         {
+>             "boundaryId": "k74272e",
+>             "type": "line",
+>             "results": {
+>                 "startTs": "2018-02-11T00:00:00Z",
+>                 "endTs": "2018-05-12T00:00:00Z",
+>                 "objectType": "person",
+>                 "in": 22,
+>                 "out": 13
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### boundaries
+
+PATH _`/organizations/{organizationId}/camera/boundaries/areas/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns all configured area boundaries of cameras
+> 
+> **GET** `/organizations/{organizationId}/camera/boundaries/areas/byDevice`  
+> 
+>     [
+>         {
+>             "networkId": "N_24329156",
+>             "serial": "Q234-ABCD-5678",
+>             "boundaries": {
+>                 "id": "k74272e",
+>                 "type": "area",
+>                 "label": "myarea",
+>                 "vertices": [
+>                     0.1,
+>                     0.1,
+>                     0.1,
+>                     0.5,
+>                     0.5,
+>                     0.5,
+>                     0.1,
+>                     0.1
+>                 ]
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/camera/boundaries/lines/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns all configured crossingline boundaries of cameras
+> 
+> **GET** `/organizations/{organizationId}/camera/boundaries/lines/byDevice`  
+> 
+>     [
+>         {
+>             "networkId": "N_24329156",
+>             "serial": "Q234-ABCD-5678",
+>             "boundaries": {
+>                 "id": "k74272e",
+>                 "type": "line",
+>                 "label": "mycline",
+>                 "vertices": [
+>                     0.183,
+>                     0.381,
+>                     0.375,
+>                     0.5,
+>                     0.625,
+>                     0.487,
+>                     0.806,
+>                     0.343
+>                 ],
+>                 "dirVertice": [
+>                     0.5,
+>                     0.54
+>                 ]
 >             }
 >         }
 >     ]
