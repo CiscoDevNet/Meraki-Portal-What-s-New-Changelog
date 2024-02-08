@@ -1,46 +1,43 @@
  - [What's Updated](#whats-updated)
-  * [\[ licensing \]](#-licensing-)
-    + [subscription](#subscription)
-      - [Claim a subscription into an organization.](#claim-a-subscription-into-an-organization)
+  * [\[ appliance \]](#-appliance-)
+    + [uplinks](#uplinks)
+      - [Return the uplink settings for an MX appliance](#return-the-uplink-settings-for-an-mx-appliance)
+      - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
+    + [vlans](#vlans)
+      - [Update a VLAN](#update-a-vlan)
+      - [Add a VLAN](#add-a-vlan)
+    + [trafficShaping](#trafficshaping)
+      - [Show uplink selection settings for an MX network](#show-uplink-selection-settings-for-an-mx-network)
+      - [Update uplink selection settings for an MX network](#update-uplink-selection-settings-for-an-mx-network)
+    + [ports](#ports)
+      - [List per-port VLAN settings for all ports of a MX.](#list-per-port-vlan-settings-for-all-ports-of-a-mx)
+      - [Return per-port VLAN settings for a single MX port.](#return-per-port-vlan-settings-for-a-single-mx-port)
+      - [Update the per-port VLAN settings for a single MX port.](#update-the-per-port-vlan-settings-for-a-single-mx-port)
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
   * [\[ switch \]](#-switch-)
     + [stacks](#stacks)
-      - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
-    + [ports](#ports)
+      - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
+    + [ports](#ports-1)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
   * [\[ wireless \]](#-wireless-)
     + [ssids](#ssids)
       - [Update the attributes of an MR SSID](#update-the-attributes-of-an-mr-ssid)
     + [rfProfiles](#rfprofiles)
-      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
       - [List RF profiles for this network](#list-rf-profiles-for-this-network)
       - [Return a RF profile](#return-a-rf-profile)
       - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
-  * [\[ appliance \]](#-appliance-)
-    + [vlans](#vlans)
-      - [Add a VLAN](#add-a-vlan)
-      - [Update a VLAN](#update-a-vlan)
-    + [trafficShaping](#trafficshaping)
-      - [Show uplink selection settings for an MX network](#show-uplink-selection-settings-for-an-mx-network)
-      - [Update uplink selection settings for an MX network](#update-uplink-selection-settings-for-an-mx-network)
-    + [ports](#ports-1)
-      - [List per-port VLAN settings for all ports of a MX.](#list-per-port-vlan-settings-for-all-ports-of-a-mx)
-      - [Return per-port VLAN settings for a single MX port.](#return-per-port-vlan-settings-for-a-single-mx-port)
-      - [Update the per-port VLAN settings for a single MX port.](#update-the-per-port-vlan-settings-for-a-single-mx-port)
-    + [uplinks](#uplinks)
-      - [Return the uplink settings for an MX appliance](#return-the-uplink-settings-for-an-mx-appliance)
-      - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
-  * [\[ insight \]](#-insight-)
-    + [applications](#applications)
-      - [Add an Insight tracked application](#add-an-insight-tracked-application)
-      - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
+      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
   * [\[ organizations \]](#-organizations-)
     + [devices](#devices)
       - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
+  * [\[ insight \]](#-insight-)
+    + [applications](#applications)
+      - [Add an Insight tracked application](#add-an-insight-tracked-application)
+      - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
 - [What's New](#whats-new)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
@@ -53,85 +50,18 @@
       - [Returns the counts of all active ports for the requested timespan, grouped by speed. An active port is a port that at any point during the timeframe is observed to be connected to a responsive device and isn't configured to be disabled. For a port that is observed at multiple speeds during the timeframe, it will be counted at the highest speed observed. The number of inactive ports, and the total number of ports are also provided. Only ports on switches online during the timeframe will be represented and a port is only guaranteed to be present if its switch was online for at least 6 hours of the timeframe.](#returns-the-counts-of-all-active-ports-for-the-requested-timespan-grouped-by-speed-an-active-port-is-a-port-that-at-any-point-during-the-timeframe-is-observed-to-be-connected-to-a-responsive-device-and-isnt-configured-to-be-disabled-for-a-port-that-is-observed-at-multiple-speeds-during-the-timeframe-it-will-be-counted-at-the-highest-speed-observed-the-number-of-inactive-ports-and-the-total-number-of-ports-are-also-provided-only-ports-on-switches-online-during-the-timeframe-will-be-represented-and-a-port-is-only-guaranteed-to-be-present-if-its-switch-was-online-for-at-least-6-hours-of-the-timeframe)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
   * [\[ wireless \]](#-wireless--1)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
-    + [radio](#radio)
-      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
-    + [devices](#devices-1)
-      - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
-    + [autoRf](#autorf)
-      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
-      - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
     + [clients](#clients)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
-  * [\[ insight \]](#-insight--1)
-    + [speedTestResults](#speedtestresults)
-      - [List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.](#list-the-speed-tests-for-the-given-devices-under-this-organization-only-valid-for-organizations-with-meraki-insight)
-    + [webApps](#webapps)
-      - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
-      - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
-      - [Update a custom web application for Insight to be able to track](#update-a-custom-web-application-for-insight-to-be-able-to-track)
-      - [Delete a custom web application by counter set rule id.](#delete-a-custom-web-application-by-counter-set-rule-id)
-    + [applications](#applications-1)
-      - [Update an Insight tracked application](#update-an-insight-tracked-application)
-      - [Delete an Insight tracked application](#delete-an-insight-tracked-application)
-  * [\[ devices \]](#-devices-)
-    + [wakeOnLan](#wakeonlan)
-      - [Enqueue a job to send a Wake-on-LAN packet from the device](#enqueue-a-job-to-send-a-wake-on-lan-packet-from-the-device)
-      - [Return a Wake-on-LAN job](#return-a-wake-on-lan-job)
-    + [speedTest](#speedtest)
-      - [Enqueue a job to execute a speed test from a device](#enqueue-a-job-to-execute-a-speed-test-from-a-device)
-      - [Returns a speed test result in megabits per second. If test is not complete, no results are present.](#returns-a-speed-test-result-in-megabits-per-second-if-test-is-not-complete-no-results-are-present)
-    + [macTable](#mactable)
-      - [Enqueue a job to request the MAC table from the device. Switches currently support this feature..](#enqueue-a-job-to-request-the-mac-table-from-the-device-switches-currently-support-this-feature)
-      - [Return a MAC table live tool job.](#return-a-mac-table-live-tool-job)
-    + [cableTest](#cabletest)
-      - [Enqueue a job to perform a cable test for the device on the specified ports.](#enqueue-a-job-to-perform-a-cable-test-for-the-device-on-the-specified-ports)
-      - [Return a cable test live tool job.](#return-a-cable-test-live-tool-job)
-    + [arpTable](#arptable)
-      - [Enqueue a job to perform a ARP table request for the device. This endpoint currently supports switches.](#enqueue-a-job-to-perform-a-arp-table-request-for-the-device-this-endpoint-currently-supports-switches)
-      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job)
-  * [\[ sensor \]](#-sensor-)
-    + [commands](#commands)
-      - [Returns a historical log of all commands](#returns-a-historical-log-of-all-commands)
-      - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
-      - [Returns information about the command's execution, including the status](#returns-information-about-the-commands-execution-including-the-status)
-    + [schedules](#schedules)
-      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
-    + [alerts](#alerts)
-      - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
-    + [readings](#readings)
-      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
-  * [\[ camera \]](#-camera-)
-    + [boundaries](#boundaries)
-      - [Returns all configured area boundaries of cameras](#returns-all-configured-area-boundaries-of-cameras)
-      - [Returns all configured crossingline boundaries of cameras](#returns-all-configured-crossingline-boundaries-of-cameras)
-    + [detections](#detections)
-      - [Returns analytics data for timespans](#returns-analytics-data-for-timespans)
-  * [\[ secureConnect \]](#-secureconnect-)
-    + [privateApplicationGroups](#privateapplicationgroups)
-      - [Provides a list of private application groups for an Organization](#provides-a-list-of-private-application-groups-for-an-organization)
-      - [Creates a group of private applications to apply to policy. A maximum of 300 private application groups are allowed for an organization.](#creates-a-group-of-private-applications-to-apply-to-policy-a-maximum-of-300-private-application-groups-are-allowed-for-an-organization)
-      - [Return the details of a specific private application group](#return-the-details-of-a-specific-private-application-group)
-      - [Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.](#update-an-application-group-in-an-organization-updates-are-allowed-on-group-name-and-group-description-applications-can-be-added-or-removed-group-type-and-policy-cannot-be-changed)
-      - [Deletes private application group from an Organization. Detaches application from groups before deleting](#deletes-private-application-group-from-an-organization-detaches-application-from-groups-before-deleting)
-    + [privateApplications](#privateapplications)
-      - [Provides a list of private applications for an Organization.](#provides-a-list-of-private-applications-for-an-organization)
-      - [Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.](#adds-a-new-private-application-to-the-organization-a-maximum-of-300-private-applications-are-allowed-for-an-organization)
-      - [Return the details of a specific private application](#return-the-details-of-a-specific-private-application)
-      - [Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.](#updates-a-specific-private-application-updates-can-be-made-to-name-description-destinations-app-protocol-sni-and-ssl-verification-application-groups-can-be-added-or-removed)
-      - [Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.](#deletes-a-specific-private-application-delink-the-application-from-any-application-groups-before-deleting-the-app-cascade-delete-application-group-if-this-is-the-only-application-in-the-group)
-    + [publicApplications](#publicapplications)
-      - [Provides a list of public applications for an Organization.](#provides-a-list-of-public-applications-for-an-organization)
-    + [remoteAccessLog](#remoteaccesslog)
-      - [List the latest 5000 events logged by remote access.](#list-the-latest-5000-events-logged-by-remote-access)
-    + [remoteAccessLogsExports](#remoteaccesslogsexports)
-      - [Provides a list of remote access logs exports for an Organization](#provides-a-list-of-remote-access-logs-exports-for-an-organization)
-      - [Creates a export for a provided timestamp interval.](#creates-a-export-for-a-provided-timestamp-interval)
-      - [Redirects to the download link of the completed export.](#redirects-to-the-download-link-of-the-completed-export)
-      - [Return the details of a specific remote access logs export](#return-the-details-of-a-specific-remote-access-logs-export)
+    + [radio](#radio)
+      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
+      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
+      - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
+    + [devices](#devices-1)
+      - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
   * [\[ organizations \]](#-organizations--1)
     + [certificates](#certificates)
       - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
@@ -145,8 +75,14 @@
       - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
       - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
       - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
-    + [cloud](#cloud)
-      - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
+    + [extensions](#extensions)
+      - [List the ThousandEyes agent configurations under this organization. Only valid for networks with Meraki Insight.](#list-the-thousandeyes-agent-configurations-under-this-organization-only-valid-for-networks-with-meraki-insight)
+      - [Add a ThousandEyes agent for this network. Only valid for networks with Meraki Insight.](#add-a-thousandeyes-agent-for-this-network-only-valid-for-networks-with-meraki-insight)
+      - [List all the networks eligible for ThousandEyes agent activation under this organization.](#list-all-the-networks-eligible-for-thousandeyes-agent-activation-under-this-organization)
+      - [List the ThousandEyes agent configuration under this network. Only valid for networks with Meraki Insight.](#list-the-thousandeyes-agent-configuration-under-this-network-only-valid-for-networks-with-meraki-insight)
+      - [Update a ThousandEyes agent from this network. Only valid for networks with Meraki Insight.](#update-a-thousandeyes-agent-from-this-network-only-valid-for-networks-with-meraki-insight)
+      - [Delete a ThousandEyes agent from this network. Only valid for networks with Meraki Insight.](#delete-a-thousandeyes-agent-from-this-network-only-valid-for-networks-with-meraki-insight)
+      - [Create a ThousandEyes test based on a provided test tamplate](#create-a-thousandeyes-test-based-on-a-provided-test-tamplate)
     + [inventory](#inventory)
       - [Swap the devices identified by devices.old with a devices.new, then perform the :afterAction on the devices.old.](#swap-the-devices-identified-by-devicesold-with-a-devicesnew-then-perform-the-afteraction-on-the-devicesold)
       - [List of device swaps for a given request ID ({id}).](#list-of-device-swaps-for-a-given-request-id-id)
@@ -167,20 +103,89 @@
       - [Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')](#destroy-a-webhook-payload-template-for-an-organization-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-wpt_00004-wpt_00005-or-wpt_00006)
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
+    + [cloud](#cloud)
+      - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
+  * [\[ insight \]](#-insight--1)
+    + [speedTestResults](#speedtestresults)
+      - [List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.](#list-the-speed-tests-for-the-given-devices-under-this-organization-only-valid-for-organizations-with-meraki-insight)
+    + [webApps](#webapps)
+      - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
+      - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
+      - [Update a custom web application for Insight to be able to track](#update-a-custom-web-application-for-insight-to-be-able-to-track)
+      - [Delete a custom web application by counter set rule id.](#delete-a-custom-web-application-by-counter-set-rule-id)
+    + [applications](#applications-1)
+      - [Update an Insight tracked application](#update-an-insight-tracked-application)
+      - [Delete an Insight tracked application](#delete-an-insight-tracked-application)
+  * [\[ devices \]](#-devices-)
+    + [speedTest](#speedtest)
+      - [Enqueue a job to execute a speed test from a device](#enqueue-a-job-to-execute-a-speed-test-from-a-device)
+      - [Returns a speed test result in megabits per second. If test is not complete, no results are present.](#returns-a-speed-test-result-in-megabits-per-second-if-test-is-not-complete-no-results-are-present)
+    + [macTable](#mactable)
+      - [Enqueue a job to request the MAC table from the device. Switches currently support this feature..](#enqueue-a-job-to-request-the-mac-table-from-the-device-switches-currently-support-this-feature)
+      - [Return a MAC table live tool job.](#return-a-mac-table-live-tool-job)
+  * [\[ sensor \]](#-sensor-)
+    + [schedules](#schedules)
+      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
+    + [commands](#commands)
+      - [Returns a historical log of all commands](#returns-a-historical-log-of-all-commands)
+      - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
+      - [Returns information about the command's execution, including the status](#returns-information-about-the-commands-execution-including-the-status)
+    + [alerts](#alerts)
+      - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
+    + [readings](#readings)
+      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
+  * [\[ secureConnect \]](#-secureconnect-)
+    + [privateApplicationGroups](#privateapplicationgroups)
+      - [Provides a list of private application groups for an Organization](#provides-a-list-of-private-application-groups-for-an-organization)
+      - [Creates a group of private applications to apply to policy. A maximum of 300 private application groups are allowed for an organization.](#creates-a-group-of-private-applications-to-apply-to-policy-a-maximum-of-300-private-application-groups-are-allowed-for-an-organization)
+      - [Return the details of a specific private application group](#return-the-details-of-a-specific-private-application-group)
+      - [Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.](#update-an-application-group-in-an-organization-updates-are-allowed-on-group-name-and-group-description-applications-can-be-added-or-removed-group-type-and-policy-cannot-be-changed)
+      - [Deletes private application group from an Organization. Detaches application from groups before deleting](#deletes-private-application-group-from-an-organization-detaches-application-from-groups-before-deleting)
+    + [privateApplications](#privateapplications)
+      - [Provides a list of private applications for an Organization.](#provides-a-list-of-private-applications-for-an-organization)
+      - [Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.](#adds-a-new-private-application-to-the-organization-a-maximum-of-300-private-applications-are-allowed-for-an-organization)
+      - [Return the details of a specific private application](#return-the-details-of-a-specific-private-application)
+      - [Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.](#updates-a-specific-private-application-updates-can-be-made-to-name-description-destinations-app-protocol-sni-and-ssl-verification-application-groups-can-be-added-or-removed)
+      - [Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.](#deletes-a-specific-private-application-delink-the-application-from-any-application-groups-before-deleting-the-app-cascade-delete-application-group-if-this-is-the-only-application-in-the-group)
+    + [publicApplications](#publicapplications)
+      - [Provides a list of public applications for an Organization.](#provides-a-list-of-public-applications-for-an-organization)
+    + [regions](#regions)
+      - [List deployed cloud hubs and CNHE regions in this organization](#list-deployed-cloud-hubs-and-cnhe-regions-in-this-organization)
+    + [remoteAccessLog](#remoteaccesslog)
+      - [List the latest 5000 events logged by remote access.](#list-the-latest-5000-events-logged-by-remote-access)
+    + [remoteAccessLogsExports](#remoteaccesslogsexports)
+      - [Provides a list of remote access logs exports for an Organization](#provides-a-list-of-remote-access-logs-exports-for-an-organization)
+      - [Creates a export for a provided timestamp interval.](#creates-a-export-for-a-provided-timestamp-interval)
+      - [Redirects to the download link of the completed export.](#redirects-to-the-download-link-of-the-completed-export)
+      - [Return the details of a specific remote access logs export](#return-the-details-of-a-specific-remote-access-logs-export)
+    + [sites](#sites)
+      - [List sites in this organization](#list-sites-in-this-organization)
+      - [Enroll sites in this organization to Secure Connect. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.](#enroll-sites-in-this-organization-to-secure-connect-for-an-organization-a-maximum-of-4000-sites-can-be-enrolled-if-they-are-in-spoke-mode-or-a-maximum-of-10-sites-can-be-enrolled-in-hub-mode)
+      - [Detach given sites from Secure Connect](#detach-given-sites-from-secure-connect)
+  * [\[ sm \]](#-sm-)
+    + [apple](#apple)
+      - [Enqueue a sync job for an ADE account](#enqueue-a-sync-job-for-an-ade-account)
+      - [Retrieve the status of an ADE sync job](#retrieve-the-status-of-an-ade-sync-job)
+    + [bulkEnrollment](#bulkenrollment)
+      - [Create a PccBulkEnrollmentToken](#create-a-pccbulkenrollmenttoken)
+      - [Return a BulkEnrollmentToken](#return-a-bulkenrollmenttoken)
+      - [Update a PccBulkEnrollmentToken](#update-a-pccbulkenrollmenttoken)
+      - [Delete a PccBulkEnrollmentToken](#delete-a-pccbulkenrollmenttoken)
+      - [List all BulkEnrollmentTokens for an organization.](#list-all-bulkenrollmenttokens-for-an-organization)
  
-Version **1.42.0** _to_ **1.41.0-beta.1**
+Version **1.43.0** _to_ **1.43.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**62 - New**
+**64 - New**
 
-**53 - Updated**
+**52 - Updated**
 
-**752 - Total Endpoints**
+**781 - Total Endpoints**
 
-**487 - Total Paths**
+**506 - Total Paths**
 
 * * *
 
@@ -189,16 +194,112 @@ Version **1.42.0** _to_ **1.41.0-beta.1**
 What's Updated
 ==============
 
-\[ licensing \]
+\[ appliance \]
 ---------------
 
-### subscription
+### uplinks
 
-#### Claim a subscription into an organization.
+#### Return the uplink settings for an MX appliance
 
-POST _`/administered/licensing/subscription/subscriptions/claim`_
+GET _`/devices/{serial}/appliance/uplinks/settings`_
 
-> \- Optional param `validate` added
+> \- Optional property `sgt` Added
+
+> \- Optional property `sgt` Added
+
+> \- Response property `sgt` value added
+
+> \- Response property `sgt` value added
+
+* * *
+
+#### Update the uplink settings for an MX appliance
+
+PUT _`/devices/{serial}/appliance/uplinks/settings`_
+
+> \- Optional property `sgt` Added
+
+> \- Optional property `sgt` Added
+
+> \- Optional property `sgt` Added
+
+* * *
+
+### vlans
+
+#### Update a VLAN
+
+PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
+
+> \- Optional property `adaptivePolicyGroupId` Added
+
+* * *
+
+#### Add a VLAN
+
+POST _`/networks/{networkId}/appliance/vlans`_
+
+> \- Optional property `adaptivePolicyGroupId` Added
+
+* * *
+
+### trafficShaping
+
+#### Show uplink selection settings for an MX network
+
+GET _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
+
+> \- Optional property `nbar` Added
+
+> \- Optional property `majorApp` Added
+
+> \- Response property `nbar` value added
+
+> \- Response property `majorApp` value added
+
+* * *
+
+#### Update uplink selection settings for an MX network
+
+PUT _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
+
+> \- Optional property `nbar` Added
+
+> \- Optional property `majorApp` Added
+
+* * *
+
+### ports
+
+#### List per-port VLAN settings for all ports of a MX.
+
+GET _`/networks/{networkId}/appliance/ports`_
+
+> \- Optional property `peerSgtCapable` Added
+
+> \- Response property `peerSgtCapable` value added
+
+* * *
+
+#### Return per-port VLAN settings for a single MX port.
+
+GET _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- Optional property `peerSgtCapable` Added
+
+> \- Response property `peerSgtCapable` value added
+
+* * *
+
+#### Update the per-port VLAN settings for a single MX port.
+
+PUT _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- Optional property `peerSgtCapable` Added
+
+> \- Optional property `adaptivePolicyGroupId` Added
+
+> \- Optional property `peerSgtCapable` Added
 
 * * *
 
@@ -220,17 +321,17 @@ PUT _`/networks/{networkId}/settings`_
 
 ### stacks
 
-#### Create a layer 3 interface for a switch stack
+#### Update a layer 3 interface for a switch stack
 
-POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
+PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
 
 > \- Optional property `ospfV3` Added
 
 * * *
 
-#### Update a layer 3 interface for a switch stack
+#### Create a layer 3 interface for a switch stack
 
-PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
+POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 
 > \- Optional property `ospfV3` Added
 
@@ -260,16 +361,6 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
 * * *
 
 ### rfProfiles
-
-#### Creates new RF profile for this network
-
-POST _`/networks/{networkId}/wireless/rfProfiles`_
-
-> \- Optional property `isIndoorDefault` Added
-
-> \- Optional property `isOutdoorDefault` Added
-
-* * *
 
 #### List RF profiles for this network
 
@@ -313,146 +404,13 @@ PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 
 * * *
 
-\[ appliance \]
----------------
+#### Creates new RF profile for this network
 
-### vlans
+POST _`/networks/{networkId}/wireless/rfProfiles`_
 
-#### Add a VLAN
+> \- Optional property `isIndoorDefault` Added
 
-POST _`/networks/{networkId}/appliance/vlans`_
-
-> \- Optional property `adaptivePolicyGroupId` Added
-
-* * *
-
-#### Update a VLAN
-
-PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
-
-> \- Optional property `adaptivePolicyGroupId` Added
-
-* * *
-
-### trafficShaping
-
-#### Show uplink selection settings for an MX network
-
-GET _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
-
-> \- Optional property `id` Added
-
-> \- Optional property `name` Added
-
-> \- Response property `id` value added
-
-> \- Response property `name` value added
-
-* * *
-
-#### Update uplink selection settings for an MX network
-
-PUT _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
-
-> \- Optional property `id` Added
-
-> \- Optional property `name` Added
-
-* * *
-
-### ports
-
-#### List per-port VLAN settings for all ports of a MX.
-
-GET _`/networks/{networkId}/appliance/ports`_
-
-> \- Optional property `peerSgtCapable` Added
-
-> \- Response property `peerSgtCapable` value added
-
-* * *
-
-#### Return per-port VLAN settings for a single MX port.
-
-GET _`/networks/{networkId}/appliance/ports/{portId}`_
-
-> \- Optional property `peerSgtCapable` Added
-
-> \- Response property `peerSgtCapable` value added
-
-* * *
-
-#### Update the per-port VLAN settings for a single MX port.
-
-PUT _`/networks/{networkId}/appliance/ports/{portId}`_
-
-> \- Optional property `peerSgtCapable` Added
-
-> \- Optional property `adaptivePolicyGroupId` Added
-
-> \- Optional property `peerSgtCapable` Added
-
-* * *
-
-### uplinks
-
-#### Return the uplink settings for an MX appliance
-
-GET _`/devices/{serial}/appliance/uplinks/settings`_
-
-> \- Optional property `sgt` Added
-
-> \- Optional property `sgt` Added
-
-> \- Response property `sgt` value added
-
-> \- Response property `sgt` value added
-
-* * *
-
-#### Update the uplink settings for an MX appliance
-
-PUT _`/devices/{serial}/appliance/uplinks/settings`_
-
-> \- Optional property `sgt` Added
-
-> \- Optional property `sgt` Added
-
-> \- Optional property `sgt` Added
-
-* * *
-
-\[ insight \]
--------------
-
-### applications
-
-#### Add an Insight tracked application
-
-POST _`/organizations/{organizationId}/insight/applications`_
-
-> \- Added endpoint method  
-> 
-> #### Add an Insight tracked application
-> 
-> _createOrganizationInsightApplication_
-> 
->     {
->         "applicationId": "19.12",
->         "name": "Meraki HTTPS",
->         "thresholds": {
->             "type": "smart",
->             "byNetwork": [
->                 {
->                     "networkId": "N_12345678",
->                     "goodput": 50000,
->                     "responseDuration": 1000
->                 }
->             ]
->         }
->     }
-> 
-> * * *
+> \- Optional property `isOutdoorDefault` Added
 
 * * *
 
@@ -490,6 +448,40 @@ GET _`/organizations/{organizationId}/devices/availabilities/changeHistory`_
 GET _`/organizations/{organizationId}/devices/statuses`_
 
 > \- Optional param `configurationUpdatedAfter` added
+
+* * *
+
+\[ insight \]
+-------------
+
+### applications
+
+#### Add an Insight tracked application
+
+POST _`/organizations/{organizationId}/insight/applications`_
+
+> \- Added endpoint method  
+> 
+> #### Add an Insight tracked application
+> 
+> _createOrganizationInsightApplication_
+> 
+>     {
+>         "applicationId": "19.12",
+>         "name": "Meraki HTTPS",
+>         "thresholds": {
+>             "type": "smart",
+>             "byNetwork": [
+>                 {
+>                     "networkId": "N_12345678",
+>                     "goodput": 50000,
+>                     "responseDuration": 1000
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
 
 * * *
 
@@ -628,20 +620,16 @@ PATH _`/organizations/{organizationId}/switch/ports/overview`_
 >                             "2500": 0,
 >                             "5000": 0,
 >                             "10000": 0,
->                             "20000": 0,
->                             "40000": 0,
->                             "100000": 0,
 >                             "total": 24
 >                         },
 >                         "sfp": {
->                             "10": 2,
->                             "100": 6,
+>                             "100": 8,
 >                             "1000": 40,
->                             "2500": 0,
->                             "5000": 0,
 >                             "10000": 10,
 >                             "20000": 0,
+>                             "25000": 0,
 >                             "40000": 1,
+>                             "50000": 0,
 >                             "100000": 0,
 >                             "total": 63
 >                         }
@@ -691,6 +679,11 @@ PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 >                     "portId": "1",
 >                     "enabled": true,
 >                     "status": "Connected",
+>                     "spanningTree": {
+>                         "statuses": [
+>                             "Learning"
+>                         ]
+>                     },
 >                     "isUplink": false,
 >                     "errors": [
 >                         "PoE overload",
@@ -760,195 +753,6 @@ PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 
 \[ wireless \]
 --------------
-
-### healthScores
-
-PATH _`/devices/{serial}/wireless/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given AP on this network
-> 
-> **GET** `/devices/{serial}/wireless/healthScores`  
-> 
->     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### radio
-
-PATH _`/networks/{networkId}/wireless/radio/autoRf`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update the AutoRF settings for a wireless network
-> 
-> **PUT** `/networks/{networkId}/wireless/radio/autoRf`  
-> 
->     {
->         "networkId": "L_12345",
->         "name": "My Network",
->         "timeZone": "America/Los_Angeles",
->         "busyHour": {
->             "schedule": {
->                 "mode": "automatic",
->                 "automatic": {
->                     "start": "08:00",
->                     "end": "17:00"
->                 },
->                 "manual": {
->                     "start": "10:00",
->                     "end": "15:00"
->                 }
->             },
->             "minimizeChanges": {
->                 "enabled": true
->             }
->         },
->         "channel": {
->             "avoidance": {
->                 "enabled": true
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### devices
-
-PATH _`/networks/{networkId}/wireless/devices/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores of all APs on this network
-> 
-> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
-> 
->     [
->         {
->             "device": {
->                 "serial": "Q234-ABCD-5678"
->             },
->             "performance": {
->                 "latest": 80
->             },
->             "onboarding": {
->                 "latest": 20
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### autoRf
-
-PATH _`/organizations/{organizationId}/wireless/autoRf/byNetwork`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the AutoRF settings of an organization by network
-> 
-> **GET** `/organizations/{organizationId}/wireless/autoRf/byNetwork`  
-> 
->     [
->         {
->             "networkId": "L_12345",
->             "name": "My Network",
->             "timeZone": "America/Los_Angeles",
->             "busyHour": {
->                 "schedule": {
->                     "mode": "automatic",
->                     "automatic": {
->                         "start": "08:00",
->                         "end": "17:00"
->                     },
->                     "manual": {
->                         "start": "10:00",
->                         "end": "15:00"
->                     }
->                 },
->                 "minimizeChanges": {
->                     "enabled": true
->                 }
->             },
->             "channel": {
->                 "avoidance": {
->                     "enabled": true
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/autoRf/channels/planning/activities`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the channel planning activities of an organization
-> 
-> **GET** `/organizations/{organizationId}/wireless/autoRf/channels/planning/activities`  
-> 
->     [
->         {
->             "startedAt": "2018-02-11T00:00:00Z",
->             "endsAt": "2018-05-12T00:00:00Z",
->             "type": "avoid",
->             "reason": "dfs",
->             "band": "5 Ghz",
->             "channel": 44,
->             "severity": 6,
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office",
->                 "tags": [
->                     "tag1",
->                     "tag2"
->                 ]
->             },
->             "device": {
->                 "name": "My AP",
->                 "serial": "Q234-ABCD-5678",
->                 "mac": "00:11:22:33:44:55",
->                 "tags": [
->                     "tag1",
->                     "tag2"
->                 ]
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
 
 ### clients
 
@@ -1067,742 +871,84 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 
 * * *
 
-\[ insight \]
--------------
+### radio
 
-### speedTestResults
-
-PATH _`/organizations/{organizationId}/insight/speedTestResults`_
+PATH _`/networks/{networkId}/wireless/radio/autoRf`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.
+> #### Update the AutoRF settings for a wireless network
 > 
-> **GET** `/organizations/{organizationId}/insight/speedTestResults`  
+> **PUT** `/networks/{networkId}/wireless/radio/autoRf`  
 > 
->     [
->         {
->             "speedTestId": "1284392014819",
->             "networkId": "N_24329156",
->             "request": {
->                 "serial": "Q234-ABCD-5678",
->                 "interface": "wan1"
->             },
->             "results": {
->                 "speeds": {
->                     "average": 247.279,
->                     "maximum": 983.611,
->                     "minimum": 71.606
+>     {
+>         "networkId": "L_12345",
+>         "name": "My Network",
+>         "timeZone": "America/Los_Angeles",
+>         "busyHour": {
+>             "schedule": {
+>                 "mode": "automatic",
+>                 "automatic": {
+>                     "start": "08:00",
+>                     "end": "17:00"
+>                 },
+>                 "manual": {
+>                     "start": "10:00",
+>                     "end": "15:00"
 >                 }
 >             },
->             "startedAt": "2021-12-08T20:07:13Z"
+>             "minimizeChanges": {
+>                 "enabled": true
+>             }
+>         },
+>         "channel": {
+>             "avoidance": {
+>                 "enabled": true
+>             }
 >         }
->     ]
+>     }
 > 
 > * * *
 
 * * *
 
-### webApps
-
-PATH _`/organizations/{organizationId}/insight/webApps`_
+PATH _`/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Lists all default web applications rules with counter set rule ids
+> #### List the AutoRF settings of an organization by network
 > 
-> **GET** `/organizations/{organizationId}/insight/webApps`  
+> **GET** `/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`  
 > 
 >     [
 >         {
->             "counterSetRuleId": "12345",
->             "name": "Meraki HTTPS",
->             "category": "Remote monitoring & management",
->             "thresholds": {
->                 "goodput": "20000",
->                 "responseDelay": "3000"
->             },
->             "expression": "http_host[*.example.com] or http_host",
->             "signature": {
->                 "signatureType": "custom_host",
->                 "host": "exampled.com",
->                 "port": "123",
->                 "net": "10.0.2.1/20"
->             }
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Add a custom web application for Insight to be able to track
-> 
-> **POST** `/organizations/{organizationId}/insight/webApps`  
-> 
->     {
->         "counterSetRuleId": "12345",
->         "name": "Meraki HTTPS",
->         "category": "Remote monitoring & management",
->         "thresholds": {
->             "goodput": "20000",
->             "responseDelay": "3000"
->         },
->         "expression": "http_host[*.example.com] or http_host",
->         "signature": {
->             "signatureType": "custom_host",
->             "host": "exampled.com"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update a custom web application for Insight to be able to track
-> 
-> **PUT** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
-> 
->     {
->         "counterSetRuleId": "12345",
->         "name": "Meraki HTTPS",
->         "category": "Remote monitoring & management",
->         "thresholds": {
->             "goodput": "20000",
->             "responseDelay": "3000"
->         },
->         "expression": "http_host[*.example.com] or http_host",
->         "signature": {
->             "signatureType": "custom_host",
->             "host": "exampled.com"
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a custom web application by counter set rule id.
-> 
-> **DELETE** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
-> 
-> * * *
-
-* * *
-
-### applications
-
-PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update an Insight tracked application
-> 
-> **PUT** `/organizations/{organizationId}/insight/applications/{applicationId}`  
-> 
->     {
->         "applicationId": "19.12",
->         "name": "Meraki HTTPS",
->         "thresholds": {
->             "type": "smart",
->             "byNetwork": [
->                 {
->                     "networkId": "N_12345678",
->                     "goodput": 50000,
->                     "responseDuration": 1000
->                 }
->             ]
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an Insight tracked application
-> 
-> **DELETE** `/organizations/{organizationId}/insight/applications/{applicationId}`  
-> 
-> * * *
-
-* * *
-
-\[ devices \]
--------------
-
-### wakeOnLan
-
-PATH _`/devices/{serial}/liveTools/wakeOnLan`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to send a Wake-on-LAN packet from the device
-> 
-> **POST** `/devices/{serial}/liveTools/wakeOnLan`  
-> 
->     {
->         "wakeOnLanId": "123",
->         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/wakeOnLan/1738",
->         "status": "complete",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "vlanId": 12,
->             "mac": "00:11:22:33:44:55"
->         },
->         "error": "The device is unreachable.",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a Wake-on-LAN job
-> 
-> **GET** `/devices/{serial}/liveTools/wakeOnLan/{wakeOnLanId}`  
-> 
->     {
->         "wakeOnLanId": "123",
->         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/wakeOnLan/1738",
->         "status": "complete",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "vlanId": 12,
->             "mac": "00:11:22:33:44:55"
->         },
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### speedTest
-
-PATH _`/devices/{serial}/liveTools/speedTest`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to execute a speed test from a device
-> 
-> **POST** `/devices/{serial}/liveTools/speedTest`  
-> 
->     {
->         "speedTestId": "1284392014819",
->         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "interface": "wan1"
->         },
->         "status": "complete",
->         "startedAt": "2021-10-01T15:55:39.000000Z",
->         "completionTimeEstimateSecs": 60,
->         "results": {
->             "speeds": {
->                 "average": 123.45,
->                 "maximum": 400.12,
->                 "minimum": 1.1
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/speedTest/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a speed test result in megabits per second. If test is not complete, no results are present.
-> 
-> **GET** `/devices/{serial}/liveTools/speedTest/{id}`  
-> 
->     {
->         "speedTestId": "1284392014819",
->         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "interface": "wan1"
->         },
->         "status": "complete",
->         "startedAt": "2021-10-01T15:55:39.000000Z",
->         "completionTimeEstimateSecs": 60,
->         "results": {
->             "speeds": {
->                 "average": 123.45,
->                 "maximum": 400.12,
->                 "minimum": 1.1
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### macTable
-
-PATH _`/devices/{serial}/liveTools/macTable`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to request the MAC table from the device. Switches currently support this feature..
-> 
-> **POST** `/devices/{serial}/liveTools/macTable`  
-> 
->     {
->         "macTableId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/macTable/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/macTable/{macTableId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a MAC table live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/macTable/{macTableId}`  
-> 
->     {
->         "macTableId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/macTable/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "entries": [
->             {
->                 "mac": "00:11:22:33:44:55",
->                 "port": "Tw1/0/9",
->                 "vlanId": 100
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### cableTest
-
-PATH _`/devices/{serial}/liveTools/cableTest`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a cable test for the device on the specified ports.
-> 
-> **POST** `/devices/{serial}/liveTools/cableTest`  
-> 
->     {
->         "cableTestId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/cableTest/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "ports": [
->                 "2",
->                 "8"
->             ]
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/cableTest/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a cable test live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/cableTest/{id}`  
-> 
->     {
->         "cableTestId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/cableTest/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "ports": [
->                 "2",
->                 "8"
->             ]
->         },
->         "status": "complete",
->         "results": [
->             {
->                 "port": "2",
->                 "status": "up",
->                 "speedMbps": 10000,
->                 "error": "An unexpected error occurred during the execution of the cable test.",
->                 "pairs": [
->                     {
->                         "index": 0,
->                         "status": "ok",
->                         "lengthMeters": 1
->                     }
->                 ]
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### arpTable
-
-PATH _`/devices/{serial}/liveTools/arpTable`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a ARP table request for the device. This endpoint currently supports switches.
-> 
-> **POST** `/devices/{serial}/liveTools/arpTable`  
-> 
->     {
->         "arpTableId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/arpTable/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/arpTable/{arpTableId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an ARP table live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/arpTable/{arpTableId}`  
-> 
->     {
->         "arpTableId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/arpTable/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "entries": [
->             {
->                 "ip": "10.0.0.0/24",
->                 "mac": "00:11:22:33:44:55",
->                 "vlanId": 100,
->                 "lastUpdatedAt": "2018-02-11T00:00:00.090210Z"
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-\[ sensor \]
-------------
-
-### commands
-
-PATH _`/devices/{serial}/sensor/commands`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a historical log of all commands
-> 
-> **GET** `/devices/{serial}/sensor/commands`  
-> 
->     [
->         {
->             "commandId": "1284392014819",
->             "createdAt": "2018-02-11T00:00:00Z",
->             "completedAt": "2018-05-12T00:00:00Z",
->             "createdBy": {
->                 "adminId": "212406",
->                 "name": "Miles Meraki",
->                 "email": "miles@meraki.com"
->             },
->             "operation": "disableDownstreamPower",
->             "status": "completed",
->             "gateway": {
->                 "serial": "Q234-ABCD-5678",
->                 "name": "My camera"
->             },
->             "errors": []
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Sends a command to a sensor
-> 
-> **POST** `/devices/{serial}/sensor/commands`  
-> 
->     {
->         "commandId": "1284392014819",
->         "createdAt": "2018-02-11T00:00:00Z",
->         "completedAt": "2018-05-12T00:00:00Z",
->         "createdBy": {
->             "adminId": "212406",
->             "name": "Miles Meraki",
->             "email": "miles@meraki.com"
->         },
->         "operation": "disableDownstreamPower",
->         "status": "completed",
->         "gateway": {
->             "serial": "Q234-ABCD-5678",
->             "name": "My camera"
->         },
->         "errors": []
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/sensor/commands/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns information about the command's execution, including the status
-> 
-> **GET** `/devices/{serial}/sensor/commands/{id}`  
-> 
->     {
->         "commandId": "1284392014819",
->         "createdAt": "2018-02-11T00:00:00Z",
->         "completedAt": "2018-05-12T00:00:00Z",
->         "createdBy": {
->             "adminId": "212406",
->             "name": "Miles Meraki",
->             "email": "miles@meraki.com"
->         },
->         "operation": "disableDownstreamPower",
->         "status": "completed",
->         "gateway": {
->             "serial": "Q234-ABCD-5678",
->             "name": "My camera"
->         },
->         "errors": []
->     }
-> 
-> * * *
-
-* * *
-
-### schedules
-
-PATH _`/networks/{networkId}/sensor/schedules`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a list of all sensor schedules.
-> 
-> **GET** `/networks/{networkId}/sensor/schedules`  
-> 
->     [
->         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### alerts
-
-PATH _`/organizations/{organizationId}/sensor/alerts`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a list of sensor alert events
-> 
-> **GET** `/organizations/{organizationId}/sensor/alerts`  
-> 
->     [
->         {
->             "startTs": "2018-02-11T00:00:00.090210Z",
->             "sensor": {
->                 "name": "My sensor",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MT10",
->                 "url": "http://example.com"
->             },
->             "trigger": {
->                 "ts": "2021-10-18T23:54:48Z",
->                 "metric": "temperature",
->                 "battery": {
->                     "percentage": 91
->                 },
->                 "button": {
->                     "pressType": "short"
->                 },
->                 "door": {
->                     "open": true
->                 },
->                 "humidity": {
->                     "relativePercentage": 34
->                 },
->                 "indoorAirQuality": {
->                     "score": 89
->                 },
->                 "noise": {
->                     "ambient": {
->                         "level": 45
->                     }
->                 },
->                 "pm25": {
->                     "concentration": 100
->                 },
->                 "temperature": {
->                     "fahrenheit": 77.81,
->                     "celsius": 25.45
->                 },
->                 "tvoc": {
->                     "concentration": 100
->                 },
->                 "water": {
->                     "present": true
->                 }
->             },
->             "profile": {
->                 "id": "1",
->                 "name": "Too hot",
->                 "condition": {
->                     "metric": "temperature",
->                     "threshold": {
->                         "temperature": {
->                             "celsius": 20.5,
->                             "fahrenheit": 70,
->                             "quality": "good"
->                         },
->                         "humidity": {
->                             "relativePercentage": 65,
->                             "quality": "inadequate"
->                         },
->                         "water": {
->                             "present": true
->                         },
->                         "door": {
->                             "open": true
->                         },
->                         "tvoc": {
->                             "concentration": 400,
->                             "quality": "poor"
->                         },
->                         "pm25": {
->                             "concentration": 90,
->                             "quality": "fair"
->                         },
->                         "noise": {
->                             "ambient": {
->                                 "level": 120,
->                                 "quality": "poor"
->                             }
->                         },
->                         "indoorAirQuality": {
->                             "score": 80,
->                             "quality": "fair"
->                         }
+>             "networkId": "L_12345",
+>             "name": "My Network",
+>             "timeZone": "America/Los_Angeles",
+>             "busyHour": {
+>                 "schedule": {
+>                     "mode": "automatic",
+>                     "automatic": {
+>                         "start": "08:00",
+>                         "end": "17:00"
 >                     },
->                     "direction": "above",
->                     "duration": 60
+>                     "manual": {
+>                         "start": "10:00",
+>                         "end": "15:00"
+>                     }
+>                 },
+>                 "minimizeChanges": {
+>                     "enabled": true
 >                 }
 >             },
->             "snapshotCamera": {
->                 "serial": "QAAA-AAAA-AAAA",
->                 "name": "Camera",
->                 "url": "http://example.com"
+>             "channel": {
+>                 "avoidance": {
+>                     "enabled": true
+>                 }
 >             }
 >         }
 >     ]
@@ -1811,142 +957,40 @@ PATH _`/organizations/{organizationId}/sensor/alerts`_
 
 * * *
 
-### readings
-
-PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
+PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/activities`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order
+> #### List the channel planning activities of an organization
 > 
-> **GET** `/organizations/{organizationId}/sensor/readings/history/byInterval`  
+> **GET** `/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/activities`  
 > 
 >     [
 >         {
->             "startTs": "2022-01-07T23:00:00Z",
->             "endTs": "2022-01-07T23:59:59Z",
->             "serial": "Q234-ABCD-5678",
->             "model": "MT11",
+>             "startedAt": "2018-02-11T00:00:00Z",
+>             "endsAt": "2018-05-12T00:00:00Z",
+>             "type": "avoid",
+>             "reason": "dfs",
+>             "band": "5 Ghz",
+>             "channel": 44,
+>             "severity": 6,
 >             "network": {
 >                 "id": "N_24329156",
->                 "name": "Main Office"
+>                 "name": "Main Office",
+>                 "tags": [
+>                     "tag1",
+>                     "tag2"
+>                 ]
 >             },
->             "metric": "temperature",
->             "battery": {
->                 "percentage": {
->                     "minimum": 95,
->                     "maximum": 97,
->                     "average": 96
->                 }
->             },
->             "button": {
->                 "pressType": {
->                     "counts": {
->                         "short": 2,
->                         "long": 4
->                     }
->                 }
->             },
->             "door": {
->                 "counts": {
->                     "open": 6
->                 }
->             },
->             "humidity": {
->                 "relativePercentage": {
->                     "minimum": 33,
->                     "maximum": 35,
->                     "average": 33
->                 }
->             },
->             "indoorAirQuality": {
->                 "score": {
->                     "minimum": 33,
->                     "maximum": 35,
->                     "average": 33
->                 }
->             },
->             "noise": {
->                 "ambient": {
->                     "level": {
->                         "minimum": 22,
->                         "maximum": 45,
->                         "average": 31
->                     }
->                 }
->             },
->             "pm25": {
->                 "concentration": {
->                     "minimum": 0,
->                     "maximum": 3,
->                     "average": 1
->                 }
->             },
->             "temperature": {
->                 "fahrenheit": {
->                     "minimum": 68.15,
->                     "maximum": 74.91,
->                     "average": 72.08
->                 },
->                 "celsius": {
->                     "minimum": 20.08,
->                     "maximum": 23.84,
->                     "average": 22.27
->                 }
->             },
->             "tvoc": {
->                 "concentration": {
->                     "minimum": 221,
->                     "maximum": 504,
->                     "average": 440
->                 }
->             },
->             "water": {
->                 "counts": {
->                     "present": 6
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-\[ camera \]
-------------
-
-### boundaries
-
-PATH _`/organizations/{organizationId}/camera/boundaries/areas/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns all configured area boundaries of cameras
-> 
-> **GET** `/organizations/{organizationId}/camera/boundaries/areas/byDevice`  
-> 
->     [
->         {
->             "networkId": "N_24329156",
->             "serial": "Q234-ABCD-5678",
->             "boundaries": {
->                 "id": "k74272e",
->                 "type": "area",
->                 "label": "myarea",
->                 "vertices": [
->                     0.1,
->                     0.1,
->                     0.1,
->                     0.5,
->                     0.5,
->                     0.5,
->                     0.1,
->                     0.1
+>             "device": {
+>                 "name": "My AP",
+>                 "serial": "Q234-ABCD-5678",
+>                 "mac": "00:11:22:33:44:55",
+>                 "tags": [
+>                     "tag1",
+>                     "tag2"
 >                 ]
 >             }
 >         }
@@ -1956,566 +1000,59 @@ PATH _`/organizations/{organizationId}/camera/boundaries/areas/byDevice`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/camera/boundaries/lines/byDevice`_
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Returns all configured crossingline boundaries of cameras
+> #### Fetch the health scores for a given AP on this network
 > 
-> **GET** `/organizations/{organizationId}/camera/boundaries/lines/byDevice`  
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### devices
+
+PATH _`/networks/{networkId}/wireless/devices/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores of all APs on this network
+> 
+> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
 > 
 >     [
 >         {
->             "networkId": "N_24329156",
->             "serial": "Q234-ABCD-5678",
->             "boundaries": {
->                 "id": "k74272e",
->                 "type": "line",
->                 "label": "mycline",
->                 "vertices": [
->                     0.183,
->                     0.381,
->                     0.375,
->                     0.5,
->                     0.625,
->                     0.487,
->                     0.806,
->                     0.343
->                 ],
->                 "dirVertice": [
->                     0.5,
->                     0.54
->                 ]
+>             "device": {
+>                 "serial": "Q234-ABCD-5678"
+>             },
+>             "performance": {
+>                 "latest": 80
+>             },
+>             "onboarding": {
+>                 "latest": 20
 >             }
 >         }
 >     ]
-> 
-> * * *
-
-* * *
-
-### detections
-
-PATH _`/organizations/{organizationId}/camera/detections/history/byBoundary/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns analytics data for timespans
-> 
-> **GET** `/organizations/{organizationId}/camera/detections/history/byBoundary/byInterval`  
-> 
->     [
->         {
->             "boundaryId": "k74272e",
->             "type": "line",
->             "results": {
->                 "startTs": "2018-02-11T00:00:00Z",
->                 "endTs": "2018-05-12T00:00:00Z",
->                 "objectType": "person",
->                 "in": 22,
->                 "out": 13
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-\[ secureConnect \]
--------------------
-
-### privateApplicationGroups
-
-PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provides a list of private application groups for an Organization
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
-> 
->     {
->         "data": [
->             {
->                 "applicationGroupId": "1122321",
->                 "name": "Westcoast Data Center",
->                 "description": "Private applications in Westcoast Data Center",
->                 "applicationIds": [
->                     "183456",
->                     "123568"
->                 ],
->                 "createdAt": "2021-12-13T16:07:07.222Z",
->                 "modifiedAt": "2021-12-13T16:07:07.222Z"
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Creates a group of private applications to apply to policy. A maximum of 300 private application groups are allowed for an organization.
-> 
-> **POST** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
-> 
->     {
->         "applicationGroupId": "1122321",
->         "name": "Westcoast Data Center",
->         "description": "Private applications in Westcoast Data Center",
->         "applicationIds": [
->             "183456",
->             "123568"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the details of a specific private application group
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
-> 
->     {
->         "applicationGroupId": "1122321",
->         "name": "Westcoast Data Center",
->         "description": "Private applications in Westcoast Data Center",
->         "applicationIds": [
->             "183456",
->             "123568"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.
-> 
-> **PUT** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
-> 
->     {
->         "applicationGroupId": "1122321",
->         "name": "Westcoast Data Center",
->         "description": "Private applications in Westcoast Data Center",
->         "applicationIds": [
->             "183456",
->             "123568"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Deletes private application group from an Organization. Detaches application from groups before deleting
-> 
-> **DELETE** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
-> 
-> * * *
-
-* * *
-
-### privateApplications
-
-PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provides a list of private applications for an Organization.
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/privateApplications`  
-> 
->     {
->         "data": [
->             {
->                 "applicationId": "183456",
->                 "name": "Jira",
->                 "description": "Jira App For My Org",
->                 "destinations": [
->                     {
->                         "destinationAddr": [
->                             "172.6.0.0/32",
->                             "255.100.100.0/24"
->                         ],
->                         "protocolPorts": [
->                             {
->                                 "protocol": "TCP",
->                                 "ports": "80-82"
->                             }
->                         ],
->                         "accessType": "network"
->                     }
->                 ],
->                 "appProtocol": "https",
->                 "sni": "xyz123.jira.com",
->                 "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->                 "sslVerificationEnabled": true,
->                 "applicationGroupIds": [
->                     "1122321"
->                 ],
->                 "createdAt": "2021-12-13T16:07:07.222000Z",
->                 "modifiedAt": "2021-12-13T16:07:07.222000Z"
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.
-> 
-> **POST** `/organizations/{organizationId}/secureConnect/privateApplications`  
-> 
->     {
->         "applicationId": "183456",
->         "name": "Jira",
->         "description": "Jira App For My Org",
->         "destinations": [
->             {
->                 "destinationAddr": [
->                     "172.6.0.0/32",
->                     "255.100.100.0/24"
->                 ],
->                 "protocolPorts": [
->                     {
->                         "protocol": "TCP",
->                         "ports": "80-82"
->                     }
->                 ],
->                 "accessType": "network"
->             }
->         ],
->         "appProtocol": "https",
->         "sni": "xyz123.jira.com",
->         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->         "sslVerificationEnabled": true,
->         "applicationGroupIds": [
->             "1122321"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222000Z",
->         "modifiedAt": "2021-12-13T16:07:07.222000Z"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the details of a specific private application
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
-> 
->     {
->         "applicationId": "183456",
->         "name": "Jira",
->         "description": "Jira App For My Org",
->         "destinations": [
->             {
->                 "destinationAddr": [
->                     "172.6.0.0/32",
->                     "255.100.100.0/24"
->                 ],
->                 "protocolPorts": [
->                     {
->                         "protocol": "TCP",
->                         "ports": "80-82"
->                     }
->                 ],
->                 "accessType": "network"
->             }
->         ],
->         "appProtocol": "https",
->         "sni": "xyz123.jira.com",
->         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->         "sslVerificationEnabled": true,
->         "applicationGroupIds": [
->             "1122321"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.
-> 
-> **PUT** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
-> 
->     {
->         "applicationId": "183456",
->         "name": "Jira",
->         "description": "Jira App For My Org",
->         "destinations": [
->             {
->                 "destinationAddr": [
->                     "172.6.0.0/32",
->                     "255.100.100.0/24"
->                 ],
->                 "protocolPorts": [
->                     {
->                         "protocol": "TCP",
->                         "ports": "80-82"
->                     }
->                 ],
->                 "accessType": "network"
->             }
->         ],
->         "appProtocol": "https",
->         "sni": "xyz123.jira.com",
->         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->         "sslVerificationEnabled": true,
->         "applicationGroupIds": [
->             "1122321"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222000Z",
->         "modifiedAt": "2021-12-13T16:07:07.222000Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.
-> 
-> **DELETE** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
-> 
-> * * *
-
-* * *
-
-### publicApplications
-
-PATH _`/organizations/{organizationId}/secureConnect/publicApplications`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provides a list of public applications for an Organization.
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/publicApplications`  
-> 
->     {
->         "items": [
->             {
->                 "id": "ABCDEFG",
->                 "name": "Snapcraft",
->                 "lastDetected": "2021-12-13T16:07:07.222Z",
->                 "risk": "medium",
->                 "category": "Application Development and Testing",
->                 "appType": "paas"
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### remoteAccessLog
-
-PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLog`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the latest 5000 events logged by remote access.
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLog`  
-> 
->     {
->         "data": [
->             {
->                 "osversion": "win-10.0.19044",
->                 "internalip": "10.0.1.5",
->                 "connecttimestamp": 1667252442,
->                 "identities": [
->                     {
->                         "id": "1173502975",
->                         "type": {
->                             "id": "7",
->                             "type": "directory_user",
->                             "label": "AD Users"
->                         },
->                         "label": "sample-remote-access@cisco.com",
->                         "deleted": false
->                     }
->                 ],
->                 "reason": "ACCT_DISC_USER_REQ",
->                 "failedreasons": [],
->                 "connectionevent": "disconnected",
->                 "anyconnectversion": "4.10.05095",
->                 "timestamp": 1667252458
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### remoteAccessLogsExports
-
-PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provides a list of remote access logs exports for an Organization
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
-> 
->     {
->         "data": [
->             {
->                 "id": "123",
->                 "from": "2023-05-16 04:23:43 UTC",
->                 "to": "2023-06-14 04:23:52 UTC",
->                 "userEmail": "joe@meraki.net",
->                 "status": "new",
->                 "metadata": {
->                     "fileCount": 0,
->                     "logCount": 0,
->                     "currentFileLogCount": 0,
->                     "generatorCount": 0,
->                     "limitReached": false,
->                     "startedAt": "2023-05-15 21:23:43.388597",
->                     "endedAt": "2023-05-15 21:23:43.388597",
->                     "duration": 60
->                 }
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Creates a export for a provided timestamp interval.
-> 
-> **POST** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
-> 
->     {
->         "id": "123",
->         "from": "2023-05-16 04:23:43 UTC",
->         "to": "2023-06-14 04:23:52 UTC",
->         "userEmail": "joe@meraki.net",
->         "status": "new",
->         "metadata": {
->             "fileCount": 0,
->             "logCount": 0,
->             "currentFileLogCount": 0,
->             "generatorCount": 0,
->             "limitReached": false,
->             "startedAt": "2023-05-15 21:23:43.388597",
->             "endedAt": "2023-05-15 21:23:43.388597",
->             "duration": 60
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Redirects to the download link of the completed export.
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`  
-> 
->     {
->         "link": "download"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the details of a specific remote access logs export
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`  
-> 
->     {
->         "id": "123",
->         "from": "2023-05-16 04:23:43 UTC",
->         "to": "2023-06-14 04:23:52 UTC",
->         "userEmail": "joe@meraki.net",
->         "status": "new",
->         "metadata": {
->             "fileCount": 0,
->             "logCount": 0,
->             "currentFileLogCount": 0,
->             "generatorCount": 0,
->             "limitReached": false,
->             "startedAt": "2023-05-15 21:23:43.388597",
->             "endedAt": "2023-05-15 21:23:43.388597",
->             "duration": 60
->         }
->     }
 > 
 > * * *
 
@@ -2849,58 +1386,139 @@ PATH _`/organizations/{organizationId}/certificates/{certificateId}/contents`_
 
 * * *
 
-### cloud
+### extensions
 
-PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
+PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List of source/destination traffic rules
+> #### List the ThousandEyes agent configurations under this organization. Only valid for networks with Meraki Insight.
 > 
-> **GET** `/organizations/{organizationId}/cloud/connectivity/requirements`  
+> **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks`  
 > 
 >     [
 >         {
->             "description": "Meraki cloud communication",
->             "productTypes": [
->                 "appliance",
->                 "wireless",
->                 "camera",
->                 "switch"
+>             "networkId": "N_24329156",
+>             "enabled": true,
+>             "agentId": "12345"
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add a ThousandEyes agent for this network. Only valid for networks with Meraki Insight.
+> 
+> **POST** `/organizations/{organizationId}/extensions/thousandEyes/networks`  
+> 
+>     {
+>         "networkId": "N_24329156",
+>         "enabled": true,
+>         "agentId": "12345"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/supported`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List all the networks eligible for ThousandEyes agent activation under this organization.
+> 
+> **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks/supported`  
+> 
+>     [
+>         {
+>             "networkId": "N_24329156",
+>             "name": "Main Office",
+>             "tags": [
+>                 "tag1",
+>                 "tag2"
 >             ],
->             "rule": {
->                 "sources": {
->                     "includeAddressesInYourNetworks": false,
->                     "addresses": [
->                         {
->                             "type": "ipv4",
->                             "address": "209.206.48.0/20"
->                         }
->                     ]
->                 },
->                 "destinations": {
->                     "includeAddressesInYourNetworks": false,
->                     "includeAnyAddress": false,
->                     "addresses": [
->                         {
->                             "type": "fqdn",
->                             "address": "webhook.site"
->                         }
->                     ]
->                 },
->                 "ports": [
->                     {
->                         "port": "443",
->                         "protocols": [
->                             "TCP"
->                         ]
+>             "device": {
+>                 "model": "MX105",
+>                 "firmware": {
+>                     "currentVersion": {
+>                         "shortName": "MX 18.104"
 >                     }
->                 ]
+>                 },
+>                 "agent": {
+>                     "isInstalled": false
+>                 }
 >             }
 >         }
 >     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the ThousandEyes agent configuration under this network. Only valid for networks with Meraki Insight.
+> 
+> **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
+> 
+>     {
+>         "networkId": "N_24329156",
+>         "enabled": true,
+>         "agentId": "12345"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update a ThousandEyes agent from this network. Only valid for networks with Meraki Insight.
+> 
+> **PUT** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
+> 
+>     {
+>         "networkId": "N_24329156",
+>         "enabled": true,
+>         "agentId": "12345"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a ThousandEyes agent from this network. Only valid for networks with Meraki Insight.
+> 
+> **DELETE** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/extensions/thousandEyes/tests`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Create a ThousandEyes test based on a provided test tamplate
+> 
+> **POST** `/organizations/{organizationId}/extensions/thousandEyes/tests`  
+> 
+>     {
+>         "jobStatus": "new",
+>         "pccBackgroundJob": "13289785"
+>     }
 > 
 > * * *
 
@@ -3345,6 +1963,1567 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 >         "url": "https://www.example.com/path",
 >         "status": "enqueued"
 >     }
+> 
+> * * *
+
+* * *
+
+### cloud
+
+PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List of source/destination traffic rules
+> 
+> **GET** `/organizations/{organizationId}/cloud/connectivity/requirements`  
+> 
+>     [
+>         {
+>             "description": "Meraki cloud communication",
+>             "productTypes": [
+>                 "appliance",
+>                 "wireless",
+>                 "camera",
+>                 "switch"
+>             ],
+>             "rule": {
+>                 "sources": {
+>                     "includeAddressesInYourNetworks": false,
+>                     "addresses": [
+>                         {
+>                             "type": "ipv4",
+>                             "address": "209.206.48.0/20"
+>                         }
+>                     ]
+>                 },
+>                 "destinations": {
+>                     "includeAddressesInYourNetworks": false,
+>                     "includeAnyAddress": false,
+>                     "addresses": [
+>                         {
+>                             "type": "fqdn",
+>                             "address": "webhook.site"
+>                         }
+>                     ]
+>                 },
+>                 "ports": [
+>                     {
+>                         "port": "443",
+>                         "protocols": [
+>                             "TCP"
+>                         ]
+>                     }
+>                 ]
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+\[ insight \]
+-------------
+
+### speedTestResults
+
+PATH _`/organizations/{organizationId}/insight/speedTestResults`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.
+> 
+> **GET** `/organizations/{organizationId}/insight/speedTestResults`  
+> 
+>     [
+>         {
+>             "speedTestId": "1284392014819",
+>             "networkId": "N_24329156",
+>             "request": {
+>                 "serial": "Q234-ABCD-5678",
+>                 "interface": "wan1"
+>             },
+>             "results": {
+>                 "speeds": {
+>                     "average": 247.279,
+>                     "maximum": 983.611,
+>                     "minimum": 71.606
+>                 }
+>             },
+>             "startedAt": "2021-12-08T20:07:13Z"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### webApps
+
+PATH _`/organizations/{organizationId}/insight/webApps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lists all default web applications rules with counter set rule ids
+> 
+> **GET** `/organizations/{organizationId}/insight/webApps`  
+> 
+>     [
+>         {
+>             "counterSetRuleId": "12345",
+>             "name": "Meraki HTTPS",
+>             "category": "Remote monitoring & management",
+>             "thresholds": {
+>                 "goodput": "20000",
+>                 "responseDelay": "3000"
+>             },
+>             "expression": "http_host[*.example.com] or http_host",
+>             "signature": {
+>                 "signatureType": "custom_host",
+>                 "host": "exampled.com",
+>                 "port": "123",
+>                 "net": "10.0.2.1/20"
+>             }
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add a custom web application for Insight to be able to track
+> 
+> **POST** `/organizations/{organizationId}/insight/webApps`  
+> 
+>     {
+>         "counterSetRuleId": "12345",
+>         "name": "Meraki HTTPS",
+>         "category": "Remote monitoring & management",
+>         "thresholds": {
+>             "goodput": "20000",
+>             "responseDelay": "3000"
+>         },
+>         "expression": "http_host[*.example.com] or http_host",
+>         "signature": {
+>             "signatureType": "custom_host",
+>             "host": "exampled.com"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a custom web application for Insight to be able to track
+> 
+> **PUT** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
+> 
+>     {
+>         "counterSetRuleId": "12345",
+>         "name": "Meraki HTTPS",
+>         "category": "Remote monitoring & management",
+>         "thresholds": {
+>             "goodput": "20000",
+>             "responseDelay": "3000"
+>         },
+>         "expression": "http_host[*.example.com] or http_host",
+>         "signature": {
+>             "signatureType": "custom_host",
+>             "host": "exampled.com"
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a custom web application by counter set rule id.
+> 
+> **DELETE** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
+> 
+> * * *
+
+* * *
+
+### applications
+
+PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an Insight tracked application
+> 
+> **PUT** `/organizations/{organizationId}/insight/applications/{applicationId}`  
+> 
+>     {
+>         "applicationId": "19.12",
+>         "name": "Meraki HTTPS",
+>         "thresholds": {
+>             "type": "smart",
+>             "byNetwork": [
+>                 {
+>                     "networkId": "N_12345678",
+>                     "goodput": 50000,
+>                     "responseDuration": 1000
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an Insight tracked application
+> 
+> **DELETE** `/organizations/{organizationId}/insight/applications/{applicationId}`  
+> 
+> * * *
+
+* * *
+
+\[ devices \]
+-------------
+
+### speedTest
+
+PATH _`/devices/{serial}/liveTools/speedTest`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to execute a speed test from a device
+> 
+> **POST** `/devices/{serial}/liveTools/speedTest`  
+> 
+>     {
+>         "speedTestId": "1284392014819",
+>         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "interface": "wan1"
+>         },
+>         "status": "complete",
+>         "startedAt": "2021-10-01T15:55:39.000000Z",
+>         "completionTimeEstimateSecs": 60,
+>         "results": {
+>             "speeds": {
+>                 "average": 123.45,
+>                 "maximum": 400.12,
+>                 "minimum": 1.1
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/speedTest/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a speed test result in megabits per second. If test is not complete, no results are present.
+> 
+> **GET** `/devices/{serial}/liveTools/speedTest/{id}`  
+> 
+>     {
+>         "speedTestId": "1284392014819",
+>         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "interface": "wan1"
+>         },
+>         "status": "complete",
+>         "startedAt": "2021-10-01T15:55:39.000000Z",
+>         "completionTimeEstimateSecs": 60,
+>         "results": {
+>             "speeds": {
+>                 "average": 123.45,
+>                 "maximum": 400.12,
+>                 "minimum": 1.1
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### macTable
+
+PATH _`/devices/{serial}/liveTools/macTable`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to request the MAC table from the device. Switches currently support this feature..
+> 
+> **POST** `/devices/{serial}/liveTools/macTable`  
+> 
+>     {
+>         "macTableId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/macTable/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/macTable/{macTableId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a MAC table live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/macTable/{macTableId}`  
+> 
+>     {
+>         "macTableId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/macTable/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "entries": [
+>             {
+>                 "mac": "00:11:22:33:44:55",
+>                 "port": "Tw1/0/9",
+>                 "vlanId": 100
+>             }
+>         ],
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
+\[ sensor \]
+------------
+
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### commands
+
+PATH _`/devices/{serial}/sensor/commands`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a historical log of all commands
+> 
+> **GET** `/devices/{serial}/sensor/commands`  
+> 
+>     [
+>         {
+>             "commandId": "1284392014819",
+>             "createdAt": "2018-02-11T00:00:00Z",
+>             "completedAt": "2018-05-12T00:00:00Z",
+>             "createdBy": {
+>                 "adminId": "212406",
+>                 "name": "Miles Meraki",
+>                 "email": "miles@meraki.com"
+>             },
+>             "operation": "disableDownstreamPower",
+>             "status": "completed",
+>             "gateway": {
+>                 "serial": "Q234-ABCD-5678",
+>                 "name": "My camera"
+>             },
+>             "schedule": {
+>                 "scheduleId": "1284392014819",
+>                 "name": "Lights off"
+>             },
+>             "errors": []
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Sends a command to a sensor
+> 
+> **POST** `/devices/{serial}/sensor/commands`  
+> 
+>     {
+>         "commandId": "1284392014819",
+>         "createdAt": "2018-02-11T00:00:00Z",
+>         "completedAt": "2018-05-12T00:00:00Z",
+>         "createdBy": {
+>             "adminId": "212406",
+>             "name": "Miles Meraki",
+>             "email": "miles@meraki.com"
+>         },
+>         "operation": "disableDownstreamPower",
+>         "status": "completed",
+>         "gateway": {
+>             "serial": "Q234-ABCD-5678",
+>             "name": "My camera"
+>         },
+>         "schedule": {
+>             "scheduleId": "1284392014819",
+>             "name": "Lights off"
+>         },
+>         "errors": []
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/sensor/commands/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns information about the command's execution, including the status
+> 
+> **GET** `/devices/{serial}/sensor/commands/{id}`  
+> 
+>     {
+>         "commandId": "1284392014819",
+>         "createdAt": "2018-02-11T00:00:00Z",
+>         "completedAt": "2018-05-12T00:00:00Z",
+>         "createdBy": {
+>             "adminId": "212406",
+>             "name": "Miles Meraki",
+>             "email": "miles@meraki.com"
+>         },
+>         "operation": "disableDownstreamPower",
+>         "status": "completed",
+>         "gateway": {
+>             "serial": "Q234-ABCD-5678",
+>             "name": "My camera"
+>         },
+>         "schedule": {
+>             "scheduleId": "1284392014819",
+>             "name": "Lights off"
+>         },
+>         "errors": []
+>     }
+> 
+> * * *
+
+* * *
+
+### alerts
+
+PATH _`/organizations/{organizationId}/sensor/alerts`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a list of sensor alert events
+> 
+> **GET** `/organizations/{organizationId}/sensor/alerts`  
+> 
+>     [
+>         {
+>             "startTs": "2018-02-11T00:00:00.090210Z",
+>             "sensor": {
+>                 "name": "My sensor",
+>                 "serial": "Q234-ABCD-5678",
+>                 "model": "MT10",
+>                 "url": "http://example.com"
+>             },
+>             "trigger": {
+>                 "ts": "2021-10-18T23:54:48.000000Z",
+>                 "metric": "temperature",
+>                 "apparentPower": {
+>                     "draw": 15.9
+>                 },
+>                 "battery": {
+>                     "percentage": 91
+>                 },
+>                 "button": {
+>                     "pressType": "short"
+>                 },
+>                 "co2": {
+>                     "concentration": 100
+>                 },
+>                 "current": {
+>                     "draw": 0.13
+>                 },
+>                 "door": {
+>                     "open": true
+>                 },
+>                 "downstreamPower": {
+>                     "enabled": true
+>                 },
+>                 "frequency": {
+>                     "level": 60.1
+>                 },
+>                 "humidity": {
+>                     "relativePercentage": 34
+>                 },
+>                 "indoorAirQuality": {
+>                     "score": 89
+>                 },
+>                 "noise": {
+>                     "ambient": {
+>                         "level": 45
+>                     }
+>                 },
+>                 "pm25": {
+>                     "concentration": 100
+>                 },
+>                 "powerFactor": {
+>                     "percentage": 86
+>                 },
+>                 "realPower": {
+>                     "draw": 13.7
+>                 },
+>                 "remoteLockoutSwitch": {
+>                     "locked": false
+>                 },
+>                 "temperature": {
+>                     "fahrenheit": 77.81,
+>                     "celsius": 25.45
+>                 },
+>                 "tvoc": {
+>                     "concentration": 100
+>                 },
+>                 "voltage": {
+>                     "level": 122.4
+>                 },
+>                 "water": {
+>                     "present": true
+>                 }
+>             },
+>             "profile": {
+>                 "id": "1",
+>                 "name": "Too hot",
+>                 "condition": {
+>                     "metric": "temperature",
+>                     "threshold": {
+>                         "temperature": {
+>                             "celsius": 20.5,
+>                             "fahrenheit": 70,
+>                             "quality": "good"
+>                         },
+>                         "humidity": {
+>                             "relativePercentage": 65,
+>                             "quality": "inadequate"
+>                         },
+>                         "water": {
+>                             "present": true
+>                         },
+>                         "door": {
+>                             "open": true
+>                         },
+>                         "tvoc": {
+>                             "concentration": 400,
+>                             "quality": "poor"
+>                         },
+>                         "pm25": {
+>                             "concentration": 90,
+>                             "quality": "fair"
+>                         },
+>                         "noise": {
+>                             "ambient": {
+>                                 "level": 120,
+>                                 "quality": "poor"
+>                             }
+>                         },
+>                         "indoorAirQuality": {
+>                             "score": 80,
+>                             "quality": "fair"
+>                         },
+>                         "realPower": {
+>                             "draw": 14.1
+>                         },
+>                         "apparentPower": {
+>                             "draw": 17.2
+>                         },
+>                         "powerFactor": {
+>                             "percentage": 81
+>                         },
+>                         "current": {
+>                             "draw": 0.14
+>                         },
+>                         "voltage": {
+>                             "level": 119.5
+>                         },
+>                         "frequency": {
+>                             "level": 58.8
+>                         },
+>                         "upstreamPower": {
+>                             "outageDetected": true
+>                         }
+>                     },
+>                     "direction": "above",
+>                     "duration": 60
+>                 }
+>             },
+>             "snapshotCamera": {
+>                 "serial": "QAAA-AAAA-AAAA",
+>                 "name": "Camera",
+>                 "url": "http://example.com"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### readings
+
+PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order
+> 
+> **GET** `/organizations/{organizationId}/sensor/readings/history/byInterval`  
+> 
+>     [
+>         {
+>             "startTs": "2022-01-07T23:00:00Z",
+>             "endTs": "2022-01-07T23:59:59Z",
+>             "serial": "Q234-ABCD-5678",
+>             "model": "MT11",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "metric": "temperature",
+>             "apparentPower": {
+>                 "draw": {
+>                     "minimum": 0,
+>                     "maximum": 15.9,
+>                     "average": 4.9
+>                 }
+>             },
+>             "battery": {
+>                 "percentage": {
+>                     "minimum": 95,
+>                     "maximum": 97,
+>                     "average": 96
+>                 }
+>             },
+>             "button": {
+>                 "pressType": {
+>                     "counts": {
+>                         "short": 2,
+>                         "long": 4
+>                     }
+>                 }
+>             },
+>             "co2": {
+>                 "concentration": {
+>                     "minimum": 221,
+>                     "maximum": 504,
+>                     "average": 440
+>                 }
+>             },
+>             "current": {
+>                 "draw": {
+>                     "minimum": 0,
+>                     "maximum": 0.13,
+>                     "average": 0.04
+>                 }
+>             },
+>             "door": {
+>                 "counts": {
+>                     "open": 6
+>                 }
+>             },
+>             "energy": {
+>                 "usage": 0.116
+>             },
+>             "frequency": {
+>                 "draw": {
+>                     "minimum": 59.6,
+>                     "maximum": 60.2,
+>                     "average": 60.1
+>                 }
+>             },
+>             "humidity": {
+>                 "relativePercentage": {
+>                     "minimum": 33,
+>                     "maximum": 35,
+>                     "average": 33
+>                 }
+>             },
+>             "indoorAirQuality": {
+>                 "score": {
+>                     "minimum": 33,
+>                     "maximum": 35,
+>                     "average": 33
+>                 }
+>             },
+>             "noise": {
+>                 "ambient": {
+>                     "level": {
+>                         "minimum": 22,
+>                         "maximum": 45,
+>                         "average": 31
+>                     }
+>                 }
+>             },
+>             "pm25": {
+>                 "concentration": {
+>                     "minimum": 0,
+>                     "maximum": 3,
+>                     "average": 1
+>                 }
+>             },
+>             "powerFactor": {
+>                 "percentage": {
+>                     "minimum": 84,
+>                     "maximum": 89,
+>                     "average": 86
+>                 }
+>             },
+>             "realPower": {
+>                 "draw": {
+>                     "minimum": 0,
+>                     "maximum": 14.2,
+>                     "average": 5
+>                 }
+>             },
+>             "temperature": {
+>                 "fahrenheit": {
+>                     "minimum": 68.15,
+>                     "maximum": 74.91,
+>                     "average": 72.08
+>                 },
+>                 "celsius": {
+>                     "minimum": 20.08,
+>                     "maximum": 23.84,
+>                     "average": 22.27
+>                 }
+>             },
+>             "tvoc": {
+>                 "concentration": {
+>                     "minimum": 221,
+>                     "maximum": 504,
+>                     "average": 440
+>                 }
+>             },
+>             "voltage": {
+>                 "level": {
+>                     "minimum": 120.7,
+>                     "maximum": 124.6,
+>                     "average": 122.6
+>                 }
+>             },
+>             "water": {
+>                 "counts": {
+>                     "present": 6
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+\[ secureConnect \]
+-------------------
+
+### privateApplicationGroups
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of private application groups for an Organization
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "applicationGroupId": "1122321",
+>                 "name": "Westcoast Data Center",
+>                 "description": "Private applications in Westcoast Data Center",
+>                 "applicationIds": [
+>                     "183456",
+>                     "123568"
+>                 ],
+>                 "createdAt": "2021-12-13T16:07:07.222Z",
+>                 "modifiedAt": "2021-12-13T16:07:07.222Z"
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Creates a group of private applications to apply to policy. A maximum of 300 private application groups are allowed for an organization.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
+> 
+>     {
+>         "applicationGroupId": "1122321",
+>         "name": "Westcoast Data Center",
+>         "description": "Private applications in Westcoast Data Center",
+>         "applicationIds": [
+>             "183456",
+>             "123568"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of a specific private application group
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+>     {
+>         "applicationGroupId": "1122321",
+>         "name": "Westcoast Data Center",
+>         "description": "Private applications in Westcoast Data Center",
+>         "applicationIds": [
+>             "183456",
+>             "123568"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.
+> 
+> **PUT** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+>     {
+>         "applicationGroupId": "1122321",
+>         "name": "Westcoast Data Center",
+>         "description": "Private applications in Westcoast Data Center",
+>         "applicationIds": [
+>             "183456",
+>             "123568"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes private application group from an Organization. Detaches application from groups before deleting
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+> * * *
+
+* * *
+
+### privateApplications
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of private applications for an Organization.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplications`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "applicationId": "183456",
+>                 "name": "Jira",
+>                 "description": "Jira App For My Org",
+>                 "destinations": [
+>                     {
+>                         "destinationAddr": [
+>                             "172.6.0.0/32",
+>                             "255.100.100.0/24"
+>                         ],
+>                         "protocolPorts": [
+>                             {
+>                                 "protocol": "TCP",
+>                                 "ports": "80-82"
+>                             }
+>                         ],
+>                         "accessType": "network"
+>                     }
+>                 ],
+>                 "appProtocol": "https",
+>                 "sni": "xyz123.jira.com",
+>                 "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>                 "sslVerificationEnabled": true,
+>                 "applicationGroupIds": [
+>                     "1122321"
+>                 ],
+>                 "createdAt": "2021-12-13T16:07:07.222000Z",
+>                 "modifiedAt": "2021-12-13T16:07:07.222000Z"
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/privateApplications`  
+> 
+>     {
+>         "applicationId": "183456",
+>         "name": "Jira",
+>         "description": "Jira App For My Org",
+>         "destinations": [
+>             {
+>                 "destinationAddr": [
+>                     "172.6.0.0/32",
+>                     "255.100.100.0/24"
+>                 ],
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "TCP",
+>                         "ports": "80-82"
+>                     }
+>                 ],
+>                 "accessType": "network"
+>             }
+>         ],
+>         "appProtocol": "https",
+>         "sni": "xyz123.jira.com",
+>         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>         "sslVerificationEnabled": true,
+>         "applicationGroupIds": [
+>             "1122321"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222000Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222000Z"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of a specific private application
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+>     {
+>         "applicationId": "183456",
+>         "name": "Jira",
+>         "description": "Jira App For My Org",
+>         "destinations": [
+>             {
+>                 "destinationAddr": [
+>                     "172.6.0.0/32",
+>                     "255.100.100.0/24"
+>                 ],
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "TCP",
+>                         "ports": "80-82"
+>                     }
+>                 ],
+>                 "accessType": "network"
+>             }
+>         ],
+>         "appProtocol": "https",
+>         "sni": "xyz123.jira.com",
+>         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>         "sslVerificationEnabled": true,
+>         "applicationGroupIds": [
+>             "1122321"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.
+> 
+> **PUT** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+>     {
+>         "applicationId": "183456",
+>         "name": "Jira",
+>         "description": "Jira App For My Org",
+>         "destinations": [
+>             {
+>                 "destinationAddr": [
+>                     "172.6.0.0/32",
+>                     "255.100.100.0/24"
+>                 ],
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "TCP",
+>                         "ports": "80-82"
+>                     }
+>                 ],
+>                 "accessType": "network"
+>             }
+>         ],
+>         "appProtocol": "https",
+>         "sni": "xyz123.jira.com",
+>         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>         "sslVerificationEnabled": true,
+>         "applicationGroupIds": [
+>             "1122321"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222000Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222000Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+> * * *
+
+* * *
+
+### publicApplications
+
+PATH _`/organizations/{organizationId}/secureConnect/publicApplications`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of public applications for an Organization.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/publicApplications`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "id": "ABCDEFG",
+>                 "name": "Snapcraft",
+>                 "lastDetected": "2021-12-13T16:07:07.222Z",
+>                 "risk": "medium",
+>                 "category": "Application Development and Testing",
+>                 "appType": "paas"
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### regions
+
+PATH _`/organizations/{organizationId}/secureConnect/regions`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List deployed cloud hubs and CNHE regions in this organization
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/regions`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "id": "123",
+>                 "type": "CNHE",
+>                 "name": "US West Coast",
+>                 "dcPair": [
+>                     "Los Angeles",
+>                     "Palo Alto"
+>                 ]
+>             }
+>         ],
+>         "meta": {
+>             "maxTotalCloudHubs": 5
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### remoteAccessLog
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLog`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the latest 5000 events logged by remote access.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLog`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "osversion": "win-10.0.19044",
+>                 "internalip": "10.0.1.5",
+>                 "connecttimestamp": 1667252442,
+>                 "identities": [
+>                     {
+>                         "id": "1173502975",
+>                         "type": {
+>                             "id": "7",
+>                             "type": "directory_user",
+>                             "label": "AD Users"
+>                         },
+>                         "label": "sample-remote-access@cisco.com",
+>                         "deleted": false
+>                     }
+>                 ],
+>                 "reason": "ACCT_DISC_USER_REQ",
+>                 "failedreasons": [],
+>                 "connectionevent": "disconnected",
+>                 "anyconnectversion": "4.10.05095",
+>                 "timestamp": 1667252458
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### remoteAccessLogsExports
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of remote access logs exports for an Organization
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "id": "123",
+>                 "from": "2023-05-16 04:23:43 UTC",
+>                 "to": "2023-06-14 04:23:52 UTC",
+>                 "userEmail": "joe@meraki.net",
+>                 "status": "new",
+>                 "metadata": {
+>                     "fileCount": 0,
+>                     "logCount": 0,
+>                     "currentFileLogCount": 0,
+>                     "generatorCount": 0,
+>                     "limitReached": false,
+>                     "startedAt": "2023-05-15 21:23:43.388597",
+>                     "endedAt": "2023-05-15 21:23:43.388597",
+>                     "duration": 60
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Creates a export for a provided timestamp interval.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
+> 
+>     {
+>         "id": "123",
+>         "from": "2023-05-16 04:23:43 UTC",
+>         "to": "2023-06-14 04:23:52 UTC",
+>         "userEmail": "joe@meraki.net",
+>         "status": "new",
+>         "metadata": {
+>             "fileCount": 0,
+>             "logCount": 0,
+>             "currentFileLogCount": 0,
+>             "generatorCount": 0,
+>             "limitReached": false,
+>             "startedAt": "2023-05-15 21:23:43.388597",
+>             "endedAt": "2023-05-15 21:23:43.388597",
+>             "duration": 60
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Redirects to the download link of the completed export.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`  
+> 
+>     {
+>         "link": "download"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of a specific remote access logs export
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`  
+> 
+>     {
+>         "id": "123",
+>         "from": "2023-05-16 04:23:43 UTC",
+>         "to": "2023-06-14 04:23:52 UTC",
+>         "userEmail": "joe@meraki.net",
+>         "status": "new",
+>         "metadata": {
+>             "fileCount": 0,
+>             "logCount": 0,
+>             "currentFileLogCount": 0,
+>             "generatorCount": 0,
+>             "limitReached": false,
+>             "startedAt": "2023-05-15 21:23:43.388597",
+>             "endedAt": "2023-05-15 21:23:43.388597",
+>             "duration": 60
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### sites
+
+PATH _`/organizations/{organizationId}/secureConnect/sites`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List sites in this organization
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/sites`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "id": "123",
+>                 "type": "MerakiSpoke",
+>                 "name": "London Office",
+>                 "region": "US East",
+>                 "deviceType": "MX95-HW",
+>                 "address": "123 Main St",
+>                 "enrolled": true
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Enroll sites in this organization to Secure Connect. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/sites`  
+> 
+>     {
+>         "action": "enroll",
+>         "status": "success",
+>         "message": "Site enrolled successfully",
+>         "request": {
+>             "siteId": "1520758",
+>             "regionId": "42"
+>         },
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Detach given sites from Secure Connect
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/sites`  
+> 
+>     {
+>         "action": "detach",
+>         "status": "success",
+>         "message": "Site enrolled successfully",
+>         "request": {
+>             "siteId": "1520758"
+>         },
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+\[ sm \]
+--------
+
+### apple
+
+PATH _`/organizations/{organizationId}/sm/apple/cloudEnrollment/syncJobs`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a sync job for an ADE account
+> 
+> **POST** `/organizations/{organizationId}/sm/apple/cloudEnrollment/syncJobs`  
+> 
+>     {
+>         "syncJobId": "1284392014819",
+>         "adeAccountId": "1284392014819",
+>         "status": "pending"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/sm/apple/cloudEnrollment/syncJobs/{syncJobId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Retrieve the status of an ADE sync job
+> 
+> **GET** `/organizations/{organizationId}/sm/apple/cloudEnrollment/syncJobs/{syncJobId}`  
+> 
+>     {
+>         "syncJobId": "1284392014819",
+>         "adeAccountId": "1284392014819",
+>         "status": "pending"
+>     }
+> 
+> * * *
+
+* * *
+
+### bulkEnrollment
+
+PATH _`/organizations/{organizationId}/sm/bulkEnrollment/token`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Create a PccBulkEnrollmentToken
+> 
+> **POST** `/organizations/{organizationId}/sm/bulkEnrollment/token`  
+> 
+>     {
+>         "id": "1284392014819",
+>         "networkId": "N_24329156",
+>         "expiresAt": "2023-10-15T00:00:00Z",
+>         "rawToken": "MMbCbpHZtG3TKUCr9B9uc5"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a BulkEnrollmentToken
+> 
+> **GET** `/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`  
+> 
+>     {
+>         "id": "1284392014819",
+>         "networkId": "N_24329156",
+>         "expiresAt": "2023-10-15T00:00:00Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update a PccBulkEnrollmentToken
+> 
+> **PUT** `/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`  
+> 
+>     {
+>         "id": "1284392014819",
+>         "networkId": "N_24329156",
+>         "expiresAt": "2023-10-15T00:00:00Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a PccBulkEnrollmentToken
+> 
+> **DELETE** `/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/sm/bulkEnrollment/tokens`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List all BulkEnrollmentTokens for an organization.
+> 
+> **GET** `/organizations/{organizationId}/sm/bulkEnrollment/tokens`  
+> 
+>     [
+>         {
+>             "id": "1284392014819",
+>             "networkId": "N_24329156",
+>             "expiresAt": "2023-10-15T00:00:00Z"
+>         }
+>     ]
 > 
 > * * *
 
