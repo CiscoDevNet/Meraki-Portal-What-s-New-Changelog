@@ -39,6 +39,9 @@
       - [Add an Insight tracked application](#add-an-insight-tracked-application)
       - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
 - [What's New](#whats-new)
+  * [\[ appliance \]](#-appliance--1)
+    + [sdwan](#sdwan)
+      - [Update SDWAN internet traffic preferences for an MX network](#update-sdwan-internet-traffic-preferences-for-an-mx-network)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
       - [Return scanning API settings](#return-scanning-api-settings)
@@ -47,6 +50,7 @@
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ switch \]](#-switch--1)
     + [ports](#ports-2)
+      - [Return all connectivity events for each switch port in the given organization, within a given time range.](#return-all-connectivity-events-for-each-switch-port-in-the-given-organization-within-a-given-time-range)
       - [Returns the counts of all active ports for the requested timespan, grouped by speed. An active port is a port that at any point during the timeframe is observed to be connected to a responsive device and isn't configured to be disabled. For a port that is observed at multiple speeds during the timeframe, it will be counted at the highest speed observed. The number of inactive ports, and the total number of ports are also provided. Only ports on switches online during the timeframe will be represented and a port is only guaranteed to be present if its switch was online for at least 6 hours of the timeframe.](#returns-the-counts-of-all-active-ports-for-the-requested-timespan-grouped-by-speed-an-active-port-is-a-port-that-at-any-point-during-the-timeframe-is-observed-to-be-connected-to-a-responsive-device-and-isnt-configured-to-be-disabled-for-a-port-that-is-observed-at-multiple-speeds-during-the-timeframe-it-will-be-counted-at-the-highest-speed-observed-the-number-of-inactive-ports-and-the-total-number-of-ports-are-also-provided-only-ports-on-switches-online-during-the-timeframe-will-be-represented-and-a-port-is-only-guaranteed-to-be-present-if-its-switch-was-online-for-at-least-6-hours-of-the-timeframe)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
   * [\[ wireless \]](#-wireless--1)
@@ -63,31 +67,24 @@
     + [devices](#devices-1)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
   * [\[ organizations \]](#-organizations--1)
-    + [certificates](#certificates)
-      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
-      - [Import certificate for this organization](#import-certificate-for-this-organization)
-      - [Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.](#query-for-details-on-the-organizations-radsec-device-certificate-authority-certificates-cas-the-primary-ca-signs-all-the-certificates-that-devices-present-when-establishing-a-secure-connection-to-radius-servers-via-radsec-protocol-this-api-returns-an-array-of-the-status-of-all-of-the-cas-as-well-as-their-contents-if-theyve-been-generated-an-organization-will-have-at-most-one-ca-unless-the-ca-is-being-rotated)
-      - [Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.](#create-an-organizations-radsec-device-certificate-authority-ca-call-this-endpoint-when-turning-on-radsec-in-the-firmware-for-the-first-time-calling-this-endpoint-starts-an-asynchronous-process-to-generate-the-ca-call-get-afterwards-to-retrieve-the-contents-of-the-ca-note-this-ca-is-generated-and-controlled-by-meraki-subsequent-calls-will-not-generate-a-new-ca)
-      - [Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.](#query-for-details-on-an-organizations-radsec-device-certificate-authority-ca-with-the-given-id-this-api-returns-the-status-of-the-ca-as-well-as-the-contents-of-the-ca-if-its-been-generated)
-      - [Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.](#update-an-organizations-radsec-device-certificate-authority-ca-state-note-this-ca-is-generated-and-controlled-by-meraki-call-this-endpoint-to-update-the-state-to-trusted-at-which-point-meraki-will-generate-device-certificates-trusted-means-the-ca-is-placed-on-your-radsec-servers-and-devices-establishing-a-secure-connection-using-certs-signed-by-this-ca-will-pass-verification)
-      - [Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
-      - [Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-all-delta-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
-      - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
-      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
-      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
+    + [cloud](#cloud)
+      - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
     + [extensions](#extensions)
-      - [List the ThousandEyes agent configurations under this organization. Only valid for networks with Meraki Insight.](#list-the-thousandeyes-agent-configurations-under-this-organization-only-valid-for-networks-with-meraki-insight)
-      - [Add a ThousandEyes agent for this network. Only valid for networks with Meraki Insight.](#add-a-thousandeyes-agent-for-this-network-only-valid-for-networks-with-meraki-insight)
+      - [List the ThousandEyes agent configurations under this organization. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.](#list-the-thousandeyes-agent-configurations-under-this-organization-only-valid-for-networks-with-access-to-meraki-insight-organization-must-have-a-thousandeyes-account-connected-to-perform-this-action)
+      - [Add a ThousandEyes agent for this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.](#add-a-thousandeyes-agent-for-this-network-only-valid-for-networks-with-access-to-meraki-insight-organization-must-have-a-thousandeyes-account-connected-to-perform-this-action)
       - [List all the networks eligible for ThousandEyes agent activation under this organization.](#list-all-the-networks-eligible-for-thousandeyes-agent-activation-under-this-organization)
-      - [List the ThousandEyes agent configuration under this network. Only valid for networks with Meraki Insight.](#list-the-thousandeyes-agent-configuration-under-this-network-only-valid-for-networks-with-meraki-insight)
-      - [Update a ThousandEyes agent from this network. Only valid for networks with Meraki Insight.](#update-a-thousandeyes-agent-from-this-network-only-valid-for-networks-with-meraki-insight)
-      - [Delete a ThousandEyes agent from this network. Only valid for networks with Meraki Insight.](#delete-a-thousandeyes-agent-from-this-network-only-valid-for-networks-with-meraki-insight)
-      - [Create a ThousandEyes test based on a provided test tamplate](#create-a-thousandeyes-test-based-on-a-provided-test-tamplate)
-    + [inventory](#inventory)
-      - [Swap the devices identified by devices.old with a devices.new, then perform the :afterAction on the devices.old.](#swap-the-devices-identified-by-devicesold-with-a-devicesnew-then-perform-the-afteraction-on-the-devicesold)
-      - [List of device swaps for a given request ID ({id}).](#list-of-device-swaps-for-a-given-request-id-id)
+      - [List the ThousandEyes agent configuration under this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.](#list-the-thousandeyes-agent-configuration-under-this-network-only-valid-for-networks-with-access-to-meraki-insight-organization-must-have-a-thousandeyes-account-connected-to-perform-this-action)
+      - [Update a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.](#update-a-thousandeyes-agent-from-this-network-only-valid-for-networks-with-access-to-meraki-insight-organization-must-have-a-thousandeyes-account-connected-to-perform-this-action)
+      - [Delete a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.](#delete-a-thousandeyes-agent-from-this-network-only-valid-for-networks-with-access-to-meraki-insight-organization-must-have-a-thousandeyes-account-connected-to-perform-this-action)
+      - [Create a ThousandEyes test based on a provided test template. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.](#create-a-thousandeyes-test-based-on-a-provided-test-template-only-valid-for-networks-with-access-to-meraki-insight-organization-must-have-a-thousandeyes-account-connected-to-perform-this-action)
     + [policies](#policies)
       - [Get policies for all clients with policies](#get-policies-for-all-clients-with-policies)
+    + [splash](#splash)
+      - [Delete a Splash Theme Asset](#delete-a-splash-theme-asset)
+      - [List Splash Themes](#list-splash-themes)
+      - [Create a Splash Theme](#create-a-splash-theme)
+      - [Delete a Splash Theme](#delete-a-splash-theme)
+      - [Create a Splash Theme Asset](#create-a-splash-theme-asset)
     + [support](#support)
       - [Returns the organization's sales representatives](#returns-the-organizations-sales-representatives)
     + [webhooks](#webhooks)
@@ -103,8 +100,18 @@
       - [Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')](#destroy-a-webhook-payload-template-for-an-organization-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-wpt_00004-wpt_00005-or-wpt_00006)
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
-    + [cloud](#cloud)
-      - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
+    + [certificates](#certificates)
+      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
+      - [Import certificate for this organization](#import-certificate-for-this-organization)
+      - [Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.](#query-for-details-on-the-organizations-radsec-device-certificate-authority-certificates-cas-the-primary-ca-signs-all-the-certificates-that-devices-present-when-establishing-a-secure-connection-to-radius-servers-via-radsec-protocol-this-api-returns-an-array-of-the-status-of-all-of-the-cas-as-well-as-their-contents-if-theyve-been-generated-an-organization-will-have-at-most-one-ca-unless-the-ca-is-being-rotated)
+      - [Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.](#create-an-organizations-radsec-device-certificate-authority-ca-call-this-endpoint-when-turning-on-radsec-in-the-firmware-for-the-first-time-calling-this-endpoint-starts-an-asynchronous-process-to-generate-the-ca-call-get-afterwards-to-retrieve-the-contents-of-the-ca-note-this-ca-is-generated-and-controlled-by-meraki-subsequent-calls-will-not-generate-a-new-ca)
+      - [Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.](#query-for-details-on-an-organizations-radsec-device-certificate-authority-ca-with-the-given-id-this-api-returns-the-status-of-the-ca-as-well-as-the-contents-of-the-ca-if-its-been-generated)
+      - [Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.](#update-an-organizations-radsec-device-certificate-authority-ca-state-note-this-ca-is-generated-and-controlled-by-meraki-call-this-endpoint-to-update-the-state-to-trusted-at-which-point-meraki-will-generate-device-certificates-trusted-means-the-ca-is-placed-on-your-radsec-servers-and-devices-establishing-a-secure-connection-using-certs-signed-by-this-ca-will-pass-verification)
+      - [Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
+      - [Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-all-delta-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
+      - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
+      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
+      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
   * [\[ insight \]](#-insight--1)
     + [speedTestResults](#speedtestresults)
       - [List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.](#list-the-speed-tests-for-the-given-devices-under-this-organization-only-valid-for-organizations-with-meraki-insight)
@@ -173,19 +180,19 @@
       - [Delete a PccBulkEnrollmentToken](#delete-a-pccbulkenrollmenttoken)
       - [List all BulkEnrollmentTokens for an organization.](#list-all-bulkenrollmenttokens-for-an-organization)
  
-Version **1.43.0** _to_ **1.43.0-beta.0**
+Version **1.44.0** _to_ **1.44.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**64 - New**
+**68 - New**
 
 **52 - Updated**
 
-**781 - Total Endpoints**
+**793 - Total Endpoints**
 
-**506 - Total Paths**
+**517 - Total Paths**
 
 * * *
 
@@ -488,6 +495,69 @@ POST _`/organizations/{organizationId}/insight/applications`_
 What's New
 ==========
 
+\[ appliance \]
+---------------
+
+### sdwan
+
+PATH _`/networks/{networkId}/appliance/sdwan/internetPolicies`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update SDWAN internet traffic preferences for an MX network
+> 
+> **PUT** `/networks/{networkId}/appliance/sdwan/internetPolicies`  
+> 
+>     {
+>         "wanTrafficUplinkPreferences": [
+>             {
+>                 "preferredUplink": "wan1",
+>                 "failOverCriterion": "poorPerformance",
+>                 "performanceClass": {
+>                     "type": "custom",
+>                     "builtinPerformanceClassName": "VoIP",
+>                     "customPerformanceClassId": "123456"
+>                 },
+>                 "trafficFilters": [
+>                     {
+>                         "type": "custom",
+>                         "value": {
+>                             "protocol": "tcp",
+>                             "source": {
+>                                 "port": "1-1024",
+>                                 "cidr": "192.168.1.0/24",
+>                                 "vlan": 10,
+>                                 "host": 254
+>                             },
+>                             "destination": {
+>                                 "port": "any",
+>                                 "cidr": "any",
+>                                 "majorApp": [
+>                                     {
+>                                         "id": "meraki:layer7/application/3",
+>                                         "name": "DNS"
+>                                     }
+>                                 ],
+>                                 "nbar": [
+>                                     {
+>                                         "id": "meraki:layer7/application/3",
+>                                         "name": "DNS"
+>                                     }
+>                                 ]
+>                             }
+>                         }
+>                     }
+>                 ]
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
 \[ networks \]
 --------------
 
@@ -595,6 +665,52 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 ------------
 
 ### ports
+
+PATH _`/organizations/{organizationId}/switch/ports/connectivity/history/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return all connectivity events for each switch port in the given organization, within a given time range.
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/connectivity/history/byDevice`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "serial": "Q234-ABCD-0001",
+>                 "ports": [
+>                     {
+>                         "id": "123_1",
+>                         "events": [
+>                             {
+>                                 "startTs": "2018-02-11T00:00:00.090210Z",
+>                                 "endTs": "2018-02-11T00:00:00.090210Z",
+>                                 "status": "Optimal speed and connectivity"
+>                             }
+>                         ]
+>                     }
+>                 ],
+>                 "network": {
+>                     "id": "N_12345678",
+>                     "name": "San Francisco Office"
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 4,
+>                     "remaining": 2
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
 
 PATH _`/organizations/{organizationId}/switch/ports/overview`_
 
@@ -1061,326 +1177,58 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 \[ organizations \]
 -------------------
 
-### certificates
+### cloud
 
-PATH _`/organizations/{organizationId}/certificates`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Gets all or specific certificates for an organization
-> 
-> **GET** `/organizations/{organizationId}/certificates`  
-> 
->     {
->         "certificateId": "1284392014819",
->         "description": "friendly description",
->         "parentCertificateId": "1284392014818",
->         "source": "NAC",
->         "fields": {
->             "validity": {
->                 "start": "2022-09-01T12:00:00Z",
->                 "end": "2022-10-01T12:00:00Z"
->             },
->             "subject": {
->                 "commonName": "subjectRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
->             "issuer": {
->                 "commonName": "issuerRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "serial": "7C 08 29 E8 CC",
->             "policy": "policy string here",
->             "version": "1.2.3.4",
->             "publicKeyAlgorithm": "RSA",
->             "keyUsage": {
->                 "isCritical": false,
->                 "data": [
->                     "Digital Signature",
->                     "Key Encipherment"
->                 ]
->             },
->             "hashes": [
->                 {
->                     "algorithm": "SHA1",
->                     "hash": "hash text here"
->                 }
->             ]
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/import`_
+PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Import certificate for this organization
+> #### List of source/destination traffic rules
 > 
-> **POST** `/organizations/{organizationId}/certificates/import`  
-> 
->     {
->         "certificateId": "1284392014819",
->         "description": "friendly description",
->         "parentCertificateId": "1284392014818",
->         "source": "NAC",
->         "fields": {
->             "validity": {
->                 "start": "2022-09-01T12:00:00Z",
->                 "end": "2022-10-01T12:00:00Z"
->             },
->             "subject": {
->                 "commonName": "subjectRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
->             "issuer": {
->                 "commonName": "issuerRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "serial": "7C 08 29 E8 CC",
->             "policy": "policy string here",
->             "version": "1.2.3.4",
->             "publicKeyAlgorithm": "RSA",
->             "keyUsage": {
->                 "isCritical": false,
->                 "data": [
->                     "Digital Signature",
->                     "Key Encipherment"
->                 ]
->             },
->             "hashes": [
->                 {
->                     "algorithm": "SHA1",
->                     "hash": "hash text here"
->                 }
->             ]
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.
-> 
-> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`  
+> **GET** `/organizations/{organizationId}/cloud/connectivity/requirements`  
 > 
 >     [
 >         {
->             "authorityId": "1234",
->             "status": "trusted",
->             "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
+>             "description": "Meraki cloud communication",
+>             "productTypes": [
+>                 "appliance",
+>                 "wireless",
+>                 "camera",
+>                 "switch"
+>             ],
+>             "rule": {
+>                 "sources": {
+>                     "includeAddressesInYourNetworks": false,
+>                     "addresses": [
+>                         {
+>                             "type": "ipv4",
+>                             "address": "209.206.48.0/20"
+>                         }
+>                     ]
+>                 },
+>                 "destinations": {
+>                     "includeAddressesInYourNetworks": false,
+>                     "includeAnyAddress": false,
+>                     "addresses": [
+>                         {
+>                             "type": "fqdn",
+>                             "address": "webhook.site"
+>                         }
+>                     ]
+>                 },
+>                 "ports": [
+>                     {
+>                         "port": "443",
+>                         "protocols": [
+>                             "TCP"
+>                         ]
+>                     }
+>                 ]
+>             }
 >         }
 >     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.
-> 
-> **POST** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`  
-> 
->     {
->         "authorityId": "1234",
->         "status": "generating",
->         "contents": ""
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.
-> 
-> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`  
-> 
->     {
->         "authorityId": "1234",
->         "status": "trusted",
->         "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.
-> 
-> **PUT** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`  
-> 
->     {
->         "authorityId": "1234",
->         "status": "trusted",
->         "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.
-> 
-> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList`  
-> 
->     {
->         "crl": "-----BEGIN X509 CRL-----\nMIICVjCCAj8CAQEwQQD\n...\n-----END X509 CRL-----\n"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList/deltas`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.
-> 
-> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList/deltas`  
-> 
->     {
->         "deltaCrls": [
->             "-----BEGIN X509 CRL-----\nMIICVjCCAj8CAQEwQQD\n...\n-----END X509 CRL-----\n",
->             "-----BEGIN X509 CRL-----\nPil0f9yaXcNbMUmaGlV\n...\n-----END X509 CRL-----\n",
->             "-----BEGIN X509 CRL-----\n8G2kAJf816ARjULLwz1\n...\n-----END X509 CRL-----\n",
->             "-----BEGIN X509 CRL-----\nnUxCohSdUMzAKBgNVHR\n...\n-----END X509 CRL-----\n"
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/{certificateId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update a certificate's description for an organization
-> 
-> **PUT** `/organizations/{organizationId}/certificates/{certificateId}`  
-> 
->     {
->         "certificateId": "1284392014819",
->         "description": "friendly description",
->         "parentCertificateId": "1284392014818",
->         "source": "NAC",
->         "fields": {
->             "validity": {
->                 "start": "2022-09-01T12:00:00Z",
->                 "end": "2022-10-01T12:00:00Z"
->             },
->             "subject": {
->                 "commonName": "subjectRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
->             "issuer": {
->                 "commonName": "issuerRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "serial": "7C 08 29 E8 CC",
->             "policy": "policy string here",
->             "version": "1.2.3.4",
->             "publicKeyAlgorithm": "RSA",
->             "keyUsage": {
->                 "isCritical": false,
->                 "data": [
->                     "Digital Signature",
->                     "Key Encipherment"
->                 ]
->             },
->             "hashes": [
->                 {
->                     "algorithm": "SHA1",
->                     "hash": "hash text here"
->                 }
->             ]
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a certificate for an organization
-> 
-> **DELETE** `/organizations/{organizationId}/certificates/{certificateId}`  
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/{certificateId}/contents`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Download the trusted certificate by certificate id.
-> 
-> **GET** `/organizations/{organizationId}/certificates/{certificateId}/contents`  
-> 
->     {
->         "contents": "-----BEGIN CERTIFICATE-----MIIHvjCCBqagAwIBAgIQB4CbtQD3es3UQ988CCKGPjANBgkqhkiG9w0BAQsFADBPMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMSkwJwYDVQQDEyBEaWdpQ2VydCBUTFMgUlNBIFNIQTI1NiAyMDIwIENBMTAeFw0yMjA4MTAwMDAwMDBaFw0yMzA4MDkyMzU5NTlaMG4xCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRMwEQYDVQQKEwpNZXJha2kgTExDMR0wGwYDVQQDExRyYWRpdXMuZGV2LmlrYXJlbS5pbzCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBANSxcK8g9J3nRwDqNurYbXDieo5vHw5wWO4m3uJSvWtQ+zDMZzjEhA6ix3VfftGLLE+0C99a9B2oOubZgO/sAIJmLD6Oz25bUinAtzuEmOQiqZ8OZjYZd//emPOty7POZSU5C3rGUX0ESzrStL20iJoGzyA0U9clI+14yZCyXY1+Th3VSQCvGs/DmOMPn+MdBoMXIgzVk7+wjMr53fN6H8Q26y52NlLTmAxum2L7ag4owTecURzC6-----END CERTIFICATE-----"
->     }
 > 
 > * * *
 
@@ -1394,7 +1242,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks`_
 >   
 > \- New endpoint
 > 
-> #### List the ThousandEyes agent configurations under this organization. Only valid for networks with Meraki Insight.
+> #### List the ThousandEyes agent configurations under this organization. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
 > **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks`  
 > 
@@ -1411,7 +1259,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks`_
 >   
 > \- New endpoint
 > 
-> #### Add a ThousandEyes agent for this network. Only valid for networks with Meraki Insight.
+> #### Add a ThousandEyes agent for this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
 > **POST** `/organizations/{organizationId}/extensions/thousandEyes/networks`  
 > 
@@ -1467,7 +1315,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{network
 >   
 > \- New endpoint
 > 
-> #### List the ThousandEyes agent configuration under this network. Only valid for networks with Meraki Insight.
+> #### List the ThousandEyes agent configuration under this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
 > **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
 > 
@@ -1482,7 +1330,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{network
 >   
 > \- New endpoint
 > 
-> #### Update a ThousandEyes agent from this network. Only valid for networks with Meraki Insight.
+> #### Update a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
 > **PUT** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
 > 
@@ -1497,7 +1345,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{network
 >   
 > \- New endpoint
 > 
-> #### Delete a ThousandEyes agent from this network. Only valid for networks with Meraki Insight.
+> #### Delete a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
 > **DELETE** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
 > 
@@ -1511,99 +1359,13 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/tests`_
 >   
 > \- New endpoint
 > 
-> #### Create a ThousandEyes test based on a provided test tamplate
+> #### Create a ThousandEyes test based on a provided test template. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
 > **POST** `/organizations/{organizationId}/extensions/thousandEyes/tests`  
 > 
 >     {
 >         "jobStatus": "new",
 >         "pccBackgroundJob": "13289785"
->     }
-> 
-> * * *
-
-* * *
-
-### inventory
-
-PATH _`/organizations/{organizationId}/inventory/devices/swaps/bulk`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Swap the devices identified by devices.old with a devices.new, then perform the :afterAction on the devices.old.
-> 
-> **POST** `/organizations/{organizationId}/inventory/devices/swaps/bulk`  
-> 
->     {
->         "jobId": "1284392014819",
->         "swaps": [
->             {
->                 "id": "1284392014819",
->                 "devices": {
->                     "old": {
->                         "mac": "00:11:22:33:44:55",
->                         "serial": "Q234-ABCD-5678",
->                         "model": "MR34",
->                         "name": "My AP"
->                     },
->                     "new": {
->                         "mac": "00:11:22:33:44:55",
->                         "serial": "Q234-ABCD-5678",
->                         "model": "MR34",
->                         "name": "My AP"
->                     }
->                 },
->                 "status": "complete",
->                 "afterAction": "remove from network",
->                 "createdAt": "2023-04-24T12:40:11Z",
->                 "completedAt": "2023-04-24T12:40:12Z",
->                 "errors": []
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/inventory/devices/swaps/bulk/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List of device swaps for a given request ID ({id}).
-> 
-> **GET** `/organizations/{organizationId}/inventory/devices/swaps/bulk/{id}`  
-> 
->     {
->         "jobId": "1284392014819",
->         "swaps": [
->             {
->                 "id": "1284392014819",
->                 "devices": {
->                     "old": {
->                         "mac": "00:11:22:33:44:55",
->                         "serial": "Q234-ABCD-5678",
->                         "model": "MR34",
->                         "name": "My AP"
->                     },
->                     "new": {
->                         "mac": "00:11:22:33:44:55",
->                         "serial": "Q234-ABCD-5678",
->                         "model": "MR34",
->                         "name": "My AP"
->                     }
->                 },
->                 "status": "complete",
->                 "afterAction": "remove from network",
->                 "createdAt": "2023-04-24T12:40:11Z",
->                 "completedAt": "2023-04-24T12:40:12Z",
->                 "errors": []
->             }
->         ]
 >     }
 > 
 > * * *
@@ -1647,6 +1409,102 @@ PATH _`/organizations/{organizationId}/policies/assignments/byClient`_
 >             ]
 >         }
 >     ]
+> 
+> * * *
+
+* * *
+
+### splash
+
+PATH _`/organizations/{organizationId}/splash/assets/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Delete a Splash Theme Asset
+> 
+> **DELETE** `/organizations/{organizationId}/splash/assets/{id}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/splash/themes`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List Splash Themes
+> 
+> **GET** `/organizations/{organizationId}/splash/themes`  
+> 
+>     [
+>         {
+>             "id": "482367494044dbbb1d2cc8579d967cef5b4ce59f",
+>             "name": "My Custom Splash Theme",
+>             "themeAssets": [
+>                 {
+>                     "id": "1284392014819",
+>                     "name": "continue.html"
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a Splash Theme
+> 
+> **POST** `/organizations/{organizationId}/splash/themes`  
+> 
+>     {
+>         "id": "482367494044dbbb1d2cc8579d967cef5b4ce59f",
+>         "name": "My Custom Splash Theme",
+>         "themeAssets": [
+>             {
+>                 "id": "1284392014819",
+>                 "name": "continue.html"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/splash/themes/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Delete a Splash Theme
+> 
+> **DELETE** `/organizations/{organizationId}/splash/themes/{id}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/splash/themes/{themeIdentifier}/assets`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Create a Splash Theme Asset
+> 
+> **POST** `/organizations/{organizationId}/splash/themes/{themeIdentifier}/assets`  
+> 
+>     {
+>         "id": "1284392014819",
+>         "name": "continue.html"
+>     }
 > 
 > * * *
 
@@ -1968,58 +1826,326 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 
 * * *
 
-### cloud
+### certificates
 
-PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
+PATH _`/organizations/{organizationId}/certificates`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List of source/destination traffic rules
+> #### Gets all or specific certificates for an organization
 > 
-> **GET** `/organizations/{organizationId}/cloud/connectivity/requirements`  
+> **GET** `/organizations/{organizationId}/certificates`  
+> 
+>     {
+>         "certificateId": "1284392014819",
+>         "description": "friendly description",
+>         "parentCertificateId": "1284392014818",
+>         "source": "NAC",
+>         "fields": {
+>             "validity": {
+>                 "start": "2022-09-01T12:00:00Z",
+>                 "end": "2022-10-01T12:00:00Z"
+>             },
+>             "subject": {
+>                 "commonName": "subjectRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
+>             "issuer": {
+>                 "commonName": "issuerRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "serial": "7C 08 29 E8 CC",
+>             "policy": "policy string here",
+>             "version": "1.2.3.4",
+>             "publicKeyAlgorithm": "RSA",
+>             "keyUsage": {
+>                 "isCritical": false,
+>                 "data": [
+>                     "Digital Signature",
+>                     "Key Encipherment"
+>                 ]
+>             },
+>             "hashes": [
+>                 {
+>                     "algorithm": "SHA1",
+>                     "hash": "hash text here"
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/import`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Import certificate for this organization
+> 
+> **POST** `/organizations/{organizationId}/certificates/import`  
+> 
+>     {
+>         "certificateId": "1284392014819",
+>         "description": "friendly description",
+>         "parentCertificateId": "1284392014818",
+>         "source": "NAC",
+>         "fields": {
+>             "validity": {
+>                 "start": "2022-09-01T12:00:00Z",
+>                 "end": "2022-10-01T12:00:00Z"
+>             },
+>             "subject": {
+>                 "commonName": "subjectRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
+>             "issuer": {
+>                 "commonName": "issuerRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "serial": "7C 08 29 E8 CC",
+>             "policy": "policy string here",
+>             "version": "1.2.3.4",
+>             "publicKeyAlgorithm": "RSA",
+>             "keyUsage": {
+>                 "isCritical": false,
+>                 "data": [
+>                     "Digital Signature",
+>                     "Key Encipherment"
+>                 ]
+>             },
+>             "hashes": [
+>                 {
+>                     "algorithm": "SHA1",
+>                     "hash": "hash text here"
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.
+> 
+> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`  
 > 
 >     [
 >         {
->             "description": "Meraki cloud communication",
->             "productTypes": [
->                 "appliance",
->                 "wireless",
->                 "camera",
->                 "switch"
->             ],
->             "rule": {
->                 "sources": {
->                     "includeAddressesInYourNetworks": false,
->                     "addresses": [
->                         {
->                             "type": "ipv4",
->                             "address": "209.206.48.0/20"
->                         }
->                     ]
->                 },
->                 "destinations": {
->                     "includeAddressesInYourNetworks": false,
->                     "includeAnyAddress": false,
->                     "addresses": [
->                         {
->                             "type": "fqdn",
->                             "address": "webhook.site"
->                         }
->                     ]
->                 },
->                 "ports": [
->                     {
->                         "port": "443",
->                         "protocols": [
->                             "TCP"
->                         ]
->                     }
->                 ]
->             }
+>             "authorityId": "1234",
+>             "status": "trusted",
+>             "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
 >         }
 >     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.
+> 
+> **POST** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`  
+> 
+>     {
+>         "authorityId": "1234",
+>         "status": "generating",
+>         "contents": ""
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.
+> 
+> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`  
+> 
+>     {
+>         "authorityId": "1234",
+>         "status": "trusted",
+>         "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.
+> 
+> **PUT** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`  
+> 
+>     {
+>         "authorityId": "1234",
+>         "status": "trusted",
+>         "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.
+> 
+> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList`  
+> 
+>     {
+>         "crl": "-----BEGIN X509 CRL-----\nMIICVjCCAj8CAQEwQQD\n...\n-----END X509 CRL-----\n"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList/deltas`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.
+> 
+> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList/deltas`  
+> 
+>     {
+>         "deltaCrls": [
+>             "-----BEGIN X509 CRL-----\nMIICVjCCAj8CAQEwQQD\n...\n-----END X509 CRL-----\n",
+>             "-----BEGIN X509 CRL-----\nPil0f9yaXcNbMUmaGlV\n...\n-----END X509 CRL-----\n",
+>             "-----BEGIN X509 CRL-----\n8G2kAJf816ARjULLwz1\n...\n-----END X509 CRL-----\n",
+>             "-----BEGIN X509 CRL-----\nnUxCohSdUMzAKBgNVHR\n...\n-----END X509 CRL-----\n"
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/{certificateId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a certificate's description for an organization
+> 
+> **PUT** `/organizations/{organizationId}/certificates/{certificateId}`  
+> 
+>     {
+>         "certificateId": "1284392014819",
+>         "description": "friendly description",
+>         "parentCertificateId": "1284392014818",
+>         "source": "NAC",
+>         "fields": {
+>             "validity": {
+>                 "start": "2022-09-01T12:00:00Z",
+>                 "end": "2022-10-01T12:00:00Z"
+>             },
+>             "subject": {
+>                 "commonName": "subjectRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
+>             "issuer": {
+>                 "commonName": "issuerRoot",
+>                 "organizationalUnit": "CloudNAC",
+>                 "organization": "Cisco Systems",
+>                 "locality": "Bangalore",
+>                 "state": "KA",
+>                 "country": "IN"
+>             },
+>             "serial": "7C 08 29 E8 CC",
+>             "policy": "policy string here",
+>             "version": "1.2.3.4",
+>             "publicKeyAlgorithm": "RSA",
+>             "keyUsage": {
+>                 "isCritical": false,
+>                 "data": [
+>                     "Digital Signature",
+>                     "Key Encipherment"
+>                 ]
+>             },
+>             "hashes": [
+>                 {
+>                     "algorithm": "SHA1",
+>                     "hash": "hash text here"
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a certificate for an organization
+> 
+> **DELETE** `/organizations/{organizationId}/certificates/{certificateId}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/certificates/{certificateId}/contents`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Download the trusted certificate by certificate id.
+> 
+> **GET** `/organizations/{organizationId}/certificates/{certificateId}/contents`  
+> 
+>     {
+>         "contents": "-----BEGIN CERTIFICATE-----MIIHvjCCBqagAwIBAgIQB4CbtQD3es3UQ988CCKGPjANBgkqhkiG9w0BAQsFADBPMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMSkwJwYDVQQDEyBEaWdpQ2VydCBUTFMgUlNBIFNIQTI1NiAyMDIwIENBMTAeFw0yMjA4MTAwMDAwMDBaFw0yMzA4MDkyMzU5NTlaMG4xCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRMwEQYDVQQKEwpNZXJha2kgTExDMR0wGwYDVQQDExRyYWRpdXMuZGV2LmlrYXJlbS5pbzCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBANSxcK8g9J3nRwDqNurYbXDieo5vHw5wWO4m3uJSvWtQ+zDMZzjEhA6ix3VfftGLLE+0C99a9B2oOubZgO/sAIJmLD6Oz25bUinAtzuEmOQiqZ8OZjYZd//emPOty7POZSU5C3rGUX0ESzrStL20iJoGzyA0U9clI+14yZCyXY1+Th3VSQCvGs/DmOMPn+MdBoMXIgzVk7+wjMr53fN6H8Q26y52NlLTmAxum2L7ag4owTecURzC6-----END CERTIFICATE-----"
+>     }
 > 
 > * * *
 
@@ -2386,10 +2512,6 @@ PATH _`/devices/{serial}/sensor/commands`_
 >             },
 >             "operation": "disableDownstreamPower",
 >             "status": "completed",
->             "gateway": {
->                 "serial": "Q234-ABCD-5678",
->                 "name": "My camera"
->             },
 >             "schedule": {
 >                 "scheduleId": "1284392014819",
 >                 "name": "Lights off"
@@ -2418,10 +2540,6 @@ PATH _`/devices/{serial}/sensor/commands`_
 >         },
 >         "operation": "disableDownstreamPower",
 >         "status": "completed",
->         "gateway": {
->             "serial": "Q234-ABCD-5678",
->             "name": "My camera"
->         },
 >         "schedule": {
 >             "scheduleId": "1284392014819",
 >             "name": "Lights off"
@@ -2454,10 +2572,6 @@ PATH _`/devices/{serial}/sensor/commands/{id}`_
 >         },
 >         "operation": "disableDownstreamPower",
 >         "status": "completed",
->         "gateway": {
->             "serial": "Q234-ABCD-5678",
->             "name": "My camera"
->         },
 >         "schedule": {
 >             "scheduleId": "1284392014819",
 >             "name": "Lights off"
