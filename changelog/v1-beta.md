@@ -6,9 +6,6 @@
     + [vlans](#vlans)
       - [Update a VLAN](#update-a-vlan)
       - [Add a VLAN](#add-a-vlan)
-    + [trafficShaping](#trafficshaping)
-      - [Show uplink selection settings for an MX network](#show-uplink-selection-settings-for-an-mx-network)
-      - [Update uplink selection settings for an MX network](#update-uplink-selection-settings-for-an-mx-network)
     + [ports](#ports)
       - [List per-port VLAN settings for all ports of a MX.](#list-per-port-vlan-settings-for-all-ports-of-a-mx)
       - [Return per-port VLAN settings for a single MX port.](#return-per-port-vlan-settings-for-a-single-mx-port)
@@ -16,6 +13,9 @@
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
+    + [firmwareUpgrades](#firmwareupgrades)
+      - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network)
+      - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network)
   * [\[ switch \]](#-switch-)
     + [stacks](#stacks)
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
@@ -39,9 +39,6 @@
       - [Add an Insight tracked application](#add-an-insight-tracked-application)
       - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
 - [What's New](#whats-new)
-  * [\[ appliance \]](#-appliance--1)
-    + [sdwan](#sdwan)
-      - [Update SDWAN internet traffic preferences for an MX network](#update-sdwan-internet-traffic-preferences-for-an-mx-network)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
       - [Return scanning API settings](#return-scanning-api-settings)
@@ -49,24 +46,47 @@
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ switch \]](#-switch--1)
+    + [devices](#devices-1)
+      - [Return a historical record of packet transmission and loss, broken down by protocol, for insight into switch device health.](#return-a-historical-record-of-packet-transmission-and-loss-broken-down-by-protocol-for-insight-into-switch-device-health)
     + [ports](#ports-2)
       - [Return all connectivity events for each switch port in the given organization, within a given time range.](#return-all-connectivity-events-for-each-switch-port-in-the-given-organization-within-a-given-time-range)
-      - [Returns the counts of all active ports for the requested timespan, grouped by speed. An active port is a port that at any point during the timeframe is observed to be connected to a responsive device and isn't configured to be disabled. For a port that is observed at multiple speeds during the timeframe, it will be counted at the highest speed observed. The number of inactive ports, and the total number of ports are also provided. Only ports on switches online during the timeframe will be represented and a port is only guaranteed to be present if its switch was online for at least 6 hours of the timeframe.](#returns-the-counts-of-all-active-ports-for-the-requested-timespan-grouped-by-speed-an-active-port-is-a-port-that-at-any-point-during-the-timeframe-is-observed-to-be-connected-to-a-responsive-device-and-isnt-configured-to-be-disabled-for-a-port-that-is-observed-at-multiple-speeds-during-the-timeframe-it-will-be-counted-at-the-highest-speed-observed-the-number-of-inactive-ports-and-the-total-number-of-ports-are-also-provided-only-ports-on-switches-online-during-the-timeframe-will-be-represented-and-a-port-is-only-guaranteed-to-be-present-if-its-switch-was-online-for-at-least-6-hours-of-the-timeframe)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
   * [\[ wireless \]](#-wireless--1)
-    + [clients](#clients)
-      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
-      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
-      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
+    + [zigbee](#zigbee)
+      - [Enqueue a job to start enrolling doorlocks on zigbee configured MRs](#enqueue-a-job-to-start-enrolling-doorlocks-on-zigbee-configured-mrs)
+      - [Return an enrollment job](#return-an-enrollment-job)
+      - [Update Zigbee Configs for specified network](#update-zigbee-configs-for-specified-network)
+      - [Return list of Zigbee configs](#return-list-of-zigbee-configs)
+      - [List the Zigbee MR Nodes for and organization or the supplied network(s)](#list-the-zigbee-mr-nodes-for-and-organization-or-the-supplied-networks)
+      - [Enqueue a job to start disenrolling doorlocks on zigbee configured MRs](#enqueue-a-job-to-start-disenrolling-doorlocks-on-zigbee-configured-mrs)
+      - [Return a disenrollment job](#return-a-disenrollment-job)
+      - [Return the list of doorlocks for a network](#return-the-list-of-doorlocks-for-a-network)
+      - [Endpoint to bulk update door locks params](#endpoint-to-bulk-update-door-locks-params)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [radio](#radio)
       - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
       - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
-    + [devices](#devices-1)
+    + [devices](#devices-2)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
+    + [clients](#clients)
+      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
+      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
+      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
   * [\[ organizations \]](#-organizations--1)
+    + [certificates](#certificates)
+      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
+      - [Import certificate for this organization](#import-certificate-for-this-organization)
+      - [Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.](#query-for-details-on-the-organizations-radsec-device-certificate-authority-certificates-cas-the-primary-ca-signs-all-the-certificates-that-devices-present-when-establishing-a-secure-connection-to-radius-servers-via-radsec-protocol-this-api-returns-an-array-of-the-status-of-all-of-the-cas-as-well-as-their-contents-if-theyve-been-generated-an-organization-will-have-at-most-one-ca-unless-the-ca-is-being-rotated)
+      - [Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.](#create-an-organizations-radsec-device-certificate-authority-ca-call-this-endpoint-when-turning-on-radsec-in-the-firmware-for-the-first-time-calling-this-endpoint-starts-an-asynchronous-process-to-generate-the-ca-call-get-afterwards-to-retrieve-the-contents-of-the-ca-note-this-ca-is-generated-and-controlled-by-meraki-subsequent-calls-will-not-generate-a-new-ca)
+      - [Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.](#query-for-details-on-an-organizations-radsec-device-certificate-authority-ca-with-the-given-id-this-api-returns-the-status-of-the-ca-as-well-as-the-contents-of-the-ca-if-its-been-generated)
+      - [Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.](#update-an-organizations-radsec-device-certificate-authority-ca-state-note-this-ca-is-generated-and-controlled-by-meraki-call-this-endpoint-to-update-the-state-to-trusted-at-which-point-meraki-will-generate-device-certificates-trusted-means-the-ca-is-placed-on-your-radsec-servers-and-devices-establishing-a-secure-connection-using-certs-signed-by-this-ca-will-pass-verification)
+      - [Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
+      - [Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-all-delta-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
+      - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
+      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
+      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
     + [cloud](#cloud)
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
     + [extensions](#extensions)
@@ -80,6 +100,7 @@
     + [policies](#policies)
       - [Get policies for all clients with policies](#get-policies-for-all-clients-with-policies)
     + [splash](#splash)
+      - [Get a Splash Theme Asset](#get-a-splash-theme-asset)
       - [Delete a Splash Theme Asset](#delete-a-splash-theme-asset)
       - [List Splash Themes](#list-splash-themes)
       - [Create a Splash Theme](#create-a-splash-theme)
@@ -100,18 +121,6 @@
       - [Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')](#destroy-a-webhook-payload-template-for-an-organization-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-wpt_00004-wpt_00005-or-wpt_00006)
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
-    + [certificates](#certificates)
-      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
-      - [Import certificate for this organization](#import-certificate-for-this-organization)
-      - [Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.](#query-for-details-on-the-organizations-radsec-device-certificate-authority-certificates-cas-the-primary-ca-signs-all-the-certificates-that-devices-present-when-establishing-a-secure-connection-to-radius-servers-via-radsec-protocol-this-api-returns-an-array-of-the-status-of-all-of-the-cas-as-well-as-their-contents-if-theyve-been-generated-an-organization-will-have-at-most-one-ca-unless-the-ca-is-being-rotated)
-      - [Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.](#create-an-organizations-radsec-device-certificate-authority-ca-call-this-endpoint-when-turning-on-radsec-in-the-firmware-for-the-first-time-calling-this-endpoint-starts-an-asynchronous-process-to-generate-the-ca-call-get-afterwards-to-retrieve-the-contents-of-the-ca-note-this-ca-is-generated-and-controlled-by-meraki-subsequent-calls-will-not-generate-a-new-ca)
-      - [Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.](#query-for-details-on-an-organizations-radsec-device-certificate-authority-ca-with-the-given-id-this-api-returns-the-status-of-the-ca-as-well-as-the-contents-of-the-ca-if-its-been-generated)
-      - [Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.](#update-an-organizations-radsec-device-certificate-authority-ca-state-note-this-ca-is-generated-and-controlled-by-meraki-call-this-endpoint-to-update-the-state-to-trusted-at-which-point-meraki-will-generate-device-certificates-trusted-means-the-ca-is-placed-on-your-radsec-servers-and-devices-establishing-a-secure-connection-using-certs-signed-by-this-ca-will-pass-verification)
-      - [Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
-      - [Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-all-delta-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
-      - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
-      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
-      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
   * [\[ insight \]](#-insight--1)
     + [speedTestResults](#speedtestresults)
       - [List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.](#list-the-speed-tests-for-the-given-devices-under-this-organization-only-valid-for-organizations-with-meraki-insight)
@@ -124,19 +133,30 @@
       - [Update an Insight tracked application](#update-an-insight-tracked-application)
       - [Delete an Insight tracked application](#delete-an-insight-tracked-application)
   * [\[ devices \]](#-devices-)
+    + [traceRoute](#traceroute)
+      - [Enqueue a job to run trace route in the device](#enqueue-a-job-to-run-trace-route-in-the-device)
+      - [Return a trace route job](#return-a-trace-route-job)
     + [speedTest](#speedtest)
       - [Enqueue a job to execute a speed test from a device](#enqueue-a-job-to-execute-a-speed-test-from-a-device)
       - [Returns a speed test result in megabits per second. If test is not complete, no results are present.](#returns-a-speed-test-result-in-megabits-per-second-if-test-is-not-complete-no-results-are-present)
+    + [routingTable](#routingtable)
+      - [Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported.](#enqueue-a-job-to-perform-a-routing-table-request-for-the-device-only-native-catalyst-switches-are-supported)
+      - [Return an routing table live tool job.](#return-an-routing-table-live-tool-job)
     + [macTable](#mactable)
       - [Enqueue a job to request the MAC table from the device. Switches currently support this feature..](#enqueue-a-job-to-request-the-mac-table-from-the-device-switches-currently-support-this-feature)
       - [Return a MAC table live tool job.](#return-a-mac-table-live-tool-job)
+    + [leds](#leds)
+      - [Enqueue a job to blink leds on a device](#enqueue-a-job-to-blink-leds-on-a-device)
+      - [Return a leds blink job](#return-a-leds-blink-job)
+    + [cyclePort](#cycleport)
+      - [Enqueue a job to perform a cycle port for the device on the specified ports.](#enqueue-a-job-to-perform-a-cycle-port-for-the-device-on-the-specified-ports)
+      - [Return a cycle port live tool job.](#return-a-cycle-port-live-tool-job)
+    + [aclHitCount](#aclhitcount)
+      - [Enqueue a job to perform an ACL hit count for the device.](#enqueue-a-job-to-perform-an-acl-hit-count-for-the-device)
+      - [Return an ACL hit count live tool job.](#return-an-acl-hit-count-live-tool-job)
   * [\[ sensor \]](#-sensor-)
     + [schedules](#schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
-    + [commands](#commands)
-      - [Returns a historical log of all commands](#returns-a-historical-log-of-all-commands)
-      - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
-      - [Returns information about the command's execution, including the status](#returns-information-about-the-commands-execution-including-the-status)
     + [alerts](#alerts)
       - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
     + [readings](#readings)
@@ -180,19 +200,19 @@
       - [Delete a PccBulkEnrollmentToken](#delete-a-pccbulkenrollmenttoken)
       - [List all BulkEnrollmentTokens for an organization.](#list-all-bulkenrollmenttokens-for-an-organization)
  
-Version **1.44.0** _to_ **1.44.0-beta.0**
+Version **1.45.0** _to_ **1.45.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**68 - New**
+**84 - New**
 
-**52 - Updated**
+**50 - Updated**
 
-**793 - Total Endpoints**
+**815 - Total Endpoints**
 
-**517 - Total Paths**
+**538 - Total Paths**
 
 * * *
 
@@ -250,32 +270,6 @@ POST _`/networks/{networkId}/appliance/vlans`_
 
 * * *
 
-### trafficShaping
-
-#### Show uplink selection settings for an MX network
-
-GET _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
-
-> \- Optional property `nbar` Added
-
-> \- Optional property `majorApp` Added
-
-> \- Response property `nbar` value added
-
-> \- Response property `majorApp` value added
-
-* * *
-
-#### Update uplink selection settings for an MX network
-
-PUT _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
-
-> \- Optional property `nbar` Added
-
-> \- Optional property `majorApp` Added
-
-* * *
-
 ### ports
 
 #### List per-port VLAN settings for all ports of a MX.
@@ -320,6 +314,28 @@ PUT _`/networks/{networkId}/appliance/ports/{portId}`_
 PUT _`/networks/{networkId}/settings`_
 
 > \- Optional property `fips` Added
+
+* * *
+
+### firmwareUpgrades
+
+#### Get firmware upgrade information for a network
+
+GET _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- Optional property `upgradeStrategy` Added
+
+> \- Response property `upgradeStrategy` value added
+
+* * *
+
+#### Update firmware upgrade information for a network
+
+PUT _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- Optional property `upgradeStrategy` Added
+
+> \- Optional property `upgradeStrategy` Added
 
 * * *
 
@@ -495,69 +511,6 @@ POST _`/organizations/{organizationId}/insight/applications`_
 What's New
 ==========
 
-\[ appliance \]
----------------
-
-### sdwan
-
-PATH _`/networks/{networkId}/appliance/sdwan/internetPolicies`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update SDWAN internet traffic preferences for an MX network
-> 
-> **PUT** `/networks/{networkId}/appliance/sdwan/internetPolicies`  
-> 
->     {
->         "wanTrafficUplinkPreferences": [
->             {
->                 "preferredUplink": "wan1",
->                 "failOverCriterion": "poorPerformance",
->                 "performanceClass": {
->                     "type": "custom",
->                     "builtinPerformanceClassName": "VoIP",
->                     "customPerformanceClassId": "123456"
->                 },
->                 "trafficFilters": [
->                     {
->                         "type": "custom",
->                         "value": {
->                             "protocol": "tcp",
->                             "source": {
->                                 "port": "1-1024",
->                                 "cidr": "192.168.1.0/24",
->                                 "vlan": 10,
->                                 "host": 254
->                             },
->                             "destination": {
->                                 "port": "any",
->                                 "cidr": "any",
->                                 "majorApp": [
->                                     {
->                                         "id": "meraki:layer7/application/3",
->                                         "name": "DNS"
->                                     }
->                                 ],
->                                 "nbar": [
->                                     {
->                                         "id": "meraki:layer7/application/3",
->                                         "name": "DNS"
->                                     }
->                                 ]
->                             }
->                         }
->                     }
->                 ]
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
 \[ networks \]
 --------------
 
@@ -615,12 +568,14 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 >                     "httpServer": {
 >                         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
 >                         "name": "Example Webhook Server",
->                         "url": "https://www.example.com/my_custom_webhook",
 >                         "networkId": "N_12345678",
+>                         "url": "https://www.example.com/my_custom_webhook",
+>                         "sharedSecret": "******",
 >                         "validator": "xxx",
->                         "validatedAt": "2018-02-11T00:00:00Z",
->                         "sharedSecret": "******"
+>                         "validatedAt": "2018-02-11T00:00:00Z"
 >                     },
+>                     "scanningApiVersion": 123,
+>                     "radioType": "WiFi",
 >                     "successAt": "2018-05-12T00:00:00Z",
 >                     "errorAt": "2018-02-11T00:00:00Z",
 >                     "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
@@ -644,12 +599,14 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 >                 "httpServer": {
 >                     "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
 >                     "name": "Example Webhook Server",
->                     "url": "https://www.example.com/my_custom_webhook",
 >                     "networkId": "N_12345678",
+>                     "url": "https://www.example.com/my_custom_webhook",
+>                     "sharedSecret": "******",
 >                     "validator": "xxx",
->                     "validatedAt": "2018-02-11T00:00:00Z",
->                     "sharedSecret": "******"
+>                     "validatedAt": "2018-02-11T00:00:00Z"
 >                 },
+>                 "scanningApiVersion": 123,
+>                 "radioType": "WiFi",
 >                 "successAt": "2018-05-12T00:00:00Z",
 >                 "errorAt": "2018-02-11T00:00:00Z",
 >                 "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
@@ -663,6 +620,81 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 
 \[ switch \]
 ------------
+
+### devices
+
+PATH _`/organizations/{organizationId}/switch/devices/system/queues/history/bySwitch/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a historical record of packet transmission and loss, broken down by protocol, for insight into switch device health.
+> 
+> **GET** `/organizations/{organizationId}/switch/devices/system/queues/history/bySwitch/byInterval`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "serial": "Q234-ABCD-0001",
+>                 "model": "MS",
+>                 "name": "My switch",
+>                 "mac": "00:11:22:33:44:55",
+>                 "tags": [
+>                     "tag1",
+>                     "tag2"
+>                 ],
+>                 "network": {
+>                     "id": "N_24329156",
+>                     "name": "Main Office",
+>                     "tags": [
+>                         "tag1",
+>                         "tag2"
+>                     ]
+>                 },
+>                 "history": [
+>                     {
+>                         "startTs": "2018-02-11T00:00:00.090210Z",
+>                         "endTs": "2018-02-11T00:00:00.090210Z",
+>                         "counts": {
+>                             "processed": {
+>                                 "total": 9,
+>                                 "byProtocol": {
+>                                     "stp": 1,
+>                                     "ospf": 1,
+>                                     "lacp": 1,
+>                                     "arp": 1,
+>                                     "management": 5
+>                                 }
+>                             },
+>                             "dropped": {
+>                                 "total": 3,
+>                                 "byProtocol": {
+>                                     "stp": 0,
+>                                     "ospf": 1,
+>                                     "lacp": 0,
+>                                     "arp": 2,
+>                                     "management": 0
+>                                 }
+>                             }
+>                         }
+>                     }
+>                 ]
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 4,
+>                     "remaining": 2
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
 
 ### ports
 
@@ -703,64 +735,6 @@ PATH _`/organizations/{organizationId}/switch/ports/connectivity/history/byDevic
 >                 "items": {
 >                     "total": 4,
 >                     "remaining": 2
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/switch/ports/overview`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns the counts of all active ports for the requested timespan, grouped by speed. An active port is a port that at any point during the timeframe is observed to be connected to a responsive device and isn't configured to be disabled. For a port that is observed at multiple speeds during the timeframe, it will be counted at the highest speed observed. The number of inactive ports, and the total number of ports are also provided. Only ports on switches online during the timeframe will be represented and a port is only guaranteed to be present if its switch was online for at least 6 hours of the timeframe.
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/overview`  
-> 
->     {
->         "counts": {
->             "total": 120,
->             "byStatus": {
->                 "active": {
->                     "total": 87,
->                     "byMediaAndLinkSpeed": {
->                         "rj45": {
->                             "10": 0,
->                             "100": 0,
->                             "1000": 24,
->                             "2500": 0,
->                             "5000": 0,
->                             "10000": 0,
->                             "total": 24
->                         },
->                         "sfp": {
->                             "100": 8,
->                             "1000": 40,
->                             "10000": 10,
->                             "20000": 0,
->                             "25000": 0,
->                             "40000": 1,
->                             "50000": 0,
->                             "100000": 0,
->                             "total": 63
->                         }
->                     }
->                 },
->                 "inactive": {
->                     "total": 33,
->                     "byMedia": {
->                         "rj45": {
->                             "total": 16
->                         },
->                         "sfp": {
->                             "total": 17
->                         }
->                     }
 >                 }
 >             }
 >         }
@@ -857,6 +831,9 @@ PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 >                             "voiceVlan": 34,
 >                             "allowedVlans": "all"
 >                         }
+>                     },
+>                     "poe": {
+>                         "isAllocated": false
 >                     }
 >                 }
 >             ]
@@ -870,39 +847,140 @@ PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 \[ wireless \]
 --------------
 
-### clients
+### zigbee
 
-PATH _`/networks/{networkId}/wireless/clients/healthScores`_
+PATH _`/devices/{serial}/wireless/zigbee/enrollments`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Fetch the health scores for all clients on this network
+> #### Enqueue a job to start enrolling doorlocks on zigbee configured MRs
 > 
-> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
+> **POST** `/devices/{serial}/wireless/zigbee/enrollments`  
+> 
+>     {
+>         "enrollmentId": "1234",
+>         "url": "/devices/SERIAL/wireless/zigbee/enrollments/1234",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/wireless/zigbee/enrollments/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an enrollment job
+> 
+> **GET** `/devices/{serial}/wireless/zigbee/enrollments/{id}`  
+> 
+>     {
+>         "enrollmentId": "1234",
+>         "url": "/devices/SERIAL/wireless/zigbee/enrollments/1234",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "enrollmentStartedAt": "complete",
+>         "doorLocks": [
+>             {
+>                 "id": "1",
+>                 "displayName": "Door Lock 403",
+>                 "shortId": "ABE123",
+>                 "lqi": "1",
+>                 "rssi": "1",
+>                 "status": "online",
+>                 "eui64": "DL403",
+>                 "enrolledAt": "2023-08-14T19:57:06Z",
+>                 "lastSeenAt": "2023-08-14T19:59:01Z",
+>                 "network": {
+>                     "id": "N_24329156",
+>                     "name": "Main Office"
+>                 },
+>                 "gateway": {
+>                     "name": "My AP",
+>                     "serial": "Q234-ABCD-5678"
+>                 }
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/zigbee`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update Zigbee Configs for specified network
+> 
+> **PUT** `/networks/{networkId}/wireless/zigbee`  
+> 
+>     {
+>         "network": {
+>             "id": "N_24329156"
+>         },
+>         "enabled": true,
+>         "iotController": {
+>             "name": "My AP",
+>             "mac": "e4:55:a8:38:f2:06",
+>             "serial": "Q234-ABCD-5678",
+>             "status": "online"
+>         },
+>         "lockManagement": {
+>             "address": "10.100.100.200",
+>             "username": "user",
+>             "status": "offline"
+>         },
+>         "defaults": {
+>             "transmitPowerLevel": 10
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return list of Zigbee configs
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee`  
 > 
 >     [
 >         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 80,
->                 "currentConnection": 100
+>             "network": {
+>                 "id": "N_24329156"
 >             },
->             "onboarding": {
->                 "latest": 100
->             }
->         },
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 30,
->                 "currentConnection": 50
+>             "enabled": true,
+>             "iotController": {
+>                 "name": "My AP",
+>                 "mac": "e4:55:a8:38:f2:06",
+>                 "serial": "Q234-ABCD-5678",
+>                 "status": "online"
 >             },
->             "onboarding": {
->                 "latest": 70
+>             "lockManagement": {
+>                 "address": "10.100.100.200",
+>                 "username": "user",
+>                 "status": "offline"
+>             },
+>             "defaults": {
+>                 "transmitPowerLevel": 10
 >             }
 >         }
 >     ]
@@ -911,46 +989,38 @@ PATH _`/networks/{networkId}/wireless/clients/healthScores`_
 
 * * *
 
-PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
+PATH _`/organizations/{organizationId}/wireless/zigbee/devices`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Return counts of distinct wireless clients connecting to a network over time
+> #### List the Zigbee MR Nodes for and organization or the supplied network(s)
 > 
-> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
+> **GET** `/organizations/{organizationId}/wireless/zigbee/devices`  
 > 
 >     [
 >         {
->             "startTs": "2020-01-01T00:00:00Z",
->             "endTs": "2020-01-01T00:05:00Z",
->             "clientCounts": {
->                 "summary": {
->                     "prospective": 100,
->                     "successful": 75,
->                     "failed": 25
->                 },
->                 "connectionSteps": {
->                     "association": {
->                         "prospective": 100,
->                         "successful": 97,
->                         "failed": 3
->                     },
->                     "authentication": {
->                         "prospective": 97,
->                         "successful": 81,
->                         "failed": 16
->                     },
->                     "dhcp": {
->                         "prospective": 81,
->                         "successful": 75,
->                         "failed": 6
->                     },
->                     "dns": {
->                         "prospective": 75,
->                         "successful": 75,
->                         "failed": 0
+>             "network": {
+>                 "id": "N_1234",
+>                 "name": "Main office"
+>             },
+>             "panId": "0x0100",
+>             "channel": "auto",
+>             "transmitPowerLevel": 12,
+>             "enrolled": true,
+>             "status": "online",
+>             "gateway": {
+>                 "name": "MR Client",
+>                 "mac": "e4:55:a8:38:f2:06",
+>                 "serial": "1234-4567-5678",
+>                 "tags": ""
+>             },
+>             "counts": {
+>                 "doorLocks": {
+>                     "byStatus": {
+>                         "online": 5,
+>                         "offline": 2
 >                     }
 >                 }
 >             }
@@ -961,25 +1031,155 @@ PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
 
 * * *
 
-PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
+PATH _`/organizations/{organizationId}/wireless/zigbee/disenrollments`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
+> #### Enqueue a job to start disenrolling doorlocks on zigbee configured MRs
 > 
-> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
+> **POST** `/organizations/{organizationId}/wireless/zigbee/disenrollments`  
 > 
 >     {
->         "mac": "22:33:44:55:66:77",
->         "clientId": "k74272e",
+>         "disenrollmentId": "1234",
+>         "url": "/organization/{organizationId}/wireless/zigbee/disenrollments/1234",
+>         "request": {
+>             "doorLockIds": [
+>                 "1234"
+>             ]
+>         },
+>         "status": "complete"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/disenrollments/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a disenrollment job
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee/disenrollments/{id}`  
+> 
+>     {
+>         "disenrollmentId": "1234",
+>         "url": "/organization/{organizationId}/wireless/zigbee/disenrollments/1234",
+>         "request": {
+>             "doorLockIds": [
+>                 "1234"
+>             ]
+>         },
+>         "status": "complete",
+>         "doorLocks": [
+>             {
+>                 "doorLockId": "1234",
+>                 "status": "success"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the list of doorlocks for a network
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee/doorLocks`  
+> 
+>     [
+>         {
+>             "id": "1",
+>             "displayName": "Door Lock 403",
+>             "shortId": "ABE123",
+>             "lqi": "1",
+>             "rssi": "1",
+>             "status": "online",
+>             "eui64": "DL403",
+>             "enrolledAt": "2023-08-14T19:57:06Z",
+>             "lastSeenAt": "2023-08-14T19:59:01Z",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "gateway": {
+>                 "name": "My AP",
+>                 "serial": "Q234-ABCD-5678"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Endpoint to bulk update door locks params
+> 
+> **POST** `/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`  
+> 
+>     [
+>         {
+>             "id": "1",
+>             "displayName": "Door Lock 403",
+>             "shortId": "ABE123",
+>             "lqi": "1",
+>             "rssi": "1",
+>             "status": "online",
+>             "eui64": "DL403",
+>             "enrolledAt": "2023-08-14T19:57:06Z",
+>             "lastSeenAt": "2023-08-14T19:59:01Z",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "gateway": {
+>                 "name": "My AP",
+>                 "serial": "Q234-ABCD-5678"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-5678"
+>         },
 >         "performance": {
->             "latest": 80,
->             "currentConnection": 100
+>             "latest": 80
 >         },
 >         "onboarding": {
->             "latest": 100
+>             "latest": 20
 >         }
 >     }
 > 
@@ -1116,34 +1316,6 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/a
 
 * * *
 
-### healthScores
-
-PATH _`/devices/{serial}/wireless/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given AP on this network
-> 
-> **GET** `/devices/{serial}/wireless/healthScores`  
-> 
->     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
->         }
->     }
-> 
-> * * *
-
-* * *
-
 ### devices
 
 PATH _`/networks/{networkId}/wireless/devices/healthScores`_
@@ -1174,657 +1346,125 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 
 * * *
 
+### clients
+
+PATH _`/networks/{networkId}/wireless/clients/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for all clients on this network
+> 
+> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
+> 
+>     [
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 80,
+>                 "currentConnection": 100
+>             },
+>             "onboarding": {
+>                 "latest": 100
+>             }
+>         },
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 30,
+>                 "currentConnection": 50
+>             },
+>             "onboarding": {
+>                 "latest": 70
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return counts of distinct wireless clients connecting to a network over time
+> 
+> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
+> 
+>     [
+>         {
+>             "startTs": "2020-01-01T00:00:00Z",
+>             "endTs": "2020-01-01T00:05:00Z",
+>             "clientCounts": {
+>                 "summary": {
+>                     "prospective": 100,
+>                     "successful": 75,
+>                     "failed": 25
+>                 },
+>                 "connectionSteps": {
+>                     "association": {
+>                         "prospective": 100,
+>                         "successful": 97,
+>                         "failed": 3
+>                     },
+>                     "authentication": {
+>                         "prospective": 97,
+>                         "successful": 81,
+>                         "failed": 16
+>                     },
+>                     "dhcp": {
+>                         "prospective": 81,
+>                         "successful": 75,
+>                         "failed": 6
+>                     },
+>                     "dns": {
+>                         "prospective": 75,
+>                         "successful": 75,
+>                         "failed": 0
+>                     }
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
+> 
+> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
+> 
+>     {
+>         "mac": "22:33:44:55:66:77",
+>         "clientId": "k74272e",
+>         "performance": {
+>             "latest": 80,
+>             "currentConnection": 100
+>         },
+>         "onboarding": {
+>             "latest": 100
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
 \[ organizations \]
 -------------------
-
-### cloud
-
-PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List of source/destination traffic rules
-> 
-> **GET** `/organizations/{organizationId}/cloud/connectivity/requirements`  
-> 
->     [
->         {
->             "description": "Meraki cloud communication",
->             "productTypes": [
->                 "appliance",
->                 "wireless",
->                 "camera",
->                 "switch"
->             ],
->             "rule": {
->                 "sources": {
->                     "includeAddressesInYourNetworks": false,
->                     "addresses": [
->                         {
->                             "type": "ipv4",
->                             "address": "209.206.48.0/20"
->                         }
->                     ]
->                 },
->                 "destinations": {
->                     "includeAddressesInYourNetworks": false,
->                     "includeAnyAddress": false,
->                     "addresses": [
->                         {
->                             "type": "fqdn",
->                             "address": "webhook.site"
->                         }
->                     ]
->                 },
->                 "ports": [
->                     {
->                         "port": "443",
->                         "protocols": [
->                             "TCP"
->                         ]
->                     }
->                 ]
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### extensions
-
-PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the ThousandEyes agent configurations under this organization. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
-> 
-> **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks`  
-> 
->     [
->         {
->             "networkId": "N_24329156",
->             "enabled": true,
->             "agentId": "12345"
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Add a ThousandEyes agent for this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
-> 
-> **POST** `/organizations/{organizationId}/extensions/thousandEyes/networks`  
-> 
->     {
->         "networkId": "N_24329156",
->         "enabled": true,
->         "agentId": "12345"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/supported`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List all the networks eligible for ThousandEyes agent activation under this organization.
-> 
-> **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks/supported`  
-> 
->     [
->         {
->             "networkId": "N_24329156",
->             "name": "Main Office",
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ],
->             "device": {
->                 "model": "MX105",
->                 "firmware": {
->                     "currentVersion": {
->                         "shortName": "MX 18.104"
->                     }
->                 },
->                 "agent": {
->                     "isInstalled": false
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the ThousandEyes agent configuration under this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
-> 
-> **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
-> 
->     {
->         "networkId": "N_24329156",
->         "enabled": true,
->         "agentId": "12345"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
-> 
-> **PUT** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
-> 
->     {
->         "networkId": "N_24329156",
->         "enabled": true,
->         "agentId": "12345"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
-> 
-> **DELETE** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/extensions/thousandEyes/tests`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Create a ThousandEyes test based on a provided test template. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
-> 
-> **POST** `/organizations/{organizationId}/extensions/thousandEyes/tests`  
-> 
->     {
->         "jobStatus": "new",
->         "pccBackgroundJob": "13289785"
->     }
-> 
-> * * *
-
-* * *
-
-### policies
-
-PATH _`/organizations/{organizationId}/policies/assignments/byClient`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get policies for all clients with policies
-> 
-> **GET** `/organizations/{organizationId}/policies/assignments/byClient`  
-> 
->     [
->         {
->             "name": "Miles's phone",
->             "clientId": "k74272e",
->             "mac": "22:33:44:55:66:77",
->             "networkId": "N_24329156",
->             "assigned": [
->                 {
->                     "name": "My group policy",
->                     "type": "Group",
->                     "id": "102",
->                     "limitTo": [
->                         {
->                             "appliance": false,
->                             "ssids": [
->                                 {
->                                     "number": 1
->                                 }
->                             ]
->                         }
->                     ]
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### splash
-
-PATH _`/organizations/{organizationId}/splash/assets/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Delete a Splash Theme Asset
-> 
-> **DELETE** `/organizations/{organizationId}/splash/assets/{id}`  
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/splash/themes`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List Splash Themes
-> 
-> **GET** `/organizations/{organizationId}/splash/themes`  
-> 
->     [
->         {
->             "id": "482367494044dbbb1d2cc8579d967cef5b4ce59f",
->             "name": "My Custom Splash Theme",
->             "themeAssets": [
->                 {
->                     "id": "1284392014819",
->                     "name": "continue.html"
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create a Splash Theme
-> 
-> **POST** `/organizations/{organizationId}/splash/themes`  
-> 
->     {
->         "id": "482367494044dbbb1d2cc8579d967cef5b4ce59f",
->         "name": "My Custom Splash Theme",
->         "themeAssets": [
->             {
->                 "id": "1284392014819",
->                 "name": "continue.html"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/splash/themes/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Delete a Splash Theme
-> 
-> **DELETE** `/organizations/{organizationId}/splash/themes/{id}`  
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/splash/themes/{themeIdentifier}/assets`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Create a Splash Theme Asset
-> 
-> **POST** `/organizations/{organizationId}/splash/themes/{themeIdentifier}/assets`  
-> 
->     {
->         "id": "1284392014819",
->         "name": "continue.html"
->     }
-> 
-> * * *
-
-* * *
-
-### support
-
-PATH _`/organizations/{organizationId}/support/salesRepresentatives`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns the organization's sales representatives
-> 
-> **GET** `/organizations/{organizationId}/support/salesRepresentatives`  
-> 
->     [
->         {
->             "name": "Miles Meraki",
->             "email": "miles@meraki.com",
->             "phone": "+15555555555"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### webhooks
-
-PATH _`/organizations/{organizationId}/webhooks/httpServers`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the HTTP servers for this organization
-> 
-> **GET** `/organizations/{organizationId}/webhooks/httpServers`  
-> 
->     [
->         {
->             "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->             "name": "Example Webhook Server",
->             "organizationId": "2930418",
->             "url": "https://www.example.com/my_custom_webhook",
->             "payloadTemplate": {
->                 "id": "wpt_00001",
->                 "name": "Meraki (included)"
->             }
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Add an HTTP server to an organization
-> 
-> **POST** `/organizations/{organizationId}/webhooks/httpServers`  
-> 
->     {
->         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->         "name": "Example Webhook Server",
->         "organizationId": "2930418",
->         "url": "https://www.example.com/my_custom_webhook",
->         "payloadTemplate": {
->             "id": "wpt_00001",
->             "name": "Meraki (included)"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/webhooks/httpServers/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an HTTP server for an organization
-> 
-> **GET** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
-> 
->     {
->         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->         "name": "Example Webhook Server",
->         "organizationId": "2930418",
->         "url": "https://www.example.com/my_custom_webhook",
->         "payloadTemplate": {
->             "id": "wpt_00001",
->             "name": "Meraki (included)"
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update an HTTP server for an organization
-> 
-> **PUT** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
-> 
->     {
->         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->         "name": "Example Webhook Server",
->         "organizationId": "2930418",
->         "url": "https://www.example.com/my_custom_webhook",
->         "payloadTemplate": {
->             "id": "wpt_00001",
->             "name": "Meraki (included)"
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an HTTP server from an organization
-> 
-> **DELETE** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the webhook payload templates for an organization
-> 
-> **GET** `/organizations/{organizationId}/webhooks/payloadTemplates`  
-> 
->     [
->         {
->             "payloadTemplateId": "wpt_343",
->             "type": "custom",
->             "name": "Custom Template",
->             "headers": [
->                 {
->                     "name": "Authorization",
->                     "template": "Bearer {{sharedSecret}}"
->                 }
->             ],
->             "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->             "sharing": {
->                 "byNetwork": {
->                     "withAll": true,
->                     "adminsCanModify": true,
->                     "ids": [
->                         "N_1234",
->                         "L_5678"
->                     ]
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create a webhook payload template for an organization
-> 
-> **POST** `/organizations/{organizationId}/webhooks/payloadTemplates`  
-> 
->     {
->         "payloadTemplateId": "wpt_343",
->         "type": "custom",
->         "name": "Custom Template",
->         "headers": [
->             {
->                 "name": "Authorization",
->                 "template": "Bearer {{sharedSecret}}"
->             }
->         ],
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "sharing": {
->             "byNetwork": {
->                 "withAll": true,
->                 "adminsCanModify": true,
->                 "ids": [
->                     "N_1234",
->                     "L_5678"
->                 ]
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get the webhook payload template for an organization
-> 
-> **GET** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
-> 
->     {
->         "payloadTemplateId": "wpt_343",
->         "type": "custom",
->         "name": "Custom Template",
->         "headers": [
->             {
->                 "name": "Authorization",
->                 "template": "Bearer {{sharedSecret}}"
->             }
->         ],
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "sharing": {
->             "byNetwork": {
->                 "withAll": true,
->                 "adminsCanModify": true,
->                 "ids": [
->                     "N_1234",
->                     "L_5678"
->                 ]
->             }
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update a webhook payload template for an organization
-> 
-> **PUT** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
-> 
->     {
->         "payloadTemplateId": "wpt_343",
->         "type": "custom",
->         "name": "Custom Template",
->         "headers": [
->             {
->                 "name": "Authorization",
->                 "template": "Bearer {{sharedSecret}}"
->             }
->         ],
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "sharing": {
->             "byNetwork": {
->                 "withAll": true,
->                 "adminsCanModify": true,
->                 "ids": [
->                     "N_1234",
->                     "L_5678"
->                 ]
->             }
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')
-> 
-> **DELETE** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/webhooks/webhookTests`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Send a test webhook for an organization
-> 
-> **POST** `/organizations/{organizationId}/webhooks/webhookTests`  
-> 
->     {
->         "id": "1234",
->         "url": "https://www.example.com/path",
->         "status": "enqueued"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the status of a webhook test for an organization
-> 
-> **GET** `/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`  
-> 
->     {
->         "id": "1234",
->         "url": "https://www.example.com/path",
->         "status": "enqueued"
->     }
-> 
-> * * *
-
-* * *
 
 ### certificates
 
@@ -2151,6 +1791,671 @@ PATH _`/organizations/{organizationId}/certificates/{certificateId}/contents`_
 
 * * *
 
+### cloud
+
+PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List of source/destination traffic rules
+> 
+> **GET** `/organizations/{organizationId}/cloud/connectivity/requirements`  
+> 
+>     [
+>         {
+>             "description": "Meraki cloud communication",
+>             "productTypes": [
+>                 "appliance",
+>                 "wireless",
+>                 "camera",
+>                 "switch"
+>             ],
+>             "rule": {
+>                 "sources": {
+>                     "includeAddressesInYourNetworks": false,
+>                     "addresses": [
+>                         {
+>                             "type": "ipv4",
+>                             "address": "209.206.48.0/20"
+>                         }
+>                     ]
+>                 },
+>                 "destinations": {
+>                     "includeAddressesInYourNetworks": false,
+>                     "includeAnyAddress": false,
+>                     "addresses": [
+>                         {
+>                             "type": "fqdn",
+>                             "address": "webhook.site"
+>                         }
+>                     ]
+>                 },
+>                 "ports": [
+>                     {
+>                         "port": "443",
+>                         "protocols": [
+>                             "TCP"
+>                         ]
+>                     }
+>                 ]
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### extensions
+
+PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the ThousandEyes agent configurations under this organization. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
+> 
+> **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks`  
+> 
+>     [
+>         {
+>             "networkId": "N_24329156",
+>             "enabled": true,
+>             "agentId": "12345"
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add a ThousandEyes agent for this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
+> 
+> **POST** `/organizations/{organizationId}/extensions/thousandEyes/networks`  
+> 
+>     {
+>         "networkId": "N_24329156",
+>         "enabled": true,
+>         "agentId": "12345"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/supported`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List all the networks eligible for ThousandEyes agent activation under this organization.
+> 
+> **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks/supported`  
+> 
+>     [
+>         {
+>             "networkId": "N_24329156",
+>             "name": "Main Office",
+>             "tags": [
+>                 "tag1",
+>                 "tag2"
+>             ],
+>             "device": {
+>                 "model": "MX105",
+>                 "firmware": {
+>                     "currentVersion": {
+>                         "shortName": "MX 18.104"
+>                     }
+>                 },
+>                 "agent": {
+>                     "isInstalled": false
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the ThousandEyes agent configuration under this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
+> 
+> **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
+> 
+>     {
+>         "networkId": "N_24329156",
+>         "enabled": true,
+>         "agentId": "12345"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
+> 
+> **PUT** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
+> 
+>     {
+>         "networkId": "N_24329156",
+>         "enabled": true,
+>         "agentId": "12345"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
+> 
+> **DELETE** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/extensions/thousandEyes/tests`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Create a ThousandEyes test based on a provided test template. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
+> 
+> **POST** `/organizations/{organizationId}/extensions/thousandEyes/tests`  
+> 
+>     {
+>         "jobStatus": "new",
+>         "pccBackgroundJob": "13289785"
+>     }
+> 
+> * * *
+
+* * *
+
+### policies
+
+PATH _`/organizations/{organizationId}/policies/assignments/byClient`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get policies for all clients with policies
+> 
+> **GET** `/organizations/{organizationId}/policies/assignments/byClient`  
+> 
+>     [
+>         {
+>             "name": "Miles's phone",
+>             "clientId": "k74272e",
+>             "mac": "22:33:44:55:66:77",
+>             "networkId": "N_24329156",
+>             "assigned": [
+>                 {
+>                     "name": "My group policy",
+>                     "type": "Group",
+>                     "id": "102",
+>                     "limitTo": [
+>                         {
+>                             "appliance": false,
+>                             "ssids": [
+>                                 {
+>                                     "number": 1
+>                                 }
+>                             ]
+>                         }
+>                     ]
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### splash
+
+PATH _`/organizations/{organizationId}/splash/assets/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get a Splash Theme Asset
+> 
+> **GET** `/organizations/{organizationId}/splash/assets/{id}`  
+> 
+>     {
+>         "id": "1284392014819",
+>         "name": "continue.html",
+>         "fileData": "PGh0bWw+PC9odG1sPg==\n"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a Splash Theme Asset
+> 
+> **DELETE** `/organizations/{organizationId}/splash/assets/{id}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/splash/themes`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List Splash Themes
+> 
+> **GET** `/organizations/{organizationId}/splash/themes`  
+> 
+>     [
+>         {
+>             "id": "482367494044dbbb1d2cc8579d967cef5b4ce59f",
+>             "name": "My Custom Splash Theme",
+>             "themeAssets": [
+>                 {
+>                     "id": "1284392014819",
+>                     "name": "continue.html"
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a Splash Theme
+> 
+> **POST** `/organizations/{organizationId}/splash/themes`  
+> 
+>     {
+>         "id": "482367494044dbbb1d2cc8579d967cef5b4ce59f",
+>         "name": "My Custom Splash Theme",
+>         "themeAssets": [
+>             {
+>                 "id": "1284392014819",
+>                 "name": "continue.html"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/splash/themes/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Delete a Splash Theme
+> 
+> **DELETE** `/organizations/{organizationId}/splash/themes/{id}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/splash/themes/{themeIdentifier}/assets`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Create a Splash Theme Asset
+> 
+> **POST** `/organizations/{organizationId}/splash/themes/{themeIdentifier}/assets`  
+> 
+>     {
+>         "id": "1284392014819",
+>         "name": "continue.html",
+>         "fileData": "PGh0bWw+PC9odG1sPg==\n"
+>     }
+> 
+> * * *
+
+* * *
+
+### support
+
+PATH _`/organizations/{organizationId}/support/salesRepresentatives`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns the organization's sales representatives
+> 
+> **GET** `/organizations/{organizationId}/support/salesRepresentatives`  
+> 
+>     [
+>         {
+>             "name": "Miles Meraki",
+>             "email": "miles@meraki.com",
+>             "phone": "+15555555555"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### webhooks
+
+PATH _`/organizations/{organizationId}/webhooks/httpServers`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the HTTP servers for this organization
+> 
+> **GET** `/organizations/{organizationId}/webhooks/httpServers`  
+> 
+>     [
+>         {
+>             "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>             "name": "Example Webhook Server",
+>             "organizationId": "2930418",
+>             "url": "https://www.example.com/my_custom_webhook",
+>             "payloadTemplate": {
+>                 "id": "wpt_00001",
+>                 "name": "Meraki (included)"
+>             }
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add an HTTP server to an organization
+> 
+> **POST** `/organizations/{organizationId}/webhooks/httpServers`  
+> 
+>     {
+>         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>         "name": "Example Webhook Server",
+>         "organizationId": "2930418",
+>         "url": "https://www.example.com/my_custom_webhook",
+>         "payloadTemplate": {
+>             "id": "wpt_00001",
+>             "name": "Meraki (included)"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/webhooks/httpServers/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an HTTP server for an organization
+> 
+> **GET** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
+> 
+>     {
+>         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>         "name": "Example Webhook Server",
+>         "organizationId": "2930418",
+>         "url": "https://www.example.com/my_custom_webhook",
+>         "payloadTemplate": {
+>             "id": "wpt_00001",
+>             "name": "Meraki (included)"
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an HTTP server for an organization
+> 
+> **PUT** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
+> 
+>     {
+>         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>         "name": "Example Webhook Server",
+>         "organizationId": "2930418",
+>         "url": "https://www.example.com/my_custom_webhook",
+>         "payloadTemplate": {
+>             "id": "wpt_00001",
+>             "name": "Meraki (included)"
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an HTTP server from an organization
+> 
+> **DELETE** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the webhook payload templates for an organization
+> 
+> **GET** `/organizations/{organizationId}/webhooks/payloadTemplates`  
+> 
+>     [
+>         {
+>             "payloadTemplateId": "wpt_343",
+>             "type": "custom",
+>             "name": "Custom Template",
+>             "headers": [
+>                 {
+>                     "name": "Authorization",
+>                     "template": "Bearer {{sharedSecret}}"
+>                 }
+>             ],
+>             "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
+>             "sharing": {
+>                 "byNetwork": {
+>                     "withAll": true,
+>                     "adminsCanModify": true,
+>                     "ids": [
+>                         "N_1234",
+>                         "L_5678"
+>                     ]
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a webhook payload template for an organization
+> 
+> **POST** `/organizations/{organizationId}/webhooks/payloadTemplates`  
+> 
+>     {
+>         "payloadTemplateId": "wpt_343",
+>         "type": "custom",
+>         "name": "Custom Template",
+>         "headers": [
+>             {
+>                 "name": "Authorization",
+>                 "template": "Bearer {{sharedSecret}}"
+>             }
+>         ],
+>         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
+>         "sharing": {
+>             "byNetwork": {
+>                 "withAll": true,
+>                 "adminsCanModify": true,
+>                 "ids": [
+>                     "N_1234",
+>                     "L_5678"
+>                 ]
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get the webhook payload template for an organization
+> 
+> **GET** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
+> 
+>     {
+>         "payloadTemplateId": "wpt_343",
+>         "type": "custom",
+>         "name": "Custom Template",
+>         "headers": [
+>             {
+>                 "name": "Authorization",
+>                 "template": "Bearer {{sharedSecret}}"
+>             }
+>         ],
+>         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
+>         "sharing": {
+>             "byNetwork": {
+>                 "withAll": true,
+>                 "adminsCanModify": true,
+>                 "ids": [
+>                     "N_1234",
+>                     "L_5678"
+>                 ]
+>             }
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update a webhook payload template for an organization
+> 
+> **PUT** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
+> 
+>     {
+>         "payloadTemplateId": "wpt_343",
+>         "type": "custom",
+>         "name": "Custom Template",
+>         "headers": [
+>             {
+>                 "name": "Authorization",
+>                 "template": "Bearer {{sharedSecret}}"
+>             }
+>         ],
+>         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
+>         "sharing": {
+>             "byNetwork": {
+>                 "withAll": true,
+>                 "adminsCanModify": true,
+>                 "ids": [
+>                     "N_1234",
+>                     "L_5678"
+>                 ]
+>             }
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')
+> 
+> **DELETE** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/webhooks/webhookTests`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Send a test webhook for an organization
+> 
+> **POST** `/organizations/{organizationId}/webhooks/webhookTests`  
+> 
+>     {
+>         "id": "1234",
+>         "url": "https://www.example.com/path",
+>         "status": "enqueued"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the status of a webhook test for an organization
+> 
+> **GET** `/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`  
+> 
+>     {
+>         "id": "1234",
+>         "url": "https://www.example.com/path",
+>         "status": "enqueued"
+>     }
+> 
+> * * *
+
+* * *
+
 \[ insight \]
 -------------
 
@@ -2329,6 +2634,72 @@ PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
 \[ devices \]
 -------------
 
+### traceRoute
+
+PATH _`/devices/{serial}/liveTools/traceRoute`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to run trace route in the device
+> 
+> **POST** `/devices/{serial}/liveTools/traceRoute`  
+> 
+>     {
+>         "traceRouteId": "123",
+>         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "target": "www.cisco.com",
+>             "sourceInterface": "100.100.0.1"
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/traceRoute/{traceRouteId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a trace route job
+> 
+> **GET** `/devices/{serial}/liveTools/traceRoute/{traceRouteId}`  
+> 
+>     {
+>         "traceRouteId": "123",
+>         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "target": "www.cisco.com",
+>             "sourceInterface": "100.100.0.1"
+>         },
+>         "status": "complete",
+>         "results": [
+>             {
+>                 "hop": 0,
+>                 "ip": "100.100.0.1",
+>                 "rttAvg": 0.00005,
+>                 "count": 3
+>             }
+>         ],
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
 ### speedTest
 
 PATH _`/devices/{serial}/liveTools/speedTest`_
@@ -2397,6 +2768,67 @@ PATH _`/devices/{serial}/liveTools/speedTest/{id}`_
 
 * * *
 
+### routingTable
+
+PATH _`/devices/{serial}/liveTools/routingTable`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported.
+> 
+> **POST** `/devices/{serial}/liveTools/routingTable`  
+> 
+>     {
+>         "routingTableId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/routingTable/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an routing table live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/routingTable/{id}`  
+> 
+>     {
+>         "routingTableId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "entries": [
+>             {
+>                 "type": "static",
+>                 "subnet": "10.200.10.1/32",
+>                 "staticGateway": "22.22.22.21"
+>             }
+>         ],
+>         "error": "The device is unreachable"
+>     }
+> 
+> * * *
+
+* * *
+
 ### macTable
 
 PATH _`/devices/{serial}/liveTools/macTable`_
@@ -2458,6 +2890,227 @@ PATH _`/devices/{serial}/liveTools/macTable/{macTableId}`_
 
 * * *
 
+### leds
+
+PATH _`/devices/{serial}/liveTools/leds/blink`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to blink leds on a device
+> 
+> **POST** `/devices/{serial}/liveTools/leds/blink`  
+> 
+>     {
+>         "ledsBlinkId": "123",
+>         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/leds/blink/1738",
+>         "status": "complete",
+>         "results": [
+>             {
+>                 "acknowledged": true
+>             }
+>         ],
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "duration": 30
+>         },
+>         "error": "error description",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/leds/blink/{ledsBlinkId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a leds blink job
+> 
+> **GET** `/devices/{serial}/liveTools/leds/blink/{ledsBlinkId}`  
+> 
+>     {
+>         "ledsBlinkId": "123",
+>         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/leds/blink/1738",
+>         "status": "complete",
+>         "results": [
+>             {
+>                 "acknowledged": true
+>             }
+>         ],
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "duration": 30
+>         },
+>         "error": "error description"
+>     }
+> 
+> * * *
+
+* * *
+
+### cyclePort
+
+PATH _`/devices/{serial}/liveTools/cyclePort`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a cycle port for the device on the specified ports.
+> 
+> **POST** `/devices/{serial}/liveTools/cyclePort`  
+> 
+>     {
+>         "cyclePortId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "ports": [
+>                 "2",
+>                 "8"
+>             ]
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/cyclePort/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a cycle port live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/cyclePort/{id}`  
+> 
+>     {
+>         "cyclePortId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "ports": [
+>                 "2",
+>                 "8"
+>             ]
+>         },
+>         "status": "complete",
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
+### aclHitCount
+
+PATH _`/devices/{serial}/liveTools/aclHitCount`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform an ACL hit count for the device.
+> 
+> **POST** `/devices/{serial}/liveTools/aclHitCount`  
+> 
+>     {
+>         "aclHitCountId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/aclHitCount/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an ACL hit count live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/aclHitCount/{id}`  
+> 
+>     {
+>         "aclHitCountId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "acls": [
+>             {
+>                 "policy": "allow",
+>                 "ipVersion": "any",
+>                 "ipProtocol": {
+>                     "type": "number",
+>                     "number": 6,
+>                     "objectGroup": "object-group-123"
+>                 },
+>                 "counts": {
+>                     "total": 1234,
+>                     "ipv4": 1234,
+>                     "ipv6": 0
+>                 },
+>                 "source": {
+>                     "address": "1.2.3.4",
+>                     "port": {
+>                         "operator": "equals",
+>                         "ports": [
+>                             80,
+>                             443
+>                         ]
+>                     }
+>                 },
+>                 "destination": {
+>                     "address": "2.3.4.5",
+>                     "port": [
+>                         {
+>                             "operator": "range",
+>                             "ports": [
+>                                 80,
+>                                 89
+>                             ]
+>                         }
+>                     ]
+>                 }
+>             }
+>         ],
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
 \[ sensor \]
 ------------
 
@@ -2483,101 +3136,6 @@ PATH _`/networks/{networkId}/sensor/schedules`_
 >             "name": "Office hours"
 >         }
 >     ]
-> 
-> * * *
-
-* * *
-
-### commands
-
-PATH _`/devices/{serial}/sensor/commands`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a historical log of all commands
-> 
-> **GET** `/devices/{serial}/sensor/commands`  
-> 
->     [
->         {
->             "commandId": "1284392014819",
->             "createdAt": "2018-02-11T00:00:00Z",
->             "completedAt": "2018-05-12T00:00:00Z",
->             "createdBy": {
->                 "adminId": "212406",
->                 "name": "Miles Meraki",
->                 "email": "miles@meraki.com"
->             },
->             "operation": "disableDownstreamPower",
->             "status": "completed",
->             "schedule": {
->                 "scheduleId": "1284392014819",
->                 "name": "Lights off"
->             },
->             "errors": []
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Sends a command to a sensor
-> 
-> **POST** `/devices/{serial}/sensor/commands`  
-> 
->     {
->         "commandId": "1284392014819",
->         "createdAt": "2018-02-11T00:00:00Z",
->         "completedAt": "2018-05-12T00:00:00Z",
->         "createdBy": {
->             "adminId": "212406",
->             "name": "Miles Meraki",
->             "email": "miles@meraki.com"
->         },
->         "operation": "disableDownstreamPower",
->         "status": "completed",
->         "schedule": {
->             "scheduleId": "1284392014819",
->             "name": "Lights off"
->         },
->         "errors": []
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/sensor/commands/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns information about the command's execution, including the status
-> 
-> **GET** `/devices/{serial}/sensor/commands/{id}`  
-> 
->     {
->         "commandId": "1284392014819",
->         "createdAt": "2018-02-11T00:00:00Z",
->         "completedAt": "2018-05-12T00:00:00Z",
->         "createdBy": {
->             "adminId": "212406",
->             "name": "Miles Meraki",
->             "email": "miles@meraki.com"
->         },
->         "operation": "disableDownstreamPower",
->         "status": "completed",
->         "schedule": {
->             "scheduleId": "1284392014819",
->             "name": "Lights off"
->         },
->         "errors": []
->     }
 > 
 > * * *
 
@@ -2610,12 +3168,6 @@ PATH _`/organizations/{organizationId}/sensor/alerts`_
 >                 "apparentPower": {
 >                     "draw": 15.9
 >                 },
->                 "battery": {
->                     "percentage": 91
->                 },
->                 "button": {
->                     "pressType": "short"
->                 },
 >                 "co2": {
 >                     "concentration": 100
 >                 },
@@ -2624,9 +3176,6 @@ PATH _`/organizations/{organizationId}/sensor/alerts`_
 >                 },
 >                 "door": {
 >                     "open": true
->                 },
->                 "downstreamPower": {
->                     "enabled": true
 >                 },
 >                 "frequency": {
 >                     "level": 60.1
@@ -2651,15 +3200,15 @@ PATH _`/organizations/{organizationId}/sensor/alerts`_
 >                 "realPower": {
 >                     "draw": 13.7
 >                 },
->                 "remoteLockoutSwitch": {
->                     "locked": false
->                 },
 >                 "temperature": {
 >                     "fahrenheit": 77.81,
 >                     "celsius": 25.45
 >                 },
 >                 "tvoc": {
 >                     "concentration": 100
+>                 },
+>                 "upstreamPower": {
+>                     "outageDetected": true
 >                 },
 >                 "voltage": {
 >                     "level": 122.4
@@ -3450,7 +3999,8 @@ PATH _`/organizations/{organizationId}/secureConnect/sites`_
 >                 "region": "US East",
 >                 "deviceType": "MX95-HW",
 >                 "address": "123 Main St",
->                 "enrolled": true
+>                 "enrolled": true,
+>                 "vpnType": "Hub"
 >             }
 >         ],
 >         "meta": {
