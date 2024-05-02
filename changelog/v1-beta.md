@@ -16,6 +16,8 @@
     + [firmwareUpgrades](#firmwareupgrades)
       - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network)
       - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network)
+    + [devices](#devices)
+      - [Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requests against that device to succeed)](#claim-devices-into-a-network-note-for-recently-claimed-devices-it-may-take-a-few-minutes-for-api-requests-against-that-device-to-succeed)
   * [\[ switch \]](#-switch-)
     + [stacks](#stacks)
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
@@ -31,7 +33,7 @@
       - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
       - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
   * [\[ organizations \]](#-organizations-)
-    + [devices](#devices)
+    + [devices](#devices-1)
       - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
   * [\[ insight \]](#-insight-)
@@ -46,8 +48,6 @@
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ switch \]](#-switch--1)
-    + [devices](#devices-1)
-      - [Return a historical record of packet transmission and loss, broken down by protocol, for insight into switch device health.](#return-a-historical-record-of-packet-transmission-and-loss-broken-down-by-protocol-for-insight-into-switch-device-health)
     + [ports](#ports-2)
       - [Return all connectivity events for each switch port in the given organization, within a given time range.](#return-all-connectivity-events-for-each-switch-port-in-the-given-organization-within-a-given-time-range)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
@@ -62,19 +62,38 @@
       - [Return a disenrollment job](#return-a-disenrollment-job)
       - [Return the list of doorlocks for a network](#return-the-list-of-doorlocks-for-a-network)
       - [Endpoint to bulk update door locks params](#endpoint-to-bulk-update-door-locks-params)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
-    + [radio](#radio)
-      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
-      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
-      - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
-    + [devices](#devices-2)
-      - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
     + [clients](#clients)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
+    + [devices](#devices-2)
+      - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
+      - [Export Mars access point client count list](#export-mars-access-point-client-count-list)
+      - [List of Catalyst access points and summary information](#list-of-catalyst-access-points-and-summary-information)
+    + [wirelessLanController](#wirelesslancontroller)
+      - [Export wireless controller summaries containing Total AP and client counts](#export-wireless-controller-summaries-containing-total-ap-and-client-counts)
+      - [Export wireless controller associated access point list](#export-wireless-controller-associated-access-point-list)
+      - [Return wireless client counts over time for a wireless LAN controller in an organization](#return-wireless-client-counts-over-time-for-a-wireless-lan-controller-in-an-organization)
+      - [Export wireless controller connectivity data. If it is HA setup, then only returns active WLC data start from switchover](#export-wireless-controller-connectivity-data-if-it-is-ha-setup-then-only-returns-active-wlc-data-start-from-switchover)
+      - [Export wireless controller CPU utilization of core and wireless network controller daemon process, and memory utilization](#export-wireless-controller-cpu-utilization-of-core-and-wireless-network-controller-daemon-process-and-memory-utilization)
+      - [List the failover events for wireless LAN controller](#list-the-failover-events-for-wireless-lan-controller)
+      - [Export wireless controller layer 2 interfaces](#export-wireless-controller-layer-2-interfaces)
+      - [Export Wireless LAN Controller layer 3 interfaces](#export-wireless-lan-controller-layer-3-interfaces)
+      - [Export wireless controller redundancy details](#export-wireless-controller-redundancy-details)
+    + [radio](#radio)
+      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
+      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
+      - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
   * [\[ organizations \]](#-organizations--1)
+    + [auth](#auth)
+      - [List the organization-wide RADIUS servers in the organization](#list-the-organization-wide-radius-servers-in-the-organization)
+      - [Add an organization-wide RADIUS server](#add-an-organization-wide-radius-server)
+      - [Return list of network and policies that organization-wide RADIUS servers are bing used](#return-list-of-network-and-policies-that-organization-wide-radius-servers-are-bing-used)
+      - [Return an organization-wide RADIUS server](#return-an-organization-wide-radius-server)
+      - [Update an organization-wide RADIUS server](#update-an-organization-wide-radius-server)
+      - [Delete an organization-wide RADIUS server from a organization](#delete-an-organization-wide-radius-server-from-a-organization)
     + [certificates](#certificates)
       - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
       - [Import certificate for this organization](#import-certificate-for-this-organization)
@@ -99,13 +118,8 @@
       - [Create a ThousandEyes test based on a provided test template. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.](#create-a-thousandeyes-test-based-on-a-provided-test-template-only-valid-for-networks-with-access-to-meraki-insight-organization-must-have-a-thousandeyes-account-connected-to-perform-this-action)
     + [policies](#policies)
       - [Get policies for all clients with policies](#get-policies-for-all-clients-with-policies)
-    + [splash](#splash)
-      - [Get a Splash Theme Asset](#get-a-splash-theme-asset)
-      - [Delete a Splash Theme Asset](#delete-a-splash-theme-asset)
-      - [List Splash Themes](#list-splash-themes)
-      - [Create a Splash Theme](#create-a-splash-theme)
-      - [Delete a Splash Theme](#delete-a-splash-theme)
-      - [Create a Splash Theme Asset](#create-a-splash-theme-asset)
+    + [devices](#devices-3)
+      - [Updating device details (currently only used for Catalyst devices)](#updating-device-details-currently-only-used-for-catalyst-devices)
     + [support](#support)
       - [Returns the organization's sales representatives](#returns-the-organizations-sales-representatives)
     + [webhooks](#webhooks)
@@ -177,7 +191,7 @@
     + [publicApplications](#publicapplications)
       - [Provides a list of public applications for an Organization.](#provides-a-list-of-public-applications-for-an-organization)
     + [regions](#regions)
-      - [List deployed cloud hubs and CNHE regions in this organization](#list-deployed-cloud-hubs-and-cnhe-regions-in-this-organization)
+      - [List deployed cloud hubs and regions in this organization](#list-deployed-cloud-hubs-and-regions-in-this-organization)
     + [remoteAccessLog](#remoteaccesslog)
       - [List the latest 5000 events logged by remote access.](#list-the-latest-5000-events-logged-by-remote-access)
     + [remoteAccessLogsExports](#remoteaccesslogsexports)
@@ -200,19 +214,19 @@
       - [Delete a PccBulkEnrollmentToken](#delete-a-pccbulkenrollmenttoken)
       - [List all BulkEnrollmentTokens for an organization.](#list-all-bulkenrollmenttokens-for-an-organization)
  
-Version **1.45.0** _to_ **1.45.0-beta.0**
+Version **1.46.0** _to_ **1.46.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**84 - New**
+**94 - New**
 
-**50 - Updated**
+**52 - Updated**
 
-**815 - Total Endpoints**
+**847 - Total Endpoints**
 
-**538 - Total Paths**
+**566 - Total Paths**
 
 * * *
 
@@ -339,6 +353,16 @@ PUT _`/networks/{networkId}/firmwareUpgrades`_
 
 * * *
 
+### devices
+
+#### Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requests against that device to succeed)
+
+POST _`/networks/{networkId}/devices/claim`_
+
+> \- Optional property `detailsByDevice` Added
+
+* * *
+
 \[ switch \]
 ------------
 
@@ -380,6 +404,8 @@ GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
 PUT _`/networks/{networkId}/wireless/ssids/{number}`_
 
 > \- Optional property `radiusRadsecTlsIdleTimeout` Added
+
+> \- Optional property `localAuthFallback` Added
 
 * * *
 
@@ -620,81 +646,6 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 
 \[ switch \]
 ------------
-
-### devices
-
-PATH _`/organizations/{organizationId}/switch/devices/system/queues/history/bySwitch/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a historical record of packet transmission and loss, broken down by protocol, for insight into switch device health.
-> 
-> **GET** `/organizations/{organizationId}/switch/devices/system/queues/history/bySwitch/byInterval`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-0001",
->                 "model": "MS",
->                 "name": "My switch",
->                 "mac": "00:11:22:33:44:55",
->                 "tags": [
->                     "tag1",
->                     "tag2"
->                 ],
->                 "network": {
->                     "id": "N_24329156",
->                     "name": "Main Office",
->                     "tags": [
->                         "tag1",
->                         "tag2"
->                     ]
->                 },
->                 "history": [
->                     {
->                         "startTs": "2018-02-11T00:00:00.090210Z",
->                         "endTs": "2018-02-11T00:00:00.090210Z",
->                         "counts": {
->                             "processed": {
->                                 "total": 9,
->                                 "byProtocol": {
->                                     "stp": 1,
->                                     "ospf": 1,
->                                     "lacp": 1,
->                                     "arp": 1,
->                                     "management": 5
->                                 }
->                             },
->                             "dropped": {
->                                 "total": 3,
->                                 "byProtocol": {
->                                     "stp": 0,
->                                     "ospf": 1,
->                                     "lacp": 0,
->                                     "arp": 2,
->                                     "management": 0
->                                 }
->                             }
->                         }
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 4,
->                     "remaining": 2
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
 
 ### ports
 
@@ -1020,7 +971,8 @@ PATH _`/organizations/{organizationId}/wireless/zigbee/devices`_
 >                 "doorLocks": {
 >                     "byStatus": {
 >                         "online": 5,
->                         "offline": 2
+>                         "offline": 2,
+>                         "dormant": 0
 >                     }
 >                 }
 >             }
@@ -1159,6 +1111,123 @@ PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`_
 
 * * *
 
+### clients
+
+PATH _`/networks/{networkId}/wireless/clients/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for all clients on this network
+> 
+> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
+> 
+>     [
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 80,
+>                 "currentConnection": 100
+>             },
+>             "onboarding": {
+>                 "latest": 100
+>             }
+>         },
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 30,
+>                 "currentConnection": 50
+>             },
+>             "onboarding": {
+>                 "latest": 70
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return counts of distinct wireless clients connecting to a network over time
+> 
+> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
+> 
+>     [
+>         {
+>             "startTs": "2020-01-01T00:00:00Z",
+>             "endTs": "2020-01-01T00:05:00Z",
+>             "clientCounts": {
+>                 "summary": {
+>                     "prospective": 100,
+>                     "successful": 75,
+>                     "failed": 25
+>                 },
+>                 "connectionSteps": {
+>                     "association": {
+>                         "prospective": 100,
+>                         "successful": 97,
+>                         "failed": 3
+>                     },
+>                     "authentication": {
+>                         "prospective": 97,
+>                         "successful": 81,
+>                         "failed": 16
+>                     },
+>                     "dhcp": {
+>                         "prospective": 81,
+>                         "successful": 75,
+>                         "failed": 6
+>                     },
+>                     "dns": {
+>                         "prospective": 75,
+>                         "successful": 75,
+>                         "failed": 0
+>                     }
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
+> 
+> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
+> 
+>     {
+>         "mac": "22:33:44:55:66:77",
+>         "clientId": "k74272e",
+>         "performance": {
+>             "latest": 80,
+>             "currentConnection": 100
+>         },
+>         "onboarding": {
+>             "latest": 100
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
 ### healthScores
 
 PATH _`/devices/{serial}/wireless/healthScores`_
@@ -1182,6 +1251,454 @@ PATH _`/devices/{serial}/wireless/healthScores`_
 >             "latest": 20
 >         }
 >     }
+> 
+> * * *
+
+* * *
+
+### devices
+
+PATH _`/networks/{networkId}/wireless/devices/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores of all APs on this network
+> 
+> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
+> 
+>     [
+>         {
+>             "device": {
+>                 "serial": "Q234-ABCD-5678"
+>             },
+>             "performance": {
+>                 "latest": 80
+>             },
+>             "onboarding": {
+>                 "latest": 20
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/devices/catalyst/accessPointClientCount`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Export Mars access point client count list
+> 
+> **GET** `/organizations/{organizationId}/wireless/devices/catalyst/accessPointClientCount`  
+> 
+>     [
+>         {
+>             "serial": "Q234-ABCD-5678",
+>             "clientCount": {
+>                 "activeCount": 1
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/devices/catalyst/accessPoints`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List of Catalyst access points and summary information
+> 
+> **GET** `/organizations/{organizationId}/wireless/devices/catalyst/accessPoints`  
+> 
+>     [
+>         {
+>             "id": 180905961993748,
+>             "serial": "Q234-ABCD-5678",
+>             "model": "C9115AXI-H",
+>             "physicalSerial": "FGL2446L7QQ",
+>             "tags": {
+>                 "policyTag": "4F",
+>                 "siteTag": "default-site-tag",
+>                 "rfTag": "default-rf-tag"
+>             },
+>             "power": {
+>                 "mode": "Full Power",
+>                 "type": "PoE+"
+>             },
+>             "mode": "Local",
+>             "countryCode": "CA",
+>             "wirelessController": {
+>                 "id": 194361162581248,
+>                 "name": "Wireless Controller",
+>                 "mac": "00:11:22:33:44:55",
+>                 "url": "https://n1.meraki.com//n//manage/nodes/new_list/000000000000",
+>                 "firmwareVersion": " IOS XE",
+>                 "serial": "A2CC-8TYV-VCO9",
+>                 "status": 0
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### wirelessLanController
+
+PATH _`/organizations/{organizationId}/wireless/wirelessLanController/summaries`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Export wireless controller summaries containing Total AP and client counts
+> 
+> **GET** `/organizations/{organizationId}/wireless/wirelessLanController/summaries`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "serial": "Q234-ABCD-5678",
+>             "activeClientCount": 300,
+>             "accessPointCount": {
+>                 "total": 200,
+>                 "online": 180,
+>                 "offline": 20
+>             },
+>             "role": "Active",
+>             "redundancyId": "123456",
+>             "chassisName": "Chassis 1",
+>             "rmi": "10.14.140.5",
+>             "firmwareVersion": "ios-xe"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/wirelessLanController/{serial}/accessPoints`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Export wireless controller associated access point list
+> 
+> **GET** `/organizations/{organizationId}/wireless/wirelessLanController/{serial}/accessPoints`  
+> 
+>     [
+>         {
+>             "serial": "Q234-ABCD-5678",
+>             "networkId": "N_24329156",
+>             "networkUrl": "https://network/url",
+>             "networkName": "Network1"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/wirelessLanController/{serial}/clientCountHistory`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return wireless client counts over time for a wireless LAN controller in an organization
+> 
+> **GET** `/organizations/{organizationId}/wireless/wirelessLanController/{serial}/clientCountHistory`  
+> 
+>     {
+>         "startTs": "2020-01-01T00:00:00Z",
+>         "endTs": "2020-01-01T01:00:00Z",
+>         "clientCount": 14
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/wirelessLanController/{serial}/connectivity`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Export wireless controller connectivity data. If it is HA setup, then only returns active WLC data start from switchover
+> 
+> **GET** `/organizations/{organizationId}/wireless/wirelessLanController/{serial}/connectivity`  
+> 
+>     {
+>         "t0": 1682938800,
+>         "t1": 1682939100,
+>         "upseries": [
+>             [
+>                 1702645602000,
+>                 0
+>             ],
+>             [
+>                 1702793132000,
+>                 4
+>             ]
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/wirelessLanController/{serial}/cpuMemoryUtilization`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Export wireless controller CPU utilization of core and wireless network controller daemon process, and memory utilization
+> 
+> **GET** `/organizations/{organizationId}/wireless/wirelessLanController/{serial}/cpuMemoryUtilization`  
+> 
+>     {
+>         "t0": 1682938800,
+>         "t1": 1682939100,
+>         "coreUtils": [
+>             {
+>                 "name": "core_1",
+>                 "utils": [
+>                     {
+>                         "ts": 1682938800,
+>                         "utilization": 0
+>                     }
+>                 ]
+>             }
+>         ],
+>         "wncdProcessUtils": [
+>             {
+>                 "name": "wncd_1",
+>                 "utils": [
+>                     {
+>                         "ts": 1682938800,
+>                         "utilization": 1
+>                     }
+>                 ]
+>             }
+>         ],
+>         "memoryUtils": [
+>             {
+>                 "ts": 1682938800,
+>                 "utilization": 70
+>             }
+>         ],
+>         "averageCoreUtils": [
+>             {
+>                 "ts": 1682938800,
+>                 "utilization": 3
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/wirelessLanController/{serial}/failOverEvents`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the failover events for wireless LAN controller
+> 
+> **GET** `/organizations/{organizationId}/wireless/wirelessLanController/{serial}/failOverEvents`  
+> 
+>     [
+>         {
+>             "events": [
+>                 {
+>                     "ts": 1682938800,
+>                     "reason": "Active Unit Failed",
+>                     "previousActive": "Chassis 2",
+>                     "newActive": "Chassis 1"
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/wirelessLanController/{serial}/layer2Interfaces`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Export wireless controller layer 2 interfaces
+> 
+> **GET** `/organizations/{organizationId}/wireless/wirelessLanController/{serial}/layer2Interfaces`  
+> 
+>     [
+>         {
+>             "id": "1",
+>             "name": "TenGigabitEthernet0/0/5",
+>             "description": "Uplink",
+>             "interfaceType": "IANA_IFTYPE_ETHERNETCSMACD",
+>             "enabled": true,
+>             "mac": "b0:c5:3c:0d:c5:0b",
+>             "rxBytes": 0,
+>             "txBytes": 0,
+>             "status": [
+>                 {
+>                     "ts": 1677383054,
+>                     "interfaceState": "INTF_STATE_STATE_INTF_DOWN",
+>                     "operState": "OPER_STATE_STATE_OPER_LOWER_LAYER_DOWN"
+>                 }
+>             ],
+>             "currStatus": 0,
+>             "mediaType": "ETHER_MEDIA_SFP",
+>             "type": "10gig",
+>             "isUplink": true,
+>             "vid": 10,
+>             "nativeVid": 10,
+>             "linkNegotiation": "auto",
+>             "lldpInfos": [
+>                 {
+>                     "mac": "00:45:1d:28:7d:8c",
+>                     "portIdentifier": "TenGigabitEthernet0/0/1",
+>                     "updatedAt": "2023-05-23 12:02:46.298",
+>                     "deviceName": "cat2026.s2035",
+>                     "deviceDescription": "cisco C9300-24P",
+>                     "merakiPortIdentifier": "TenGigabitEthernet0/0/1",
+>                     "cdp": {
+>                         "device": "cat2026.s2035",
+>                         "port": "TenGigabitEthernet0/0/1",
+>                         "opts": [
+>                             [
+>                                 "Device ID",
+>                                 "cat2026.s2035"
+>                             ],
+>                             [
+>                                 "Port ID",
+>                                 "TenGigabitEthernet0/0/1"
+>                             ],
+>                             [
+>                                 "Native VLAN",
+>                                 "1"
+>                             ],
+>                             [
+>                                 "Address",
+>                                 "192.168.1.128"
+>                             ]
+>                         ]
+>                     },
+>                     "lldp": {
+>                         "device": "cat2026.s2035",
+>                         "port": "TenGigabitEthernet0/0/1",
+>                         "opts": [
+>                             [
+>                                 "System name",
+>                                 "cat2026.s2035"
+>                             ],
+>                             [
+>                                 "Port ID",
+>                                 "TenGigabitEthernet0/0/1"
+>                             ],
+>                             [
+>                                 "Chassis ID",
+>                                 "00:45:1d:28:7d:80"
+>                             ],
+>                             [
+>                                 "Management address",
+>                                 "192.168.1.128"
+>                             ]
+>                         ]
+>                     }
+>                 }
+>             ],
+>             "moduleType": "C9800-2X40GE"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/wirelessLanController/{serial}/layer3Interfaces`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Export Wireless LAN Controller layer 3 interfaces
+> 
+> **GET** `/organizations/{organizationId}/wireless/wirelessLanController/{serial}/layer3Interfaces`  
+> 
+>     [
+>         {
+>             "id": "1",
+>             "name": "vlan123",
+>             "description": "Wireless Mgmt",
+>             "interfaceType": "IANA_IFTYPE_ETHERNETCSMACD",
+>             "ipv4Address": "192.168.123.1",
+>             "ipv6Address": "fd0a:9b09:1f7:1:eece:13ff:fe00:7400",
+>             "subnet": "192.168.123.0/24",
+>             "mac": "1c:e8:5d:00:00:0c",
+>             "rxBytes": 0,
+>             "txBytes": 0,
+>             "vrf": "Global",
+>             "status": [
+>                 {
+>                     "ts": 1677383054,
+>                     "interfaceState": "INTF_STATE_STATE_INTF_DOWN",
+>                     "operState": "OPER_STATE_STATE_OPER_LOWER_LAYER_DOWN"
+>                 }
+>             ],
+>             "currStatus": "STATE_OPER_READY",
+>             "moduleType": "C9800-2X40GE",
+>             "linkNegotiation": "auto",
+>             "type": "10gig",
+>             "isUplink": true,
+>             "vid": 10,
+>             "nativeVid": 10
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/wirelessLanController/{serial}/redundancyDetails`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Export wireless controller redundancy details
+> 
+> **GET** `/organizations/{organizationId}/wireless/wirelessLanController/{serial}/redundancyDetails`  
+> 
+>     [
+>         {
+>             "wlcId": 194361162581248,
+>             "mode": "sso",
+>             "enabled": true,
+>             "lastFailoverTime": 1702477593,
+>             "lastFailoverReason": "Active Unit Failed",
+>             "systemFailovers": 2,
+>             "mobilityMac": "b0:c5:3c:0d:c5:0b"
+>         }
+>     ]
 > 
 > * * *
 
@@ -1316,155 +1833,151 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/a
 
 * * *
 
-### devices
+\[ organizations \]
+-------------------
 
-PATH _`/networks/{networkId}/wireless/devices/healthScores`_
+### auth
 
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores of all APs on this network
-> 
-> **GET** `/networks/{networkId}/wireless/devices/healthScores`  
-> 
->     [
->         {
->             "device": {
->                 "serial": "Q234-ABCD-5678"
->             },
->             "performance": {
->                 "latest": 80
->             },
->             "onboarding": {
->                 "latest": 20
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### clients
-
-PATH _`/networks/{networkId}/wireless/clients/healthScores`_
+PATH _`/organizations/{organizationId}/auth/radius/servers`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Fetch the health scores for all clients on this network
+> #### List the organization-wide RADIUS servers in the organization
 > 
-> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
-> 
->     [
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 80,
->                 "currentConnection": 100
->             },
->             "onboarding": {
->                 "latest": 100
->             }
->         },
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 30,
->                 "currentConnection": 50
->             },
->             "onboarding": {
->                 "latest": 70
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return counts of distinct wireless clients connecting to a network over time
-> 
-> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
+> **GET** `/organizations/{organizationId}/auth/radius/servers`  
 > 
 >     [
 >         {
->             "startTs": "2020-01-01T00:00:00Z",
->             "endTs": "2020-01-01T00:05:00Z",
->             "clientCounts": {
->                 "summary": {
->                     "prospective": 100,
->                     "successful": 75,
->                     "failed": 25
->                 },
->                 "connectionSteps": {
->                     "association": {
->                         "prospective": 100,
->                         "successful": 97,
->                         "failed": 3
->                     },
->                     "authentication": {
->                         "prospective": 97,
->                         "successful": 81,
->                         "failed": 16
->                     },
->                     "dhcp": {
->                         "prospective": 81,
->                         "successful": 75,
->                         "failed": 6
->                     },
->                     "dns": {
->                         "prospective": 75,
->                         "successful": 75,
->                         "failed": 0
->                     }
+>             "serverId": "42",
+>             "name": "HQ RADIUS server",
+>             "address": "1.2.3.4",
+>             "modes": [
+>                 {
+>                     "mode": "auth",
+>                     "port": 1812
 >                 }
->             }
+>             ]
 >         }
 >     ]
 > 
 > * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
-
-> \- Path added  
+> 
 >   
 > \- New endpoint
 > 
-> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
+> #### Add an organization-wide RADIUS server
 > 
-> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
+> **POST** `/organizations/{organizationId}/auth/radius/servers`  
 > 
 >     {
->         "mac": "22:33:44:55:66:77",
->         "clientId": "k74272e",
->         "performance": {
->             "latest": 80,
->             "currentConnection": 100
->         },
->         "onboarding": {
->             "latest": 100
->         }
+>         "serverId": "42",
+>         "name": "HQ RADIUS server",
+>         "address": "1.2.3.4",
+>         "modes": [
+>             {
+>                 "mode": "auth",
+>                 "port": 1812
+>             }
+>         ]
 >     }
 > 
 > * * *
 
 * * *
 
-\[ organizations \]
--------------------
+PATH _`/organizations/{organizationId}/auth/radius/servers/assignments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return list of network and policies that organization-wide RADIUS servers are bing used
+> 
+> **GET** `/organizations/{organizationId}/auth/radius/servers/assignments`  
+> 
+>     {
+>         "serverId": "42",
+>         "name": "HQ RADIUS server",
+>         "assignments": [
+>             {
+>                 "network": {
+>                     "id": "L_1234",
+>                     "eid": "L_1234",
+>                     "tag": "San-Francisco",
+>                     "name": "San Francisco Office",
+>                     "dashboardUrl": "https://n1.meraki.dev.ikram.io/tag/n/1234/manage/nodes/list"
+>                 },
+>                 "assignee": {
+>                     "type": "Access policy",
+>                     "id": "42",
+>                     "name": "Access policy #42",
+>                     "dashboardUrl": "https://n1.meraki.dev.ikram.io/tag/n/1234/manage/configure/switch_access"
+>                 }
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/auth/radius/servers/{serverId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an organization-wide RADIUS server
+> 
+> **GET** `/organizations/{organizationId}/auth/radius/servers/{serverId}`  
+> 
+>     {
+>         "serverId": "42",
+>         "name": "HQ RADIUS server",
+>         "address": "1.2.3.4",
+>         "modes": [
+>             {
+>                 "mode": "auth",
+>                 "port": 1812
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an organization-wide RADIUS server
+> 
+> **PUT** `/organizations/{organizationId}/auth/radius/servers/{serverId}`  
+> 
+>     {
+>         "serverId": "42",
+>         "name": "HQ RADIUS server",
+>         "address": "1.2.3.4",
+>         "modes": [
+>             {
+>                 "mode": "auth",
+>                 "port": 1812
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an organization-wide RADIUS server from a organization
+> 
+> **DELETE** `/organizations/{organizationId}/auth/radius/servers/{serverId}`  
+> 
+> * * *
+
+* * *
 
 ### certificates
 
@@ -2028,112 +2541,24 @@ PATH _`/organizations/{organizationId}/policies/assignments/byClient`_
 
 * * *
 
-### splash
+### devices
 
-PATH _`/organizations/{organizationId}/splash/assets/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get a Splash Theme Asset
-> 
-> **GET** `/organizations/{organizationId}/splash/assets/{id}`  
-> 
->     {
->         "id": "1284392014819",
->         "name": "continue.html",
->         "fileData": "PGh0bWw+PC9odG1sPg==\n"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a Splash Theme Asset
-> 
-> **DELETE** `/organizations/{organizationId}/splash/assets/{id}`  
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/splash/themes`_
+PATH _`/organizations/{organizationId}/devices/details/bulkUpdate`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List Splash Themes
+> #### Updating device details (currently only used for Catalyst devices)
 > 
-> **GET** `/organizations/{organizationId}/splash/themes`  
-> 
->     [
->         {
->             "id": "482367494044dbbb1d2cc8579d967cef5b4ce59f",
->             "name": "My Custom Splash Theme",
->             "themeAssets": [
->                 {
->                     "id": "1284392014819",
->                     "name": "continue.html"
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create a Splash Theme
-> 
-> **POST** `/organizations/{organizationId}/splash/themes`  
+> **POST** `/organizations/{organizationId}/devices/details/bulkUpdate`  
 > 
 >     {
->         "id": "482367494044dbbb1d2cc8579d967cef5b4ce59f",
->         "name": "My Custom Splash Theme",
->         "themeAssets": [
->             {
->                 "id": "1284392014819",
->                 "name": "continue.html"
->             }
+>         "serials": [
+>             "Q234-ABCD-0001",
+>             "Q234-ABCD-0002",
+>             "Q234-ABCD-0003"
 >         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/splash/themes/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Delete a Splash Theme
-> 
-> **DELETE** `/organizations/{organizationId}/splash/themes/{id}`  
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/splash/themes/{themeIdentifier}/assets`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Create a Splash Theme Asset
-> 
-> **POST** `/organizations/{organizationId}/splash/themes/{themeIdentifier}/assets`  
-> 
->     {
->         "id": "1284392014819",
->         "name": "continue.html",
->         "fileData": "PGh0bWw+PC9odG1sPg==\n"
 >     }
 > 
 > * * *
@@ -2906,11 +3331,6 @@ PATH _`/devices/{serial}/liveTools/leds/blink`_
 >         "ledsBlinkId": "123",
 >         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/leds/blink/1738",
 >         "status": "complete",
->         "results": [
->             {
->                 "acknowledged": true
->             }
->         ],
 >         "request": {
 >             "serial": "Q234-ABCD-5678",
 >             "duration": 30
@@ -2941,11 +3361,6 @@ PATH _`/devices/{serial}/liveTools/leds/blink/{ledsBlinkId}`_
 >         "ledsBlinkId": "123",
 >         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/leds/blink/1738",
 >         "status": "complete",
->         "results": [
->             {
->                 "acknowledged": true
->             }
->         ],
 >         "request": {
 >             "serial": "Q234-ABCD-5678",
 >             "duration": 30
@@ -3789,7 +4204,7 @@ PATH _`/organizations/{organizationId}/secureConnect/regions`_
 >   
 > \- New endpoint
 > 
-> #### List deployed cloud hubs and CNHE regions in this organization
+> #### List deployed cloud hubs and regions in this organization
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/regions`  
 > 
@@ -3797,7 +4212,7 @@ PATH _`/organizations/{organizationId}/secureConnect/regions`_
 >         "data": [
 >             {
 >                 "id": "123",
->                 "type": "CNHE",
+>                 "type": "Region",
 >                 "name": "US West Coast",
 >                 "dcPair": [
 >                     "Los Angeles",
@@ -4000,7 +4415,8 @@ PATH _`/organizations/{organizationId}/secureConnect/sites`_
 >                 "deviceType": "MX95-HW",
 >                 "address": "123 Main St",
 >                 "enrolled": true,
->                 "vpnType": "Hub"
+>                 "vpnType": "Hub",
+>                 "defaultRoute": true
 >             }
 >         ],
 >         "meta": {
