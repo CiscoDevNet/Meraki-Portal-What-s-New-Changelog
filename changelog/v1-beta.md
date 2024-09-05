@@ -10,6 +10,14 @@
       - [List per-port VLAN settings for all ports of a MX.](#list-per-port-vlan-settings-for-all-ports-of-a-mx)
       - [Return per-port VLAN settings for a single MX port.](#return-per-port-vlan-settings-for-a-single-mx-port)
       - [Update the per-port VLAN settings for a single MX port.](#update-the-per-port-vlan-settings-for-a-single-mx-port)
+  * [\[ networks \]](#-networks-)
+    + [settings](#settings)
+      - [Update the settings for a network](#update-the-settings-for-a-network)
+    + [firmwareUpgrades](#firmwareupgrades)
+      - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network)
+      - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network)
+    + [devices](#devices)
+      - [Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requests against that device to succeed)](#claim-devices-into-a-network-note-for-recently-claimed-devices-it-may-take-a-few-minutes-for-api-requests-against-that-device-to-succeed)
   * [\[ switch \]](#-switch-)
     + [stacks](#stacks)
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
@@ -25,17 +33,20 @@
       - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
       - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
   * [\[ organizations \]](#-organizations-)
-    + [devices](#devices)
+    + [summary](#summary)
+      - [Return the top 10 appliances sorted by utilization over given time range.](#return-the-top-10-appliances-sorted-by-utilization-over-given-time-range)
+      - [Return metrics for organization's top 10 clients by data usage (in mb) over given time range.](#return-metrics-for-organizations-top-10-clients-by-data-usage-in-mb-over-given-time-range)
+      - [Return metrics for organization's top clients by data usage (in mb) over given time range, grouped by manufacturer.](#return-metrics-for-organizations-top-clients-by-data-usage-in-mb-over-given-time-range-grouped-by-manufacturer)
+      - [Return metrics for organization's top 10 devices sorted by data usage over given time range](#return-metrics-for-organizations-top-10-devices-sorted-by-data-usage-over-given-time-range)
+      - [Return metrics for organization's top 10 device models sorted by data usage over given time range](#return-metrics-for-organizations-top-10-device-models-sorted-by-data-usage-over-given-time-range)
+      - [List the client and status overview information for the networks in an organization](#list-the-client-and-status-overview-information-for-the-networks-in-an-organization)
+      - [Return metrics for organization's top 10 ssids by data usage over given time range](#return-metrics-for-organizations-top-10-ssids-by-data-usage-over-given-time-range)
+      - [Return metrics for organization's top 10 switches by energy usage over given time range](#return-metrics-for-organizations-top-10-switches-by-energy-usage-over-given-time-range)
+    + [clients](#clients)
+      - [Return data usage (in megabits per second) over time for all clients in the given organization within a given time range.](#return-data-usage-in-megabits-per-second-over-time-for-all-clients-in-the-given-organization-within-a-given-time-range)
+    + [devices](#devices-1)
       - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
-  * [\[ networks \]](#-networks-)
-    + [settings](#settings)
-      - [Update the settings for a network](#update-the-settings-for-a-network)
-    + [firmwareUpgrades](#firmwareupgrades)
-      - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network)
-      - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network)
-    + [devices](#devices-1)
-      - [Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requests against that device to succeed)](#claim-devices-into-a-network-note-for-recently-claimed-devices-it-may-take-a-few-minutes-for-api-requests-against-that-device-to-succeed)
   * [\[ insight \]](#-insight-)
     + [applications](#applications)
       - [Add an Insight tracked application](#add-an-insight-tracked-application)
@@ -44,6 +55,14 @@
   * [\[ appliance \]](#-appliance--1)
     + [sdwan](#sdwan)
       - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network)
+  * [\[ networks \]](#-networks--1)
+    + [locationScanning](#locationscanning)
+      - [Return scanning API settings](#return-scanning-api-settings)
+      - [Change scanning API settings](#change-scanning-api-settings)
+      - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
+      - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
+    + [snmp](#snmp)
+      - [Update the SNMP trap configuration for the specified network](#update-the-snmp-trap-configuration-for-the-specified-network)
   * [\[ switch \]](#-switch--1)
     + [configTemplates](#configtemplates)
       - [list the port mirror configurations in an organization by switch profile](#list-the-port-mirror-configurations-in-an-organization-by-switch-profile)
@@ -57,7 +76,6 @@
       - [Create a port profile in a network](#create-a-port-profile-in-a-network)
       - [Update a port profile in a network](#update-a-port-profile-in-a-network)
       - [Delete a port profile from a network](#delete-a-port-profile-from-a-network)
-      - [Return all connectivity events for each switch port in the given organization, within a given time range.](#return-all-connectivity-events-for-each-switch-port-in-the-given-organization-within-a-given-time-range)
       - [list the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
       - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization)
       - [Create a port profile in an organization](#create-a-port-profile-in-an-organization)
@@ -71,11 +89,15 @@
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
       - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module)
   * [\[ wireless \]](#-wireless--1)
-    + [clients](#clients)
-      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
-      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
-      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
-      - [List access point client count at the moment in an organization](#list-access-point-client-count-at-the-moment-in-an-organization)
+    + [radio](#radio)
+      - [Return the positioning for a wireless device](#return-the-positioning-for-a-wireless-device)
+      - [Update the positioning attributes for this device](#update-the-positioning-attributes-for-this-device)
+      - [Return the AFC power limits for a wireless device](#return-the-afc-power-limits-for-a-wireless-device)
+      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
+      - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device)
+      - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-1)
+      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
+      - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
     + [zigbee](#zigbee)
       - [Enqueue a job to start enrolling doorlocks on zigbee configured MRs](#enqueue-a-job-to-start-enrolling-doorlocks-on-zigbee-configured-mrs)
       - [Return an enrollment job](#return-an-enrollment-job)
@@ -86,17 +108,13 @@
       - [Return a disenrollment job](#return-a-disenrollment-job)
       - [Return the list of doorlocks for a network](#return-the-list-of-doorlocks-for-a-network)
       - [Endpoint to bulk update door locks params](#endpoint-to-bulk-update-door-locks-params)
-    + [radio](#radio)
-      - [Return the positioning for a wireless device](#return-the-positioning-for-a-wireless-device)
-      - [Update the positioning attributes for this device](#update-the-positioning-attributes-for-this-device)
-      - [Return the AFC power limits for a wireless device](#return-the-afc-power-limits-for-a-wireless-device)
-      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
-      - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device)
-      - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-1)
-      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
-      - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
+    + [clients](#clients-1)
+      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
+      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
+      - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
+      - [List access point client count at the moment in an organization](#list-access-point-client-count-at-the-moment-in-an-organization)
     + [devices](#devices-2)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
       - [List of Catalyst access points information](#list-of-catalyst-access-points-information)
@@ -168,12 +186,19 @@
       - [List redundancy details of wireless LAN controllers in an organization. The failover count refers to the total failovers system happens from the moment of this device onboarding to Dashboard](#list-redundancy-details-of-wireless-lan-controllers-in-an-organization-the-failover-count-refers-to-the-total-failovers-system-happens-from-the-moment-of-this-device-onboarding-to-dashboard)
       - [List cpu utilization data of wireless LAN controllers in an organization](#list-cpu-utilization-data-of-wireless-lan-controllers-in-an-organization)
       - [List the overview information of wireless LAN controllers in an organization and it is updated every minute.](#list-the-overview-information-of-wireless-lan-controllers-in-an-organization-and-it-is-updated-every-minute)
-  * [\[ networks \]](#-networks--1)
-    + [locationScanning](#locationscanning)
-      - [Return scanning API settings](#return-scanning-api-settings)
-      - [Change scanning API settings](#change-scanning-api-settings)
-      - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
-      - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
+    + [snmp](#snmp-1)
+      - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization)
+  * [\[ insight \]](#-insight--1)
+    + [speedTestResults](#speedtestresults)
+      - [List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.](#list-the-speed-tests-for-the-given-devices-under-this-organization-only-valid-for-organizations-with-meraki-insight)
+    + [webApps](#webapps)
+      - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
+      - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
+      - [Update a custom web application for Insight to be able to track](#update-a-custom-web-application-for-insight-to-be-able-to-track)
+      - [Delete a custom web application by counter set rule id.](#delete-a-custom-web-application-by-counter-set-rule-id)
+    + [applications](#applications-1)
+      - [Update an Insight tracked application](#update-an-insight-tracked-application)
+      - [Delete an Insight tracked application](#delete-an-insight-tracked-application)
   * [\[ devices \]](#-devices-)
     + [traceRoute](#traceroute)
       - [Enqueue a job to run trace route in the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-run-trace-route-in-the-device-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
@@ -203,18 +228,6 @@
       - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
     + [readings](#readings)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
-  * [\[ cellularGateway \]](#-cellulargateway-)
-    + [esims](#esims)
-      - [The eSIM inventory of a given organization.](#the-esim-inventory-of-a-given-organization)
-      - [Toggle the status of an eSIM](#toggle-the-status-of-an-esim)
-      - [Inventory of service provider accounts tied to the organization.](#inventory-of-service-provider-accounts-tied-to-the-organization)
-      - [Add a service provider account.](#add-a-service-provider-account)
-      - [Edit service provider account info stored in Meraki's database.](#edit-service-provider-account-info-stored-in-merakis-database)
-      - [Remove a service provider account's integration with the Dashboard.](#remove-a-service-provider-accounts-integration-with-the-dashboard)
-      - [The communication and rate plans available for a given provider.](#the-communication-and-rate-plans-available-for-a-given-provider)
-      - [Service providers customers can add accounts for.](#service-providers-customers-can-add-accounts-for)
-      - [Swap which profile an eSIM uses.](#swap-which-profile-an-esim-uses)
-      - [Get the status of a profile swap.](#get-the-status-of-a-profile-swap)
   * [\[ secureConnect \]](#-secureconnect-)
     + [privateApplicationGroups](#privateapplicationgroups)
       - [Provides a list of private application groups for an Organization](#provides-a-list-of-private-application-groups-for-an-organization)
@@ -253,31 +266,20 @@
       - [Update a PccBulkEnrollmentToken](#update-a-pccbulkenrollmenttoken)
       - [Delete a PccBulkEnrollmentToken](#delete-a-pccbulkenrollmenttoken)
       - [List all BulkEnrollmentTokens for an organization.](#list-all-bulkenrollmenttokens-for-an-organization)
-  * [\[ insight \]](#-insight--1)
-    + [speedTestResults](#speedtestresults)
-      - [List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.](#list-the-speed-tests-for-the-given-devices-under-this-organization-only-valid-for-organizations-with-meraki-insight)
-    + [webApps](#webapps)
-      - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
-      - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
-      - [Update a custom web application for Insight to be able to track](#update-a-custom-web-application-for-insight-to-be-able-to-track)
-      - [Delete a custom web application by counter set rule id.](#delete-a-custom-web-application-by-counter-set-rule-id)
-    + [applications](#applications-1)
-      - [Update an Insight tracked application](#update-an-insight-tracked-application)
-      - [Delete an Insight tracked application](#delete-an-insight-tracked-application)
  
-Version **1.49.0** _to_ **1.49.0-beta.0**
+Version **1.50.0** _to_ **1.50.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**127 - New**
+**120 - New**
 
-**45 - Updated**
+**54 - Updated**
 
-**903 - Total Endpoints**
+**905 - Total Endpoints**
 
-**608 - Total Paths**
+**610 - Total Paths**
 
 * * *
 
@@ -366,6 +368,51 @@ PUT _`/networks/{networkId}/appliance/ports/{portId}`_
 > \- Optional property `adaptivePolicyGroupId` Added
 
 > \- Optional property `peerSgtCapable` Added
+
+* * *
+
+\[ networks \]
+--------------
+
+### settings
+
+#### Update the settings for a network
+
+PUT _`/networks/{networkId}/settings`_
+
+> \- Optional property `fips` Added
+
+* * *
+
+### firmwareUpgrades
+
+#### Get firmware upgrade information for a network
+
+GET _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- Optional property `upgradeStrategy` Added
+
+> \- Response property `upgradeStrategy` value added
+
+* * *
+
+#### Update firmware upgrade information for a network
+
+PUT _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- Optional property `upgradeStrategy` Added
+
+> \- Optional property `upgradeStrategy` Added
+
+* * *
+
+### devices
+
+#### Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requests against that device to succeed)
+
+POST _`/networks/{networkId}/devices/claim`_
+
+> \- Optional property `detailsByDevice` Added
 
 * * *
 
@@ -458,6 +505,82 @@ POST _`/networks/{networkId}/wireless/rfProfiles`_
 \[ organizations \]
 -------------------
 
+### summary
+
+#### Return the top 10 appliances sorted by utilization over given time range.
+
+GET _`/organizations/{organizationId}/summary/top/appliances/byUtilization`_
+
+> \- Optional param `networkId` added
+
+* * *
+
+#### Return metrics for organization's top 10 clients by data usage (in mb) over given time range.
+
+GET _`/organizations/{organizationId}/summary/top/clients/byUsage`_
+
+> \- Optional param `networkId` added
+
+* * *
+
+#### Return metrics for organization's top clients by data usage (in mb) over given time range, grouped by manufacturer.
+
+GET _`/organizations/{organizationId}/summary/top/clients/manufacturers/byUsage`_
+
+> \- Optional param `networkId` added
+
+* * *
+
+#### Return metrics for organization's top 10 devices sorted by data usage over given time range
+
+GET _`/organizations/{organizationId}/summary/top/devices/byUsage`_
+
+> \- Optional param `networkId` added
+
+* * *
+
+#### Return metrics for organization's top 10 device models sorted by data usage over given time range
+
+GET _`/organizations/{organizationId}/summary/top/devices/models/byUsage`_
+
+> \- Optional param `networkId` added
+
+* * *
+
+#### List the client and status overview information for the networks in an organization
+
+GET _`/organizations/{organizationId}/summary/top/networks/byStatus`_
+
+> \- Optional param `networkId` added
+
+* * *
+
+#### Return metrics for organization's top 10 ssids by data usage over given time range
+
+GET _`/organizations/{organizationId}/summary/top/ssids/byUsage`_
+
+> \- Optional param `networkId` added
+
+* * *
+
+#### Return metrics for organization's top 10 switches by energy usage over given time range
+
+GET _`/organizations/{organizationId}/summary/top/switches/byEnergyUsage`_
+
+> \- Optional param `networkId` added
+
+* * *
+
+### clients
+
+#### Return data usage (in megabits per second) over time for all clients in the given organization within a given time range.
+
+GET _`/organizations/{organizationId}/clients/bandwidthUsageHistory`_
+
+> \- Optional param `networkId` added
+
+* * *
+
 ### devices
 
 #### List the availability history information for devices in an organization.
@@ -489,51 +612,6 @@ GET _`/organizations/{organizationId}/devices/availabilities/changeHistory`_
 GET _`/organizations/{organizationId}/devices/statuses`_
 
 > \- Optional param `configurationUpdatedAfter` added
-
-* * *
-
-\[ networks \]
---------------
-
-### settings
-
-#### Update the settings for a network
-
-PUT _`/networks/{networkId}/settings`_
-
-> \- Optional property `fips` Added
-
-* * *
-
-### firmwareUpgrades
-
-#### Get firmware upgrade information for a network
-
-GET _`/networks/{networkId}/firmwareUpgrades`_
-
-> \- Optional property `upgradeStrategy` Added
-
-> \- Response property `upgradeStrategy` value added
-
-* * *
-
-#### Update firmware upgrade information for a network
-
-PUT _`/networks/{networkId}/firmwareUpgrades`_
-
-> \- Optional property `upgradeStrategy` Added
-
-> \- Optional property `upgradeStrategy` Added
-
-* * *
-
-### devices
-
-#### Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requests against that device to succeed)
-
-POST _`/networks/{networkId}/devices/claim`_
-
-> \- Optional property `detailsByDevice` Added
 
 * * *
 
@@ -626,6 +704,151 @@ PATH _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
 >                 ]
 >             }
 >         ]
+>     }
+> 
+> * * *
+
+* * *
+
+\[ networks \]
+--------------
+
+### locationScanning
+
+PATH _`/networks/{networkId}/locationScanning`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return scanning API settings
+> 
+> **GET** `/networks/{networkId}/locationScanning`  
+> 
+>     {
+>         "analyticsEnabled": true,
+>         "scanningApiEnabled": true,
+>         "validator": "xxyzzy"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Change scanning API settings
+> 
+> **PUT** `/networks/{networkId}/locationScanning`  
+> 
+>     {
+>         "analyticsEnabled": true,
+>         "scanningApiEnabled": true,
+>         "validator": "xxyzzy"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/locationScanning/httpServers`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return list of scanning API receivers
+> 
+> **GET** `/networks/{networkId}/locationScanning/httpServers`  
+> 
+>     [
+>         {
+>             "endpoints": [
+>                 {
+>                     "httpServer": {
+>                         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>                         "name": "Example Webhook Server",
+>                         "networkId": "N_12345678",
+>                         "url": "https://www.example.com/my_custom_webhook",
+>                         "sharedSecret": "******",
+>                         "validator": "xxx",
+>                         "validatedAt": "2018-02-11T00:00:00Z"
+>                     },
+>                     "scanningApiVersion": 123,
+>                     "radioType": "WiFi",
+>                     "successAt": "2018-05-12T00:00:00Z",
+>                     "errorAt": "2018-02-11T00:00:00Z",
+>                     "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Set the list of scanning API receivers. Old receivers will be removed
+> 
+> **PUT** `/networks/{networkId}/locationScanning/httpServers`  
+> 
+>     {
+>         "endpoints": [
+>             {
+>                 "httpServer": {
+>                     "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>                     "name": "Example Webhook Server",
+>                     "networkId": "N_12345678",
+>                     "url": "https://www.example.com/my_custom_webhook",
+>                     "sharedSecret": "******",
+>                     "validator": "xxx",
+>                     "validatedAt": "2018-02-11T00:00:00Z"
+>                 },
+>                 "scanningApiVersion": 123,
+>                 "radioType": "WiFi",
+>                 "successAt": "2018-05-12T00:00:00Z",
+>                 "errorAt": "2018-02-11T00:00:00Z",
+>                 "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+### snmp
+
+PATH _`/networks/{networkId}/snmp/traps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update the SNMP trap configuration for the specified network
+> 
+> **PUT** `/networks/{networkId}/snmp/traps`  
+> 
+>     {
+>         "network": {
+>             "id": "N_12345678",
+>             "name": "networkName"
+>         },
+>         "mode": "users",
+>         "receiver": {
+>             "address": "1.1.1.1",
+>             "port": "1234"
+>         },
+>         "v2": {
+>             "community": "public"
+>         },
+>         "v3": {
+>             "users": [
+>                 {
+>                     "name": "merakian"
+>                 }
+>             ]
+>         }
 >     }
 > 
 > * * *
@@ -1187,52 +1410,6 @@ PATH _`/networks/{networkId}/switch/ports/profiles/{id}`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/switch/ports/connectivity/history/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return all connectivity events for each switch port in the given organization, within a given time range.
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/connectivity/history/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-0001",
->                 "ports": [
->                     {
->                         "id": "123_1",
->                         "events": [
->                             {
->                                 "startTs": "2018-02-11T00:00:00.090210Z",
->                                 "endTs": "2018-02-11T00:00:00.090210Z",
->                                 "status": "Optimal speed and connectivity"
->                             }
->                         ]
->                     }
->                 ],
->                 "network": {
->                     "id": "N_12345678",
->                     "name": "San Francisco Office"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 4,
->                     "remaining": 2
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
 PATH _`/organizations/{organizationId}/switch/ports/mirrors/bySwitch`_
 
 > \- Path added  
@@ -1425,7 +1602,8 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
 >                     "Built-in"
 >                 ],
 >                 "fallbackProfile": {
->                     "id": "1284392014819"
+>                     "id": "1284392014819",
+>                     "name": "Profile 1"
 >                 },
 >                 "rules": [
 >                     {
@@ -1440,7 +1618,8 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
 >                             }
 >                         ],
 >                         "profile": {
->                             "id": "32"
+>                             "id": "32",
+>                             "name": "Profile 2"
 >                         }
 >                     }
 >                 ],
@@ -1494,7 +1673,8 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
 >             "Built-in"
 >         ],
 >         "fallbackProfile": {
->             "id": "1284392014819"
+>             "id": "1284392014819",
+>             "name": "Profile 1"
 >         },
 >         "rules": [
 >             {
@@ -1509,7 +1689,8 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
 >                     }
 >                 ],
 >                 "profile": {
->                     "id": "32"
+>                     "id": "32",
+>                     "name": "Profile 2"
 >                 }
 >             }
 >         ],
@@ -1559,7 +1740,8 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations/{id}`_
 >             "Built-in"
 >         ],
 >         "fallbackProfile": {
->             "id": "1284392014819"
+>             "id": "1284392014819",
+>             "name": "Profile 1"
 >         },
 >         "rules": [
 >             {
@@ -1574,7 +1756,8 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations/{id}`_
 >                     }
 >                 ],
 >                 "profile": {
->                     "id": "32"
+>                     "id": "32",
+>                     "name": "Profile 2"
 >                 }
 >             }
 >         ],
@@ -2043,474 +2226,6 @@ PATH _`/organizations/{organizationId}/switch/ports/transceivers/readings/histor
 \[ wireless \]
 --------------
 
-### clients
-
-PATH _`/networks/{networkId}/wireless/clients/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for all clients on this network
-> 
-> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
-> 
->     [
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 80,
->                 "currentConnection": 100
->             },
->             "onboarding": {
->                 "latest": 100
->             }
->         },
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 30,
->                 "currentConnection": 50
->             },
->             "onboarding": {
->                 "latest": 70
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return counts of distinct wireless clients connecting to a network over time
-> 
-> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
-> 
->     [
->         {
->             "startTs": "2020-01-01T00:00:00Z",
->             "endTs": "2020-01-01T00:05:00Z",
->             "clientCounts": {
->                 "summary": {
->                     "prospective": 100,
->                     "successful": 75,
->                     "failed": 25
->                 },
->                 "connectionSteps": {
->                     "association": {
->                         "prospective": 100,
->                         "successful": 97,
->                         "failed": 3
->                     },
->                     "authentication": {
->                         "prospective": 97,
->                         "successful": 81,
->                         "failed": 16
->                     },
->                     "dhcp": {
->                         "prospective": 81,
->                         "successful": 75,
->                         "failed": 6
->                     },
->                     "dns": {
->                         "prospective": 75,
->                         "successful": 75,
->                         "failed": 0
->                     }
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
-> 
-> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
-> 
->     {
->         "mac": "22:33:44:55:66:77",
->         "clientId": "k74272e",
->         "performance": {
->             "latest": 80,
->             "currentConnection": 100
->         },
->         "onboarding": {
->             "latest": 100
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/clients/overview/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List access point client count at the moment in an organization
-> 
-> **GET** `/organizations/{organizationId}/wireless/clients/overview/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "network": {
->                     "id": "N_24329156"
->                 },
->                 "serial": "Q234-ABCD-5678",
->                 "counts": {
->                     "byStatus": {
->                         "online": 1
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### zigbee
-
-PATH _`/devices/{serial}/wireless/zigbee/enrollments`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to start enrolling doorlocks on zigbee configured MRs
-> 
-> **POST** `/devices/{serial}/wireless/zigbee/enrollments`  
-> 
->     {
->         "enrollmentId": "1234",
->         "url": "/devices/SERIAL/wireless/zigbee/enrollments/1234",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/wireless/zigbee/enrollments/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an enrollment job
-> 
-> **GET** `/devices/{serial}/wireless/zigbee/enrollments/{id}`  
-> 
->     {
->         "enrollmentId": "1234",
->         "url": "/devices/SERIAL/wireless/zigbee/enrollments/1234",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "enrollmentStartedAt": "complete",
->         "doorLocks": [
->             {
->                 "id": "1",
->                 "displayName": "Door Lock 403",
->                 "shortId": "ABE123",
->                 "lqi": "1",
->                 "rssi": "1",
->                 "status": "online",
->                 "eui64": "DL403",
->                 "enrolledAt": "2023-08-14T19:57:06Z",
->                 "lastSeenAt": "2023-08-14T19:59:01Z",
->                 "network": {
->                     "id": "N_24329156",
->                     "name": "Main Office"
->                 },
->                 "gateway": {
->                     "name": "My AP",
->                     "serial": "Q234-ABCD-5678"
->                 }
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/zigbee`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update Zigbee Configs for specified network
-> 
-> **PUT** `/networks/{networkId}/wireless/zigbee`  
-> 
->     {
->         "network": {
->             "id": "N_24329156"
->         },
->         "enabled": true,
->         "iotController": {
->             "name": "My AP",
->             "mac": "e4:55:a8:38:f2:06",
->             "serial": "Q234-ABCD-5678",
->             "status": "online"
->         },
->         "lockManagement": {
->             "address": "10.100.100.200",
->             "username": "user",
->             "status": "offline"
->         },
->         "defaults": {
->             "transmitPowerLevel": 10
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/zigbee`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return list of Zigbee configs
-> 
-> **GET** `/organizations/{organizationId}/wireless/zigbee`  
-> 
->     [
->         {
->             "network": {
->                 "id": "N_24329156"
->             },
->             "enabled": true,
->             "iotController": {
->                 "name": "My AP",
->                 "mac": "e4:55:a8:38:f2:06",
->                 "serial": "Q234-ABCD-5678",
->                 "status": "online"
->             },
->             "lockManagement": {
->                 "address": "10.100.100.200",
->                 "username": "user",
->                 "status": "offline"
->             },
->             "defaults": {
->                 "transmitPowerLevel": 10
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/zigbee/devices`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the Zigbee MR Nodes for and organization or the supplied network(s)
-> 
-> **GET** `/organizations/{organizationId}/wireless/zigbee/devices`  
-> 
->     [
->         {
->             "network": {
->                 "id": "N_1234",
->                 "name": "Main office"
->             },
->             "panId": "0x0100",
->             "channel": "auto",
->             "transmitPowerLevel": 12,
->             "enrolled": true,
->             "status": "online",
->             "gateway": {
->                 "name": "MR Client",
->                 "mac": "e4:55:a8:38:f2:06",
->                 "serial": "1234-4567-5678",
->                 "tags": ""
->             },
->             "counts": {
->                 "doorLocks": {
->                     "byStatus": {
->                         "online": 5,
->                         "offline": 2,
->                         "dormant": 0
->                     }
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/zigbee/disenrollments`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to start disenrolling doorlocks on zigbee configured MRs
-> 
-> **POST** `/organizations/{organizationId}/wireless/zigbee/disenrollments`  
-> 
->     {
->         "disenrollmentId": "1234",
->         "url": "/organization/{organizationId}/wireless/zigbee/disenrollments/1234",
->         "request": {
->             "doorLockIds": [
->                 "1234"
->             ]
->         },
->         "status": "complete"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/zigbee/disenrollments/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a disenrollment job
-> 
-> **GET** `/organizations/{organizationId}/wireless/zigbee/disenrollments/{id}`  
-> 
->     {
->         "disenrollmentId": "1234",
->         "url": "/organization/{organizationId}/wireless/zigbee/disenrollments/1234",
->         "request": {
->             "doorLockIds": [
->                 "1234"
->             ]
->         },
->         "status": "complete",
->         "doorLocks": [
->             {
->                 "doorLockId": "1234",
->                 "status": "success"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the list of doorlocks for a network
-> 
-> **GET** `/organizations/{organizationId}/wireless/zigbee/doorLocks`  
-> 
->     [
->         {
->             "id": "1",
->             "displayName": "Door Lock 403",
->             "shortId": "ABE123",
->             "lqi": "1",
->             "rssi": "1",
->             "status": "online",
->             "eui64": "DL403",
->             "enrolledAt": "2023-08-14T19:57:06Z",
->             "lastSeenAt": "2023-08-14T19:59:01Z",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "gateway": {
->                 "name": "My AP",
->                 "serial": "Q234-ABCD-5678"
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Endpoint to bulk update door locks params
-> 
-> **POST** `/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`  
-> 
->     [
->         {
->             "id": "1",
->             "displayName": "Door Lock 403",
->             "shortId": "ABE123",
->             "lqi": "1",
->             "rssi": "1",
->             "status": "online",
->             "eui64": "DL403",
->             "enrolledAt": "2023-08-14T19:57:06Z",
->             "lastSeenAt": "2023-08-14T19:59:01Z",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "gateway": {
->                 "name": "My AP",
->                 "serial": "Q234-ABCD-5678"
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 ### radio
 
 PATH _`/devices/{serial}/wireless/radio/afc/positioning`_
@@ -2816,6 +2531,321 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/a
 
 * * *
 
+### zigbee
+
+PATH _`/devices/{serial}/wireless/zigbee/enrollments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to start enrolling doorlocks on zigbee configured MRs
+> 
+> **POST** `/devices/{serial}/wireless/zigbee/enrollments`  
+> 
+>     {
+>         "enrollmentId": "1234",
+>         "url": "/devices/SERIAL/wireless/zigbee/enrollments/1234",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/wireless/zigbee/enrollments/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an enrollment job
+> 
+> **GET** `/devices/{serial}/wireless/zigbee/enrollments/{id}`  
+> 
+>     {
+>         "enrollmentId": "1234",
+>         "url": "/devices/SERIAL/wireless/zigbee/enrollments/1234",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "enrollmentStartedAt": "complete",
+>         "doorLocks": [
+>             {
+>                 "id": "1",
+>                 "displayName": "Door Lock 403",
+>                 "shortId": "ABE123",
+>                 "lqi": "1",
+>                 "rssi": "1",
+>                 "status": "online",
+>                 "eui64": "DL403",
+>                 "enrolledAt": "2023-08-14T19:57:06Z",
+>                 "lastSeenAt": "2023-08-14T19:59:01Z",
+>                 "network": {
+>                     "id": "N_24329156",
+>                     "name": "Main Office"
+>                 },
+>                 "gateway": {
+>                     "name": "My AP",
+>                     "serial": "Q234-ABCD-5678"
+>                 }
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/zigbee`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update Zigbee Configs for specified network
+> 
+> **PUT** `/networks/{networkId}/wireless/zigbee`  
+> 
+>     {
+>         "network": {
+>             "id": "N_24329156"
+>         },
+>         "enabled": true,
+>         "iotController": {
+>             "name": "My AP",
+>             "mac": "e4:55:a8:38:f2:06",
+>             "serial": "Q234-ABCD-5678",
+>             "status": "online"
+>         },
+>         "lockManagement": {
+>             "address": "10.100.100.200",
+>             "username": "user",
+>             "status": "offline"
+>         },
+>         "defaults": {
+>             "transmitPowerLevel": 10,
+>             "channel": "24"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return list of Zigbee configs
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee`  
+> 
+>     [
+>         {
+>             "network": {
+>                 "id": "N_24329156"
+>             },
+>             "enabled": true,
+>             "iotController": {
+>                 "name": "My AP",
+>                 "mac": "e4:55:a8:38:f2:06",
+>                 "serial": "Q234-ABCD-5678",
+>                 "status": "online"
+>             },
+>             "lockManagement": {
+>                 "address": "10.100.100.200",
+>                 "username": "user",
+>                 "status": "offline"
+>             },
+>             "defaults": {
+>                 "transmitPowerLevel": 10,
+>                 "channel": "24"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/devices`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the Zigbee MR Nodes for and organization or the supplied network(s)
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee/devices`  
+> 
+>     [
+>         {
+>             "network": {
+>                 "id": "N_1234",
+>                 "name": "Main office"
+>             },
+>             "panId": "0x0100",
+>             "channel": "auto",
+>             "transmitPowerLevel": 12,
+>             "enrolled": true,
+>             "status": "online",
+>             "gateway": {
+>                 "name": "MR Client",
+>                 "mac": "e4:55:a8:38:f2:06",
+>                 "serial": "1234-4567-5678",
+>                 "tags": ""
+>             },
+>             "counts": {
+>                 "doorLocks": {
+>                     "byStatus": {
+>                         "online": 5,
+>                         "offline": 2,
+>                         "dormant": 0
+>                     }
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/disenrollments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to start disenrolling doorlocks on zigbee configured MRs
+> 
+> **POST** `/organizations/{organizationId}/wireless/zigbee/disenrollments`  
+> 
+>     {
+>         "disenrollmentId": "1234",
+>         "url": "/organization/{organizationId}/wireless/zigbee/disenrollments/1234",
+>         "request": {
+>             "doorLockIds": [
+>                 "1234"
+>             ]
+>         },
+>         "status": "complete"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/disenrollments/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a disenrollment job
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee/disenrollments/{id}`  
+> 
+>     {
+>         "disenrollmentId": "1234",
+>         "url": "/organization/{organizationId}/wireless/zigbee/disenrollments/1234",
+>         "request": {
+>             "doorLockIds": [
+>                 "1234"
+>             ]
+>         },
+>         "status": "complete",
+>         "doorLocks": [
+>             {
+>                 "doorLockId": "1234",
+>                 "status": "success"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the list of doorlocks for a network
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee/doorLocks`  
+> 
+>     [
+>         {
+>             "id": "1",
+>             "displayName": "Door Lock 403",
+>             "shortId": "ABE123",
+>             "lqi": "1",
+>             "rssi": "1",
+>             "status": "online",
+>             "eui64": "DL403",
+>             "enrolledAt": "2023-08-14T19:57:06Z",
+>             "lastSeenAt": "2023-08-14T19:59:01Z",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "gateway": {
+>                 "name": "My AP",
+>                 "serial": "Q234-ABCD-5678"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Endpoint to bulk update door locks params
+> 
+> **POST** `/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`  
+> 
+>     [
+>         {
+>             "id": "1",
+>             "displayName": "Door Lock 403",
+>             "shortId": "ABE123",
+>             "lqi": "1",
+>             "rssi": "1",
+>             "status": "online",
+>             "eui64": "DL403",
+>             "enrolledAt": "2023-08-14T19:57:06Z",
+>             "lastSeenAt": "2023-08-14T19:59:01Z",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "gateway": {
+>                 "name": "My AP",
+>                 "serial": "Q234-ABCD-5678"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### healthScores
 
 PATH _`/devices/{serial}/wireless/healthScores`_
@@ -2837,6 +2867,161 @@ PATH _`/devices/{serial}/wireless/healthScores`_
 >         },
 >         "onboarding": {
 >             "latest": 20
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### clients
+
+PATH _`/networks/{networkId}/wireless/clients/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for all clients on this network
+> 
+> **GET** `/networks/{networkId}/wireless/clients/healthScores`  
+> 
+>     [
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 80,
+>                 "currentConnection": 100
+>             },
+>             "onboarding": {
+>                 "latest": 100
+>             }
+>         },
+>         {
+>             "mac": "22:33:44:55:66:77",
+>             "clientId": "k74272e",
+>             "performance": {
+>                 "latest": 30,
+>                 "currentConnection": 50
+>             },
+>             "onboarding": {
+>                 "latest": 70
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return counts of distinct wireless clients connecting to a network over time
+> 
+> **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
+> 
+>     [
+>         {
+>             "startTs": "2020-01-01T00:00:00Z",
+>             "endTs": "2020-01-01T00:05:00Z",
+>             "clientCounts": {
+>                 "summary": {
+>                     "prospective": 100,
+>                     "successful": 75,
+>                     "failed": 25
+>                 },
+>                 "connectionSteps": {
+>                     "association": {
+>                         "prospective": 100,
+>                         "successful": 97,
+>                         "failed": 3
+>                     },
+>                     "authentication": {
+>                         "prospective": 97,
+>                         "successful": 81,
+>                         "failed": 16
+>                     },
+>                     "dhcp": {
+>                         "prospective": 81,
+>                         "successful": 75,
+>                         "failed": 6
+>                     },
+>                     "dns": {
+>                         "prospective": 75,
+>                         "successful": 75,
+>                         "failed": 0
+>                     }
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
+> 
+> **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
+> 
+>     {
+>         "mac": "22:33:44:55:66:77",
+>         "clientId": "k74272e",
+>         "performance": {
+>             "latest": 80,
+>             "currentConnection": 100
+>         },
+>         "onboarding": {
+>             "latest": 100
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/clients/overview/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List access point client count at the moment in an organization
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/overview/byDevice`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "network": {
+>                     "id": "N_24329156"
+>                 },
+>                 "serial": "Q234-ABCD-5678",
+>                 "counts": {
+>                     "byStatus": {
+>                         "online": 1
+>                     }
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 10,
+>                     "remaining": 0
+>                 }
+>             }
 >         }
 >     }
 > 
@@ -3697,10 +3882,10 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 >                     "name": "file_name",
 >                     "startTime": "2018-02-11T00:00:00.090210Z",
 >                     "ports": "1, 2",
->                     "status": "completed",
+>                     "status": "new",
 >                     "errorMessage": "Some error message",
->                     "outputType": "pcap",
->                     "captureSource": "manual",
+>                     "outputType": "text",
+>                     "captureSource": "automatic",
 >                     "captureReason": "capture reason",
 >                     "fileSize": 1066,
 >                     "duration": 60,
@@ -3750,10 +3935,10 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 >         "name": "file_name",
 >         "startTime": "2018-02-11T00:00:00.090210Z",
 >         "ports": "1, 2",
->         "status": "completed",
+>         "status": "new",
 >         "errorMessage": "Some error message",
->         "outputType": "pcap",
->         "captureSource": "manual",
+>         "outputType": "text",
+>         "captureSource": "automatic",
 >         "captureReason": "capture reason",
 >         "fileSize": 1066,
 >         "duration": 60,
@@ -3825,10 +4010,10 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures/{id}/stop`
 >         "name": "file_name",
 >         "startTime": "2018-02-11T00:00:00.090210Z",
 >         "ports": "1, 2",
->         "status": "completed",
+>         "status": "new",
 >         "errorMessage": "Some error message",
->         "outputType": "pcap",
->         "captureSource": "manual",
+>         "outputType": "text",
+>         "captureSource": "automatic",
 >         "captureReason": "capture reason",
 >         "fileSize": 1066,
 >         "duration": 60,
@@ -4304,6 +4489,9 @@ PATH _`/organizations/{organizationId}/wirelessController/devices/interfaces/l2/
 >                         "vlan": 10,
 >                         "isRedundancyPort": true,
 >                         "linkNegotiation": "auto",
+>                         "channelGroup": {
+>                             "number": 5
+>                         },
 >                         "module": {
 >                             "model": "C9800-2X40GE"
 >                         }
@@ -4445,6 +4633,9 @@ PATH _`/organizations/{organizationId}/wirelessController/devices/interfaces/l3/
 >                         "isUplink": true,
 >                         "vlan": 10,
 >                         "linkNegotiation": "auto",
+>                         "channelGroup": {
+>                             "number": 5
+>                         },
 >                         "module": {
 >                             "model": "C9800-2X40GE"
 >                         }
@@ -4755,76 +4946,110 @@ PATH _`/organizations/{organizationId}/wirelessController/overview/byDevice`_
 
 * * *
 
-\[ networks \]
---------------
+### snmp
 
-### locationScanning
-
-PATH _`/networks/{networkId}/locationScanning`_
+PATH _`/organizations/{organizationId}/snmp/traps/byNetwork`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Return scanning API settings
+> #### Retrieve the SNMP trap configuration for the networks in an organization
 > 
-> **GET** `/networks/{networkId}/locationScanning`  
+> **GET** `/organizations/{organizationId}/snmp/traps/byNetwork`  
 > 
->     {
->         "analyticsEnabled": true,
->         "scanningApiEnabled": true,
->         "validator": "xxyzzy"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Change scanning API settings
-> 
-> **PUT** `/networks/{networkId}/locationScanning`  
-> 
->     {
->         "analyticsEnabled": true,
->         "scanningApiEnabled": true,
->         "validator": "xxyzzy"
->     }
+>     [
+>         {
+>             "network": {
+>                 "id": "N_12345678",
+>                 "name": "networkName"
+>             },
+>             "mode": "users",
+>             "receiver": {
+>                 "address": "1.1.1.1",
+>                 "port": "1234"
+>             },
+>             "v2": {
+>                 "community": "public"
+>             },
+>             "v3": {
+>                 "users": [
+>                     {
+>                         "name": "merakian"
+>                     }
+>                 ]
+>             }
+>         }
+>     ]
 > 
 > * * *
 
 * * *
 
-PATH _`/networks/{networkId}/locationScanning/httpServers`_
+\[ insight \]
+-------------
+
+### speedTestResults
+
+PATH _`/organizations/{organizationId}/insight/speedTestResults`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Return list of scanning API receivers
+> #### List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.
 > 
-> **GET** `/networks/{networkId}/locationScanning/httpServers`  
+> **GET** `/organizations/{organizationId}/insight/speedTestResults`  
 > 
 >     [
 >         {
->             "endpoints": [
->                 {
->                     "httpServer": {
->                         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->                         "name": "Example Webhook Server",
->                         "networkId": "N_12345678",
->                         "url": "https://www.example.com/my_custom_webhook",
->                         "sharedSecret": "******",
->                         "validator": "xxx",
->                         "validatedAt": "2018-02-11T00:00:00Z"
->                     },
->                     "scanningApiVersion": 123,
->                     "radioType": "WiFi",
->                     "successAt": "2018-05-12T00:00:00Z",
->                     "errorAt": "2018-02-11T00:00:00Z",
->                     "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
+>             "speedTestId": "1284392014819",
+>             "networkId": "N_24329156",
+>             "request": {
+>                 "serial": "Q234-ABCD-5678",
+>                 "interface": "wan1"
+>             },
+>             "results": {
+>                 "speeds": {
+>                     "average": 247.279
 >                 }
->             ]
+>             },
+>             "startedAt": "2021-12-08T20:07:13Z"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### webApps
+
+PATH _`/organizations/{organizationId}/insight/webApps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lists all default web applications rules with counter set rule ids
+> 
+> **GET** `/organizations/{organizationId}/insight/webApps`  
+> 
+>     [
+>         {
+>             "counterSetRuleId": "12345",
+>             "name": "Meraki HTTPS",
+>             "category": "Remote monitoring & management",
+>             "thresholds": {
+>                 "goodput": "20000",
+>                 "responseDelay": "3000"
+>             },
+>             "expression": "http_host[*.example.com] or http_host",
+>             "signature": {
+>                 "signatureType": "custom_host",
+>                 "host": "exampled.com",
+>                 "port": "123",
+>                 "net": "10.0.2.1/20"
+>             }
 >         }
 >     ]
 > 
@@ -4833,30 +5058,102 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 >   
 > \- New endpoint
 > 
-> #### Set the list of scanning API receivers. Old receivers will be removed
+> #### Add a custom web application for Insight to be able to track
 > 
-> **PUT** `/networks/{networkId}/locationScanning/httpServers`  
+> **POST** `/organizations/{organizationId}/insight/webApps`  
 > 
 >     {
->         "endpoints": [
->             {
->                 "httpServer": {
->                     "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->                     "name": "Example Webhook Server",
->                     "networkId": "N_12345678",
->                     "url": "https://www.example.com/my_custom_webhook",
->                     "sharedSecret": "******",
->                     "validator": "xxx",
->                     "validatedAt": "2018-02-11T00:00:00Z"
->                 },
->                 "scanningApiVersion": 123,
->                 "radioType": "WiFi",
->                 "successAt": "2018-05-12T00:00:00Z",
->                 "errorAt": "2018-02-11T00:00:00Z",
->                 "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
->             }
->         ]
+>         "counterSetRuleId": "12345",
+>         "name": "Meraki HTTPS",
+>         "category": "Remote monitoring & management",
+>         "thresholds": {
+>             "goodput": "20000",
+>             "responseDelay": "3000"
+>         },
+>         "expression": "http_host[*.example.com] or http_host",
+>         "signature": {
+>             "signatureType": "custom_host",
+>             "host": "exampled.com"
+>         }
 >     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a custom web application for Insight to be able to track
+> 
+> **PUT** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
+> 
+>     {
+>         "counterSetRuleId": "12345",
+>         "name": "Meraki HTTPS",
+>         "category": "Remote monitoring & management",
+>         "thresholds": {
+>             "goodput": "20000",
+>             "responseDelay": "3000"
+>         },
+>         "expression": "http_host[*.example.com] or http_host",
+>         "signature": {
+>             "signatureType": "custom_host",
+>             "host": "exampled.com"
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a custom web application by counter set rule id.
+> 
+> **DELETE** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
+> 
+> * * *
+
+* * *
+
+### applications
+
+PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an Insight tracked application
+> 
+> **PUT** `/organizations/{organizationId}/insight/applications/{applicationId}`  
+> 
+>     {
+>         "applicationId": "19.12",
+>         "name": "Meraki HTTPS",
+>         "thresholds": {
+>             "type": "smart",
+>             "byNetwork": [
+>                 {
+>                     "networkId": "N_12345678",
+>                     "goodput": 50000,
+>                     "responseDuration": 1000
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an Insight tracked application
+> 
+> **DELETE** `/organizations/{organizationId}/insight/applications/{applicationId}`  
 > 
 > * * *
 
@@ -5667,250 +5964,6 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 
 * * *
 
-\[ cellularGateway \]
----------------------
-
-### esims
-
-PATH _`/organizations/{organizationId}/cellularGateway/esims/inventory`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### The eSIM inventory of a given organization.
-> 
-> **GET** `/organizations/{organizationId}/cellularGateway/esims/inventory`  
-> 
->     [
->         {
->             "eid": "89000000000000000000000000000000",
->             "iccid": "8900000000000000000",
->             "type": "iSIM",
->             "carrierName": "ATT",
->             "apn": "internet",
->             "communicationPlan": "1 Cisco IoT SDO AT&T eSIM Test Plan downloadable",
->             "ratePlan": "Cisco IoT SDO - 500MB Plan",
->             "status": "activated",
->             "serial": "Q234-ABCD-5678",
->             "device": "My cellular gateway",
->             "model": "mg51",
->             "deviceUrl": "https://n1.meraki.com//n//manage/nodes/new_list/000000000000",
->             "networkId": "N_24329156",
->             "lastUpdatedAt": "2023-02-01T00:00:00Z"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/cellularGateway/esims/inventory/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Toggle the status of an eSIM
-> 
-> **PUT** `/organizations/{organizationId}/cellularGateway/esims/inventory/{id}`  
-> 
->     {
->         "eid": "89000000000000000000000000000000",
->         "iccid": "8900000000000000000",
->         "type": "iSIM",
->         "carrierName": "ATT",
->         "apn": "internet",
->         "communicationPlan": "1 Cisco IoT SDO AT&T eSIM Test Plan downloadable",
->         "ratePlan": "Cisco IoT SDO - 500MB Plan",
->         "status": "activated",
->         "serial": "Q234-ABCD-5678",
->         "device": "My cellular gateway",
->         "model": "mg51",
->         "deviceUrl": "https://n1.meraki.com//n//manage/nodes/new_list/000000000000",
->         "networkId": "N_24329156",
->         "lastUpdatedAt": "2023-02-01T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Inventory of service provider accounts tied to the organization.
-> 
-> **GET** `/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts`  
-> 
->     [
->         {
->             "accountId": "0987654321",
->             "accountTitle": "My AT&T account",
->             "username": "MerakiUser",
->             "serviceProviderName": "ATT",
->             "serviceProviderLogoUrl": "serviceproviderlogo.url",
->             "lastUpdatedAt": "2023-08-21T00:00:00Z"
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Add a service provider account.
-> 
-> **POST** `/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts`  
-> 
->     {
->         "accountId": "0987654321",
->         "accountTitle": "My AT&T account",
->         "username": "MerakiUser",
->         "serviceProviderName": "ATT",
->         "serviceProviderLogoUrl": "serviceproviderlogo.url",
->         "lastUpdatedAt": "2023-08-21T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Edit service provider account info stored in Meraki's database.
-> 
-> **PUT** `/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts/{id}`  
-> 
->     {
->         "accountId": "0987654321",
->         "accountTitle": "My AT&T account",
->         "username": "MerakiUser",
->         "serviceProviderName": "ATT",
->         "serviceProviderLogoUrl": "serviceproviderlogo.url",
->         "lastUpdatedAt": "2023-08-21T00:00:00Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Remove a service provider account's integration with the Dashboard.
-> 
-> **DELETE** `/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts/{id}`  
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts/{id}/plans`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### The communication and rate plans available for a given provider.
-> 
-> **GET** `/organizations/{organizationId}/cellularGateway/esims/serviceProviders/accounts/{id}/plans`  
-> 
->     {
->         "commPlans": [
->             {
->                 "name": "A communication plan",
->                 "apns": [
->                     {
->                         "name": "Some APN",
->                         "pdpId": 42
->                     }
->                 ]
->             }
->         ],
->         "ratePlans": [
->             {
->                 "name": "A rate plan"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/cellularGateway/esims/serviceProviders/available`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Service providers customers can add accounts for.
-> 
-> **GET** `/organizations/{organizationId}/cellularGateway/esims/serviceProviders/available`  
-> 
->     [
->         {
->             "id": "1234567890",
->             "name": "AT&T",
->             "logo": "Logo URL",
->             "isBootstrap": false,
->             "terms": {
->                 "termsDocument": "Legal jargon",
->                 "termsName": "AT&T Terms and Conditions"
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/cellularGateway/esims/swap`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Swap which profile an eSIM uses.
-> 
-> **POST** `/organizations/{organizationId}/cellularGateway/esims/swap`  
-> 
->     {
->         "eid": "1234567890",
->         "iccid": "9876543210",
->         "status": "Succeeded"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/cellularGateway/esims/swap/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get the status of a profile swap.
-> 
-> **PUT** `/organizations/{organizationId}/cellularGateway/esims/swap/{id}`  
-> 
->     {
->         "eid": "1234567890",
->         "iccid": "9876543210",
->         "status": "Succeeded"
->     }
-> 
-> * * *
-
-* * *
-
 \[ secureConnect \]
 -------------------
 
@@ -6650,179 +6703,6 @@ PATH _`/organizations/{organizationId}/sm/bulkEnrollment/tokens`_
 >             "expiresAt": "2023-10-15T00:00:00Z"
 >         }
 >     ]
-> 
-> * * *
-
-* * *
-
-\[ insight \]
--------------
-
-### speedTestResults
-
-PATH _`/organizations/{organizationId}/insight/speedTestResults`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.
-> 
-> **GET** `/organizations/{organizationId}/insight/speedTestResults`  
-> 
->     [
->         {
->             "speedTestId": "1284392014819",
->             "networkId": "N_24329156",
->             "request": {
->                 "serial": "Q234-ABCD-5678",
->                 "interface": "wan1"
->             },
->             "results": {
->                 "speeds": {
->                     "average": 247.279
->                 }
->             },
->             "startedAt": "2021-12-08T20:07:13Z"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### webApps
-
-PATH _`/organizations/{organizationId}/insight/webApps`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Lists all default web applications rules with counter set rule ids
-> 
-> **GET** `/organizations/{organizationId}/insight/webApps`  
-> 
->     [
->         {
->             "counterSetRuleId": "12345",
->             "name": "Meraki HTTPS",
->             "category": "Remote monitoring & management",
->             "thresholds": {
->                 "goodput": "20000",
->                 "responseDelay": "3000"
->             },
->             "expression": "http_host[*.example.com] or http_host",
->             "signature": {
->                 "signatureType": "custom_host",
->                 "host": "exampled.com",
->                 "port": "123",
->                 "net": "10.0.2.1/20"
->             }
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Add a custom web application for Insight to be able to track
-> 
-> **POST** `/organizations/{organizationId}/insight/webApps`  
-> 
->     {
->         "counterSetRuleId": "12345",
->         "name": "Meraki HTTPS",
->         "category": "Remote monitoring & management",
->         "thresholds": {
->             "goodput": "20000",
->             "responseDelay": "3000"
->         },
->         "expression": "http_host[*.example.com] or http_host",
->         "signature": {
->             "signatureType": "custom_host",
->             "host": "exampled.com"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update a custom web application for Insight to be able to track
-> 
-> **PUT** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
-> 
->     {
->         "counterSetRuleId": "12345",
->         "name": "Meraki HTTPS",
->         "category": "Remote monitoring & management",
->         "thresholds": {
->             "goodput": "20000",
->             "responseDelay": "3000"
->         },
->         "expression": "http_host[*.example.com] or http_host",
->         "signature": {
->             "signatureType": "custom_host",
->             "host": "exampled.com"
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a custom web application by counter set rule id.
-> 
-> **DELETE** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
-> 
-> * * *
-
-* * *
-
-### applications
-
-PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update an Insight tracked application
-> 
-> **PUT** `/organizations/{organizationId}/insight/applications/{applicationId}`  
-> 
->     {
->         "applicationId": "19.12",
->         "name": "Meraki HTTPS",
->         "thresholds": {
->             "type": "smart",
->             "byNetwork": [
->                 {
->                     "networkId": "N_12345678",
->                     "goodput": 50000,
->                     "responseDuration": 1000
->                 }
->             ]
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an Insight tracked application
-> 
-> **DELETE** `/organizations/{organizationId}/insight/applications/{applicationId}`  
 > 
 > * * *
 
