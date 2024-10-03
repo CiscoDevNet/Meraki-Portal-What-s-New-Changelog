@@ -10,6 +10,12 @@
       - [List per-port VLAN settings for all ports of a MX.](#list-per-port-vlan-settings-for-all-ports-of-a-mx)
       - [Return per-port VLAN settings for a single MX port.](#return-per-port-vlan-settings-for-a-single-mx-port)
       - [Update the per-port VLAN settings for a single MX port.](#update-the-per-port-vlan-settings-for-a-single-mx-port)
+  * [\[ sensor \]](#-sensor-)
+    + [alerts](#alerts)
+      - [Updates a sensor alert profile for a network.](#updates-a-sensor-alert-profile-for-a-network)
+      - [Creates a sensor alert profile for a network.](#creates-a-sensor-alert-profile-for-a-network)
+    + [commands](#commands)
+      - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
   * [\[ networks \]](#-networks-)
     + [settings](#settings)
       - [Update the settings for a network](#update-the-settings-for-a-network)
@@ -55,6 +61,13 @@
   * [\[ appliance \]](#-appliance--1)
     + [sdwan](#sdwan)
       - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network)
+  * [\[ sensor \]](#-sensor--1)
+    + [alerts](#alerts-1)
+      - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
+    + [readings](#readings)
+      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
+    + [schedules](#schedules)
+      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
   * [\[ networks \]](#-networks--1)
     + [locationScanning](#locationscanning)
       - [Return scanning API settings](#return-scanning-api-settings)
@@ -76,6 +89,7 @@
       - [Create a port profile in a network](#create-a-port-profile-in-a-network)
       - [Update a port profile in a network](#update-a-port-profile-in-a-network)
       - [Delete a port profile from a network](#delete-a-port-profile-from-a-network)
+      - [List the client counts in an organization](#list-the-client-counts-in-an-organization)
       - [list the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
       - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization)
       - [Create a port profile in an organization](#create-a-port-profile-in-an-organization)
@@ -87,17 +101,22 @@
       - [Update a port profile in an organization](#update-a-port-profile-in-an-organization)
       - [Delete a port profile from an organization](#delete-a-port-profile-from-an-organization)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
+      - [List most recently seen LLDP/CDP discovery and topology information per switch port in an organization.](#list-most-recently-seen-lldpcdp-discovery-and-topology-information-per-switch-port-in-an-organization)
       - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module)
+      - [List the historical usage data of switchports in an organization.](#list-the-historical-usage-data-of-switchports-in-an-organization)
   * [\[ wireless \]](#-wireless--1)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [radio](#radio)
-      - [Return the positioning for a wireless device](#return-the-positioning-for-a-wireless-device)
-      - [Update the positioning attributes for this device](#update-the-positioning-attributes-for-this-device)
+      - [Return the position for a wireless device](#return-the-position-for-a-wireless-device)
+      - [Update the position attributes for this device](#update-the-position-attributes-for-this-device)
       - [Return the AFC power limits for a wireless device](#return-the-afc-power-limits-for-a-wireless-device)
       - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device)
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-1)
       - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
+      - [Recalculates automatically assigned channels for every AP within specified the specified network(s). Note: This could cause a brief loss in connectivity for wireless clients.](#recalculates-automatically-assigned-channels-for-every-ap-within-specified-the-specified-networks-note-this-could-cause-a-brief-loss-in-connectivity-for-wireless-clients)
     + [zigbee](#zigbee)
       - [Enqueue a job to start enrolling doorlocks on zigbee configured MRs](#enqueue-a-job-to-start-enrolling-doorlocks-on-zigbee-configured-mrs)
       - [Return an enrollment job](#return-an-enrollment-job)
@@ -108,17 +127,18 @@
       - [Return a disenrollment job](#return-a-disenrollment-job)
       - [Return the list of doorlocks for a network](#return-the-list-of-doorlocks-for-a-network)
       - [Endpoint to bulk update door locks params](#endpoint-to-bulk-update-door-locks-params)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
+    + [opportunisticPcap](#opportunisticpcap)
+      - [Update the Opportunistic Pcap settings for a wireless network](#update-the-opportunistic-pcap-settings-for-a-wireless-network)
+      - [List the Opportunistic Pcap settings of an organization by network](#list-the-opportunistic-pcap-settings-of-an-organization-by-network)
     + [clients](#clients-1)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
-      - [List access point client count at the moment in an organization](#list-access-point-client-count-at-the-moment-in-an-organization)
     + [devices](#devices-2)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
-      - [List of Catalyst access points information](#list-of-catalyst-access-points-information)
   * [\[ organizations \]](#-organizations--1)
+    + [snmp](#snmp-1)
+      - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization)
     + [auth](#auth)
       - [List the organization-wide RADIUS servers in the organization](#list-the-organization-wide-radius-servers-in-the-organization)
       - [Add an organization-wide RADIUS server](#add-an-organization-wide-radius-server)
@@ -157,6 +177,8 @@
       - [Delete packet capture from cloud](#delete-packet-capture-from-cloud)
       - [Get presigned download URL for given packet capture id](#get-presigned-download-url-for-given-packet-capture-id)
       - [Stop a specific packet capture](#stop-a-specific-packet-capture)
+    + [spaces](#spaces)
+      - [Remove the Spaces integration from Meraki](#remove-the-spaces-integration-from-meraki)
     + [support](#support)
       - [Returns the organization's sales representatives](#returns-the-organizations-sales-representatives)
     + [webhooks](#webhooks)
@@ -172,22 +194,6 @@
       - [Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')](#destroy-a-webhook-payload-template-for-an-organization-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-wpt_00004-wpt_00005-or-wpt_00006)
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
-    + [wirelessController](#wirelesscontroller)
-      - [List connectivity data of wireless LAN controllers in an organization. If it is HA setup, then only returns active WLC data start from switchover](#list-connectivity-data-of-wireless-lan-controllers-in-an-organization-if-it-is-ha-setup-then-only-returns-active-wlc-data-start-from-switchover)
-      - [List wireless client counts of wireless LAN controllers over time in an organization](#list-wireless-client-counts-of-wireless-lan-controllers-over-time-in-an-organization)
-      - [List all access points associated with wireless LAN controllers in an organization](#list-all-access-points-associated-with-wireless-lan-controllers-in-an-organization)
-      - [List wireless LAN controller layer 2 interfaces in an organization](#list-wireless-lan-controller-layer-2-interfaces-in-an-organization)
-      - [List wireless LAN controller layer 2 interfaces history status in an organization](#list-wireless-lan-controller-layer-2-interfaces-history-status-in-an-organization)
-      - [List wireless LAN controller layer 2 interfaces history usage in an organization](#list-wireless-lan-controller-layer-2-interfaces-history-usage-in-an-organization)
-      - [List wireless LAN controller layer 3 interfaces in an organization](#list-wireless-lan-controller-layer-3-interfaces-in-an-organization)
-      - [List wireless LAN controller layer 3 interfaces history status in an organization](#list-wireless-lan-controller-layer-3-interfaces-history-status-in-an-organization)
-      - [List wireless LAN controller layer 3 interfaces history usage in an organization](#list-wireless-lan-controller-layer-3-interfaces-history-usage-in-an-organization)
-      - [List the failover events of wireless LAN controllers in an organization](#list-the-failover-events-of-wireless-lan-controllers-in-an-organization)
-      - [List redundancy details of wireless LAN controllers in an organization. The failover count refers to the total failovers system happens from the moment of this device onboarding to Dashboard](#list-redundancy-details-of-wireless-lan-controllers-in-an-organization-the-failover-count-refers-to-the-total-failovers-system-happens-from-the-moment-of-this-device-onboarding-to-dashboard)
-      - [List cpu utilization data of wireless LAN controllers in an organization](#list-cpu-utilization-data-of-wireless-lan-controllers-in-an-organization)
-      - [List the overview information of wireless LAN controllers in an organization and it is updated every minute.](#list-the-overview-information-of-wireless-lan-controllers-in-an-organization-and-it-is-updated-every-minute)
-    + [snmp](#snmp-1)
-      - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization)
   * [\[ insight \]](#-insight--1)
     + [speedTestResults](#speedtestresults)
       - [List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.](#list-the-speed-tests-for-the-given-devices-under-this-organization-only-valid-for-organizations-with-meraki-insight)
@@ -221,13 +227,6 @@
     + [aclHitCount](#aclhitcount)
       - [Enqueue a job to perform an ACL hit count for the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-perform-an-acl-hit-count-for-the-device-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
       - [Return an ACL hit count live tool job.](#return-an-acl-hit-count-live-tool-job)
-  * [\[ sensor \]](#-sensor-)
-    + [schedules](#schedules)
-      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
-    + [alerts](#alerts)
-      - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
-    + [readings](#readings)
-      - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
   * [\[ secureConnect \]](#-secureconnect-)
     + [privateApplicationGroups](#privateapplicationgroups)
       - [Provides a list of private application groups for an Organization](#provides-a-list-of-private-application-groups-for-an-organization)
@@ -267,19 +266,19 @@
       - [Delete a PccBulkEnrollmentToken](#delete-a-pccbulkenrollmenttoken)
       - [List all BulkEnrollmentTokens for an organization.](#list-all-bulkenrollmenttokens-for-an-organization)
  
-Version **1.50.0** _to_ **1.50.0-beta.0**
+Version **1.51.0** _to_ **1.51.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**120 - New**
+**112 - New**
 
-**54 - Updated**
+**59 - Updated**
 
-**905 - Total Endpoints**
+**914 - Total Endpoints**
 
-**610 - Total Paths**
+**619 - Total Paths**
 
 * * *
 
@@ -368,6 +367,41 @@ PUT _`/networks/{networkId}/appliance/ports/{portId}`_
 > \- Optional property `adaptivePolicyGroupId` Added
 
 > \- Optional property `peerSgtCapable` Added
+
+* * *
+
+\[ sensor \]
+------------
+
+### alerts
+
+#### Updates a sensor alert profile for a network.
+
+PUT _`/networks/{networkId}/sensor/alerts/profiles/{id}`_
+
+> \- Optional property `includeSensorLink` Added
+
+> \- Optional property `message` Added
+
+* * *
+
+#### Creates a sensor alert profile for a network.
+
+POST _`/networks/{networkId}/sensor/alerts/profiles`_
+
+> \- Optional property `includeSensorLink` Added
+
+> \- Optional property `message` Added
+
+* * *
+
+### commands
+
+#### Sends a command to a sensor
+
+POST _`/devices/{serial}/sensor/commands`_
+
+> \- Optional property `arguments` Added
 
 * * *
 
@@ -710,6 +744,349 @@ PATH _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
 
 * * *
 
+\[ sensor \]
+------------
+
+### alerts
+
+PATH _`/organizations/{organizationId}/sensor/alerts`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a list of sensor alert events
+> 
+> **GET** `/organizations/{organizationId}/sensor/alerts`  
+> 
+>     [
+>         {
+>             "startTs": "2018-02-11T00:00:00.090210Z",
+>             "sensor": {
+>                 "name": "My sensor",
+>                 "serial": "Q234-ABCD-5678",
+>                 "model": "MT10",
+>                 "url": "http://example.com"
+>             },
+>             "trigger": {
+>                 "ts": "2021-10-18T23:54:48.000000Z",
+>                 "metric": "temperature",
+>                 "apparentPower": {
+>                     "draw": 15.9
+>                 },
+>                 "co2": {
+>                     "concentration": 100
+>                 },
+>                 "current": {
+>                     "draw": 0.13
+>                 },
+>                 "door": {
+>                     "open": true
+>                 },
+>                 "frequency": {
+>                     "level": 60.1
+>                 },
+>                 "humidity": {
+>                     "relativePercentage": 34
+>                 },
+>                 "indoorAirQuality": {
+>                     "score": 89
+>                 },
+>                 "noise": {
+>                     "ambient": {
+>                         "level": 45
+>                     }
+>                 },
+>                 "pm25": {
+>                     "concentration": 100
+>                 },
+>                 "powerFactor": {
+>                     "percentage": 86
+>                 },
+>                 "realPower": {
+>                     "draw": 13.7
+>                 },
+>                 "temperature": {
+>                     "fahrenheit": 77.81,
+>                     "celsius": 25.45
+>                 },
+>                 "tvoc": {
+>                     "concentration": 100
+>                 },
+>                 "upstreamPower": {
+>                     "outageDetected": true
+>                 },
+>                 "voltage": {
+>                     "level": 122.4
+>                 },
+>                 "water": {
+>                     "present": true
+>                 }
+>             },
+>             "profile": {
+>                 "id": "1",
+>                 "name": "Too hot",
+>                 "condition": {
+>                     "metric": "temperature",
+>                     "threshold": {
+>                         "temperature": {
+>                             "celsius": 20.5,
+>                             "fahrenheit": 70,
+>                             "quality": "good"
+>                         },
+>                         "humidity": {
+>                             "relativePercentage": 65,
+>                             "quality": "inadequate"
+>                         },
+>                         "water": {
+>                             "present": true
+>                         },
+>                         "door": {
+>                             "open": true
+>                         },
+>                         "tvoc": {
+>                             "concentration": 400,
+>                             "quality": "poor"
+>                         },
+>                         "co2": {
+>                             "concentration": 400,
+>                             "quality": "poor"
+>                         },
+>                         "pm25": {
+>                             "concentration": 90,
+>                             "quality": "fair"
+>                         },
+>                         "noise": {
+>                             "ambient": {
+>                                 "level": 120,
+>                                 "quality": "poor"
+>                             }
+>                         },
+>                         "indoorAirQuality": {
+>                             "score": 80,
+>                             "quality": "fair"
+>                         },
+>                         "realPower": {
+>                             "draw": 14.1
+>                         },
+>                         "apparentPower": {
+>                             "draw": 17.2
+>                         },
+>                         "powerFactor": {
+>                             "percentage": 81
+>                         },
+>                         "current": {
+>                             "draw": 0.14
+>                         },
+>                         "voltage": {
+>                             "level": 119.5
+>                         },
+>                         "frequency": {
+>                             "level": 58.8
+>                         },
+>                         "upstreamPower": {
+>                             "outageDetected": true
+>                         }
+>                     },
+>                     "direction": "above",
+>                     "duration": 60
+>                 }
+>             },
+>             "snapshotCamera": {
+>                 "serial": "QAAA-AAAA-AAAA",
+>                 "name": "Camera",
+>                 "url": "http://example.com"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### readings
+
+PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order
+> 
+> **GET** `/organizations/{organizationId}/sensor/readings/history/byInterval`  
+> 
+>     [
+>         {
+>             "startTs": "2022-01-07T23:00:00Z",
+>             "endTs": "2022-01-07T23:59:59Z",
+>             "serial": "Q234-ABCD-5678",
+>             "model": "MT11",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "metric": "temperature",
+>             "apparentPower": {
+>                 "draw": {
+>                     "minimum": 0,
+>                     "maximum": 15.9,
+>                     "average": 4.9
+>                 }
+>             },
+>             "battery": {
+>                 "percentage": {
+>                     "minimum": 95,
+>                     "maximum": 97,
+>                     "average": 96
+>                 }
+>             },
+>             "button": {
+>                 "pressType": {
+>                     "counts": {
+>                         "short": 2,
+>                         "long": 4
+>                     }
+>                 }
+>             },
+>             "co2": {
+>                 "concentration": {
+>                     "minimum": 221,
+>                     "maximum": 504,
+>                     "average": 440
+>                 }
+>             },
+>             "current": {
+>                 "draw": {
+>                     "minimum": 0,
+>                     "maximum": 0.13,
+>                     "average": 0.04
+>                 }
+>             },
+>             "door": {
+>                 "counts": {
+>                     "open": 6
+>                 }
+>             },
+>             "energy": {
+>                 "usage": 0.116
+>             },
+>             "frequency": {
+>                 "draw": {
+>                     "minimum": 59.6,
+>                     "maximum": 60.2,
+>                     "average": 60.1
+>                 }
+>             },
+>             "humidity": {
+>                 "relativePercentage": {
+>                     "minimum": 33,
+>                     "maximum": 35,
+>                     "average": 33
+>                 }
+>             },
+>             "indoorAirQuality": {
+>                 "score": {
+>                     "minimum": 33,
+>                     "maximum": 35,
+>                     "average": 33
+>                 }
+>             },
+>             "noise": {
+>                 "ambient": {
+>                     "level": {
+>                         "minimum": 22,
+>                         "maximum": 45,
+>                         "average": 31
+>                     }
+>                 }
+>             },
+>             "pm25": {
+>                 "concentration": {
+>                     "minimum": 0,
+>                     "maximum": 3,
+>                     "average": 1
+>                 }
+>             },
+>             "powerFactor": {
+>                 "percentage": {
+>                     "minimum": 84,
+>                     "maximum": 89,
+>                     "average": 86
+>                 }
+>             },
+>             "realPower": {
+>                 "draw": {
+>                     "minimum": 0,
+>                     "maximum": 14.2,
+>                     "average": 5
+>                 }
+>             },
+>             "temperature": {
+>                 "fahrenheit": {
+>                     "minimum": 68.15,
+>                     "maximum": 74.91,
+>                     "average": 72.08
+>                 },
+>                 "celsius": {
+>                     "minimum": 20.08,
+>                     "maximum": 23.84,
+>                     "average": 22.27
+>                 }
+>             },
+>             "tvoc": {
+>                 "concentration": {
+>                     "minimum": 221,
+>                     "maximum": 504,
+>                     "average": 440
+>                 }
+>             },
+>             "voltage": {
+>                 "level": {
+>                     "minimum": 120.7,
+>                     "maximum": 124.6,
+>                     "average": 122.6
+>                 }
+>             },
+>             "water": {
+>                 "counts": {
+>                     "present": 6
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 \[ networks \]
 --------------
 
@@ -834,7 +1211,7 @@ PATH _`/networks/{networkId}/snmp/traps`_
 >             "id": "N_12345678",
 >             "name": "networkName"
 >         },
->         "mode": "users",
+>         "mode": "v3",
 >         "receiver": {
 >             "address": "1.1.1.1",
 >             "port": "1234"
@@ -1410,6 +1787,53 @@ PATH _`/networks/{networkId}/switch/ports/profiles/{id}`_
 
 * * *
 
+PATH _`/organizations/{organizationId}/switch/ports/clients/overview/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the client counts in an organization
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/clients/overview/byDevice`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "name": "Example Switch",
+>                 "serial": "Q555-5555-5555",
+>                 "mac": "01:23:45:67:ab:cd",
+>                 "network": {
+>                     "name": "Example Network",
+>                     "id": "L_12345"
+>                 },
+>                 "model": "MS120-8",
+>                 "ports": [
+>                     {
+>                         "portId": "1",
+>                         "counts": {
+>                             "byStatus": {
+>                                 "online": 0
+>                             }
+>                         }
+>                     }
+>                 ]
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 1,
+>                     "remaining": 0
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
 PATH _`/organizations/{organizationId}/switch/ports/mirrors/bySwitch`_
 
 > \- Path added  
@@ -1959,91 +2383,114 @@ PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
 > 
 > **GET** `/organizations/{organizationId}/switch/ports/statuses/bySwitch`  
 > 
->     [
->         {
->             "name": "Example Switch",
->             "serial": "Q555-5555-5555",
->             "mac": "01:23:45:67",
->             "network": {
->                 "name": "Example Network",
->                 "id": "N_12345"
->             },
->             "model": "MS120-8",
->             "ports": [
->                 {
->                     "portId": "1",
->                     "enabled": true,
->                     "status": "Connected",
->                     "spanningTree": {
->                         "statuses": [
->                             "Learning"
->                         ]
->                     },
->                     "isUplink": false,
->                     "errors": [
->                         "PoE overload",
->                         "Very high proportion of CRC errors"
->                     ],
->                     "warnings": [
->                         "SecurePort authentication in progress",
->                         "PoE port was denied power",
->                         "High proportion of CRC errors"
->                     ],
->                     "speed": "10 Gbps",
->                     "duplex": "full",
->                     "usageInKb": {
->                         "total": 40867,
->                         "sent": 23008,
->                         "recv": 17859
->                     },
->                     "cdp": {
->                         "systemName": "",
->                         "platform": "MS350-24X",
->                         "deviceId": "0c8ddbddee:ff",
->                         "portId": "Port 20",
->                         "nativeVlan": 1,
->                         "address": "10.0,0.1",
->                         "managementAddress": "10.0.0.100",
->                         "version": "1",
->                         "vtpManagementDomain": "",
->                         "capabilities": "Switch"
->                     },
->                     "lldp": {
->                         "systemName": "MS350-24X - Test",
->                         "systemDescription": "MS350-24X Cloud Managed PoE Switch",
->                         "chassisId": "0c:8d:db:dd:ee:ff",
->                         "portId": "20",
->                         "managementVlan": 1,
->                         "portVlan": 1,
->                         "managementAddress": "10.0.0.100",
->                         "portDescription": "Port 20",
->                         "systemCapabilities": "switch"
->                     },
->                     "clientCount": 10,
->                     "powerUsageInWh": 55.9,
->                     "trafficInKbps": {
->                         "total": 2.2,
->                         "sent": 1.2,
->                         "recv": 1
->                     },
->                     "securePort": {
+>     {
+>         "items": [
+>             {
+>                 "name": "Example Switch",
+>                 "serial": "Q555-5555-5555",
+>                 "mac": "01:23:45:67:ab:cd",
+>                 "network": {
+>                     "name": "Example Network",
+>                     "id": "L_12345"
+>                 },
+>                 "model": "MS120-8",
+>                 "ports": [
+>                     {
+>                         "portId": "1",
 >                         "enabled": true,
->                         "active": true,
->                         "authenticationStatus": "Authentication in progress",
->                         "configOverrides": {
->                             "type": "trunk",
->                             "vlan": 12,
->                             "voiceVlan": 34,
->                             "allowedVlans": "all"
+>                         "status": "Connected",
+>                         "isUplink": false,
+>                         "errors": [
+>                             "PoE overload",
+>                             "Very high proportion of CRC errors"
+>                         ],
+>                         "warnings": [
+>                             "SecurePort authentication in progress",
+>                             "PoE port was denied power",
+>                             "High proportion of CRC errors"
+>                         ],
+>                         "speed": "10 Gbps",
+>                         "duplex": "full",
+>                         "spanningTree": {
+>                             "statuses": [
+>                                 "Learning"
+>                             ]
+>                         },
+>                         "poe": {
+>                             "isAllocated": false
+>                         },
+>                         "securePort": {
+>                             "active": true,
+>                             "authenticationStatus": "Authentication in progress"
 >                         }
->                     },
->                     "poe": {
->                         "isAllocated": false
 >                     }
+>                 ]
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 1,
+>                     "remaining": 0
 >                 }
->             ]
+>             }
 >         }
->     ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/switch/ports/topology/discovery/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List most recently seen LLDP/CDP discovery and topology information per switch port in an organization.
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/topology/discovery/byDevice`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "name": "Example Switch",
+>                 "serial": "Q555-5555-5555",
+>                 "mac": "01:23:45:67:ab:cd",
+>                 "network": {
+>                     "name": "Example Network",
+>                     "id": "L_12345"
+>                 },
+>                 "model": "MS120-8",
+>                 "ports": [
+>                     {
+>                         "portId": "1",
+>                         "lastUpdatedAt": "ISO8061Z",
+>                         "cdp": [
+>                             {
+>                                 "name": "System name",
+>                                 "value": "MS350-24X - Test"
+>                             }
+>                         ],
+>                         "lldp": [
+>                             {
+>                                 "name": "System name",
+>                                 "value": "MS350-24X - Test"
+>                             }
+>                         ]
+>                     }
+>                 ]
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 1,
+>                     "remaining": 0
+>                 }
+>             }
+>         }
+>     }
 > 
 > * * *
 
@@ -2223,20 +2670,101 @@ PATH _`/organizations/{organizationId}/switch/ports/transceivers/readings/histor
 
 * * *
 
-\[ wireless \]
---------------
-
-### radio
-
-PATH _`/devices/{serial}/wireless/radio/afc/positioning`_
+PATH _`/organizations/{organizationId}/switch/ports/usage/byDevice`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Return the positioning for a wireless device
+> #### List the historical usage data of switchports in an organization.
 > 
-> **GET** `/devices/{serial}/wireless/radio/afc/positioning`  
+> **GET** `/organizations/{organizationId}/switch/ports/usage/byDevice`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "name": "Example Switch",
+>                 "serial": "Q555-5555-5555",
+>                 "mac": "01:23:45:67:ab:cd",
+>                 "network": {
+>                     "name": "Example Network",
+>                     "id": "L_12345"
+>                 },
+>                 "model": "MS120-8",
+>                 "ports": [
+>                     {
+>                         "portId": "1",
+>                         "powerUsageInWh": 55.9,
+>                         "trafficInKbps": {
+>                             "total": 2.2,
+>                             "sent": 1.2,
+>                             "received": 1
+>                         },
+>                         "usageInKb": {
+>                             "total": 40867,
+>                             "sent": 23008,
+>                             "received": 17859
+>                         }
+>                     }
+>                 ]
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 1,
+>                     "remaining": 0
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+\[ wireless \]
+--------------
+
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### radio
+
+PATH _`/devices/{serial}/wireless/radio/afc/position`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the position for a wireless device
+> 
+> **GET** `/devices/{serial}/wireless/radio/afc/position`  
 > 
 >     {
 >         "name": "Some MR",
@@ -2260,9 +2788,9 @@ PATH _`/devices/{serial}/wireless/radio/afc/positioning`_
 >   
 > \- New endpoint
 > 
-> #### Update the positioning attributes for this device
+> #### Update the position attributes for this device
 > 
-> **PUT** `/devices/{serial}/wireless/radio/afc/positioning`  
+> **PUT** `/devices/{serial}/wireless/radio/afc/position`  
 > 
 >     {
 >         "name": "Some MR",
@@ -2368,7 +2896,7 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/wireless/radio/afc/positioning/byDevice`_
+PATH _`/organizations/{organizationId}/wireless/radio/afc/position/byDevice`_
 
 > \- Path added  
 >   
@@ -2376,7 +2904,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/afc/positioning/byDevice`_
 > 
 > #### List the AFC power limits of an organization by device
 > 
-> **GET** `/organizations/{organizationId}/wireless/radio/afc/positioning/byDevice`  
+> **GET** `/organizations/{organizationId}/wireless/radio/afc/position/byDevice`  
 > 
 >     [
 >         {
@@ -2526,6 +3054,24 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/a
 >             }
 >         }
 >     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/recalculate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Recalculates automatically assigned channels for every AP within specified the specified network(s). Note: This could cause a brief loss in connectivity for wireless clients.
+> 
+> **POST** `/organizations/{organizationId}/wireless/radio/autoRf/channels/recalculate`  
+> 
+>     {
+>         "estimatedCompletedAt": "2019-01-01T00:00:00Z"
+>     }
 > 
 > * * *
 
@@ -2846,29 +3392,63 @@ PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`_
 
 * * *
 
-### healthScores
+### opportunisticPcap
 
-PATH _`/devices/{serial}/wireless/healthScores`_
+PATH _`/networks/{networkId}/wireless/opportunisticPcap`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Fetch the health scores for a given AP on this network
+> #### Update the Opportunistic Pcap settings for a wireless network
 > 
-> **GET** `/devices/{serial}/wireless/healthScores`  
+> **PUT** `/networks/{networkId}/wireless/opportunisticPcap`  
 > 
 >     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
+>         "networkId": "L_12345",
+>         "name": "My Network",
+>         "enablement": {
+>             "networkWide": 0,
+>             "serials": [
+>                 "Q234-ABCD-5678"
+>             ],
+>             "tags": [
+>                 "tag1",
+>                 "tag2"
+>             ]
 >         }
 >     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/opportunisticPcap/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the Opportunistic Pcap settings of an organization by network
+> 
+> **GET** `/organizations/{organizationId}/wireless/opportunisticPcap/byNetwork`  
+> 
+>     [
+>         {
+>             "networkId": "L_12345",
+>             "name": "My Network",
+>             "enablement": {
+>                 "networkWide": 0,
+>                 "serials": [
+>                     "Q234-ABCD-5678"
+>                 ],
+>                 "tags": [
+>                     "tag1",
+>                     "tag2"
+>                 ]
+>             }
+>         }
+>     ]
 > 
 > * * *
 
@@ -2991,44 +3571,6 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/wireless/clients/overview/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List access point client count at the moment in an organization
-> 
-> **GET** `/organizations/{organizationId}/wireless/clients/overview/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "network": {
->                     "id": "N_24329156"
->                 },
->                 "serial": "Q234-ABCD-5678",
->                 "counts": {
->                     "byStatus": {
->                         "online": 1
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
 ### devices
 
 PATH _`/networks/{networkId}/wireless/devices/healthScores`_
@@ -3059,61 +3601,48 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/wireless/devices/wirelessControllers/byDevice`_
+\[ organizations \]
+-------------------
+
+### snmp
+
+PATH _`/organizations/{organizationId}/snmp/traps/byNetwork`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List of Catalyst access points information
+> #### Retrieve the SNMP trap configuration for the networks in an organization
 > 
-> **GET** `/organizations/{organizationId}/wireless/devices/wirelessControllers/byDevice`  
+> **GET** `/organizations/{organizationId}/snmp/traps/byNetwork`  
 > 
->     {
->         "items": [
->             {
->                 "network": {
->                     "id": "N_24329156"
->                 },
->                 "serial": "Q234-ABCD-5678",
->                 "controller": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "joinedAt": "2020-01-01T00:00:00Z",
->                 "model": "C9115AXI-H",
->                 "tags": [
+>     [
+>         {
+>             "network": {
+>                 "id": "N_12345678",
+>                 "name": "networkName"
+>             },
+>             "mode": "v3",
+>             "receiver": {
+>                 "address": "1.1.1.1",
+>                 "port": "1234"
+>             },
+>             "v2": {
+>                 "community": "public"
+>             },
+>             "v3": {
+>                 "users": [
 >                     {
->                         "policy": "4F",
->                         "site": "default-site-tag",
->                         "rf": "default-rf-tag"
->                     }
->                 ],
->                 "mode": "local",
->                 "countryCode": "CA",
->                 "details": [
->                     {
->                         "name": "catalyst serial",
->                         "value": "FGL2446L7QQ"
+>                         "name": "merakian"
 >                     }
 >                 ]
 >             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
 >         }
->     }
+>     ]
 > 
 > * * *
 
 * * *
-
-\[ organizations \]
--------------------
 
 ### auth
 
@@ -3882,16 +4411,17 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 >                     "name": "file_name",
 >                     "startTime": "2018-02-11T00:00:00.090210Z",
 >                     "ports": "1, 2",
->                     "status": "new",
+>                     "status": "capturing",
 >                     "errorMessage": "Some error message",
->                     "outputType": "text",
+>                     "outputType": "pcap",
 >                     "captureSource": "automatic",
 >                     "captureReason": "capture reason",
 >                     "fileSize": 1066,
 >                     "duration": 60,
 >                     "filterExpression": "(icmp)",
 >                     "autopcapType": "dhcp",
->                     "packetCount": 10
+>                     "packetCount": 10,
+>                     "interfaces": "wired"
 >                 }
 >             ],
 >             "meta": {
@@ -3935,16 +4465,17 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 >         "name": "file_name",
 >         "startTime": "2018-02-11T00:00:00.090210Z",
 >         "ports": "1, 2",
->         "status": "new",
+>         "status": "capturing",
 >         "errorMessage": "Some error message",
->         "outputType": "text",
+>         "outputType": "pcap",
 >         "captureSource": "automatic",
 >         "captureReason": "capture reason",
 >         "fileSize": 1066,
 >         "duration": 60,
 >         "filterExpression": "(icmp)",
 >         "autopcapType": "dhcp",
->         "packetCount": 10
+>         "packetCount": 10,
+>         "interfaces": "wired"
 >     }
 > 
 > * * *
@@ -4010,16 +4541,38 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures/{id}/stop`
 >         "name": "file_name",
 >         "startTime": "2018-02-11T00:00:00.090210Z",
 >         "ports": "1, 2",
->         "status": "new",
+>         "status": "capturing",
 >         "errorMessage": "Some error message",
->         "outputType": "text",
+>         "outputType": "pcap",
 >         "captureSource": "automatic",
 >         "captureReason": "capture reason",
 >         "fileSize": 1066,
 >         "duration": 60,
 >         "filterExpression": "(icmp)",
 >         "autopcapType": "dhcp",
->         "packetCount": 10
+>         "packetCount": 10,
+>         "interfaces": "wired"
+>     }
+> 
+> * * *
+
+* * *
+
+### spaces
+
+PATH _`/organizations/{organizationId}/spaces/integration/remove`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Remove the Spaces integration from Meraki
+> 
+> **DELETE** `/organizations/{organizationId}/spaces/integration/remove`  
+> 
+>     {
+>         "status": true,
+>         "message": "Succesfully fetched the spaces dashboard access"
 >     }
 > 
 > * * *
@@ -4337,650 +4890,6 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 >         "url": "https://www.example.com/path",
 >         "status": "enqueued"
 >     }
-> 
-> * * *
-
-* * *
-
-### wirelessController
-
-PATH _`/organizations/{organizationId}/wirelessController/availabilities/changeHistory`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List connectivity data of wireless LAN controllers in an organization. If it is HA setup, then only returns active WLC data start from switchover
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/availabilities/changeHistory`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "changes": [
->                     {
->                         "startTs": "2020-01-01T00:00:00Z",
->                         "endTs": "null",
->                         "status": "online"
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/clients/overview/history/byDevice/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List wireless client counts of wireless LAN controllers over time in an organization
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/clients/overview/history/byDevice/byInterval`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "network": {
->                     "id": "N_24329156"
->                 },
->                 "readings": [
->                     {
->                         "startTs": "2020-01-01T00:00:00Z",
->                         "endTs": "2020-01-01T01:00:00Z",
->                         "counts": {
->                             "byStatus": {
->                                 "online": 1
->                             }
->                         }
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/connections`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List all access points associated with wireless LAN controllers in an organization
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/connections`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "controller": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "network": {
->                     "id": "N_24329156",
->                     "url": "https://network/url",
->                     "name": "Network1"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/devices/interfaces/l2/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List wireless LAN controller layer 2 interfaces in an organization
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/devices/interfaces/l2/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "interfaces": [
->                     {
->                         "name": "TenGigabitEthernet0/0/5",
->                         "description": "Uplink",
->                         "enabled": true,
->                         "mac": "b0:c5:3c:0d:c5:0b",
->                         "status": "disabled",
->                         "speed": "1 Gbps",
->                         "isUplink": true,
->                         "vlan": 10,
->                         "isRedundancyPort": true,
->                         "linkNegotiation": "auto",
->                         "channelGroup": {
->                             "number": 5
->                         },
->                         "module": {
->                             "model": "C9800-2X40GE"
->                         }
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/devices/interfaces/l2/statuses/changeHistory/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List wireless LAN controller layer 2 interfaces history status in an organization
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/devices/interfaces/l2/statuses/changeHistory/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "interfaces": [
->                     {
->                         "name": "TenGigabitEthernet0/0/5",
->                         "mac": "b0:c5:3c:0d:c5:0b",
->                         "changes": [
->                             {
->                                 "ts": "2020-01-01T00:00:00Z",
->                                 "status": "disabled",
->                                 "warnings": [
->                                     "CRC warnings"
->                                 ],
->                                 "errors": [
->                                     "CRC errors"
->                                 ]
->                             }
->                         ]
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/devices/interfaces/l2/usage/history/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List wireless LAN controller layer 2 interfaces history usage in an organization
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/devices/interfaces/l2/usage/history/byInterval`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "readings": [
->                     {
->                         "name": "TenGigabitEthernet0/0/5",
->                         "mac": "b0:c5:3c:0d:c5:0b",
->                         "recv": 0,
->                         "send": 0
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/devices/interfaces/l3/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List wireless LAN controller layer 3 interfaces in an organization
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/devices/interfaces/l3/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "interfaces": [
->                     {
->                         "name": "vlan123",
->                         "description": "Wireless Mgmt",
->                         "mac": "1c:e8:5d:00:00:0c",
->                         "status": "disabled",
->                         "speed": "1 Gbps",
->                         "addresses": [
->                             {
->                                 "protocol": "ipv4",
->                                 "address": "192.168.123.1",
->                                 "subnet": "192.168.123.0/24"
->                             }
->                         ],
->                         "vrf": {
->                             "name": "Global"
->                         },
->                         "isUplink": true,
->                         "vlan": 10,
->                         "linkNegotiation": "auto",
->                         "channelGroup": {
->                             "number": 5
->                         },
->                         "module": {
->                             "model": "C9800-2X40GE"
->                         }
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/devices/interfaces/l3/statuses/changeHistory/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List wireless LAN controller layer 3 interfaces history status in an organization
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/devices/interfaces/l3/statuses/changeHistory/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "interfaces": [
->                     {
->                         "name": "TenGigabitEthernet0/0/5",
->                         "mac": "b0:c5:3c:0d:c5:0b",
->                         "changes": [
->                             {
->                                 "ts": "2020-01-01T00:00:00Z",
->                                 "status": "disabled",
->                                 "warnings": [
->                                     "CRC warnings"
->                                 ],
->                                 "errors": [
->                                     "CRC errors"
->                                 ]
->                             }
->                         ]
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/devices/interfaces/l3/usage/history/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List wireless LAN controller layer 3 interfaces history usage in an organization
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/devices/interfaces/l3/usage/history/byInterval`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "readings": [
->                     {
->                         "name": "TenGigabitEthernet0/0/5",
->                         "mac": "b0:c5:3c:0d:c5:0b",
->                         "recv": 0,
->                         "send": 0
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/devices/redundancy/failover/history`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the failover events of wireless LAN controllers in an organization
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/devices/redundancy/failover/history`  
-> 
->     [
->         {
->             "items": [
->                 {
->                     "serial": "Q234-ABCD-5678",
->                     "ts": "2020-01-01T00:00:00Z",
->                     "reason": "Active Unit Failed",
->                     "failed": {
->                         "chassis": {
->                             "name": "Chassis 2"
->                         }
->                     },
->                     "active": {
->                         "chassis": {
->                             "name": "Chassis 1"
->                         }
->                     }
->                 }
->             ],
->             "meta": {
->                 "counts": {
->                     "items": {
->                         "total": 10,
->                         "remaining": 0
->                     }
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/devices/redundancy/statuses`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List redundancy details of wireless LAN controllers in an organization. The failover count refers to the total failovers system happens from the moment of this device onboarding to Dashboard
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/devices/redundancy/statuses`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "mode": "SSO",
->                 "enabled": true,
->                 "failover": {
->                     "last": {
->                         "ts": "2020-01-01T00:00:00Z",
->                         "reason": "Active Unit Failed"
->                     },
->                     "counts": {
->                         "total": 2
->                     }
->                 },
->                 "mobilityMac": "b0:c5:3c:0d:c5:0b"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/devices/system/utilization/history/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List cpu utilization data of wireless LAN controllers in an organization
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/devices/system/utilization/history/byInterval`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "intervals": [
->                     {
->                         "startTs": "2024-03-04T05:25:03Z",
->                         "endTs": "2024-03-04T05:30:19Z",
->                         "overall": {
->                             "usage": {
->                                 "average": {
->                                     "percentage": 10.59
->                                 }
->                             }
->                         },
->                         "byCore": [
->                             {
->                                 "name": "0",
->                                 "usage": {
->                                     "average": {
->                                         "percentage": 2.74
->                                     }
->                                 }
->                             }
->                         ]
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wirelessController/overview/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the overview information of wireless LAN controllers in an organization and it is updated every minute.
-> 
-> **GET** `/organizations/{organizationId}/wirelessController/overview/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "network": {
->                     "id": "N_24329156"
->                 },
->                 "counts": {
->                     "clients": {
->                         "byStatus": {
->                             "online": 300
->                         }
->                     },
->                     "connections": {
->                         "total": 200,
->                         "byStatus": {
->                             "online": 180,
->                             "offline": 20
->                         }
->                     }
->                 },
->                 "redundancy": {
->                     "role": "Active",
->                     "id": "123456",
->                     "chassisName": "Chassis 1",
->                     "management": {
->                         "addresses": [
->                             {
->                                 "address": "10.14.140.5"
->                             }
->                         ]
->                     }
->                 },
->                 "firmware": {
->                     "version": {
->                         "shortName": "ios-xe"
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### snmp
-
-PATH _`/organizations/{organizationId}/snmp/traps/byNetwork`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Retrieve the SNMP trap configuration for the networks in an organization
-> 
-> **GET** `/organizations/{organizationId}/snmp/traps/byNetwork`  
-> 
->     [
->         {
->             "network": {
->                 "id": "N_12345678",
->                 "name": "networkName"
->             },
->             "mode": "users",
->             "receiver": {
->                 "address": "1.1.1.1",
->                 "port": "1234"
->             },
->             "v2": {
->                 "community": "public"
->             },
->             "v3": {
->                 "users": [
->                     {
->                         "name": "merakian"
->                     }
->                 ]
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -5616,349 +5525,6 @@ PATH _`/devices/{serial}/liveTools/aclHitCount/{id}`_
 >         ],
 >         "error": "The device is unreachable."
 >     }
-> 
-> * * *
-
-* * *
-
-\[ sensor \]
-------------
-
-### schedules
-
-PATH _`/networks/{networkId}/sensor/schedules`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a list of all sensor schedules.
-> 
-> **GET** `/networks/{networkId}/sensor/schedules`  
-> 
->     [
->         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### alerts
-
-PATH _`/organizations/{organizationId}/sensor/alerts`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a list of sensor alert events
-> 
-> **GET** `/organizations/{organizationId}/sensor/alerts`  
-> 
->     [
->         {
->             "startTs": "2018-02-11T00:00:00.090210Z",
->             "sensor": {
->                 "name": "My sensor",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MT10",
->                 "url": "http://example.com"
->             },
->             "trigger": {
->                 "ts": "2021-10-18T23:54:48.000000Z",
->                 "metric": "temperature",
->                 "apparentPower": {
->                     "draw": 15.9
->                 },
->                 "co2": {
->                     "concentration": 100
->                 },
->                 "current": {
->                     "draw": 0.13
->                 },
->                 "door": {
->                     "open": true
->                 },
->                 "frequency": {
->                     "level": 60.1
->                 },
->                 "humidity": {
->                     "relativePercentage": 34
->                 },
->                 "indoorAirQuality": {
->                     "score": 89
->                 },
->                 "noise": {
->                     "ambient": {
->                         "level": 45
->                     }
->                 },
->                 "pm25": {
->                     "concentration": 100
->                 },
->                 "powerFactor": {
->                     "percentage": 86
->                 },
->                 "realPower": {
->                     "draw": 13.7
->                 },
->                 "temperature": {
->                     "fahrenheit": 77.81,
->                     "celsius": 25.45
->                 },
->                 "tvoc": {
->                     "concentration": 100
->                 },
->                 "upstreamPower": {
->                     "outageDetected": true
->                 },
->                 "voltage": {
->                     "level": 122.4
->                 },
->                 "water": {
->                     "present": true
->                 }
->             },
->             "profile": {
->                 "id": "1",
->                 "name": "Too hot",
->                 "condition": {
->                     "metric": "temperature",
->                     "threshold": {
->                         "temperature": {
->                             "celsius": 20.5,
->                             "fahrenheit": 70,
->                             "quality": "good"
->                         },
->                         "humidity": {
->                             "relativePercentage": 65,
->                             "quality": "inadequate"
->                         },
->                         "water": {
->                             "present": true
->                         },
->                         "door": {
->                             "open": true
->                         },
->                         "tvoc": {
->                             "concentration": 400,
->                             "quality": "poor"
->                         },
->                         "co2": {
->                             "concentration": 400,
->                             "quality": "poor"
->                         },
->                         "pm25": {
->                             "concentration": 90,
->                             "quality": "fair"
->                         },
->                         "noise": {
->                             "ambient": {
->                                 "level": 120,
->                                 "quality": "poor"
->                             }
->                         },
->                         "indoorAirQuality": {
->                             "score": 80,
->                             "quality": "fair"
->                         },
->                         "realPower": {
->                             "draw": 14.1
->                         },
->                         "apparentPower": {
->                             "draw": 17.2
->                         },
->                         "powerFactor": {
->                             "percentage": 81
->                         },
->                         "current": {
->                             "draw": 0.14
->                         },
->                         "voltage": {
->                             "level": 119.5
->                         },
->                         "frequency": {
->                             "level": 58.8
->                         },
->                         "upstreamPower": {
->                             "outageDetected": true
->                         }
->                     },
->                     "direction": "above",
->                     "duration": 60
->                 }
->             },
->             "snapshotCamera": {
->                 "serial": "QAAA-AAAA-AAAA",
->                 "name": "Camera",
->                 "url": "http://example.com"
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### readings
-
-PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order
-> 
-> **GET** `/organizations/{organizationId}/sensor/readings/history/byInterval`  
-> 
->     [
->         {
->             "startTs": "2022-01-07T23:00:00Z",
->             "endTs": "2022-01-07T23:59:59Z",
->             "serial": "Q234-ABCD-5678",
->             "model": "MT11",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "metric": "temperature",
->             "apparentPower": {
->                 "draw": {
->                     "minimum": 0,
->                     "maximum": 15.9,
->                     "average": 4.9
->                 }
->             },
->             "battery": {
->                 "percentage": {
->                     "minimum": 95,
->                     "maximum": 97,
->                     "average": 96
->                 }
->             },
->             "button": {
->                 "pressType": {
->                     "counts": {
->                         "short": 2,
->                         "long": 4
->                     }
->                 }
->             },
->             "co2": {
->                 "concentration": {
->                     "minimum": 221,
->                     "maximum": 504,
->                     "average": 440
->                 }
->             },
->             "current": {
->                 "draw": {
->                     "minimum": 0,
->                     "maximum": 0.13,
->                     "average": 0.04
->                 }
->             },
->             "door": {
->                 "counts": {
->                     "open": 6
->                 }
->             },
->             "energy": {
->                 "usage": 0.116
->             },
->             "frequency": {
->                 "draw": {
->                     "minimum": 59.6,
->                     "maximum": 60.2,
->                     "average": 60.1
->                 }
->             },
->             "humidity": {
->                 "relativePercentage": {
->                     "minimum": 33,
->                     "maximum": 35,
->                     "average": 33
->                 }
->             },
->             "indoorAirQuality": {
->                 "score": {
->                     "minimum": 33,
->                     "maximum": 35,
->                     "average": 33
->                 }
->             },
->             "noise": {
->                 "ambient": {
->                     "level": {
->                         "minimum": 22,
->                         "maximum": 45,
->                         "average": 31
->                     }
->                 }
->             },
->             "pm25": {
->                 "concentration": {
->                     "minimum": 0,
->                     "maximum": 3,
->                     "average": 1
->                 }
->             },
->             "powerFactor": {
->                 "percentage": {
->                     "minimum": 84,
->                     "maximum": 89,
->                     "average": 86
->                 }
->             },
->             "realPower": {
->                 "draw": {
->                     "minimum": 0,
->                     "maximum": 14.2,
->                     "average": 5
->                 }
->             },
->             "temperature": {
->                 "fahrenheit": {
->                     "minimum": 68.15,
->                     "maximum": 74.91,
->                     "average": 72.08
->                 },
->                 "celsius": {
->                     "minimum": 20.08,
->                     "maximum": 23.84,
->                     "average": 22.27
->                 }
->             },
->             "tvoc": {
->                 "concentration": {
->                     "minimum": 221,
->                     "maximum": 504,
->                     "average": 440
->                 }
->             },
->             "voltage": {
->                 "level": {
->                     "minimum": 120.7,
->                     "maximum": 124.6,
->                     "average": 122.6
->                 }
->             },
->             "water": {
->                 "counts": {
->                     "present": 6
->                 }
->             }
->         }
->     ]
 > 
 > * * *
 
