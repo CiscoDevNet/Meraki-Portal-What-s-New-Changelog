@@ -4,7 +4,7 @@
 
 **Walled Garden added to API**
 
-The SSID Settings API endpoint now supports setting the Walled Garden and Per Client Bandwidth Limits.
+The SSID Settings API operation now supports setting the Walled Garden and Per Client Bandwidth Limits.
 See the **[API documentation page](http://postman.meraki.com)** or make an API call to get your SSIDs.
 
 **Meraki Cloud-based RADIUS Proxy launched**
@@ -21,18 +21,18 @@ To see this feature go to **Wireless > Access Control**, and configure a network
 
 **Walled Garden added to API**
 
-The SSID Settings API endpoint now supports setting the Walled Garden and Per Client Bandwidth Limits.
+The SSID Settings API operation now supports setting the Walled Garden and Per Client Bandwidth Limits.
 See the **[API documentation page](http://postman.meraki.com)** or make an API call to get your SSIDs.
 
 **Create combined networks with the Dashboard API**
 
-We added the ability to create combined networks from the create network endpoint in the provisioning API. You can specify a space-separated list of network types to create a combined network. All of the network types that currently be created via the API (wireless, switch, appliance, phone) are accepted.
+We added the ability to create combined networks from the create network operation in the provisioning API. You can specify a space-separated list of network types to create a combined network. All of the network types that currently be created via the API (wireless, switch, appliance, phone) are accepted.
 
 **[Read the API documentation here](http://postman.meraki.com)**
 
-**Hotspot 2.0 settings API endpoint**
+**Hotspot 2.0 settings API operation**
 
-There is a new Dashboard API endpoint for returning and updating the Hotspot 2.0 settings for an SSID. An organization must have the **'has_hotspot_20'** NFO in order to use the endpoint.
+There is a new Dashboard API operation for returning and updating the Hotspot 2.0 settings for an SSID. An organization must have the **'has_hotspot_20'** NFO in order to use the operation.
 
 **[See the Postman Collection](http://postman.meraki.com)**
 
@@ -42,7 +42,7 @@ There is a new Dashboard API endpoint for returning and updating the Hotspot 2.0
 
 **New API for L3 Firewall Rules on SSIDs**
 
-The Dashboard API has added a new endpoint for reading and writing the L3 firewall rules for an SSID. This feature is available across all MR access points. Here is a link to the detailed API documentation for the [L3 Firewall Rules endpoint](http://postman.meraki.com)
+The Dashboard API has added a new operation for reading and writing the L3 firewall rules for an SSID. This feature is available across all MR access points. Here is a link to the detailed API documentation for the [L3 Firewall Rules operation](http://postman.meraki.com)
 
 **DHCP Exceptions allow Networks to override their Templates**
 
@@ -52,7 +52,7 @@ You can now configure fixed IP assignments and reserved IP ranges on networks th
 
 **Systems Manager API**
 
-A new collection of API endpoints for Systems Manager EMM are now released - to all customers. The below screenshot shows the available actions. Due to a large number of SM devices in some networks, the API has a unique ability to filter the devices impacted rather than apply to all devices. Users can filter devices by a set of identifiers (id/serial/wifi mac) or by a list of client tags.
+A new collection of API operations for Systems Manager EMM are now released - to all customers. The below screenshot shows the available actions. Due to a large number of SM devices in some networks, the API has a unique ability to filter the devices impacted rather than apply to all devices. Users can filter devices by a set of identifiers (id/serial/wifi mac) or by a list of client tags.
 
 Systems Manager
 
@@ -70,7 +70,7 @@ We now support the static route configuration via the Dashboard API. It operates
 
 [Here is a Link to the dashboard API documentation](http://postman.meraki.com)
 
-**New Phone endpoints added to Dashboard API**
+**New Phone operations added to Dashboard API**
 
 You can now assign contacts, phone numbers, and extensions to MC phones using the Dashboard API.
 
@@ -101,7 +101,7 @@ Phone numbers
 
 **Combined Templates added to API Dashboard API now supports GET for device uplink information**
 
-The Meraki dashboard endpoint will now return an array of hashes of information about the device’s uplinks.
+The Meraki dashboard operation will now return an array of hashes of information about the device’s uplinks.
 
 Example responses for a switch:
 
