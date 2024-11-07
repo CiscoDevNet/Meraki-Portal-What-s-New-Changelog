@@ -3,6 +3,9 @@
     + [uplinks](#uplinks)
       - [Return the uplink settings for an MX appliance](#return-the-uplink-settings-for-an-mx-appliance)
       - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
+    + [vpn](#vpn)
+      - [Return the site-to-site VPN settings of a network](#return-the-site-to-site-vpn-settings-of-a-network)
+      - [Update the site-to-site VPN settings of a network](#update-the-site-to-site-vpn-settings-of-a-network)
     + [vlans](#vlans)
       - [Update a VLAN](#update-a-vlan)
       - [Add a VLAN](#add-a-vlan)
@@ -59,23 +62,45 @@
       - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
 - [What's New](#whats-new)
   * [\[ appliance \]](#-appliance--1)
+    + [firewall](#firewall)
+      - [Update static multicast forward rules for a network](#update-static-multicast-forward-rules-for-a-network)
+      - [List Static Multicasting forwarding settings for MX networks](#list-static-multicasting-forwarding-settings-for-mx-networks)
+    + [dns](#dns)
+      - [Fetch the local DNS profiles used in the organization](#fetch-the-local-dns-profiles-used-in-the-organization)
+      - [Create a new local DNS profile](#create-a-new-local-dns-profile)
+      - [Fetch the local DNS profile assignments in the organization](#fetch-the-local-dns-profile-assignments-in-the-organization)
+      - [Assign the local DNS profile to networks in the organization](#assign-the-local-dns-profile-to-networks-in-the-organization)
+      - [Unassign the local DNS profile to networks in the organization](#unassign-the-local-dns-profile-to-networks-in-the-organization)
+      - [Update a local DNS profile](#update-a-local-dns-profile)
+      - [Deletes a local DNS profile](#deletes-a-local-dns-profile)
+      - [Fetch the DNS records used in local DNS profiles](#fetch-the-dns-records-used-in-local-dns-profiles)
+      - [Create a new local DNS record](#create-a-new-local-dns-record)
+      - [Updates a local DNS record](#updates-a-local-dns-record)
+      - [Deletes a local DNS record](#deletes-a-local-dns-record)
+      - [Fetch the split DNS profiles used in the organization](#fetch-the-split-dns-profiles-used-in-the-organization)
+      - [Create a new split DNS profile](#create-a-new-split-dns-profile)
+      - [Fetch the split DNS profile assignments in the organization](#fetch-the-split-dns-profile-assignments-in-the-organization)
+      - [Assign the split DNS profile to networks in the organization](#assign-the-split-dns-profile-to-networks-in-the-organization)
+      - [Unassign the split DNS profile to networks in the organization](#unassign-the-split-dns-profile-to-networks-in-the-organization)
+      - [Update a split DNS profile](#update-a-split-dns-profile)
+      - [Deletes a split DNS profile](#deletes-a-split-dns-profile)
     + [sdwan](#sdwan)
       - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network)
   * [\[ sensor \]](#-sensor--1)
+    + [schedules](#schedules)
+      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
     + [alerts](#alerts-1)
       - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
     + [readings](#readings)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
-    + [schedules](#schedules)
-      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
   * [\[ networks \]](#-networks--1)
+    + [snmp](#snmp)
+      - [Update the SNMP trap configuration for the specified network](#update-the-snmp-trap-configuration-for-the-specified-network)
     + [locationScanning](#locationscanning)
       - [Return scanning API settings](#return-scanning-api-settings)
       - [Change scanning API settings](#change-scanning-api-settings)
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
-    + [snmp](#snmp)
-      - [Update the SNMP trap configuration for the specified network](#update-the-snmp-trap-configuration-for-the-specified-network)
   * [\[ switch \]](#-switch--1)
     + [configTemplates](#configtemplates)
       - [list the port mirror configurations in an organization by switch profile](#list-the-port-mirror-configurations-in-an-organization-by-switch-profile)
@@ -103,10 +128,8 @@
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
       - [List most recently seen LLDP/CDP discovery and topology information per switch port in an organization.](#list-most-recently-seen-lldpcdp-discovery-and-topology-information-per-switch-port-in-an-organization)
       - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module)
-      - [List the historical usage data of switchports in an organization.](#list-the-historical-usage-data-of-switchports-in-an-organization)
+      - [List the historical usage and traffic data of switchports in an organization.](#list-the-historical-usage-and-traffic-data-of-switchports-in-an-organization)
   * [\[ wireless \]](#-wireless--1)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [radio](#radio)
       - [Return the position for a wireless device](#return-the-position-for-a-wireless-device)
       - [Update the position attributes for this device](#update-the-position-attributes-for-this-device)
@@ -116,7 +139,6 @@
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-1)
       - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
-      - [Recalculates automatically assigned channels for every AP within specified the specified network(s). Note: This could cause a brief loss in connectivity for wireless clients.](#recalculates-automatically-assigned-channels-for-every-ap-within-specified-the-specified-networks-note-this-could-cause-a-brief-loss-in-connectivity-for-wireless-clients)
     + [zigbee](#zigbee)
       - [Enqueue a job to start enrolling doorlocks on zigbee configured MRs](#enqueue-a-job-to-start-enrolling-doorlocks-on-zigbee-configured-mrs)
       - [Return an enrollment job](#return-an-enrollment-job)
@@ -127,6 +149,8 @@
       - [Return a disenrollment job](#return-a-disenrollment-job)
       - [Return the list of doorlocks for a network](#return-the-list-of-doorlocks-for-a-network)
       - [Endpoint to bulk update door locks params](#endpoint-to-bulk-update-door-locks-params)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [opportunisticPcap](#opportunisticpcap)
       - [Update the Opportunistic Pcap settings for a wireless network](#update-the-opportunistic-pcap-settings-for-a-wireless-network)
       - [List the Opportunistic Pcap settings of an organization by network](#list-the-opportunistic-pcap-settings-of-an-organization-by-network)
@@ -168,6 +192,9 @@
       - [Update a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.](#update-a-thousandeyes-agent-from-this-network-only-valid-for-networks-with-access-to-meraki-insight-organization-must-have-a-thousandeyes-account-connected-to-perform-this-action)
       - [Delete a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.](#delete-a-thousandeyes-agent-from-this-network-only-valid-for-networks-with-access-to-meraki-insight-organization-must-have-a-thousandeyes-account-connected-to-perform-this-action)
       - [Create a ThousandEyes test based on a provided test template. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.](#create-a-thousandeyes-test-based-on-a-provided-test-template-only-valid-for-networks-with-access-to-meraki-insight-organization-must-have-a-thousandeyes-account-connected-to-perform-this-action)
+      - [Returns the networks in the organization that have XDR enabled](#returns-the-networks-in-the-organization-that-have-xdr-enabled)
+      - [Disable XDR on networks](#disable-xdr-on-networks)
+      - [Enable XDR on networks](#enable-xdr-on-networks)
     + [policies](#policies)
       - [Get policies for all clients with policies](#get-policies-for-all-clients-with-policies)
     + [devices](#devices-3)
@@ -266,19 +293,19 @@
       - [Delete a PccBulkEnrollmentToken](#delete-a-pccbulkenrollmenttoken)
       - [List all BulkEnrollmentTokens for an organization.](#list-all-bulkenrollmenttokens-for-an-organization)
  
-Version **1.51.0** _to_ **1.51.0-beta.0**
+Version **1.52.0** _to_ **1.52.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**112 - New**
+**128 - New**
 
-**59 - Updated**
+**67 - Updated**
 
-**914 - Total Endpoints**
+**944 - Total Endpoints**
 
-**619 - Total Paths**
+**643 - Total Paths**
 
 * * *
 
@@ -315,6 +342,36 @@ PUT _`/devices/{serial}/appliance/uplinks/settings`_
 > \- Optional property `sgt` Added
 
 > \- Optional property `sgt` Added
+
+* * *
+
+### vpn
+
+#### Return the site-to-site VPN settings of a network
+
+GET _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
+
+> \- Optional property `nat` Added
+
+> \- Optional property `subnet` Added
+
+> \- Response property `nat` value added
+
+> \- Response property `subnet` value added
+
+* * *
+
+#### Update the site-to-site VPN settings of a network
+
+PUT _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
+
+> \- Optional property `nat` Added
+
+> \- Optional property `subnet` Added
+
+> \- Optional property `nat` Added
+
+> \- Optional property `subnet` Added
 
 * * *
 
@@ -689,6 +746,488 @@ What's New
 \[ appliance \]
 ---------------
 
+### firewall
+
+PATH _`/networks/{networkId}/appliance/firewall/multicastForwarding`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update static multicast forward rules for a network
+> 
+> **PUT** `/networks/{networkId}/appliance/firewall/multicastForwarding`  
+> 
+>     {
+>         "network": {
+>             "id": "N_24329156",
+>             "name": "Main Office"
+>         },
+>         "rules": [
+>             {
+>                 "description": "test",
+>                 "address": "192.168.1.0",
+>                 "vlanIds": [
+>                     "1"
+>                 ]
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/firewall/multicastForwarding/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List Static Multicasting forwarding settings for MX networks
+> 
+> **GET** `/organizations/{organizationId}/appliance/firewall/multicastForwarding/byNetwork`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "network": {
+>                     "id": "N_24329156",
+>                     "name": "Main Office"
+>                 },
+>                 "rules": [
+>                     {
+>                         "description": "test",
+>                         "address": "192.168.1.0",
+>                         "vlanIds": [
+>                             "1"
+>                         ]
+>                     }
+>                 ]
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+### dns
+
+PATH _`/organizations/{organizationId}/appliance/dns/local/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the local DNS profiles used in the organization
+> 
+> **GET** `/organizations/{organizationId}/appliance/dns/local/profiles`  
+> 
+>     [
+>         {
+>             "profileId": "123456",
+>             "name": "Default profile"
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a new local DNS profile
+> 
+> **POST** `/organizations/{organizationId}/appliance/dns/local/profiles`  
+> 
+>     {
+>         "profileId": "123456",
+>         "name": "Default profile"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/local/profiles/assignments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the local DNS profile assignments in the organization
+> 
+> **GET** `/organizations/{organizationId}/appliance/dns/local/profiles/assignments`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "assignmentId": "123456",
+>                 "network": {
+>                     "id": "N_123456"
+>                 },
+>                 "profile": {
+>                     "id": "1234"
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 10,
+>                     "remaining": 0
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/local/profiles/assignments/bulkCreate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Assign the local DNS profile to networks in the organization
+> 
+> **POST** `/organizations/{organizationId}/appliance/dns/local/profiles/assignments/bulkCreate`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "assignmentId": "123456",
+>                 "network": {
+>                     "id": "N_123456"
+>                 },
+>                 "profile": {
+>                     "id": "1234"
+>                 }
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/local/profiles/assignments/bulkDelete`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Unassign the local DNS profile to networks in the organization
+> 
+> **POST** `/organizations/{organizationId}/appliance/dns/local/profiles/assignments/bulkDelete`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "assignmentId": "123456",
+>                 "network": {
+>                     "id": "N_123456"
+>                 },
+>                 "profile": {
+>                     "id": "1234"
+>                 }
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/local/profiles/{profileId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a local DNS profile
+> 
+> **PUT** `/organizations/{organizationId}/appliance/dns/local/profiles/{profileId}`  
+> 
+>     {
+>         "profileId": "123456",
+>         "name": "Default profile"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes a local DNS profile
+> 
+> **DELETE** `/organizations/{organizationId}/appliance/dns/local/profiles/{profileId}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/local/records`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the DNS records used in local DNS profiles
+> 
+> **GET** `/organizations/{organizationId}/appliance/dns/local/records`  
+> 
+>     [
+>         {
+>             "recordId": "12345",
+>             "hostname": "www.test.com",
+>             "address": "10.1.1.0",
+>             "profile": {
+>                 "id": "1"
+>             }
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a new local DNS record
+> 
+> **POST** `/organizations/{organizationId}/appliance/dns/local/records`  
+> 
+>     [
+>         {
+>             "recordId": "12345",
+>             "hostname": "www.test.com",
+>             "address": "10.1.1.0",
+>             "profile": {
+>                 "id": "1"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/local/records/{recordId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Updates a local DNS record
+> 
+> **PUT** `/organizations/{organizationId}/appliance/dns/local/records/{recordId}`  
+> 
+>     {
+>         "recordId": "12345",
+>         "hostname": "www.test.com",
+>         "address": "10.1.1.0",
+>         "profile": {
+>             "id": "1"
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes a local DNS record
+> 
+> **DELETE** `/organizations/{organizationId}/appliance/dns/local/records/{recordId}`  
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/split/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the split DNS profiles used in the organization
+> 
+> **GET** `/organizations/{organizationId}/appliance/dns/split/profiles`  
+> 
+>     [
+>         {
+>             "profileId": "123456",
+>             "name": "Default profile",
+>             "hostnames": [
+>                 "*.test1.com",
+>                 "*.test2.com"
+>             ],
+>             "nameservers": {
+>                 "addresses": [
+>                     "12.1.10.1"
+>                 ]
+>             }
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a new split DNS profile
+> 
+> **POST** `/organizations/{organizationId}/appliance/dns/split/profiles`  
+> 
+>     {
+>         "profileId": "123456",
+>         "name": "Default profile",
+>         "hostnames": [
+>             "*.test1.com",
+>             "*.test2.com"
+>         ],
+>         "nameservers": {
+>             "addresses": [
+>                 "12.1.10.1"
+>             ]
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/split/profiles/assignments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the split DNS profile assignments in the organization
+> 
+> **GET** `/organizations/{organizationId}/appliance/dns/split/profiles/assignments`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "id": "123456",
+>                 "network": {
+>                     "id": "N_123456"
+>                 },
+>                 "profile": {
+>                     "id": "1234"
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 10,
+>                     "remaining": 0
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/split/profiles/assignments/bulkCreate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Assign the split DNS profile to networks in the organization
+> 
+> **POST** `/organizations/{organizationId}/appliance/dns/split/profiles/assignments/bulkCreate`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "id": "123456",
+>                 "network": {
+>                     "id": "N_123456"
+>                 },
+>                 "profile": {
+>                     "id": "1234"
+>                 }
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/split/profiles/assignments/bulkDelete`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Unassign the split DNS profile to networks in the organization
+> 
+> **POST** `/organizations/{organizationId}/appliance/dns/split/profiles/assignments/bulkDelete`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "id": "123456",
+>                 "network": {
+>                     "id": "N_123456"
+>                 },
+>                 "profile": {
+>                     "id": "1234"
+>                 }
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/appliance/dns/split/profiles/{profileId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a split DNS profile
+> 
+> **PUT** `/organizations/{organizationId}/appliance/dns/split/profiles/{profileId}`  
+> 
+>     {
+>         "profileId": "123456",
+>         "name": "Default profile",
+>         "hostnames": [
+>             "*.test1.com",
+>             "*.test2.com"
+>         ],
+>         "nameservers": {
+>             "addresses": [
+>                 "12.1.10.1"
+>             ]
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes a split DNS profile
+> 
+> **DELETE** `/organizations/{organizationId}/appliance/dns/split/profiles/{profileId}`  
+> 
+> * * *
+
+* * *
+
 ### sdwan
 
 PATH _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
@@ -746,6 +1285,33 @@ PATH _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
 
 \[ sensor \]
 ------------
+
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
 
 ### alerts
 
@@ -1060,35 +1626,46 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 
 * * *
 
-### schedules
+\[ networks \]
+--------------
 
-PATH _`/networks/{networkId}/sensor/schedules`_
+### snmp
+
+PATH _`/networks/{networkId}/snmp/traps`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Returns a list of all sensor schedules.
+> #### Update the SNMP trap configuration for the specified network
 > 
-> **GET** `/networks/{networkId}/sensor/schedules`  
+> **PUT** `/networks/{networkId}/snmp/traps`  
 > 
->     [
->         {
->             "id": "123",
->             "name": "Weekday schedule"
+>     {
+>         "network": {
+>             "id": "N_12345678",
+>             "name": "networkName"
 >         },
->         {
->             "id": "124",
->             "name": "Office hours"
+>         "mode": "v3",
+>         "receiver": {
+>             "address": "1.1.1.1",
+>             "port": "1234"
+>         },
+>         "v2": {
+>             "community": "public"
+>         },
+>         "v3": {
+>             "users": [
+>                 {
+>                     "name": "merakian"
+>                 }
+>             ]
 >         }
->     ]
+>     }
 > 
 > * * *
 
 * * *
-
-\[ networks \]
---------------
 
 ### locationScanning
 
@@ -1188,44 +1765,6 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 >                 "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
 >             }
 >         ]
->     }
-> 
-> * * *
-
-* * *
-
-### snmp
-
-PATH _`/networks/{networkId}/snmp/traps`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update the SNMP trap configuration for the specified network
-> 
-> **PUT** `/networks/{networkId}/snmp/traps`  
-> 
->     {
->         "network": {
->             "id": "N_12345678",
->             "name": "networkName"
->         },
->         "mode": "v3",
->         "receiver": {
->             "address": "1.1.1.1",
->             "port": "1234"
->         },
->         "v2": {
->             "community": "public"
->         },
->         "v3": {
->             "users": [
->                 {
->                     "name": "merakian"
->                 }
->             ]
->         }
 >     }
 > 
 > * * *
@@ -1600,6 +2139,23 @@ PATH _`/networks/{networkId}/switch/ports/profiles`_
 >                     "model": "MS120-48FP"
 >                 }
 >             ],
+>             "assignedSwitchports": [
+>                 {
+>                     "portIds": [
+>                         "1",
+>                         "2",
+>                         "3",
+>                         "1_C3850-NM-8-10G_1",
+>                         "1_C3850-NM-8-10G_2"
+>                     ],
+>                     "switch": {
+>                         "serial": "Q234-ABCD-5678"
+>                     },
+>                     "template": {
+>                         "id": 1983748489
+>                     }
+>                 }
+>             ],
 >             "createdAt": "2022-09-16T09:18:38Z",
 >             "updatedAt": "2022-09-16T09:18:38Z",
 >             "port": {
@@ -1627,7 +2183,24 @@ PATH _`/networks/{networkId}/switch/ports/profiles`_
 >                 "adaptivePolicyGroupId": "1284392014819",
 >                 "peerSgtCapable": false,
 >                 "daiTrusted": false
->             }
+>             },
+>             "isOrganizationWide": false,
+>             "networks": {
+>                 "values": [
+>                     {
+>                         "id": "N_11865",
+>                         "name": "Wonderland-Dev"
+>                     }
+>                 ],
+>                 "type": "included"
+>             },
+>             "automations": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "RYOFXAPO"
+>                 }
+>             ],
+>             "access": "full"
 >         }
 >     ]
 > 
@@ -1670,6 +2243,23 @@ PATH _`/networks/{networkId}/switch/ports/profiles`_
 >                 "model": "MS120-48FP"
 >             }
 >         ],
+>         "assignedSwitchports": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 },
+>                 "template": {
+>                     "id": 1983748489
+>                 }
+>             }
+>         ],
 >         "createdAt": "2022-09-16T09:18:38Z",
 >         "updatedAt": "2022-09-16T09:18:38Z",
 >         "port": {
@@ -1697,7 +2287,24 @@ PATH _`/networks/{networkId}/switch/ports/profiles`_
 >             "adaptivePolicyGroupId": "1284392014819",
 >             "peerSgtCapable": false,
 >             "daiTrusted": false
->         }
+>         },
+>         "isOrganizationWide": false,
+>         "networks": {
+>             "values": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "Wonderland-Dev"
+>                 }
+>             ],
+>             "type": "included"
+>         },
+>         "automations": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "RYOFXAPO"
+>             }
+>         ],
+>         "access": "full"
 >     }
 > 
 > * * *
@@ -1744,6 +2351,23 @@ PATH _`/networks/{networkId}/switch/ports/profiles/{id}`_
 >                 "model": "MS120-48FP"
 >             }
 >         ],
+>         "assignedSwitchports": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 },
+>                 "template": {
+>                     "id": 1983748489
+>                 }
+>             }
+>         ],
 >         "createdAt": "2022-09-16T09:18:38Z",
 >         "updatedAt": "2022-09-16T09:18:38Z",
 >         "port": {
@@ -1771,7 +2395,24 @@ PATH _`/networks/{networkId}/switch/ports/profiles/{id}`_
 >             "adaptivePolicyGroupId": "1284392014819",
 >             "peerSgtCapable": false,
 >             "daiTrusted": false
->         }
+>         },
+>         "isOrganizationWide": false,
+>         "networks": {
+>             "values": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "Wonderland-Dev"
+>                 }
+>             ],
+>             "type": "included"
+>         },
+>         "automations": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "RYOFXAPO"
+>             }
+>         ],
+>         "access": "full"
 >     }
 > 
 > * * *
@@ -1926,9 +2567,25 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles`_
 >             "counts": {
 >                 "assigned": {
 >                     "ports": 4,
->                     "switches": 2
+>                     "switches": 2,
+>                     "automations": 6
+>                 },
+>                 "networksCount": {
+>                     "included": 40,
+>                     "excluded": 20
 >                 }
->             }
+>             },
+>             "isOrganizationWide": false,
+>             "networks": {
+>                 "values": [
+>                     {
+>                         "id": "N_11865",
+>                         "name": "Wonderland-Dev"
+>                     }
+>                 ],
+>                 "type": "included"
+>             },
+>             "access": "full"
 >         }
 >     ]
 > 
@@ -1971,6 +2628,23 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles`_
 >                 "model": "MS120-48FP"
 >             }
 >         ],
+>         "assignedSwitchports": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 },
+>                 "template": {
+>                     "id": 1983748489
+>                 }
+>             }
+>         ],
 >         "createdAt": "2022-09-16T09:18:38Z",
 >         "updatedAt": "2022-09-16T09:18:38Z",
 >         "port": {
@@ -1998,7 +2672,24 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles`_
 >             "adaptivePolicyGroupId": "1284392014819",
 >             "peerSgtCapable": false,
 >             "daiTrusted": false
->         }
+>         },
+>         "isOrganizationWide": false,
+>         "networks": {
+>             "values": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "Wonderland-Dev"
+>                 }
+>             ],
+>             "type": "included"
+>         },
+>         "automations": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "RYOFXAPO"
+>             }
+>         ],
+>         "access": "full"
 >     }
 > 
 > * * *
@@ -2067,7 +2758,14 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
 >                         "ports": 51,
 >                         "networks": 1
 >                     }
->                 }
+>                 },
+>                 "isOrganizationWide": false,
+>                 "networks": [
+>                     {
+>                         "id": "N_11865",
+>                         "name": "Wonderland-Dev"
+>                     }
+>                 ]
 >             }
 >         ],
 >         "meta": {
@@ -2138,7 +2836,14 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
 >                 "ports": 51,
 >                 "networks": 1
 >             }
->         }
+>         },
+>         "isOrganizationWide": false,
+>         "networks": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "Wonderland-Dev"
+>             }
+>         ]
 >     }
 > 
 > * * *
@@ -2205,7 +2910,14 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations/{id}`_
 >                 "ports": 51,
 >                 "networks": 1
 >             }
->         }
+>         },
+>         "isOrganizationWide": false,
+>         "networks": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "Wonderland-Dev"
+>             }
+>         ]
 >     }
 > 
 > * * *
@@ -2261,6 +2973,23 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 >                 "model": "MS120-48FP"
 >             }
 >         ],
+>         "assignedSwitchports": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 },
+>                 "template": {
+>                     "id": 1983748489
+>                 }
+>             }
+>         ],
 >         "createdAt": "2022-09-16T09:18:38Z",
 >         "updatedAt": "2022-09-16T09:18:38Z",
 >         "port": {
@@ -2288,7 +3017,24 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 >             "adaptivePolicyGroupId": "1284392014819",
 >             "peerSgtCapable": false,
 >             "daiTrusted": false
->         }
+>         },
+>         "isOrganizationWide": false,
+>         "networks": {
+>             "values": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "Wonderland-Dev"
+>                 }
+>             ],
+>             "type": "included"
+>         },
+>         "automations": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "RYOFXAPO"
+>             }
+>         ],
+>         "access": "full"
 >     }
 > 
 > * * *
@@ -2330,6 +3076,23 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 >                 "model": "MS120-48FP"
 >             }
 >         ],
+>         "assignedSwitchports": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 },
+>                 "template": {
+>                     "id": 1983748489
+>                 }
+>             }
+>         ],
 >         "createdAt": "2022-09-16T09:18:38Z",
 >         "updatedAt": "2022-09-16T09:18:38Z",
 >         "port": {
@@ -2357,7 +3120,24 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 >             "adaptivePolicyGroupId": "1284392014819",
 >             "peerSgtCapable": false,
 >             "daiTrusted": false
->         }
+>         },
+>         "isOrganizationWide": false,
+>         "networks": {
+>             "values": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "Wonderland-Dev"
+>                 }
+>             ],
+>             "type": "included"
+>         },
+>         "automations": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "RYOFXAPO"
+>             }
+>         ],
+>         "access": "full"
 >     }
 > 
 > * * *
@@ -2670,15 +3450,15 @@ PATH _`/organizations/{organizationId}/switch/ports/transceivers/readings/histor
 
 * * *
 
-PATH _`/organizations/{organizationId}/switch/ports/usage/byDevice`_
+PATH _`/organizations/{organizationId}/switch/ports/usage/byDevice/byInterval`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List the historical usage data of switchports in an organization.
+> #### List the historical usage and traffic data of switchports in an organization.
 > 
-> **GET** `/organizations/{organizationId}/switch/ports/usage/byDevice`  
+> **GET** `/organizations/{organizationId}/switch/ports/usage/byDevice/byInterval`  
 > 
 >     {
 >         "items": [
@@ -2694,17 +3474,31 @@ PATH _`/organizations/{organizationId}/switch/ports/usage/byDevice`_
 >                 "ports": [
 >                     {
 >                         "portId": "1",
->                         "powerUsageInWh": 55.9,
->                         "trafficInKbps": {
->                             "total": 2.2,
->                             "sent": 1.2,
->                             "received": 1
->                         },
->                         "usageInKb": {
->                             "total": 40867,
->                             "sent": 23008,
->                             "received": 17859
->                         }
+>                         "history": [
+>                             {
+>                                 "startTs": "2024-02-11T00:00:00.090210Z",
+>                                 "endTs": "2024-02-11T00:20:00.090210Z",
+>                                 "data": {
+>                                     "usage": {
+>                                         "total": 40867,
+>                                         "upstream": 23008,
+>                                         "downstream": 17859
+>                                     }
+>                                 },
+>                                 "bandwidth": {
+>                                     "usage": {
+>                                         "total": 2.2,
+>                                         "upstream": 1.2,
+>                                         "downstream": 1
+>                                     }
+>                                 },
+>                                 "energy": {
+>                                     "usage": {
+>                                         "total": 2.2
+>                                     }
+>                                 }
+>                             }
+>                         ]
 >                     }
 >                 ]
 >             }
@@ -2725,34 +3519,6 @@ PATH _`/organizations/{organizationId}/switch/ports/usage/byDevice`_
 
 \[ wireless \]
 --------------
-
-### healthScores
-
-PATH _`/devices/{serial}/wireless/healthScores`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch the health scores for a given AP on this network
-> 
-> **GET** `/devices/{serial}/wireless/healthScores`  
-> 
->     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
->         }
->     }
-> 
-> * * *
-
-* * *
 
 ### radio
 
@@ -2832,22 +3598,19 @@ PATH _`/devices/{serial}/wireless/radio/afc/powerLimits`_
 >         "expiresAt": "2023-01-27T19:36:32Z",
 >         "lastUpdatedAt": "2023-01-26T19:36:32Z",
 >         "lastSuccessAt": "2023-01-26T19:36:32Z",
->         "powerLimits": [
+>         "byChannel": [
 >             {
 >                 "channel": 11,
 >                 "channelWidth": 20,
->                 "limit": {
->                     "inPsd": 23,
->                     "inDbm": 30
->                 }
+>                 "limit": 30
 >             }
 >         ],
->         "status": "0",
+>         "status": "SUCCESS",
 >         "location": {
 >             "lat": 37.4180951010362,
 >             "lng": -122.098531723022,
 >             "uncertainty": 10,
->             "type": "gps"
+>             "type": "GPS"
 >         }
 >     }
 > 
@@ -2889,6 +3652,12 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
 >             "avoidance": {
 >                 "enabled": true
 >             }
+>         },
+>         "fra": {
+>             "enabled": false
+>         },
+>         "aiRrm": {
+>             "enabled": true
 >         }
 >     }
 > 
@@ -2949,22 +3718,19 @@ PATH _`/organizations/{organizationId}/wireless/radio/afc/powerLimits/byDevice`_
 >             "expiresAt": "2023-01-27T19:36:32Z",
 >             "lastUpdatedAt": "2023-01-26T19:36:32Z",
 >             "lastSuccessAt": "2023-01-26T19:36:32Z",
->             "powerLimits": [
+>             "byChannel": [
 >                 {
 >                     "channel": 11,
 >                     "channelWidth": 20,
->                     "limit": {
->                         "inPsd": 23,
->                         "inDbm": 30
->                     }
+>                     "limit": 30
 >                 }
 >             ],
->             "status": "0",
+>             "status": "SUCCESS",
 >             "location": {
 >                 "lat": 37.4180951010362,
 >                 "lng": -122.098531723022,
 >                 "uncertainty": 10,
->                 "type": "gps"
+>                 "type": "GPS"
 >             }
 >         }
 >     ]
@@ -3008,6 +3774,12 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`_
 >                 "avoidance": {
 >                     "enabled": true
 >                 }
+>             },
+>             "fra": {
+>                 "enabled": false
+>             },
+>             "aiRrm": {
+>                 "enabled": true
 >             }
 >         }
 >     ]
@@ -3059,24 +3831,6 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/a
 
 * * *
 
-PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/recalculate`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Recalculates automatically assigned channels for every AP within specified the specified network(s). Note: This could cause a brief loss in connectivity for wireless clients.
-> 
-> **POST** `/organizations/{organizationId}/wireless/radio/autoRf/channels/recalculate`  
-> 
->     {
->         "estimatedCompletedAt": "2019-01-01T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
 ### zigbee
 
 PATH _`/devices/{serial}/wireless/zigbee/enrollments`_
@@ -3122,8 +3876,8 @@ PATH _`/devices/{serial}/wireless/zigbee/enrollments/{id}`_
 >         "enrollmentStartedAt": "complete",
 >         "doorLocks": [
 >             {
->                 "id": "1",
->                 "displayName": "Door Lock 403",
+>                 "doorLockId": "1",
+>                 "name": "Door Lock 123",
 >                 "shortId": "ABE123",
 >                 "lqi": "1",
 >                 "rssi": "1",
@@ -3183,7 +3937,7 @@ PATH _`/networks/{networkId}/wireless/zigbee`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/wireless/zigbee`_
+PATH _`/organizations/{organizationId}/wireless/zigbee/byNetwork`_
 
 > \- Path added  
 >   
@@ -3191,7 +3945,7 @@ PATH _`/organizations/{organizationId}/wireless/zigbee`_
 > 
 > #### Return list of Zigbee configs
 > 
-> **GET** `/organizations/{organizationId}/wireless/zigbee`  
+> **GET** `/organizations/{organizationId}/wireless/zigbee/byNetwork`  
 > 
 >     [
 >         {
@@ -3246,7 +4000,10 @@ PATH _`/organizations/{organizationId}/wireless/zigbee/devices`_
 >                 "name": "MR Client",
 >                 "mac": "e4:55:a8:38:f2:06",
 >                 "serial": "1234-4567-5678",
->                 "tags": ""
+>                 "tags": [
+>                     "tag1",
+>                     "tag2"
+>                 ]
 >             },
 >             "counts": {
 >                 "doorLocks": {
@@ -3332,8 +4089,8 @@ PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks`_
 > 
 >     [
 >         {
->             "id": "1",
->             "displayName": "Door Lock 403",
+>             "doorLockId": "1",
+>             "name": "Door Lock 123",
 >             "shortId": "ABE123",
 >             "lqi": "1",
 >             "rssi": "1",
@@ -3368,8 +4125,8 @@ PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`_
 > 
 >     [
 >         {
->             "id": "1",
->             "displayName": "Door Lock 403",
+>             "doorLockId": "1",
+>             "name": "Door Lock 123",
 >             "shortId": "ABE123",
 >             "lqi": "1",
 >             "rssi": "1",
@@ -3387,6 +4144,34 @@ PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`_
 >             }
 >         }
 >     ]
+> 
+> * * *
+
+* * *
+
+### healthScores
+
+PATH _`/devices/{serial}/wireless/healthScores`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch the health scores for a given AP on this network
+> 
+> **GET** `/devices/{serial}/wireless/healthScores`  
+> 
+>     {
+>         "device": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "performance": {
+>             "latest": 80
+>         },
+>         "onboarding": {
+>             "latest": 20
+>         }
+>     }
 > 
 > * * *
 
@@ -4307,6 +5092,84 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/tests`_
 
 * * *
 
+PATH _`/organizations/{organizationId}/extensions/xdr/networks`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns the networks in the organization that have XDR enabled
+> 
+> **GET** `/organizations/{organizationId}/extensions/xdr/networks`  
+> 
+>     [
+>         {
+>             "networkId": "N_1234567",
+>             "productTypes": [
+>                 "appliance"
+>             ],
+>             "name": "Test network",
+>             "enabled": true,
+>             "eligible": true
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/extensions/xdr/networks/disable`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Disable XDR on networks
+> 
+> **POST** `/organizations/{organizationId}/extensions/xdr/networks/disable`  
+> 
+>     [
+>         {
+>             "networkId": "N_1234567",
+>             "productTypes": [
+>                 "appliance"
+>             ],
+>             "name": "Test network",
+>             "enabled": false,
+>             "eligible": true
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/extensions/xdr/networks/enable`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enable XDR on networks
+> 
+> **POST** `/organizations/{organizationId}/extensions/xdr/networks/enable`  
+> 
+>     [
+>         {
+>             "networkId": "N_1234567",
+>             "productTypes": [
+>                 "appliance"
+>             ],
+>             "name": "Test network",
+>             "enabled": true,
+>             "eligible": true
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### policies
 
 PATH _`/organizations/{organizationId}/policies/assignments/byClient`_
@@ -4411,10 +5274,10 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 >                     "name": "file_name",
 >                     "startTime": "2018-02-11T00:00:00.090210Z",
 >                     "ports": "1, 2",
->                     "status": "capturing",
+>                     "status": "completed",
 >                     "errorMessage": "Some error message",
 >                     "outputType": "pcap",
->                     "captureSource": "automatic",
+>                     "captureSource": "scheduled",
 >                     "captureReason": "capture reason",
 >                     "fileSize": 1066,
 >                     "duration": 60,
@@ -4465,10 +5328,10 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 >         "name": "file_name",
 >         "startTime": "2018-02-11T00:00:00.090210Z",
 >         "ports": "1, 2",
->         "status": "capturing",
+>         "status": "completed",
 >         "errorMessage": "Some error message",
 >         "outputType": "pcap",
->         "captureSource": "automatic",
+>         "captureSource": "scheduled",
 >         "captureReason": "capture reason",
 >         "fileSize": 1066,
 >         "duration": 60,
@@ -4541,10 +5404,10 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures/{id}/stop`
 >         "name": "file_name",
 >         "startTime": "2018-02-11T00:00:00.090210Z",
 >         "ports": "1, 2",
->         "status": "capturing",
+>         "status": "completed",
 >         "errorMessage": "Some error message",
 >         "outputType": "pcap",
->         "captureSource": "automatic",
+>         "captureSource": "scheduled",
 >         "captureReason": "capture reason",
 >         "fileSize": 1066,
 >         "duration": 60,
