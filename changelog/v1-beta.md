@@ -87,20 +87,20 @@
     + [sdwan](#sdwan)
       - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network)
   * [\[ sensor \]](#-sensor--1)
-    + [schedules](#schedules)
-      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
     + [alerts](#alerts-1)
       - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
     + [readings](#readings)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
+    + [schedules](#schedules)
+      - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
   * [\[ networks \]](#-networks--1)
-    + [snmp](#snmp)
-      - [Update the SNMP trap configuration for the specified network](#update-the-snmp-trap-configuration-for-the-specified-network)
     + [locationScanning](#locationscanning)
       - [Return scanning API settings](#return-scanning-api-settings)
       - [Change scanning API settings](#change-scanning-api-settings)
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
+    + [snmp](#snmp)
+      - [Update the SNMP trap configuration for the specified network](#update-the-snmp-trap-configuration-for-the-specified-network)
   * [\[ switch \]](#-switch--1)
     + [configTemplates](#configtemplates)
       - [list the port mirror configurations in an organization by switch profile](#list-the-port-mirror-configurations-in-an-organization-by-switch-profile)
@@ -114,7 +114,6 @@
       - [Create a port profile in a network](#create-a-port-profile-in-a-network)
       - [Update a port profile in a network](#update-a-port-profile-in-a-network)
       - [Delete a port profile from a network](#delete-a-port-profile-from-a-network)
-      - [List the client counts in an organization](#list-the-client-counts-in-an-organization)
       - [list the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
       - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization)
       - [Create a port profile in an organization](#create-a-port-profile-in-an-organization)
@@ -125,20 +124,9 @@
       - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile)
       - [Update a port profile in an organization](#update-a-port-profile-in-an-organization)
       - [Delete a port profile from an organization](#delete-a-port-profile-from-an-organization)
-      - [List the switchports in an organization](#list-the-switchports-in-an-organization)
-      - [List most recently seen LLDP/CDP discovery and topology information per switch port in an organization.](#list-most-recently-seen-lldpcdp-discovery-and-topology-information-per-switch-port-in-an-organization)
       - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module)
       - [List the historical usage and traffic data of switchports in an organization.](#list-the-historical-usage-and-traffic-data-of-switchports-in-an-organization)
   * [\[ wireless \]](#-wireless--1)
-    + [radio](#radio)
-      - [Return the position for a wireless device](#return-the-position-for-a-wireless-device)
-      - [Update the position attributes for this device](#update-the-position-attributes-for-this-device)
-      - [Return the AFC power limits for a wireless device](#return-the-afc-power-limits-for-a-wireless-device)
-      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
-      - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device)
-      - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-1)
-      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
-      - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
     + [zigbee](#zigbee)
       - [Enqueue a job to start enrolling doorlocks on zigbee configured MRs](#enqueue-a-job-to-start-enrolling-doorlocks-on-zigbee-configured-mrs)
       - [Return an enrollment job](#return-an-enrollment-job)
@@ -149,11 +137,22 @@
       - [Return a disenrollment job](#return-a-disenrollment-job)
       - [Return the list of doorlocks for a network](#return-the-list-of-doorlocks-for-a-network)
       - [Endpoint to bulk update door locks params](#endpoint-to-bulk-update-door-locks-params)
-    + [healthScores](#healthscores)
-      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
+    + [radio](#radio)
+      - [Return the position for a wireless device](#return-the-position-for-a-wireless-device)
+      - [Update the position attributes for this device](#update-the-position-attributes-for-this-device)
+      - [Return the AFC power limits for a wireless device](#return-the-afc-power-limits-for-a-wireless-device)
+      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
+      - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device)
+      - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-1)
+      - [Check the AI-RRM license status of an organization by network](#check-the-ai-rrm-license-status-of-an-organization-by-network)
+      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
+      - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
     + [opportunisticPcap](#opportunisticpcap)
       - [Update the Opportunistic Pcap settings for a wireless network](#update-the-opportunistic-pcap-settings-for-a-wireless-network)
       - [List the Opportunistic Pcap settings of an organization by network](#list-the-opportunistic-pcap-settings-of-an-organization-by-network)
+      - [Check the Opportunistic Pcap license status of an organization by network](#check-the-opportunistic-pcap-license-status-of-an-organization-by-network)
+    + [healthScores](#healthscores)
+      - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
     + [clients](#clients-1)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
@@ -174,9 +173,9 @@
       - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
       - [Import certificate for this organization](#import-certificate-for-this-organization)
       - [Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.](#query-for-details-on-the-organizations-radsec-device-certificate-authority-certificates-cas-the-primary-ca-signs-all-the-certificates-that-devices-present-when-establishing-a-secure-connection-to-radius-servers-via-radsec-protocol-this-api-returns-an-array-of-the-status-of-all-of-the-cas-as-well-as-their-contents-if-theyve-been-generated-an-organization-will-have-at-most-one-ca-unless-the-ca-is-being-rotated)
-      - [Create an organization's RADSEC device Certificate Authority (CA). Call this operation when turning on RADSEC in the firmware for the first time. Calling this operation starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.](#create-an-organizations-radsec-device-certificate-authority-ca-call-this-operation-when-turning-on-radsec-in-the-firmware-for-the-first-time-calling-this-operation-starts-an-asynchronous-process-to-generate-the-ca-call-get-afterwards-to-retrieve-the-contents-of-the-ca-note-this-ca-is-generated-and-controlled-by-meraki-subsequent-calls-will-not-generate-a-new-ca)
+      - [Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.](#create-an-organizations-radsec-device-certificate-authority-ca-call-this-endpoint-when-turning-on-radsec-in-the-firmware-for-the-first-time-calling-this-endpoint-starts-an-asynchronous-process-to-generate-the-ca-call-get-afterwards-to-retrieve-the-contents-of-the-ca-note-this-ca-is-generated-and-controlled-by-meraki-subsequent-calls-will-not-generate-a-new-ca)
       - [Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.](#query-for-details-on-an-organizations-radsec-device-certificate-authority-ca-with-the-given-id-this-api-returns-the-status-of-the-ca-as-well-as-the-contents-of-the-ca-if-its-been-generated)
-      - [Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this operation to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.](#update-an-organizations-radsec-device-certificate-authority-ca-state-note-this-ca-is-generated-and-controlled-by-meraki-call-this-operation-to-update-the-state-to-trusted-at-which-point-meraki-will-generate-device-certificates-trusted-means-the-ca-is-placed-on-your-radsec-servers-and-devices-establishing-a-secure-connection-using-certs-signed-by-this-ca-will-pass-verification)
+      - [Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.](#update-an-organizations-radsec-device-certificate-authority-ca-state-note-this-ca-is-generated-and-controlled-by-meraki-call-this-endpoint-to-update-the-state-to-trusted-at-which-point-meraki-will-generate-device-certificates-trusted-means-the-ca-is-placed-on-your-radsec-servers-and-devices-establishing-a-secure-connection-using-certs-signed-by-this-ca-will-pass-verification)
       - [Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
       - [Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-all-delta-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
       - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
@@ -234,25 +233,22 @@
       - [Delete an Insight tracked application](#delete-an-insight-tracked-application)
   * [\[ devices \]](#-devices-)
     + [traceRoute](#traceroute)
-      - [Enqueue a job to run trace route in the device. This operation has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-run-trace-route-in-the-device-this-operation-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
+      - [Enqueue a job to run trace route in the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-run-trace-route-in-the-device-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
       - [Return a trace route job](#return-a-trace-route-job)
     + [speedTest](#speedtest)
       - [Enqueue a job to execute a speed test from a device](#enqueue-a-job-to-execute-a-speed-test-from-a-device)
       - [Returns a speed test result in megabits per second. If test is not complete, no results are present.](#returns-a-speed-test-result-in-megabits-per-second-if-test-is-not-complete-no-results-are-present)
     + [routingTable](#routingtable)
-      - [Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported. This operation has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-perform-a-routing-table-request-for-the-device-only-native-catalyst-switches-are-supported-this-operation-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
+      - [Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-perform-a-routing-table-request-for-the-device-only-native-catalyst-switches-are-supported-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
       - [Return an routing table live tool job.](#return-an-routing-table-live-tool-job)
     + [macTable](#mactable)
-      - [Enqueue a job to request the MAC table from the device. Switches currently support this feature. This operation has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-request-the-mac-table-from-the-device-switches-currently-support-this-feature-this-operation-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
+      - [Enqueue a job to request the MAC table from the device. Switches currently support this feature. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-request-the-mac-table-from-the-device-switches-currently-support-this-feature-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
       - [Return a MAC table live tool job.](#return-a-mac-table-live-tool-job)
-    + [leds](#leds)
-      - [Enqueue a job to blink LEDs on a device. This operation has a rate limit of one request every 10 seconds.](#enqueue-a-job-to-blink-leds-on-a-device-this-operation-has-a-rate-limit-of-one-request-every-10-seconds)
-      - [Return a blink LEDs job](#return-a-blink-leds-job)
     + [cyclePort](#cycleport)
-      - [Enqueue a job to perform a cycle port for the device on the specified ports. This operation has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-perform-a-cycle-port-for-the-device-on-the-specified-ports-this-operation-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
+      - [Enqueue a job to perform a cycle port for the device on the specified ports. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-perform-a-cycle-port-for-the-device-on-the-specified-ports-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
       - [Return a cycle port live tool job.](#return-a-cycle-port-live-tool-job)
     + [aclHitCount](#aclhitcount)
-      - [Enqueue a job to perform an ACL hit count for the device. This operation has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-perform-an-acl-hit-count-for-the-device-this-operation-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
+      - [Enqueue a job to perform an ACL hit count for the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-perform-an-acl-hit-count-for-the-device-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
       - [Return an ACL hit count live tool job.](#return-an-acl-hit-count-live-tool-job)
   * [\[ secureConnect \]](#-secureconnect-)
     + [privateApplicationGroups](#privateapplicationgroups)
@@ -267,6 +263,11 @@
       - [Return the details of a specific private application](#return-the-details-of-a-specific-private-application)
       - [Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.](#updates-a-specific-private-application-updates-can-be-made-to-name-description-destinations-app-protocol-sni-and-ssl-verification-application-groups-can-be-added-or-removed)
       - [Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.](#deletes-a-specific-private-application-delink-the-application-from-any-application-groups-before-deleting-the-app-cascade-delete-application-group-if-this-is-the-only-application-in-the-group)
+    + [privateResources](#privateresources)
+      - [Provides a list of private resources for an organization.](#provides-a-list-of-private-resources-for-an-organization)
+      - [Adds a new private resource to the organization.](#adds-a-new-private-resource-to-the-organization)
+      - [Updates a specific private resource.](#updates-a-specific-private-resource)
+      - [Deletes a specific private resource. If this is the last resource in a resource group you must remove it from that resource group before deleting.](#deletes-a-specific-private-resource-if-this-is-the-last-resource-in-a-resource-group-you-must-remove-it-from-that-resource-group-before-deleting)
     + [publicApplications](#publicapplications)
       - [Provides a list of public applications for an Organization.](#provides-a-list-of-public-applications-for-an-organization)
     + [regions](#regions)
@@ -293,19 +294,19 @@
       - [Delete a PccBulkEnrollmentToken](#delete-a-pccbulkenrollmenttoken)
       - [List all BulkEnrollmentTokens for an organization.](#list-all-bulkenrollmenttokens-for-an-organization)
  
-Version **1.52.0** _to_ **1.52.0-beta.0**
+Version **1.53.0** _to_ **1.53.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**128 - New**
+**127 - New**
 
 **67 - Updated**
 
-**944 - Total Endpoints**
+**950 - Total Endpoints**
 
-**643 - Total Paths**
+**647 - Total Paths**
 
 * * *
 
@@ -715,7 +716,7 @@ GET _`/organizations/{organizationId}/devices/statuses`_
 
 POST _`/organizations/{organizationId}/insight/applications`_
 
-> \- Added operation method  
+> \- Added endpoint method  
 > 
 > #### Add an Insight tracked application
 > 
@@ -1234,7 +1235,7 @@ PATH _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Get the SDWAN internet traffic preferences for an MX network
 > 
@@ -1286,40 +1287,13 @@ PATH _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
 \[ sensor \]
 ------------
 
-### schedules
-
-PATH _`/networks/{networkId}/sensor/schedules`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a list of all sensor schedules.
-> 
-> **GET** `/networks/{networkId}/sensor/schedules`  
-> 
->     [
->         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 ### alerts
 
 PATH _`/organizations/{organizationId}/sensor/alerts`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return a list of sensor alert events
 > 
@@ -1476,7 +1450,7 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order
 > 
@@ -1626,8 +1600,139 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 
 * * *
 
+### schedules
+
+PATH _`/networks/{networkId}/sensor/schedules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a list of all sensor schedules.
+> 
+> **GET** `/networks/{networkId}/sensor/schedules`  
+> 
+>     [
+>         {
+>             "id": "123",
+>             "name": "Weekday schedule"
+>         },
+>         {
+>             "id": "124",
+>             "name": "Office hours"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 \[ networks \]
 --------------
+
+### locationScanning
+
+PATH _`/networks/{networkId}/locationScanning`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return scanning API settings
+> 
+> **GET** `/networks/{networkId}/locationScanning`  
+> 
+>     {
+>         "analyticsEnabled": true,
+>         "scanningApiEnabled": true,
+>         "validator": "xxyzzy"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Change scanning API settings
+> 
+> **PUT** `/networks/{networkId}/locationScanning`  
+> 
+>     {
+>         "analyticsEnabled": true,
+>         "scanningApiEnabled": true,
+>         "validator": "xxyzzy"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/locationScanning/httpServers`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return list of scanning API receivers
+> 
+> **GET** `/networks/{networkId}/locationScanning/httpServers`  
+> 
+>     [
+>         {
+>             "endpoints": [
+>                 {
+>                     "httpServer": {
+>                         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>                         "name": "Example Webhook Server",
+>                         "networkId": "N_12345678",
+>                         "url": "https://www.example.com/my_custom_webhook",
+>                         "sharedSecret": "******",
+>                         "validator": "xxx",
+>                         "validatedAt": "2018-02-11T00:00:00Z"
+>                     },
+>                     "scanningApiVersion": 123,
+>                     "radioType": "WiFi",
+>                     "successAt": "2018-05-12T00:00:00Z",
+>                     "errorAt": "2018-02-11T00:00:00Z",
+>                     "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Set the list of scanning API receivers. Old receivers will be removed
+> 
+> **PUT** `/networks/{networkId}/locationScanning/httpServers`  
+> 
+>     {
+>         "endpoints": [
+>             {
+>                 "httpServer": {
+>                     "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>                     "name": "Example Webhook Server",
+>                     "networkId": "N_12345678",
+>                     "url": "https://www.example.com/my_custom_webhook",
+>                     "sharedSecret": "******",
+>                     "validator": "xxx",
+>                     "validatedAt": "2018-02-11T00:00:00Z"
+>                 },
+>                 "scanningApiVersion": 123,
+>                 "radioType": "WiFi",
+>                 "successAt": "2018-05-12T00:00:00Z",
+>                 "errorAt": "2018-02-11T00:00:00Z",
+>                 "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
 
 ### snmp
 
@@ -1635,7 +1740,7 @@ PATH _`/networks/{networkId}/snmp/traps`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update the SNMP trap configuration for the specified network
 > 
@@ -1667,110 +1772,6 @@ PATH _`/networks/{networkId}/snmp/traps`_
 
 * * *
 
-### locationScanning
-
-PATH _`/networks/{networkId}/locationScanning`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### Return scanning API settings
-> 
-> **GET** `/networks/{networkId}/locationScanning`  
-> 
->     {
->         "analyticsEnabled": true,
->         "scanningApiEnabled": true,
->         "validator": "xxyzzy"
->     }
-> 
-> * * *
-> 
->   
-> \- New operation
-> 
-> #### Change scanning API settings
-> 
-> **PUT** `/networks/{networkId}/locationScanning`  
-> 
->     {
->         "analyticsEnabled": true,
->         "scanningApiEnabled": true,
->         "validator": "xxyzzy"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/locationScanning/httpServers`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### Return list of scanning API receivers
-> 
-> **GET** `/networks/{networkId}/locationScanning/httpServers`  
-> 
->     [
->         {
->             "operations": [
->                 {
->                     "httpServer": {
->                         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->                         "name": "Example Webhook Server",
->                         "networkId": "N_12345678",
->                         "url": "https://www.example.com/my_custom_webhook",
->                         "sharedSecret": "******",
->                         "validator": "xxx",
->                         "validatedAt": "2018-02-11T00:00:00Z"
->                     },
->                     "scanningApiVersion": 123,
->                     "radioType": "WiFi",
->                     "successAt": "2018-05-12T00:00:00Z",
->                     "errorAt": "2018-02-11T00:00:00Z",
->                     "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New operation
-> 
-> #### Set the list of scanning API receivers. Old receivers will be removed
-> 
-> **PUT** `/networks/{networkId}/locationScanning/httpServers`  
-> 
->     {
->         "operations": [
->             {
->                 "httpServer": {
->                     "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->                     "name": "Example Webhook Server",
->                     "networkId": "N_12345678",
->                     "url": "https://www.example.com/my_custom_webhook",
->                     "sharedSecret": "******",
->                     "validator": "xxx",
->                     "validatedAt": "2018-02-11T00:00:00Z"
->                 },
->                 "scanningApiVersion": 123,
->                 "radioType": "WiFi",
->                 "successAt": "2018-05-12T00:00:00Z",
->                 "errorAt": "2018-02-11T00:00:00Z",
->                 "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
 \[ switch \]
 ------------
 
@@ -1780,7 +1781,7 @@ PATH _`/organizations/{organizationId}/configTemplates/switch/profiles/ports/mir
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### list the port mirror configurations in an organization by switch profile
 > 
@@ -1849,7 +1850,7 @@ PATH _`/organizations/{organizationId}/configTemplates/{configTemplateId}/switch
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update a port mirror
 > 
@@ -1909,7 +1910,7 @@ PATH _`/networks/{networkId}/switch/stacks/{switchStackId}/ports/mirror`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update switch port mirrors for switch stacks
 > 
@@ -1969,7 +1970,7 @@ PATH _`/organizations/{organizationId}/switch/stacks/ports/mirrors/byStack`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the port mirror configurations in an organization by switch
 > 
@@ -2044,7 +2045,7 @@ PATH _`/devices/{serial}/switch/ports/mirror`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update a port mirror
 > 
@@ -2102,7 +2103,7 @@ PATH _`/networks/{networkId}/switch/ports/profiles`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the port profiles in a network
 > 
@@ -2207,7 +2208,7 @@ PATH _`/networks/{networkId}/switch/ports/profiles`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Create a port profile in a network
 > 
@@ -2315,7 +2316,7 @@ PATH _`/networks/{networkId}/switch/ports/profiles/{id}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update a port profile in a network
 > 
@@ -2418,7 +2419,7 @@ PATH _`/networks/{networkId}/switch/ports/profiles/{id}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete a port profile from a network
 > 
@@ -2428,58 +2429,11 @@ PATH _`/networks/{networkId}/switch/ports/profiles/{id}`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/switch/ports/clients/overview/byDevice`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### List the client counts in an organization
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/clients/overview/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "name": "Example Switch",
->                 "serial": "Q555-5555-5555",
->                 "mac": "01:23:45:67:ab:cd",
->                 "network": {
->                     "name": "Example Network",
->                     "id": "L_12345"
->                 },
->                 "model": "MS120-8",
->                 "ports": [
->                     {
->                         "portId": "1",
->                         "counts": {
->                             "byStatus": {
->                                 "online": 0
->                             }
->                         }
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
 PATH _`/organizations/{organizationId}/switch/ports/mirrors/bySwitch`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### list the port mirror configurations in an organization by switch
 > 
@@ -2548,7 +2502,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the port profiles in an organization
 > 
@@ -2592,7 +2546,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Create a port profile in an organization
 > 
@@ -2700,7 +2654,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### list the automation port profiles in an organization
 > 
@@ -2780,7 +2734,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Create a port profile automation for an organization
 > 
@@ -2854,7 +2808,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations/{id}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update a port profile automation in an organization
 > 
@@ -2923,7 +2877,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations/{id}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete an automation port profile from an organization
 > 
@@ -2937,7 +2891,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Get detailed information about a port profile
 > 
@@ -3040,7 +2994,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update a port profile in an organization
 > 
@@ -3143,7 +3097,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete a port profile from an organization
 > 
@@ -3153,134 +3107,11 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/switch/ports/statuses/bySwitch`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### List the switchports in an organization
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/statuses/bySwitch`  
-> 
->     {
->         "items": [
->             {
->                 "name": "Example Switch",
->                 "serial": "Q555-5555-5555",
->                 "mac": "01:23:45:67:ab:cd",
->                 "network": {
->                     "name": "Example Network",
->                     "id": "L_12345"
->                 },
->                 "model": "MS120-8",
->                 "ports": [
->                     {
->                         "portId": "1",
->                         "enabled": true,
->                         "status": "Connected",
->                         "isUplink": false,
->                         "errors": [
->                             "PoE overload",
->                             "Very high proportion of CRC errors"
->                         ],
->                         "warnings": [
->                             "SecurePort authentication in progress",
->                             "PoE port was denied power",
->                             "High proportion of CRC errors"
->                         ],
->                         "speed": "10 Gbps",
->                         "duplex": "full",
->                         "spanningTree": {
->                             "statuses": [
->                                 "Learning"
->                             ]
->                         },
->                         "poe": {
->                             "isAllocated": false
->                         },
->                         "securePort": {
->                             "active": true,
->                             "authenticationStatus": "Authentication in progress"
->                         }
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/switch/ports/topology/discovery/byDevice`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### List most recently seen LLDP/CDP discovery and topology information per switch port in an organization.
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/topology/discovery/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "name": "Example Switch",
->                 "serial": "Q555-5555-5555",
->                 "mac": "01:23:45:67:ab:cd",
->                 "network": {
->                     "name": "Example Network",
->                     "id": "L_12345"
->                 },
->                 "model": "MS120-8",
->                 "ports": [
->                     {
->                         "portId": "1",
->                         "lastUpdatedAt": "ISO8061Z",
->                         "cdp": [
->                             {
->                                 "name": "System name",
->                                 "value": "MS350-24X - Test"
->                             }
->                         ],
->                         "lldp": [
->                             {
->                                 "name": "System name",
->                                 "value": "MS350-24X - Test"
->                             }
->                         ]
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
 PATH _`/organizations/{organizationId}/switch/ports/transceivers/readings/history/bySwitch`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.
 > 
@@ -3454,7 +3285,7 @@ PATH _`/organizations/{organizationId}/switch/ports/usage/byDevice/byInterval`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the historical usage and traffic data of switchports in an organization.
 > 
@@ -3520,13 +3351,331 @@ PATH _`/organizations/{organizationId}/switch/ports/usage/byDevice/byInterval`_
 \[ wireless \]
 --------------
 
+### zigbee
+
+PATH _`/devices/{serial}/wireless/zigbee/enrollments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to start enrolling doorlocks on zigbee configured MRs
+> 
+> **POST** `/devices/{serial}/wireless/zigbee/enrollments`  
+> 
+>     {
+>         "enrollmentId": "1234",
+>         "url": "/devices/SERIAL/wireless/zigbee/enrollments/1234",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/wireless/zigbee/enrollments/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an enrollment job
+> 
+> **GET** `/devices/{serial}/wireless/zigbee/enrollments/{id}`  
+> 
+>     {
+>         "enrollmentId": "1234",
+>         "url": "/devices/SERIAL/wireless/zigbee/enrollments/1234",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "enrollmentStartedAt": "complete",
+>         "doorLocks": [
+>             {
+>                 "doorLockId": "1",
+>                 "name": "Door Lock 123",
+>                 "shortId": "ABE123",
+>                 "lqi": "1",
+>                 "rssi": "1",
+>                 "status": "online",
+>                 "eui64": "DL403",
+>                 "enrolledAt": "2023-08-14T19:57:06Z",
+>                 "lastSeenAt": "2023-08-14T19:59:01Z",
+>                 "network": {
+>                     "id": "N_24329156",
+>                     "name": "Main Office"
+>                 },
+>                 "gateway": {
+>                     "name": "My AP",
+>                     "serial": "Q234-ABCD-5678"
+>                 }
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/wireless/zigbee`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update Zigbee Configs for specified network
+> 
+> **PUT** `/networks/{networkId}/wireless/zigbee`  
+> 
+>     {
+>         "network": {
+>             "id": "N_24329156"
+>         },
+>         "enabled": true,
+>         "iotController": {
+>             "name": "My AP",
+>             "mac": "e4:55:a8:38:f2:06",
+>             "serial": "Q234-ABCD-5678",
+>             "status": "online"
+>         },
+>         "lockManagement": {
+>             "address": "10.100.100.200",
+>             "username": "user",
+>             "status": "offline"
+>         },
+>         "defaults": {
+>             "transmitPowerLevel": 10,
+>             "channel": "24"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return list of Zigbee configs
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee/byNetwork`  
+> 
+>     [
+>         {
+>             "network": {
+>                 "id": "N_24329156"
+>             },
+>             "enabled": true,
+>             "iotController": {
+>                 "name": "My AP",
+>                 "mac": "e4:55:a8:38:f2:06",
+>                 "serial": "Q234-ABCD-5678",
+>                 "status": "online"
+>             },
+>             "lockManagement": {
+>                 "address": "10.100.100.200",
+>                 "username": "user",
+>                 "status": "offline"
+>             },
+>             "defaults": {
+>                 "transmitPowerLevel": 10,
+>                 "channel": "24"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/devices`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the Zigbee MR Nodes for and organization or the supplied network(s)
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee/devices`  
+> 
+>     [
+>         {
+>             "network": {
+>                 "id": "N_1234",
+>                 "name": "Main office"
+>             },
+>             "panId": "0x0100",
+>             "channel": "auto",
+>             "transmitPowerLevel": 12,
+>             "enrolled": true,
+>             "status": "online",
+>             "gateway": {
+>                 "name": "MR Client",
+>                 "mac": "e4:55:a8:38:f2:06",
+>                 "serial": "1234-4567-5678",
+>                 "tags": [
+>                     "tag1",
+>                     "tag2"
+>                 ]
+>             },
+>             "counts": {
+>                 "doorLocks": {
+>                     "byStatus": {
+>                         "online": 5,
+>                         "offline": 2,
+>                         "dormant": 0
+>                     }
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/disenrollments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to start disenrolling doorlocks on zigbee configured MRs
+> 
+> **POST** `/organizations/{organizationId}/wireless/zigbee/disenrollments`  
+> 
+>     {
+>         "disenrollmentId": "1234",
+>         "url": "/organization/{organizationId}/wireless/zigbee/disenrollments/1234",
+>         "request": {
+>             "doorLockIds": [
+>                 "1234"
+>             ]
+>         },
+>         "status": "complete"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/disenrollments/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a disenrollment job
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee/disenrollments/{id}`  
+> 
+>     {
+>         "disenrollmentId": "1234",
+>         "url": "/organization/{organizationId}/wireless/zigbee/disenrollments/1234",
+>         "request": {
+>             "doorLockIds": [
+>                 "1234"
+>             ]
+>         },
+>         "status": "complete",
+>         "doorLocks": [
+>             {
+>                 "doorLockId": "1234",
+>                 "status": "success"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the list of doorlocks for a network
+> 
+> **GET** `/organizations/{organizationId}/wireless/zigbee/doorLocks`  
+> 
+>     [
+>         {
+>             "doorLockId": "1",
+>             "name": "Door Lock 123",
+>             "shortId": "ABE123",
+>             "lqi": "1",
+>             "rssi": "1",
+>             "status": "online",
+>             "eui64": "DL403",
+>             "enrolledAt": "2023-08-14T19:57:06Z",
+>             "lastSeenAt": "2023-08-14T19:59:01Z",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "gateway": {
+>                 "name": "My AP",
+>                 "serial": "Q234-ABCD-5678"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Endpoint to bulk update door locks params
+> 
+> **POST** `/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`  
+> 
+>     [
+>         {
+>             "doorLockId": "1",
+>             "name": "Door Lock 123",
+>             "shortId": "ABE123",
+>             "lqi": "1",
+>             "rssi": "1",
+>             "status": "online",
+>             "eui64": "DL403",
+>             "enrolledAt": "2023-08-14T19:57:06Z",
+>             "lastSeenAt": "2023-08-14T19:59:01Z",
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "gateway": {
+>                 "name": "My AP",
+>                 "serial": "Q234-ABCD-5678"
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### radio
 
 PATH _`/devices/{serial}/wireless/radio/afc/position`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return the position for a wireless device
 > 
@@ -3552,7 +3701,7 @@ PATH _`/devices/{serial}/wireless/radio/afc/position`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update the position attributes for this device
 > 
@@ -3583,7 +3732,7 @@ PATH _`/devices/{serial}/wireless/radio/afc/powerLimits`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return the AFC power limits for a wireless device
 > 
@@ -3622,7 +3771,7 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update the AutoRF settings for a wireless network
 > 
@@ -3669,7 +3818,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/afc/position/byDevice`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the AFC power limits of an organization by device
 > 
@@ -3702,7 +3851,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/afc/powerLimits/byDevice`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the AFC power limits of an organization by device
 > 
@@ -3739,11 +3888,33 @@ PATH _`/organizations/{organizationId}/wireless/radio/afc/powerLimits/byDevice`_
 
 * * *
 
+PATH _`/organizations/{organizationId}/wireless/radio/aiRrm/license/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Check the AI-RRM license status of an organization by network
+> 
+> **GET** `/organizations/{organizationId}/wireless/radio/aiRrm/license/byNetwork`  
+> 
+>     [
+>         {
+>             "networkId": "L_12345",
+>             "name": "My Network",
+>             "licensed": true
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 PATH _`/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the AutoRF settings of an organization by network
 > 
@@ -3792,7 +3963,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/a
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the channel planning activities of an organization
 > 
@@ -3831,105 +4002,30 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/a
 
 * * *
 
-### zigbee
+### opportunisticPcap
 
-PATH _`/devices/{serial}/wireless/zigbee/enrollments`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### Enqueue a job to start enrolling doorlocks on zigbee configured MRs
-> 
-> **POST** `/devices/{serial}/wireless/zigbee/enrollments`  
-> 
->     {
->         "enrollmentId": "1234",
->         "url": "/devices/SERIAL/wireless/zigbee/enrollments/1234",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/wireless/zigbee/enrollments/{id}`_
+PATH _`/networks/{networkId}/wireless/opportunisticPcap`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
-> #### Return an enrollment job
+> #### Update the Opportunistic Pcap settings for a wireless network
 > 
-> **GET** `/devices/{serial}/wireless/zigbee/enrollments/{id}`  
-> 
->     {
->         "enrollmentId": "1234",
->         "url": "/devices/SERIAL/wireless/zigbee/enrollments/1234",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "enrollmentStartedAt": "complete",
->         "doorLocks": [
->             {
->                 "doorLockId": "1",
->                 "name": "Door Lock 123",
->                 "shortId": "ABE123",
->                 "lqi": "1",
->                 "rssi": "1",
->                 "status": "online",
->                 "eui64": "DL403",
->                 "enrolledAt": "2023-08-14T19:57:06Z",
->                 "lastSeenAt": "2023-08-14T19:59:01Z",
->                 "network": {
->                     "id": "N_24329156",
->                     "name": "Main Office"
->                 },
->                 "gateway": {
->                     "name": "My AP",
->                     "serial": "Q234-ABCD-5678"
->                 }
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/wireless/zigbee`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### Update Zigbee Configs for specified network
-> 
-> **PUT** `/networks/{networkId}/wireless/zigbee`  
+> **PUT** `/networks/{networkId}/wireless/opportunisticPcap`  
 > 
 >     {
->         "network": {
->             "id": "N_24329156"
->         },
->         "enabled": true,
->         "iotController": {
->             "name": "My AP",
->             "mac": "e4:55:a8:38:f2:06",
->             "serial": "Q234-ABCD-5678",
->             "status": "online"
->         },
->         "lockManagement": {
->             "address": "10.100.100.200",
->             "username": "user",
->             "status": "offline"
->         },
->         "defaults": {
->             "transmitPowerLevel": 10,
->             "channel": "24"
+>         "networkId": "L_12345",
+>         "name": "My Network",
+>         "enablement": {
+>             "networkWide": 0,
+>             "serials": [
+>                 "Q234-ABCD-5678"
+>             ],
+>             "tags": [
+>                 "tag1",
+>                 "tag2"
+>             ]
 >         }
 >     }
 > 
@@ -3937,82 +4033,29 @@ PATH _`/networks/{networkId}/wireless/zigbee`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/wireless/zigbee/byNetwork`_
+PATH _`/organizations/{organizationId}/wireless/opportunisticPcap/byNetwork`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
-> #### Return list of Zigbee configs
+> #### List the Opportunistic Pcap settings of an organization by network
 > 
-> **GET** `/organizations/{organizationId}/wireless/zigbee/byNetwork`  
-> 
->     [
->         {
->             "network": {
->                 "id": "N_24329156"
->             },
->             "enabled": true,
->             "iotController": {
->                 "name": "My AP",
->                 "mac": "e4:55:a8:38:f2:06",
->                 "serial": "Q234-ABCD-5678",
->                 "status": "online"
->             },
->             "lockManagement": {
->                 "address": "10.100.100.200",
->                 "username": "user",
->                 "status": "offline"
->             },
->             "defaults": {
->                 "transmitPowerLevel": 10,
->                 "channel": "24"
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/zigbee/devices`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### List the Zigbee MR Nodes for and organization or the supplied network(s)
-> 
-> **GET** `/organizations/{organizationId}/wireless/zigbee/devices`  
+> **GET** `/organizations/{organizationId}/wireless/opportunisticPcap/byNetwork`  
 > 
 >     [
 >         {
->             "network": {
->                 "id": "N_1234",
->                 "name": "Main office"
->             },
->             "panId": "0x0100",
->             "channel": "auto",
->             "transmitPowerLevel": 12,
->             "enrolled": true,
->             "status": "online",
->             "gateway": {
->                 "name": "MR Client",
->                 "mac": "e4:55:a8:38:f2:06",
->                 "serial": "1234-4567-5678",
+>             "networkId": "L_12345",
+>             "name": "My Network",
+>             "enablement": {
+>                 "networkWide": 0,
+>                 "serials": [
+>                     "Q234-ABCD-5678"
+>                 ],
 >                 "tags": [
 >                     "tag1",
 >                     "tag2"
 >                 ]
->             },
->             "counts": {
->                 "doorLocks": {
->                     "byStatus": {
->                         "online": 5,
->                         "offline": 2,
->                         "dormant": 0
->                     }
->                 }
 >             }
 >         }
 >     ]
@@ -4021,127 +4064,21 @@ PATH _`/organizations/{organizationId}/wireless/zigbee/devices`_
 
 * * *
 
-PATH _`/organizations/{organizationId}/wireless/zigbee/disenrollments`_
+PATH _`/organizations/{organizationId}/wireless/opportunisticPcap/license/byNetwork`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
-> #### Enqueue a job to start disenrolling doorlocks on zigbee configured MRs
+> #### Check the Opportunistic Pcap license status of an organization by network
 > 
-> **POST** `/organizations/{organizationId}/wireless/zigbee/disenrollments`  
-> 
->     {
->         "disenrollmentId": "1234",
->         "url": "/organization/{organizationId}/wireless/zigbee/disenrollments/1234",
->         "request": {
->             "doorLockIds": [
->                 "1234"
->             ]
->         },
->         "status": "complete"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/zigbee/disenrollments/{id}`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### Return a disenrollment job
-> 
-> **GET** `/organizations/{organizationId}/wireless/zigbee/disenrollments/{id}`  
-> 
->     {
->         "disenrollmentId": "1234",
->         "url": "/organization/{organizationId}/wireless/zigbee/disenrollments/1234",
->         "request": {
->             "doorLockIds": [
->                 "1234"
->             ]
->         },
->         "status": "complete",
->         "doorLocks": [
->             {
->                 "doorLockId": "1234",
->                 "status": "success"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### Return the list of doorlocks for a network
-> 
-> **GET** `/organizations/{organizationId}/wireless/zigbee/doorLocks`  
+> **GET** `/organizations/{organizationId}/wireless/opportunisticPcap/license/byNetwork`  
 > 
 >     [
 >         {
->             "doorLockId": "1",
->             "name": "Door Lock 123",
->             "shortId": "ABE123",
->             "lqi": "1",
->             "rssi": "1",
->             "status": "online",
->             "eui64": "DL403",
->             "enrolledAt": "2023-08-14T19:57:06Z",
->             "lastSeenAt": "2023-08-14T19:59:01Z",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "gateway": {
->                 "name": "My AP",
->                 "serial": "Q234-ABCD-5678"
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### operation to bulk update door locks params
-> 
-> **POST** `/organizations/{organizationId}/wireless/zigbee/doorLocks/bulkUpdate`  
-> 
->     [
->         {
->             "doorLockId": "1",
->             "name": "Door Lock 123",
->             "shortId": "ABE123",
->             "lqi": "1",
->             "rssi": "1",
->             "status": "online",
->             "eui64": "DL403",
->             "enrolledAt": "2023-08-14T19:57:06Z",
->             "lastSeenAt": "2023-08-14T19:59:01Z",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "gateway": {
->                 "name": "My AP",
->                 "serial": "Q234-ABCD-5678"
->             }
+>             "networkId": "L_12345",
+>             "name": "My Network",
+>             "licensed": true
 >         }
 >     ]
 > 
@@ -4177,75 +4114,13 @@ PATH _`/devices/{serial}/wireless/healthScores`_
 
 * * *
 
-### opportunisticPcap
-
-PATH _`/networks/{networkId}/wireless/opportunisticPcap`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### Update the Opportunistic Pcap settings for a wireless network
-> 
-> **PUT** `/networks/{networkId}/wireless/opportunisticPcap`  
-> 
->     {
->         "networkId": "L_12345",
->         "name": "My Network",
->         "enablement": {
->             "networkWide": 0,
->             "serials": [
->                 "Q234-ABCD-5678"
->             ],
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ]
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/opportunisticPcap/byNetwork`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### List the Opportunistic Pcap settings of an organization by network
-> 
-> **GET** `/organizations/{organizationId}/wireless/opportunisticPcap/byNetwork`  
-> 
->     [
->         {
->             "networkId": "L_12345",
->             "name": "My Network",
->             "enablement": {
->                 "networkWide": 0,
->                 "serials": [
->                     "Q234-ABCD-5678"
->                 ],
->                 "tags": [
->                     "tag1",
->                     "tag2"
->                 ]
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 ### clients
 
 PATH _`/networks/{networkId}/wireless/clients/healthScores`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Fetch the health scores for all clients on this network
 > 
@@ -4284,7 +4159,7 @@ PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return counts of distinct wireless clients connecting to a network over time
 > 
@@ -4334,7 +4209,7 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID
 > 
@@ -4362,7 +4237,7 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Fetch the health scores of all APs on this network
 > 
@@ -4395,7 +4270,7 @@ PATH _`/organizations/{organizationId}/snmp/traps/byNetwork`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Retrieve the SNMP trap configuration for the networks in an organization
 > 
@@ -4435,7 +4310,7 @@ PATH _`/organizations/{organizationId}/auth/radius/servers`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the organization-wide RADIUS servers in the organization
 > 
@@ -4458,7 +4333,7 @@ PATH _`/organizations/{organizationId}/auth/radius/servers`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Add an organization-wide RADIUS server
 > 
@@ -4484,7 +4359,7 @@ PATH _`/organizations/{organizationId}/auth/radius/servers/assignments`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return list of network and policies that organization-wide RADIUS servers are bing used
 > 
@@ -4520,7 +4395,7 @@ PATH _`/organizations/{organizationId}/auth/radius/servers/{serverId}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return an organization-wide RADIUS server
 > 
@@ -4541,7 +4416,7 @@ PATH _`/organizations/{organizationId}/auth/radius/servers/{serverId}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update an organization-wide RADIUS server
 > 
@@ -4562,7 +4437,7 @@ PATH _`/organizations/{organizationId}/auth/radius/servers/{serverId}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete an organization-wide RADIUS server from a organization
 > 
@@ -4578,7 +4453,7 @@ PATH _`/organizations/{organizationId}/certificates`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Gets all or specific certificates for an organization
 > 
@@ -4639,7 +4514,7 @@ PATH _`/organizations/{organizationId}/certificates/import`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Import certificate for this organization
 > 
@@ -4700,7 +4575,7 @@ PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuth
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.
 > 
@@ -4717,9 +4592,9 @@ PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuth
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
-> #### Create an organization's RADSEC device Certificate Authority (CA). Call this operation when turning on RADSEC in the firmware for the first time. Calling this operation starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.
+> #### Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.
 > 
 > **POST** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`  
 > 
@@ -4737,7 +4612,7 @@ PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuth
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.
 > 
@@ -4752,9 +4627,9 @@ PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuth
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
-> #### Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this operation to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.
+> #### Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.
 > 
 > **PUT** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`  
 > 
@@ -4772,7 +4647,7 @@ PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuth
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.
 > 
@@ -4790,7 +4665,7 @@ PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuth
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.
 > 
@@ -4813,7 +4688,7 @@ PATH _`/organizations/{organizationId}/certificates/{certificateId}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update a certificate's description for an organization
 > 
@@ -4869,7 +4744,7 @@ PATH _`/organizations/{organizationId}/certificates/{certificateId}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete a certificate for an organization
 > 
@@ -4883,7 +4758,7 @@ PATH _`/organizations/{organizationId}/certificates/{certificateId}/contents`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Download the trusted certificate by certificate id.
 > 
@@ -4903,7 +4778,7 @@ PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List of source/destination traffic rules
 > 
@@ -4960,7 +4835,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the ThousandEyes agent configurations under this organization. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
@@ -4977,7 +4852,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Add a ThousandEyes agent for this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
@@ -4997,7 +4872,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/supporte
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List all the networks eligible for ThousandEyes agent activation under this organization.
 > 
@@ -5033,7 +4908,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{network
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the ThousandEyes agent configuration under this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
@@ -5048,7 +4923,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{network
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
@@ -5063,7 +4938,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{network
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
@@ -5077,7 +4952,7 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/tests`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Create a ThousandEyes test based on a provided test template. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
@@ -5176,7 +5051,7 @@ PATH _`/organizations/{organizationId}/policies/assignments/byClient`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Get policies for all clients with policies
 > 
@@ -5218,7 +5093,7 @@ PATH _`/organizations/{organizationId}/devices/boots/history`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Returns the history of device boots in reverse chronological order (most recent first). Currently supported for MS devices only.
 > 
@@ -5244,7 +5119,7 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List Packet Captures
 > 
@@ -5274,9 +5149,9 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 >                     "name": "file_name",
 >                     "startTime": "2018-02-11T00:00:00.090210Z",
 >                     "ports": "1, 2",
->                     "status": "completed",
+>                     "status": "capturing",
 >                     "errorMessage": "Some error message",
->                     "outputType": "pcap",
+>                     "outputType": "text",
 >                     "captureSource": "scheduled",
 >                     "captureReason": "capture reason",
 >                     "fileSize": 1066,
@@ -5301,7 +5176,7 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Perform a packet capture on a device and store in Meraki Cloud. Only a single switch may be chosen per request, while multiple access points are allowed at once.
 > 
@@ -5328,9 +5203,9 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 >         "name": "file_name",
 >         "startTime": "2018-02-11T00:00:00.090210Z",
 >         "ports": "1, 2",
->         "status": "completed",
+>         "status": "capturing",
 >         "errorMessage": "Some error message",
->         "outputType": "pcap",
+>         "outputType": "text",
 >         "captureSource": "scheduled",
 >         "captureReason": "capture reason",
 >         "fileSize": 1066,
@@ -5344,7 +5219,7 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete packet capture from cloud
 > 
@@ -5358,7 +5233,7 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures/{id}/downl
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Get presigned download URL for given packet capture id
 > 
@@ -5377,7 +5252,7 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures/{id}/stop`
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Stop a specific packet capture
 > 
@@ -5404,9 +5279,9 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/captures/{id}/stop`
 >         "name": "file_name",
 >         "startTime": "2018-02-11T00:00:00.090210Z",
 >         "ports": "1, 2",
->         "status": "completed",
+>         "status": "capturing",
 >         "errorMessage": "Some error message",
->         "outputType": "pcap",
+>         "outputType": "text",
 >         "captureSource": "scheduled",
 >         "captureReason": "capture reason",
 >         "fileSize": 1066,
@@ -5427,7 +5302,7 @@ PATH _`/organizations/{organizationId}/spaces/integration/remove`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Remove the Spaces integration from Meraki
 > 
@@ -5448,7 +5323,7 @@ PATH _`/organizations/{organizationId}/support/salesRepresentatives`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Returns the organization's sales representatives
 > 
@@ -5472,7 +5347,7 @@ PATH _`/organizations/{organizationId}/webhooks/httpServers`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the HTTP servers for this organization
 > 
@@ -5494,7 +5369,7 @@ PATH _`/organizations/{organizationId}/webhooks/httpServers`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Add an HTTP server to an organization
 > 
@@ -5519,7 +5394,7 @@ PATH _`/organizations/{organizationId}/webhooks/httpServers/{id}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return an HTTP server for an organization
 > 
@@ -5539,7 +5414,7 @@ PATH _`/organizations/{organizationId}/webhooks/httpServers/{id}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update an HTTP server for an organization
 > 
@@ -5559,7 +5434,7 @@ PATH _`/organizations/{organizationId}/webhooks/httpServers/{id}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete an HTTP server from an organization
 > 
@@ -5573,7 +5448,7 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the webhook payload templates for an organization
 > 
@@ -5607,7 +5482,7 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Create a webhook payload template for an organization
 > 
@@ -5644,7 +5519,7 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Get the webhook payload template for an organization
 > 
@@ -5676,7 +5551,7 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update a webhook payload template for an organization
 > 
@@ -5708,7 +5583,7 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')
 > 
@@ -5722,7 +5597,7 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Send a test webhook for an organization
 > 
@@ -5742,7 +5617,7 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return the status of a webhook test for an organization
 > 
@@ -5767,7 +5642,7 @@ PATH _`/organizations/{organizationId}/insight/speedTestResults`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.
 > 
@@ -5800,7 +5675,7 @@ PATH _`/organizations/{organizationId}/insight/webApps`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Lists all default web applications rules with counter set rule ids
 > 
@@ -5828,7 +5703,7 @@ PATH _`/organizations/{organizationId}/insight/webApps`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Add a custom web application for Insight to be able to track
 > 
@@ -5857,7 +5732,7 @@ PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update a custom web application for Insight to be able to track
 > 
@@ -5881,7 +5756,7 @@ PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete a custom web application by counter set rule id.
 > 
@@ -5897,7 +5772,7 @@ PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update an Insight tracked application
 > 
@@ -5921,7 +5796,7 @@ PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete an Insight tracked application
 > 
@@ -5940,9 +5815,9 @@ PATH _`/devices/{serial}/liveTools/traceRoute`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
-> #### Enqueue a job to run trace route in the device. This operation has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> #### Enqueue a job to run trace route in the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 > 
 > **POST** `/devices/{serial}/liveTools/traceRoute`  
 > 
@@ -5970,7 +5845,7 @@ PATH _`/devices/{serial}/liveTools/traceRoute/{traceRouteId}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return a trace route job
 > 
@@ -6006,7 +5881,7 @@ PATH _`/devices/{serial}/liveTools/speedTest`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Enqueue a job to execute a speed test from a device
 > 
@@ -6035,7 +5910,7 @@ PATH _`/devices/{serial}/liveTools/speedTest/{id}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Returns a speed test result in megabits per second. If test is not complete, no results are present.
 > 
@@ -6066,9 +5941,9 @@ PATH _`/devices/{serial}/liveTools/routingTable`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
-> #### Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported. This operation has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> #### Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 > 
 > **POST** `/devices/{serial}/liveTools/routingTable`  
 > 
@@ -6094,7 +5969,7 @@ PATH _`/devices/{serial}/liveTools/routingTable/{id}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return an routing table live tool job.
 > 
@@ -6127,9 +6002,9 @@ PATH _`/devices/{serial}/liveTools/macTable`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
-> #### Enqueue a job to request the MAC table from the device. Switches currently support this feature. This operation has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> #### Enqueue a job to request the MAC table from the device. Switches currently support this feature. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 > 
 > **POST** `/devices/{serial}/liveTools/macTable`  
 > 
@@ -6155,7 +6030,7 @@ PATH _`/devices/{serial}/liveTools/macTable/{macTableId}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return a MAC table live tool job.
 > 
@@ -6182,72 +6057,15 @@ PATH _`/devices/{serial}/liveTools/macTable/{macTableId}`_
 
 * * *
 
-### leds
-
-PATH _`/devices/{serial}/liveTools/leds/blink`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### Enqueue a job to blink LEDs on a device. This operation has a rate limit of one request every 10 seconds.
-> 
-> **POST** `/devices/{serial}/liveTools/leds/blink`  
-> 
->     {
->         "ledsBlinkId": "123",
->         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/leds/blink/1738",
->         "status": "complete",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "duration": 30
->         },
->         "error": "error description",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/leds/blink/{ledsBlinkId}`_
-
-> \- Path added  
->   
-> \- New operation
-> 
-> #### Return a blink LEDs job
-> 
-> **GET** `/devices/{serial}/liveTools/leds/blink/{ledsBlinkId}`  
-> 
->     {
->         "ledsBlinkId": "123",
->         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/leds/blink/1738",
->         "status": "complete",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "duration": 30
->         },
->         "error": "error description"
->     }
-> 
-> * * *
-
-* * *
-
 ### cyclePort
 
 PATH _`/devices/{serial}/liveTools/cyclePort`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
-> #### Enqueue a job to perform a cycle port for the device on the specified ports. This operation has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> #### Enqueue a job to perform a cycle port for the device on the specified ports. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 > 
 > **POST** `/devices/{serial}/liveTools/cyclePort`  
 > 
@@ -6277,7 +6095,7 @@ PATH _`/devices/{serial}/liveTools/cyclePort/{id}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return a cycle port live tool job.
 > 
@@ -6307,9 +6125,9 @@ PATH _`/devices/{serial}/liveTools/aclHitCount`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
-> #### Enqueue a job to perform an ACL hit count for the device. This operation has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> #### Enqueue a job to perform an ACL hit count for the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 > 
 > **POST** `/devices/{serial}/liveTools/aclHitCount`  
 > 
@@ -6335,7 +6153,7 @@ PATH _`/devices/{serial}/liveTools/aclHitCount/{id}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return an ACL hit count live tool job.
 > 
@@ -6402,7 +6220,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Provides a list of private application groups for an Organization
 > 
@@ -6430,7 +6248,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Creates a group of private applications to apply to policy. A maximum of 300 private application groups are allowed for an organization.
 > 
@@ -6456,7 +6274,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{i
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return the details of a specific private application group
 > 
@@ -6477,7 +6295,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{i
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.
 > 
@@ -6498,7 +6316,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{i
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Deletes private application group from an Organization. Detaches application from groups before deleting
 > 
@@ -6514,7 +6332,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Provides a list of private applications for an Organization.
 > 
@@ -6560,7 +6378,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.
 > 
@@ -6604,7 +6422,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return the details of a specific private application
 > 
@@ -6643,7 +6461,7 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.
 > 
@@ -6682,11 +6500,210 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.
 > 
 > **DELETE** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+> * * *
+
+* * *
+
+### privateResources
+
+PATH _`/organizations/{organizationId}/secureConnect/privateResources`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of private resources for an organization.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateResources`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "resourceId": "5",
+>                 "name": "Sample Resource Name",
+>                 "description": "A sample description",
+>                 "accessTypes": [
+>                     {
+>                         "type": "client",
+>                         "reachableAddresses": [
+>                             "192.0.0.0"
+>                         ]
+>                     }
+>                 ],
+>                 "resourceAddresses": [
+>                     {
+>                         "protocolPorts": [
+>                             {
+>                                 "protocol": "any",
+>                                 "ports": "80"
+>                             }
+>                         ],
+>                         "destinationAddr": [
+>                             "192.0.0.0"
+>                         ]
+>                     }
+>                 ],
+>                 "resourceGroupIds": [
+>                     "1122321"
+>                 ],
+>                 "dnsServerId": "12345",
+>                 "certificateId": "54321",
+>                 "organizationId": "106642",
+>                 "createdAt": "2024-03-06T15:11:55.323445Z",
+>                 "updatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "deletedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaResourceId": "123",
+>                 "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaResourceCreatedBy": "",
+>                 "umbrellaResourceModifiedBy": "",
+>                 "umbrellaResourceErrorMessage": "",
+>                 "umbrellaApplicationId": "321",
+>                 "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaApplicationErrorMessage": ""
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Adds a new private resource to the organization.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/privateResources`  
+> 
+>     {
+>         "resourceId": "5",
+>         "name": "Sample Resource Name",
+>         "description": "A sample description",
+>         "accessTypes": [
+>             {
+>                 "type": "client",
+>                 "reachableAddresses": [
+>                     "192.0.0.0"
+>                 ]
+>             }
+>         ],
+>         "resourceAddresses": [
+>             {
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "any",
+>                         "ports": "80"
+>                     }
+>                 ],
+>                 "destinationAddr": [
+>                     "192.0.0.0"
+>                 ]
+>             }
+>         ],
+>         "resourceGroupIds": [
+>             "1122321"
+>         ],
+>         "dnsServerId": "12345",
+>         "certificateId": "54321",
+>         "organizationId": "106642",
+>         "createdAt": "2024-03-06T15:11:55.323445Z",
+>         "updatedAt": "2024-03-06T15:11:55.323445Z",
+>         "deletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceId": "123",
+>         "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceCreatedBy": "",
+>         "umbrellaResourceModifiedBy": "",
+>         "umbrellaResourceErrorMessage": "",
+>         "umbrellaApplicationId": "321",
+>         "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationErrorMessage": ""
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/privateResources/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Updates a specific private resource.
+> 
+> **PUT** `/organizations/{organizationId}/secureConnect/privateResources/{id}`  
+> 
+>     {
+>         "resourceId": "5",
+>         "name": "Sample Resource Name",
+>         "description": "A sample description",
+>         "accessTypes": [
+>             {
+>                 "type": "client",
+>                 "reachableAddresses": [
+>                     "192.0.0.0"
+>                 ]
+>             }
+>         ],
+>         "resourceAddresses": [
+>             {
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "any",
+>                         "ports": "80"
+>                     }
+>                 ],
+>                 "destinationAddr": [
+>                     "192.0.0.0"
+>                 ]
+>             }
+>         ],
+>         "resourceGroupIds": [
+>             "1122321"
+>         ],
+>         "dnsServerId": "12345",
+>         "certificateId": "54321",
+>         "organizationId": "106642",
+>         "createdAt": "2024-03-06T15:11:55.323445Z",
+>         "updatedAt": "2024-03-06T15:11:55.323445Z",
+>         "deletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceId": "123",
+>         "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceCreatedBy": "",
+>         "umbrellaResourceModifiedBy": "",
+>         "umbrellaResourceErrorMessage": "",
+>         "umbrellaApplicationId": "321",
+>         "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationErrorMessage": ""
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes a specific private resource. If this is the last resource in a resource group you must remove it from that resource group before deleting.
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/privateResources/{id}`  
 > 
 > * * *
 
@@ -6698,7 +6715,7 @@ PATH _`/organizations/{organizationId}/secureConnect/publicApplications`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Provides a list of public applications for an Organization.
 > 
@@ -6730,7 +6747,7 @@ PATH _`/organizations/{organizationId}/secureConnect/regions`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List deployed cloud hubs and regions in this organization
 > 
@@ -6763,7 +6780,7 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLog`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List the latest 5000 events logged by remote access.
 > 
@@ -6809,7 +6826,7 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Provides a list of remote access logs exports for an Organization
 > 
@@ -6843,7 +6860,7 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Creates a export for a provided timestamp interval.
 > 
@@ -6875,7 +6892,7 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/dow
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Redirects to the download link of the completed export.
 > 
@@ -6893,7 +6910,7 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return the details of a specific remote access logs export
 > 
@@ -6927,7 +6944,7 @@ PATH _`/organizations/{organizationId}/secureConnect/sites`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List sites in this organization
 > 
@@ -6955,7 +6972,7 @@ PATH _`/organizations/{organizationId}/secureConnect/sites`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Enroll sites in this organization to Secure Connect. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.
 > 
@@ -6979,7 +6996,7 @@ PATH _`/organizations/{organizationId}/secureConnect/sites`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Detach given sites from Secure Connect
 > 
@@ -7012,7 +7029,7 @@ PATH _`/organizations/{organizationId}/sm/apple/cloudEnrollment/syncJobs`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Enqueue a sync job for an ADE account
 > 
@@ -7032,7 +7049,7 @@ PATH _`/organizations/{organizationId}/sm/apple/cloudEnrollment/syncJobs/{syncJo
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Retrieve the status of an ADE sync job
 > 
@@ -7054,7 +7071,7 @@ PATH _`/organizations/{organizationId}/sm/bulkEnrollment/token`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Create a PccBulkEnrollmentToken
 > 
@@ -7075,7 +7092,7 @@ PATH _`/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Return a BulkEnrollmentToken
 > 
@@ -7090,7 +7107,7 @@ PATH _`/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Update a PccBulkEnrollmentToken
 > 
@@ -7105,7 +7122,7 @@ PATH _`/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`_
 > * * *
 > 
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### Delete a PccBulkEnrollmentToken
 > 
@@ -7119,7 +7136,7 @@ PATH _`/organizations/{organizationId}/sm/bulkEnrollment/tokens`_
 
 > \- Path added  
 >   
-> \- New operation
+> \- New endpoint
 > 
 > #### List all BulkEnrollmentTokens for an organization.
 > 
