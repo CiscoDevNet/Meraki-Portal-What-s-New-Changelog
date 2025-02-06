@@ -4,6 +4,10 @@
             "title": "Release Notes",
             "items": [
                 {
+                    "title": "2025",
+                    "content": "documents/2025.md"
+                },
+                {
                     "title": "2024",
                     "content": "documents/2024.md"
                 },
