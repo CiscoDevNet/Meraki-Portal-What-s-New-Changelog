@@ -9,6 +9,9 @@
             "title": "Generally Available",
             "items": [
                 {
+                    "content": "v1.58.0.md"
+                },
+                {
                     "content": "v1.57.0.md"
                 },
                 {
