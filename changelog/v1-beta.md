@@ -10,12 +10,6 @@
       - [List per-port VLAN settings for all ports of a MX.](#list-per-port-vlan-settings-for-all-ports-of-a-mx)
       - [Return per-port VLAN settings for a single MX port.](#return-per-port-vlan-settings-for-a-single-mx-port)
       - [Update the per-port VLAN settings for a single MX port.](#update-the-per-port-vlan-settings-for-a-single-mx-port)
-  * [\[ networks \]](#-networks-)
-    + [settings](#settings)
-      - [Update the settings for a network](#update-the-settings-for-a-network)
-    + [firmwareUpgrades](#firmwareupgrades)
-      - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network)
-      - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network)
   * [\[ wireless \]](#-wireless-)
     + [rfProfiles](#rfprofiles)
       - [List RF profiles for this network](#list-rf-profiles-for-this-network)
@@ -37,6 +31,16 @@
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
     + [clients](#clients)
       - [Return data usage (in megabits per second) over time for all clients in the given organization within a given time range.](#return-data-usage-in-megabits-per-second-over-time-for-all-clients-in-the-given-organization-within-a-given-time-range)
+  * [\[ insight \]](#-insight-)
+    + [applications](#applications)
+      - [Add an Insight tracked application](#add-an-insight-tracked-application)
+      - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
+  * [\[ networks \]](#-networks-)
+    + [settings](#settings)
+      - [Update the settings for a network](#update-the-settings-for-a-network)
+    + [firmwareUpgrades](#firmwareupgrades)
+      - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network)
+      - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network)
   * [\[ switch \]](#-switch-)
     + [stacks](#stacks)
       - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack)
@@ -48,19 +52,21 @@
     + [routing](#routing)
       - [List layer 3 interfaces for a switch](#list-layer-3-interfaces-for-a-switch)
       - [Return a layer 3 interface for a switch](#return-a-layer-3-interface-for-a-switch)
+      - [List multicast rendezvous points](#list-multicast-rendezvous-points)
+      - [Return a multicast rendezvous point](#return-a-multicast-rendezvous-point)
       - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch)
+      - [Update a multicast rendezvous point](#update-a-multicast-rendezvous-point)
       - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch)
+      - [Create a multicast rendezvous point](#create-a-multicast-rendezvous-point)
   * [\[ sensor \]](#-sensor-)
     + [commands](#commands)
       - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
-  * [\[ insight \]](#-insight-)
-    + [applications](#applications)
-      - [Add an Insight tracked application](#add-an-insight-tracked-application)
-      - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
+  * [\[ spaces \]](#-spaces-)
+    + [integration](#integration)
+      - [Remove the Spaces integration from Meraki](#remove-the-spaces-integration-from-meraki)
+      - [Remove the Spaces integration from Meraki](#remove-the-spaces-integration-from-meraki-1)
 - [What's New](#whats-new)
   * [\[ appliance \]](#-appliance--1)
-    + [sdwan](#sdwan)
-      - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network)
     + [umbrella](#umbrella)
       - [Connect to Cisco Umbrella account to this network](#connect-to-cisco-umbrella-account-to-this-network)
       - [Disconnect Umbrella account from this network](#disconnect-umbrella-account-from-this-network)
@@ -70,15 +76,13 @@
       - [Update umbrella policies applied to MX network.](#update-umbrella-policies-applied-to-mx-network)
     + [vlans](#vlans-1)
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization)
-  * [\[ networks \]](#-networks--1)
-    + [locationScanning](#locationscanning)
-      - [Return scanning API settings](#return-scanning-api-settings)
-      - [Change scanning API settings](#change-scanning-api-settings)
-      - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
-      - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
-    + [snmp](#snmp)
-      - [Update the SNMP trap configuration for the specified network](#update-the-snmp-trap-configuration-for-the-specified-network)
+    + [sdwan](#sdwan)
+      - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network)
   * [\[ wireless \]](#-wireless--1)
+    + [opportunisticPcap](#opportunisticpcap)
+      - [Update the Opportunistic Pcap settings for a wireless network](#update-the-opportunistic-pcap-settings-for-a-wireless-network)
+      - [List the Opportunistic Pcap settings of an organization by network](#list-the-opportunistic-pcap-settings-of-an-organization-by-network)
+      - [Check the Opportunistic Pcap license status of an organization by network](#check-the-opportunistic-pcap-license-status-of-an-organization-by-network)
     + [certificates](#certificates)
       - [Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).](#query-for-details-on-the-organizations-openroaming-certificate-authority-certificate-cas)
     + [zigbee](#zigbee)
@@ -115,12 +119,8 @@
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
-    + [opportunisticPcap](#opportunisticpcap)
-      - [Update the Opportunistic Pcap settings for a wireless network](#update-the-opportunistic-pcap-settings-for-a-wireless-network)
-      - [List the Opportunistic Pcap settings of an organization by network](#list-the-opportunistic-pcap-settings-of-an-organization-by-network)
-      - [Check the Opportunistic Pcap license status of an organization by network](#check-the-opportunistic-pcap-license-status-of-an-organization-by-network)
   * [\[ organizations \]](#-organizations--1)
-    + [snmp](#snmp-1)
+    + [snmp](#snmp)
       - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization)
     + [productAnnouncements](#productannouncements)
       - [Gets relevant product announcements for a user](#gets-relevant-product-announcements-for-a-user)
@@ -134,12 +134,6 @@
     + [certificates](#certificates-1)
       - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
       - [Import certificate for this organization](#import-certificate-for-this-organization)
-      - [Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.](#query-for-details-on-the-organizations-radsec-device-certificate-authority-certificates-cas-the-primary-ca-signs-all-the-certificates-that-devices-present-when-establishing-a-secure-connection-to-radius-servers-via-radsec-protocol-this-api-returns-an-array-of-the-status-of-all-of-the-cas-as-well-as-their-contents-if-theyve-been-generated-an-organization-will-have-at-most-one-ca-unless-the-ca-is-being-rotated)
-      - [Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.](#create-an-organizations-radsec-device-certificate-authority-ca-call-this-endpoint-when-turning-on-radsec-in-the-firmware-for-the-first-time-calling-this-endpoint-starts-an-asynchronous-process-to-generate-the-ca-call-get-afterwards-to-retrieve-the-contents-of-the-ca-note-this-ca-is-generated-and-controlled-by-meraki-subsequent-calls-will-not-generate-a-new-ca)
-      - [Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.](#query-for-details-on-an-organizations-radsec-device-certificate-authority-ca-with-the-given-id-this-api-returns-the-status-of-the-ca-as-well-as-the-contents-of-the-ca-if-its-been-generated)
-      - [Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.](#update-an-organizations-radsec-device-certificate-authority-ca-state-note-this-ca-is-generated-and-controlled-by-meraki-call-this-endpoint-to-update-the-state-to-trusted-at-which-point-meraki-will-generate-device-certificates-trusted-means-the-ca-is-placed-on-your-radsec-servers-and-devices-establishing-a-secure-connection-using-certs-signed-by-this-ca-will-pass-verification)
-      - [Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
-      - [Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.](#query-for-all-delta-certificate-revocation-list-crl-for-the-organizations-radsec-device-certificate-authority-ca-with-the-given-id)
       - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
       - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
       - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
@@ -171,9 +165,9 @@
     + [devices](#devices-2)
       - [Returns the history of device boots in reverse chronological order (most recent first). Currently supported for MS devices only.](#returns-the-history-of-device-boots-in-reverse-chronological-order-most-recent-first-currently-supported-for-ms-devices-only)
       - [Delete packet capture schedules](#delete-packet-capture-schedules)
-    + [spaces](#spaces)
-      - [Remove the Spaces integration from Meraki](#remove-the-spaces-integration-from-meraki)
-      - [Remove the Spaces integration from Meraki](#remove-the-spaces-integration-from-meraki-1)
+      - [Enqueues a task for a specific packet capture. This endpoint has a sustained rate limit of one request every 60 seconds.](#enqueues-a-task-for-a-specific-packet-capture-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-60-seconds)
+      - [Retrieves packet capture analysis result for a specific packet capture task.](#retrieves-packet-capture-analysis-result-for-a-specific-packet-capture-task)
+      - [Returns roles that can be assigned to a syslog server for a given network.](#returns-roles-that-can-be-assigned-to-a-syslog-server-for-a-given-network)
     + [support](#support)
       - [Returns the organization's sales representatives](#returns-the-organizations-sales-representatives)
     + [webhooks](#webhooks)
@@ -189,38 +183,25 @@
       - [Destroy a webhook payload template for an organization. Does not work for included templates ('wpt\_00001', 'wpt\_00002', 'wpt\_00003', 'wpt\_00004', 'wpt\_00005' or 'wpt\_00006')](#destroy-a-webhook-payload-template-for-an-organization-does-not-work-for-included-templates-wpt_00001-wpt_00002-wpt_00003-wpt_00004-wpt_00005-or-wpt_00006)
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
-  * [\[ switch \]](#-switch--1)
-    + [configTemplates](#configtemplates)
-      - [list the port mirror configurations in an organization by switch profile](#list-the-port-mirror-configurations-in-an-organization-by-switch-profile)
-      - [Update a port mirror](#update-a-port-mirror)
-    + [devices](#devices-3)
-      - [Return a historical record of packet transmission and loss, broken down by protocol, for insight into switch device health.](#return-a-historical-record-of-packet-transmission-and-loss-broken-down-by-protocol-for-insight-into-switch-device-health)
-    + [stacks](#stacks-1)
-      - [Update switch port mirrors for switch stacks](#update-switch-port-mirrors-for-switch-stacks)
-      - [List the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
-    + [ports](#ports-2)
-      - [Update a port mirror](#update-a-port-mirror-1)
-      - [List the port profiles in a network](#list-the-port-profiles-in-a-network)
-      - [Create a port profile in a network](#create-a-port-profile-in-a-network)
-      - [Update a port profile in a network](#update-a-port-profile-in-a-network)
-      - [Delete a port profile from a network](#delete-a-port-profile-from-a-network)
-      - [list the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
-      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization)
-      - [Create a port profile in an organization](#create-a-port-profile-in-an-organization)
-      - [list the automation port profiles in an organization](#list-the-automation-port-profiles-in-an-organization)
-      - [Create a port profile automation for an organization](#create-a-port-profile-automation-for-an-organization)
-      - [Update a port profile automation in an organization](#update-a-port-profile-automation-in-an-organization)
-      - [Delete an automation port profile from an organization](#delete-an-automation-port-profile-from-an-organization)
-      - [Fetch all Network - Smart Port Profile associations for an organization](#fetch-all-network---smart-port-profile-associations-for-an-organization)
-      - [Create Network and Smart Ports Profile association for a specific profile](#create-network-and-smart-ports-profile-association-for-a-specific-profile)
-      - [Batch Create Network and Smart Ports Profile associations for a specific profile](#batch-create-network-and-smart-ports-profile-associations-for-a-specific-profile)
-      - [Bulk delete Network and Smart Port Profile associations](#bulk-delete-network-and-smart-port-profile-associations)
-      - [Delete Network and Smart Port profile association for a specific profile](#delete-network-and-smart-port-profile-association-for-a-specific-profile)
-      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-1)
-      - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile)
-      - [Update a port profile in an organization](#update-a-port-profile-in-an-organization)
-      - [Delete a port profile from an organization](#delete-a-port-profile-from-an-organization)
-      - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module)
+  * [\[ insight \]](#-insight--1)
+    + [speedTestResults](#speedtestresults)
+      - [List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.](#list-the-speed-tests-for-the-given-devices-under-this-organization-only-valid-for-organizations-with-meraki-insight)
+    + [webApps](#webapps)
+      - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
+      - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
+      - [Update a custom web application for Insight to be able to track](#update-a-custom-web-application-for-insight-to-be-able-to-track)
+      - [Delete a custom web application by counter set rule id.](#delete-a-custom-web-application-by-counter-set-rule-id)
+    + [applications](#applications-1)
+      - [Update an Insight tracked application](#update-an-insight-tracked-application)
+      - [Delete an Insight tracked application](#delete-an-insight-tracked-application)
+  * [\[ networks \]](#-networks--1)
+    + [snmp](#snmp-1)
+      - [Update the SNMP trap configuration for the specified network](#update-the-snmp-trap-configuration-for-the-specified-network)
+    + [locationScanning](#locationscanning)
+      - [Return scanning API settings](#return-scanning-api-settings)
+      - [Change scanning API settings](#change-scanning-api-settings)
+      - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
+      - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
   * [\[ licensing \]](#-licensing-)
     + [subscription](#subscription)
       - [Batch change networks to their desired feature tier for specified product types](#batch-change-networks-to-their-desired-feature-tier-for-specified-product-types)
@@ -251,11 +232,13 @@
       - [Return an ACL hit count live tool job.](#return-an-acl-hit-count-live-tool-job)
   * [\[ campusGateway \]](#-campusgateway-)
     + [clusters](#clusters)
-      - [Create a cluster and add campus gateways to it](#create-a-cluster-and-add-campus-gateways-to-it)
-      - [Update a cluster and add/remove campus gateways to/from it](#update-a-cluster-and-addremove-campus-gateways-tofrom-it)
       - [Get the details of campus gateway clusters](#get-the-details-of-campus-gateway-clusters)
-    + [devices](#devices-4)
-      - [Uplink overrides configured locally on Campus Gateway devices in an organization.](#uplink-overrides-configured-locally-on-campus-gateway-devices-in-an-organization)
+  * [\[ nac \]](#-nac-)
+    + [authorization](#authorization)
+      - [Get all nac authorization policy sets for this organization](#get-all-nac-authorization-policy-sets-for-this-organization)
+    + [sessions](#sessions)
+      - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization)
+      - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions)
   * [\[ secureConnect \]](#-secureconnect-)
     + [privateApplicationGroups](#privateapplicationgroups)
       - [Provides a list of private application groups for an Organization](#provides-a-list-of-private-application-groups-for-an-organization)
@@ -294,6 +277,38 @@
       - [List sites in this organization](#list-sites-in-this-organization)
       - [Enroll sites in this organization to Secure Connect. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.](#enroll-sites-in-this-organization-to-secure-connect-for-an-organization-a-maximum-of-4000-sites-can-be-enrolled-if-they-are-in-spoke-mode-or-a-maximum-of-10-sites-can-be-enrolled-in-hub-mode)
       - [Detach given sites from Secure Connect](#detach-given-sites-from-secure-connect)
+  * [\[ switch \]](#-switch--1)
+    + [configTemplates](#configtemplates)
+      - [list the port mirror configurations in an organization by switch profile](#list-the-port-mirror-configurations-in-an-organization-by-switch-profile)
+      - [Update a port mirror](#update-a-port-mirror)
+    + [devices](#devices-3)
+      - [Return a historical record of packet transmission and loss, broken down by protocol, for insight into switch device health.](#return-a-historical-record-of-packet-transmission-and-loss-broken-down-by-protocol-for-insight-into-switch-device-health)
+    + [stacks](#stacks-1)
+      - [Update switch port mirrors for switch stacks](#update-switch-port-mirrors-for-switch-stacks)
+      - [List the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
+    + [ports](#ports-2)
+      - [Update a port mirror](#update-a-port-mirror-1)
+      - [List the port profiles in a network](#list-the-port-profiles-in-a-network)
+      - [Create a port profile in a network](#create-a-port-profile-in-a-network)
+      - [Update a port profile in a network](#update-a-port-profile-in-a-network)
+      - [Delete a port profile from a network](#delete-a-port-profile-from-a-network)
+      - [list the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
+      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization)
+      - [Create a port profile in an organization](#create-a-port-profile-in-an-organization)
+      - [list the automation port profiles in an organization](#list-the-automation-port-profiles-in-an-organization)
+      - [Create a port profile automation for an organization](#create-a-port-profile-automation-for-an-organization)
+      - [Update a port profile automation in an organization](#update-a-port-profile-automation-in-an-organization)
+      - [Delete an automation port profile from an organization](#delete-an-automation-port-profile-from-an-organization)
+      - [Fetch all Network - Smart Port Profile associations for an organization](#fetch-all-network---smart-port-profile-associations-for-an-organization)
+      - [Create Network and Smart Ports Profile association for a specific profile](#create-network-and-smart-ports-profile-association-for-a-specific-profile)
+      - [Batch Create Network and Smart Ports Profile associations for a specific profile](#batch-create-network-and-smart-ports-profile-associations-for-a-specific-profile)
+      - [Bulk delete Network and Smart Port Profile associations](#bulk-delete-network-and-smart-port-profile-associations)
+      - [Delete Network and Smart Port profile association for a specific profile](#delete-network-and-smart-port-profile-association-for-a-specific-profile)
+      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-1)
+      - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile)
+      - [Update a port profile in an organization](#update-a-port-profile-in-an-organization)
+      - [Delete a port profile from an organization](#delete-a-port-profile-from-an-organization)
+      - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module)
   * [\[ sm \]](#-sm-)
     + [apple](#apple)
       - [Enqueue a sync job for an ADE account](#enqueue-a-sync-job-for-an-ade-account)
@@ -314,31 +329,20 @@
   * [\[ wirelessController \]](#-wirelesscontroller-)
     + [connections](#connections)
       - [List of unassigned Catalyst access points and summary information](#list-of-unassigned-catalyst-access-points-and-summary-information)
-  * [\[ insight \]](#-insight--1)
-    + [speedTestResults](#speedtestresults)
-      - [List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.](#list-the-speed-tests-for-the-given-devices-under-this-organization-only-valid-for-organizations-with-meraki-insight)
-    + [webApps](#webapps)
-      - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
-      - [Add a custom web application for Insight to be able to track](#add-a-custom-web-application-for-insight-to-be-able-to-track)
-      - [Update a custom web application for Insight to be able to track](#update-a-custom-web-application-for-insight-to-be-able-to-track)
-      - [Delete a custom web application by counter set rule id.](#delete-a-custom-web-application-by-counter-set-rule-id)
-    + [applications](#applications-1)
-      - [Update an Insight tracked application](#update-an-insight-tracked-application)
-      - [Delete an Insight tracked application](#delete-an-insight-tracked-application)
  
-Version **1.58.0** _to_ **1.58.0-beta.0**
+Version **1.59.0** _to_ **1.59.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**149 - New**
+**147 - New**
 
-**123 - Updated**
+**130 - Updated**
 
-**1022 - Total Endpoints**
+**1031 - Total Endpoints**
 
-**708 - Total Paths**
+**716 - Total Paths**
 
 * * *
 
@@ -427,41 +431,6 @@ PUT _`/networks/{networkId}/appliance/ports/{portId}`_
 > \- Optional property `adaptivePolicyGroupId` Added
 
 > \- Optional property `peerSgtCapable` Added
-
-* * *
-
-\[ networks \]
---------------
-
-### settings
-
-#### Update the settings for a network
-
-PUT _`/networks/{networkId}/settings`_
-
-> \- Optional property `fips` Added
-
-* * *
-
-### firmwareUpgrades
-
-#### Get firmware upgrade information for a network
-
-GET _`/networks/{networkId}/firmwareUpgrades`_
-
-> \- Optional property `upgradeStrategy` Added
-
-> \- Response property `upgradeStrategy` value added
-
-* * *
-
-#### Update firmware upgrade information for a network
-
-PUT _`/networks/{networkId}/firmwareUpgrades`_
-
-> \- Optional property `upgradeStrategy` Added
-
-> \- Optional property `upgradeStrategy` Added
 
 * * *
 
@@ -623,6 +592,75 @@ GET _`/organizations/{organizationId}/clients/bandwidthUsageHistory`_
 
 * * *
 
+\[ insight \]
+-------------
+
+### applications
+
+#### Add an Insight tracked application
+
+POST _`/organizations/{organizationId}/insight/applications`_
+
+> \- Added endpoint method  
+> 
+> #### Add an Insight tracked application
+> 
+> _createOrganizationInsightApplication_
+> 
+>     {
+>         "applicationId": "19.12",
+>         "name": "Meraki HTTPS",
+>         "thresholds": {
+>             "type": "smart",
+>             "byNetwork": [
+>                 {
+>                     "networkId": "N_12345678",
+>                     "goodput": 50000,
+>                     "responseDuration": 1000
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+\[ networks \]
+--------------
+
+### settings
+
+#### Update the settings for a network
+
+PUT _`/networks/{networkId}/settings`_
+
+> \- Optional property `fips` Added
+
+* * *
+
+### firmwareUpgrades
+
+#### Get firmware upgrade information for a network
+
+GET _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- Optional property `upgradeStrategy` Added
+
+> \- Response property `upgradeStrategy` value added
+
+* * *
+
+#### Update firmware upgrade information for a network
+
+PUT _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- Optional property `upgradeStrategy` Added
+
+> \- Optional property `upgradeStrategy` Added
+
+* * *
+
 \[ switch \]
 ------------
 
@@ -780,6 +818,26 @@ GET _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
 
 * * *
 
+#### List multicast rendezvous points
+
+GET _`/networks/{networkId}/switch/routing/multicast/rendezvousPoints`_
+
+> \- Optional property `vrf` Added
+
+> \- Response property `vrf` value added
+
+* * *
+
+#### Return a multicast rendezvous point
+
+GET _`/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}`_
+
+> \- Optional property `vrf` Added
+
+> \- Response property `vrf` value added
+
+* * *
+
 #### Update a layer 3 interface for a switch
 
 PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
@@ -803,6 +861,14 @@ PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
 > \- Optional property `staticV4Dns1` Added
 
 > \- Optional property `staticV4Dns2` Added
+
+* * *
+
+#### Update a multicast rendezvous point
+
+PUT _`/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}`_
+
+> \- Optional property `vrf` Added
 
 * * *
 
@@ -832,6 +898,14 @@ POST _`/devices/{serial}/switch/routing/interfaces`_
 
 * * *
 
+#### Create a multicast rendezvous point
+
+POST _`/networks/{networkId}/switch/routing/multicast/rendezvousPoints`_
+
+> \- Optional property `vrf` Added
+
+* * *
+
 \[ sensor \]
 ------------
 
@@ -845,34 +919,24 @@ POST _`/devices/{serial}/sensor/commands`_
 
 * * *
 
-\[ insight \]
--------------
+\[ spaces \]
+------------
 
-### applications
+### integration
 
-#### Add an Insight tracked application
+#### Remove the Spaces integration from Meraki
 
-POST _`/organizations/{organizationId}/insight/applications`_
+DELETE _`/organizations/{organizationId}/spaces/integration/remove`_
 
 > \- Added endpoint method  
 > 
-> #### Add an Insight tracked application
+> #### Remove the Spaces integration from Meraki
 > 
-> _createOrganizationInsightApplication_
+> _deleteOrganizationSpacesIntegrationRemove_
 > 
 >     {
->         "applicationId": "19.12",
->         "name": "Meraki HTTPS",
->         "thresholds": {
->             "type": "smart",
->             "byNetwork": [
->                 {
->                     "networkId": "N_12345678",
->                     "goodput": 50000,
->                     "responseDuration": 1000
->                 }
->             ]
->         }
+>         "status": true,
+>         "message": "Succesfully fetched the spaces dashboard access"
 >     }
 > 
 > * * *
@@ -884,61 +948,6 @@ What's New
 
 \[ appliance \]
 ---------------
-
-### sdwan
-
-PATH _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get the SDWAN internet traffic preferences for an MX network
-> 
-> **GET** `/organizations/{organizationId}/appliance/sdwan/internetPolicies`  
-> 
->     {
->         "wanTrafficUplinkPreferences": [
->             {
->                 "preferredUplink": "wan1",
->                 "failOverCriterion": "poorPerformance",
->                 "performanceClass": {
->                     "type": "custom",
->                     "builtinPerformanceClassName": "VoIP",
->                     "customPerformanceClassId": "123456"
->                 },
->                 "trafficFilters": [
->                     {
->                         "type": "custom",
->                         "value": {
->                             "protocol": "tcp",
->                             "source": {
->                                 "port": "1-1024",
->                                 "cidr": "192.168.1.0/24",
->                                 "vlan": 10,
->                                 "host": 254
->                             },
->                             "destination": {
->                                 "port": "any",
->                                 "cidr": "any",
->                                 "applications": [
->                                     {
->                                         "id": "meraki:layer7/application/3",
->                                         "name": "DNS",
->                                         "type": "major"
->                                     }
->                                 ]
->                             }
->                         }
->                     }
->                 ]
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
 
 ### umbrella
 
@@ -1135,105 +1144,53 @@ PATH _`/organizations/{organizationId}/appliance/vlans`_
 
 * * *
 
-\[ networks \]
---------------
+### sdwan
 
-### locationScanning
-
-PATH _`/networks/{networkId}/locationScanning`_
+PATH _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Return scanning API settings
+> #### Get the SDWAN internet traffic preferences for an MX network
 > 
-> **GET** `/networks/{networkId}/locationScanning`  
-> 
->     {
->         "analyticsEnabled": true,
->         "scanningApiEnabled": true,
->         "validator": "xxyzzy"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Change scanning API settings
-> 
-> **PUT** `/networks/{networkId}/locationScanning`  
+> **GET** `/organizations/{organizationId}/appliance/sdwan/internetPolicies`  
 > 
 >     {
->         "analyticsEnabled": true,
->         "scanningApiEnabled": true,
->         "validator": "xxyzzy"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/locationScanning/httpServers`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return list of scanning API receivers
-> 
-> **GET** `/networks/{networkId}/locationScanning/httpServers`  
-> 
->     [
->         {
->             "endpoints": [
->                 {
->                     "httpServer": {
->                         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->                         "name": "Example Webhook Server",
->                         "networkId": "N_12345678",
->                         "url": "https://www.example.com/my_custom_webhook",
->                         "sharedSecret": "******",
->                         "validator": "xxx",
->                         "validatedAt": "2018-02-11T00:00:00Z"
->                     },
->                     "scanningApiVersion": 123,
->                     "radioType": "WiFi",
->                     "successAt": "2018-05-12T00:00:00Z",
->                     "errorAt": "2018-02-11T00:00:00Z",
->                     "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Set the list of scanning API receivers. Old receivers will be removed
-> 
-> **PUT** `/networks/{networkId}/locationScanning/httpServers`  
-> 
->     {
->         "endpoints": [
+>         "wanTrafficUplinkPreferences": [
 >             {
->                 "httpServer": {
->                     "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->                     "name": "Example Webhook Server",
->                     "networkId": "N_12345678",
->                     "url": "https://www.example.com/my_custom_webhook",
->                     "sharedSecret": "******",
->                     "validator": "xxx",
->                     "validatedAt": "2018-02-11T00:00:00Z"
+>                 "preferredUplink": "wan1",
+>                 "failOverCriterion": "poorPerformance",
+>                 "performanceClass": {
+>                     "type": "custom",
+>                     "builtinPerformanceClassName": "VoIP",
+>                     "customPerformanceClassId": "123456"
 >                 },
->                 "scanningApiVersion": 123,
->                 "radioType": "WiFi",
->                 "successAt": "2018-05-12T00:00:00Z",
->                 "errorAt": "2018-02-11T00:00:00Z",
->                 "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
+>                 "trafficFilters": [
+>                     {
+>                         "type": "custom",
+>                         "value": {
+>                             "protocol": "tcp",
+>                             "source": {
+>                                 "port": "1-1024",
+>                                 "cidr": "192.168.1.0/24",
+>                                 "vlan": 10,
+>                                 "host": 254
+>                             },
+>                             "destination": {
+>                                 "port": "any",
+>                                 "cidr": "any",
+>                                 "applications": [
+>                                     {
+>                                         "id": "meraki:layer7/application/3",
+>                                         "name": "DNS",
+>                                         "type": "major"
+>                                     }
+>                                 ]
+>                             }
+>                         }
+>                     }
+>                 ]
 >             }
 >         ]
 >     }
@@ -1242,36 +1199,32 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 
 * * *
 
-### snmp
+\[ wireless \]
+--------------
 
-PATH _`/networks/{networkId}/snmp/traps`_
+### opportunisticPcap
+
+PATH _`/networks/{networkId}/wireless/opportunisticPcap`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Update the SNMP trap configuration for the specified network
+> #### Update the Opportunistic Pcap settings for a wireless network
 > 
-> **PUT** `/networks/{networkId}/snmp/traps`  
+> **PUT** `/networks/{networkId}/wireless/opportunisticPcap`  
 > 
 >     {
->         "network": {
->             "id": "N_12345678",
->             "name": "networkName"
->         },
->         "mode": "v3",
->         "receiver": {
->             "address": "1.1.1.1",
->             "port": "1234"
->         },
->         "v2": {
->             "community": "public"
->         },
->         "v3": {
->             "users": [
->                 {
->                     "name": "merakian"
->                 }
+>         "networkId": "L_12345",
+>         "name": "My Network",
+>         "enablement": {
+>             "networkWide": 0,
+>             "serials": [
+>                 "Q234-ABCD-5678"
+>             ],
+>             "tags": [
+>                 "tag1",
+>                 "tag2"
 >             ]
 >         }
 >     }
@@ -1280,8 +1233,58 @@ PATH _`/networks/{networkId}/snmp/traps`_
 
 * * *
 
-\[ wireless \]
---------------
+PATH _`/organizations/{organizationId}/wireless/opportunisticPcap/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the Opportunistic Pcap settings of an organization by network
+> 
+> **GET** `/organizations/{organizationId}/wireless/opportunisticPcap/byNetwork`  
+> 
+>     [
+>         {
+>             "networkId": "L_12345",
+>             "name": "My Network",
+>             "enablement": {
+>                 "networkWide": 0,
+>                 "serials": [
+>                     "Q234-ABCD-5678"
+>                 ],
+>                 "tags": [
+>                     "tag1",
+>                     "tag2"
+>                 ]
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/wireless/opportunisticPcap/license/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Check the Opportunistic Pcap license status of an organization by network
+> 
+> **GET** `/organizations/{organizationId}/wireless/opportunisticPcap/license/byNetwork`  
+> 
+>     [
+>         {
+>             "networkId": "L_12345",
+>             "name": "My Network",
+>             "licensed": true
+>         }
+>     ]
+> 
+> * * *
+
+* * *
 
 ### certificates
 
@@ -1802,7 +1805,7 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
 >         },
 >         "aiRrm": {
 >             "enabled": true,
->             "enablementDate": "2025-04-07T08:01:10Z"
+>             "enablementDate": "2025-05-04T08:01:13Z"
 >         }
 >     }
 > 
@@ -1925,7 +1928,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`_
 >             },
 >             "aiRrm": {
 >                 "enabled": true,
->                 "enablementDate": "2025-04-07T08:01:10Z"
+>                 "enablementDate": "2025-05-04T08:01:13Z"
 >             }
 >         }
 >     ]
@@ -2322,90 +2325,6 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 
 * * *
 
-### opportunisticPcap
-
-PATH _`/networks/{networkId}/wireless/opportunisticPcap`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update the Opportunistic Pcap settings for a wireless network
-> 
-> **PUT** `/networks/{networkId}/wireless/opportunisticPcap`  
-> 
->     {
->         "networkId": "L_12345",
->         "name": "My Network",
->         "enablement": {
->             "networkWide": 0,
->             "serials": [
->                 "Q234-ABCD-5678"
->             ],
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ]
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/opportunisticPcap/byNetwork`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the Opportunistic Pcap settings of an organization by network
-> 
-> **GET** `/organizations/{organizationId}/wireless/opportunisticPcap/byNetwork`  
-> 
->     [
->         {
->             "networkId": "L_12345",
->             "name": "My Network",
->             "enablement": {
->                 "networkWide": 0,
->                 "serials": [
->                     "Q234-ABCD-5678"
->                 ],
->                 "tags": [
->                     "tag1",
->                     "tag2"
->                 ]
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/wireless/opportunisticPcap/license/byNetwork`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Check the Opportunistic Pcap license status of an organization by network
-> 
-> **GET** `/organizations/{organizationId}/wireless/opportunisticPcap/license/byNetwork`  
-> 
->     [
->         {
->             "networkId": "L_12345",
->             "name": "My Network",
->             "licensed": true
->         }
->     ]
-> 
-> * * *
-
-* * *
-
 \[ organizations \]
 -------------------
 
@@ -2755,119 +2674,6 @@ PATH _`/organizations/{organizationId}/certificates/import`_
 >                 }
 >             ]
 >         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Query for details on the organization's RADSEC device Certificate Authority certificates (CAs). The primary CA signs all the certificates that devices present when establishing a secure connection to RADIUS servers via RADSEC protocol. This API returns an array of the status of all of the CAs as well as their contents, if they've been generated. An organization will have at most one CA unless the CA is being rotated.
-> 
-> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`  
-> 
->     [
->         {
->             "authorityId": "1234",
->             "status": "trusted",
->             "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create an organization's RADSEC device Certificate Authority (CA). Call this endpoint when turning on RADSEC in the firmware for the first time. Calling this endpoint starts an asynchronous process to generate the CA; call GET afterwards to retrieve the contents of the CA. Note this CA is generated and controlled by Meraki. Subsequent calls will not generate a new CA.
-> 
-> **POST** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities`  
-> 
->     {
->         "authorityId": "1234",
->         "status": "generating",
->         "contents": ""
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Query for details on an organization's RADSEC device Certificate Authority (CA) with the given id. This API returns the status of the CA as well as the contents of the CA, if it's been generated.
-> 
-> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`  
-> 
->     {
->         "authorityId": "1234",
->         "status": "trusted",
->         "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update an organization's RADSEC device Certificate Authority (CA) state. Note this CA is generated and controlled by Meraki. Call this endpoint to update the state to "trusted", at which point Meraki will generate device certificates. "trusted" means the CA is placed on your RADSEC server(s) and devices establishing a secure connection using certs signed by this CA will pass verification.
-> 
-> **PUT** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}`  
-> 
->     {
->         "authorityId": "1234",
->         "status": "trusted",
->         "contents": "-----BEGIN CERTIFICATE-----\nMIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n...\numkqeYeO30g1uYvDuWLXVA==\n-----END CERTIFICATE-----\n"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Query for certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.
-> 
-> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList`  
-> 
->     {
->         "crl": "-----BEGIN X509 CRL-----\nMIICVjCCAj8CAQEwQQD\n...\n-----END X509 CRL-----\n"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList/deltas`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Query for all delta certificate revocation list (CRL) for the organization's RADSEC device Certificate Authority (CA) with the given id.
-> 
-> **GET** `/organizations/{organizationId}/certificates/radSec/deviceCertificateAuthorities/{id}/revocationList/deltas`  
-> 
->     {
->         "deltaCrls": [
->             "-----BEGIN X509 CRL-----\nMIICVjCCAj8CAQEwQQD\n...\n-----END X509 CRL-----\n",
->             "-----BEGIN X509 CRL-----\nPil0f9yaXcNbMUmaGlV\n...\n-----END X509 CRL-----\n",
->             "-----BEGIN X509 CRL-----\n8G2kAJf816ARjULLwz1\n...\n-----END X509 CRL-----\n",
->             "-----BEGIN X509 CRL-----\nnUxCohSdUMzAKBgNVHR\n...\n-----END X509 CRL-----\n"
->         ]
 >     }
 > 
 > * * *
@@ -3534,6 +3340,7 @@ PATH _`/organizations/{organizationId}/sase/connectivity/sites/{id}`_
 > **GET** `/organizations/{organizationId}/sase/connectivity/sites/{id}`  
 > 
 >     {
+>         "id": "1234",
 >         "networkId": "N_123",
 >         "type": "meraki_spoke",
 >         "name": "London Office",
@@ -3545,7 +3352,7 @@ PATH _`/organizations/{organizationId}/sase/connectivity/sites/{id}`_
 >             "street": "123 Main St"
 >         },
 >         "vpn": {
->             "type": "Hub"
+>             "type": "Spoke"
 >         },
 >         "routing": {
 >             "defaultRoute": {
@@ -3600,35 +3407,155 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/schedules/bulkDelet
 
 * * *
 
-### spaces
-
-PATH _`/organizations/{organizationId}/spaces/integration/remove`_
+PATH _`/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks`_
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Remove the Spaces integration from Meraki
+> #### Enqueues a task for a specific packet capture. This endpoint has a sustained rate limit of one request every 60 seconds.
 > 
-> **POST** `/organizations/{organizationId}/spaces/integration/remove`  
+> **POST** `/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks`  
 > 
 >     {
->         "status": true,
->         "message": "Succesfully fetched the spaces dashboard access"
+>         "task": "analysis",
+>         "taskId": "123456",
+>         "status": "pending"
 >     }
 > 
 > * * *
-> 
+
+* * *
+
+PATH _`/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks/{id}`_
+
+> \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Remove the Spaces integration from Meraki
+> #### Retrieves packet capture analysis result for a specific packet capture task.
 > 
-> **DELETE** `/organizations/{organizationId}/spaces/integration/remove`  
+> **GET** `/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks/{id}`  
 > 
 >     {
->         "status": true,
->         "message": "Succesfully fetched the spaces dashboard access"
+>         "task": "analysis",
+>         "status": "completed",
+>         "summary": {
+>             "counts": {
+>                 "total": 1,
+>                 "successes": 0,
+>                 "failures": 1
+>             },
+>             "macs": [
+>                 "00:11:22:33:44:55"
+>             ],
+>             "ips": [
+>                 "1.2.3.4"
+>             ],
+>             "devices": [
+>                 {
+>                     "name": "My AP",
+>                     "url": "https://n1.meraki.com//n//manage/nodes/new_list/000000000000"
+>                 }
+>             ]
+>         },
+>         "analyzers": {
+>             "analyzer": {
+>                 "present": true,
+>                 "macs": [
+>                     "00:11:22:33:44:55"
+>                 ],
+>                 "ips": [
+>                     "1.2.3.4"
+>                 ],
+>                 "devices": [
+>                     "My AP"
+>                 ],
+>                 "testCounts": {
+>                     "total": 1,
+>                     "successes": 0,
+>                     "failures": 1
+>                 },
+>                 "testResults": [
+>                     {
+>                         "passed": [
+>                             {
+>                                 "name": "Test",
+>                                 "status": false,
+>                                 "details": []
+>                             }
+>                         ],
+>                         "failed": [
+>                             {
+>                                 "name": "Test",
+>                                 "status": false,
+>                                 "details": [
+>                                     {
+>                                         "subCategory": "DHCP Request not seen",
+>                                         "failureCount": 3,
+>                                         "packets": [
+>                                             5,
+>                                             6,
+>                                             7
+>                                         ],
+>                                         "detailMessage": "Failed",
+>                                         "macs": [
+>                                             "00:11:22:33:44:55"
+>                                         ],
+>                                         "ips": [
+>                                             "1.2.3.4"
+>                                         ],
+>                                         "devices": [
+>                                             "My AP"
+>                                         ]
+>                                     }
+>                                 ]
+>                             }
+>                         ]
+>                     }
+>                 ]
+>             }
+>         },
+>         "fileName": "sample.pcap",
+>         "filePathUrl": "https://www.meraki.com"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/devices/syslog/servers/roles/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns roles that can be assigned to a syslog server for a given network.
+> 
+> **GET** `/organizations/{organizationId}/devices/syslog/servers/roles/byNetwork`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "network": {
+>                     "id": "N_123456789012345678"
+>                 },
+>                 "availableRoles": [
+>                     {
+>                         "name": "Wireless Event Log",
+>                         "value": "wireless_event_log"
+>                     }
+>                 ]
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 10,
+>                     "remaining": 2
+>                 }
+>             }
+>         }
 >     }
 > 
 > * * *
@@ -3945,6 +3872,2207 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 >         "id": "1234",
 >         "url": "https://www.example.com/path",
 >         "status": "enqueued"
+>     }
+> 
+> * * *
+
+* * *
+
+\[ insight \]
+-------------
+
+### speedTestResults
+
+PATH _`/organizations/{organizationId}/insight/speedTestResults`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.
+> 
+> **GET** `/organizations/{organizationId}/insight/speedTestResults`  
+> 
+>     [
+>         {
+>             "speedTestId": "1284392014819",
+>             "networkId": "N_24329156",
+>             "request": {
+>                 "serial": "Q234-ABCD-5678",
+>                 "interface": "wan1"
+>             },
+>             "results": {
+>                 "speeds": {
+>                     "average": 247.279
+>                 }
+>             },
+>             "startedAt": "2021-12-08T20:07:13Z"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### webApps
+
+PATH _`/organizations/{organizationId}/insight/webApps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lists all default web applications rules with counter set rule ids
+> 
+> **GET** `/organizations/{organizationId}/insight/webApps`  
+> 
+>     [
+>         {
+>             "counterSetRuleId": "12345",
+>             "name": "Meraki HTTPS",
+>             "category": "Remote monitoring & management",
+>             "thresholds": {
+>                 "goodput": "20000",
+>                 "responseDelay": "3000"
+>             },
+>             "expression": "http_host[*.example.com] or http_host",
+>             "signature": {
+>                 "signatureType": "custom_host",
+>                 "host": "exampled.com",
+>                 "port": "123",
+>                 "net": "10.0.2.1/20"
+>             }
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add a custom web application for Insight to be able to track
+> 
+> **POST** `/organizations/{organizationId}/insight/webApps`  
+> 
+>     {
+>         "counterSetRuleId": "12345",
+>         "name": "Meraki HTTPS",
+>         "category": "Remote monitoring & management",
+>         "thresholds": {
+>             "goodput": "20000",
+>             "responseDelay": "3000"
+>         },
+>         "expression": "http_host[*.example.com] or http_host",
+>         "signature": {
+>             "signatureType": "custom_host",
+>             "host": "exampled.com"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a custom web application for Insight to be able to track
+> 
+> **PUT** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
+> 
+>     {
+>         "counterSetRuleId": "12345",
+>         "name": "Meraki HTTPS",
+>         "category": "Remote monitoring & management",
+>         "thresholds": {
+>             "goodput": "20000",
+>             "responseDelay": "3000"
+>         },
+>         "expression": "http_host[*.example.com] or http_host",
+>         "signature": {
+>             "signatureType": "custom_host",
+>             "host": "exampled.com"
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a custom web application by counter set rule id.
+> 
+> **DELETE** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
+> 
+> * * *
+
+* * *
+
+### applications
+
+PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an Insight tracked application
+> 
+> **PUT** `/organizations/{organizationId}/insight/applications/{applicationId}`  
+> 
+>     {
+>         "applicationId": "19.12",
+>         "name": "Meraki HTTPS",
+>         "thresholds": {
+>             "type": "smart",
+>             "byNetwork": [
+>                 {
+>                     "networkId": "N_12345678",
+>                     "goodput": 50000,
+>                     "responseDuration": 1000
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an Insight tracked application
+> 
+> **DELETE** `/organizations/{organizationId}/insight/applications/{applicationId}`  
+> 
+> * * *
+
+* * *
+
+\[ networks \]
+--------------
+
+### snmp
+
+PATH _`/networks/{networkId}/snmp/traps`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update the SNMP trap configuration for the specified network
+> 
+> **PUT** `/networks/{networkId}/snmp/traps`  
+> 
+>     {
+>         "network": {
+>             "id": "N_12345678",
+>             "name": "networkName"
+>         },
+>         "mode": "v3",
+>         "receiver": {
+>             "address": "1.1.1.1",
+>             "port": "1234"
+>         },
+>         "v2": {
+>             "community": "public"
+>         },
+>         "v3": {
+>             "users": [
+>                 {
+>                     "name": "merakian"
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### locationScanning
+
+PATH _`/networks/{networkId}/locationScanning`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return scanning API settings
+> 
+> **GET** `/networks/{networkId}/locationScanning`  
+> 
+>     {
+>         "analyticsEnabled": true,
+>         "scanningApiEnabled": true,
+>         "validator": "xxyzzy"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Change scanning API settings
+> 
+> **PUT** `/networks/{networkId}/locationScanning`  
+> 
+>     {
+>         "analyticsEnabled": true,
+>         "scanningApiEnabled": true,
+>         "validator": "xxyzzy"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/networks/{networkId}/locationScanning/httpServers`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return list of scanning API receivers
+> 
+> **GET** `/networks/{networkId}/locationScanning/httpServers`  
+> 
+>     [
+>         {
+>             "endpoints": [
+>                 {
+>                     "httpServer": {
+>                         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>                         "name": "Example Webhook Server",
+>                         "networkId": "N_12345678",
+>                         "url": "https://www.example.com/my_custom_webhook",
+>                         "sharedSecret": "******",
+>                         "validator": "xxx",
+>                         "validatedAt": "2018-02-11T00:00:00Z"
+>                     },
+>                     "scanningApiVersion": 123,
+>                     "radioType": "WiFi",
+>                     "successAt": "2018-05-12T00:00:00Z",
+>                     "errorAt": "2018-02-11T00:00:00Z",
+>                     "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Set the list of scanning API receivers. Old receivers will be removed
+> 
+> **PUT** `/networks/{networkId}/locationScanning/httpServers`  
+> 
+>     {
+>         "endpoints": [
+>             {
+>                 "httpServer": {
+>                     "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
+>                     "name": "Example Webhook Server",
+>                     "networkId": "N_12345678",
+>                     "url": "https://www.example.com/my_custom_webhook",
+>                     "sharedSecret": "******",
+>                     "validator": "xxx",
+>                     "validatedAt": "2018-02-11T00:00:00Z"
+>                 },
+>                 "scanningApiVersion": 123,
+>                 "radioType": "WiFi",
+>                 "successAt": "2018-05-12T00:00:00Z",
+>                 "errorAt": "2018-02-11T00:00:00Z",
+>                 "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+\[ licensing \]
+---------------
+
+### subscription
+
+PATH _`/administered/licensing/subscription/networks/featureTiers/batchUpdate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Batch change networks to their desired feature tier for specified product types
+> 
+> **POST** `/administered/licensing/subscription/networks/featureTiers/batchUpdate`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "network": {
+>                     "id": "N_1234",
+>                     "productTypes": [
+>                         {
+>                             "productType": "wireless",
+>                             "featureTier": "essentials"
+>                         }
+>                     ]
+>                 }
+>             }
+>         ],
+>         "errors": [
+>             {
+>                 "network": {
+>                     "id": "N_1234",
+>                     "productTypes": [
+>                         {
+>                             "productType": "wireless",
+>                             "featureTier": "essentials",
+>                             "error": "Insufficient entitlements"
+>                         }
+>                     ]
+>                 },
+>                 "error": "null"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+\[ devices \]
+-------------
+
+### traceRoute
+
+PATH _`/devices/{serial}/liveTools/traceRoute`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to run trace route in the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/traceRoute`  
+> 
+>     {
+>         "traceRouteId": "123",
+>         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "target": "www.cisco.com",
+>             "sourceInterface": "100.100.0.1"
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/traceRoute/{traceRouteId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a trace route job
+> 
+> **GET** `/devices/{serial}/liveTools/traceRoute/{traceRouteId}`  
+> 
+>     {
+>         "traceRouteId": "123",
+>         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "target": "www.cisco.com",
+>             "sourceInterface": "100.100.0.1"
+>         },
+>         "status": "complete",
+>         "results": [
+>             {
+>                 "hop": 0,
+>                 "ip": "100.100.0.1",
+>                 "rttAvg": 0.00005,
+>                 "count": 3
+>             }
+>         ],
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
+### speedTest
+
+PATH _`/devices/{serial}/liveTools/speedTest`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to execute a speed test from a device
+> 
+> **POST** `/devices/{serial}/liveTools/speedTest`  
+> 
+>     {
+>         "speedTestId": "1284392014819",
+>         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "interface": "wan1"
+>         },
+>         "status": "complete",
+>         "results": {
+>             "speeds": {
+>                 "average": 123.45
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/speedTest/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a speed test result in megabits per second. If test is not complete, no results are present.
+> 
+> **GET** `/devices/{serial}/liveTools/speedTest/{id}`  
+> 
+>     {
+>         "speedTestId": "1284392014819",
+>         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "interface": "wan1"
+>         },
+>         "status": "complete",
+>         "results": {
+>             "speeds": {
+>                 "average": 123.45
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### routingTable
+
+PATH _`/devices/{serial}/liveTools/routingTable`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/routingTable`  
+> 
+>     {
+>         "routingTableId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/routingTable/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an routing table live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/routingTable/{id}`  
+> 
+>     {
+>         "routingTableId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "entries": [
+>             {
+>                 "type": "static",
+>                 "subnet": "10.200.10.1/32",
+>                 "staticGateway": "22.22.22.21",
+>                 "ipVersion": "ipv4"
+>             }
+>         ],
+>         "error": "The device is unreachable"
+>     }
+> 
+> * * *
+
+* * *
+
+### ospfNeighbors
+
+PATH _`/devices/{serial}/liveTools/ospfNeighbors`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a OSPF neighbors request for the device. This endpoint currently supports switches. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/ospfNeighbors`  
+> 
+>     {
+>         "ospfNeighborsId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/ospfNeighbors/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/ospfNeighbors/{ospfNeighborsId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an OSPF neighbors live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/ospfNeighbors/{ospfNeighborsId}`  
+> 
+>     {
+>         "ospfNeighborsId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/ospfNeighbors/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "routers": [
+>             {
+>                 "id": "1.2.3.4",
+>                 "name": "My route",
+>                 "ip": "10.0.0.0/24",
+>                 "position": "DR",
+>                 "state": "full",
+>                 "vlanId": 100
+>             }
+>         ],
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
+### multicastRouting
+
+PATH _`/devices/{serial}/liveTools/multicastRouting`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a Multicast routing request for the device. This endpoint currently supports switches. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/multicastRouting`  
+> 
+>     {
+>         "multicastRoutingId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/multicastRouting/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/multicastRouting/{multicastRoutingId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a Multicast routing live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/multicastRouting/{multicastRoutingId}`  
+> 
+>     {
+>         "multicastRoutingId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/multicastRouting/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "interfaces": [
+>             {
+>                 "ip": "1.2.3.4",
+>                 "name": "Vlan20",
+>                 "subnet": "192.168.1.0/24",
+>                 "flags": [
+>                     "PIM"
+>                 ],
+>                 "neighbors": [
+>                     "123.123.123.1"
+>                 ]
+>             }
+>         ],
+>         "routes": [
+>             {
+>                 "source": "1.2.3.4",
+>                 "group": "1.2.3.5",
+>                 "rendezvousPoint": "10.0.0.0/24",
+>                 "incomingInterfaceName": "Vlan100",
+>                 "outgoingInterfaceNames": [
+>                     "Vlan20",
+>                     "Vlan50"
+>                 ],
+>                 "flags": [
+>                     "SPT"
+>                 ]
+>             }
+>         ],
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
+### dhcpLeases
+
+PATH _`/devices/{serial}/liveTools/dhcpLeases`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a DHCP leases request for the device. This endpoint currently supports all devices. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/dhcpLeases`  
+> 
+>     {
+>         "dhcpLeasesId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/dhcpLeases/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/dhcpLeases/{dhcpLeasesId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a DHCP leases live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/dhcpLeases/{dhcpLeasesId}`  
+> 
+>     {
+>         "dhcpLeasesId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/dhcpLeases/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "dhcpLeases": [
+>             {
+>                 "ip": "10.0.0.0/24",
+>                 "mac": "00:11:22:33:44:55",
+>                 "expiresAt": "2018-02-11T00:00:00.090210Z"
+>             }
+>         ],
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
+### cyclePort
+
+PATH _`/devices/{serial}/liveTools/cyclePort`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a cycle port for the device on the specified ports. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/cyclePort`  
+> 
+>     {
+>         "cyclePortId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "ports": [
+>                 "2",
+>                 "8"
+>             ]
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/cyclePort/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a cycle port live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/cyclePort/{id}`  
+> 
+>     {
+>         "cyclePortId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678",
+>             "ports": [
+>                 "2",
+>                 "8"
+>             ]
+>         },
+>         "status": "complete",
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
+### aclHitCount
+
+PATH _`/devices/{serial}/liveTools/aclHitCount`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform an ACL hit count for the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/aclHitCount`  
+> 
+>     {
+>         "aclHitCountId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/devices/{serial}/liveTools/aclHitCount/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an ACL hit count live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/aclHitCount/{id}`  
+> 
+>     {
+>         "aclHitCountId": "1284392014819",
+>         "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
+>         "request": {
+>             "serial": "Q234-ABCD-5678"
+>         },
+>         "status": "complete",
+>         "acls": [
+>             {
+>                 "policy": "allow",
+>                 "ipVersion": "any",
+>                 "ipProtocol": {
+>                     "type": "number",
+>                     "number": 6,
+>                     "objectGroup": "object-group-123"
+>                 },
+>                 "counts": {
+>                     "total": 1234,
+>                     "ipv4": 1234,
+>                     "ipv6": 0
+>                 },
+>                 "source": {
+>                     "address": "1.2.3.4",
+>                     "port": {
+>                         "operator": "equals",
+>                         "ports": [
+>                             80,
+>                             443
+>                         ]
+>                     }
+>                 },
+>                 "destination": {
+>                     "address": "2.3.4.5",
+>                     "port": [
+>                         {
+>                             "operator": "range",
+>                             "ports": [
+>                                 80,
+>                                 89
+>                             ]
+>                         }
+>                     ]
+>                 }
+>             }
+>         ],
+>         "error": "The device is unreachable."
+>     }
+> 
+> * * *
+
+* * *
+
+\[ campusGateway \]
+-------------------
+
+### clusters
+
+PATH _`/organizations/{organizationId}/campusGateway/clusters`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get the details of campus gateway clusters
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/clusters`  
+> 
+>     [
+>         {
+>             "network": {
+>                 "id": "N_2313"
+>             },
+>             "clusterId": "1284392014818",
+>             "name": "North Campus",
+>             "uplinks": [
+>                 {
+>                     "interface": "man1",
+>                     "vlan": 5,
+>                     "addresses": [
+>                         {
+>                             "assignmentMode": "static",
+>                             "protocol": "ipv4",
+>                             "gateway": "1.2.3.5",
+>                             "subnetMask": "255.255.255.0"
+>                         }
+>                     ]
+>                 }
+>             ],
+>             "tunnels": [
+>                 {
+>                     "uplink": {
+>                         "interface": "man1"
+>                     },
+>                     "interface": "tun1",
+>                     "vlan": 6,
+>                     "addresses": [
+>                         {
+>                             "protocol": "ipv4",
+>                             "gateway": "2.3.5.6",
+>                             "subnetMask": "255.255.255.0"
+>                         }
+>                     ]
+>                 }
+>             ],
+>             "nameservers": {
+>                 "addresses": [
+>                     "8.8.8.8",
+>                     "8.8.4.4"
+>                 ]
+>             },
+>             "portChannels": [
+>                 {
+>                     "id": "1284392014830",
+>                     "name": "Port-channel1",
+>                     "vlan": 25,
+>                     "allowedVlans": "10-20"
+>                 }
+>             ],
+>             "devices": [
+>                 {
+>                     "serial": "Q234-ABCD-0001",
+>                     "memberId": "1",
+>                     "uplinks": [
+>                         {
+>                             "interface": "man1",
+>                             "addresses": [
+>                                 {
+>                                     "protocol": "ipv4",
+>                                     "address": "5.1.2.3"
+>                                 }
+>                             ]
+>                         }
+>                     ],
+>                     "tunnels": [
+>                         {
+>                             "interface": "tun1",
+>                             "addresses": [
+>                                 {
+>                                     "protocol": "ipv4",
+>                                     "address": "6.2.6.7"
+>                                 }
+>                             ]
+>                         }
+>                     ]
+>                 }
+>             ],
+>             "notes": "This cluster is for New York Office",
+>             "url": "https://n123.meraki.com/networkName/n/abc123/manage/campus_gateways/clusters"
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+\[ nac \]
+---------
+
+### authorization
+
+PATH _`/organizations/{organizationId}/nac/authorization/policysets`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get all nac authorization policy sets for this organization
+> 
+> **GET** `/organizations/{organizationId}/nac/authorization/policysets`  
+> 
+>     [
+>         {
+>             "policysetId": "1",
+>             "name": "auth_policy_set",
+>             "enabled": true,
+>             "rank": 5,
+>             "version": "20",
+>             "counts": {
+>                 "hits": 10
+>             },
+>             "rules": [
+>                 {
+>                     "ruleId": "1",
+>                     "name": "rule_name",
+>                     "rank": 10,
+>                     "enabled": true,
+>                     "counts": {
+>                         "hits": 20
+>                     },
+>                     "authorizationProfile": {
+>                         "vlan": {
+>                             "value": "123",
+>                             "type": "Constant"
+>                         },
+>                         "adaptivePolicy": {
+>                             "value": "Sample_Adaptive_Policy",
+>                             "type": "Constant"
+>                         },
+>                         "voiceDomain": {
+>                             "value": "true",
+>                             "type": "Constant"
+>                         },
+>                         "groupPolicy": {
+>                             "value": "Sample_Group_Policy",
+>                             "type": "Constant"
+>                         },
+>                         "result": "PERMIT",
+>                         "ipsk": {
+>                             "value": "Moon@15",
+>                             "type": "Moon@15"
+>                         }
+>                     }
+>                 }
+>             ],
+>             "hasOutdatedCondition": false,
+>             "conditionTags": [
+>                 "Client certificates: Issuer - Common Name = spa.meraki.com",
+>                 "Networks: Network Name = Dev Test Network"
+>             ]
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+### sessions
+
+PATH _`/organizations/{organizationId}/nac/sessions/history`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the NAC Sessions for this organization
+> 
+> **GET** `/organizations/{organizationId}/nac/sessions/history`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "sessionId": "0677ba3c-a867-461d-97c9-e5b60066f2b3",
+>                 "counts": {
+>                     "events": {
+>                         "total": 5
+>                     }
+>                 },
+>                 "ts": "2023-02-01T11:36:25.480Z",
+>                 "status": "Success",
+>                 "details": "A policy for whose first matched rule will return its assigned authz profile",
+>                 "user": {
+>                     "id": "stress"
+>                 },
+>                 "client": {
+>                     "id": "00-14-11-12-12-12:mab2"
+>                 },
+>                 "authentication": {
+>                     "protocol": "MAB"
+>                 },
+>                 "ssid": {
+>                     "name": ""
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 4,
+>                     "byResult": [
+>                         {
+>                             "result": "Authentication Failed",
+>                             "total": 120
+>                         }
+>                     ]
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/nac/sessions/{sessionId}/details`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of selected NAC Sessions
+> 
+> **GET** `/organizations/{organizationId}/nac/sessions/{sessionId}/details`  
+> 
+>     {
+>         "sessionId": "e6b7d57b-1ddb-47f5-8d76-c06e10570297",
+>         "hasCompleteEvent": true,
+>         "ts": "2023-02-01T13:25:26.181Z",
+>         "status": "Success",
+>         "details": "",
+>         "counts": {
+>             "events": {
+>                 "total": 5
+>             }
+>         },
+>         "user": {
+>             "id": "Device ID Username",
+>             "idp": "Active Directory",
+>             "groups": "ID group names"
+>         },
+>         "client": {
+>             "id": "2c:3f:0b:00:14:00",
+>             "addresses": [
+>                 {
+>                     "protocol": "ipv4",
+>                     "address": "112.112.112.112"
+>                 }
+>             ],
+>             "groups": "ID group names",
+>             "deviceProfiling": "Macbook Pro",
+>             "guid": "00-00-00-00-00-00"
+>         },
+>         "authentication": {
+>             "latency": 500,
+>             "method": "EAP-TLS",
+>             "protocol": "EAP",
+>             "policy": "Active Directory",
+>             "endpointCertificate": {
+>                 "title": "Endpoint Certificate Name",
+>                 "issuer": "Issuer's Name",
+>                 "isExpired": false,
+>                 "status": "Trusted",
+>                 "subjectName": {
+>                     "commonName": "hosuk",
+>                     "organizationalUnit": "Example Unit",
+>                     "organization": "Company Name",
+>                     "locality": "City",
+>                     "state": "State",
+>                     "country": "US"
+>                 },
+>                 "issuerName": {
+>                     "commonName": "Certificate Services Endpoint Sub CA - ise",
+>                     "serial": "58 BA BA 47 4F 4B 58 BA BA 47 4F 4B 74 72",
+>                     "version": "3",
+>                     "signatureAlgorithm": "XXX",
+>                     "parameters": "None",
+>                     "validity": {
+>                         "start": "2023-01-01T13:25:26.181Z",
+>                         "end": "2024-01-01T13:25:26.181Z"
+>                     }
+>                 },
+>                 "publicKey": {
+>                     "algorithm": "XXX",
+>                     "parameters": "XXX",
+>                     "body": "XXX",
+>                     "exponent": "XXX",
+>                     "size": "XXX",
+>                     "usage": "XXX",
+>                     "signature": "XXX"
+>                 },
+>                 "directoryName": {
+>                     "commonName": "XXX",
+>                     "serial": "XXX"
+>                 },
+>                 "fingerprints": {
+>                     "sha256": "XXX",
+>                     "sha1": "XXX"
+>                 },
+>                 "extensions": [
+>                     {
+>                         "oid": "2.5.28.15",
+>                         "name": "Key Usage",
+>                         "fields": [
+>                             {
+>                                 "name": "Critical",
+>                                 "value": "Yes"
+>                             }
+>                         ]
+>                     }
+>                 ]
+>             }
+>         },
+>         "authorization": {
+>             "rule": "Rule Name",
+>             "profile": "List all the profiles here"
+>         },
+>         "network": {
+>             "name": "Name",
+>             "accessType": "Wired",
+>             "ssid": {
+>                 "name": "SSID"
+>             },
+>             "port": {
+>                 "name": "Port"
+>             },
+>             "tags": "tag names"
+>         },
+>         "device": {
+>             "name": "Device model name",
+>             "model": "Device model name",
+>             "addresses": [
+>                 {
+>                     "protocol": "ipv4",
+>                     "address": "100.10.100.10"
+>                 }
+>             ],
+>             "tags": "tag names"
+>         },
+>         "radius": {
+>             "attributes": {
+>                 "incoming": [
+>                     {
+>                         "code": "1",
+>                         "name": "Username",
+>                         "value": "hosuk"
+>                     }
+>                 ],
+>                 "outgoing": [
+>                     {
+>                         "code": "1",
+>                         "name": "Username",
+>                         "value": "hosuk"
+>                     }
+>                 ]
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+\[ secureConnect \]
+-------------------
+
+### privateApplicationGroups
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of private application groups for an Organization
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "applicationGroupId": "1122321",
+>                 "name": "Westcoast Data Center",
+>                 "description": "Private applications in Westcoast Data Center",
+>                 "applicationIds": [
+>                     "183456",
+>                     "123568"
+>                 ],
+>                 "createdAt": "2021-12-13T16:07:07.222Z",
+>                 "modifiedAt": "2021-12-13T16:07:07.222Z"
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Creates a group of private applications to apply to policy. A maximum of 300 private application groups are allowed for an organization.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
+> 
+>     {
+>         "applicationGroupId": "1122321",
+>         "name": "Westcoast Data Center",
+>         "description": "Private applications in Westcoast Data Center",
+>         "applicationIds": [
+>             "183456",
+>             "123568"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of a specific private application group
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+>     {
+>         "applicationGroupId": "1122321",
+>         "name": "Westcoast Data Center",
+>         "description": "Private applications in Westcoast Data Center",
+>         "applicationIds": [
+>             "183456",
+>             "123568"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.
+> 
+> **PUT** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+>     {
+>         "applicationGroupId": "1122321",
+>         "name": "Westcoast Data Center",
+>         "description": "Private applications in Westcoast Data Center",
+>         "applicationIds": [
+>             "183456",
+>             "123568"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes private application group from an Organization. Detaches application from groups before deleting
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+> * * *
+
+* * *
+
+### privateApplications
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of private applications for an Organization.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplications`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "applicationId": "183456",
+>                 "name": "Jira",
+>                 "description": "Jira App For My Org",
+>                 "destinations": [
+>                     {
+>                         "destinationAddr": [
+>                             "172.6.0.0/32",
+>                             "255.100.100.0/24"
+>                         ],
+>                         "protocolPorts": [
+>                             {
+>                                 "protocol": "TCP",
+>                                 "ports": "80-82"
+>                             }
+>                         ],
+>                         "accessType": "network"
+>                     }
+>                 ],
+>                 "appProtocol": "https",
+>                 "sni": "xyz123.jira.com",
+>                 "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>                 "sslVerificationEnabled": true,
+>                 "applicationGroupIds": [
+>                     "1122321"
+>                 ],
+>                 "createdAt": "2021-12-13T16:07:07.222000Z",
+>                 "modifiedAt": "2021-12-13T16:07:07.222000Z"
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/privateApplications`  
+> 
+>     {
+>         "applicationId": "183456",
+>         "name": "Jira",
+>         "description": "Jira App For My Org",
+>         "destinations": [
+>             {
+>                 "destinationAddr": [
+>                     "172.6.0.0/32",
+>                     "255.100.100.0/24"
+>                 ],
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "TCP",
+>                         "ports": "80-82"
+>                     }
+>                 ],
+>                 "accessType": "network"
+>             }
+>         ],
+>         "appProtocol": "https",
+>         "sni": "xyz123.jira.com",
+>         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>         "sslVerificationEnabled": true,
+>         "applicationGroupIds": [
+>             "1122321"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222000Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222000Z"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of a specific private application
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+>     {
+>         "applicationId": "183456",
+>         "name": "Jira",
+>         "description": "Jira App For My Org",
+>         "destinations": [
+>             {
+>                 "destinationAddr": [
+>                     "172.6.0.0/32",
+>                     "255.100.100.0/24"
+>                 ],
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "TCP",
+>                         "ports": "80-82"
+>                     }
+>                 ],
+>                 "accessType": "network"
+>             }
+>         ],
+>         "appProtocol": "https",
+>         "sni": "xyz123.jira.com",
+>         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>         "sslVerificationEnabled": true,
+>         "applicationGroupIds": [
+>             "1122321"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.
+> 
+> **PUT** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+>     {
+>         "applicationId": "183456",
+>         "name": "Jira",
+>         "description": "Jira App For My Org",
+>         "destinations": [
+>             {
+>                 "destinationAddr": [
+>                     "172.6.0.0/32",
+>                     "255.100.100.0/24"
+>                 ],
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "TCP",
+>                         "ports": "80-82"
+>                     }
+>                 ],
+>                 "accessType": "network"
+>             }
+>         ],
+>         "appProtocol": "https",
+>         "sni": "xyz123.jira.com",
+>         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
+>         "sslVerificationEnabled": true,
+>         "applicationGroupIds": [
+>             "1122321"
+>         ],
+>         "createdAt": "2021-12-13T16:07:07.222000Z",
+>         "modifiedAt": "2021-12-13T16:07:07.222000Z"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
+> 
+> * * *
+
+* * *
+
+### privateResourceGroups
+
+PATH _`/organizations/{organizationId}/secureConnect/privateResourceGroups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of the private resource groups in an organization.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateResourceGroups`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "resourceGroupId": "123",
+>                 "createdAt": "2024-03-06T15:11:55.323445Z",
+>                 "updatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "name": "group 2",
+>                 "description": "",
+>                 "resourceIds": [
+>                     "12345"
+>                 ]
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Adds a new private resource group to an organization.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/privateResourceGroups`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "resourceGroupId": "123",
+>                 "createdAt": "2024-03-06T15:11:55.323445Z",
+>                 "updatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "name": "group 2",
+>                 "description": "",
+>                 "resourceIds": [
+>                     "12345"
+>                 ]
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/privateResourceGroups/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Updates a specific private resource group.
+> 
+> **PUT** `/organizations/{organizationId}/secureConnect/privateResourceGroups/{id}`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "resourceGroupId": "123",
+>                 "createdAt": "2024-03-06T15:11:55.323445Z",
+>                 "updatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "name": "group 2",
+>                 "description": "",
+>                 "resourceIds": [
+>                     "12345"
+>                 ]
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes a specific private resource group.
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/privateResourceGroups/{id}`  
+> 
+> * * *
+
+* * *
+
+### privateResources
+
+PATH _`/organizations/{organizationId}/secureConnect/privateResources`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of private resources for an organization.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/privateResources`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "resourceId": "5",
+>                 "name": "Sample Resource Name",
+>                 "description": "A sample description",
+>                 "accessTypes": [
+>                     {
+>                         "type": "client",
+>                         "reachableAddresses": [
+>                             "192.0.0.0"
+>                         ]
+>                     }
+>                 ],
+>                 "resourceAddresses": [
+>                     {
+>                         "protocolPorts": [
+>                             {
+>                                 "protocol": "any",
+>                                 "ports": "80"
+>                             }
+>                         ],
+>                         "destinationAddr": [
+>                             "192.0.0.0"
+>                         ]
+>                     }
+>                 ],
+>                 "resourceGroupIds": [
+>                     "1122321"
+>                 ],
+>                 "dnsServerId": "12345",
+>                 "certificateId": "54321",
+>                 "organizationId": "106642",
+>                 "createdAt": "2024-03-06T15:11:55.323445Z",
+>                 "updatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "deletedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaResourceId": "123",
+>                 "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaResourceCreatedBy": "",
+>                 "umbrellaResourceModifiedBy": "",
+>                 "umbrellaResourceErrorMessage": "",
+>                 "umbrellaApplicationId": "321",
+>                 "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
+>                 "umbrellaApplicationErrorMessage": ""
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Adds a new private resource to the organization.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/privateResources`  
+> 
+>     {
+>         "resourceId": "5",
+>         "name": "Sample Resource Name",
+>         "description": "A sample description",
+>         "accessTypes": [
+>             {
+>                 "type": "client",
+>                 "reachableAddresses": [
+>                     "192.0.0.0"
+>                 ]
+>             }
+>         ],
+>         "resourceAddresses": [
+>             {
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "any",
+>                         "ports": "80"
+>                     }
+>                 ],
+>                 "destinationAddr": [
+>                     "192.0.0.0"
+>                 ]
+>             }
+>         ],
+>         "resourceGroupIds": [
+>             "1122321"
+>         ],
+>         "dnsServerId": "12345",
+>         "certificateId": "54321",
+>         "organizationId": "106642",
+>         "createdAt": "2024-03-06T15:11:55.323445Z",
+>         "updatedAt": "2024-03-06T15:11:55.323445Z",
+>         "deletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceId": "123",
+>         "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceCreatedBy": "",
+>         "umbrellaResourceModifiedBy": "",
+>         "umbrellaResourceErrorMessage": "",
+>         "umbrellaApplicationId": "321",
+>         "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationErrorMessage": ""
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/privateResources/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Updates a specific private resource.
+> 
+> **PUT** `/organizations/{organizationId}/secureConnect/privateResources/{id}`  
+> 
+>     {
+>         "resourceId": "5",
+>         "name": "Sample Resource Name",
+>         "description": "A sample description",
+>         "accessTypes": [
+>             {
+>                 "type": "client",
+>                 "reachableAddresses": [
+>                     "192.0.0.0"
+>                 ]
+>             }
+>         ],
+>         "resourceAddresses": [
+>             {
+>                 "protocolPorts": [
+>                     {
+>                         "protocol": "any",
+>                         "ports": "80"
+>                     }
+>                 ],
+>                 "destinationAddr": [
+>                     "192.0.0.0"
+>                 ]
+>             }
+>         ],
+>         "resourceGroupIds": [
+>             "1122321"
+>         ],
+>         "dnsServerId": "12345",
+>         "certificateId": "54321",
+>         "organizationId": "106642",
+>         "createdAt": "2024-03-06T15:11:55.323445Z",
+>         "updatedAt": "2024-03-06T15:11:55.323445Z",
+>         "deletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceId": "123",
+>         "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaResourceCreatedBy": "",
+>         "umbrellaResourceModifiedBy": "",
+>         "umbrellaResourceErrorMessage": "",
+>         "umbrellaApplicationId": "321",
+>         "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
+>         "umbrellaApplicationErrorMessage": ""
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Deletes a specific private resource. If this is the last resource in a resource group you must remove it from that resource group before deleting.
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/privateResources/{id}`  
+> 
+> * * *
+
+* * *
+
+### publicApplications
+
+PATH _`/organizations/{organizationId}/secureConnect/publicApplications`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of public applications for an Organization.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/publicApplications`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "id": "ABCDEFG",
+>                 "name": "Snapcraft",
+>                 "lastDetected": "2021-12-13T16:07:07.222Z",
+>                 "risk": "medium",
+>                 "category": "Application Development and Testing",
+>                 "appType": "paas"
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### regions
+
+PATH _`/organizations/{organizationId}/secureConnect/regions`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List deployed cloud hubs and regions in this organization
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/regions`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "id": "123",
+>                 "type": "Region",
+>                 "name": "US West Coast",
+>                 "dcPair": [
+>                     "Los Angeles",
+>                     "Palo Alto"
+>                 ]
+>             }
+>         ],
+>         "meta": {
+>             "maxTotalCloudHubs": 5
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### remoteAccessLog
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLog`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the latest 5000 events logged by remote access.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLog`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "osversion": "win-10.0.19044",
+>                 "internalip": "10.0.1.5",
+>                 "connecttimestamp": 1667252442,
+>                 "identities": [
+>                     {
+>                         "id": "1173502975",
+>                         "type": {
+>                             "id": "7",
+>                             "type": "directory_user",
+>                             "label": "AD Users"
+>                         },
+>                         "label": "sample-remote-access@cisco.com",
+>                         "deleted": false
+>                     }
+>                 ],
+>                 "reason": "ACCT_DISC_USER_REQ",
+>                 "failedreasons": [],
+>                 "connectionevent": "disconnected",
+>                 "anyconnectversion": "4.10.05095",
+>                 "timestamp": 1667252458
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### remoteAccessLogsExports
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of remote access logs exports for an Organization
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "id": "123",
+>                 "from": "2023-05-16 04:23:43 UTC",
+>                 "to": "2023-06-14 04:23:52 UTC",
+>                 "userEmail": "joe@meraki.net",
+>                 "status": "new",
+>                 "metadata": {
+>                     "fileCount": 0,
+>                     "logCount": 0,
+>                     "currentFileLogCount": 0,
+>                     "generatorCount": 0,
+>                     "limitReached": false,
+>                     "startedAt": "2023-05-15 21:23:43.388597",
+>                     "endedAt": "2023-05-15 21:23:43.388597",
+>                     "duration": 60
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Creates a export for a provided timestamp interval.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
+> 
+>     {
+>         "id": "123",
+>         "from": "2023-05-16 04:23:43 UTC",
+>         "to": "2023-06-14 04:23:52 UTC",
+>         "userEmail": "joe@meraki.net",
+>         "status": "new",
+>         "metadata": {
+>             "fileCount": 0,
+>             "logCount": 0,
+>             "currentFileLogCount": 0,
+>             "generatorCount": 0,
+>             "limitReached": false,
+>             "startedAt": "2023-05-15 21:23:43.388597",
+>             "endedAt": "2023-05-15 21:23:43.388597",
+>             "duration": 60
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Redirects to the download link of the completed export.
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`  
+> 
+>     {
+>         "link": "download"
+>     }
+> 
+> * * *
+
+* * *
+
+PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of a specific remote access logs export
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`  
+> 
+>     {
+>         "id": "123",
+>         "from": "2023-05-16 04:23:43 UTC",
+>         "to": "2023-06-14 04:23:52 UTC",
+>         "userEmail": "joe@meraki.net",
+>         "status": "new",
+>         "metadata": {
+>             "fileCount": 0,
+>             "logCount": 0,
+>             "currentFileLogCount": 0,
+>             "generatorCount": 0,
+>             "limitReached": false,
+>             "startedAt": "2023-05-15 21:23:43.388597",
+>             "endedAt": "2023-05-15 21:23:43.388597",
+>             "duration": 60
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+### sites
+
+PATH _`/organizations/{organizationId}/secureConnect/sites`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List sites in this organization
+> 
+> **GET** `/organizations/{organizationId}/secureConnect/sites`  
+> 
+>     {
+>         "data": [
+>             {
+>                 "id": "123",
+>                 "type": "MerakiSpoke",
+>                 "name": "London Office",
+>                 "region": "US East",
+>                 "deviceType": "MX95-HW",
+>                 "address": "123 Main St",
+>                 "enrolled": true,
+>                 "vpnType": "Hub",
+>                 "defaultRoute": true
+>             }
+>         ],
+>         "meta": {
+>             "total": 1
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Enroll sites in this organization to Secure Connect. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.
+> 
+> **POST** `/organizations/{organizationId}/secureConnect/sites`  
+> 
+>     {
+>         "action": "enroll",
+>         "status": "success",
+>         "message": "Site enrolled successfully",
+>         "request": {
+>             "siteId": "1520758",
+>             "regionId": "42"
+>         },
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Detach given sites from Secure Connect
+> 
+> **DELETE** `/organizations/{organizationId}/secureConnect/sites`  
+> 
+>     {
+>         "action": "detach",
+>         "status": "success",
+>         "message": "Site enrolled successfully",
+>         "request": {
+>             "siteId": "1520758"
+>         },
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
 >     }
 > 
 > * * *
@@ -5590,6 +7718,11 @@ PATH _`/organizations/{organizationId}/switch/ports/transceivers/readings/histor
 >                 "ports": [
 >                     {
 >                         "portId": "1",
+>                         "indices": {
+>                             "switch": 1,
+>                             "slot": 0,
+>                             "port": 1
+>                         },
 >                         "readings": [
 >                             {
 >                                 "startTs": "2018-02-11T00:00:00.090210Z",
@@ -5740,1851 +7873,6 @@ PATH _`/organizations/{organizationId}/switch/ports/transceivers/readings/histor
 >                     }
 >                 }
 >             ]
->         }
->     }
-> 
-> * * *
-
-* * *
-
-\[ licensing \]
----------------
-
-### subscription
-
-PATH _`/administered/licensing/subscription/networks/featureTiers/batchUpdate`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Batch change networks to their desired feature tier for specified product types
-> 
-> **POST** `/administered/licensing/subscription/networks/featureTiers/batchUpdate`  
-> 
->     {
->         "items": [
->             {
->                 "network": {
->                     "id": "N_1234",
->                     "productTypes": [
->                         {
->                             "productType": "wireless",
->                             "featureTier": "essentials"
->                         }
->                     ]
->                 }
->             }
->         ],
->         "errors": [
->             {
->                 "network": {
->                     "id": "N_1234",
->                     "productTypes": [
->                         {
->                             "productType": "wireless",
->                             "featureTier": "essentials",
->                             "error": "Insufficient entitlements"
->                         }
->                     ]
->                 },
->                 "error": "null"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-\[ devices \]
--------------
-
-### traceRoute
-
-PATH _`/devices/{serial}/liveTools/traceRoute`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to run trace route in the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/traceRoute`  
-> 
->     {
->         "traceRouteId": "123",
->         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "target": "www.cisco.com",
->             "sourceInterface": "100.100.0.1"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/traceRoute/{traceRouteId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a trace route job
-> 
-> **GET** `/devices/{serial}/liveTools/traceRoute/{traceRouteId}`  
-> 
->     {
->         "traceRouteId": "123",
->         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "target": "www.cisco.com",
->             "sourceInterface": "100.100.0.1"
->         },
->         "status": "complete",
->         "results": [
->             {
->                 "hop": 0,
->                 "ip": "100.100.0.1",
->                 "rttAvg": 0.00005,
->                 "count": 3
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### speedTest
-
-PATH _`/devices/{serial}/liveTools/speedTest`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to execute a speed test from a device
-> 
-> **POST** `/devices/{serial}/liveTools/speedTest`  
-> 
->     {
->         "speedTestId": "1284392014819",
->         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "interface": "wan1"
->         },
->         "status": "complete",
->         "results": {
->             "speeds": {
->                 "average": 123.45
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/speedTest/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a speed test result in megabits per second. If test is not complete, no results are present.
-> 
-> **GET** `/devices/{serial}/liveTools/speedTest/{id}`  
-> 
->     {
->         "speedTestId": "1284392014819",
->         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "interface": "wan1"
->         },
->         "status": "complete",
->         "results": {
->             "speeds": {
->                 "average": 123.45
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### routingTable
-
-PATH _`/devices/{serial}/liveTools/routingTable`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/routingTable`  
-> 
->     {
->         "routingTableId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/routingTable/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an routing table live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/routingTable/{id}`  
-> 
->     {
->         "routingTableId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "entries": [
->             {
->                 "type": "static",
->                 "subnet": "10.200.10.1/32",
->                 "staticGateway": "22.22.22.21",
->                 "ipVersion": "ipv4"
->             }
->         ],
->         "error": "The device is unreachable"
->     }
-> 
-> * * *
-
-* * *
-
-### ospfNeighbors
-
-PATH _`/devices/{serial}/liveTools/ospfNeighbors`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a OSPF neighbors request for the device. This endpoint currently supports switches. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/ospfNeighbors`  
-> 
->     {
->         "ospfNeighborsId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/ospfNeighbors/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/ospfNeighbors/{ospfNeighborsId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an OSPF neighbors live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/ospfNeighbors/{ospfNeighborsId}`  
-> 
->     {
->         "ospfNeighborsId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/ospfNeighbors/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "routers": [
->             {
->                 "id": "1.2.3.4",
->                 "name": "My route",
->                 "ip": "10.0.0.0/24",
->                 "position": "DR",
->                 "state": "full",
->                 "vlanId": 100
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### multicastRouting
-
-PATH _`/devices/{serial}/liveTools/multicastRouting`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a Multicast routing request for the device. This endpoint currently supports switches. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/multicastRouting`  
-> 
->     {
->         "multicastRoutingId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/multicastRouting/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/multicastRouting/{multicastRoutingId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a Multicast routing live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/multicastRouting/{multicastRoutingId}`  
-> 
->     {
->         "multicastRoutingId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/multicastRouting/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "interfaces": [
->             {
->                 "ip": "1.2.3.4",
->                 "name": "Vlan20",
->                 "subnet": "192.168.1.0/24",
->                 "flags": [
->                     "PIM"
->                 ],
->                 "neighbors": [
->                     "123.123.123.1"
->                 ]
->             }
->         ],
->         "routes": [
->             {
->                 "source": "1.2.3.4",
->                 "group": "1.2.3.5",
->                 "rendezvousPoint": "10.0.0.0/24",
->                 "incomingInterfaceName": "Vlan100",
->                 "outgoingInterfaceNames": [
->                     "Vlan20",
->                     "Vlan50"
->                 ],
->                 "flags": [
->                     "SPT"
->                 ]
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### dhcpLeases
-
-PATH _`/devices/{serial}/liveTools/dhcpLeases`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a DHCP leases request for the device. This endpoint currently supports all devices. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/dhcpLeases`  
-> 
->     {
->         "dhcpLeasesId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/dhcpLeases/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/dhcpLeases/{dhcpLeasesId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a DHCP leases live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/dhcpLeases/{dhcpLeasesId}`  
-> 
->     {
->         "dhcpLeasesId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/dhcpLeases/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "dhcpLeases": [
->             {
->                 "ip": "10.0.0.0/24",
->                 "mac": "00:11:22:33:44:55",
->                 "expiresAt": "2018-02-11T00:00:00.090210Z"
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### cyclePort
-
-PATH _`/devices/{serial}/liveTools/cyclePort`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a cycle port for the device on the specified ports. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/cyclePort`  
-> 
->     {
->         "cyclePortId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "ports": [
->                 "2",
->                 "8"
->             ]
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/cyclePort/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a cycle port live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/cyclePort/{id}`  
-> 
->     {
->         "cyclePortId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "ports": [
->                 "2",
->                 "8"
->             ]
->         },
->         "status": "complete",
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### aclHitCount
-
-PATH _`/devices/{serial}/liveTools/aclHitCount`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform an ACL hit count for the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/aclHitCount`  
-> 
->     {
->         "aclHitCountId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/devices/{serial}/liveTools/aclHitCount/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an ACL hit count live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/aclHitCount/{id}`  
-> 
->     {
->         "aclHitCountId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "acls": [
->             {
->                 "policy": "allow",
->                 "ipVersion": "any",
->                 "ipProtocol": {
->                     "type": "number",
->                     "number": 6,
->                     "objectGroup": "object-group-123"
->                 },
->                 "counts": {
->                     "total": 1234,
->                     "ipv4": 1234,
->                     "ipv6": 0
->                 },
->                 "source": {
->                     "address": "1.2.3.4",
->                     "port": {
->                         "operator": "equals",
->                         "ports": [
->                             80,
->                             443
->                         ]
->                     }
->                 },
->                 "destination": {
->                     "address": "2.3.4.5",
->                     "port": [
->                         {
->                             "operator": "range",
->                             "ports": [
->                                 80,
->                                 89
->                             ]
->                         }
->                     ]
->                 }
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-\[ campusGateway \]
--------------------
-
-### clusters
-
-PATH _`/networks/{networkId}/campusGateway/clusters`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Create a cluster and add campus gateways to it
-> 
-> **POST** `/networks/{networkId}/campusGateway/clusters`  
-> 
->     {
->         "clusterId": "1284392014818",
->         "name": "North Campus",
->         "uplinks": [
->             {
->                 "interface": "man1",
->                 "vlan": 5,
->                 "addresses": [
->                     {
->                         "assignmentMode": "static",
->                         "protocol": "ipv4",
->                         "gateway": "1.2.3.5",
->                         "subnetMask": "255.255.255.0"
->                     }
->                 ]
->             }
->         ],
->         "tunnels": [
->             {
->                 "uplink": {
->                     "interface": "man1"
->                 },
->                 "interface": "tun1",
->                 "vlan": 6,
->                 "addresses": [
->                     {
->                         "protocol": "ipv4",
->                         "gateway": "2.3.5.6",
->                         "subnetMask": "255.255.255.0"
->                     }
->                 ]
->             }
->         ],
->         "nameservers": {
->             "addresses": [
->                 "8.8.8.8",
->                 "8.8.4.4"
->             ]
->         },
->         "portChannels": [
->             {
->                 "id": "1284392014830",
->                 "name": "Port-channel1",
->                 "vlan": 25,
->                 "allowedVlans": "10-20"
->             }
->         ],
->         "devices": [
->             {
->                 "serial": "Q234-ABCD-0001",
->                 "memberId": "1",
->                 "uplinks": [
->                     {
->                         "interface": "man1",
->                         "addresses": [
->                             {
->                                 "protocol": "ipv4",
->                                 "address": "5.1.2.3"
->                             }
->                         ]
->                     }
->                 ],
->                 "tunnels": [
->                     {
->                         "interface": "tun1",
->                         "addresses": [
->                             {
->                                 "protocol": "ipv4",
->                                 "address": "6.2.6.7"
->                             }
->                         ]
->                     }
->                 ]
->             }
->         ],
->         "notes": "This cluster is for New York Office",
->         "url": "https://n123.meraki.com/networkName/n/abc123/manage/campus_gateways/clusters"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/networks/{networkId}/campusGateway/clusters/{clusterId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update a cluster and add/remove campus gateways to/from it
-> 
-> **PUT** `/networks/{networkId}/campusGateway/clusters/{clusterId}`  
-> 
->     {
->         "clusterId": "1284392014818",
->         "name": "North Campus",
->         "uplinks": [
->             {
->                 "interface": "man1",
->                 "vlan": 5,
->                 "addresses": [
->                     {
->                         "assignmentMode": "static",
->                         "protocol": "ipv4",
->                         "gateway": "1.2.3.5",
->                         "subnetMask": "255.255.255.0"
->                     }
->                 ]
->             }
->         ],
->         "tunnels": [
->             {
->                 "uplink": {
->                     "interface": "man1"
->                 },
->                 "interface": "tun1",
->                 "vlan": 6,
->                 "addresses": [
->                     {
->                         "protocol": "ipv4",
->                         "gateway": "2.3.5.6",
->                         "subnetMask": "255.255.255.0"
->                     }
->                 ]
->             }
->         ],
->         "nameservers": {
->             "addresses": [
->                 "8.8.8.8",
->                 "8.8.4.4"
->             ]
->         },
->         "portChannels": [
->             {
->                 "id": "1284392014830",
->                 "name": "Port-channel1",
->                 "vlan": 25,
->                 "allowedVlans": "10-20"
->             }
->         ],
->         "devices": [
->             {
->                 "serial": "Q234-ABCD-0001",
->                 "memberId": "1",
->                 "uplinks": [
->                     {
->                         "interface": "man1",
->                         "addresses": [
->                             {
->                                 "protocol": "ipv4",
->                                 "address": "5.1.2.3"
->                             }
->                         ]
->                     }
->                 ],
->                 "tunnels": [
->                     {
->                         "interface": "tun1",
->                         "addresses": [
->                             {
->                                 "protocol": "ipv4",
->                                 "address": "6.2.6.7"
->                             }
->                         ]
->                     }
->                 ]
->             }
->         ],
->         "notes": "This cluster is for New York Office",
->         "url": "https://n123.meraki.com/networkName/n/abc123/manage/campus_gateways/clusters"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/campusGateway/clusters`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get the details of campus gateway clusters
-> 
-> **GET** `/organizations/{organizationId}/campusGateway/clusters`  
-> 
->     [
->         {
->             "network": {
->                 "id": "N_2313"
->             },
->             "clusterId": "1284392014818",
->             "name": "North Campus",
->             "uplinks": [
->                 {
->                     "interface": "man1",
->                     "vlan": 5,
->                     "addresses": [
->                         {
->                             "assignmentMode": "static",
->                             "protocol": "ipv4",
->                             "gateway": "1.2.3.5",
->                             "subnetMask": "255.255.255.0"
->                         }
->                     ]
->                 }
->             ],
->             "tunnels": [
->                 {
->                     "uplink": {
->                         "interface": "man1"
->                     },
->                     "interface": "tun1",
->                     "vlan": 6,
->                     "addresses": [
->                         {
->                             "protocol": "ipv4",
->                             "gateway": "2.3.5.6",
->                             "subnetMask": "255.255.255.0"
->                         }
->                     ]
->                 }
->             ],
->             "nameservers": {
->                 "addresses": [
->                     "8.8.8.8",
->                     "8.8.4.4"
->                 ]
->             },
->             "portChannels": [
->                 {
->                     "id": "1284392014830",
->                     "name": "Port-channel1",
->                     "vlan": 25,
->                     "allowedVlans": "10-20"
->                 }
->             ],
->             "devices": [
->                 {
->                     "serial": "Q234-ABCD-0001",
->                     "memberId": "1",
->                     "uplinks": [
->                         {
->                             "interface": "man1",
->                             "addresses": [
->                                 {
->                                     "protocol": "ipv4",
->                                     "address": "5.1.2.3"
->                                 }
->                             ]
->                         }
->                     ],
->                     "tunnels": [
->                         {
->                             "interface": "tun1",
->                             "addresses": [
->                                 {
->                                     "protocol": "ipv4",
->                                     "address": "6.2.6.7"
->                                 }
->                             ]
->                         }
->                     ]
->                 }
->             ],
->             "notes": "This cluster is for New York Office",
->             "url": "https://n123.meraki.com/networkName/n/abc123/manage/campus_gateways/clusters"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### devices
-
-PATH _`/organizations/{organizationId}/campusGateway/devices/uplinks/localOverrides/byDevice`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Uplink overrides configured locally on Campus Gateway devices in an organization.
-> 
-> **GET** `/organizations/{organizationId}/campusGateway/devices/uplinks/localOverrides/byDevice`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-0001",
->                 "uplink": {
->                     "interface": "man1",
->                     "vlan": 5,
->                     "addresses": [
->                         {
->                             "assignmentMode": "static",
->                             "protocol": "ipv4",
->                             "gateway": "1.2.3.5",
->                             "subnetMask": "255.255.255.0",
->                             "address": "121.12.12.1"
->                         }
->                     ]
->                 },
->                 "nameservers": {
->                     "addresses": [
->                         "8.8.8.8",
->                         "8.8.4.4"
->                     ]
->                 },
->                 "sgt": 300
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-\[ secureConnect \]
--------------------
-
-### privateApplicationGroups
-
-PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provides a list of private application groups for an Organization
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
-> 
->     {
->         "data": [
->             {
->                 "applicationGroupId": "1122321",
->                 "name": "Westcoast Data Center",
->                 "description": "Private applications in Westcoast Data Center",
->                 "applicationIds": [
->                     "183456",
->                     "123568"
->                 ],
->                 "createdAt": "2021-12-13T16:07:07.222Z",
->                 "modifiedAt": "2021-12-13T16:07:07.222Z"
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Creates a group of private applications to apply to policy. A maximum of 300 private application groups are allowed for an organization.
-> 
-> **POST** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
-> 
->     {
->         "applicationGroupId": "1122321",
->         "name": "Westcoast Data Center",
->         "description": "Private applications in Westcoast Data Center",
->         "applicationIds": [
->             "183456",
->             "123568"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the details of a specific private application group
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
-> 
->     {
->         "applicationGroupId": "1122321",
->         "name": "Westcoast Data Center",
->         "description": "Private applications in Westcoast Data Center",
->         "applicationIds": [
->             "183456",
->             "123568"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.
-> 
-> **PUT** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
-> 
->     {
->         "applicationGroupId": "1122321",
->         "name": "Westcoast Data Center",
->         "description": "Private applications in Westcoast Data Center",
->         "applicationIds": [
->             "183456",
->             "123568"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Deletes private application group from an Organization. Detaches application from groups before deleting
-> 
-> **DELETE** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
-> 
-> * * *
-
-* * *
-
-### privateApplications
-
-PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provides a list of private applications for an Organization.
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/privateApplications`  
-> 
->     {
->         "data": [
->             {
->                 "applicationId": "183456",
->                 "name": "Jira",
->                 "description": "Jira App For My Org",
->                 "destinations": [
->                     {
->                         "destinationAddr": [
->                             "172.6.0.0/32",
->                             "255.100.100.0/24"
->                         ],
->                         "protocolPorts": [
->                             {
->                                 "protocol": "TCP",
->                                 "ports": "80-82"
->                             }
->                         ],
->                         "accessType": "network"
->                     }
->                 ],
->                 "appProtocol": "https",
->                 "sni": "xyz123.jira.com",
->                 "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->                 "sslVerificationEnabled": true,
->                 "applicationGroupIds": [
->                     "1122321"
->                 ],
->                 "createdAt": "2021-12-13T16:07:07.222000Z",
->                 "modifiedAt": "2021-12-13T16:07:07.222000Z"
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.
-> 
-> **POST** `/organizations/{organizationId}/secureConnect/privateApplications`  
-> 
->     {
->         "applicationId": "183456",
->         "name": "Jira",
->         "description": "Jira App For My Org",
->         "destinations": [
->             {
->                 "destinationAddr": [
->                     "172.6.0.0/32",
->                     "255.100.100.0/24"
->                 ],
->                 "protocolPorts": [
->                     {
->                         "protocol": "TCP",
->                         "ports": "80-82"
->                     }
->                 ],
->                 "accessType": "network"
->             }
->         ],
->         "appProtocol": "https",
->         "sni": "xyz123.jira.com",
->         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->         "sslVerificationEnabled": true,
->         "applicationGroupIds": [
->             "1122321"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222000Z",
->         "modifiedAt": "2021-12-13T16:07:07.222000Z"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the details of a specific private application
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
-> 
->     {
->         "applicationId": "183456",
->         "name": "Jira",
->         "description": "Jira App For My Org",
->         "destinations": [
->             {
->                 "destinationAddr": [
->                     "172.6.0.0/32",
->                     "255.100.100.0/24"
->                 ],
->                 "protocolPorts": [
->                     {
->                         "protocol": "TCP",
->                         "ports": "80-82"
->                     }
->                 ],
->                 "accessType": "network"
->             }
->         ],
->         "appProtocol": "https",
->         "sni": "xyz123.jira.com",
->         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->         "sslVerificationEnabled": true,
->         "applicationGroupIds": [
->             "1122321"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.
-> 
-> **PUT** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
-> 
->     {
->         "applicationId": "183456",
->         "name": "Jira",
->         "description": "Jira App For My Org",
->         "destinations": [
->             {
->                 "destinationAddr": [
->                     "172.6.0.0/32",
->                     "255.100.100.0/24"
->                 ],
->                 "protocolPorts": [
->                     {
->                         "protocol": "TCP",
->                         "ports": "80-82"
->                     }
->                 ],
->                 "accessType": "network"
->             }
->         ],
->         "appProtocol": "https",
->         "sni": "xyz123.jira.com",
->         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->         "sslVerificationEnabled": true,
->         "applicationGroupIds": [
->             "1122321"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222000Z",
->         "modifiedAt": "2021-12-13T16:07:07.222000Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Deletes a specific private application. Delink the application from any application groups before deleting the app. Cascade delete application group if this is the only application in the group.
-> 
-> **DELETE** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
-> 
-> * * *
-
-* * *
-
-### privateResourceGroups
-
-PATH _`/organizations/{organizationId}/secureConnect/privateResourceGroups`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provides a list of the private resource groups in an organization.
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/privateResourceGroups`  
-> 
->     {
->         "data": [
->             {
->                 "resourceGroupId": "123",
->                 "createdAt": "2024-03-06T15:11:55.323445Z",
->                 "updatedAt": "2024-03-06T15:11:55.323445Z",
->                 "name": "group 2",
->                 "description": "",
->                 "resourceIds": [
->                     "12345"
->                 ]
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Adds a new private resource group to an organization.
-> 
-> **POST** `/organizations/{organizationId}/secureConnect/privateResourceGroups`  
-> 
->     {
->         "data": [
->             {
->                 "resourceGroupId": "123",
->                 "createdAt": "2024-03-06T15:11:55.323445Z",
->                 "updatedAt": "2024-03-06T15:11:55.323445Z",
->                 "name": "group 2",
->                 "description": "",
->                 "resourceIds": [
->                     "12345"
->                 ]
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/secureConnect/privateResourceGroups/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Updates a specific private resource group.
-> 
-> **PUT** `/organizations/{organizationId}/secureConnect/privateResourceGroups/{id}`  
-> 
->     {
->         "data": [
->             {
->                 "resourceGroupId": "123",
->                 "createdAt": "2024-03-06T15:11:55.323445Z",
->                 "updatedAt": "2024-03-06T15:11:55.323445Z",
->                 "name": "group 2",
->                 "description": "",
->                 "resourceIds": [
->                     "12345"
->                 ]
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Deletes a specific private resource group.
-> 
-> **DELETE** `/organizations/{organizationId}/secureConnect/privateResourceGroups/{id}`  
-> 
-> * * *
-
-* * *
-
-### privateResources
-
-PATH _`/organizations/{organizationId}/secureConnect/privateResources`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provides a list of private resources for an organization.
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/privateResources`  
-> 
->     {
->         "data": [
->             {
->                 "resourceId": "5",
->                 "name": "Sample Resource Name",
->                 "description": "A sample description",
->                 "accessTypes": [
->                     {
->                         "type": "client",
->                         "reachableAddresses": [
->                             "192.0.0.0"
->                         ]
->                     }
->                 ],
->                 "resourceAddresses": [
->                     {
->                         "protocolPorts": [
->                             {
->                                 "protocol": "any",
->                                 "ports": "80"
->                             }
->                         ],
->                         "destinationAddr": [
->                             "192.0.0.0"
->                         ]
->                     }
->                 ],
->                 "resourceGroupIds": [
->                     "1122321"
->                 ],
->                 "dnsServerId": "12345",
->                 "certificateId": "54321",
->                 "organizationId": "106642",
->                 "createdAt": "2024-03-06T15:11:55.323445Z",
->                 "updatedAt": "2024-03-06T15:11:55.323445Z",
->                 "deletedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaResourceId": "123",
->                 "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaResourceCreatedBy": "",
->                 "umbrellaResourceModifiedBy": "",
->                 "umbrellaResourceErrorMessage": "",
->                 "umbrellaApplicationId": "321",
->                 "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaApplicationErrorMessage": ""
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Adds a new private resource to the organization.
-> 
-> **POST** `/organizations/{organizationId}/secureConnect/privateResources`  
-> 
->     {
->         "resourceId": "5",
->         "name": "Sample Resource Name",
->         "description": "A sample description",
->         "accessTypes": [
->             {
->                 "type": "client",
->                 "reachableAddresses": [
->                     "192.0.0.0"
->                 ]
->             }
->         ],
->         "resourceAddresses": [
->             {
->                 "protocolPorts": [
->                     {
->                         "protocol": "any",
->                         "ports": "80"
->                     }
->                 ],
->                 "destinationAddr": [
->                     "192.0.0.0"
->                 ]
->             }
->         ],
->         "resourceGroupIds": [
->             "1122321"
->         ],
->         "dnsServerId": "12345",
->         "certificateId": "54321",
->         "organizationId": "106642",
->         "createdAt": "2024-03-06T15:11:55.323445Z",
->         "updatedAt": "2024-03-06T15:11:55.323445Z",
->         "deletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceId": "123",
->         "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceCreatedBy": "",
->         "umbrellaResourceModifiedBy": "",
->         "umbrellaResourceErrorMessage": "",
->         "umbrellaApplicationId": "321",
->         "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationErrorMessage": ""
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/secureConnect/privateResources/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Updates a specific private resource.
-> 
-> **PUT** `/organizations/{organizationId}/secureConnect/privateResources/{id}`  
-> 
->     {
->         "resourceId": "5",
->         "name": "Sample Resource Name",
->         "description": "A sample description",
->         "accessTypes": [
->             {
->                 "type": "client",
->                 "reachableAddresses": [
->                     "192.0.0.0"
->                 ]
->             }
->         ],
->         "resourceAddresses": [
->             {
->                 "protocolPorts": [
->                     {
->                         "protocol": "any",
->                         "ports": "80"
->                     }
->                 ],
->                 "destinationAddr": [
->                     "192.0.0.0"
->                 ]
->             }
->         ],
->         "resourceGroupIds": [
->             "1122321"
->         ],
->         "dnsServerId": "12345",
->         "certificateId": "54321",
->         "organizationId": "106642",
->         "createdAt": "2024-03-06T15:11:55.323445Z",
->         "updatedAt": "2024-03-06T15:11:55.323445Z",
->         "deletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceId": "123",
->         "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceCreatedBy": "",
->         "umbrellaResourceModifiedBy": "",
->         "umbrellaResourceErrorMessage": "",
->         "umbrellaApplicationId": "321",
->         "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationErrorMessage": ""
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Deletes a specific private resource. If this is the last resource in a resource group you must remove it from that resource group before deleting.
-> 
-> **DELETE** `/organizations/{organizationId}/secureConnect/privateResources/{id}`  
-> 
-> * * *
-
-* * *
-
-### publicApplications
-
-PATH _`/organizations/{organizationId}/secureConnect/publicApplications`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provides a list of public applications for an Organization.
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/publicApplications`  
-> 
->     {
->         "items": [
->             {
->                 "id": "ABCDEFG",
->                 "name": "Snapcraft",
->                 "lastDetected": "2021-12-13T16:07:07.222Z",
->                 "risk": "medium",
->                 "category": "Application Development and Testing",
->                 "appType": "paas"
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### regions
-
-PATH _`/organizations/{organizationId}/secureConnect/regions`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List deployed cloud hubs and regions in this organization
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/regions`  
-> 
->     {
->         "data": [
->             {
->                 "id": "123",
->                 "type": "Region",
->                 "name": "US West Coast",
->                 "dcPair": [
->                     "Los Angeles",
->                     "Palo Alto"
->                 ]
->             }
->         ],
->         "meta": {
->             "maxTotalCloudHubs": 5
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### remoteAccessLog
-
-PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLog`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the latest 5000 events logged by remote access.
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLog`  
-> 
->     {
->         "data": [
->             {
->                 "osversion": "win-10.0.19044",
->                 "internalip": "10.0.1.5",
->                 "connecttimestamp": 1667252442,
->                 "identities": [
->                     {
->                         "id": "1173502975",
->                         "type": {
->                             "id": "7",
->                             "type": "directory_user",
->                             "label": "AD Users"
->                         },
->                         "label": "sample-remote-access@cisco.com",
->                         "deleted": false
->                     }
->                 ],
->                 "reason": "ACCT_DISC_USER_REQ",
->                 "failedreasons": [],
->                 "connectionevent": "disconnected",
->                 "anyconnectversion": "4.10.05095",
->                 "timestamp": 1667252458
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### remoteAccessLogsExports
-
-PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provides a list of remote access logs exports for an Organization
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
-> 
->     {
->         "data": [
->             {
->                 "id": "123",
->                 "from": "2023-05-16 04:23:43 UTC",
->                 "to": "2023-06-14 04:23:52 UTC",
->                 "userEmail": "joe@meraki.net",
->                 "status": "new",
->                 "metadata": {
->                     "fileCount": 0,
->                     "logCount": 0,
->                     "currentFileLogCount": 0,
->                     "generatorCount": 0,
->                     "limitReached": false,
->                     "startedAt": "2023-05-15 21:23:43.388597",
->                     "endedAt": "2023-05-15 21:23:43.388597",
->                     "duration": 60
->                 }
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Creates a export for a provided timestamp interval.
-> 
-> **POST** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
-> 
->     {
->         "id": "123",
->         "from": "2023-05-16 04:23:43 UTC",
->         "to": "2023-06-14 04:23:52 UTC",
->         "userEmail": "joe@meraki.net",
->         "status": "new",
->         "metadata": {
->             "fileCount": 0,
->             "logCount": 0,
->             "currentFileLogCount": 0,
->             "generatorCount": 0,
->             "limitReached": false,
->             "startedAt": "2023-05-15 21:23:43.388597",
->             "endedAt": "2023-05-15 21:23:43.388597",
->             "duration": 60
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Redirects to the download link of the completed export.
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`  
-> 
->     {
->         "link": "download"
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the details of a specific remote access logs export
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`  
-> 
->     {
->         "id": "123",
->         "from": "2023-05-16 04:23:43 UTC",
->         "to": "2023-06-14 04:23:52 UTC",
->         "userEmail": "joe@meraki.net",
->         "status": "new",
->         "metadata": {
->             "fileCount": 0,
->             "logCount": 0,
->             "currentFileLogCount": 0,
->             "generatorCount": 0,
->             "limitReached": false,
->             "startedAt": "2023-05-15 21:23:43.388597",
->             "endedAt": "2023-05-15 21:23:43.388597",
->             "duration": 60
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### sites
-
-PATH _`/organizations/{organizationId}/secureConnect/sites`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List sites in this organization
-> 
-> **GET** `/organizations/{organizationId}/secureConnect/sites`  
-> 
->     {
->         "data": [
->             {
->                 "id": "123",
->                 "type": "MerakiSpoke",
->                 "name": "London Office",
->                 "region": "US East",
->                 "deviceType": "MX95-HW",
->                 "address": "123 Main St",
->                 "enrolled": true,
->                 "vpnType": "Hub",
->                 "defaultRoute": true
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Enroll sites in this organization to Secure Connect. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.
-> 
-> **POST** `/organizations/{organizationId}/secureConnect/sites`  
-> 
->     {
->         "action": "enroll",
->         "status": "success",
->         "message": "Site enrolled successfully",
->         "request": {
->             "siteId": "1520758",
->             "regionId": "42"
->         },
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Detach given sites from Secure Connect
-> 
-> **DELETE** `/organizations/{organizationId}/secureConnect/sites`  
-> 
->     {
->         "action": "detach",
->         "status": "success",
->         "message": "Site enrolled successfully",
->         "request": {
->             "siteId": "1520758"
->         },
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
 >         }
 >     }
 > 
@@ -8133,179 +8421,6 @@ PATH _`/organizations/{organizationId}/wirelessController/connections/unassigned
 >             }
 >         }
 >     }
-> 
-> * * *
-
-* * *
-
-\[ insight \]
--------------
-
-### speedTestResults
-
-PATH _`/organizations/{organizationId}/insight/speedTestResults`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the speed tests for the given devices under this organization. Only valid for organizations with Meraki Insight.
-> 
-> **GET** `/organizations/{organizationId}/insight/speedTestResults`  
-> 
->     [
->         {
->             "speedTestId": "1284392014819",
->             "networkId": "N_24329156",
->             "request": {
->                 "serial": "Q234-ABCD-5678",
->                 "interface": "wan1"
->             },
->             "results": {
->                 "speeds": {
->                     "average": 247.279
->                 }
->             },
->             "startedAt": "2021-12-08T20:07:13Z"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### webApps
-
-PATH _`/organizations/{organizationId}/insight/webApps`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Lists all default web applications rules with counter set rule ids
-> 
-> **GET** `/organizations/{organizationId}/insight/webApps`  
-> 
->     [
->         {
->             "counterSetRuleId": "12345",
->             "name": "Meraki HTTPS",
->             "category": "Remote monitoring & management",
->             "thresholds": {
->                 "goodput": "20000",
->                 "responseDelay": "3000"
->             },
->             "expression": "http_host[*.example.com] or http_host",
->             "signature": {
->                 "signatureType": "custom_host",
->                 "host": "exampled.com",
->                 "port": "123",
->                 "net": "10.0.2.1/20"
->             }
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Add a custom web application for Insight to be able to track
-> 
-> **POST** `/organizations/{organizationId}/insight/webApps`  
-> 
->     {
->         "counterSetRuleId": "12345",
->         "name": "Meraki HTTPS",
->         "category": "Remote monitoring & management",
->         "thresholds": {
->             "goodput": "20000",
->             "responseDelay": "3000"
->         },
->         "expression": "http_host[*.example.com] or http_host",
->         "signature": {
->             "signatureType": "custom_host",
->             "host": "exampled.com"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update a custom web application for Insight to be able to track
-> 
-> **PUT** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
-> 
->     {
->         "counterSetRuleId": "12345",
->         "name": "Meraki HTTPS",
->         "category": "Remote monitoring & management",
->         "thresholds": {
->             "goodput": "20000",
->             "responseDelay": "3000"
->         },
->         "expression": "http_host[*.example.com] or http_host",
->         "signature": {
->             "signatureType": "custom_host",
->             "host": "exampled.com"
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a custom web application by counter set rule id.
-> 
-> **DELETE** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
-> 
-> * * *
-
-* * *
-
-### applications
-
-PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update an Insight tracked application
-> 
-> **PUT** `/organizations/{organizationId}/insight/applications/{applicationId}`  
-> 
->     {
->         "applicationId": "19.12",
->         "name": "Meraki HTTPS",
->         "thresholds": {
->             "type": "smart",
->             "byNetwork": [
->                 {
->                     "networkId": "N_12345678",
->                     "goodput": 50000,
->                     "responseDuration": 1000
->                 }
->             ]
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an Insight tracked application
-> 
-> **DELETE** `/organizations/{organizationId}/insight/applications/{applicationId}`  
 > 
 > * * *
 
