@@ -238,47 +238,27 @@
       - [Send a test webhook for an organization](#send-a-test-webhook-for-an-organization-1)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization-1)
-    + [policy](#policy)
-      - [List all layer 7 CASI categories and applications that can be used with Org Wide Policies](#list-all-layer-7-casi-categories-and-applications-that-can-be-used-with-org-wide-policies)
-      - [List all layer 7 CASI categories and applications that can be used with Org Wide Policies](#list-all-layer-7-casi-categories-and-applications-that-can-be-used-with-org-wide-policies-1)
-      - [List Organization-Wide Policy Firewall Profiles](#list-organization-wide-policy-firewall-profiles)
-      - [List Organization-Wide Policy Firewall Profiles](#list-organization-wide-policy-firewall-profiles-1)
-      - [Create an Organization-Wide Policy Firewall Profile](#create-an-organization-wide-policy-firewall-profile)
-      - [Provision default Organization-Wide Policy Firewall Profiles](#provision-default-organization-wide-policy-firewall-profiles)
-      - [Provision default Organization-Wide Policy Firewall Profiles](#provision-default-organization-wide-policy-firewall-profiles-1)
-      - [Update an Organization-Wide Policy Firewall Profile](#update-an-organization-wide-policy-firewall-profile)
-      - [Update an Organization-Wide Policy Firewall Profile](#update-an-organization-wide-policy-firewall-profile-1)
-      - [Delete an Organization-Wide Policy Firewall Profile](#delete-an-organization-wide-policy-firewall-profile)
-      - [Delete multiple Organization-Wide Policy Firewall Rules](#delete-multiple-organization-wide-policy-firewall-rules)
-      - [Delete multiple Organization-Wide Policy Firewall Rules](#delete-multiple-organization-wide-policy-firewall-rules-1)
-      - [Change Rules definition](#change-rules-definition)
-      - [Change Rules definition](#change-rules-definition-1)
-      - [Get Organization-Wide Policy Firewall Rules Errors](#get-organization-wide-policy-firewall-rules-errors)
-      - [Get Organization-Wide Policy Firewall Rules Errors](#get-organization-wide-policy-firewall-rules-errors-1)
-      - [List Organization-Wide Policy Firewall Rules](#list-organization-wide-policy-firewall-rules)
-      - [List Organization-Wide Policy Firewall Rules](#list-organization-wide-policy-firewall-rules-1)
-      - [Search for Organization-wide Firewall Rules by source and destination IPs](#search-for-organization-wide-firewall-rules-by-source-and-destination-ips)
-      - [Search for Organization-wide Firewall Rules by source and destination IPs](#search-for-organization-wide-firewall-rules-by-source-and-destination-ips-1)
-      - [List Organization-Wide Policies](#list-organization-wide-policies)
-      - [List Organization-Wide Policies](#list-organization-wide-policies-1)
-      - [Change Policy definition](#change-policy-definition)
-      - [Change Policy definition](#change-policy-definition-1)
-      - [Delete an Organization-Wide Policy](#delete-an-organization-wide-policy)
-      - [Delete an Organization-Wide Policy](#delete-an-organization-wide-policy-1)
-      - [List Organization-Wide Policy Vlans](#list-organization-wide-policy-vlans)
-      - [List Organization-Wide Policy Vlans](#list-organization-wide-policy-vlans-1)
-      - [List Organization-Wide Policy Zones](#list-organization-wide-policy-zones)
-      - [List Organization-Wide Policy Zones](#list-organization-wide-policy-zones-1)
-      - [Create an Organization-Wide Policy Zone](#create-an-organization-wide-policy-zone)
-      - [Get Enforcement details](#get-enforcement-details)
-      - [Get Enforcement details](#get-enforcement-details-1)
-      - [Update an Organization-Wide Policy Zone](#update-an-organization-wide-policy-zone)
-      - [Update an Organization-Wide Policy Zone](#update-an-organization-wide-policy-zone-1)
-      - [Delete an Organization-Wide Policy Zone](#delete-an-organization-wide-policy-zone)
-      - [Assign VLANs to a given Zone](#assign-vlans-to-a-given-zone)
-      - [Assign VLANs to a given Zone](#assign-vlans-to-a-given-zone-1)
-      - [Remove VLANs from a given Zone](#remove-vlans-from-a-given-zone)
-      - [Remove VLANs from a given Zone](#remove-vlans-from-a-given-zone-1)
+    + [sase](#sase)
+      - [List high-level SSE site statuses (healthy, degraded, offline)](#list-high-level-sse-site-statuses-healthy-degraded-offline)
+      - [List high-level SSE site statuses (healthy, degraded, offline)](#list-high-level-sse-site-statuses-healthy-degraded-offline-1)
+      - [Create a new Secure Access integration](#create-a-new-secure-access-integration)
+      - [Create a new Secure Access integration](#create-a-new-secure-access-integration-1)
+      - [Get details of a Secure Access integration](#get-details-of-a-secure-access-integration)
+      - [Get details of a Secure Access integration](#get-details-of-a-secure-access-integration-1)
+      - [Remove a Secure Access integration](#remove-a-secure-access-integration)
+      - [List regions](#list-regions)
+      - [List regions](#list-regions-1)
+      - [List of enrolled sites in this organization](#list-of-enrolled-sites-in-this-organization)
+      - [List of enrolled sites in this organization](#list-of-enrolled-sites-in-this-organization-1)
+      - [Detach sites in this organization from Secure Access](#detach-sites-in-this-organization-from-secure-access)
+      - [Detach sites in this organization from Secure Access. This will remove the sites from Secure Access.](#detach-sites-in-this-organization-from-secure-access-this-will-remove-the-sites-from-secure-access)
+      - [Enroll sites in this organization to Secure Access](#enroll-sites-in-this-organization-to-secure-access)
+      - [Enroll sites in this organization to Secure Access. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.](#enroll-sites-in-this-organization-to-secure-access-for-an-organization-a-maximum-of-4000-sites-can-be-enrolled-if-they-are-in-spoke-mode-or-a-maximum-of-10-sites-can-be-enrolled-in-hub-mode)
+      - [Get the status of sites in this organization](#get-the-status-of-sites-in-this-organization)
+      - [Get the status of sites in this organization](#get-the-status-of-sites-in-this-organization-1)
+      - [Get details of a site in this organization](#get-details-of-a-site-in-this-organization)
+      - [Get details of a site in this organization](#get-details-of-a-site-in-this-organization-1)
+      - [Update the configuration for a site. Currently, only supports updating default route enablement.](#update-the-configuration-for-a-site-currently-only-supports-updating-default-route-enablement)
     + [networks](#networks)
       - [Move networks from one organization to another](#move-networks-from-one-organization-to-another)
       - [Return a list of network move operations in the organization](#return-a-list-of-network-move-operations-in-the-organization)
@@ -288,6 +268,11 @@
       - [Claim an order by the secure unique order claim number, the order claim id](#claim-an-order-by-the-secure-unique-order-claim-number-the-order-claim-id-1)
       - [Preview the results and status of an order claim by the secure order id](#preview-the-results-and-status-of-an-order-claim-by-the-secure-order-id)
       - [Preview the results and status of an order claim by the secure order id](#preview-the-results-and-status-of-an-order-claim-by-the-secure-order-id-1)
+    + [integrations](#integrations)
+      - [Provides a list of integrations that can be enabled for an Organization.](#provides-a-list-of-integrations-that-can-be-enabled-for-an-organization)
+      - [Provides a list of integrations that can be enabled for an Organization.](#provides-a-list-of-integrations-that-can-be-enabled-for-an-organization-1)
+      - [Provides a list of integrations enabled for an Organization.](#provides-a-list-of-integrations-enabled-for-an-organization)
+      - [Provides a list of integrations enabled for an Organization.](#provides-a-list-of-integrations-enabled-for-an-organization-1)
     + [extensions](#extensions)
       - [Update name and status of an Interconnect](#update-name-and-status-of-an-interconnect)
       - [Update name and status of an Interconnect](#update-name-and-status-of-an-interconnect-1)
@@ -337,6 +322,15 @@
     + [productAnnouncements](#productannouncements)
       - [Gets relevant product announcements for a user](#gets-relevant-product-announcements-for-a-user)
       - [Gets relevant product announcements for a user](#gets-relevant-product-announcements-for-a-user-1)
+    + [apiRequests](#apirequests)
+      - [Lists API request response codes and their counts aggregated by admin](#lists-api-request-response-codes-and-their-counts-aggregated-by-admin)
+      - [Lists API request response codes and their counts aggregated by admin](#lists-api-request-response-codes-and-their-counts-aggregated-by-admin-1)
+      - [Lists API request response codes and their counts aggregated by application](#lists-api-request-response-codes-and-their-counts-aggregated-by-application)
+      - [Lists API request response codes and their counts aggregated by application](#lists-api-request-response-codes-and-their-counts-aggregated-by-application-1)
+      - [Aggregates API usage data by operationId](#aggregates-api-usage-data-by-operationid)
+      - [Aggregates API usage data by operationId](#aggregates-api-usage-data-by-operationid-1)
+      - [Aggregates API usage by source ip](#aggregates-api-usage-by-source-ip)
+      - [Aggregates API usage by source ip](#aggregates-api-usage-by-source-ip-1)
     + [snmp](#snmp)
       - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization)
       - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization-1)
@@ -358,6 +352,8 @@
       - [Returns roles that can be assigned to a syslog server for a given network.](#returns-roles-that-can-be-assigned-to-a-syslog-server-for-a-given-network)
       - [Returns roles that can be assigned to a syslog server for a given network.](#returns-roles-that-can-be-assigned-to-a-syslog-server-for-a-given-network-1)
     + [clients](#clients-1)
+      - [Given a client, get all alerts and events for a given timespan](#given-a-client-get-all-alerts-and-events-for-a-given-timespan)
+      - [Given a client, get all alerts and events for a given timespan](#given-a-client-get-all-alerts-and-events-for-a-given-timespan-1)
       - [Given a client, category, and timespan, return events that have a close connection to each other.](#given-a-client-category-and-timespan-return-events-that-have-a-close-connection-to-each-other)
       - [Given a client, category, and timespan, return events that have a close connection to each other.](#given-a-client-category-and-timespan-return-events-that-have-a-close-connection-to-each-other-1)
   * [\[ networks \]](#-networks-)
@@ -481,43 +477,6 @@
       - [Update switch port mirrors for switch stacks](#update-switch-port-mirrors-for-switch-stacks-1)
       - [List the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
       - [List the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch-1)
-    + [ports](#ports)
-      - [Update a port mirror](#update-a-port-mirror-2)
-      - [Update a port mirror](#update-a-port-mirror-3)
-      - [List the port profiles in a network](#list-the-port-profiles-in-a-network)
-      - [List the port profiles in a network](#list-the-port-profiles-in-a-network-1)
-      - [Create a port profile in a network](#create-a-port-profile-in-a-network)
-      - [Update a port profile in a network](#update-a-port-profile-in-a-network)
-      - [Update a port profile in a network](#update-a-port-profile-in-a-network-1)
-      - [Delete a port profile from a network](#delete-a-port-profile-from-a-network)
-      - [list the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
-      - [list the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch-1)
-      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization)
-      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-1)
-      - [Create a port profile in an organization](#create-a-port-profile-in-an-organization)
-      - [list the automation port profiles in an organization](#list-the-automation-port-profiles-in-an-organization)
-      - [list the automation port profiles in an organization](#list-the-automation-port-profiles-in-an-organization-1)
-      - [Create a port profile automation for an organization](#create-a-port-profile-automation-for-an-organization)
-      - [Update a port profile automation in an organization](#update-a-port-profile-automation-in-an-organization)
-      - [Update a port profile automation in an organization](#update-a-port-profile-automation-in-an-organization-1)
-      - [Delete an automation port profile from an organization](#delete-an-automation-port-profile-from-an-organization)
-      - [Fetch all Network - Smart Port Profile associations for an organization](#fetch-all-network---smart-port-profile-associations-for-an-organization)
-      - [Fetch all Network - Smart Port Profile associations for an organization](#fetch-all-network---smart-port-profile-associations-for-an-organization-1)
-      - [Create Network and Smart Ports Profile association for a specific profile](#create-network-and-smart-ports-profile-association-for-a-specific-profile)
-      - [Batch Create Network and Smart Ports Profile associations for a specific profile](#batch-create-network-and-smart-ports-profile-associations-for-a-specific-profile)
-      - [Batch Create Network and Smart Ports Profile associations for a specific profile](#batch-create-network-and-smart-ports-profile-associations-for-a-specific-profile-1)
-      - [Bulk delete Network and Smart Port Profile associations](#bulk-delete-network-and-smart-port-profile-associations)
-      - [Bulk delete Network and Smart Port Profile associations](#bulk-delete-network-and-smart-port-profile-associations-1)
-      - [Delete Network and Smart Port profile association for a specific profile](#delete-network-and-smart-port-profile-association-for-a-specific-profile)
-      - [Delete Network and Smart Port profile association for a specific profile](#delete-network-and-smart-port-profile-association-for-a-specific-profile-1)
-      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-2)
-      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-3)
-      - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile)
-      - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile-1)
-      - [Update a port profile in an organization](#update-a-port-profile-in-an-organization)
-      - [Delete a port profile from an organization](#delete-a-port-profile-from-an-organization)
-      - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module)
-      - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module-1)
     + [routing](#routing)
       - [List the autonomous systems configured for BGP in the given organization](#list-the-autonomous-systems-configured-for-bgp-in-the-given-organization)
       - [List the autonomous systems configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-the-autonomous-systems-configured-for-bgp-in-the-given-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
@@ -577,6 +536,43 @@
       - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router. Border Gateway Protocol requires IOS XE 17.18 or higher](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router-border-gateway-protocol-requires-ios-xe-1718-or-higher)
       - [Delete a router from an organization](#delete-a-router-from-an-organization)
       - [Delete a router from an organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#delete-a-router-from-an-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
+    + [ports](#ports)
+      - [Update a port mirror](#update-a-port-mirror-2)
+      - [Update a port mirror](#update-a-port-mirror-3)
+      - [List the port profiles in a network](#list-the-port-profiles-in-a-network)
+      - [List the port profiles in a network](#list-the-port-profiles-in-a-network-1)
+      - [Create a port profile in a network](#create-a-port-profile-in-a-network)
+      - [Update a port profile in a network](#update-a-port-profile-in-a-network)
+      - [Update a port profile in a network](#update-a-port-profile-in-a-network-1)
+      - [Delete a port profile from a network](#delete-a-port-profile-from-a-network)
+      - [list the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
+      - [list the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch-1)
+      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization)
+      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-1)
+      - [Create a port profile in an organization](#create-a-port-profile-in-an-organization)
+      - [list the automation port profiles in an organization](#list-the-automation-port-profiles-in-an-organization)
+      - [list the automation port profiles in an organization](#list-the-automation-port-profiles-in-an-organization-1)
+      - [Create a port profile automation for an organization](#create-a-port-profile-automation-for-an-organization)
+      - [Update a port profile automation in an organization](#update-a-port-profile-automation-in-an-organization)
+      - [Update a port profile automation in an organization](#update-a-port-profile-automation-in-an-organization-1)
+      - [Delete an automation port profile from an organization](#delete-an-automation-port-profile-from-an-organization)
+      - [Fetch all Network - Smart Port Profile associations for an organization](#fetch-all-network---smart-port-profile-associations-for-an-organization)
+      - [Fetch all Network - Smart Port Profile associations for an organization](#fetch-all-network---smart-port-profile-associations-for-an-organization-1)
+      - [Create Network and Smart Ports Profile association for a specific profile](#create-network-and-smart-ports-profile-association-for-a-specific-profile)
+      - [Batch Create Network and Smart Ports Profile associations for a specific profile](#batch-create-network-and-smart-ports-profile-associations-for-a-specific-profile)
+      - [Batch Create Network and Smart Ports Profile associations for a specific profile](#batch-create-network-and-smart-ports-profile-associations-for-a-specific-profile-1)
+      - [Bulk delete Network and Smart Port Profile associations](#bulk-delete-network-and-smart-port-profile-associations)
+      - [Bulk delete Network and Smart Port Profile associations](#bulk-delete-network-and-smart-port-profile-associations-1)
+      - [Delete Network and Smart Port profile association for a specific profile](#delete-network-and-smart-port-profile-association-for-a-specific-profile)
+      - [Delete Network and Smart Port profile association for a specific profile](#delete-network-and-smart-port-profile-association-for-a-specific-profile-1)
+      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-2)
+      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-3)
+      - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile)
+      - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile-1)
+      - [Update a port profile in an organization](#update-a-port-profile-in-an-organization)
+      - [Delete a port profile from an organization](#delete-a-port-profile-from-an-organization)
+      - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module)
+      - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module-1)
   * [\[ sensor \]](#-sensor-)
     + [readings](#readings)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
@@ -654,8 +650,6 @@
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
       - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack)
       - [Return a layer 3 interface from a switch stack](#return-a-layer-3-interface-from-a-switch-stack)
-    + [ports](#ports-1)
-      - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
     + [routing](#routing-1)
       - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch)
       - [Create a multicast rendezvous point](#create-a-multicast-rendezvous-point)
@@ -665,6 +659,9 @@
       - [Return a layer 3 interface for a switch](#return-a-layer-3-interface-for-a-switch)
       - [List multicast rendezvous points](#list-multicast-rendezvous-points)
       - [Return a multicast rendezvous point](#return-a-multicast-rendezvous-point)
+    + [ports](#ports-1)
+      - [List the switch ports for a switch](#list-the-switch-ports-for-a-switch)
+      - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
   * [\[ sensor \]](#-sensor--1)
     + [commands](#commands)
       - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
@@ -680,19 +677,19 @@
       - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
       - [Return the uplink settings for an MX appliance](#return-the-uplink-settings-for-an-mx-appliance)
  
-Version **1.64.0** _to_ **1.64.0-beta.0**
+Version **1.65.0** _to_ **1.65.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**232 - New**
+**230 - New**
 
-**179 - Updated**
+**181 - Updated**
 
-**1149 - Total Endpoints**
+**1145 - Total Endpoints**
 
-**820 - Total Paths**
+**818 - Total Paths**
 
 * * *
 
@@ -6486,660 +6483,198 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 
 * * *
 
-### policy
+### sase
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policy-group-policy-application-categories-v-2-/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-connectivity-overview/)
 
-#### List all layer 7 CASI categories and applications that can be used with Org Wide Policies
+#### List high-level SSE site statuses (healthy, degraded, offline)
 
-Operation ID: `getOrganizationPolicyGroupPolicyApplicationCategoriesV2`
+Operation ID: `getOrganizationSaseConnectivityOverview`
 
-PATH _`/organizations/{organizationId}/policy/groupPolicy/applicationCategories/v2`_
+PATH _`/organizations/{organizationId}/sase/connectivity/overview`_
 
     {
-      "categories": [
-        {
-          "casiId": "6",
-          "name": "Cloud Storage",
-          "apps": [
+      "status": {
+        "healthy": {
+          "count": 3,
+          "siteIds": [
             {
-              "casiId": "11",
-              "name": "4shared",
-              "enforcements": [
-                "meraki",
-                "secureAccess"
-              ]
+              "id": 123
+            }
+          ]
+        },
+        "degraded": {
+          "count": 3,
+          "siteIds": [
+            {
+              "id": 123
+            }
+          ]
+        },
+        "offline": {
+          "count": 3,
+          "siteIds": [
+            {
+              "id": 123
             }
           ]
         }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List all layer 7 CASI categories and applications that can be used with Org Wide Policies
-> 
-> **GET** `/organizations/{organizationId}/policy/groupPolicy/applicationCategories/v2`  
-> 
->     {
->         "categories": [
->             {
->                 "casiId": "6",
->                 "name": "Cloud Storage",
->                 "apps": [
->                     {
->                         "casiId": "11",
->                         "name": "4shared",
->                         "enforcements": [
->                             "meraki",
->                             "secureAccess"
->                         ]
->                     }
->                 ]
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policy-group-policy-firewall-profiles/)
-
-#### List Organization-Wide Policy Firewall Profiles
-
-Operation ID: `getOrganizationPolicyGroupPolicyFirewallProfiles`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/firewall/profiles`_
-
-    {
-      "items": [
-        {
-          "id": "123",
-          "name": "Block Social Media",
-          "iname": "block-social-media",
-          "description": "Block all Social Media",
-          "reserved": false,
-          "deleted": false,
-          "createdAt": "2021-01-01T00:00:00Z",
-          "updatedAt": "2021-01-01T00:00:00Z"
-        }
-      ],
-      "meta": {
-        "counts": {
-          "total": 12,
-          "remaining": 2
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List Organization-Wide Policy Firewall Profiles
-> 
-> **GET** `/organizations/{organizationId}/policy/groupPolicy/firewall/profiles`  
-> 
->     {
->         "items": [
->             {
->                 "id": "123",
->                 "name": "Block Social Media",
->                 "iname": "block-social-media",
->                 "description": "Block all Social Media",
->                 "reserved": false,
->                 "deleted": false,
->                 "createdAt": "2021-01-01T00:00:00Z",
->                 "updatedAt": "2021-01-01T00:00:00Z"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "total": 12,
->                 "remaining": 2
->             }
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create an Organization-Wide Policy Firewall Profile
-> 
-> **POST** `/organizations/{organizationId}/policy/groupPolicy/firewall/profiles`  
-> 
->     {
->         "id": "123",
->         "name": "Block Social Media",
->         "iname": "block-social-media",
->         "description": "Block all Social Media",
->         "reserved": false,
->         "deleted": false,
->         "createdAt": "2021-01-01T00:00:00Z",
->         "updatedAt": "2021-01-01T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-policy-group-policy-firewall-profiles-provision-default/)
-
-#### Provision default Organization-Wide Policy Firewall Profiles
-
-Operation ID: `createOrganizationPolicyGroupPolicyFirewallProfilesProvisionDefault`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/firewall/profiles/provisionDefaults`_
-
-    {}
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Provision default Organization-Wide Policy Firewall Profiles
-> 
-> **POST** `/organizations/{organizationId}/policy/groupPolicy/firewall/profiles/provisionDefaults`  
-> 
->     {}
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-policy-group-policy-firewall-profile/)
-
-#### Update an Organization-Wide Policy Firewall Profile
-
-Operation ID: `updateOrganizationPolicyGroupPolicyFirewallProfile`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/firewall/profiles/{profileId}`_
-
-    {
-      "id": "123",
-      "name": "Block Social Media",
-      "iname": "block-social-media",
-      "description": "Block all Social Media",
-      "reserved": false,
-      "deleted": false,
-      "createdAt": "2021-01-01T00:00:00Z",
-      "updatedAt": "2021-01-01T00:00:00Z"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update an Organization-Wide Policy Firewall Profile
-> 
-> **PUT** `/organizations/{organizationId}/policy/groupPolicy/firewall/profiles/{profileId}`  
-> 
->     {
->         "id": "123",
->         "name": "Block Social Media",
->         "iname": "block-social-media",
->         "description": "Block all Social Media",
->         "reserved": false,
->         "deleted": false,
->         "createdAt": "2021-01-01T00:00:00Z",
->         "updatedAt": "2021-01-01T00:00:00Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an Organization-Wide Policy Firewall Profile
-> 
-> **DELETE** `/organizations/{organizationId}/policy/groupPolicy/firewall/profiles/{profileId}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-policy-group-policy-firewall-rules/)
-
-#### Delete multiple Organization-Wide Policy Firewall Rules
-
-Operation ID: `deleteOrganizationPolicyGroupPolicyFirewallRules`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/firewall/rules`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Delete multiple Organization-Wide Policy Firewall Rules
-> 
-> **DELETE** `/organizations/{organizationId}/policy/groupPolicy/firewall/rules`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-policy-group-policy-firewall-rules-change/)
-
-#### Change Rules definition
-
-Operation ID: `createOrganizationPolicyGroupPolicyFirewallRulesChange`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/firewall/rules/change`_
-
-    {
-      "id": "123",
-      "name": "Rule 1",
-      "iname": "rule-1",
-      "action": "deny",
-      "enabled": true,
-      "logging": {
-        "enabled": false
       },
-      "tier": "deny-layer3",
-      "description": "Rule 1",
-      "deleted": false,
-      "profileId": "1",
-      "createdAt": "2021-01-01T00:00:00Z",
-      "updatedAt": "2021-01-01T00:00:00Z",
-      "status": "active",
-      "sources": [
-        {
-          "matchCriteria": [
-            "ipRanges",
-            "ports",
-            "vlanIds",
-            "policyObjectIds",
-            "policyObjectGroupIds",
-            "scopeIds",
-            "any"
-          ],
-          "criteria": {
-            "vlanIds": [
-              "1",
-              "2",
-              "3"
-            ],
-            "ipRanges": [
-              "1.1.1.0/24"
-            ],
-            "cloudFirewallUserGroups": [
-              "1",
-              "2"
-            ],
-            "policyObjectIds": [
-              "1",
-              "2"
-            ],
-            "policyObjectGroupIds": [
-              "1",
-              "2"
-            ],
-            "ports": [
-              "8080",
-              "10000-10010"
-            ]
-          }
-        }
-      ],
-      "destinations": [
-        {
-          "matchCriteria": [
-            "ipRanges",
-            "services",
-            "vlanIds",
-            "policyObjectIds",
-            "policyObjectGroupIds",
-            "casiApplicationIds",
-            "casiCategoryIds",
-            "saPrivateResourceIds",
-            "saPrivateResourceTypes",
-            "saApplicationProtocolIds",
-            "saDestinationListIds",
-            "scopeIds",
-            "any"
-          ],
-          "criteria": {
-            "vlanIds": [
-              "1",
-              "2",
-              "3"
-            ],
-            "ipRanges": [
-              "1.1.1.0/24"
-            ],
-            "policyObjectIds": [
-              "1",
-              "2"
-            ],
-            "policyObjectGroupIds": [
-              "1",
-              "2"
-            ],
-            "ports": [
-              "8080",
-              "10000-10010"
-            ],
-            "casiApplicationIds": [
-              "1",
-              "11"
-            ],
-            "casiCategoryIds": [
-              "40",
-              "6"
-            ],
-            "service": [
-              {
-                "protocol": "tcp",
-                "ports": [
-                  "8080",
-                  "10000-10010"
-                ]
-              }
-            ]
-          }
-        }
-      ]
+      "total": 4
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Change Rules definition
+> #### List high-level SSE site statuses (healthy, degraded, offline)
 > 
-> **POST** `/organizations/{organizationId}/policy/groupPolicy/firewall/rules/change`  
+> **GET** `/organizations/{organizationId}/sase/connectivity/overview`  
 > 
 >     {
->         "id": "123",
->         "name": "Rule 1",
->         "iname": "rule-1",
->         "action": "deny",
->         "enabled": true,
->         "logging": {
->             "enabled": false
+>         "status": {
+>             "healthy": {
+>                 "count": 3,
+>                 "siteIds": [
+>                     {
+>                         "id": 123
+>                     }
+>                 ]
+>             },
+>             "degraded": {
+>                 "count": 3,
+>                 "siteIds": [
+>                     {
+>                         "id": 123
+>                     }
+>                 ]
+>             },
+>             "offline": {
+>                 "count": 3,
+>                 "siteIds": [
+>                     {
+>                         "id": 123
+>                     }
+>                 ]
+>             }
 >         },
->         "tier": "deny-layer3",
->         "description": "Rule 1",
->         "deleted": false,
->         "profileId": "1",
->         "createdAt": "2021-01-01T00:00:00Z",
->         "updatedAt": "2021-01-01T00:00:00Z",
->         "status": "active",
->         "sources": [
->             {
->                 "matchCriteria": [
->                     "ipRanges",
->                     "ports",
->                     "vlanIds",
->                     "policyObjectIds",
->                     "policyObjectGroupIds",
->                     "scopeIds",
->                     "any"
->                 ],
->                 "criteria": {
->                     "vlanIds": [
->                         "1",
->                         "2",
->                         "3"
->                     ],
->                     "ipRanges": [
->                         "1.1.1.0/24"
->                     ],
->                     "cloudFirewallUserGroups": [
->                         "1",
->                         "2"
->                     ],
->                     "policyObjectIds": [
->                         "1",
->                         "2"
->                     ],
->                     "policyObjectGroupIds": [
->                         "1",
->                         "2"
->                     ],
->                     "ports": [
->                         "8080",
->                         "10000-10010"
->                     ]
->                 }
->             }
->         ],
->         "destinations": [
->             {
->                 "matchCriteria": [
->                     "ipRanges",
->                     "services",
->                     "vlanIds",
->                     "policyObjectIds",
->                     "policyObjectGroupIds",
->                     "casiApplicationIds",
->                     "casiCategoryIds",
->                     "saPrivateResourceIds",
->                     "saPrivateResourceTypes",
->                     "saApplicationProtocolIds",
->                     "saDestinationListIds",
->                     "scopeIds",
->                     "any"
->                 ],
->                 "criteria": {
->                     "vlanIds": [
->                         "1",
->                         "2",
->                         "3"
->                     ],
->                     "ipRanges": [
->                         "1.1.1.0/24"
->                     ],
->                     "policyObjectIds": [
->                         "1",
->                         "2"
->                     ],
->                     "policyObjectGroupIds": [
->                         "1",
->                         "2"
->                     ],
->                     "ports": [
->                         "8080",
->                         "10000-10010"
->                     ],
->                     "casiApplicationIds": [
->                         "1",
->                         "11"
->                     ],
->                     "casiCategoryIds": [
->                         "40",
->                         "6"
->                     ],
->                     "service": [
->                         {
->                             "protocol": "tcp",
->                             "ports": [
->                                 "8080",
->                                 "10000-10010"
->                             ]
->                         }
->                     ]
->                 }
->             }
->         ]
+>         "total": 4
 >     }
 > 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policy-group-policy-firewall-rules-errors/)
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-sase-integration/)
 
-#### Get Organization-Wide Policy Firewall Rules Errors
+#### Create a new Secure Access integration
 
-Operation ID: `getOrganizationPolicyGroupPolicyFirewallRulesErrors`
+Operation ID: `createOrganizationSaseIntegration`
 
-PATH _`/organizations/{organizationId}/policy/groupPolicy/firewall/rules/errors`_
+PATH _`/organizations/{organizationId}/sase/integrations`_
 
     {
-      "items": {
-        "1": {
-          "error": "Sync error",
-          "failedAt": "2021-01-01T00:00:00Z"
-        }
-      }
+      "type": "SecureAccess"
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Get Organization-Wide Policy Firewall Rules Errors
+> #### Create a new Secure Access integration
 > 
-> **GET** `/organizations/{organizationId}/policy/groupPolicy/firewall/rules/errors`  
+> **POST** `/organizations/{organizationId}/sase/integrations`  
 > 
 >     {
->         "items": {
->             "1": {
->                 "error": "Sync error",
->                 "failedAt": "2021-01-01T00:00:00Z"
->             }
->         }
+>         "type": "SecureAccess"
 >     }
 > 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-policy-group-policy-firewall-rules-filter/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-integration/)
 
-#### List Organization-Wide Policy Firewall Rules
+#### Get details of a Secure Access integration
 
-Operation ID: `createOrganizationPolicyGroupPolicyFirewallRulesFilter`
+Operation ID: `getOrganizationSaseIntegration`
 
-PATH _`/organizations/{organizationId}/policy/groupPolicy/firewall/rules/filter`_
+PATH _`/organizations/{organizationId}/sase/integrations/{integrationId}`_
+
+    {
+      "integrated": {
+        "by": {
+          "admin": {
+            "name": "John Doe"
+          }
+        },
+        "at": "2025-04-01T12:00:00Z"
+      },
+      "lastUsedAt": "2025-04-01T12:00:00Z",
+      "externalOrgId": "1234567890",
+      "status": "active"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get details of a Secure Access integration
+> 
+> **GET** `/organizations/{organizationId}/sase/integrations/{integrationId}`  
+> 
+>     {
+>         "integrated": {
+>             "by": {
+>                 "admin": {
+>                     "name": "John Doe"
+>                 }
+>             },
+>             "at": "2025-04-01T12:00:00Z"
+>         },
+>         "lastUsedAt": "2025-04-01T12:00:00Z",
+>         "externalOrgId": "1234567890",
+>         "status": "active"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Remove a Secure Access integration
+> 
+> **DELETE** `/organizations/{organizationId}/sase/integrations/{integrationId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-regions/)
+
+#### List regions
+
+Operation ID: `getOrganizationSaseRegions`
+
+PATH _`/organizations/{organizationId}/sase/regions`_
 
     {
       "items": [
         {
-          "id": "123",
-          "name": "Rule 1",
-          "iname": "rule-1",
-          "action": "deny",
-          "enabled": true,
-          "logging": {
-            "enabled": false
-          },
-          "tier": "deny-layer3",
-          "description": "Rule 1",
-          "deleted": false,
-          "profileId": "1",
-          "createdAt": "2021-01-01T00:00:00Z",
-          "updatedAt": "2021-01-01T00:00:00Z",
-          "status": "active",
-          "sources": [
-            {
-              "matchCriteria": [
-                "ipRanges",
-                "ports",
-                "vlanIds",
-                "policyObjectIds",
-                "policyObjectGroupIds",
-                "scopeIds",
-                "any"
-              ],
-              "criteria": {
-                "vlanIds": [
-                  "1",
-                  "2",
-                  "3"
-                ],
-                "ipRanges": [
-                  "1.1.1.0/24"
-                ],
-                "cloudFirewallUserGroups": [
-                  "1",
-                  "2"
-                ],
-                "policyObjectIds": [
-                  "1",
-                  "2"
-                ],
-                "policyObjectGroupIds": [
-                  "1",
-                  "2"
-                ],
-                "ports": [
-                  "8080",
-                  "10000-10010"
-                ]
-              }
-            }
-          ],
-          "destinations": [
-            {
-              "matchCriteria": [
-                "ipRanges",
-                "services",
-                "vlanIds",
-                "policyObjectIds",
-                "policyObjectGroupIds",
-                "casiApplicationIds",
-                "casiCategoryIds",
-                "saPrivateResourceIds",
-                "saPrivateResourceTypes",
-                "saApplicationProtocolIds",
-                "saDestinationListIds",
-                "scopeIds",
-                "any"
-              ],
-              "criteria": {
-                "vlanIds": [
-                  "1",
-                  "2",
-                  "3"
-                ],
-                "ipRanges": [
-                  "1.1.1.0/24"
-                ],
-                "policyObjectIds": [
-                  "1",
-                  "2"
-                ],
-                "policyObjectGroupIds": [
-                  "1",
-                  "2"
-                ],
-                "ports": [
-                  "8080",
-                  "10000-10010"
-                ],
-                "casiApplicationIds": [
-                  "1",
-                  "11"
-                ],
-                "casiCategoryIds": [
-                  "40",
-                  "6"
-                ],
-                "service": [
-                  {
-                    "protocol": "tcp",
-                    "ports": [
-                      "8080",
-                      "10000-10010"
-                    ]
-                  }
-                ]
-              }
-            }
-          ]
+          "connectorId": "123",
+          "type": "CNHE",
+          "name": "US West",
+          "region": {
+            "name": "us-west-1"
+          }
         }
       ],
       "meta": {
         "counts": {
-          "total": 12,
-          "remaining": 2
+          "items": {
+            "total": 1,
+            "remaining": 0
+          }
         }
       }
     }
@@ -7148,131 +6683,27 @@ PATH _`/organizations/{organizationId}/policy/groupPolicy/firewall/rules/filter`
 >   
 > \- New endpoint
 > 
-> #### List Organization-Wide Policy Firewall Rules
+> #### List regions
 > 
-> **POST** `/organizations/{organizationId}/policy/groupPolicy/firewall/rules/filter`  
+> **GET** `/organizations/{organizationId}/sase/regions`  
 > 
 >     {
 >         "items": [
 >             {
->                 "id": "123",
->                 "name": "Rule 1",
->                 "iname": "rule-1",
->                 "action": "deny",
->                 "enabled": true,
->                 "logging": {
->                     "enabled": false
->                 },
->                 "tier": "deny-layer3",
->                 "description": "Rule 1",
->                 "deleted": false,
->                 "profileId": "1",
->                 "createdAt": "2021-01-01T00:00:00Z",
->                 "updatedAt": "2021-01-01T00:00:00Z",
->                 "status": "active",
->                 "sources": [
->                     {
->                         "matchCriteria": [
->                             "ipRanges",
->                             "ports",
->                             "vlanIds",
->                             "policyObjectIds",
->                             "policyObjectGroupIds",
->                             "scopeIds",
->                             "any"
->                         ],
->                         "criteria": {
->                             "vlanIds": [
->                                 "1",
->                                 "2",
->                                 "3"
->                             ],
->                             "ipRanges": [
->                                 "1.1.1.0/24"
->                             ],
->                             "cloudFirewallUserGroups": [
->                                 "1",
->                                 "2"
->                             ],
->                             "policyObjectIds": [
->                                 "1",
->                                 "2"
->                             ],
->                             "policyObjectGroupIds": [
->                                 "1",
->                                 "2"
->                             ],
->                             "ports": [
->                                 "8080",
->                                 "10000-10010"
->                             ]
->                         }
->                     }
->                 ],
->                 "destinations": [
->                     {
->                         "matchCriteria": [
->                             "ipRanges",
->                             "services",
->                             "vlanIds",
->                             "policyObjectIds",
->                             "policyObjectGroupIds",
->                             "casiApplicationIds",
->                             "casiCategoryIds",
->                             "saPrivateResourceIds",
->                             "saPrivateResourceTypes",
->                             "saApplicationProtocolIds",
->                             "saDestinationListIds",
->                             "scopeIds",
->                             "any"
->                         ],
->                         "criteria": {
->                             "vlanIds": [
->                                 "1",
->                                 "2",
->                                 "3"
->                             ],
->                             "ipRanges": [
->                                 "1.1.1.0/24"
->                             ],
->                             "policyObjectIds": [
->                                 "1",
->                                 "2"
->                             ],
->                             "policyObjectGroupIds": [
->                                 "1",
->                                 "2"
->                             ],
->                             "ports": [
->                                 "8080",
->                                 "10000-10010"
->                             ],
->                             "casiApplicationIds": [
->                                 "1",
->                                 "11"
->                             ],
->                             "casiCategoryIds": [
->                                 "40",
->                                 "6"
->                             ],
->                             "service": [
->                                 {
->                                     "protocol": "tcp",
->                                     "ports": [
->                                         "8080",
->                                         "10000-10010"
->                                     ]
->                                 }
->                             ]
->                         }
->                     }
->                 ]
+>                 "connectorId": "123",
+>                 "type": "CNHE",
+>                 "name": "US West",
+>                 "region": {
+>                     "name": "us-west-1"
+>                 }
 >             }
 >         ],
 >         "meta": {
 >             "counts": {
->                 "total": 12,
->                 "remaining": 2
+>                 "items": {
+>                     "total": 1,
+>                     "remaining": 0
+>                 }
 >             }
 >         }
 >     }
@@ -7281,408 +6712,349 @@ PATH _`/organizations/{organizationId}/policy/groupPolicy/firewall/rules/filter`
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-policy-group-policy-firewall-rules-search-rules-exact-match/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-sites/)
 
-#### Search for Organization-wide Firewall Rules by source and destination IPs
+#### List of enrolled sites in this organization
 
-Operation ID: `createOrganizationPolicyGroupPolicyFirewallRulesSearchRulesExactMatch`
+Operation ID: `getOrganizationSaseSites`
 
-PATH _`/organizations/{organizationId}/policy/groupPolicy/firewall/rules/searchRulesExactMatch`_
+PATH _`/organizations/{organizationId}/sase/sites`_
 
     {
-      "items": "Hello, World!"
+      "items": [
+        {
+          "siteId": "1234",
+          "network": {
+            "id": "N_123"
+          },
+          "type": "Meraki spoke",
+          "name": "London Office",
+          "region": {
+            "name": "US East"
+          },
+          "model": "MX95",
+          "address": {
+            "street": "123 Main St"
+          },
+          "vpn": {
+            "type": "Spoke"
+          },
+          "routing": {
+            "defaultRoute": {
+              "enabled": true
+            }
+          },
+          "status": {
+            "code": 4,
+            "label": "up"
+          }
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1,
+            "remaining": 0
+          }
+        }
+      }
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Search for Organization-wide Firewall Rules by source and destination IPs
+> #### List of enrolled sites in this organization
 > 
-> **POST** `/organizations/{organizationId}/policy/groupPolicy/firewall/rules/searchRulesExactMatch`  
+> **GET** `/organizations/{organizationId}/sase/sites`  
 > 
 >     {
->         "items": "Hello, World!"
+>         "items": [
+>             {
+>                 "siteId": "1234",
+>                 "network": {
+>                     "id": "N_123"
+>                 },
+>                 "type": "Meraki spoke",
+>                 "name": "London Office",
+>                 "region": {
+>                     "name": "US East"
+>                 },
+>                 "model": "MX95",
+>                 "address": {
+>                     "street": "123 Main St"
+>                 },
+>                 "vpn": {
+>                     "type": "Spoke"
+>                 },
+>                 "routing": {
+>                     "defaultRoute": {
+>                         "enabled": true
+>                     }
+>                 },
+>                 "status": {
+>                     "code": 4,
+>                     "label": "up"
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 1,
+>                     "remaining": 0
+>                 }
+>             }
+>         }
 >     }
 > 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policy-group-policy-policies/)
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-sase-sites-detach/)
 
-#### List Organization-Wide Policies
+#### Detach sites in this organization from Secure Access
 
-Operation ID: `getOrganizationPolicyGroupPolicyPolicies`
+Operation ID: `deleteOrganizationSaseSitesDetach`
 
-PATH _`/organizations/{organizationId}/policy/groupPolicy/policies`_
+PATH _`/organizations/{organizationId}/sase/sites/detach`_
 
     {
       "items": [
         {
-          "id": "123",
-          "name": "All Vlan Policy",
-          "iname": "all-vlan-policy",
-          "description": "Policy that applies to all VLANs",
-          "zone": {
-            "id": "123",
-            "name": "Block Social Media",
-            "iname": "block-social-media",
-            "kind": "block-social-media",
-            "createdAt": "2021-01-01T00:00:00Z",
-            "updatedAt": "2021-01-01T00:00:00Z"
-          },
-          "profiles": [
+          "action": "detach",
+          "status": "success",
+          "message": "Site enrolled successfully",
+          "request": {
+            "siteId": "1520758"
+          }
+        }
+      ],
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Detach sites in this organization from Secure Access. This will remove the sites from Secure Access.
+> 
+> **DELETE** `/organizations/{organizationId}/sase/sites/detach`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "action": "detach",
+>                 "status": "success",
+>                 "message": "Site enrolled successfully",
+>                 "request": {
+>                     "siteId": "1520758"
+>                 }
+>             }
+>         ],
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-sase-sites-enroll/)
+
+#### Enroll sites in this organization to Secure Access
+
+Operation ID: `createOrganizationSaseSitesEnroll`
+
+PATH _`/organizations/{organizationId}/sase/sites/enroll`_
+
+    {
+      "items": [
+        {
+          "action": "enroll",
+          "status": "success",
+          "message": "Site enrolled successfully",
+          "request": {
+            "siteId": "1520758",
+            "regionId": "42"
+          }
+        }
+      ],
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enroll sites in this organization to Secure Access. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.
+> 
+> **POST** `/organizations/{organizationId}/sase/sites/enroll`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "action": "enroll",
+>                 "status": "success",
+>                 "message": "Site enrolled successfully",
+>                 "request": {
+>                     "siteId": "1520758",
+>                     "regionId": "42"
+>                 }
+>             }
+>         ],
+>         "callback": {
+>             "id": "1284392014819",
+>             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+>             "status": "new"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-sites-statuses/)
+
+#### Get the status of sites in this organization
+
+Operation ID: `getOrganizationSaseSitesStatuses`
+
+PATH _`/organizations/{organizationId}/sase/sites/statuses`_
+
+    {
+      "items": [
+        {
+          "siteId": "123",
+          "siteName": "Frontizo Network 1",
+          "networkStatuses": [
             {
               "id": "123",
-              "name": "Block Social Media",
-              "iname": "block-social-media",
-              "description": "Block all Social Media",
-              "reserved": false,
-              "deleted": false,
-              "createdAt": "2021-01-01T00:00:00Z",
-              "updatedAt": "2021-01-01T00:00:00Z"
+              "status": "up",
+              "timestamp": "2022-11-08T00:00:00Z"
             }
           ],
-          "status": "active",
-          "deleted": false,
-          "createdAt": "2021-01-01T00:00:00Z",
-          "updatedAt": "2021-01-01T00:00:00Z"
-        }
-      ],
-      "meta": {
-        "counts": {
-          "total": 12,
-          "remaining": 2
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List Organization-Wide Policies
-> 
-> **GET** `/organizations/{organizationId}/policy/groupPolicy/policies`  
-> 
->     {
->         "items": [
->             {
->                 "id": "123",
->                 "name": "All Vlan Policy",
->                 "iname": "all-vlan-policy",
->                 "description": "Policy that applies to all VLANs",
->                 "zone": {
->                     "id": "123",
->                     "name": "Block Social Media",
->                     "iname": "block-social-media",
->                     "kind": "block-social-media",
->                     "createdAt": "2021-01-01T00:00:00Z",
->                     "updatedAt": "2021-01-01T00:00:00Z"
->                 },
->                 "profiles": [
->                     {
->                         "id": "123",
->                         "name": "Block Social Media",
->                         "iname": "block-social-media",
->                         "description": "Block all Social Media",
->                         "reserved": false,
->                         "deleted": false,
->                         "createdAt": "2021-01-01T00:00:00Z",
->                         "updatedAt": "2021-01-01T00:00:00Z"
->                     }
->                 ],
->                 "status": "active",
->                 "deleted": false,
->                 "createdAt": "2021-01-01T00:00:00Z",
->                 "updatedAt": "2021-01-01T00:00:00Z"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "total": 12,
->                 "remaining": 2
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-policy-group-policy-policies-change/)
-
-#### Change Policy definition
-
-Operation ID: `createOrganizationPolicyGroupPolicyPoliciesChange`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/policies/change`_
-
-    {
-      "id": "123",
-      "name": "All Vlan Policy",
-      "iname": "all-vlan-policy",
-      "description": "Policy that applies to all VLANs",
-      "zone": {
-        "id": "123",
-        "name": "Block Social Media",
-        "iname": "block-social-media",
-        "kind": "block-social-media",
-        "createdAt": "2021-01-01T00:00:00Z",
-        "updatedAt": "2021-01-01T00:00:00Z"
-      },
-      "profiles": [
-        {
-          "id": "123",
-          "name": "Block Social Media",
-          "iname": "block-social-media",
-          "description": "Block all Social Media",
-          "reserved": false,
-          "deleted": false,
-          "createdAt": "2021-01-01T00:00:00Z",
-          "updatedAt": "2021-01-01T00:00:00Z"
-        }
-      ],
-      "status": "active",
-      "deleted": false,
-      "createdAt": "2021-01-01T00:00:00Z",
-      "updatedAt": "2021-01-01T00:00:00Z"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Change Policy definition
-> 
-> **POST** `/organizations/{organizationId}/policy/groupPolicy/policies/change`  
-> 
->     {
->         "id": "123",
->         "name": "All Vlan Policy",
->         "iname": "all-vlan-policy",
->         "description": "Policy that applies to all VLANs",
->         "zone": {
->             "id": "123",
->             "name": "Block Social Media",
->             "iname": "block-social-media",
->             "kind": "block-social-media",
->             "createdAt": "2021-01-01T00:00:00Z",
->             "updatedAt": "2021-01-01T00:00:00Z"
->         },
->         "profiles": [
->             {
->                 "id": "123",
->                 "name": "Block Social Media",
->                 "iname": "block-social-media",
->                 "description": "Block all Social Media",
->                 "reserved": false,
->                 "deleted": false,
->                 "createdAt": "2021-01-01T00:00:00Z",
->                 "updatedAt": "2021-01-01T00:00:00Z"
->             }
->         ],
->         "status": "active",
->         "deleted": false,
->         "createdAt": "2021-01-01T00:00:00Z",
->         "updatedAt": "2021-01-01T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-policy-group-policy-policy/)
-
-#### Delete an Organization-Wide Policy
-
-Operation ID: `deleteOrganizationPolicyGroupPolicyPolicy`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/policies/{policyId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Delete an Organization-Wide Policy
-> 
-> **DELETE** `/organizations/{organizationId}/policy/groupPolicy/policies/{policyId}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policy-group-policy-vlans/)
-
-#### List Organization-Wide Policy Vlans
-
-Operation ID: `getOrganizationPolicyGroupPolicyVlans`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/vlans`_
-
-    {
-      "items": [
-        {
-          "id": "123",
-          "name": "Vlan 10",
-          "subnet": "10.0.0.0/24",
-          "vlanId": "1",
-          "networkName": "Home network",
-          "zoneIds": [
-            "1",
-            "2",
-            "3"
-          ]
-        }
-      ],
-      "meta": {
-        "counts": {
-          "total": 12,
-          "remaining": 2
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List Organization-Wide Policy Vlans
-> 
-> **GET** `/organizations/{organizationId}/policy/groupPolicy/vlans`  
-> 
->     {
->         "items": [
->             {
->                 "id": "123",
->                 "name": "Vlan 10",
->                 "subnet": "10.0.0.0/24",
->                 "vlanId": "1",
->                 "networkName": "Home network",
->                 "zoneIds": [
->                     "1",
->                     "2",
->                     "3"
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "total": 12,
->                 "remaining": 2
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policy-group-policy-zones/)
-
-#### List Organization-Wide Policy Zones
-
-Operation ID: `getOrganizationPolicyGroupPolicyZones`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/zones`_
-
-    {
-      "items": [
-        {
-          "id": "123",
-          "name": "Block Social Media",
-          "iname": "block-social-media",
-          "kind": "block-social-media",
-          "createdAt": "2021-01-01T00:00:00Z",
-          "updatedAt": "2021-01-01T00:00:00Z"
-        }
-      ],
-      "meta": {
-        "counts": {
-          "total": 12,
-          "remaining": 2
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List Organization-Wide Policy Zones
-> 
-> **GET** `/organizations/{organizationId}/policy/groupPolicy/zones`  
-> 
->     {
->         "items": [
->             {
->                 "id": "123",
->                 "name": "Block Social Media",
->                 "iname": "block-social-media",
->                 "kind": "block-social-media",
->                 "createdAt": "2021-01-01T00:00:00Z",
->                 "updatedAt": "2021-01-01T00:00:00Z"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "total": 12,
->                 "remaining": 2
->             }
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create an Organization-Wide Policy Zone
-> 
-> **POST** `/organizations/{organizationId}/policy/groupPolicy/zones`  
-> 
->     {
->         "id": "123",
->         "name": "Block Social Media",
->         "iname": "block-social-media",
->         "kind": "block-social-media",
->         "createdAt": "2021-01-01T00:00:00Z",
->         "updatedAt": "2021-01-01T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policy-group-policy-zones-details/)
-
-#### Get Enforcement details
-
-Operation ID: `getOrganizationPolicyGroupPolicyZonesDetails`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/zones/details`_
-
-    {
-      "items": {
-        "1": {
-          "policy": {
-            "id": "123",
-            "name": "Policy 123"
-          },
-          "enforcements": {
-            "vlansOverview": [
-              {
-                "id": "123",
-                "name": "Vlan 123"
-              }
-            ],
-            "vlansCount": 3,
-            "adaptivePolicyGroups": [
-              "7"
-            ]
+          "devices": {
+            "primary": {
+              "id": "234",
+              "statuses": [
+                {
+                  "id": "234",
+                  "status": "up",
+                  "timestamp": "2022-11-08T00:00:00Z"
+                }
+              ]
+            },
+            "spare": {
+              "id": "345",
+              "statuses": [
+                {
+                  "id": "345",
+                  "status": "degraded",
+                  "timestamp": "2022-11-08T00:15:00Z"
+                }
+              ]
+            }
           }
         }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get the status of sites in this organization
+> 
+> **GET** `/organizations/{organizationId}/sase/sites/statuses`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "siteId": "123",
+>                 "siteName": "Frontizo Network 1",
+>                 "networkStatuses": [
+>                     {
+>                         "id": "123",
+>                         "status": "up",
+>                         "timestamp": "2022-11-08T00:00:00Z"
+>                     }
+>                 ],
+>                 "devices": {
+>                     "primary": {
+>                         "id": "234",
+>                         "statuses": [
+>                             {
+>                                 "id": "234",
+>                                 "status": "up",
+>                                 "timestamp": "2022-11-08T00:00:00Z"
+>                             }
+>                         ]
+>                     },
+>                     "spare": {
+>                         "id": "345",
+>                         "statuses": [
+>                             {
+>                                 "id": "345",
+>                                 "status": "degraded",
+>                                 "timestamp": "2022-11-08T00:15:00Z"
+>                             }
+>                         ]
+>                     }
+>                 }
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-site/)
+
+#### Get details of a site in this organization
+
+Operation ID: `getOrganizationSaseSite`
+
+PATH _`/organizations/{organizationId}/sase/sites/{siteId}`_
+
+    {
+      "siteId": "1234",
+      "network": {
+        "id": "N_123"
+      },
+      "type": "Meraki spoke",
+      "name": "London Office",
+      "region": {
+        "name": "US East"
+      },
+      "model": "MX95",
+      "address": {
+        "street": "123 Main St"
+      },
+      "vpn": {
+        "type": "Spoke"
+      },
+      "routing": {
+        "defaultRoute": {
+          "enabled": true
+        }
+      },
+      "status": {
+        "code": 4,
+        "label": "up"
       }
     }
 
@@ -7690,134 +7062,73 @@ PATH _`/organizations/{organizationId}/policy/groupPolicy/zones/details`_
 >   
 > \- New endpoint
 > 
-> #### Get Enforcement details
+> #### Get details of a site in this organization
 > 
-> **GET** `/organizations/{organizationId}/policy/groupPolicy/zones/details`  
+> **GET** `/organizations/{organizationId}/sase/sites/{siteId}`  
 > 
 >     {
->         "items": {
->             "1": {
->                 "policy": {
->                     "id": "123",
->                     "name": "Policy 123"
->                 },
->                 "enforcements": {
->                     "vlansOverview": [
->                         {
->                             "id": "123",
->                             "name": "Vlan 123"
->                         }
->                     ],
->                     "vlansCount": 3,
->                     "adaptivePolicyGroups": [
->                         "7"
->                     ]
->                 }
+>         "siteId": "1234",
+>         "network": {
+>             "id": "N_123"
+>         },
+>         "type": "Meraki spoke",
+>         "name": "London Office",
+>         "region": {
+>             "name": "US East"
+>         },
+>         "model": "MX95",
+>         "address": {
+>             "street": "123 Main St"
+>         },
+>         "vpn": {
+>             "type": "Spoke"
+>         },
+>         "routing": {
+>             "defaultRoute": {
+>                 "enabled": true
 >             }
+>         },
+>         "status": {
+>             "code": 4,
+>             "label": "up"
 >         }
 >     }
 > 
 > * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-policy-group-policy-zone/)
-
-#### Update an Organization-Wide Policy Zone
-
-Operation ID: `updateOrganizationPolicyGroupPolicyZone`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/zones/{zoneId}`_
-
-    {
-      "id": "123",
-      "name": "Block Social Media",
-      "iname": "block-social-media",
-      "kind": "block-social-media",
-      "createdAt": "2021-01-01T00:00:00Z",
-      "updatedAt": "2021-01-01T00:00:00Z"
-    }
-
-> \- Path added  
+> 
 >   
 > \- New endpoint
 > 
-> #### Update an Organization-Wide Policy Zone
+> #### Update the configuration for a site. Currently, only supports updating default route enablement.
 > 
-> **PUT** `/organizations/{organizationId}/policy/groupPolicy/zones/{zoneId}`  
+> **PUT** `/organizations/{organizationId}/sase/sites/{siteId}`  
 > 
 >     {
->         "id": "123",
->         "name": "Block Social Media",
->         "iname": "block-social-media",
->         "kind": "block-social-media",
->         "createdAt": "2021-01-01T00:00:00Z",
->         "updatedAt": "2021-01-01T00:00:00Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an Organization-Wide Policy Zone
-> 
-> **DELETE** `/organizations/{organizationId}/policy/groupPolicy/zones/{zoneId}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-policy-group-policy-zone-vlans-assign/)
-
-#### Assign VLANs to a given Zone
-
-Operation ID: `createOrganizationPolicyGroupPolicyZoneVlansAssign`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/zones/{zoneId}/vlans/assign`_
-
-    {
-      "message": "VLANs assigned successfully"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Assign VLANs to a given Zone
-> 
-> **POST** `/organizations/{organizationId}/policy/groupPolicy/zones/{zoneId}/vlans/assign`  
-> 
->     {
->         "message": "VLANs assigned successfully"
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-policy-group-policy-zone-vlans-remove/)
-
-#### Remove VLANs from a given Zone
-
-Operation ID: `createOrganizationPolicyGroupPolicyZoneVlansRemove`
-
-PATH _`/organizations/{organizationId}/policy/groupPolicy/zones/{zoneId}/vlans/remove`_
-
-    {
-      "message": "VLANs removed successfully"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Remove VLANs from a given Zone
-> 
-> **POST** `/organizations/{organizationId}/policy/groupPolicy/zones/{zoneId}/vlans/remove`  
-> 
->     {
->         "message": "VLANs removed successfully"
+>         "siteId": "1234",
+>         "network": {
+>             "id": "N_123"
+>         },
+>         "type": "Meraki spoke",
+>         "name": "London Office",
+>         "region": {
+>             "name": "US East"
+>         },
+>         "model": "MX95",
+>         "address": {
+>             "street": "123 Main St"
+>         },
+>         "vpn": {
+>             "type": "Spoke"
+>         },
+>         "routing": {
+>             "defaultRoute": {
+>                 "enabled": true
+>             }
+>         },
+>         "status": {
+>             "code": 4,
+>             "label": "up"
+>         }
 >     }
 > 
 > * * *
@@ -8116,6 +7427,156 @@ PATH _`/organizations/{organizationId}/inventory/orders/preview`_
 >             }
 >         ]
 >     }
+> 
+> * * *
+
+* * *
+
+### integrations
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-integrations-deployable/)
+
+#### Provides a list of integrations that can be enabled for an Organization.
+
+Operation ID: `getOrganizationIntegrationsDeployable`
+
+PATH _`/organizations/{organizationId}/integrations/deployable`_
+
+    [
+      {
+        "items": [
+          {
+            "type": "Catalyst SD-WAN",
+            "name": "Catalyst SD-WAN",
+            "provider": "Cisco",
+            "tags": [
+              "SD-WAN"
+            ],
+            "shortDescription": "Connect to a Catalyst SD-WAN overlay to enable simple SD-WAN interconnects.",
+            "isDeployable": true,
+            "releaseType": "Beta",
+            "logoUrl": "https://example.com",
+            "redirectUrl": "https://example.com",
+            "isCiscoProduct": true
+          }
+        ],
+        "meta": {
+          "counts": {
+            "items": {
+              "total": 100,
+              "remaining": 10
+            }
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of integrations that can be enabled for an Organization.
+> 
+> **GET** `/organizations/{organizationId}/integrations/deployable`  
+> 
+>     [
+>         {
+>             "items": [
+>                 {
+>                     "type": "Catalyst SD-WAN",
+>                     "name": "Catalyst SD-WAN",
+>                     "provider": "Cisco",
+>                     "tags": [
+>                         "SD-WAN"
+>                     ],
+>                     "shortDescription": "Connect to a Catalyst SD-WAN overlay to enable simple SD-WAN interconnects.",
+>                     "isDeployable": true,
+>                     "releaseType": "Beta",
+>                     "logoUrl": "https://example.com",
+>                     "redirectUrl": "https://example.com",
+>                     "isCiscoProduct": true
+>                 }
+>             ],
+>             "meta": {
+>                 "counts": {
+>                     "items": {
+>                         "total": 100,
+>                         "remaining": 10
+>                     }
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-integrations-deployed/)
+
+#### Provides a list of integrations enabled for an Organization.
+
+Operation ID: `getOrganizationIntegrationsDeployed`
+
+PATH _`/organizations/{organizationId}/integrations/deployed`_
+
+    [
+      {
+        "items": [
+          {
+            "id": "98765",
+            "type": "OAuth",
+            "name": "OAuth Application",
+            "provider": "partner",
+            "tags": [
+              "Wayfinding",
+              "OAuth"
+            ]
+          }
+        ],
+        "meta": {
+          "counts": {
+            "items": {
+              "total": 100,
+              "remaining": 10
+            }
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Provides a list of integrations enabled for an Organization.
+> 
+> **GET** `/organizations/{organizationId}/integrations/deployed`  
+> 
+>     [
+>         {
+>             "items": [
+>                 {
+>                     "id": "98765",
+>                     "type": "OAuth",
+>                     "name": "OAuth Application",
+>                     "provider": "partner",
+>                     "tags": [
+>                         "Wayfinding",
+>                         "OAuth"
+>                     ]
+>                 }
+>             ],
+>             "meta": {
+>                 "counts": {
+>                     "items": {
+>                         "total": 100,
+>                         "remaining": 10
+>                     }
+>                 }
+>             }
+>         }
+>     ]
 > 
 > * * *
 
@@ -9398,6 +8859,230 @@ PATH _`/organizations/{organizationId}/assurance/productAnnouncements`_
 
 * * *
 
+### apiRequests
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-admin/)
+
+#### Lists API request response codes and their counts aggregated by admin
+
+Operation ID: `getOrganizationApiRequestsResponseCodesHistoryByAdmin`
+
+PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/byAdmin`_
+
+    [
+      {
+        "adminId": "1738",
+        "name": "Admin Name",
+        "email": "email@example.com",
+        "overall": {
+          "counts": {
+            "byCode": [
+              {
+                "code": 200,
+                "total": 100
+              }
+            ],
+            "total": 100
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lists API request response codes and their counts aggregated by admin
+> 
+> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/byAdmin`  
+> 
+>     [
+>         {
+>             "adminId": "1738",
+>             "name": "Admin Name",
+>             "email": "email@example.com",
+>             "overall": {
+>                 "counts": {
+>                     "byCode": [
+>                         {
+>                             "code": 200,
+>                             "total": 100
+>                         }
+>                     ],
+>                     "total": 100
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-application/)
+
+#### Lists API request response codes and their counts aggregated by application
+
+Operation ID: `getOrganizationApiRequestsResponseCodesHistoryByApplication`
+
+PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/byApplication`_
+
+    [
+      {
+        "userAgentString": "google/chrome",
+        "name": "My favorite OAuth app",
+        "overall": {
+          "counts": {
+            "byCode": [
+              {
+                "code": 200,
+                "total": 100
+              }
+            ],
+            "total": 100
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lists API request response codes and their counts aggregated by application
+> 
+> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/byApplication`  
+> 
+>     [
+>         {
+>             "userAgentString": "google/chrome",
+>             "name": "My favorite OAuth app",
+>             "overall": {
+>                 "counts": {
+>                     "byCode": [
+>                         {
+>                             "code": 200,
+>                             "total": 100
+>                         }
+>                     ],
+>                     "total": 100
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-operation/)
+
+#### Aggregates API usage data by operationId
+
+Operation ID: `getOrganizationApiRequestsResponseCodesHistoryByOperation`
+
+PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/byOperation`_
+
+    [
+      {
+        "operationId": "getNetworkClients",
+        "overall": {
+          "counts": {
+            "byCode": [
+              {
+                "code": 200,
+                "total": 100
+              }
+            ],
+            "total": 100
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Aggregates API usage data by operationId
+> 
+> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/byOperation`  
+> 
+>     [
+>         {
+>             "operationId": "getNetworkClients",
+>             "overall": {
+>                 "counts": {
+>                     "byCode": [
+>                         {
+>                             "code": 200,
+>                             "total": 100
+>                         }
+>                     ],
+>                     "total": 100
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-source-ip/)
+
+#### Aggregates API usage by source ip
+
+Operation ID: `getOrganizationApiRequestsResponseCodesHistoryBySourceIp`
+
+PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/bySourceIp`_
+
+    [
+      {
+        "sourceIp": "123.123.123.1",
+        "overall": {
+          "counts": {
+            "byCode": [
+              {
+                "code": 200,
+                "total": 100
+              }
+            ],
+            "total": 100
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Aggregates API usage by source ip
+> 
+> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/bySourceIp`  
+> 
+>     [
+>         {
+>             "sourceIp": "123.123.123.1",
+>             "overall": {
+>                 "counts": {
+>                     "byCode": [
+>                         {
+>                             "code": 200,
+>                             "total": 100
+>                         }
+>                     ],
+>                     "total": 100
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
 ### snmp
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-snmp-traps-by-network/)
@@ -10055,6 +9740,104 @@ PATH _`/organizations/{organizationId}/devices/syslog/servers/roles/byNetwork`_
 * * *
 
 ### clients
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-clients-events/)
+
+#### Given a client, get all alerts and events for a given timespan
+
+Operation ID: `getOrganizationAssuranceClientsEvents`
+
+PATH _`/organizations/{organizationId}/assurance/clients/events`_
+
+    [
+      {
+        "client": {
+          "id": "k74272e",
+          "name": "Cisco Meraki valued client"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "startTime": "2018-02-11T00:00:00Z",
+        "endTime": "2018-05-12T00:00:00Z",
+        "events": [
+          {
+            "category": "connectivity",
+            "type": "dhcp_problem",
+            "displayText": "DHCP Problem",
+            "startedAt": "2018-02-11T00:00:00Z",
+            "resolvedAt": "2018-05-12T00:00:00Z",
+            "device": {
+              "name": "Device Name",
+              "mac": "00:11:22:33:44:55",
+              "type": "MS",
+              "serial": "Q234-ABCD-5678",
+              "url": "https://n1.meraki.test/tag/n/testnetwork/manage/nodes/new_list/12345"
+            },
+            "ssid": {
+              "name": "SSID Name",
+              "url": "https://n1.meraki.test/tag/n/testnetwork/manage/configure/access_control?ssid_number=5"
+            },
+            "packetCapture": {
+              "enabled": false,
+              "captureId": "12345"
+            }
+          }
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Given a client, get all alerts and events for a given timespan
+> 
+> **GET** `/organizations/{organizationId}/assurance/clients/events`  
+> 
+>     [
+>         {
+>             "client": {
+>                 "id": "k74272e",
+>                 "name": "Cisco Meraki valued client"
+>             },
+>             "network": {
+>                 "id": "N_24329156",
+>                 "name": "Main Office"
+>             },
+>             "startTime": "2018-02-11T00:00:00Z",
+>             "endTime": "2018-05-12T00:00:00Z",
+>             "events": [
+>                 {
+>                     "category": "connectivity",
+>                     "type": "dhcp_problem",
+>                     "displayText": "DHCP Problem",
+>                     "startedAt": "2018-02-11T00:00:00Z",
+>                     "resolvedAt": "2018-05-12T00:00:00Z",
+>                     "device": {
+>                         "name": "Device Name",
+>                         "mac": "00:11:22:33:44:55",
+>                         "type": "MS",
+>                         "serial": "Q234-ABCD-5678",
+>                         "url": "https://n1.meraki.test/tag/n/testnetwork/manage/nodes/new_list/12345"
+>                     },
+>                     "ssid": {
+>                         "name": "SSID Name",
+>                         "url": "https://n1.meraki.test/tag/n/testnetwork/manage/configure/access_control?ssid_number=5"
+>                     },
+>                     "packetCapture": {
+>                         "enabled": false,
+>                         "captureId": "12345"
+>                     }
+>                 }
+>             ]
+>         }
+>     ]
+> 
+> * * *
+
+* * *
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-clients-events-correlated/)
 
@@ -11119,7 +10902,7 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
       },
       "aiRrm": {
         "enabled": true,
-        "enablementDate": "2025-10-05T09:01:40Z"
+        "enablementDate": "2025-11-03T09:01:47Z"
       }
     }
 
@@ -11161,7 +10944,7 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
 >         },
 >         "aiRrm": {
 >             "enabled": true,
->             "enablementDate": "2025-10-05T09:01:40Z"
+>             "enablementDate": "2025-11-03T09:01:47Z"
 >         }
 >     }
 > 
@@ -11207,7 +10990,7 @@ PATH _`/networks/{networkId}/wireless/radio/rrm`_
       },
       "aiRrm": {
         "enabled": true,
-        "enablementDate": "2025-10-05T09:01:40Z"
+        "enablementDate": "2025-11-03T09:01:47Z"
       }
     }
 
@@ -11249,7 +11032,7 @@ PATH _`/networks/{networkId}/wireless/radio/rrm`_
 >         },
 >         "aiRrm": {
 >             "enabled": true,
->             "enablementDate": "2025-10-05T09:01:40Z"
+>             "enablementDate": "2025-11-03T09:01:47Z"
 >         }
 >     }
 > 
@@ -11428,7 +11211,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`_
         },
         "aiRrm": {
           "enabled": true,
-          "enablementDate": "2025-10-05T09:01:40Z"
+          "enablementDate": "2025-11-03T09:01:47Z"
         }
       }
     ]
@@ -11472,7 +11255,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`_
 >             },
 >             "aiRrm": {
 >                 "enabled": true,
->                 "enablementDate": "2025-10-05T09:01:40Z"
+>                 "enablementDate": "2025-11-03T09:01:47Z"
 >             }
 >         }
 >     ]
@@ -11598,7 +11381,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/rrm/byNetwork`_
         },
         "aiRrm": {
           "enabled": true,
-          "enablementDate": "2025-10-05T09:01:40Z"
+          "enablementDate": "2025-11-03T09:01:47Z"
         }
       }
     ]
@@ -11642,7 +11425,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/rrm/byNetwork`_
 >             },
 >             "aiRrm": {
 >                 "enabled": true,
->                 "enablementDate": "2025-10-05T09:01:40Z"
+>                 "enablementDate": "2025-11-03T09:01:47Z"
 >             }
 >         }
 >     ]
@@ -13836,2309 +13619,6 @@ PATH _`/organizations/{organizationId}/switch/stacks/ports/mirrors/byStack`_
 >             }
 >         }
 >     ]
-> 
-> * * *
-
-* * *
-
-### ports
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-device-switch-ports-mirror/)
-
-#### Update a port mirror
-
-Operation ID: `updateDeviceSwitchPortsMirror`
-
-PATH _`/devices/{serial}/switch/ports/mirror`_
-
-    {
-      "serial": "Q234-ABCD-5678",
-      "network": {
-        "id": "N_24329156",
-        "name": "Main Office"
-      },
-      "mirror": {
-        "source": {
-          "ports": [
-            {
-              "number": 2,
-              "module": {
-                "type": "C9800-2X40GE",
-                "slot": 2
-              }
-            }
-          ],
-          "filter": {
-            "vlans": "100, 200-210",
-            "hasTransitVlan": true
-          }
-        },
-        "destination": {
-          "port": {
-            "number": 7,
-            "module": {
-              "type": "C9800-2X40GE",
-              "slot": 1
-            }
-          },
-          "vlan": "10"
-        },
-        "role": "source",
-        "comment": "My pretty comment",
-        "tags": [
-          "tag1",
-          "tag2"
-        ]
-      },
-      "warnings": [
-        "Warnings from traffic mirror configuration changes"
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update a port mirror
-> 
-> **PUT** `/devices/{serial}/switch/ports/mirror`  
-> 
->     {
->         "serial": "Q234-ABCD-5678",
->         "network": {
->             "id": "N_24329156",
->             "name": "Main Office"
->         },
->         "mirror": {
->             "source": {
->                 "ports": [
->                     {
->                         "number": 2,
->                         "module": {
->                             "type": "C9800-2X40GE",
->                             "slot": 2
->                         }
->                     }
->                 ],
->                 "filter": {
->                     "vlans": "100, 200-210",
->                     "hasTransitVlan": true
->                 }
->             },
->             "destination": {
->                 "port": {
->                     "number": 7,
->                     "module": {
->                         "type": "C9800-2X40GE",
->                         "slot": 1
->                     }
->                 },
->                 "vlan": "10"
->             },
->             "role": "source",
->             "comment": "My pretty comment",
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ]
->         },
->         "warnings": [
->             "Warnings from traffic mirror configuration changes"
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-ports-profiles/)
-
-#### List the port profiles in a network
-
-Operation ID: `getNetworkSwitchPortsProfiles`
-
-PATH _`/networks/{networkId}/switch/ports/profiles`_
-
-    [
-      {
-        "profileId": "1284392014819",
-        "networkId": "N_24329156",
-        "name": "Phone",
-        "description": "IP Phones for all office workers",
-        "tags": [
-          "tag1",
-          "tag2"
-        ],
-        "associatedPorts": [
-          {
-            "portId": "8",
-            "portNum": 8,
-            "portName": "Dev - Cheshire Cat / 8",
-            "serial": "Q234-ABCD-5678",
-            "profile": {
-              "enabled": true,
-              "id": "1284392014819"
-            }
-          }
-        ],
-        "associatedSwitches": [
-          {
-            "switchId": 247165647951894,
-            "name": "Dev - Cheshire Cat",
-            "mac": "e0:cb:bc:a5:98:16",
-            "serial": "Q234-ABCD-5678",
-            "model": "MS120-48FP"
-          }
-        ],
-        "assignedSwitchports": [
-          {
-            "portIds": [
-              "1",
-              "2",
-              "3",
-              "1_C3850-NM-8-10G_1",
-              "1_C3850-NM-8-10G_2"
-            ],
-            "switch": {
-              "serial": "Q234-ABCD-5678"
-            },
-            "template": {
-              "id": 1983748489
-            }
-          }
-        ],
-        "createdAt": "2022-09-16T09:18:38Z",
-        "updatedAt": "2022-09-16T09:18:38Z",
-        "port": {
-          "type": "access",
-          "vlan": 10,
-          "voiceVlan": 20,
-          "allowedVlans": "1-100",
-          "poeEnabled": true,
-          "isolationEnabled": false,
-          "rstpEnabled": true,
-          "stpGuard": "disabled",
-          "udld": "Alert only",
-          "accessPolicyType": "Sticky MAC allow list",
-          "accessPolicyNumber": 3,
-          "macAllowList": [
-            "34:56:fe:ce:8e:b0",
-            "34:56:fe:ce:8e:b1"
-          ],
-          "stickyMacAllowList": [
-            "34:56:fe:ce:8e:b0",
-            "34:56:fe:ce:8e:b1"
-          ],
-          "stickyMacAllowListLimit": 5,
-          "stormControlEnabled": true,
-          "adaptivePolicyGroupId": "1284392014819",
-          "peerSgtCapable": false,
-          "daiTrusted": false
-        },
-        "isOrganizationWide": false,
-        "networks": {
-          "values": [
-            {
-              "id": "N_11865",
-              "name": "Wonderland-Dev"
-            }
-          ],
-          "type": "included"
-        },
-        "automations": [
-          {
-            "id": "N_11865",
-            "name": "RYOFXAPO"
-          }
-        ],
-        "access": "full"
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the port profiles in a network
-> 
-> **GET** `/networks/{networkId}/switch/ports/profiles`  
-> 
->     [
->         {
->             "profileId": "1284392014819",
->             "networkId": "N_24329156",
->             "name": "Phone",
->             "description": "IP Phones for all office workers",
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ],
->             "associatedPorts": [
->                 {
->                     "portId": "8",
->                     "portNum": 8,
->                     "portName": "Dev - Cheshire Cat / 8",
->                     "serial": "Q234-ABCD-5678",
->                     "profile": {
->                         "enabled": true,
->                         "id": "1284392014819"
->                     }
->                 }
->             ],
->             "associatedSwitches": [
->                 {
->                     "switchId": 247165647951894,
->                     "name": "Dev - Cheshire Cat",
->                     "mac": "e0:cb:bc:a5:98:16",
->                     "serial": "Q234-ABCD-5678",
->                     "model": "MS120-48FP"
->                 }
->             ],
->             "assignedSwitchports": [
->                 {
->                     "portIds": [
->                         "1",
->                         "2",
->                         "3",
->                         "1_C3850-NM-8-10G_1",
->                         "1_C3850-NM-8-10G_2"
->                     ],
->                     "switch": {
->                         "serial": "Q234-ABCD-5678"
->                     },
->                     "template": {
->                         "id": 1983748489
->                     }
->                 }
->             ],
->             "createdAt": "2022-09-16T09:18:38Z",
->             "updatedAt": "2022-09-16T09:18:38Z",
->             "port": {
->                 "type": "access",
->                 "vlan": 10,
->                 "voiceVlan": 20,
->                 "allowedVlans": "1-100",
->                 "poeEnabled": true,
->                 "isolationEnabled": false,
->                 "rstpEnabled": true,
->                 "stpGuard": "disabled",
->                 "udld": "Alert only",
->                 "accessPolicyType": "Sticky MAC allow list",
->                 "accessPolicyNumber": 3,
->                 "macAllowList": [
->                     "34:56:fe:ce:8e:b0",
->                     "34:56:fe:ce:8e:b1"
->                 ],
->                 "stickyMacAllowList": [
->                     "34:56:fe:ce:8e:b0",
->                     "34:56:fe:ce:8e:b1"
->                 ],
->                 "stickyMacAllowListLimit": 5,
->                 "stormControlEnabled": true,
->                 "adaptivePolicyGroupId": "1284392014819",
->                 "peerSgtCapable": false,
->                 "daiTrusted": false
->             },
->             "isOrganizationWide": false,
->             "networks": {
->                 "values": [
->                     {
->                         "id": "N_11865",
->                         "name": "Wonderland-Dev"
->                     }
->                 ],
->                 "type": "included"
->             },
->             "automations": [
->                 {
->                     "id": "N_11865",
->                     "name": "RYOFXAPO"
->                 }
->             ],
->             "access": "full"
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create a port profile in a network
-> 
-> **POST** `/networks/{networkId}/switch/ports/profiles`  
-> 
->     {
->         "profileId": "1284392014819",
->         "networkId": "N_24329156",
->         "name": "Phone",
->         "description": "IP Phones for all office workers",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "associatedPorts": [
->             {
->                 "portId": "8",
->                 "portNum": 8,
->                 "portName": "Dev - Cheshire Cat / 8",
->                 "serial": "Q234-ABCD-5678",
->                 "profile": {
->                     "enabled": true,
->                     "id": "1284392014819"
->                 }
->             }
->         ],
->         "associatedSwitches": [
->             {
->                 "switchId": 247165647951894,
->                 "name": "Dev - Cheshire Cat",
->                 "mac": "e0:cb:bc:a5:98:16",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MS120-48FP"
->             }
->         ],
->         "assignedSwitchports": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "template": {
->                     "id": 1983748489
->                 }
->             }
->         ],
->         "createdAt": "2022-09-16T09:18:38Z",
->         "updatedAt": "2022-09-16T09:18:38Z",
->         "port": {
->             "type": "access",
->             "vlan": 10,
->             "voiceVlan": 20,
->             "allowedVlans": "1-100",
->             "poeEnabled": true,
->             "isolationEnabled": false,
->             "rstpEnabled": true,
->             "stpGuard": "disabled",
->             "udld": "Alert only",
->             "accessPolicyType": "Sticky MAC allow list",
->             "accessPolicyNumber": 3,
->             "macAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowListLimit": 5,
->             "stormControlEnabled": true,
->             "adaptivePolicyGroupId": "1284392014819",
->             "peerSgtCapable": false,
->             "daiTrusted": false
->         },
->         "isOrganizationWide": false,
->         "networks": {
->             "values": [
->                 {
->                     "id": "N_11865",
->                     "name": "Wonderland-Dev"
->                 }
->             ],
->             "type": "included"
->         },
->         "automations": [
->             {
->                 "id": "N_11865",
->                 "name": "RYOFXAPO"
->             }
->         ],
->         "access": "full"
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-ports-profile/)
-
-#### Update a port profile in a network
-
-Operation ID: `updateNetworkSwitchPortsProfile`
-
-PATH _`/networks/{networkId}/switch/ports/profiles/{id}`_
-
-    {
-      "profileId": "1284392014819",
-      "networkId": "N_24329156",
-      "name": "Phone",
-      "description": "IP Phones for all office workers",
-      "tags": [
-        "tag1",
-        "tag2"
-      ],
-      "associatedPorts": [
-        {
-          "portId": "8",
-          "portNum": 8,
-          "portName": "Dev - Cheshire Cat / 8",
-          "serial": "Q234-ABCD-5678",
-          "profile": {
-            "enabled": true,
-            "id": "1284392014819"
-          }
-        }
-      ],
-      "associatedSwitches": [
-        {
-          "switchId": 247165647951894,
-          "name": "Dev - Cheshire Cat",
-          "mac": "e0:cb:bc:a5:98:16",
-          "serial": "Q234-ABCD-5678",
-          "model": "MS120-48FP"
-        }
-      ],
-      "assignedSwitchports": [
-        {
-          "portIds": [
-            "1",
-            "2",
-            "3",
-            "1_C3850-NM-8-10G_1",
-            "1_C3850-NM-8-10G_2"
-          ],
-          "switch": {
-            "serial": "Q234-ABCD-5678"
-          },
-          "template": {
-            "id": 1983748489
-          }
-        }
-      ],
-      "createdAt": "2022-09-16T09:18:38Z",
-      "updatedAt": "2022-09-16T09:18:38Z",
-      "port": {
-        "type": "access",
-        "vlan": 10,
-        "voiceVlan": 20,
-        "allowedVlans": "1-100",
-        "poeEnabled": true,
-        "isolationEnabled": false,
-        "rstpEnabled": true,
-        "stpGuard": "disabled",
-        "udld": "Alert only",
-        "accessPolicyType": "Sticky MAC allow list",
-        "accessPolicyNumber": 3,
-        "macAllowList": [
-          "34:56:fe:ce:8e:b0",
-          "34:56:fe:ce:8e:b1"
-        ],
-        "stickyMacAllowList": [
-          "34:56:fe:ce:8e:b0",
-          "34:56:fe:ce:8e:b1"
-        ],
-        "stickyMacAllowListLimit": 5,
-        "stormControlEnabled": true,
-        "adaptivePolicyGroupId": "1284392014819",
-        "peerSgtCapable": false,
-        "daiTrusted": false
-      },
-      "isOrganizationWide": false,
-      "networks": {
-        "values": [
-          {
-            "id": "N_11865",
-            "name": "Wonderland-Dev"
-          }
-        ],
-        "type": "included"
-      },
-      "automations": [
-        {
-          "id": "N_11865",
-          "name": "RYOFXAPO"
-        }
-      ],
-      "access": "full"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update a port profile in a network
-> 
-> **PUT** `/networks/{networkId}/switch/ports/profiles/{id}`  
-> 
->     {
->         "profileId": "1284392014819",
->         "networkId": "N_24329156",
->         "name": "Phone",
->         "description": "IP Phones for all office workers",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "associatedPorts": [
->             {
->                 "portId": "8",
->                 "portNum": 8,
->                 "portName": "Dev - Cheshire Cat / 8",
->                 "serial": "Q234-ABCD-5678",
->                 "profile": {
->                     "enabled": true,
->                     "id": "1284392014819"
->                 }
->             }
->         ],
->         "associatedSwitches": [
->             {
->                 "switchId": 247165647951894,
->                 "name": "Dev - Cheshire Cat",
->                 "mac": "e0:cb:bc:a5:98:16",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MS120-48FP"
->             }
->         ],
->         "assignedSwitchports": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "template": {
->                     "id": 1983748489
->                 }
->             }
->         ],
->         "createdAt": "2022-09-16T09:18:38Z",
->         "updatedAt": "2022-09-16T09:18:38Z",
->         "port": {
->             "type": "access",
->             "vlan": 10,
->             "voiceVlan": 20,
->             "allowedVlans": "1-100",
->             "poeEnabled": true,
->             "isolationEnabled": false,
->             "rstpEnabled": true,
->             "stpGuard": "disabled",
->             "udld": "Alert only",
->             "accessPolicyType": "Sticky MAC allow list",
->             "accessPolicyNumber": 3,
->             "macAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowListLimit": 5,
->             "stormControlEnabled": true,
->             "adaptivePolicyGroupId": "1284392014819",
->             "peerSgtCapable": false,
->             "daiTrusted": false
->         },
->         "isOrganizationWide": false,
->         "networks": {
->             "values": [
->                 {
->                     "id": "N_11865",
->                     "name": "Wonderland-Dev"
->                 }
->             ],
->             "type": "included"
->         },
->         "automations": [
->             {
->                 "id": "N_11865",
->                 "name": "RYOFXAPO"
->             }
->         ],
->         "access": "full"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a port profile from a network
-> 
-> **DELETE** `/networks/{networkId}/switch/ports/profiles/{id}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-mirrors-by-switch/)
-
-#### list the port mirror configurations in an organization by switch
-
-Operation ID: `getOrganizationSwitchPortsMirrorsBySwitch`
-
-PATH _`/organizations/{organizationId}/switch/ports/mirrors/bySwitch`_
-
-    {
-      "items": [
-        {
-          "serial": "Q234-ABCD-5678",
-          "network": {
-            "id": "N_24329156",
-            "name": "Main Office"
-          },
-          "mirror": {
-            "source": {
-              "ports": [
-                {
-                  "number": 2,
-                  "module": {
-                    "type": "C9800-2X40GE",
-                    "slot": 2
-                  }
-                }
-              ],
-              "filter": {
-                "vlans": "100, 200-210",
-                "hasTransitVlan": true
-              }
-            },
-            "destination": {
-              "port": {
-                "number": 7,
-                "module": {
-                  "type": "C9800-2X40GE",
-                  "slot": 1
-                }
-              },
-              "vlan": "10"
-            },
-            "role": "source",
-            "comment": "My pretty comment",
-            "tags": [
-              "tag1",
-              "tag2"
-            ]
-          },
-          "warnings": [
-            "Warnings from traffic mirror configuration changes"
-          ]
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 1
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### list the port mirror configurations in an organization by switch
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/mirrors/bySwitch`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "network": {
->                     "id": "N_24329156",
->                     "name": "Main Office"
->                 },
->                 "mirror": {
->                     "source": {
->                         "ports": [
->                             {
->                                 "number": 2,
->                                 "module": {
->                                     "type": "C9800-2X40GE",
->                                     "slot": 2
->                                 }
->                             }
->                         ],
->                         "filter": {
->                             "vlans": "100, 200-210",
->                             "hasTransitVlan": true
->                         }
->                     },
->                     "destination": {
->                         "port": {
->                             "number": 7,
->                             "module": {
->                                 "type": "C9800-2X40GE",
->                                 "slot": 1
->                             }
->                         },
->                         "vlan": "10"
->                     },
->                     "role": "source",
->                     "comment": "My pretty comment",
->                     "tags": [
->                         "tag1",
->                         "tag2"
->                     ]
->                 },
->                 "warnings": [
->                     "Warnings from traffic mirror configuration changes"
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles/)
-
-#### List the port profiles in an organization
-
-Operation ID: `getOrganizationSwitchPortsProfiles`
-
-PATH _`/organizations/{organizationId}/switch/ports/profiles`_
-
-    [
-      {
-        "profileId": "1284392014819",
-        "name": "Phone",
-        "description": "IP Phones for all office workers",
-        "createdAt": "2018-02-11T00:00:00.090210Z",
-        "updatedAt": "2018-02-11T00:00:00.090210Z",
-        "network": {
-          "id": "N_24329156"
-        },
-        "counts": {
-          "assigned": {
-            "ports": 4,
-            "switches": 2,
-            "automations": 6
-          },
-          "networksCount": {
-            "included": 40,
-            "excluded": 20
-          }
-        },
-        "isOrganizationWide": false,
-        "networks": {
-          "values": [
-            {
-              "id": "N_11865",
-              "name": "Wonderland-Dev"
-            }
-          ],
-          "type": "included"
-        },
-        "access": "full"
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the port profiles in an organization
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/profiles`  
-> 
->     [
->         {
->             "profileId": "1284392014819",
->             "name": "Phone",
->             "description": "IP Phones for all office workers",
->             "createdAt": "2018-02-11T00:00:00.090210Z",
->             "updatedAt": "2018-02-11T00:00:00.090210Z",
->             "network": {
->                 "id": "N_24329156"
->             },
->             "counts": {
->                 "assigned": {
->                     "ports": 4,
->                     "switches": 2,
->                     "automations": 6
->                 },
->                 "networksCount": {
->                     "included": 40,
->                     "excluded": 20
->                 }
->             },
->             "isOrganizationWide": false,
->             "networks": {
->                 "values": [
->                     {
->                         "id": "N_11865",
->                         "name": "Wonderland-Dev"
->                     }
->                 ],
->                 "type": "included"
->             },
->             "access": "full"
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create a port profile in an organization
-> 
-> **POST** `/organizations/{organizationId}/switch/ports/profiles`  
-> 
->     {
->         "profileId": "1284392014819",
->         "networkId": "N_24329156",
->         "name": "Phone",
->         "description": "IP Phones for all office workers",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "associatedPorts": [
->             {
->                 "portId": "8",
->                 "portNum": 8,
->                 "portName": "Dev - Cheshire Cat / 8",
->                 "serial": "Q234-ABCD-5678",
->                 "profile": {
->                     "enabled": true,
->                     "id": "1284392014819"
->                 }
->             }
->         ],
->         "associatedSwitches": [
->             {
->                 "switchId": 247165647951894,
->                 "name": "Dev - Cheshire Cat",
->                 "mac": "e0:cb:bc:a5:98:16",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MS120-48FP"
->             }
->         ],
->         "assignedSwitchports": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "template": {
->                     "id": 1983748489
->                 }
->             }
->         ],
->         "createdAt": "2022-09-16T09:18:38Z",
->         "updatedAt": "2022-09-16T09:18:38Z",
->         "port": {
->             "type": "access",
->             "vlan": 10,
->             "voiceVlan": 20,
->             "allowedVlans": "1-100",
->             "poeEnabled": true,
->             "isolationEnabled": false,
->             "rstpEnabled": true,
->             "stpGuard": "disabled",
->             "udld": "Alert only",
->             "accessPolicyType": "Sticky MAC allow list",
->             "accessPolicyNumber": 3,
->             "macAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowListLimit": 5,
->             "stormControlEnabled": true,
->             "adaptivePolicyGroupId": "1284392014819",
->             "peerSgtCapable": false,
->             "daiTrusted": false
->         },
->         "isOrganizationWide": false,
->         "networks": {
->             "values": [
->                 {
->                     "id": "N_11865",
->                     "name": "Wonderland-Dev"
->                 }
->             ],
->             "type": "included"
->         },
->         "automations": [
->             {
->                 "id": "N_11865",
->                 "name": "RYOFXAPO"
->             }
->         ],
->         "access": "full"
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles-automations/)
-
-#### list the automation port profiles in an organization
-
-Operation ID: `getOrganizationSwitchPortsProfilesAutomations`
-
-PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
-
-    {
-      "items": [
-        {
-          "id": "1284392014819",
-          "name": "Automation 1",
-          "description": "A full length description of the automation.",
-          "types": [
-            "Custom",
-            "Built-in"
-          ],
-          "fallbackProfile": {
-            "id": "1284392014819",
-            "name": "Profile 1"
-          },
-          "rules": [
-            {
-              "priority": 1,
-              "conditions": [
-                {
-                  "attribute": "LLDP system description",
-                  "values": [
-                    "Meraki MR*",
-                    "*Wireless*"
-                  ]
-                }
-              ],
-              "profile": {
-                "id": "32",
-                "name": "Profile 2"
-              }
-            }
-          ],
-          "assignedSwitchPorts": [
-            {
-              "portIds": [
-                "1",
-                "2",
-                "3",
-                "1_C3850-NM-8-10G_1",
-                "1_C3850-NM-8-10G_2"
-              ],
-              "switch": {
-                "serial": "Q234-ABCD-5678"
-              }
-            }
-          ],
-          "counts": {
-            "assigned": {
-              "devices": 2,
-              "ports": 51,
-              "networks": 1
-            }
-          },
-          "isOrganizationWide": false,
-          "networks": [
-            {
-              "id": "N_11865",
-              "name": "Wonderland-Dev"
-            }
-          ]
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 1
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### list the automation port profiles in an organization
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/profiles/automations`  
-> 
->     {
->         "items": [
->             {
->                 "id": "1284392014819",
->                 "name": "Automation 1",
->                 "description": "A full length description of the automation.",
->                 "types": [
->                     "Custom",
->                     "Built-in"
->                 ],
->                 "fallbackProfile": {
->                     "id": "1284392014819",
->                     "name": "Profile 1"
->                 },
->                 "rules": [
->                     {
->                         "priority": 1,
->                         "conditions": [
->                             {
->                                 "attribute": "LLDP system description",
->                                 "values": [
->                                     "Meraki MR*",
->                                     "*Wireless*"
->                                 ]
->                             }
->                         ],
->                         "profile": {
->                             "id": "32",
->                             "name": "Profile 2"
->                         }
->                     }
->                 ],
->                 "assignedSwitchPorts": [
->                     {
->                         "portIds": [
->                             "1",
->                             "2",
->                             "3",
->                             "1_C3850-NM-8-10G_1",
->                             "1_C3850-NM-8-10G_2"
->                         ],
->                         "switch": {
->                             "serial": "Q234-ABCD-5678"
->                         }
->                     }
->                 ],
->                 "counts": {
->                     "assigned": {
->                         "devices": 2,
->                         "ports": 51,
->                         "networks": 1
->                     }
->                 },
->                 "isOrganizationWide": false,
->                 "networks": [
->                     {
->                         "id": "N_11865",
->                         "name": "Wonderland-Dev"
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1
->                 }
->             }
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create a port profile automation for an organization
-> 
-> **POST** `/organizations/{organizationId}/switch/ports/profiles/automations`  
-> 
->     {
->         "id": "1284392014819",
->         "name": "Automation 1",
->         "description": "A full length description of the automation.",
->         "types": [
->             "Custom",
->             "Built-in"
->         ],
->         "fallbackProfile": {
->             "id": "1284392014819",
->             "name": "Profile 1"
->         },
->         "rules": [
->             {
->                 "priority": 1,
->                 "conditions": [
->                     {
->                         "attribute": "LLDP system description",
->                         "values": [
->                             "Meraki MR*",
->                             "*Wireless*"
->                         ]
->                     }
->                 ],
->                 "profile": {
->                     "id": "32",
->                     "name": "Profile 2"
->                 }
->             }
->         ],
->         "assignedSwitchPorts": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 }
->             }
->         ],
->         "counts": {
->             "assigned": {
->                 "devices": 2,
->                 "ports": 51,
->                 "networks": 1
->             }
->         },
->         "isOrganizationWide": false,
->         "networks": [
->             {
->                 "id": "N_11865",
->                 "name": "Wonderland-Dev"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-switch-ports-profiles-automation/)
-
-#### Update a port profile automation in an organization
-
-Operation ID: `updateOrganizationSwitchPortsProfilesAutomation`
-
-PATH _`/organizations/{organizationId}/switch/ports/profiles/automations/{id}`_
-
-    {
-      "id": "1284392014819",
-      "name": "Automation 1",
-      "description": "A full length description of the automation.",
-      "types": [
-        "Custom",
-        "Built-in"
-      ],
-      "fallbackProfile": {
-        "id": "1284392014819",
-        "name": "Profile 1"
-      },
-      "rules": [
-        {
-          "priority": 1,
-          "conditions": [
-            {
-              "attribute": "LLDP system description",
-              "values": [
-                "Meraki MR*",
-                "*Wireless*"
-              ]
-            }
-          ],
-          "profile": {
-            "id": "32",
-            "name": "Profile 2"
-          }
-        }
-      ],
-      "assignedSwitchPorts": [
-        {
-          "portIds": [
-            "1",
-            "2",
-            "3",
-            "1_C3850-NM-8-10G_1",
-            "1_C3850-NM-8-10G_2"
-          ],
-          "switch": {
-            "serial": "Q234-ABCD-5678"
-          }
-        }
-      ],
-      "counts": {
-        "assigned": {
-          "devices": 2,
-          "ports": 51,
-          "networks": 1
-        }
-      },
-      "isOrganizationWide": false,
-      "networks": [
-        {
-          "id": "N_11865",
-          "name": "Wonderland-Dev"
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update a port profile automation in an organization
-> 
-> **PUT** `/organizations/{organizationId}/switch/ports/profiles/automations/{id}`  
-> 
->     {
->         "id": "1284392014819",
->         "name": "Automation 1",
->         "description": "A full length description of the automation.",
->         "types": [
->             "Custom",
->             "Built-in"
->         ],
->         "fallbackProfile": {
->             "id": "1284392014819",
->             "name": "Profile 1"
->         },
->         "rules": [
->             {
->                 "priority": 1,
->                 "conditions": [
->                     {
->                         "attribute": "LLDP system description",
->                         "values": [
->                             "Meraki MR*",
->                             "*Wireless*"
->                         ]
->                     }
->                 ],
->                 "profile": {
->                     "id": "32",
->                     "name": "Profile 2"
->                 }
->             }
->         ],
->         "assignedSwitchPorts": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 }
->             }
->         ],
->         "counts": {
->             "assigned": {
->                 "devices": 2,
->                 "ports": 51,
->                 "networks": 1
->             }
->         },
->         "isOrganizationWide": false,
->         "networks": [
->             {
->                 "id": "N_11865",
->                 "name": "Wonderland-Dev"
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an automation port profile from an organization
-> 
-> **DELETE** `/organizations/{organizationId}/switch/ports/profiles/automations/{id}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles-networks-assignments/)
-
-#### Fetch all Network - Smart Port Profile associations for an organization
-
-Operation ID: `getOrganizationSwitchPortsProfilesNetworksAssignments`
-
-PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignments`_
-
-    {
-      "items": [
-        {
-          "assignmentId": "123456",
-          "type": "included",
-          "profile": {
-            "id": "4354353"
-          },
-          "network": {
-            "id": "N_24329156"
-          }
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 42,
-            "remaining": 32
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Fetch all Network - Smart Port Profile associations for an organization
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments`  
-> 
->     {
->         "items": [
->             {
->                 "assignmentId": "123456",
->                 "type": "included",
->                 "profile": {
->                     "id": "4354353"
->                 },
->                 "network": {
->                     "id": "N_24329156"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 42,
->                     "remaining": 32
->                 }
->             }
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Create Network and Smart Ports Profile association for a specific profile
-> 
-> **POST** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments`  
-> 
->     {
->         "assignmentId": "123456",
->         "type": "included",
->         "profile": {
->             "id": "4354353"
->         },
->         "network": {
->             "id": "N_24329156"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/batch-organization-switch-ports-profiles-networks-assignments-create/)
-
-#### Batch Create Network and Smart Ports Profile associations for a specific profile
-
-Operation ID: `batchOrganizationSwitchPortsProfilesNetworksAssignmentsCreate`
-
-PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignments/batchCreate`_
-
-    {
-      "items": [
-        {
-          "assignmentId": "123456",
-          "type": "included",
-          "profile": {
-            "id": "4354353"
-          },
-          "network": {
-            "id": "N_24329156"
-          }
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Batch Create Network and Smart Ports Profile associations for a specific profile
-> 
-> **POST** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments/batchCreate`  
-> 
->     {
->         "items": [
->             {
->                 "assignmentId": "123456",
->                 "type": "included",
->                 "profile": {
->                     "id": "4354353"
->                 },
->                 "network": {
->                     "id": "N_24329156"
->                 }
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/bulk-organization-switch-ports-profiles-networks-assignments-delete/)
-
-#### Bulk delete Network and Smart Port Profile associations
-
-Operation ID: `bulkOrganizationSwitchPortsProfilesNetworksAssignmentsDelete`
-
-PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignments/bulkDelete`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Bulk delete Network and Smart Port Profile associations
-> 
-> **POST** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments/bulkDelete`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-switch-ports-profiles-networks-assignment/)
-
-#### Delete Network and Smart Port profile association for a specific profile
-
-Operation ID: `deleteOrganizationSwitchPortsProfilesNetworksAssignment`
-
-PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignments/{assignmentId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Delete Network and Smart Port profile association for a specific profile
-> 
-> **DELETE** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments/{assignmentId}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles-overview-by-profile/)
-
-#### List the port profiles in an organization
-
-Operation ID: `getOrganizationSwitchPortsProfilesOverviewByProfile`
-
-PATH _`/organizations/{organizationId}/switch/ports/profiles/overview/byProfile`_
-
-    [
-      {
-        "items": [
-          {
-            "profileId": "1284392014819",
-            "name": "Phone",
-            "description": "IP Phones for all office workers",
-            "createdAt": "2018-02-11T00:00:00.090210Z",
-            "updatedAt": "2018-02-11T00:00:00.090210Z",
-            "network": {
-              "id": "N_24329156"
-            },
-            "counts": {
-              "assigned": {
-                "ports": 4,
-                "switches": 2,
-                "automations": 6
-              },
-              "networksCount": {
-                "included": 40,
-                "excluded": 20
-              }
-            },
-            "isOrganizationWide": false,
-            "networks": {
-              "values": [
-                {
-                  "id": "N_11865",
-                  "name": "Wonderland-Dev"
-                }
-              ],
-              "type": "included"
-            },
-            "access": "full"
-          }
-        ],
-        "meta": {
-          "counts": {
-            "items": {
-              "total": 1
-            }
-          }
-        }
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the port profiles in an organization
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/profiles/overview/byProfile`  
-> 
->     [
->         {
->             "items": [
->                 {
->                     "profileId": "1284392014819",
->                     "name": "Phone",
->                     "description": "IP Phones for all office workers",
->                     "createdAt": "2018-02-11T00:00:00.090210Z",
->                     "updatedAt": "2018-02-11T00:00:00.090210Z",
->                     "network": {
->                         "id": "N_24329156"
->                     },
->                     "counts": {
->                         "assigned": {
->                             "ports": 4,
->                             "switches": 2,
->                             "automations": 6
->                         },
->                         "networksCount": {
->                             "included": 40,
->                             "excluded": 20
->                         }
->                     },
->                     "isOrganizationWide": false,
->                     "networks": {
->                         "values": [
->                             {
->                                 "id": "N_11865",
->                                 "name": "Wonderland-Dev"
->                             }
->                         ],
->                         "type": "included"
->                     },
->                     "access": "full"
->                 }
->             ],
->             "meta": {
->                 "counts": {
->                     "items": {
->                         "total": 1
->                     }
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profile/)
-
-#### Get detailed information about a port profile
-
-Operation ID: `getOrganizationSwitchPortsProfile`
-
-PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
-
-    {
-      "profileId": "1284392014819",
-      "networkId": "N_24329156",
-      "name": "Phone",
-      "description": "IP Phones for all office workers",
-      "tags": [
-        "tag1",
-        "tag2"
-      ],
-      "associatedPorts": [
-        {
-          "portId": "8",
-          "portNum": 8,
-          "portName": "Dev - Cheshire Cat / 8",
-          "serial": "Q234-ABCD-5678",
-          "profile": {
-            "enabled": true,
-            "id": "1284392014819"
-          }
-        }
-      ],
-      "associatedSwitches": [
-        {
-          "switchId": 247165647951894,
-          "name": "Dev - Cheshire Cat",
-          "mac": "e0:cb:bc:a5:98:16",
-          "serial": "Q234-ABCD-5678",
-          "model": "MS120-48FP"
-        }
-      ],
-      "assignedSwitchports": [
-        {
-          "portIds": [
-            "1",
-            "2",
-            "3",
-            "1_C3850-NM-8-10G_1",
-            "1_C3850-NM-8-10G_2"
-          ],
-          "switch": {
-            "serial": "Q234-ABCD-5678"
-          },
-          "template": {
-            "id": 1983748489
-          }
-        }
-      ],
-      "createdAt": "2022-09-16T09:18:38Z",
-      "updatedAt": "2022-09-16T09:18:38Z",
-      "port": {
-        "type": "access",
-        "vlan": 10,
-        "voiceVlan": 20,
-        "allowedVlans": "1-100",
-        "poeEnabled": true,
-        "isolationEnabled": false,
-        "rstpEnabled": true,
-        "stpGuard": "disabled",
-        "udld": "Alert only",
-        "accessPolicyType": "Sticky MAC allow list",
-        "accessPolicyNumber": 3,
-        "macAllowList": [
-          "34:56:fe:ce:8e:b0",
-          "34:56:fe:ce:8e:b1"
-        ],
-        "stickyMacAllowList": [
-          "34:56:fe:ce:8e:b0",
-          "34:56:fe:ce:8e:b1"
-        ],
-        "stickyMacAllowListLimit": 5,
-        "stormControlEnabled": true,
-        "adaptivePolicyGroupId": "1284392014819",
-        "peerSgtCapable": false,
-        "daiTrusted": false
-      },
-      "isOrganizationWide": false,
-      "networks": {
-        "values": [
-          {
-            "id": "N_11865",
-            "name": "Wonderland-Dev"
-          }
-        ],
-        "type": "included"
-      },
-      "automations": [
-        {
-          "id": "N_11865",
-          "name": "RYOFXAPO"
-        }
-      ],
-      "access": "full"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get detailed information about a port profile
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/profiles/{id}`  
-> 
->     {
->         "profileId": "1284392014819",
->         "networkId": "N_24329156",
->         "name": "Phone",
->         "description": "IP Phones for all office workers",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "associatedPorts": [
->             {
->                 "portId": "8",
->                 "portNum": 8,
->                 "portName": "Dev - Cheshire Cat / 8",
->                 "serial": "Q234-ABCD-5678",
->                 "profile": {
->                     "enabled": true,
->                     "id": "1284392014819"
->                 }
->             }
->         ],
->         "associatedSwitches": [
->             {
->                 "switchId": 247165647951894,
->                 "name": "Dev - Cheshire Cat",
->                 "mac": "e0:cb:bc:a5:98:16",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MS120-48FP"
->             }
->         ],
->         "assignedSwitchports": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "template": {
->                     "id": 1983748489
->                 }
->             }
->         ],
->         "createdAt": "2022-09-16T09:18:38Z",
->         "updatedAt": "2022-09-16T09:18:38Z",
->         "port": {
->             "type": "access",
->             "vlan": 10,
->             "voiceVlan": 20,
->             "allowedVlans": "1-100",
->             "poeEnabled": true,
->             "isolationEnabled": false,
->             "rstpEnabled": true,
->             "stpGuard": "disabled",
->             "udld": "Alert only",
->             "accessPolicyType": "Sticky MAC allow list",
->             "accessPolicyNumber": 3,
->             "macAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowListLimit": 5,
->             "stormControlEnabled": true,
->             "adaptivePolicyGroupId": "1284392014819",
->             "peerSgtCapable": false,
->             "daiTrusted": false
->         },
->         "isOrganizationWide": false,
->         "networks": {
->             "values": [
->                 {
->                     "id": "N_11865",
->                     "name": "Wonderland-Dev"
->                 }
->             ],
->             "type": "included"
->         },
->         "automations": [
->             {
->                 "id": "N_11865",
->                 "name": "RYOFXAPO"
->             }
->         ],
->         "access": "full"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update a port profile in an organization
-> 
-> **PUT** `/organizations/{organizationId}/switch/ports/profiles/{id}`  
-> 
->     {
->         "profileId": "1284392014819",
->         "networkId": "N_24329156",
->         "name": "Phone",
->         "description": "IP Phones for all office workers",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "associatedPorts": [
->             {
->                 "portId": "8",
->                 "portNum": 8,
->                 "portName": "Dev - Cheshire Cat / 8",
->                 "serial": "Q234-ABCD-5678",
->                 "profile": {
->                     "enabled": true,
->                     "id": "1284392014819"
->                 }
->             }
->         ],
->         "associatedSwitches": [
->             {
->                 "switchId": 247165647951894,
->                 "name": "Dev - Cheshire Cat",
->                 "mac": "e0:cb:bc:a5:98:16",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MS120-48FP"
->             }
->         ],
->         "assignedSwitchports": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "template": {
->                     "id": 1983748489
->                 }
->             }
->         ],
->         "createdAt": "2022-09-16T09:18:38Z",
->         "updatedAt": "2022-09-16T09:18:38Z",
->         "port": {
->             "type": "access",
->             "vlan": 10,
->             "voiceVlan": 20,
->             "allowedVlans": "1-100",
->             "poeEnabled": true,
->             "isolationEnabled": false,
->             "rstpEnabled": true,
->             "stpGuard": "disabled",
->             "udld": "Alert only",
->             "accessPolicyType": "Sticky MAC allow list",
->             "accessPolicyNumber": 3,
->             "macAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowListLimit": 5,
->             "stormControlEnabled": true,
->             "adaptivePolicyGroupId": "1284392014819",
->             "peerSgtCapable": false,
->             "daiTrusted": false
->         },
->         "isOrganizationWide": false,
->         "networks": {
->             "values": [
->                 {
->                     "id": "N_11865",
->                     "name": "Wonderland-Dev"
->                 }
->             ],
->             "type": "included"
->         },
->         "automations": [
->             {
->                 "id": "N_11865",
->                 "name": "RYOFXAPO"
->             }
->         ],
->         "access": "full"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a port profile from an organization
-> 
-> **DELETE** `/organizations/{organizationId}/switch/ports/profiles/{id}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-transceivers-readings-history-by-switch/)
-
-#### Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.
-
-Operation ID: `getOrganizationSwitchPortsTransceiversReadingsHistoryBySwitch`
-
-PATH _`/organizations/{organizationId}/switch/ports/transceivers/readings/history/bySwitch`_
-
-    {
-      "items": [
-        {
-          "serial": "Q234-ABCD-0001",
-          "ports": [
-            {
-              "portId": "1",
-              "indices": {
-                "switch": 1,
-                "slot": 0,
-                "port": 1
-              },
-              "readings": [
-                {
-                  "startTs": "2018-02-11T00:00:00.090210Z",
-                  "endTs": "2018-02-11T00:00:00.090210Z",
-                  "sfpProductId": "PRODUCT1",
-                  "thresholdSetId": "ABC123",
-                  "byMetric": {
-                    "power": {
-                      "transmit": {
-                        "minimum": 4,
-                        "maximum": 5,
-                        "median": 4.5
-                      },
-                      "receive": {
-                        "minimum": 4,
-                        "maximum": 5,
-                        "median": 4.5
-                      }
-                    },
-                    "temperature": {
-                      "fahrenheit": {
-                        "minimum": 30,
-                        "maximum": 33,
-                        "median": 32
-                      },
-                      "celsius": {
-                        "minimum": -1.1,
-                        "maximum": 0.6,
-                        "median": 0
-                      }
-                    },
-                    "supplyVoltage": {
-                      "level": {
-                        "minimum": 3,
-                        "maximum": 3.33,
-                        "median": 3.11
-                      }
-                    },
-                    "laserBiasCurrent": {
-                      "draw": {
-                        "minimum": 5,
-                        "maximum": 7,
-                        "median": 5.5
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          ],
-          "network": {
-            "id": "N_12345678",
-            "name": "San Francisco Office"
-          }
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 4,
-            "remaining": 2
-          }
-        },
-        "units": {
-          "power": {
-            "name": "decibel milliwatts",
-            "symbol": "dBm"
-          },
-          "supplyVoltage": {
-            "name": "volts",
-            "symbol": "V"
-          },
-          "laserBiasCurrent": {
-            "name": "milliamps",
-            "symbol": "mA"
-          }
-        },
-        "thresholds": [
-          {
-            "thresholdSetId": "ABC123",
-            "power": {
-              "transmit": {
-                "error": {
-                  "upper": 1.8,
-                  "lower": 0.3
-                },
-                "warning": {
-                  "upper": 1.5,
-                  "lower": 0.6
-                }
-              },
-              "receive": {
-                "error": {
-                  "upper": 1.8,
-                  "lower": 0.3
-                },
-                "warning": {
-                  "upper": 1.5,
-                  "lower": 0.6
-                }
-              }
-            },
-            "temperature": {
-              "fahrenheit": {
-                "error": {
-                  "upper": 59,
-                  "lower": 23
-                },
-                "warning": {
-                  "upper": 50,
-                  "lower": 14
-                }
-              },
-              "celsius": {
-                "error": {
-                  "upper": 15,
-                  "lower": -5
-                },
-                "warning": {
-                  "upper": 10,
-                  "lower": -10
-                }
-              }
-            },
-            "supplyVoltage": {
-              "level": {
-                "error": {
-                  "upper": 7,
-                  "lower": 2
-                },
-                "warning": {
-                  "upper": 6,
-                  "lower": 3
-                }
-              }
-            },
-            "laserBiasCurrent": {
-              "draw": {
-                "error": {
-                  "upper": 6,
-                  "lower": 1
-                },
-                "warning": {
-                  "upper": 5,
-                  "lower": 2
-                }
-              }
-            }
-          }
-        ]
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.
-> 
-> **GET** `/organizations/{organizationId}/switch/ports/transceivers/readings/history/bySwitch`  
-> 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-0001",
->                 "ports": [
->                     {
->                         "portId": "1",
->                         "indices": {
->                             "switch": 1,
->                             "slot": 0,
->                             "port": 1
->                         },
->                         "readings": [
->                             {
->                                 "startTs": "2018-02-11T00:00:00.090210Z",
->                                 "endTs": "2018-02-11T00:00:00.090210Z",
->                                 "sfpProductId": "PRODUCT1",
->                                 "thresholdSetId": "ABC123",
->                                 "byMetric": {
->                                     "power": {
->                                         "transmit": {
->                                             "minimum": 4,
->                                             "maximum": 5,
->                                             "median": 4.5
->                                         },
->                                         "receive": {
->                                             "minimum": 4,
->                                             "maximum": 5,
->                                             "median": 4.5
->                                         }
->                                     },
->                                     "temperature": {
->                                         "fahrenheit": {
->                                             "minimum": 30,
->                                             "maximum": 33,
->                                             "median": 32
->                                         },
->                                         "celsius": {
->                                             "minimum": -1.1,
->                                             "maximum": 0.6,
->                                             "median": 0
->                                         }
->                                     },
->                                     "supplyVoltage": {
->                                         "level": {
->                                             "minimum": 3,
->                                             "maximum": 3.33,
->                                             "median": 3.11
->                                         }
->                                     },
->                                     "laserBiasCurrent": {
->                                         "draw": {
->                                             "minimum": 5,
->                                             "maximum": 7,
->                                             "median": 5.5
->                                         }
->                                     }
->                                 }
->                             }
->                         ]
->                     }
->                 ],
->                 "network": {
->                     "id": "N_12345678",
->                     "name": "San Francisco Office"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 4,
->                     "remaining": 2
->                 }
->             },
->             "units": {
->                 "power": {
->                     "name": "decibel milliwatts",
->                     "symbol": "dBm"
->                 },
->                 "supplyVoltage": {
->                     "name": "volts",
->                     "symbol": "V"
->                 },
->                 "laserBiasCurrent": {
->                     "name": "milliamps",
->                     "symbol": "mA"
->                 }
->             },
->             "thresholds": [
->                 {
->                     "thresholdSetId": "ABC123",
->                     "power": {
->                         "transmit": {
->                             "error": {
->                                 "upper": 1.8,
->                                 "lower": 0.3
->                             },
->                             "warning": {
->                                 "upper": 1.5,
->                                 "lower": 0.6
->                             }
->                         },
->                         "receive": {
->                             "error": {
->                                 "upper": 1.8,
->                                 "lower": 0.3
->                             },
->                             "warning": {
->                                 "upper": 1.5,
->                                 "lower": 0.6
->                             }
->                         }
->                     },
->                     "temperature": {
->                         "fahrenheit": {
->                             "error": {
->                                 "upper": 59,
->                                 "lower": 23
->                             },
->                             "warning": {
->                                 "upper": 50,
->                                 "lower": 14
->                             }
->                         },
->                         "celsius": {
->                             "error": {
->                                 "upper": 15,
->                                 "lower": -5
->                             },
->                             "warning": {
->                                 "upper": 10,
->                                 "lower": -10
->                             }
->                         }
->                     },
->                     "supplyVoltage": {
->                         "level": {
->                             "error": {
->                                 "upper": 7,
->                                 "lower": 2
->                             },
->                             "warning": {
->                                 "upper": 6,
->                                 "lower": 3
->                             }
->                         }
->                     },
->                     "laserBiasCurrent": {
->                         "draw": {
->                             "error": {
->                                 "upper": 6,
->                                 "lower": 1
->                             },
->                             "warning": {
->                                 "upper": 5,
->                                 "lower": 2
->                             }
->                         }
->                     }
->                 }
->             ]
->         }
->     }
 > 
 > * * *
 
@@ -19074,6 +16554,2309 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers/{routerId}`_
 
 * * *
 
+### ports
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-switch-ports-mirror/)
+
+#### Update a port mirror
+
+Operation ID: `updateDeviceSwitchPortsMirror`
+
+PATH _`/devices/{serial}/switch/ports/mirror`_
+
+    {
+      "serial": "Q234-ABCD-5678",
+      "network": {
+        "id": "N_24329156",
+        "name": "Main Office"
+      },
+      "mirror": {
+        "source": {
+          "ports": [
+            {
+              "number": 2,
+              "module": {
+                "type": "C9800-2X40GE",
+                "slot": 2
+              }
+            }
+          ],
+          "filter": {
+            "vlans": "100, 200-210",
+            "hasTransitVlan": true
+          }
+        },
+        "destination": {
+          "port": {
+            "number": 7,
+            "module": {
+              "type": "C9800-2X40GE",
+              "slot": 1
+            }
+          },
+          "vlan": "10"
+        },
+        "role": "source",
+        "comment": "My pretty comment",
+        "tags": [
+          "tag1",
+          "tag2"
+        ]
+      },
+      "warnings": [
+        "Warnings from traffic mirror configuration changes"
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a port mirror
+> 
+> **PUT** `/devices/{serial}/switch/ports/mirror`  
+> 
+>     {
+>         "serial": "Q234-ABCD-5678",
+>         "network": {
+>             "id": "N_24329156",
+>             "name": "Main Office"
+>         },
+>         "mirror": {
+>             "source": {
+>                 "ports": [
+>                     {
+>                         "number": 2,
+>                         "module": {
+>                             "type": "C9800-2X40GE",
+>                             "slot": 2
+>                         }
+>                     }
+>                 ],
+>                 "filter": {
+>                     "vlans": "100, 200-210",
+>                     "hasTransitVlan": true
+>                 }
+>             },
+>             "destination": {
+>                 "port": {
+>                     "number": 7,
+>                     "module": {
+>                         "type": "C9800-2X40GE",
+>                         "slot": 1
+>                     }
+>                 },
+>                 "vlan": "10"
+>             },
+>             "role": "source",
+>             "comment": "My pretty comment",
+>             "tags": [
+>                 "tag1",
+>                 "tag2"
+>             ]
+>         },
+>         "warnings": [
+>             "Warnings from traffic mirror configuration changes"
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-ports-profiles/)
+
+#### List the port profiles in a network
+
+Operation ID: `getNetworkSwitchPortsProfiles`
+
+PATH _`/networks/{networkId}/switch/ports/profiles`_
+
+    [
+      {
+        "profileId": "1284392014819",
+        "networkId": "N_24329156",
+        "name": "Phone",
+        "description": "IP Phones for all office workers",
+        "tags": [
+          "tag1",
+          "tag2"
+        ],
+        "associatedPorts": [
+          {
+            "portId": "8",
+            "portNum": 8,
+            "portName": "Dev - Cheshire Cat / 8",
+            "serial": "Q234-ABCD-5678",
+            "profile": {
+              "enabled": true,
+              "id": "1284392014819"
+            }
+          }
+        ],
+        "associatedSwitches": [
+          {
+            "switchId": 247165647951894,
+            "name": "Dev - Cheshire Cat",
+            "mac": "e0:cb:bc:a5:98:16",
+            "serial": "Q234-ABCD-5678",
+            "model": "MS120-48FP"
+          }
+        ],
+        "assignedSwitchports": [
+          {
+            "portIds": [
+              "1",
+              "2",
+              "3",
+              "1_C3850-NM-8-10G_1",
+              "1_C3850-NM-8-10G_2"
+            ],
+            "switch": {
+              "serial": "Q234-ABCD-5678"
+            },
+            "template": {
+              "id": 1983748489
+            }
+          }
+        ],
+        "createdAt": "2022-09-16T09:18:38Z",
+        "updatedAt": "2022-09-16T09:18:38Z",
+        "port": {
+          "type": "access",
+          "vlan": 10,
+          "voiceVlan": 20,
+          "allowedVlans": "1-100",
+          "poeEnabled": true,
+          "isolationEnabled": false,
+          "rstpEnabled": true,
+          "stpGuard": "disabled",
+          "udld": "Alert only",
+          "accessPolicyType": "Sticky MAC allow list",
+          "accessPolicyNumber": 3,
+          "macAllowList": [
+            "34:56:fe:ce:8e:b0",
+            "34:56:fe:ce:8e:b1"
+          ],
+          "stickyMacAllowList": [
+            "34:56:fe:ce:8e:b0",
+            "34:56:fe:ce:8e:b1"
+          ],
+          "stickyMacAllowListLimit": 5,
+          "stormControlEnabled": true,
+          "adaptivePolicyGroupId": "1284392014819",
+          "peerSgtCapable": false,
+          "daiTrusted": false
+        },
+        "isOrganizationWide": false,
+        "networks": {
+          "values": [
+            {
+              "id": "N_11865",
+              "name": "Wonderland-Dev"
+            }
+          ],
+          "type": "included"
+        },
+        "automations": [
+          {
+            "id": "N_11865",
+            "name": "RYOFXAPO"
+          }
+        ],
+        "access": "full"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the port profiles in a network
+> 
+> **GET** `/networks/{networkId}/switch/ports/profiles`  
+> 
+>     [
+>         {
+>             "profileId": "1284392014819",
+>             "networkId": "N_24329156",
+>             "name": "Phone",
+>             "description": "IP Phones for all office workers",
+>             "tags": [
+>                 "tag1",
+>                 "tag2"
+>             ],
+>             "associatedPorts": [
+>                 {
+>                     "portId": "8",
+>                     "portNum": 8,
+>                     "portName": "Dev - Cheshire Cat / 8",
+>                     "serial": "Q234-ABCD-5678",
+>                     "profile": {
+>                         "enabled": true,
+>                         "id": "1284392014819"
+>                     }
+>                 }
+>             ],
+>             "associatedSwitches": [
+>                 {
+>                     "switchId": 247165647951894,
+>                     "name": "Dev - Cheshire Cat",
+>                     "mac": "e0:cb:bc:a5:98:16",
+>                     "serial": "Q234-ABCD-5678",
+>                     "model": "MS120-48FP"
+>                 }
+>             ],
+>             "assignedSwitchports": [
+>                 {
+>                     "portIds": [
+>                         "1",
+>                         "2",
+>                         "3",
+>                         "1_C3850-NM-8-10G_1",
+>                         "1_C3850-NM-8-10G_2"
+>                     ],
+>                     "switch": {
+>                         "serial": "Q234-ABCD-5678"
+>                     },
+>                     "template": {
+>                         "id": 1983748489
+>                     }
+>                 }
+>             ],
+>             "createdAt": "2022-09-16T09:18:38Z",
+>             "updatedAt": "2022-09-16T09:18:38Z",
+>             "port": {
+>                 "type": "access",
+>                 "vlan": 10,
+>                 "voiceVlan": 20,
+>                 "allowedVlans": "1-100",
+>                 "poeEnabled": true,
+>                 "isolationEnabled": false,
+>                 "rstpEnabled": true,
+>                 "stpGuard": "disabled",
+>                 "udld": "Alert only",
+>                 "accessPolicyType": "Sticky MAC allow list",
+>                 "accessPolicyNumber": 3,
+>                 "macAllowList": [
+>                     "34:56:fe:ce:8e:b0",
+>                     "34:56:fe:ce:8e:b1"
+>                 ],
+>                 "stickyMacAllowList": [
+>                     "34:56:fe:ce:8e:b0",
+>                     "34:56:fe:ce:8e:b1"
+>                 ],
+>                 "stickyMacAllowListLimit": 5,
+>                 "stormControlEnabled": true,
+>                 "adaptivePolicyGroupId": "1284392014819",
+>                 "peerSgtCapable": false,
+>                 "daiTrusted": false
+>             },
+>             "isOrganizationWide": false,
+>             "networks": {
+>                 "values": [
+>                     {
+>                         "id": "N_11865",
+>                         "name": "Wonderland-Dev"
+>                     }
+>                 ],
+>                 "type": "included"
+>             },
+>             "automations": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "RYOFXAPO"
+>                 }
+>             ],
+>             "access": "full"
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a port profile in a network
+> 
+> **POST** `/networks/{networkId}/switch/ports/profiles`  
+> 
+>     {
+>         "profileId": "1284392014819",
+>         "networkId": "N_24329156",
+>         "name": "Phone",
+>         "description": "IP Phones for all office workers",
+>         "tags": [
+>             "tag1",
+>             "tag2"
+>         ],
+>         "associatedPorts": [
+>             {
+>                 "portId": "8",
+>                 "portNum": 8,
+>                 "portName": "Dev - Cheshire Cat / 8",
+>                 "serial": "Q234-ABCD-5678",
+>                 "profile": {
+>                     "enabled": true,
+>                     "id": "1284392014819"
+>                 }
+>             }
+>         ],
+>         "associatedSwitches": [
+>             {
+>                 "switchId": 247165647951894,
+>                 "name": "Dev - Cheshire Cat",
+>                 "mac": "e0:cb:bc:a5:98:16",
+>                 "serial": "Q234-ABCD-5678",
+>                 "model": "MS120-48FP"
+>             }
+>         ],
+>         "assignedSwitchports": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 },
+>                 "template": {
+>                     "id": 1983748489
+>                 }
+>             }
+>         ],
+>         "createdAt": "2022-09-16T09:18:38Z",
+>         "updatedAt": "2022-09-16T09:18:38Z",
+>         "port": {
+>             "type": "access",
+>             "vlan": 10,
+>             "voiceVlan": 20,
+>             "allowedVlans": "1-100",
+>             "poeEnabled": true,
+>             "isolationEnabled": false,
+>             "rstpEnabled": true,
+>             "stpGuard": "disabled",
+>             "udld": "Alert only",
+>             "accessPolicyType": "Sticky MAC allow list",
+>             "accessPolicyNumber": 3,
+>             "macAllowList": [
+>                 "34:56:fe:ce:8e:b0",
+>                 "34:56:fe:ce:8e:b1"
+>             ],
+>             "stickyMacAllowList": [
+>                 "34:56:fe:ce:8e:b0",
+>                 "34:56:fe:ce:8e:b1"
+>             ],
+>             "stickyMacAllowListLimit": 5,
+>             "stormControlEnabled": true,
+>             "adaptivePolicyGroupId": "1284392014819",
+>             "peerSgtCapable": false,
+>             "daiTrusted": false
+>         },
+>         "isOrganizationWide": false,
+>         "networks": {
+>             "values": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "Wonderland-Dev"
+>                 }
+>             ],
+>             "type": "included"
+>         },
+>         "automations": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "RYOFXAPO"
+>             }
+>         ],
+>         "access": "full"
+>     }
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-ports-profile/)
+
+#### Update a port profile in a network
+
+Operation ID: `updateNetworkSwitchPortsProfile`
+
+PATH _`/networks/{networkId}/switch/ports/profiles/{id}`_
+
+    {
+      "profileId": "1284392014819",
+      "networkId": "N_24329156",
+      "name": "Phone",
+      "description": "IP Phones for all office workers",
+      "tags": [
+        "tag1",
+        "tag2"
+      ],
+      "associatedPorts": [
+        {
+          "portId": "8",
+          "portNum": 8,
+          "portName": "Dev - Cheshire Cat / 8",
+          "serial": "Q234-ABCD-5678",
+          "profile": {
+            "enabled": true,
+            "id": "1284392014819"
+          }
+        }
+      ],
+      "associatedSwitches": [
+        {
+          "switchId": 247165647951894,
+          "name": "Dev - Cheshire Cat",
+          "mac": "e0:cb:bc:a5:98:16",
+          "serial": "Q234-ABCD-5678",
+          "model": "MS120-48FP"
+        }
+      ],
+      "assignedSwitchports": [
+        {
+          "portIds": [
+            "1",
+            "2",
+            "3",
+            "1_C3850-NM-8-10G_1",
+            "1_C3850-NM-8-10G_2"
+          ],
+          "switch": {
+            "serial": "Q234-ABCD-5678"
+          },
+          "template": {
+            "id": 1983748489
+          }
+        }
+      ],
+      "createdAt": "2022-09-16T09:18:38Z",
+      "updatedAt": "2022-09-16T09:18:38Z",
+      "port": {
+        "type": "access",
+        "vlan": 10,
+        "voiceVlan": 20,
+        "allowedVlans": "1-100",
+        "poeEnabled": true,
+        "isolationEnabled": false,
+        "rstpEnabled": true,
+        "stpGuard": "disabled",
+        "udld": "Alert only",
+        "accessPolicyType": "Sticky MAC allow list",
+        "accessPolicyNumber": 3,
+        "macAllowList": [
+          "34:56:fe:ce:8e:b0",
+          "34:56:fe:ce:8e:b1"
+        ],
+        "stickyMacAllowList": [
+          "34:56:fe:ce:8e:b0",
+          "34:56:fe:ce:8e:b1"
+        ],
+        "stickyMacAllowListLimit": 5,
+        "stormControlEnabled": true,
+        "adaptivePolicyGroupId": "1284392014819",
+        "peerSgtCapable": false,
+        "daiTrusted": false
+      },
+      "isOrganizationWide": false,
+      "networks": {
+        "values": [
+          {
+            "id": "N_11865",
+            "name": "Wonderland-Dev"
+          }
+        ],
+        "type": "included"
+      },
+      "automations": [
+        {
+          "id": "N_11865",
+          "name": "RYOFXAPO"
+        }
+      ],
+      "access": "full"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a port profile in a network
+> 
+> **PUT** `/networks/{networkId}/switch/ports/profiles/{id}`  
+> 
+>     {
+>         "profileId": "1284392014819",
+>         "networkId": "N_24329156",
+>         "name": "Phone",
+>         "description": "IP Phones for all office workers",
+>         "tags": [
+>             "tag1",
+>             "tag2"
+>         ],
+>         "associatedPorts": [
+>             {
+>                 "portId": "8",
+>                 "portNum": 8,
+>                 "portName": "Dev - Cheshire Cat / 8",
+>                 "serial": "Q234-ABCD-5678",
+>                 "profile": {
+>                     "enabled": true,
+>                     "id": "1284392014819"
+>                 }
+>             }
+>         ],
+>         "associatedSwitches": [
+>             {
+>                 "switchId": 247165647951894,
+>                 "name": "Dev - Cheshire Cat",
+>                 "mac": "e0:cb:bc:a5:98:16",
+>                 "serial": "Q234-ABCD-5678",
+>                 "model": "MS120-48FP"
+>             }
+>         ],
+>         "assignedSwitchports": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 },
+>                 "template": {
+>                     "id": 1983748489
+>                 }
+>             }
+>         ],
+>         "createdAt": "2022-09-16T09:18:38Z",
+>         "updatedAt": "2022-09-16T09:18:38Z",
+>         "port": {
+>             "type": "access",
+>             "vlan": 10,
+>             "voiceVlan": 20,
+>             "allowedVlans": "1-100",
+>             "poeEnabled": true,
+>             "isolationEnabled": false,
+>             "rstpEnabled": true,
+>             "stpGuard": "disabled",
+>             "udld": "Alert only",
+>             "accessPolicyType": "Sticky MAC allow list",
+>             "accessPolicyNumber": 3,
+>             "macAllowList": [
+>                 "34:56:fe:ce:8e:b0",
+>                 "34:56:fe:ce:8e:b1"
+>             ],
+>             "stickyMacAllowList": [
+>                 "34:56:fe:ce:8e:b0",
+>                 "34:56:fe:ce:8e:b1"
+>             ],
+>             "stickyMacAllowListLimit": 5,
+>             "stormControlEnabled": true,
+>             "adaptivePolicyGroupId": "1284392014819",
+>             "peerSgtCapable": false,
+>             "daiTrusted": false
+>         },
+>         "isOrganizationWide": false,
+>         "networks": {
+>             "values": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "Wonderland-Dev"
+>                 }
+>             ],
+>             "type": "included"
+>         },
+>         "automations": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "RYOFXAPO"
+>             }
+>         ],
+>         "access": "full"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a port profile from a network
+> 
+> **DELETE** `/networks/{networkId}/switch/ports/profiles/{id}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-mirrors-by-switch/)
+
+#### list the port mirror configurations in an organization by switch
+
+Operation ID: `getOrganizationSwitchPortsMirrorsBySwitch`
+
+PATH _`/organizations/{organizationId}/switch/ports/mirrors/bySwitch`_
+
+    {
+      "items": [
+        {
+          "serial": "Q234-ABCD-5678",
+          "network": {
+            "id": "N_24329156",
+            "name": "Main Office"
+          },
+          "mirror": {
+            "source": {
+              "ports": [
+                {
+                  "number": 2,
+                  "module": {
+                    "type": "C9800-2X40GE",
+                    "slot": 2
+                  }
+                }
+              ],
+              "filter": {
+                "vlans": "100, 200-210",
+                "hasTransitVlan": true
+              }
+            },
+            "destination": {
+              "port": {
+                "number": 7,
+                "module": {
+                  "type": "C9800-2X40GE",
+                  "slot": 1
+                }
+              },
+              "vlan": "10"
+            },
+            "role": "source",
+            "comment": "My pretty comment",
+            "tags": [
+              "tag1",
+              "tag2"
+            ]
+          },
+          "warnings": [
+            "Warnings from traffic mirror configuration changes"
+          ]
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### list the port mirror configurations in an organization by switch
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/mirrors/bySwitch`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "serial": "Q234-ABCD-5678",
+>                 "network": {
+>                     "id": "N_24329156",
+>                     "name": "Main Office"
+>                 },
+>                 "mirror": {
+>                     "source": {
+>                         "ports": [
+>                             {
+>                                 "number": 2,
+>                                 "module": {
+>                                     "type": "C9800-2X40GE",
+>                                     "slot": 2
+>                                 }
+>                             }
+>                         ],
+>                         "filter": {
+>                             "vlans": "100, 200-210",
+>                             "hasTransitVlan": true
+>                         }
+>                     },
+>                     "destination": {
+>                         "port": {
+>                             "number": 7,
+>                             "module": {
+>                                 "type": "C9800-2X40GE",
+>                                 "slot": 1
+>                             }
+>                         },
+>                         "vlan": "10"
+>                     },
+>                     "role": "source",
+>                     "comment": "My pretty comment",
+>                     "tags": [
+>                         "tag1",
+>                         "tag2"
+>                     ]
+>                 },
+>                 "warnings": [
+>                     "Warnings from traffic mirror configuration changes"
+>                 ]
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 1
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles/)
+
+#### List the port profiles in an organization
+
+Operation ID: `getOrganizationSwitchPortsProfiles`
+
+PATH _`/organizations/{organizationId}/switch/ports/profiles`_
+
+    [
+      {
+        "profileId": "1284392014819",
+        "name": "Phone",
+        "description": "IP Phones for all office workers",
+        "createdAt": "2018-02-11T00:00:00.090210Z",
+        "updatedAt": "2018-02-11T00:00:00.090210Z",
+        "network": {
+          "id": "N_24329156"
+        },
+        "counts": {
+          "assigned": {
+            "ports": 4,
+            "switches": 2,
+            "automations": 6
+          },
+          "networksCount": {
+            "included": 40,
+            "excluded": 20
+          }
+        },
+        "isOrganizationWide": false,
+        "networks": {
+          "values": [
+            {
+              "id": "N_11865",
+              "name": "Wonderland-Dev"
+            }
+          ],
+          "type": "included"
+        },
+        "access": "full"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the port profiles in an organization
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/profiles`  
+> 
+>     [
+>         {
+>             "profileId": "1284392014819",
+>             "name": "Phone",
+>             "description": "IP Phones for all office workers",
+>             "createdAt": "2018-02-11T00:00:00.090210Z",
+>             "updatedAt": "2018-02-11T00:00:00.090210Z",
+>             "network": {
+>                 "id": "N_24329156"
+>             },
+>             "counts": {
+>                 "assigned": {
+>                     "ports": 4,
+>                     "switches": 2,
+>                     "automations": 6
+>                 },
+>                 "networksCount": {
+>                     "included": 40,
+>                     "excluded": 20
+>                 }
+>             },
+>             "isOrganizationWide": false,
+>             "networks": {
+>                 "values": [
+>                     {
+>                         "id": "N_11865",
+>                         "name": "Wonderland-Dev"
+>                     }
+>                 ],
+>                 "type": "included"
+>             },
+>             "access": "full"
+>         }
+>     ]
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a port profile in an organization
+> 
+> **POST** `/organizations/{organizationId}/switch/ports/profiles`  
+> 
+>     {
+>         "profileId": "1284392014819",
+>         "networkId": "N_24329156",
+>         "name": "Phone",
+>         "description": "IP Phones for all office workers",
+>         "tags": [
+>             "tag1",
+>             "tag2"
+>         ],
+>         "associatedPorts": [
+>             {
+>                 "portId": "8",
+>                 "portNum": 8,
+>                 "portName": "Dev - Cheshire Cat / 8",
+>                 "serial": "Q234-ABCD-5678",
+>                 "profile": {
+>                     "enabled": true,
+>                     "id": "1284392014819"
+>                 }
+>             }
+>         ],
+>         "associatedSwitches": [
+>             {
+>                 "switchId": 247165647951894,
+>                 "name": "Dev - Cheshire Cat",
+>                 "mac": "e0:cb:bc:a5:98:16",
+>                 "serial": "Q234-ABCD-5678",
+>                 "model": "MS120-48FP"
+>             }
+>         ],
+>         "assignedSwitchports": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 },
+>                 "template": {
+>                     "id": 1983748489
+>                 }
+>             }
+>         ],
+>         "createdAt": "2022-09-16T09:18:38Z",
+>         "updatedAt": "2022-09-16T09:18:38Z",
+>         "port": {
+>             "type": "access",
+>             "vlan": 10,
+>             "voiceVlan": 20,
+>             "allowedVlans": "1-100",
+>             "poeEnabled": true,
+>             "isolationEnabled": false,
+>             "rstpEnabled": true,
+>             "stpGuard": "disabled",
+>             "udld": "Alert only",
+>             "accessPolicyType": "Sticky MAC allow list",
+>             "accessPolicyNumber": 3,
+>             "macAllowList": [
+>                 "34:56:fe:ce:8e:b0",
+>                 "34:56:fe:ce:8e:b1"
+>             ],
+>             "stickyMacAllowList": [
+>                 "34:56:fe:ce:8e:b0",
+>                 "34:56:fe:ce:8e:b1"
+>             ],
+>             "stickyMacAllowListLimit": 5,
+>             "stormControlEnabled": true,
+>             "adaptivePolicyGroupId": "1284392014819",
+>             "peerSgtCapable": false,
+>             "daiTrusted": false
+>         },
+>         "isOrganizationWide": false,
+>         "networks": {
+>             "values": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "Wonderland-Dev"
+>                 }
+>             ],
+>             "type": "included"
+>         },
+>         "automations": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "RYOFXAPO"
+>             }
+>         ],
+>         "access": "full"
+>     }
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles-automations/)
+
+#### list the automation port profiles in an organization
+
+Operation ID: `getOrganizationSwitchPortsProfilesAutomations`
+
+PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
+
+    {
+      "items": [
+        {
+          "id": "1284392014819",
+          "name": "Automation 1",
+          "description": "A full length description of the automation.",
+          "types": [
+            "Custom",
+            "Built-in"
+          ],
+          "fallbackProfile": {
+            "id": "1284392014819",
+            "name": "Profile 1"
+          },
+          "rules": [
+            {
+              "priority": 1,
+              "conditions": [
+                {
+                  "attribute": "LLDP system description",
+                  "values": [
+                    "Meraki MR*",
+                    "*Wireless*"
+                  ]
+                }
+              ],
+              "profile": {
+                "id": "32",
+                "name": "Profile 2"
+              }
+            }
+          ],
+          "assignedSwitchPorts": [
+            {
+              "portIds": [
+                "1",
+                "2",
+                "3",
+                "1_C3850-NM-8-10G_1",
+                "1_C3850-NM-8-10G_2"
+              ],
+              "switch": {
+                "serial": "Q234-ABCD-5678"
+              }
+            }
+          ],
+          "counts": {
+            "assigned": {
+              "devices": 2,
+              "ports": 51,
+              "networks": 1
+            }
+          },
+          "isOrganizationWide": false,
+          "networks": [
+            {
+              "id": "N_11865",
+              "name": "Wonderland-Dev"
+            }
+          ]
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### list the automation port profiles in an organization
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/profiles/automations`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "id": "1284392014819",
+>                 "name": "Automation 1",
+>                 "description": "A full length description of the automation.",
+>                 "types": [
+>                     "Custom",
+>                     "Built-in"
+>                 ],
+>                 "fallbackProfile": {
+>                     "id": "1284392014819",
+>                     "name": "Profile 1"
+>                 },
+>                 "rules": [
+>                     {
+>                         "priority": 1,
+>                         "conditions": [
+>                             {
+>                                 "attribute": "LLDP system description",
+>                                 "values": [
+>                                     "Meraki MR*",
+>                                     "*Wireless*"
+>                                 ]
+>                             }
+>                         ],
+>                         "profile": {
+>                             "id": "32",
+>                             "name": "Profile 2"
+>                         }
+>                     }
+>                 ],
+>                 "assignedSwitchPorts": [
+>                     {
+>                         "portIds": [
+>                             "1",
+>                             "2",
+>                             "3",
+>                             "1_C3850-NM-8-10G_1",
+>                             "1_C3850-NM-8-10G_2"
+>                         ],
+>                         "switch": {
+>                             "serial": "Q234-ABCD-5678"
+>                         }
+>                     }
+>                 ],
+>                 "counts": {
+>                     "assigned": {
+>                         "devices": 2,
+>                         "ports": 51,
+>                         "networks": 1
+>                     }
+>                 },
+>                 "isOrganizationWide": false,
+>                 "networks": [
+>                     {
+>                         "id": "N_11865",
+>                         "name": "Wonderland-Dev"
+>                     }
+>                 ]
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 1
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a port profile automation for an organization
+> 
+> **POST** `/organizations/{organizationId}/switch/ports/profiles/automations`  
+> 
+>     {
+>         "id": "1284392014819",
+>         "name": "Automation 1",
+>         "description": "A full length description of the automation.",
+>         "types": [
+>             "Custom",
+>             "Built-in"
+>         ],
+>         "fallbackProfile": {
+>             "id": "1284392014819",
+>             "name": "Profile 1"
+>         },
+>         "rules": [
+>             {
+>                 "priority": 1,
+>                 "conditions": [
+>                     {
+>                         "attribute": "LLDP system description",
+>                         "values": [
+>                             "Meraki MR*",
+>                             "*Wireless*"
+>                         ]
+>                     }
+>                 ],
+>                 "profile": {
+>                     "id": "32",
+>                     "name": "Profile 2"
+>                 }
+>             }
+>         ],
+>         "assignedSwitchPorts": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 }
+>             }
+>         ],
+>         "counts": {
+>             "assigned": {
+>                 "devices": 2,
+>                 "ports": 51,
+>                 "networks": 1
+>             }
+>         },
+>         "isOrganizationWide": false,
+>         "networks": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "Wonderland-Dev"
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-switch-ports-profiles-automation/)
+
+#### Update a port profile automation in an organization
+
+Operation ID: `updateOrganizationSwitchPortsProfilesAutomation`
+
+PATH _`/organizations/{organizationId}/switch/ports/profiles/automations/{id}`_
+
+    {
+      "id": "1284392014819",
+      "name": "Automation 1",
+      "description": "A full length description of the automation.",
+      "types": [
+        "Custom",
+        "Built-in"
+      ],
+      "fallbackProfile": {
+        "id": "1284392014819",
+        "name": "Profile 1"
+      },
+      "rules": [
+        {
+          "priority": 1,
+          "conditions": [
+            {
+              "attribute": "LLDP system description",
+              "values": [
+                "Meraki MR*",
+                "*Wireless*"
+              ]
+            }
+          ],
+          "profile": {
+            "id": "32",
+            "name": "Profile 2"
+          }
+        }
+      ],
+      "assignedSwitchPorts": [
+        {
+          "portIds": [
+            "1",
+            "2",
+            "3",
+            "1_C3850-NM-8-10G_1",
+            "1_C3850-NM-8-10G_2"
+          ],
+          "switch": {
+            "serial": "Q234-ABCD-5678"
+          }
+        }
+      ],
+      "counts": {
+        "assigned": {
+          "devices": 2,
+          "ports": 51,
+          "networks": 1
+        }
+      },
+      "isOrganizationWide": false,
+      "networks": [
+        {
+          "id": "N_11865",
+          "name": "Wonderland-Dev"
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a port profile automation in an organization
+> 
+> **PUT** `/organizations/{organizationId}/switch/ports/profiles/automations/{id}`  
+> 
+>     {
+>         "id": "1284392014819",
+>         "name": "Automation 1",
+>         "description": "A full length description of the automation.",
+>         "types": [
+>             "Custom",
+>             "Built-in"
+>         ],
+>         "fallbackProfile": {
+>             "id": "1284392014819",
+>             "name": "Profile 1"
+>         },
+>         "rules": [
+>             {
+>                 "priority": 1,
+>                 "conditions": [
+>                     {
+>                         "attribute": "LLDP system description",
+>                         "values": [
+>                             "Meraki MR*",
+>                             "*Wireless*"
+>                         ]
+>                     }
+>                 ],
+>                 "profile": {
+>                     "id": "32",
+>                     "name": "Profile 2"
+>                 }
+>             }
+>         ],
+>         "assignedSwitchPorts": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 }
+>             }
+>         ],
+>         "counts": {
+>             "assigned": {
+>                 "devices": 2,
+>                 "ports": 51,
+>                 "networks": 1
+>             }
+>         },
+>         "isOrganizationWide": false,
+>         "networks": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "Wonderland-Dev"
+>             }
+>         ]
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an automation port profile from an organization
+> 
+> **DELETE** `/organizations/{organizationId}/switch/ports/profiles/automations/{id}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles-networks-assignments/)
+
+#### Fetch all Network - Smart Port Profile associations for an organization
+
+Operation ID: `getOrganizationSwitchPortsProfilesNetworksAssignments`
+
+PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignments`_
+
+    {
+      "items": [
+        {
+          "assignmentId": "123456",
+          "type": "included",
+          "profile": {
+            "id": "4354353"
+          },
+          "network": {
+            "id": "N_24329156"
+          }
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 42,
+            "remaining": 32
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch all Network - Smart Port Profile associations for an organization
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "assignmentId": "123456",
+>                 "type": "included",
+>                 "profile": {
+>                     "id": "4354353"
+>                 },
+>                 "network": {
+>                     "id": "N_24329156"
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 42,
+>                     "remaining": 32
+>                 }
+>             }
+>         }
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create Network and Smart Ports Profile association for a specific profile
+> 
+> **POST** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments`  
+> 
+>     {
+>         "assignmentId": "123456",
+>         "type": "included",
+>         "profile": {
+>             "id": "4354353"
+>         },
+>         "network": {
+>             "id": "N_24329156"
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/batch-organization-switch-ports-profiles-networks-assignments-create/)
+
+#### Batch Create Network and Smart Ports Profile associations for a specific profile
+
+Operation ID: `batchOrganizationSwitchPortsProfilesNetworksAssignmentsCreate`
+
+PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignments/batchCreate`_
+
+    {
+      "items": [
+        {
+          "assignmentId": "123456",
+          "type": "included",
+          "profile": {
+            "id": "4354353"
+          },
+          "network": {
+            "id": "N_24329156"
+          }
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Batch Create Network and Smart Ports Profile associations for a specific profile
+> 
+> **POST** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments/batchCreate`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "assignmentId": "123456",
+>                 "type": "included",
+>                 "profile": {
+>                     "id": "4354353"
+>                 },
+>                 "network": {
+>                     "id": "N_24329156"
+>                 }
+>             }
+>         ]
+>     }
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/bulk-organization-switch-ports-profiles-networks-assignments-delete/)
+
+#### Bulk delete Network and Smart Port Profile associations
+
+Operation ID: `bulkOrganizationSwitchPortsProfilesNetworksAssignmentsDelete`
+
+PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignments/bulkDelete`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Bulk delete Network and Smart Port Profile associations
+> 
+> **POST** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments/bulkDelete`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-switch-ports-profiles-networks-assignment/)
+
+#### Delete Network and Smart Port profile association for a specific profile
+
+Operation ID: `deleteOrganizationSwitchPortsProfilesNetworksAssignment`
+
+PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignments/{assignmentId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Delete Network and Smart Port profile association for a specific profile
+> 
+> **DELETE** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments/{assignmentId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles-overview-by-profile/)
+
+#### List the port profiles in an organization
+
+Operation ID: `getOrganizationSwitchPortsProfilesOverviewByProfile`
+
+PATH _`/organizations/{organizationId}/switch/ports/profiles/overview/byProfile`_
+
+    [
+      {
+        "items": [
+          {
+            "profileId": "1284392014819",
+            "name": "Phone",
+            "description": "IP Phones for all office workers",
+            "createdAt": "2018-02-11T00:00:00.090210Z",
+            "updatedAt": "2018-02-11T00:00:00.090210Z",
+            "network": {
+              "id": "N_24329156"
+            },
+            "counts": {
+              "assigned": {
+                "ports": 4,
+                "switches": 2,
+                "automations": 6
+              },
+              "networksCount": {
+                "included": 40,
+                "excluded": 20
+              }
+            },
+            "isOrganizationWide": false,
+            "networks": {
+              "values": [
+                {
+                  "id": "N_11865",
+                  "name": "Wonderland-Dev"
+                }
+              ],
+              "type": "included"
+            },
+            "access": "full"
+          }
+        ],
+        "meta": {
+          "counts": {
+            "items": {
+              "total": 1
+            }
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the port profiles in an organization
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/profiles/overview/byProfile`  
+> 
+>     [
+>         {
+>             "items": [
+>                 {
+>                     "profileId": "1284392014819",
+>                     "name": "Phone",
+>                     "description": "IP Phones for all office workers",
+>                     "createdAt": "2018-02-11T00:00:00.090210Z",
+>                     "updatedAt": "2018-02-11T00:00:00.090210Z",
+>                     "network": {
+>                         "id": "N_24329156"
+>                     },
+>                     "counts": {
+>                         "assigned": {
+>                             "ports": 4,
+>                             "switches": 2,
+>                             "automations": 6
+>                         },
+>                         "networksCount": {
+>                             "included": 40,
+>                             "excluded": 20
+>                         }
+>                     },
+>                     "isOrganizationWide": false,
+>                     "networks": {
+>                         "values": [
+>                             {
+>                                 "id": "N_11865",
+>                                 "name": "Wonderland-Dev"
+>                             }
+>                         ],
+>                         "type": "included"
+>                     },
+>                     "access": "full"
+>                 }
+>             ],
+>             "meta": {
+>                 "counts": {
+>                     "items": {
+>                         "total": 1
+>                     }
+>                 }
+>             }
+>         }
+>     ]
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profile/)
+
+#### Get detailed information about a port profile
+
+Operation ID: `getOrganizationSwitchPortsProfile`
+
+PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
+
+    {
+      "profileId": "1284392014819",
+      "networkId": "N_24329156",
+      "name": "Phone",
+      "description": "IP Phones for all office workers",
+      "tags": [
+        "tag1",
+        "tag2"
+      ],
+      "associatedPorts": [
+        {
+          "portId": "8",
+          "portNum": 8,
+          "portName": "Dev - Cheshire Cat / 8",
+          "serial": "Q234-ABCD-5678",
+          "profile": {
+            "enabled": true,
+            "id": "1284392014819"
+          }
+        }
+      ],
+      "associatedSwitches": [
+        {
+          "switchId": 247165647951894,
+          "name": "Dev - Cheshire Cat",
+          "mac": "e0:cb:bc:a5:98:16",
+          "serial": "Q234-ABCD-5678",
+          "model": "MS120-48FP"
+        }
+      ],
+      "assignedSwitchports": [
+        {
+          "portIds": [
+            "1",
+            "2",
+            "3",
+            "1_C3850-NM-8-10G_1",
+            "1_C3850-NM-8-10G_2"
+          ],
+          "switch": {
+            "serial": "Q234-ABCD-5678"
+          },
+          "template": {
+            "id": 1983748489
+          }
+        }
+      ],
+      "createdAt": "2022-09-16T09:18:38Z",
+      "updatedAt": "2022-09-16T09:18:38Z",
+      "port": {
+        "type": "access",
+        "vlan": 10,
+        "voiceVlan": 20,
+        "allowedVlans": "1-100",
+        "poeEnabled": true,
+        "isolationEnabled": false,
+        "rstpEnabled": true,
+        "stpGuard": "disabled",
+        "udld": "Alert only",
+        "accessPolicyType": "Sticky MAC allow list",
+        "accessPolicyNumber": 3,
+        "macAllowList": [
+          "34:56:fe:ce:8e:b0",
+          "34:56:fe:ce:8e:b1"
+        ],
+        "stickyMacAllowList": [
+          "34:56:fe:ce:8e:b0",
+          "34:56:fe:ce:8e:b1"
+        ],
+        "stickyMacAllowListLimit": 5,
+        "stormControlEnabled": true,
+        "adaptivePolicyGroupId": "1284392014819",
+        "peerSgtCapable": false,
+        "daiTrusted": false
+      },
+      "isOrganizationWide": false,
+      "networks": {
+        "values": [
+          {
+            "id": "N_11865",
+            "name": "Wonderland-Dev"
+          }
+        ],
+        "type": "included"
+      },
+      "automations": [
+        {
+          "id": "N_11865",
+          "name": "RYOFXAPO"
+        }
+      ],
+      "access": "full"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get detailed information about a port profile
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/profiles/{id}`  
+> 
+>     {
+>         "profileId": "1284392014819",
+>         "networkId": "N_24329156",
+>         "name": "Phone",
+>         "description": "IP Phones for all office workers",
+>         "tags": [
+>             "tag1",
+>             "tag2"
+>         ],
+>         "associatedPorts": [
+>             {
+>                 "portId": "8",
+>                 "portNum": 8,
+>                 "portName": "Dev - Cheshire Cat / 8",
+>                 "serial": "Q234-ABCD-5678",
+>                 "profile": {
+>                     "enabled": true,
+>                     "id": "1284392014819"
+>                 }
+>             }
+>         ],
+>         "associatedSwitches": [
+>             {
+>                 "switchId": 247165647951894,
+>                 "name": "Dev - Cheshire Cat",
+>                 "mac": "e0:cb:bc:a5:98:16",
+>                 "serial": "Q234-ABCD-5678",
+>                 "model": "MS120-48FP"
+>             }
+>         ],
+>         "assignedSwitchports": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 },
+>                 "template": {
+>                     "id": 1983748489
+>                 }
+>             }
+>         ],
+>         "createdAt": "2022-09-16T09:18:38Z",
+>         "updatedAt": "2022-09-16T09:18:38Z",
+>         "port": {
+>             "type": "access",
+>             "vlan": 10,
+>             "voiceVlan": 20,
+>             "allowedVlans": "1-100",
+>             "poeEnabled": true,
+>             "isolationEnabled": false,
+>             "rstpEnabled": true,
+>             "stpGuard": "disabled",
+>             "udld": "Alert only",
+>             "accessPolicyType": "Sticky MAC allow list",
+>             "accessPolicyNumber": 3,
+>             "macAllowList": [
+>                 "34:56:fe:ce:8e:b0",
+>                 "34:56:fe:ce:8e:b1"
+>             ],
+>             "stickyMacAllowList": [
+>                 "34:56:fe:ce:8e:b0",
+>                 "34:56:fe:ce:8e:b1"
+>             ],
+>             "stickyMacAllowListLimit": 5,
+>             "stormControlEnabled": true,
+>             "adaptivePolicyGroupId": "1284392014819",
+>             "peerSgtCapable": false,
+>             "daiTrusted": false
+>         },
+>         "isOrganizationWide": false,
+>         "networks": {
+>             "values": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "Wonderland-Dev"
+>                 }
+>             ],
+>             "type": "included"
+>         },
+>         "automations": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "RYOFXAPO"
+>             }
+>         ],
+>         "access": "full"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update a port profile in an organization
+> 
+> **PUT** `/organizations/{organizationId}/switch/ports/profiles/{id}`  
+> 
+>     {
+>         "profileId": "1284392014819",
+>         "networkId": "N_24329156",
+>         "name": "Phone",
+>         "description": "IP Phones for all office workers",
+>         "tags": [
+>             "tag1",
+>             "tag2"
+>         ],
+>         "associatedPorts": [
+>             {
+>                 "portId": "8",
+>                 "portNum": 8,
+>                 "portName": "Dev - Cheshire Cat / 8",
+>                 "serial": "Q234-ABCD-5678",
+>                 "profile": {
+>                     "enabled": true,
+>                     "id": "1284392014819"
+>                 }
+>             }
+>         ],
+>         "associatedSwitches": [
+>             {
+>                 "switchId": 247165647951894,
+>                 "name": "Dev - Cheshire Cat",
+>                 "mac": "e0:cb:bc:a5:98:16",
+>                 "serial": "Q234-ABCD-5678",
+>                 "model": "MS120-48FP"
+>             }
+>         ],
+>         "assignedSwitchports": [
+>             {
+>                 "portIds": [
+>                     "1",
+>                     "2",
+>                     "3",
+>                     "1_C3850-NM-8-10G_1",
+>                     "1_C3850-NM-8-10G_2"
+>                 ],
+>                 "switch": {
+>                     "serial": "Q234-ABCD-5678"
+>                 },
+>                 "template": {
+>                     "id": 1983748489
+>                 }
+>             }
+>         ],
+>         "createdAt": "2022-09-16T09:18:38Z",
+>         "updatedAt": "2022-09-16T09:18:38Z",
+>         "port": {
+>             "type": "access",
+>             "vlan": 10,
+>             "voiceVlan": 20,
+>             "allowedVlans": "1-100",
+>             "poeEnabled": true,
+>             "isolationEnabled": false,
+>             "rstpEnabled": true,
+>             "stpGuard": "disabled",
+>             "udld": "Alert only",
+>             "accessPolicyType": "Sticky MAC allow list",
+>             "accessPolicyNumber": 3,
+>             "macAllowList": [
+>                 "34:56:fe:ce:8e:b0",
+>                 "34:56:fe:ce:8e:b1"
+>             ],
+>             "stickyMacAllowList": [
+>                 "34:56:fe:ce:8e:b0",
+>                 "34:56:fe:ce:8e:b1"
+>             ],
+>             "stickyMacAllowListLimit": 5,
+>             "stormControlEnabled": true,
+>             "adaptivePolicyGroupId": "1284392014819",
+>             "peerSgtCapable": false,
+>             "daiTrusted": false
+>         },
+>         "isOrganizationWide": false,
+>         "networks": {
+>             "values": [
+>                 {
+>                     "id": "N_11865",
+>                     "name": "Wonderland-Dev"
+>                 }
+>             ],
+>             "type": "included"
+>         },
+>         "automations": [
+>             {
+>                 "id": "N_11865",
+>                 "name": "RYOFXAPO"
+>             }
+>         ],
+>         "access": "full"
+>     }
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a port profile from an organization
+> 
+> **DELETE** `/organizations/{organizationId}/switch/ports/profiles/{id}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-transceivers-readings-history-by-switch/)
+
+#### Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.
+
+Operation ID: `getOrganizationSwitchPortsTransceiversReadingsHistoryBySwitch`
+
+PATH _`/organizations/{organizationId}/switch/ports/transceivers/readings/history/bySwitch`_
+
+    {
+      "items": [
+        {
+          "serial": "Q234-ABCD-0001",
+          "ports": [
+            {
+              "portId": "1",
+              "indices": {
+                "switch": 1,
+                "slot": 0,
+                "port": 1
+              },
+              "readings": [
+                {
+                  "startTs": "2018-02-11T00:00:00.090210Z",
+                  "endTs": "2018-02-11T00:00:00.090210Z",
+                  "sfpProductId": "PRODUCT1",
+                  "thresholdSetId": "ABC123",
+                  "byMetric": {
+                    "power": {
+                      "transmit": {
+                        "minimum": 4,
+                        "maximum": 5,
+                        "median": 4.5
+                      },
+                      "receive": {
+                        "minimum": 4,
+                        "maximum": 5,
+                        "median": 4.5
+                      }
+                    },
+                    "temperature": {
+                      "fahrenheit": {
+                        "minimum": 30,
+                        "maximum": 33,
+                        "median": 32
+                      },
+                      "celsius": {
+                        "minimum": -1.1,
+                        "maximum": 0.6,
+                        "median": 0
+                      }
+                    },
+                    "supplyVoltage": {
+                      "level": {
+                        "minimum": 3,
+                        "maximum": 3.33,
+                        "median": 3.11
+                      }
+                    },
+                    "laserBiasCurrent": {
+                      "draw": {
+                        "minimum": 5,
+                        "maximum": 7,
+                        "median": 5.5
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "network": {
+            "id": "N_12345678",
+            "name": "San Francisco Office"
+          }
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 4,
+            "remaining": 2
+          }
+        },
+        "units": {
+          "power": {
+            "name": "decibel milliwatts",
+            "symbol": "dBm"
+          },
+          "supplyVoltage": {
+            "name": "volts",
+            "symbol": "V"
+          },
+          "laserBiasCurrent": {
+            "name": "milliamps",
+            "symbol": "mA"
+          }
+        },
+        "thresholds": [
+          {
+            "thresholdSetId": "ABC123",
+            "power": {
+              "transmit": {
+                "error": {
+                  "upper": 1.8,
+                  "lower": 0.3
+                },
+                "warning": {
+                  "upper": 1.5,
+                  "lower": 0.6
+                }
+              },
+              "receive": {
+                "error": {
+                  "upper": 1.8,
+                  "lower": 0.3
+                },
+                "warning": {
+                  "upper": 1.5,
+                  "lower": 0.6
+                }
+              }
+            },
+            "temperature": {
+              "fahrenheit": {
+                "error": {
+                  "upper": 59,
+                  "lower": 23
+                },
+                "warning": {
+                  "upper": 50,
+                  "lower": 14
+                }
+              },
+              "celsius": {
+                "error": {
+                  "upper": 15,
+                  "lower": -5
+                },
+                "warning": {
+                  "upper": 10,
+                  "lower": -10
+                }
+              }
+            },
+            "supplyVoltage": {
+              "level": {
+                "error": {
+                  "upper": 7,
+                  "lower": 2
+                },
+                "warning": {
+                  "upper": 6,
+                  "lower": 3
+                }
+              }
+            },
+            "laserBiasCurrent": {
+              "draw": {
+                "error": {
+                  "upper": 6,
+                  "lower": 1
+                },
+                "warning": {
+                  "upper": 5,
+                  "lower": 2
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/transceivers/readings/history/bySwitch`  
+> 
+>     {
+>         "items": [
+>             {
+>                 "serial": "Q234-ABCD-0001",
+>                 "ports": [
+>                     {
+>                         "portId": "1",
+>                         "indices": {
+>                             "switch": 1,
+>                             "slot": 0,
+>                             "port": 1
+>                         },
+>                         "readings": [
+>                             {
+>                                 "startTs": "2018-02-11T00:00:00.090210Z",
+>                                 "endTs": "2018-02-11T00:00:00.090210Z",
+>                                 "sfpProductId": "PRODUCT1",
+>                                 "thresholdSetId": "ABC123",
+>                                 "byMetric": {
+>                                     "power": {
+>                                         "transmit": {
+>                                             "minimum": 4,
+>                                             "maximum": 5,
+>                                             "median": 4.5
+>                                         },
+>                                         "receive": {
+>                                             "minimum": 4,
+>                                             "maximum": 5,
+>                                             "median": 4.5
+>                                         }
+>                                     },
+>                                     "temperature": {
+>                                         "fahrenheit": {
+>                                             "minimum": 30,
+>                                             "maximum": 33,
+>                                             "median": 32
+>                                         },
+>                                         "celsius": {
+>                                             "minimum": -1.1,
+>                                             "maximum": 0.6,
+>                                             "median": 0
+>                                         }
+>                                     },
+>                                     "supplyVoltage": {
+>                                         "level": {
+>                                             "minimum": 3,
+>                                             "maximum": 3.33,
+>                                             "median": 3.11
+>                                         }
+>                                     },
+>                                     "laserBiasCurrent": {
+>                                         "draw": {
+>                                             "minimum": 5,
+>                                             "maximum": 7,
+>                                             "median": 5.5
+>                                         }
+>                                     }
+>                                 }
+>                             }
+>                         ]
+>                     }
+>                 ],
+>                 "network": {
+>                     "id": "N_12345678",
+>                     "name": "San Francisco Office"
+>                 }
+>             }
+>         ],
+>         "meta": {
+>             "counts": {
+>                 "items": {
+>                     "total": 4,
+>                     "remaining": 2
+>                 }
+>             },
+>             "units": {
+>                 "power": {
+>                     "name": "decibel milliwatts",
+>                     "symbol": "dBm"
+>                 },
+>                 "supplyVoltage": {
+>                     "name": "volts",
+>                     "symbol": "V"
+>                 },
+>                 "laserBiasCurrent": {
+>                     "name": "milliamps",
+>                     "symbol": "mA"
+>                 }
+>             },
+>             "thresholds": [
+>                 {
+>                     "thresholdSetId": "ABC123",
+>                     "power": {
+>                         "transmit": {
+>                             "error": {
+>                                 "upper": 1.8,
+>                                 "lower": 0.3
+>                             },
+>                             "warning": {
+>                                 "upper": 1.5,
+>                                 "lower": 0.6
+>                             }
+>                         },
+>                         "receive": {
+>                             "error": {
+>                                 "upper": 1.8,
+>                                 "lower": 0.3
+>                             },
+>                             "warning": {
+>                                 "upper": 1.5,
+>                                 "lower": 0.6
+>                             }
+>                         }
+>                     },
+>                     "temperature": {
+>                         "fahrenheit": {
+>                             "error": {
+>                                 "upper": 59,
+>                                 "lower": 23
+>                             },
+>                             "warning": {
+>                                 "upper": 50,
+>                                 "lower": 14
+>                             }
+>                         },
+>                         "celsius": {
+>                             "error": {
+>                                 "upper": 15,
+>                                 "lower": -5
+>                             },
+>                             "warning": {
+>                                 "upper": 10,
+>                                 "lower": -10
+>                             }
+>                         }
+>                     },
+>                     "supplyVoltage": {
+>                         "level": {
+>                             "error": {
+>                                 "upper": 7,
+>                                 "lower": 2
+>                             },
+>                             "warning": {
+>                                 "upper": 6,
+>                                 "lower": 3
+>                             }
+>                         }
+>                     },
+>                     "laserBiasCurrent": {
+>                         "draw": {
+>                             "error": {
+>                                 "upper": 6,
+>                                 "lower": 1
+>                             },
+>                             "warning": {
+>                                 "upper": 5,
+>                                 "lower": 2
+>                             }
+>                         }
+>                     }
+>                 }
+>             ]
+>         }
+>     }
+> 
+> * * *
+
+* * *
+
 \[ sensor \]
 ------------
 
@@ -20725,20 +20508,6 @@ GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
 
 * * *
 
-### ports
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-by-switch/)
-
-#### List the switchports in an organization by switch
-
-Operation ID: `getOrganizationSwitchPortsBySwitch`
-
-GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
-
-> \- Optional param `extendedParams` added
-
-* * *
-
 ### routing
 
 [Docs](https://developer.cisco.com/meraki/api-v1/create-device-switch-routing-interface/)
@@ -20934,6 +20703,34 @@ GET _`/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvou
 > \- Optional property `vrf` Added
 
 > \- Response property `vrf` value added
+
+* * *
+
+### ports
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-switch-ports/)
+
+#### List the switch ports for a switch
+
+Operation ID: `getDeviceSwitchPorts`
+
+GET _`/devices/{serial}/switch/ports`_
+
+> \- Optional param `hideDefaultPorts` added
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-by-switch/)
+
+#### List the switchports in an organization by switch
+
+Operation ID: `getOrganizationSwitchPortsBySwitch`
+
+GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
+
+> \- Optional param `extendedParams` added
+
+> \- Optional param `hideDefaultPorts` added
 
 * * *
 
