@@ -78,18 +78,6 @@
       - [Return the details of a specific private application group](#return-the-details-of-a-specific-private-application-group)
       - [Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.](#update-an-application-group-in-an-organization-updates-are-allowed-on-group-name-and-group-description-applications-can-be-added-or-removed-group-type-and-policy-cannot-be-changed)
       - [Deletes private application group from an Organization. Detaches application from groups before deleting](#deletes-private-application-group-from-an-organization-detaches-application-from-groups-before-deleting)
-  * [\[ nac \]](#-nac-)
-    + [sessions](#sessions)
-      - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization)
-      - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization-1)
-      - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions)
-      - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions-1)
-    + [license](#license)
-      - [Returns license usage data for a specific organization](#returns-license-usage-data-for-a-specific-organization)
-      - [Returns license usage data for a specific organization](#returns-license-usage-data-for-a-specific-organization-1)
-    + [authorization](#authorization)
-      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization)
-      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-1)
   * [\[ users \]](#-users-)
     + [iam](#iam)
       - [List specific authorizations for the list of Meraki end users.](#list-specific-authorizations-for-the-list-of-meraki-end-users)
@@ -203,6 +191,41 @@
     + [subscription](#subscription)
       - [Batch change networks to their desired feature tier for specified product types](#batch-change-networks-to-their-desired-feature-tier-for-specified-product-types)
       - [Batch change networks to their desired feature tier for specified product types](#batch-change-networks-to-their-desired-feature-tier-for-specified-product-types-1)
+  * [\[ nac \]](#-nac-)
+    + [sessions](#sessions)
+      - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization)
+      - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization-1)
+      - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions)
+      - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions-1)
+    + [license](#license)
+      - [Returns license usage data for a specific organization](#returns-license-usage-data-for-a-specific-organization)
+      - [Returns license usage data for a specific organization](#returns-license-usage-data-for-a-specific-organization-1)
+    + [dictionaries](#dictionaries)
+      - [Get all NAC dictionaries](#get-all-nac-dictionaries)
+      - [Get all NAC dictionaries](#get-all-nac-dictionaries-1)
+      - [Get all attributes by dictionary ID](#get-all-attributes-by-dictionary-id)
+      - [Get all attributes by dictionary ID](#get-all-attributes-by-dictionary-id-1)
+    + [authorization](#authorization)
+      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization)
+      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-1)
+      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization)
+      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-1)
+      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization)
+      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-1)
+      - [Delete a rule in an authorization policy set of an organization](#delete-a-rule-in-an-authorization-policy-set-of-an-organization)
+    + [certificates](#certificates)
+      - [Gets all certificates for an organization and can filter by certificate status, expiry date and last used date](#gets-all-certificates-for-an-organization-and-can-filter-by-certificate-status-expiry-date-and-last-used-date)
+      - [Gets all certificates for an organization and can filter by certificate status, expiry date and last used date](#gets-all-certificates-for-an-organization-and-can-filter-by-certificate-status-expiry-date-and-last-used-date-1)
+      - [Get all the organization's CRL descriptors (metadata only - revocation list data is excluded)](#get-all-the-organizations-crl-descriptors-metadata-only---revocation-list-data-is-excluded)
+      - [Get all the organization's CRL descriptors (metadata only - revocation list data is excluded). It's possible to filter results by CRL issuers (CA) - see caIds query parameter](#get-all-the-organizations-crl-descriptors-metadata-only---revocation-list-data-is-excluded-its-possible-to-filter-results-by-crl-issuers-ca---see-caids-query-parameter)
+      - [Deletes a whole CRL, including all its deltas (in case of base CRL removal)](#deletes-a-whole-crl-including-all-its-deltas-in-case-of-base-crl-removal)
+      - [Deletes a whole CRL, including all its deltas (in case of base CRL removal)](#deletes-a-whole-crl-including-all-its-deltas-in-case-of-base-crl-removal-1)
+      - [Import certificate for this organization or validate without persisting](#import-certificate-for-this-organization-or-validate-without-persisting)
+      - [Import certificate for this organization or validate without persisting](#import-certificate-for-this-organization-or-validate-without-persisting-1)
+      - [Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization](#get-counts-of-enabled-disabled-expired-and-last-used-certificates-for-this-organization)
+      - [Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization](#get-counts-of-enabled-disabled-expired-and-last-used-certificates-for-this-organization-1)
+      - [Update certificate configuration by certificateId for this organization](#update-certificate-configuration-by-certificateid-for-this-organization)
+      - [Update certificate configuration by certificateId for this organization](#update-certificate-configuration-by-certificateid-for-this-organization-1)
   * [\[ insight \]](#-insight-)
     + [webApps](#webapps)
       - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
@@ -239,35 +262,31 @@
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization-1)
     + [sase](#sase)
-      - [List high-level SSE site statuses (healthy, degraded, offline)](#list-high-level-sse-site-statuses-healthy-degraded-offline)
-      - [List high-level SSE site statuses (healthy, degraded, offline)](#list-high-level-sse-site-statuses-healthy-degraded-offline-1)
       - [Create a new Secure Access integration](#create-a-new-secure-access-integration)
       - [Create a new Secure Access integration](#create-a-new-secure-access-integration-1)
       - [Get details of a Secure Access integration](#get-details-of-a-secure-access-integration)
       - [Get details of a Secure Access integration](#get-details-of-a-secure-access-integration-1)
       - [Remove a Secure Access integration](#remove-a-secure-access-integration)
+      - [List of MX networks or templates that can be enrolled into Secure Access](#list-of-mx-networks-or-templates-that-can-be-enrolled-into-secure-access)
+      - [List of MX networks or templates that can be enrolled into Secure Access](#list-of-mx-networks-or-templates-that-can-be-enrolled-into-secure-access-1)
       - [List regions](#list-regions)
       - [List regions](#list-regions-1)
-      - [List of enrolled sites in this organization](#list-of-enrolled-sites-in-this-organization)
-      - [List of enrolled sites in this organization](#list-of-enrolled-sites-in-this-organization-1)
+      - [List of enrolled SASE sites in this organization](#list-of-enrolled-sase-sites-in-this-organization)
+      - [List of enrolled SASE sites in this organization](#list-of-enrolled-sase-sites-in-this-organization-1)
+      - [List high-level SASE site statuses (healthy, degraded, offline)](#list-high-level-sase-site-statuses-healthy-degraded-offline)
+      - [List high-level SASE site statuses (healthy, degraded, offline)](#list-high-level-sase-site-statuses-healthy-degraded-offline-1)
+      - [Get the connectivity history of SASE sites in this organization](#get-the-connectivity-history-of-sase-sites-in-this-organization)
+      - [Get the connectivity history of SASE sites in this organization](#get-the-connectivity-history-of-sase-sites-in-this-organization-1)
       - [Detach sites in this organization from Secure Access](#detach-sites-in-this-organization-from-secure-access)
       - [Detach sites in this organization from Secure Access. This will remove the sites from Secure Access.](#detach-sites-in-this-organization-from-secure-access-this-will-remove-the-sites-from-secure-access)
       - [Enroll sites in this organization to Secure Access](#enroll-sites-in-this-organization-to-secure-access)
       - [Enroll sites in this organization to Secure Access. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.](#enroll-sites-in-this-organization-to-secure-access-for-an-organization-a-maximum-of-4000-sites-can-be-enrolled-if-they-are-in-spoke-mode-or-a-maximum-of-10-sites-can-be-enrolled-in-hub-mode)
-      - [Get the status of sites in this organization](#get-the-status-of-sites-in-this-organization)
-      - [Get the status of sites in this organization](#get-the-status-of-sites-in-this-organization-1)
-      - [Get details of a site in this organization](#get-details-of-a-site-in-this-organization)
-      - [Get details of a site in this organization](#get-details-of-a-site-in-this-organization-1)
+      - [Update the configuration for a site](#update-the-configuration-for-a-site)
       - [Update the configuration for a site. Currently, only supports updating default route enablement.](#update-the-configuration-for-a-site-currently-only-supports-updating-default-route-enablement)
     + [networks](#networks)
       - [Move networks from one organization to another](#move-networks-from-one-organization-to-another)
       - [Return a list of network move operations in the organization](#return-a-list-of-network-move-operations-in-the-organization)
       - [Move networks from one organization to another. For more information and caveats around network move limitations see the Network Portability documentation.](#move-networks-from-one-organization-to-another-for-more-information-and-caveats-around-network-move-limitations-see-the-network-portability-documentation)
-    + [inventory](#inventory)
-      - [Claim an order by the secure unique order claim number, the order claim id](#claim-an-order-by-the-secure-unique-order-claim-number-the-order-claim-id)
-      - [Claim an order by the secure unique order claim number, the order claim id](#claim-an-order-by-the-secure-unique-order-claim-number-the-order-claim-id-1)
-      - [Preview the results and status of an order claim by the secure order id](#preview-the-results-and-status-of-an-order-claim-by-the-secure-order-id)
-      - [Preview the results and status of an order claim by the secure order id](#preview-the-results-and-status-of-an-order-claim-by-the-secure-order-id-1)
     + [integrations](#integrations)
       - [Provides a list of integrations that can be enabled for an Organization.](#provides-a-list-of-integrations-that-can-be-enabled-for-an-organization)
       - [Provides a list of integrations that can be enabled for an Organization.](#provides-a-list-of-integrations-that-can-be-enabled-for-an-organization-1)
@@ -290,16 +309,6 @@
     + [cloud](#cloud)
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules-1)
-    + [certificates](#certificates)
-      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
-      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization-1)
-      - [Import certificate for this organization](#import-certificate-for-this-organization)
-      - [Import certificate for this organization](#import-certificate-for-this-organization-1)
-      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
-      - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
-      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization-1)
-      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
-      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id-1)
     + [auth](#auth)
       - [List the organization-wide RADIUS servers in the organization](#list-the-organization-wide-radius-servers-in-the-organization)
       - [List the organization-wide RADIUS servers in the organization](#list-the-organization-wide-radius-servers-in-the-organization-1)
@@ -322,6 +331,9 @@
     + [productAnnouncements](#productannouncements)
       - [Gets relevant product announcements for a user](#gets-relevant-product-announcements-for-a-user)
       - [Gets relevant product announcements for a user](#gets-relevant-product-announcements-for-a-user-1)
+    + [optimization](#optimization)
+      - [Returns an array of checkup results for the networks](#returns-an-array-of-checkup-results-for-the-networks)
+      - [Returns an array of checkup results for the networks](#returns-an-array-of-checkup-results-for-the-networks-1)
     + [apiRequests](#apirequests)
       - [Lists API request response codes and their counts aggregated by admin](#lists-api-request-response-codes-and-their-counts-aggregated-by-admin)
       - [Lists API request response codes and their counts aggregated by admin](#lists-api-request-response-codes-and-their-counts-aggregated-by-admin-1)
@@ -334,11 +346,27 @@
     + [snmp](#snmp)
       - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization)
       - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization-1)
+    + [certificates](#certificates-1)
+      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
+      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization-1)
+      - [Import certificate for this organization](#import-certificate-for-this-organization)
+      - [Import certificate for this organization](#import-certificate-for-this-organization-1)
+      - [Download the public RADIUS certificate.](#download-the-public-radius-certificate)
+      - [Download the public RADIUS certificate.](#download-the-public-radius-certificate-1)
+      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
+      - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
+      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization-1)
+      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
+      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id-1)
     + [devices](#devices-1)
       - [Returns counts of online, offline, and recovered devices by product type, along with offline intervals for impacted devices in the organization.](#returns-counts-of-online-offline-and-recovered-devices-by-product-type-along-with-offline-intervals-for-impacted-devices-in-the-organization)
       - [Returns counts of online, offline, and recovered devices by product type, along with offline intervals for impacted devices in the organization.](#returns-counts-of-online-offline-and-recovered-devices-by-product-type-along-with-offline-intervals-for-impacted-devices-in-the-organization-1)
       - [Returns the history of device boots in reverse chronological order (most recent first)](#returns-the-history-of-device-boots-in-reverse-chronological-order-most-recent-first)
       - [Returns the history of device boots in reverse chronological order (most recent first). Currently supported for MS devices only.](#returns-the-history-of-device-boots-in-reverse-chronological-order-most-recent-first-currently-supported-for-ms-devices-only)
+      - [Summarizes device reboots across an organization.](#summarizes-device-reboots-across-an-organization)
+      - [Summarizes device reboots across an organization.](#summarizes-device-reboots-across-an-organization-1)
+      - [Summarizes memory status across devices of a given network](#summarizes-memory-status-across-devices-of-a-given-network)
+      - [Summarizes memory status across devices of a given network](#summarizes-memory-status-across-devices-of-a-given-network-1)
       - [List the Opportunistic Pcap settings of an organization by network](#list-the-opportunistic-pcap-settings-of-an-organization-by-network)
       - [List the Opportunistic Pcap settings of an organization by network](#list-the-opportunistic-pcap-settings-of-an-organization-by-network-1)
       - [Delete packet capture schedules](#delete-packet-capture-schedules)
@@ -356,6 +384,15 @@
       - [Given a client, get all alerts and events for a given timespan](#given-a-client-get-all-alerts-and-events-for-a-given-timespan-1)
       - [Given a client, category, and timespan, return events that have a close connection to each other.](#given-a-client-category-and-timespan-return-events-that-have-a-close-connection-to-each-other)
       - [Given a client, category, and timespan, return events that have a close connection to each other.](#given-a-client-category-and-timespan-return-events-that-have-a-close-connection-to-each-other-1)
+      - [Given a client, return current topology](#given-a-client-return-current-topology)
+      - [Given a client, return current topology](#given-a-client-return-current-topology-1)
+    + [routing](#routing)
+      - [List existing organization-wide VRFs (Virtual Routing and Forwarding).](#list-existing-organization-wide-vrfs-virtual-routing-and-forwarding)
+      - [List existing organization-wide VRFs (Virtual Routing and Forwarding).](#list-existing-organization-wide-vrfs-virtual-routing-and-forwarding-1)
+      - [Add an organization-wide VRF (Virtual Routing and Forwarding)](#add-an-organization-wide-vrf-virtual-routing-and-forwarding)
+      - [Update an organization-wide VRF (Virtual Routing and Forwarding)](#update-an-organization-wide-vrf-virtual-routing-and-forwarding)
+      - [Update an organization-wide VRF (Virtual Routing and Forwarding)](#update-an-organization-wide-vrf-virtual-routing-and-forwarding-1)
+      - [Delete a VRF (Virtual Routing and Forwarding) from a organization](#delete-a-vrf-virtual-routing-and-forwarding-from-a-organization)
   * [\[ networks \]](#-networks-)
     + [snmp](#snmp-1)
       - [Update the SNMP trap configuration for the specified network](#update-the-snmp-trap-configuration-for-the-specified-network)
@@ -371,9 +408,15 @@
       - [Updates the syslog servers configuration for a network.](#updates-the-syslog-servers-configuration-for-a-network)
       - [Updates the syslog servers configuration for a network.](#updates-the-syslog-servers-configuration-for-a-network-1)
   * [\[ wireless \]](#-wireless-)
-    + [certificates](#certificates-1)
-      - [Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).](#query-for-details-on-the-organizations-openroaming-certificate-authority-certificate-cas)
-      - [Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).](#query-for-details-on-the-organizations-openroaming-certificate-authority-certificate-cas-1)
+    + [roaming](#roaming)
+      - [Get all wireless clients' roam events within the specified timespan grouped by network and time interval.](#get-all-wireless-clients-roam-events-within-the-specified-timespan-grouped-by-network-and-time-interval)
+      - [Get all wireless clients' roam events within the specified timespan grouped by network and time interval.](#get-all-wireless-clients-roam-events-within-the-specified-timespan-grouped-by-network-and-time-interval-1)
+    + [alerts](#alerts)
+      - [Gets all low power related alerts over a given network and returns information by device](#gets-all-low-power-related-alerts-over-a-given-network-and-returns-information-by-device)
+      - [Gets all low power related alerts over a given network and returns information by device](#gets-all-low-power-related-alerts-over-a-given-network-and-returns-information-by-device-1)
+    + [connectivity](#connectivity)
+      - [Show the by-device RF Health score overview information for the organization in the given interval](#show-the-by-device-rf-health-score-overview-information-for-the-organization-in-the-given-interval)
+      - [Show the by-device RF Health score overview information for the organization in the given interval. This includes the RF Health score for each device, as well as some more basic device info](#show-the-by-device-rf-health-score-overview-information-for-the-organization-in-the-given-interval-this-includes-the-rf-health-score-for-each-device-as-well-as-some-more-basic-device-info)
     + [ssids](#ssids)
       - [Update the client exclusion status configuration for a given SSID](#update-the-client-exclusion-status-configuration-for-a-given-ssid)
       - [Update the client exclusion status configuration for a given SSID](#update-the-client-exclusion-status-configuration-for-a-given-ssid-1)
@@ -419,6 +462,9 @@
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network-1)
+    + [certificates](#certificates-2)
+      - [Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).](#query-for-details-on-the-organizations-openroaming-certificate-authority-certificate-cas)
+      - [Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).](#query-for-details-on-the-organizations-openroaming-certificate-authority-certificate-cas-1)
     + [devices](#devices-3)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network-1)
@@ -459,12 +505,35 @@
       - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time-1)
       - [Fetch the health scores for a given client on this network](#fetch-the-health-scores-for-a-given-client-on-this-network)
       - [Fetch the health scores for a given client on this network. Clients are identified by their MAC or ID](#fetch-the-health-scores-for-a-given-client-on-this-network-clients-are-identified-by-their-mac-or-id)
+      - [Get client roam events within the specified timespan.](#get-client-roam-events-within-the-specified-timespan)
+      - [Get client roam events within the specified timespan.](#get-client-roam-events-within-the-specified-timespan-1)
+      - [Summarize association outcomes per wireless client across an organization.](#summarize-association-outcomes-per-wireless-client-across-an-organization)
+      - [Summarize association outcomes per wireless client across an organization.](#summarize-association-outcomes-per-wireless-client-across-an-organization-1)
+      - [Summarize authentication outcomes per wireless client across an organization.](#summarize-authentication-outcomes-per-wireless-client-across-an-organization)
+      - [Summarize authentication outcomes per wireless client across an organization.](#summarize-authentication-outcomes-per-wireless-client-across-an-organization-1)
+      - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization)
+      - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization-1)
   * [\[ switch \]](#-switch-)
+    + [alerts](#alerts-1)
+      - [Gets all poe related alerts over a given network and returns information by device](#gets-all-poe-related-alerts-over-a-given-network-and-returns-information-by-device)
+      - [Gets all poe related alerts over a given network and returns information by device](#gets-all-poe-related-alerts-over-a-given-network-and-returns-information-by-device-1)
     + [configTemplates](#configtemplates)
       - [list the port mirror configurations in an organization by switch profile](#list-the-port-mirror-configurations-in-an-organization-by-switch-profile)
       - [list the port mirror configurations in an organization by switch profile](#list-the-port-mirror-configurations-in-an-organization-by-switch-profile-1)
       - [Update a port mirror](#update-a-port-mirror)
       - [Update a port mirror](#update-a-port-mirror-1)
+    + [connectivity](#connectivity-1)
+      - [Lan link errors by device and port.](#lan-link-errors-by-device-and-port)
+      - [Lan link errors by device and port.](#lan-link-errors-by-device-and-port-1)
+      - [Lan STP errors by device and port.](#lan-stp-errors-by-device-and-port)
+      - [Lan STP errors by device and port.](#lan-stp-errors-by-device-and-port-1)
+      - [Gets all vrrp related alerts over a given network and returns information by device](#gets-all-vrrp-related-alerts-over-a-given-network-and-returns-information-by-device)
+      - [Gets all vrrp related alerts over a given network and returns information by device](#gets-all-vrrp-related-alerts-over-a-given-network-and-returns-information-by-device-1)
+    + [spanningTree](#spanningtree)
+      - [Updates Spanning Tree configuration](#updates-spanning-tree-configuration)
+      - [Updates Spanning Tree configuration](#updates-spanning-tree-configuration-1)
+      - [Returns Spanning Tree configuration settings](#returns-spanning-tree-configuration-settings)
+      - [Returns Spanning Tree configuration settings](#returns-spanning-tree-configuration-settings-1)
     + [raGuardPolicy](#raguardpolicy)
       - [Return RA Guard settings](#return-ra-guard-settings)
       - [Return RA Guard settings. Blocked servers are applied when default policy is allowed, and vice versa for allowed servers and blocked default policy.](#return-ra-guard-settings-blocked-servers-are-applied-when-default-policy-is-allowed-and-vice-versa-for-allowed-servers-and-blocked-default-policy)
@@ -472,12 +541,17 @@
     + [devices](#devices-4)
       - [Return a historical record of packet transmission and loss, broken down by protocol, for insight into switch device health.](#return-a-historical-record-of-packet-transmission-and-loss-broken-down-by-protocol-for-insight-into-switch-device-health)
       - [Return a historical record of packet transmission and loss, broken down by protocol, for insight into switch device health.](#return-a-historical-record-of-packet-transmission-and-loss-broken-down-by-protocol-for-insight-into-switch-device-health-1)
+    + [clients](#clients-3)
+      - [Summarizes authentication outcomes per switch client across an organization.](#summarizes-authentication-outcomes-per-switch-client-across-an-organization)
+      - [Summarizes authentication outcomes per switch client across an organization.](#summarizes-authentication-outcomes-per-switch-client-across-an-organization-1)
+      - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization-2)
+      - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization-3)
     + [stacks](#stacks)
       - [Update switch port mirrors for switch stacks](#update-switch-port-mirrors-for-switch-stacks)
       - [Update switch port mirrors for switch stacks](#update-switch-port-mirrors-for-switch-stacks-1)
       - [List the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
       - [List the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch-1)
-    + [routing](#routing)
+    + [routing](#routing-1)
       - [List the autonomous systems configured for BGP in the given organization](#list-the-autonomous-systems-configured-for-bgp-in-the-given-organization)
       - [List the autonomous systems configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-the-autonomous-systems-configured-for-bgp-in-the-given-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
       - [Create an autonomous system. Border Gateway Protocol requires IOS XE 17.18 or higher](#create-an-autonomous-system-border-gateway-protocol-requires-ios-xe-1718-or-higher)
@@ -571,13 +645,20 @@
       - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile-1)
       - [Update a port profile in an organization](#update-a-port-profile-in-an-organization)
       - [Delete a port profile from an organization](#delete-a-port-profile-from-an-organization)
+      - [Switch port packets by device and port.](#switch-port-packets-by-device-and-port)
+      - [Switch port packets by device and port.](#switch-port-packets-by-device-and-port-1)
       - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module)
       - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled switch in an organization, in addition to thresholds for each relevant Small Form Factor Pluggable (SFP) module.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-switch-in-an-organization-in-addition-to-thresholds-for-each-relevant-small-form-factor-pluggable-sfp-module-1)
+    + [service](#service)
+      - [List switch templates running IOS XE Catalyst firmware.](#list-switch-templates-running-ios-xe-catalyst-firmware)
+      - [List switch templates running IOS XE Catalyst firmware.](#list-switch-templates-running-ios-xe-catalyst-firmware-1)
+      - [Clone existing switch templates into a destination template network.](#clone-existing-switch-templates-into-a-destination-template-network)
+      - [Clone existing switch templates into a destination template network.](#clone-existing-switch-templates-into-a-destination-template-network-1)
   * [\[ sensor \]](#-sensor-)
     + [readings](#readings)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order)
       - [Return all reported readings from sensors in a given timespan, summarized as a series of intervals, sorted by interval start time in descending order](#return-all-reported-readings-from-sensors-in-a-given-timespan-summarized-as-a-series-of-intervals-sorted-by-interval-start-time-in-descending-order-1)
-    + [alerts](#alerts)
+    + [alerts](#alerts-2)
       - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
       - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events-1)
     + [schedules](#schedules)
@@ -600,10 +681,17 @@
       - [Specify one or more domain names to be excluded from being routed to Cisco Umbrella.](#specify-one-or-more-domain-names-to-be-excluded-from-being-routed-to-cisco-umbrella-1)
       - [Update umbrella policies applied to MX network.](#update-umbrella-policies-applied-to-mx-network)
       - [Update umbrella policies applied to MX network.](#update-umbrella-policies-applied-to-mx-network-1)
+    + [vpn](#vpn)
+      - [Summarizes by-device vpn peers for the organization in the given interval.](#summarizes-by-device-vpn-peers-for-the-organization-in-the-given-interval)
+      - [Summarizes by-device vpn peers for the organization in the given interval.](#summarizes-by-device-vpn-peers-for-the-organization-in-the-given-interval-1)
     + [vlans](#vlans)
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization)
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization-1)
 - [Changed](#changed)
+  * [\[ nac \]](#-nac--1)
+    + [certificates](#certificates-3)
+      - [Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter](#get-all-the-organizations-crlits-possible-to-filter-results-by-crl-issuers-ca-or-crls-id---see-caids-and-crlids-query-parametersthis-endpoint-could-be-used-for-show-action-when-you-specify-a-single-crl-id-in-crlids-parameter)
+      - [Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter](#get-all-the-organizations-crlits-possible-to-filter-results-by-crl-issuers-ca-or-crls-id---see-caids-and-crlids-query-parametersthis-endpoint-could-be-used-for-show-action-when-you-specify-a-single-crl-id-in-crlids-parameter-1)
   * [\[ insight \]](#-insight--1)
     + [applications](#applications-1)
       - [Add an Insight tracked application](#add-an-insight-tracked-application)
@@ -621,7 +709,7 @@
     + [devices](#devices-5)
       - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
-    + [clients](#clients-3)
+    + [clients](#clients-4)
       - [Return data usage (in megabits per second) over time for all clients in the given organization within a given time range.](#return-data-usage-in-megabits-per-second-over-time-for-all-clients-in-the-given-organization-within-a-given-time-range)
   * [\[ networks \]](#-networks--1)
     + [settings](#settings)
@@ -650,7 +738,9 @@
       - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
       - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack)
       - [Return a layer 3 interface from a switch stack](#return-a-layer-3-interface-from-a-switch-stack)
-    + [routing](#routing-1)
+    + [linkAggregations](#linkaggregations)
+      - [List link aggregation groups](#list-link-aggregation-groups)
+    + [routing](#routing-2)
       - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch)
       - [Create a multicast rendezvous point](#create-a-multicast-rendezvous-point)
       - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch)
@@ -666,6 +756,9 @@
     + [commands](#commands)
       - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
   * [\[ appliance \]](#-appliance--1)
+    + [vpn](#vpn-1)
+      - [Update a Hub BGP Configuration](#update-a-hub-bgp-configuration)
+      - [Return a Hub BGP Configuration](#return-a-hub-bgp-configuration)
     + [vlans](#vlans-1)
       - [Add a VLAN](#add-a-vlan)
       - [Update a VLAN](#update-a-vlan)
@@ -677,19 +770,19 @@
       - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
       - [Return the uplink settings for an MX appliance](#return-the-uplink-settings-for-an-mx-appliance)
  
-Version **1.65.0** _to_ **1.65.0-beta.0**
+Version **1.66.0** _to_ **1.66.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**230 - New**
+**265 - New**
 
-**181 - Updated**
+**195 - Updated**
 
-**1145 - Total Endpoints**
+**1186 - Total Endpoints**
 
-**818 - Total Paths**
+**856 - Total Paths**
 
 * * *
 
@@ -752,40 +845,6 @@ PATH _`/organizations/{organizationId}/wirelessController/regulatoryDomain/packa
 > #### Generate the regulatory domain package
 > 
 > **POST** `/organizations/{organizationId}/wirelessController/regulatoryDomain/package/generate`  
-> 
->     {
->         "content": {
->             "devices": [
->                 {
->                     "serial": "Q234-ABCD-5678",
->                     "mac": "00:11:22:33:44:55",
->                     "regulatoryDomain": {
->                         "country": "US",
->                         "method": "manual"
->                     }
->                 }
->             ],
->             "details": {
->                 "schemaVersion": "1.0.0",
->                 "organizationId": "2930418",
->                 "createdAt": "2018-05-12T00:00:00Z",
->                 "counts": {
->                     "devices": 1
->                 },
->                 "createdBy": {
->                     "id": "212406",
->                     "email": "miles@meraki.com"
->                 }
->             }
->         },
->         "signature": "a1b2c3d4e5f6g7h8i9j0",
->         "certificates": [
->             {
->                 "purpose": "signature",
->                 "content": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tIE1JSUZZRENDQTBpZ0F3SUJBZ0lRQ2dGQ2dBQUFBVVVqeQ=="
->             }
->         ]
->     }
 > 
 > * * *
 
@@ -859,56 +918,6 @@ PATH _`/organizations/{organizationId}/wirelessController/connections/unassigned
 > 
 > **GET** `/organizations/{organizationId}/wirelessController/connections/unassigned`  
 > 
->     {
->         "items": [
->             {
->                 "id": "958271979973",
->                 "name": "MBY-CON-NCC_HLWY-24",
->                 "model": "AIR-AP1815I-B-K9",
->                 "serial": "",
->                 "mac": "8c:94:1f:97:54:01",
->                 "onboarding": {
->                     "isSupported": true,
->                     "status": "unregistered",
->                     "errors": [
->                         "DNS failure"
->                     ]
->                 },
->                 "tags": {
->                     "policy": "default-policy-tag",
->                     "site": "default-site-tag",
->                     "rf": "default-rf-tag"
->                 },
->                 "details": [
->                     {
->                         "name": "Catalyst serial",
->                         "value": "FCW2325N3RY"
->                     }
->                 ],
->                 "uplinks": [
->                     {
->                         "addresses": [
->                             {
->                                 "address": "10.104.55.4"
->                             }
->                         ]
->                     }
->                 ],
->                 "controller": {
->                     "serial": "A2CC-8TYV-VCO9"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -942,14 +951,6 @@ PATH _`/organizations/{organizationId}/support/salesRepresentatives`_
 > 
 > **GET** `/organizations/{organizationId}/support/salesRepresentatives`  
 > 
->     [
->         {
->             "name": "Miles Meraki",
->             "email": "miles@meraki.com",
->             "phone": "+15555555555"
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -982,13 +983,6 @@ PATH _`/organizations/{organizationId}/sm/bulkEnrollment/token`_
 > 
 > **POST** `/organizations/{organizationId}/sm/bulkEnrollment/token`  
 > 
->     {
->         "id": "1284392014819",
->         "networkId": "N_24329156",
->         "expiresAt": "2023-10-15T00:00:00Z",
->         "rawToken": "MMbCbpHZtG3TKUCr9B9uc5"
->     }
-> 
 > * * *
 
 * * *
@@ -1015,12 +1009,6 @@ PATH _`/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`_
 > 
 > **GET** `/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`  
 > 
->     {
->         "id": "1284392014819",
->         "networkId": "N_24329156",
->         "expiresAt": "2023-10-15T00:00:00Z"
->     }
-> 
 > * * *
 > 
 >   
@@ -1029,12 +1017,6 @@ PATH _`/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`_
 > #### Update a PccBulkEnrollmentToken
 > 
 > **PUT** `/organizations/{organizationId}/sm/bulkEnrollment/token/{tokenId}`  
-> 
->     {
->         "id": "1284392014819",
->         "networkId": "N_24329156",
->         "expiresAt": "2023-10-15T00:00:00Z"
->     }
 > 
 > * * *
 > 
@@ -1073,14 +1055,6 @@ PATH _`/organizations/{organizationId}/sm/bulkEnrollment/tokens`_
 > 
 > **GET** `/organizations/{organizationId}/sm/bulkEnrollment/tokens`  
 > 
->     [
->         {
->             "id": "1284392014819",
->             "networkId": "N_24329156",
->             "expiresAt": "2023-10-15T00:00:00Z"
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -1109,12 +1083,6 @@ PATH _`/organizations/{organizationId}/sm/apple/cloudEnrollment/syncJobs`_
 > 
 > **POST** `/organizations/{organizationId}/sm/apple/cloudEnrollment/syncJobs`  
 > 
->     {
->         "syncJobId": "1284392014819",
->         "adeAccountId": "1284392014819",
->         "status": "pending"
->     }
-> 
 > * * *
 
 * * *
@@ -1140,12 +1108,6 @@ PATH _`/organizations/{organizationId}/sm/apple/cloudEnrollment/syncJobs/{syncJo
 > #### Retrieve the status of an ADE sync job
 > 
 > **GET** `/organizations/{organizationId}/sm/apple/cloudEnrollment/syncJobs/{syncJobId}`  
-> 
->     {
->         "syncJobId": "1284392014819",
->         "adeAccountId": "1284392014819",
->         "status": "pending"
->     }
 > 
 > * * *
 
@@ -1191,25 +1153,6 @@ PATH _`/organizations/{organizationId}/secureConnect/sites`_
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/sites`  
 > 
->     {
->         "data": [
->             {
->                 "id": "123",
->                 "type": "MerakiSpoke",
->                 "name": "London Office",
->                 "region": "US East",
->                 "deviceType": "MX95-HW",
->                 "address": "123 Main St",
->                 "enrolled": true,
->                 "vpnType": "Hub",
->                 "defaultRoute": true
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -1219,21 +1162,6 @@ PATH _`/organizations/{organizationId}/secureConnect/sites`_
 > 
 > **POST** `/organizations/{organizationId}/secureConnect/sites`  
 > 
->     {
->         "action": "enroll",
->         "status": "success",
->         "message": "Site enrolled successfully",
->         "request": {
->             "siteId": "1520758",
->             "regionId": "42"
->         },
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -1242,20 +1170,6 @@ PATH _`/organizations/{organizationId}/secureConnect/sites`_
 > #### Detach given sites from Secure Connect
 > 
 > **DELETE** `/organizations/{organizationId}/secureConnect/sites`  
-> 
->     {
->         "action": "detach",
->         "status": "success",
->         "message": "Site enrolled successfully",
->         "request": {
->             "siteId": "1520758"
->         },
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
 > 
 > * * *
 
@@ -1304,31 +1218,6 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`_
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
 > 
->     {
->         "data": [
->             {
->                 "id": "123",
->                 "from": "2023-05-16 04:23:43 UTC",
->                 "to": "2023-06-14 04:23:52 UTC",
->                 "userEmail": "joe@meraki.net",
->                 "status": "new",
->                 "metadata": {
->                     "fileCount": 0,
->                     "logCount": 0,
->                     "currentFileLogCount": 0,
->                     "generatorCount": 0,
->                     "limitReached": false,
->                     "startedAt": "2023-05-15 21:23:43.388597",
->                     "endedAt": "2023-05-15 21:23:43.388597",
->                     "duration": 60
->                 }
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -1337,24 +1226,6 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`_
 > #### Creates a export for a provided timestamp interval.
 > 
 > **POST** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`  
-> 
->     {
->         "id": "123",
->         "from": "2023-05-16 04:23:43 UTC",
->         "to": "2023-06-14 04:23:52 UTC",
->         "userEmail": "joe@meraki.net",
->         "status": "new",
->         "metadata": {
->             "fileCount": 0,
->             "logCount": 0,
->             "currentFileLogCount": 0,
->             "generatorCount": 0,
->             "limitReached": false,
->             "startedAt": "2023-05-15 21:23:43.388597",
->             "endedAt": "2023-05-15 21:23:43.388597",
->             "duration": 60
->         }
->     }
 > 
 > * * *
 
@@ -1379,10 +1250,6 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/dow
 > #### Redirects to the download link of the completed export.
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/download`  
-> 
->     {
->         "link": "download"
->     }
 > 
 > * * *
 
@@ -1421,24 +1288,6 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id
 > #### Return the details of a specific remote access logs export
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLogsExports/{id}`  
-> 
->     {
->         "id": "123",
->         "from": "2023-05-16 04:23:43 UTC",
->         "to": "2023-06-14 04:23:52 UTC",
->         "userEmail": "joe@meraki.net",
->         "status": "new",
->         "metadata": {
->             "fileCount": 0,
->             "logCount": 0,
->             "currentFileLogCount": 0,
->             "generatorCount": 0,
->             "limitReached": false,
->             "startedAt": "2023-05-15 21:23:43.388597",
->             "endedAt": "2023-05-15 21:23:43.388597",
->             "duration": 60
->         }
->     }
 > 
 > * * *
 
@@ -1492,36 +1341,6 @@ PATH _`/organizations/{organizationId}/secureConnect/remoteAccessLog`_
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/remoteAccessLog`  
 > 
->     {
->         "data": [
->             {
->                 "osversion": "win-10.0.19044",
->                 "internalip": "10.0.1.5",
->                 "connecttimestamp": 1667252442,
->                 "identities": [
->                     {
->                         "id": "1173502975",
->                         "type": {
->                             "id": "7",
->                             "type": "directory_user",
->                             "label": "AD Users"
->                         },
->                         "label": "sample-remote-access@cisco.com",
->                         "deleted": false
->                     }
->                 ],
->                 "reason": "ACCT_DISC_USER_REQ",
->                 "failedreasons": [],
->                 "connectionevent": "disconnected",
->                 "anyconnectversion": "4.10.05095",
->                 "timestamp": 1667252458
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -1561,23 +1380,6 @@ PATH _`/organizations/{organizationId}/secureConnect/regions`_
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/regions`  
 > 
->     {
->         "data": [
->             {
->                 "id": "123",
->                 "type": "Region",
->                 "name": "US West Coast",
->                 "dcPair": [
->                     "Los Angeles",
->                     "Palo Alto"
->                 ]
->             }
->         ],
->         "meta": {
->             "maxTotalCloudHubs": 5
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -1615,22 +1417,6 @@ PATH _`/organizations/{organizationId}/secureConnect/publicApplications`_
 > #### Provides a list of public applications for an Organization.
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/publicApplications`  
-> 
->     {
->         "items": [
->             {
->                 "id": "ABCDEFG",
->                 "name": "Snapcraft",
->                 "lastDetected": "2021-12-13T16:07:07.222Z",
->                 "risk": "medium",
->                 "category": "Application Development and Testing",
->                 "appType": "paas"
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
 > 
 > * * *
 
@@ -1709,61 +1495,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateResources`_
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/privateResources`  
 > 
->     {
->         "data": [
->             {
->                 "resourceId": "5",
->                 "name": "Sample Resource Name",
->                 "description": "A sample description",
->                 "accessTypes": [
->                     {
->                         "type": "client",
->                         "reachableAddresses": [
->                             "192.0.0.0"
->                         ]
->                     }
->                 ],
->                 "resourceAddresses": [
->                     {
->                         "protocolPorts": [
->                             {
->                                 "protocol": "any",
->                                 "ports": "80"
->                             }
->                         ],
->                         "destinationAddr": [
->                             "192.0.0.0"
->                         ]
->                     }
->                 ],
->                 "resourceGroupIds": [
->                     "1122321"
->                 ],
->                 "dnsServerId": "12345",
->                 "certificateId": "54321",
->                 "organizationId": "106642",
->                 "createdAt": "2024-03-06T15:11:55.323445Z",
->                 "updatedAt": "2024-03-06T15:11:55.323445Z",
->                 "deletedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaResourceId": "123",
->                 "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaResourceCreatedBy": "",
->                 "umbrellaResourceModifiedBy": "",
->                 "umbrellaResourceErrorMessage": "",
->                 "umbrellaApplicationId": "321",
->                 "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
->                 "umbrellaApplicationErrorMessage": ""
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -1772,54 +1503,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateResources`_
 > #### Adds a new private resource to the organization.
 > 
 > **POST** `/organizations/{organizationId}/secureConnect/privateResources`  
-> 
->     {
->         "resourceId": "5",
->         "name": "Sample Resource Name",
->         "description": "A sample description",
->         "accessTypes": [
->             {
->                 "type": "client",
->                 "reachableAddresses": [
->                     "192.0.0.0"
->                 ]
->             }
->         ],
->         "resourceAddresses": [
->             {
->                 "protocolPorts": [
->                     {
->                         "protocol": "any",
->                         "ports": "80"
->                     }
->                 ],
->                 "destinationAddr": [
->                     "192.0.0.0"
->                 ]
->             }
->         ],
->         "resourceGroupIds": [
->             "1122321"
->         ],
->         "dnsServerId": "12345",
->         "certificateId": "54321",
->         "organizationId": "106642",
->         "createdAt": "2024-03-06T15:11:55.323445Z",
->         "updatedAt": "2024-03-06T15:11:55.323445Z",
->         "deletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceId": "123",
->         "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceCreatedBy": "",
->         "umbrellaResourceModifiedBy": "",
->         "umbrellaResourceErrorMessage": "",
->         "umbrellaApplicationId": "321",
->         "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationErrorMessage": ""
->     }
 > 
 > * * *
 
@@ -1889,54 +1572,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateResources/{id}`_
 > 
 > **PUT** `/organizations/{organizationId}/secureConnect/privateResources/{id}`  
 > 
->     {
->         "resourceId": "5",
->         "name": "Sample Resource Name",
->         "description": "A sample description",
->         "accessTypes": [
->             {
->                 "type": "client",
->                 "reachableAddresses": [
->                     "192.0.0.0"
->                 ]
->             }
->         ],
->         "resourceAddresses": [
->             {
->                 "protocolPorts": [
->                     {
->                         "protocol": "any",
->                         "ports": "80"
->                     }
->                 ],
->                 "destinationAddr": [
->                     "192.0.0.0"
->                 ]
->             }
->         ],
->         "resourceGroupIds": [
->             "1122321"
->         ],
->         "dnsServerId": "12345",
->         "certificateId": "54321",
->         "organizationId": "106642",
->         "createdAt": "2024-03-06T15:11:55.323445Z",
->         "updatedAt": "2024-03-06T15:11:55.323445Z",
->         "deletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceId": "123",
->         "umbrellaResourceCreatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceUpdatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceDeletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaResourceCreatedBy": "",
->         "umbrellaResourceModifiedBy": "",
->         "umbrellaResourceErrorMessage": "",
->         "umbrellaApplicationId": "321",
->         "umbrellaApplicationCreatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationUpdatedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationDeletedAt": "2024-03-06T15:11:55.323445Z",
->         "umbrellaApplicationErrorMessage": ""
->     }
-> 
 > * * *
 > 
 >   
@@ -1983,21 +1618,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateResourceGroups`_
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/privateResourceGroups`  
 > 
->     {
->         "data": [
->             {
->                 "resourceGroupId": "123",
->                 "createdAt": "2024-03-06T15:11:55.323445Z",
->                 "updatedAt": "2024-03-06T15:11:55.323445Z",
->                 "name": "group 2",
->                 "description": "",
->                 "resourceIds": [
->                     "12345"
->                 ]
->             }
->         ]
->     }
-> 
 > * * *
 > 
 >   
@@ -2006,21 +1626,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateResourceGroups`_
 > #### Adds a new private resource group to an organization.
 > 
 > **POST** `/organizations/{organizationId}/secureConnect/privateResourceGroups`  
-> 
->     {
->         "data": [
->             {
->                 "resourceGroupId": "123",
->                 "createdAt": "2024-03-06T15:11:55.323445Z",
->                 "updatedAt": "2024-03-06T15:11:55.323445Z",
->                 "name": "group 2",
->                 "description": "",
->                 "resourceIds": [
->                     "12345"
->                 ]
->             }
->         ]
->     }
 > 
 > * * *
 
@@ -2056,21 +1661,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateResourceGroups/{id}`
 > #### Updates a specific private resource group.
 > 
 > **PUT** `/organizations/{organizationId}/secureConnect/privateResourceGroups/{id}`  
-> 
->     {
->         "data": [
->             {
->                 "resourceGroupId": "123",
->                 "createdAt": "2024-03-06T15:11:55.323445Z",
->                 "updatedAt": "2024-03-06T15:11:55.323445Z",
->                 "name": "group 2",
->                 "description": "",
->                 "resourceIds": [
->                     "12345"
->                 ]
->             }
->         ]
->     }
 > 
 > * * *
 > 
@@ -2140,43 +1730,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/privateApplications`  
 > 
->     {
->         "data": [
->             {
->                 "applicationId": "183456",
->                 "name": "Jira",
->                 "description": "Jira App For My Org",
->                 "destinations": [
->                     {
->                         "destinationAddr": [
->                             "172.6.0.0/32",
->                             "255.100.100.0/24"
->                         ],
->                         "protocolPorts": [
->                             {
->                                 "protocol": "TCP",
->                                 "ports": "80-82"
->                             }
->                         ],
->                         "accessType": "network"
->                     }
->                 ],
->                 "appProtocol": "https",
->                 "sni": "xyz123.jira.com",
->                 "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->                 "sslVerificationEnabled": true,
->                 "applicationGroupIds": [
->                     "1122321"
->                 ],
->                 "createdAt": "2021-12-13T16:07:07.222000Z",
->                 "modifiedAt": "2021-12-13T16:07:07.222000Z"
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -2185,36 +1738,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications`_
 > #### Adds a new private application to the Organization. A maximum of 300 private applications are allowed for an organization.
 > 
 > **POST** `/organizations/{organizationId}/secureConnect/privateApplications`  
-> 
->     {
->         "applicationId": "183456",
->         "name": "Jira",
->         "description": "Jira App For My Org",
->         "destinations": [
->             {
->                 "destinationAddr": [
->                     "172.6.0.0/32",
->                     "255.100.100.0/24"
->                 ],
->                 "protocolPorts": [
->                     {
->                         "protocol": "TCP",
->                         "ports": "80-82"
->                     }
->                 ],
->                 "accessType": "network"
->             }
->         ],
->         "appProtocol": "https",
->         "sni": "xyz123.jira.com",
->         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->         "sslVerificationEnabled": true,
->         "applicationGroupIds": [
->             "1122321"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222000Z",
->         "modifiedAt": "2021-12-13T16:07:07.222000Z"
->     }
 > 
 > * * *
 
@@ -2266,36 +1789,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
 > 
->     {
->         "applicationId": "183456",
->         "name": "Jira",
->         "description": "Jira App For My Org",
->         "destinations": [
->             {
->                 "destinationAddr": [
->                     "172.6.0.0/32",
->                     "255.100.100.0/24"
->                 ],
->                 "protocolPorts": [
->                     {
->                         "protocol": "TCP",
->                         "ports": "80-82"
->                     }
->                 ],
->                 "accessType": "network"
->             }
->         ],
->         "appProtocol": "https",
->         "sni": "xyz123.jira.com",
->         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->         "sslVerificationEnabled": true,
->         "applicationGroupIds": [
->             "1122321"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
 > * * *
 > 
 >   
@@ -2304,36 +1797,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplications/{id}`_
 > #### Updates a specific private application. Updates can be made to Name, Description, Destinations, App Protocol, SNI and SSL verification. Application groups can be added or removed.
 > 
 > **PUT** `/organizations/{organizationId}/secureConnect/privateApplications/{id}`  
-> 
->     {
->         "applicationId": "183456",
->         "name": "Jira",
->         "description": "Jira App For My Org",
->         "destinations": [
->             {
->                 "destinationAddr": [
->                     "172.6.0.0/32",
->                     "255.100.100.0/24"
->                 ],
->                 "protocolPorts": [
->                     {
->                         "protocol": "TCP",
->                         "ports": "80-82"
->                     }
->                 ],
->                 "accessType": "network"
->             }
->         ],
->         "appProtocol": "https",
->         "sni": "xyz123.jira.com",
->         "externalFQDN": "https://jira-5001.ztna.ciscoplus.com",
->         "sslVerificationEnabled": true,
->         "applicationGroupIds": [
->             "1122321"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222000Z",
->         "modifiedAt": "2021-12-13T16:07:07.222000Z"
->     }
 > 
 > * * *
 > 
@@ -2385,25 +1848,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups`_
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
 > 
->     {
->         "data": [
->             {
->                 "applicationGroupId": "1122321",
->                 "name": "Westcoast Data Center",
->                 "description": "Private applications in Westcoast Data Center",
->                 "applicationIds": [
->                     "183456",
->                     "123568"
->                 ],
->                 "createdAt": "2021-12-13T16:07:07.222Z",
->                 "modifiedAt": "2021-12-13T16:07:07.222Z"
->             }
->         ],
->         "meta": {
->             "total": 1
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -2412,18 +1856,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups`_
 > #### Creates a group of private applications to apply to policy. A maximum of 300 private application groups are allowed for an organization.
 > 
 > **POST** `/organizations/{organizationId}/secureConnect/privateApplicationGroups`  
-> 
->     {
->         "applicationGroupId": "1122321",
->         "name": "Westcoast Data Center",
->         "description": "Private applications in Westcoast Data Center",
->         "applicationIds": [
->             "183456",
->             "123568"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
 > 
 > * * *
 
@@ -2457,18 +1889,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{i
 > 
 > **GET** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
 > 
->     {
->         "applicationGroupId": "1122321",
->         "name": "Westcoast Data Center",
->         "description": "Private applications in Westcoast Data Center",
->         "applicationIds": [
->             "183456",
->             "123568"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
 > * * *
 > 
 >   
@@ -2478,18 +1898,6 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{i
 > 
 > **PUT** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
 > 
->     {
->         "applicationGroupId": "1122321",
->         "name": "Westcoast Data Center",
->         "description": "Private applications in Westcoast Data Center",
->         "applicationIds": [
->             "183456",
->             "123568"
->         ],
->         "createdAt": "2021-12-13T16:07:07.222Z",
->         "modifiedAt": "2021-12-13T16:07:07.222Z"
->     }
-> 
 > * * *
 > 
 >   
@@ -2498,6 +1906,1822 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{i
 > #### Deletes private application group from an Organization. Detaches application from groups before deleting
 > 
 > **DELETE** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+> * * *
+
+* * *
+
+\[ users \]
+-----------
+
+### iam
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-authorizations/)
+
+#### List specific authorizations for the list of Meraki end users.
+
+Operation ID: `getOrganizationIamUsersAuthorizations`
+
+PATH _`/organizations/{organizationId}/iam/users/authorizations`_
+
+    {
+      "items": [
+        {
+          "authorizationId": "1284392014819",
+          "idpUserId": "1284392014819",
+          "expiresAt": "2018-02-11T00:00:00Z",
+          "startsAt": "2018-05-12T00:00:00Z",
+          "selfRegistered": false,
+          "status": "authorized",
+          "authZone": {
+            "id": "1284392014819",
+            "name": "SFO"
+          },
+          "authorizer": {
+            "name": "John Doe"
+          },
+          "createdAt": "2018-02-11T00:00:00Z",
+          "lastUpdatedAt": "2018-05-12T00:00:00Z"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 10,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List specific authorizations for the list of Meraki end users.
+> 
+> **GET** `/organizations/{organizationId}/iam/users/authorizations`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Authorize a Meraki end user for an auth zone.
+> 
+> **POST** `/organizations/{organizationId}/iam/users/authorizations`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update a Meraki end user's access to an auth zone.
+> 
+> **PUT** `/organizations/{organizationId}/iam/users/authorizations`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/revoke-organization-iam-users-authorizations-authorization/)
+
+#### Revoke a Meraki end user's access to an auth zone.
+
+Operation ID: `revokeOrganizationIamUsersAuthorizationsAuthorization`
+
+PATH _`/organizations/{organizationId}/iam/users/authorizations/authorization/revoke`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Revoke a Meraki end user's access to an auth zone.
+> 
+> **POST** `/organizations/{organizationId}/iam/users/authorizations/authorization/revoke`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-authorizations-zones/)
+
+#### List all of the available auth zones for an organization.
+
+Operation ID: `getOrganizationIamUsersAuthorizationsZones`
+
+PATH _`/organizations/{organizationId}/iam/users/authorizations/zones`_
+
+    {
+      "items": [
+        {
+          "id": "1284392014819",
+          "name": "Main Office",
+          "type": "Client VPN",
+          "network": {
+            "id": "1284392014819",
+            "name": "Main Office"
+          }
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 10,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List all of the available auth zones for an organization.
+> 
+> **GET** `/organizations/{organizationId}/iam/users/authorizations/zones`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-iam-users-authorization/)
+
+#### Delete an authorization for a Meraki end user.
+
+Operation ID: `deleteOrganizationIamUsersAuthorization`
+
+PATH _`/organizations/{organizationId}/iam/users/authorizations/{authorizationId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Delete an authorization for a Meraki end user.
+> 
+> **DELETE** `/organizations/{organizationId}/iam/users/authorizations/{authorizationId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-iam-users-idp/)
+
+#### Create an identity provider for an organization
+
+Operation ID: `createOrganizationIamUsersIdp`
+
+PATH _`/organizations/{organizationId}/iam/users/idps`_
+
+    {
+      "idpId": "1284392014819",
+      "name": "My Entra ID",
+      "description": "Some description",
+      "type": "Azure AD",
+      "syncable": true,
+      "syncType": "proactive",
+      "createdAt": "2018-02-11T00:00:00Z",
+      "lastUpdatedAt": "2018-05-12T00:00:00Z"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Create an identity provider for an organization. Only Entra ID(Azure AD) is supported at this time.
+> 
+> **POST** `/organizations/{organizationId}/iam/users/idps`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/search-organization-idp-groups/)
+
+#### Search all IdP groups for an organization
+
+Operation ID: `searchOrganizationIdpGroups`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/groups/search`_
+
+    {
+      "items": [
+        {
+          "groupId": "1284392014819",
+          "idpId": "1284392014819",
+          "name": "sample idp group",
+          "externalId": "f5a28b7d-e41c-41a2-8b0f-244a4123c5d7",
+          "metadata": {
+            "someKey": "value"
+          },
+          "idp": {
+            "id": "1284392014819",
+            "name": "Azure AD IdP",
+            "type": "Azure AD"
+          }
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 10,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Search all IdP groups for an organization. Filter by IdP IDs and Auth Zone. Parameters are assembled as an AND query.
+> 
+> **POST** `/organizations/{organizationId}/iam/users/idps/groups/search`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-idps-product-integrations/)
+
+#### List all available IdP Product Integration urls for the organization
+
+Operation ID: `getOrganizationIamUsersIdpsProductIntegrations`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/productIntegrations`_
+
+    [
+      {
+        "productIntegrationId": "access_manager",
+        "name": "Access Manager",
+        "description": "Use this IdP in your policies to control access to your resources.",
+        "url": ""
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List all available IdP Product Integration urls for the organization
+> 
+> **GET** `/organizations/{organizationId}/iam/users/idps/productIntegrations`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-iam-users-idps-search/)
+
+#### Search all IdPs for an organization
+
+Operation ID: `createOrganizationIamUsersIdpsSearch`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/search`_
+
+    {
+      "items": [
+        {
+          "idpId": "1284392014819",
+          "name": "My Entra ID",
+          "description": "Some description",
+          "type": "Azure AD",
+          "syncable": true,
+          "syncType": "proactive",
+          "createdAt": "2018-02-11T00:00:00Z",
+          "lastUpdatedAt": "2018-05-12T00:00:00Z"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 10,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Search all IdPs for an organization. Filter by IdP ID, IdP type, and Auth Zone. Parameters are assembled as an AND query.
+> 
+> **POST** `/organizations/{organizationId}/iam/users/idps/search`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-idps-sync-history/)
+
+#### Get the IdP sync status records for an organization
+
+Operation ID: `getOrganizationIamUsersIdpsSyncHistory`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/sync/history`_
+
+    {
+      "items": [
+        {
+          "idpSyncId": "1284392014819",
+          "idpId": "1284392014819",
+          "status": "In Progress",
+          "message": "sync was queued 10 minutes",
+          "createdAt": "2018-02-11T00:00:00Z",
+          "lastUpdatedAt": "2018-05-12T00:00:00Z"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 10,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get the IdP sync status records for an organization. Only Entra ID(Azure AD) is supported at this time.
+> 
+> **GET** `/organizations/{organizationId}/iam/users/idps/sync/history`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-idps-sync-latest/)
+
+#### Get the latest IdP sync status records for all IdPs in an organization
+
+Operation ID: `getOrganizationIamUsersIdpsSyncLatest`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/sync/latest`_
+
+    {
+      "items": [
+        {
+          "idpSyncId": "1284392014819",
+          "idpId": "1284392014819",
+          "status": "In Progress",
+          "message": "sync was queued 10 minutes",
+          "syncedBy": "api",
+          "createdAt": "2018-02-11T00:00:00Z",
+          "lastUpdatedAt": "2018-05-12T00:00:00Z"
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get the latest IdP sync status records for all IdPs in an organization. Only Entra ID(Azure AD) is supported at this time.
+> 
+> **GET** `/organizations/{organizationId}/iam/users/idps/sync/latest`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-iam-users-idps-test-connectivity/)
+
+#### Test connectivity to an Entra ID identity provider.
+
+Operation ID: `createOrganizationIamUsersIdpsTestConnectivity`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/testConnectivity`_
+
+    {
+      "result": "failure",
+      "errors": [
+        {
+          "code": "AADSTS7000215",
+          "message": "Invalid client secret provided."
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Test connectivity to an Entra ID identity provider.
+> 
+> **POST** `/organizations/{organizationId}/iam/users/idps/testConnectivity`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-iam-users-idps-user/)
+
+#### Create a Meraki user
+
+Operation ID: `createOrganizationIamUsersIdpsUser`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/users`_
+
+    {
+      "idpUserId": "1284392014819",
+      "idp": {
+        "id": "1284392014819",
+        "name": "Azure AD IdP",
+        "type": "azure_ad"
+      },
+      "upn": "mdavis@meraki.com",
+      "displayName": "Miles Davis",
+      "externalId": "azure AD Id",
+      "accessTypes": [
+        "Wireless",
+        "Client VPN"
+      ],
+      "createdAt": "2018-02-11T00:00:00Z",
+      "lastUpdatedAt": "2018-05-12T00:00:00Z",
+      "groups": [
+        {
+          "id": "1",
+          "name": "Group name"
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Create a Meraki user
+> 
+> **POST** `/organizations/{organizationId}/iam/users/idps/users`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-iam-users-idps-user/)
+
+#### Update a Meraki user
+
+Operation ID: `updateOrganizationIamUsersIdpsUser`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/users/{id}`_
+
+    {
+      "idpUserId": "1284392014819",
+      "idp": {
+        "id": "1284392014819",
+        "name": "Azure AD IdP",
+        "type": "azure_ad"
+      },
+      "upn": "mdavis@meraki.com",
+      "displayName": "Miles Davis",
+      "externalId": "azure AD Id",
+      "accessTypes": [
+        "Wireless",
+        "Client VPN"
+      ],
+      "createdAt": "2018-02-11T00:00:00Z",
+      "lastUpdatedAt": "2018-05-12T00:00:00Z",
+      "groups": [
+        {
+          "id": "1",
+          "name": "Group name"
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a Meraki user
+> 
+> **PUT** `/organizations/{organizationId}/iam/users/idps/users/{id}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a Meraki end user
+> 
+> **DELETE** `/organizations/{organizationId}/iam/users/idps/users/{id}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-iam-users-idp-sync/)
+
+#### Trigger an IdP sync for an identity provider
+
+Operation ID: `createOrganizationIamUsersIdpSync`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/{idpId}/sync`_
+
+    {
+      "idpSyncId": "1284392014819",
+      "idpId": "1284392014819",
+      "status": "In Progress",
+      "message": "sync was queued 10 minutes",
+      "syncedBy": "api",
+      "createdAt": "2018-02-11T00:00:00Z",
+      "lastUpdatedAt": "2018-05-12T00:00:00Z"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Trigger an IdP sync for an identity provider. Only Entra ID(Azure AD) is supported at this time.
+> 
+> **POST** `/organizations/{organizationId}/iam/users/idps/{idpId}/sync`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-idp-sync-latest/)
+
+#### Get the latest IdP sync status for an identity provider
+
+Operation ID: `getOrganizationIamUsersIdpSyncLatest`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/{idpId}/sync/latest`_
+
+    {
+      "idpSyncId": "1284392014819",
+      "status": "In Progress",
+      "message": "sync was queued 10 minutes",
+      "createdAt": "2018-02-11T00:00:00Z",
+      "lastUpdatedAt": "2018-05-12T00:00:00Z"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get the latest IdP sync status for an identity provider. Only Entra ID(Azure AD) is supported at this time.
+> 
+> **GET** `/organizations/{organizationId}/iam/users/idps/{idpId}/sync/latest`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-iam-users-idp/)
+
+#### Update an identity provider
+
+Operation ID: `updateOrganizationIamUsersIdp`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/{id}`_
+
+    {
+      "idpId": "1284392014819",
+      "name": "My Entra ID",
+      "description": "Some description",
+      "type": "Azure AD",
+      "syncable": true,
+      "syncType": "proactive",
+      "createdAt": "2018-02-11T00:00:00Z",
+      "lastUpdatedAt": "2018-05-12T00:00:00Z"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an identity provider. Only Entra ID(Azure AD) is supported at this time.
+> 
+> **PUT** `/organizations/{organizationId}/iam/users/idps/{id}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a identity provider from an organization. Only Entra ID(Azure AD) is supported at this time.
+> 
+> **DELETE** `/organizations/{organizationId}/iam/users/idps/{id}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-idp-auth-zones/)
+
+#### List all auth zones for an identity provider
+
+Operation ID: `getOrganizationIamUsersIdpAuthZones`
+
+PATH _`/organizations/{organizationId}/iam/users/idps/{id}/authZones`_
+
+    {
+      "items": [
+        {
+          "id": "1284392014819",
+          "name": "Main Office",
+          "type": "Client VPN",
+          "network": {
+            "id": "1284392014819",
+            "name": "Main Office"
+          }
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List all auth zones for an identity provider
+> 
+> **GET** `/organizations/{organizationId}/iam/users/idps/{id}/authZones`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/search-organization-users/)
+
+#### List the end users and their associated identity providers for an organization.
+
+Operation ID: `searchOrganizationUsers`
+
+PATH _`/organizations/{organizationId}/iam/users/search`_
+
+    {
+      "items": [
+        {
+          "userId": "1284392014819",
+          "upn": "mdavis@meraki.com",
+          "idpUsers": [
+            {
+              "id": "1284392014819",
+              "idp": {
+                "id": "1284392014819",
+                "name": "Azure AD IdP",
+                "type": "Azure AD"
+              },
+              "displayName": "Miles Davis",
+              "email": "mdavis@meraki.com",
+              "username": "mdavis",
+              "externalId": "external-Id",
+              "createdAt": "2018-02-11T00:00:00Z",
+              "lastUpdatedAt": "2018-05-12T00:00:00Z",
+              "groups": [
+                {
+                  "id": "1",
+                  "name": "Group name"
+                }
+              ],
+              "accessTypes": [
+                "Wireless",
+                "Client VPN"
+              ]
+            }
+          ]
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 10,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the end users and their associated identity providers for an organization.
+> 
+> **POST** `/organizations/{organizationId}/iam/users/search`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-summary-panel/)
+
+#### Get the count of users and user groups for an organization.
+
+Operation ID: `getOrganizationIamUsersSummaryPanel`
+
+PATH _`/organizations/{organizationId}/iam/users/summaryPanel`_
+
+    {
+      "userCount": 100,
+      "userGroupCount": 10
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get the count of users and user groups for an organization.
+> 
+> **GET** `/organizations/{organizationId}/iam/users/summaryPanel`  
+> 
+> * * *
+
+* * *
+
+\[ camera \]
+------------
+
+### videoWalls
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-camera-video-wall/)
+
+#### Create a new video wall.
+
+Operation ID: `createNetworkCameraVideoWall`
+
+PATH _`/networks/{networkId}/camera/videoWalls`_
+
+    {
+      "id": "1284392014819",
+      "name": "Building-A",
+      "index": 0,
+      "tiles": [
+        {
+          "id": "1284392014819",
+          "serial": "Q234-ABCD-5678",
+          "x": 1,
+          "y": 1,
+          "width": 2,
+          "height": 1,
+          "theta": 3.14,
+          "phi": 1.2,
+          "imagerId": 1
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Create a new video wall.
+> 
+> **POST** `/networks/{networkId}/camera/videoWalls`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-camera-video-wall/)
+
+#### Update the specified video wall.
+
+Operation ID: `updateNetworkCameraVideoWall`
+
+PATH _`/networks/{networkId}/camera/videoWalls/{id}`_
+
+    {
+      "id": "1284392014819",
+      "name": "Building-A",
+      "index": 0,
+      "tiles": [
+        {
+          "id": "1284392014819",
+          "serial": "Q234-ABCD-5678",
+          "x": 1,
+          "y": 1,
+          "width": 2,
+          "height": 1,
+          "theta": 3.14,
+          "phi": 1.2,
+          "imagerId": 1
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update the specified video wall.
+> 
+> **PUT** `/networks/{networkId}/camera/videoWalls/{id}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete the specified video wall.
+> 
+> **DELETE** `/networks/{networkId}/camera/videoWalls/{id}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-camera-video-walls/)
+
+#### Return a list of video walls.
+
+Operation ID: `getOrganizationCameraVideoWalls`
+
+PATH _`/organizations/{organizationId}/camera/videoWalls`_
+
+    [
+      {
+        "id": "1284392014819",
+        "name": "Building-A",
+        "index": 0,
+        "tiles": [
+          {
+            "id": "1284392014819",
+            "serial": "Q234-ABCD-5678",
+            "x": 1,
+            "y": 1,
+            "width": 2,
+            "height": 1,
+            "theta": 3.14,
+            "phi": 1.2,
+            "imagerId": 1
+          }
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a list of video walls.
+> 
+> **GET** `/organizations/{organizationId}/camera/videoWalls`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-camera-video-wall/)
+
+#### Return the specified video wall.
+
+Operation ID: `getOrganizationCameraVideoWall`
+
+PATH _`/organizations/{organizationId}/camera/videoWalls/{id}`_
+
+    {
+      "id": "1284392014819",
+      "name": "Building-A",
+      "index": 0,
+      "tiles": [
+        {
+          "id": "1284392014819",
+          "serial": "Q234-ABCD-5678",
+          "x": 1,
+          "y": 1,
+          "width": 2,
+          "height": 1,
+          "theta": 3.14,
+          "phi": 1.2,
+          "imagerId": 1
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the specified video wall.
+> 
+> **GET** `/organizations/{organizationId}/camera/videoWalls/{id}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-camera-video-wall-video-link/)
+
+#### Returns video wall link to the specified video wall id
+
+Operation ID: `getOrganizationCameraVideoWallVideoLink`
+
+PATH _`/organizations/{organizationId}/camera/videoWalls/{id}/videoLink`_
+
+    [
+      {
+        "url": "https://nxx.meraki.com/office-cameras/n/bs0a1k/manage/video/video_wall/75290?timestamp=1535732570077",
+        "visionUrl": "https://vision.meraki.com/n/6482158978508419/cameras/29048243992402?ts=1535732570077"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns video wall link to the specified video wall id. If a timestamp is supplied, it links to that timestamp.
+> 
+> **GET** `/organizations/{organizationId}/camera/videoWalls/{id}/videoLink`  
+> 
+> * * *
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-camera-devices-configurations/)
+
+#### Lists all the capabilities of cameras in this organization
+
+Operation ID: `getOrganizationCameraDevicesConfigurations`
+
+PATH _`/organizations/{organizationId}/camera/devices/configurations`_
+
+    [
+      {
+        "serial": "QWDE-OIJU-HIDB",
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "model": "MV63-HW",
+        "category": "outdoor",
+        "audio": {
+          "isConfigurable": true,
+          "enabled": true
+        },
+        "lens": {
+          "isFisheye": true,
+          "zoom": {
+            "isConfigurable": true,
+            "maximum": 100,
+            "minimum": 0,
+            "value": 65
+          },
+          "aperture": {
+            "isConfigurable": true,
+            "maximum": 100,
+            "minimum": 0,
+            "value": 65
+          },
+          "focus": {
+            "isConfigurable": true,
+            "maximum": 100,
+            "minimum": 0,
+            "value": 65
+          }
+        },
+        "hdr": {
+          "isConfigurable": true,
+          "enabled": true
+        },
+        "sensorCrop": {
+          "isConfigurable": true,
+          "cropX": 0,
+          "cropY": 0,
+          "cropW": 0,
+          "cropH": 0
+        },
+        "searchModels": [
+          {
+            "name": "Body/Vehicle",
+            "enabled": true
+          }
+        ],
+        "cloudArchive": {
+          "isConfigurable": true,
+          "enabled": true,
+          "retentionDays": 90
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lists all the capabilities of cameras in this organization
+> 
+> **GET** `/organizations/{organizationId}/camera/devices/configurations`  
+> 
+> * * *
+
+* * *
+
+\[ devices \]
+-------------
+
+### vrrpTable
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-vrrp-table/)
+
+#### Enqueue a job to perform a VRRP table request for the device
+
+Operation ID: `createDeviceLiveToolsVrrpTable`
+
+PATH _`/devices/{serial}/liveTools/vrrpTable`_
+
+    {
+      "vrrpTableId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/vrrpTable/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "status": "complete",
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a VRRP table request for the device. This endpoint currently supports Catalyst switches. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/vrrpTable`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-vrrp-table/)
+
+#### Return an VRRP table live tool job.
+
+Operation ID: `getDeviceLiveToolsVrrpTable`
+
+PATH _`/devices/{serial}/liveTools/vrrpTable/{vrrpTableId}`_
+
+    {
+      "vrrpTableId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/vrrpTable/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "status": "complete",
+      "entries": [
+        {
+          "group": 123,
+          "protocol": "ipv4",
+          "addresses": {
+            "virtual": "10.0.0.1",
+            "primary": "10.0.0.2"
+          },
+          "vlanId": 100,
+          "priority": 100,
+          "preemption": {
+            "enabled": true
+          },
+          "status": {
+            "value": "primary",
+            "description": "Indicates that the virtual router is forwarding packets for IP addresses that are associated with this router",
+            "primaryReason": {
+              "value": "priority",
+              "description": "Won the primary election due to higher priority"
+            },
+            "lastChange": {
+              "ts": "2018-02-11T00:00:00.090210Z",
+              "reason": {
+                "value": "priority",
+                "description": "Elected primary due to higher priority"
+              }
+            }
+          }
+        }
+      ],
+      "error": "The device is unreachable."
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an VRRP table live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/vrrpTable/{vrrpTableId}`  
+> 
+> * * *
+
+* * *
+
+### traceRoute
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-trace-route/)
+
+#### Enqueue a job to run trace route in the device
+
+Operation ID: `createDeviceLiveToolsTraceRoute`
+
+PATH _`/devices/{serial}/liveTools/traceRoute`_
+
+    {
+      "traceRouteId": "123",
+      "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
+      "request": {
+        "serial": "Q234-ABCD-5678",
+        "target": "www.cisco.com",
+        "sourceInterface": "100.100.0.1"
+      },
+      "status": "complete",
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to run trace route in the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/traceRoute`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-trace-route/)
+
+#### Return a trace route job
+
+Operation ID: `getDeviceLiveToolsTraceRoute`
+
+PATH _`/devices/{serial}/liveTools/traceRoute/{traceRouteId}`_
+
+    {
+      "traceRouteId": "123",
+      "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
+      "request": {
+        "serial": "Q234-ABCD-5678",
+        "target": "www.cisco.com",
+        "sourceInterface": "100.100.0.1"
+      },
+      "status": "complete",
+      "results": [
+        {
+          "hop": 0,
+          "ip": "100.100.0.1",
+          "rttAvg": 0.00005,
+          "count": 3
+        }
+      ],
+      "error": "The device is unreachable."
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a trace route job
+> 
+> **GET** `/devices/{serial}/liveTools/traceRoute/{traceRouteId}`  
+> 
+> * * *
+
+* * *
+
+### speedTest
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-speed-test/)
+
+#### Enqueue a job to execute a speed test from a device
+
+Operation ID: `createDeviceLiveToolsSpeedTest`
+
+PATH _`/devices/{serial}/liveTools/speedTest`_
+
+    {
+      "speedTestId": "1284392014819",
+      "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678",
+        "interface": "wan1"
+      },
+      "status": "complete",
+      "results": {
+        "speeds": {
+          "average": 123.45
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to execute a speed test from a device
+> 
+> **POST** `/devices/{serial}/liveTools/speedTest`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-speed-test/)
+
+#### Returns a speed test result in megabits per second
+
+Operation ID: `getDeviceLiveToolsSpeedTest`
+
+PATH _`/devices/{serial}/liveTools/speedTest/{id}`_
+
+    {
+      "speedTestId": "1284392014819",
+      "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678",
+        "interface": "wan1"
+      },
+      "status": "complete",
+      "results": {
+        "speeds": {
+          "average": 123.45
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns a speed test result in megabits per second. If test is not complete, no results are present.
+> 
+> **GET** `/devices/{serial}/liveTools/speedTest/{id}`  
+> 
+> * * *
+
+* * *
+
+### routingTable
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-routing-table/)
+
+#### Enqueue a job to perform a routing table request for the device
+
+Operation ID: `createDeviceLiveToolsRoutingTable`
+
+PATH _`/devices/{serial}/liveTools/routingTable`_
+
+    {
+      "routingTableId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "status": "complete",
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/routingTable`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-routing-table/)
+
+#### Return an routing table live tool job.
+
+Operation ID: `getDeviceLiveToolsRoutingTable`
+
+PATH _`/devices/{serial}/liveTools/routingTable/{id}`_
+
+    {
+      "routingTableId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "status": "complete",
+      "entries": [
+        {
+          "type": "static",
+          "subnet": "10.200.10.1/32",
+          "staticGateway": "22.22.22.21",
+          "ipVersion": "ipv4"
+        }
+      ],
+      "error": "The device is unreachable"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an routing table live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/routingTable/{id}`  
+> 
+> * * *
+
+* * *
+
+### reboot
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-reboot/)
+
+#### Enqueue a job to reboot a device
+
+Operation ID: `createDeviceLiveToolsReboot`
+
+PATH _`/devices/{serial}/liveTools/reboot`_
+
+    {
+      "rebootId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/reboot/1284392014819",
+      "status": "complete",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "error": "error description",
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to reboot a device. This endpoint has a rate limit of one request every 60 seconds.
+> 
+> **POST** `/devices/{serial}/liveTools/reboot`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-reboot/)
+
+#### Return a reboot job
+
+Operation ID: `getDeviceLiveToolsReboot`
+
+PATH _`/devices/{serial}/liveTools/reboot/{rebootId}`_
+
+    {
+      "rebootId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/reboot/1284392014819",
+      "status": "complete",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "error": "error description"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a reboot job
+> 
+> **GET** `/devices/{serial}/liveTools/reboot/{rebootId}`  
+> 
+> * * *
+
+* * *
+
+### ospfNeighbors
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-ospf-neighbor/)
+
+#### Enqueue a job to perform a OSPF neighbors request for the device
+
+Operation ID: `createDeviceLiveToolsOspfNeighbor`
+
+PATH _`/devices/{serial}/liveTools/ospfNeighbors`_
+
+    {
+      "ospfNeighborsId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/ospfNeighbors/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "status": "complete",
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a OSPF neighbors request for the device. This endpoint currently supports switches. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/ospfNeighbors`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-ospf-neighbor/)
+
+#### Return an OSPF neighbors live tool job.
+
+Operation ID: `getDeviceLiveToolsOspfNeighbor`
+
+PATH _`/devices/{serial}/liveTools/ospfNeighbors/{ospfNeighborsId}`_
+
+    {
+      "ospfNeighborsId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/ospfNeighbors/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "status": "complete",
+      "routers": [
+        {
+          "id": "1.2.3.4",
+          "name": "My route",
+          "ip": "10.0.0.0/24",
+          "position": "DR",
+          "state": "full",
+          "vlanId": 100
+        }
+      ],
+      "error": "The device is unreachable."
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an OSPF neighbors live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/ospfNeighbors/{ospfNeighborsId}`  
+> 
+> * * *
+
+* * *
+
+### dhcpLeases
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-dhcp-lease/)
+
+#### Enqueue a job to perform a DHCP leases request for the device
+
+Operation ID: `createDeviceLiveToolsDhcpLease`
+
+PATH _`/devices/{serial}/liveTools/dhcpLeases`_
+
+    {
+      "dhcpLeasesId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/dhcpLeases/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "status": "complete",
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a DHCP leases request for the device. This endpoint currently supports all devices. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/dhcpLeases`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-dhcp-lease/)
+
+#### Return a DHCP leases live tool job.
+
+Operation ID: `getDeviceLiveToolsDhcpLease`
+
+PATH _`/devices/{serial}/liveTools/dhcpLeases/{dhcpLeasesId}`_
+
+    {
+      "dhcpLeasesId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/dhcpLeases/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "status": "complete",
+      "dhcpLeases": [
+        {
+          "ip": "10.0.0.0/24",
+          "mac": "00:11:22:33:44:55",
+          "expiresAt": "2018-02-11T00:00:00.090210Z"
+        }
+      ],
+      "error": "The device is unreachable."
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a DHCP leases live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/dhcpLeases/{dhcpLeasesId}`  
+> 
+> * * *
+
+* * *
+
+### cyclePort
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-cycle-port/)
+
+#### Enqueue a job to perform a cycle port for the device on the specified ports
+
+Operation ID: `createDeviceLiveToolsCyclePort`
+
+PATH _`/devices/{serial}/liveTools/cyclePort`_
+
+    {
+      "cyclePortId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678",
+        "ports": [
+          "2",
+          "8"
+        ]
+      },
+      "status": "complete",
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a cycle port for the device on the specified ports. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/cyclePort`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-cycle-port/)
+
+#### Return a cycle port live tool job.
+
+Operation ID: `getDeviceLiveToolsCyclePort`
+
+PATH _`/devices/{serial}/liveTools/cyclePort/{id}`_
+
+    {
+      "cyclePortId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678",
+        "ports": [
+          "2",
+          "8"
+        ]
+      },
+      "status": "complete",
+      "error": "The device is unreachable."
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a cycle port live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/cyclePort/{id}`  
+> 
+> * * *
+
+* * *
+
+### aclHitCount
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-acl-hit-count/)
+
+#### Enqueue a job to perform an ACL hit count for the device
+
+Operation ID: `createDeviceLiveToolsAclHitCount`
+
+PATH _`/devices/{serial}/liveTools/aclHitCount`_
+
+    {
+      "aclHitCountId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "status": "complete",
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform an ACL hit count for the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> 
+> **POST** `/devices/{serial}/liveTools/aclHitCount`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-acl-hit-count/)
+
+#### Return an ACL hit count live tool job.
+
+Operation ID: `getDeviceLiveToolsAclHitCount`
+
+PATH _`/devices/{serial}/liveTools/aclHitCount/{id}`_
+
+    {
+      "aclHitCountId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678"
+      },
+      "status": "complete",
+      "acls": [
+        {
+          "policy": "allow",
+          "ipVersion": "any",
+          "ipProtocol": {
+            "type": "number",
+            "number": 6,
+            "objectGroup": "object-group-123"
+          },
+          "counts": {
+            "total": 1234,
+            "ipv4": 1234,
+            "ipv6": 0
+          },
+          "source": {
+            "address": "1.2.3.4",
+            "port": {
+              "operator": "equals",
+              "ports": [
+                80,
+                443
+              ]
+            }
+          },
+          "destination": {
+            "address": "2.3.4.5",
+            "port": [
+              {
+                "operator": "range",
+                "ports": [
+                  80,
+                  89
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "error": "The device is unreachable."
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an ACL hit count live tool job.
+> 
+> **GET** `/devices/{serial}/liveTools/aclHitCount/{id}`  
+> 
+> * * *
+
+* * *
+
+### clients
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-clients-disconnect/)
+
+#### Return a client disconnect job.
+
+Operation ID: `getDeviceLiveToolsClientsDisconnect`
+
+PATH _`/devices/{serial}/liveTools/clients/disconnect/{id}`_
+
+    {
+      "id": "abcd-1234-efgh-5678",
+      "status": "queued",
+      "request": {
+        "mac": "00:11:22:33:44:55",
+        "serial": "ABCD-1234-ABCD"
+      },
+      "url": "/api/v1/devices/serial/liveTools/disconnect",
+      "results": {
+        "success": true,
+        "error": "Device (Access Point) took too long to respond."
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a client disconnect job.
+> 
+> **GET** `/devices/{serial}/liveTools/clients/disconnect/{id}`  
+> 
+> * * *
+
+* * *
+
+\[ licensing \]
+---------------
+
+### subscription
+
+[Docs](https://developer.cisco.com/meraki/api-v1/batch-administered-licensing-subscription-networks-feature-tiers-update/)
+
+#### Batch change networks to their desired feature tier for specified product types
+
+Operation ID: `batchAdministeredLicensingSubscriptionNetworksFeatureTiersUpdate`
+
+PATH _`/administered/licensing/subscription/networks/featureTiers/batchUpdate`_
+
+    {
+      "items": [
+        {
+          "network": {
+            "id": "N_1234",
+            "productTypes": [
+              {
+                "productType": "wireless",
+                "featureTier": "essentials"
+              }
+            ]
+          }
+        }
+      ],
+      "errors": [
+        {
+          "network": {
+            "id": "N_1234",
+            "productTypes": [
+              {
+                "productType": "wireless",
+                "featureTier": "essentials",
+                "error": "Insufficient entitlements"
+              }
+            ]
+          },
+          "error": "null"
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Batch change networks to their desired feature tier for specified product types
+> 
+> **POST** `/administered/licensing/subscription/networks/featureTiers/batchUpdate`  
 > 
 > * * *
 
@@ -2532,7 +3756,8 @@ PATH _`/organizations/{organizationId}/nac/sessions/history`_
             "id": "stress"
           },
           "client": {
-            "id": "00-14-11-12-12-12:mab2"
+            "id": "00-14-11-12-12-12:mab2",
+            "url": "/SJC-Test-Network/n/OSYcyb2h/manage/clients?timespan=2592000&searchQuery=00-14-11-12-12-12%3Amab2"
           },
           "authentication": {
             "protocol": "MAB"
@@ -2541,13 +3766,7 @@ PATH _`/organizations/{organizationId}/nac/sessions/history`_
             "name": ""
           },
           "device": {
-            "id": "167231144861997",
-            "serial": "Q3AC-J3V8-DWNP",
-            "group": {
-              "id": "167231144861998",
-              "encryptedId": "OSYcyb2h",
-              "localeName": "SJC-Test-Network"
-            }
+            "url": "/SJC-Test-Network/n/OSYcyb2h/manage/nodes/new_list/167231144861997/summary"
           }
         }
       ],
@@ -2573,56 +3792,6 @@ PATH _`/organizations/{organizationId}/nac/sessions/history`_
 > #### List the NAC Sessions for this organization
 > 
 > **GET** `/organizations/{organizationId}/nac/sessions/history`  
-> 
->     {
->         "items": [
->             {
->                 "sessionId": "0677ba3c-a867-461d-97c9-e5b60066f2b3",
->                 "counts": {
->                     "events": {
->                         "total": 5
->                     }
->                 },
->                 "ts": "2023-02-01T11:36:25.480Z",
->                 "status": "Success",
->                 "details": "A policy for whose first matched rule will return its assigned authz profile",
->                 "user": {
->                     "id": "stress"
->                 },
->                 "client": {
->                     "id": "00-14-11-12-12-12:mab2"
->                 },
->                 "authentication": {
->                     "protocol": "MAB"
->                 },
->                 "ssid": {
->                     "name": ""
->                 },
->                 "device": {
->                     "id": "167231144861997",
->                     "serial": "Q3AC-J3V8-DWNP",
->                     "group": {
->                         "id": "167231144861998",
->                         "encryptedId": "OSYcyb2h",
->                         "localeName": "SJC-Test-Network"
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 4,
->                     "byResult": [
->                         {
->                             "result": "Authentication Failed",
->                             "total": 120
->                         }
->                     ]
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -2662,7 +3831,8 @@ PATH _`/organizations/{organizationId}/nac/sessions/{sessionId}/details`_
         ],
         "groups": "ID group names",
         "deviceProfiling": "Macbook Pro",
-        "guid": "00-00-00-00-00-00"
+        "guid": "00-00-00-00-00-00",
+        "url": "/SJC-Test-Network/n/OSYcyb2h/manage/clients?timespan=2592000&searchQuery=2c%3A3f%3A0b%3A00%3A14%3A00"
       },
       "authentication": {
         "latency": 500,
@@ -2749,13 +3919,7 @@ PATH _`/organizations/{organizationId}/nac/sessions/{sessionId}/details`_
           }
         ],
         "tags": "tag names",
-        "id": "167231144861997",
-        "serial": "Q3AC-J3V8-DWNP",
-        "group": {
-          "id": "167231144861998",
-          "encryptedId": "OSYcyb2h",
-          "localeName": "SJC-Test-Network"
-        }
+        "url": "/SJC-Test-Network/n/OSYcyb2h/manage/nodes/new_list/167231144861997/summary"
       },
       "radius": {
         "attributes": {
@@ -2784,147 +3948,6 @@ PATH _`/organizations/{organizationId}/nac/sessions/{sessionId}/details`_
 > #### Return the details of selected NAC Sessions
 > 
 > **GET** `/organizations/{organizationId}/nac/sessions/{sessionId}/details`  
-> 
->     {
->         "sessionId": "e6b7d57b-1ddb-47f5-8d76-c06e10570297",
->         "hasCompleteEvent": true,
->         "ts": "2023-02-01T13:25:26.181Z",
->         "status": "Success",
->         "details": "",
->         "counts": {
->             "events": {
->                 "total": 5
->             }
->         },
->         "user": {
->             "id": "Device ID Username",
->             "idp": "Active Directory",
->             "groups": "ID group names"
->         },
->         "client": {
->             "id": "2c:3f:0b:00:14:00",
->             "addresses": [
->                 {
->                     "protocol": "ipv4",
->                     "address": "112.112.112.112"
->                 }
->             ],
->             "groups": "ID group names",
->             "deviceProfiling": "Macbook Pro",
->             "guid": "00-00-00-00-00-00"
->         },
->         "authentication": {
->             "latency": 500,
->             "method": "EAP-TLS",
->             "protocol": "EAP",
->             "policy": "Active Directory",
->             "endpointCertificate": {
->                 "title": "Endpoint Certificate Name",
->                 "issuer": "Issuer's Name",
->                 "isExpired": false,
->                 "status": "Trusted",
->                 "subjectName": {
->                     "commonName": "hosuk",
->                     "organizationalUnit": "Example Unit",
->                     "organization": "Company Name",
->                     "locality": "City",
->                     "state": "State",
->                     "country": "US"
->                 },
->                 "issuerName": {
->                     "commonName": "Certificate Services Endpoint Sub CA - ise",
->                     "serial": "58 BA BA 47 4F 4B 58 BA BA 47 4F 4B 74 72",
->                     "version": "3",
->                     "signatureAlgorithm": "XXX",
->                     "parameters": "None",
->                     "validity": {
->                         "start": "2023-01-01T13:25:26.181Z",
->                         "end": "2024-01-01T13:25:26.181Z"
->                     }
->                 },
->                 "publicKey": {
->                     "algorithm": "XXX",
->                     "parameters": "XXX",
->                     "body": "XXX",
->                     "exponent": "XXX",
->                     "size": "XXX",
->                     "usage": "XXX",
->                     "signature": "XXX"
->                 },
->                 "directoryName": {
->                     "commonName": "XXX",
->                     "serial": "XXX"
->                 },
->                 "fingerprints": {
->                     "sha256": "XXX",
->                     "sha1": "XXX"
->                 },
->                 "extensions": [
->                     {
->                         "oid": "2.5.28.15",
->                         "name": "Key Usage",
->                         "fields": [
->                             {
->                                 "name": "Critical",
->                                 "value": "Yes"
->                             }
->                         ]
->                     }
->                 ]
->             }
->         },
->         "authorization": {
->             "rule": "Rule Name",
->             "profile": "List all the profiles here"
->         },
->         "network": {
->             "name": "Name",
->             "accessType": "Wired",
->             "ssid": {
->                 "name": "SSID"
->             },
->             "port": {
->                 "name": "Port"
->             },
->             "tags": "tag names"
->         },
->         "device": {
->             "name": "Device model name",
->             "model": "Device model name",
->             "addresses": [
->                 {
->                     "protocol": "ipv4",
->                     "address": "100.10.100.10"
->                 }
->             ],
->             "tags": "tag names",
->             "id": "167231144861997",
->             "serial": "Q3AC-J3V8-DWNP",
->             "group": {
->                 "id": "167231144861998",
->                 "encryptedId": "OSYcyb2h",
->                 "localeName": "SJC-Test-Network"
->             }
->         },
->         "radius": {
->             "attributes": {
->                 "incoming": [
->                     {
->                         "code": "1",
->                         "name": "Username",
->                         "value": "hosuk"
->                     }
->                 ],
->                 "outgoing": [
->                     {
->                         "code": "1",
->                         "name": "Username",
->                         "value": "hosuk"
->                     }
->                 ]
->             }
->         }
->     }
 > 
 > * * *
 
@@ -2970,27 +3993,82 @@ PATH _`/organizations/{organizationId}/nac/license/usage`_
 > 
 > **GET** `/organizations/{organizationId}/nac/license/usage`  
 > 
->     {
->         "organizationId": "1284392014819",
->         "type": "CoTerm",
->         "timeRange": {
->             "startDate": "2025-05-13",
->             "endDate": "2025-07-11"
->         },
->         "licenseLimit": 100,
->         "usageData": [
->             {
->                 "date": "2025-08-21",
->                 "peakConcurrentSessions": 100
->             }
->         ],
->         "summary": {
->             "daysInPeriod": 60,
->             "highestPeakConcurrentSessions": 145,
->             "p90PeakConcurrentSessions": 120.5,
->             "p95PeakConcurrentSessions": 135.2
->         }
->     }
+> * * *
+
+* * *
+
+### dictionaries
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-dictionaries/)
+
+#### Get all NAC dictionaries
+
+Operation ID: `getOrganizationNacDictionaries`
+
+PATH _`/organizations/{organizationId}/nac/dictionaries`_
+
+    [
+      {
+        "dictionaryId": "1",
+        "name": "Clients",
+        "description": "Client dictionary",
+        "category": "clients"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get all NAC dictionaries
+> 
+> **GET** `/organizations/{organizationId}/nac/dictionaries`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-dictionary-attributes/)
+
+#### Get all attributes by dictionary ID
+
+Operation ID: `getOrganizationNacDictionaryAttributes`
+
+PATH _`/organizations/{organizationId}/nac/dictionaries/{dictionaryId}/attributes`_
+
+    [
+      {
+        "attributeId": "urn:client-cert:cn",
+        "title": "Common Name",
+        "description": "common Name attribute",
+        "maximum": 100,
+        "minimum": 0,
+        "pattern": ".*",
+        "type": "string",
+        "format": "string",
+        "enum": [
+          "Permit",
+          "Deny"
+        ],
+        "isLargeDataSet": false,
+        "items": {
+          "title": "SAN",
+          "description": "subject alternative name",
+          "type": "string"
+        },
+        "isReadOnly": false,
+        "isWriteOnly": false,
+        "default": "Permit"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get all attributes by dictionary ID
+> 
+> **GET** `/organizations/{organizationId}/nac/dictionaries/{dictionaryId}/attributes`  
 > 
 > * * *
 
@@ -3028,24 +4106,24 @@ PATH _`/organizations/{organizationId}/nac/authorization/policies`_
             "authorizationProfile": {
               "vlan": {
                 "value": "123",
-                "type": "Constant"
+                "type": "CONSTANT"
               },
               "adaptivePolicy": {
                 "value": "Sample_Adaptive_Policy",
-                "type": "Constant"
+                "type": "CONSTANT"
               },
               "voiceDomain": {
                 "value": "true",
-                "type": "Constant"
+                "type": "CONSTANT"
               },
               "groupPolicy": {
                 "value": "Sample_Group_Policy",
-                "type": "Constant"
+                "type": "CONSTANT"
               },
               "result": "PERMIT",
               "ipsk": {
                 "value": "Moon@15",
-                "type": "Moon@15"
+                "type": "CONSTANT"
               }
             }
           }
@@ -3066,1043 +4144,309 @@ PATH _`/organizations/{organizationId}/nac/authorization/policies`_
 > 
 > **GET** `/organizations/{organizationId}/nac/authorization/policies`  
 > 
->     [
->         {
->             "policyId": "1",
->             "name": "auth_policy",
->             "enabled": true,
->             "rank": 5,
->             "version": "20",
->             "counts": {
->                 "hits": 10
->             },
->             "rules": [
->                 {
->                     "ruleId": "1",
->                     "name": "rule_name",
->                     "rank": 10,
->                     "enabled": true,
->                     "counts": {
->                         "hits": 20
->                     },
->                     "authorizationProfile": {
->                         "vlan": {
->                             "value": "123",
->                             "type": "Constant"
->                         },
->                         "adaptivePolicy": {
->                             "value": "Sample_Adaptive_Policy",
->                             "type": "Constant"
->                         },
->                         "voiceDomain": {
->                             "value": "true",
->                             "type": "Constant"
->                         },
->                         "groupPolicy": {
->                             "value": "Sample_Group_Policy",
->                             "type": "Constant"
->                         },
->                         "result": "PERMIT",
->                         "ipsk": {
->                             "value": "Moon@15",
->                             "type": "Moon@15"
->                         }
->                     }
->                 }
->             ],
->             "hasOutdatedCondition": false,
->             "conditionTags": [
->                 "Client certificates: Issuer - Common Name = spa.meraki.com",
->                 "Networks: Network Name = Dev Test Network"
->             ]
->         }
->     ]
-> 
 > * * *
 
 * * *
 
-\[ users \]
------------
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-authorization-policy-rule/)
 
-### iam
+#### Create a rule in an authorization policy set of an organization
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-authorizations/)
+Operation ID: `createOrganizationNacAuthorizationPolicyRule`
 
-#### List specific authorizations for the list of Meraki end users.
-
-Operation ID: `getOrganizationIamUsersAuthorizations`
-
-PATH _`/organizations/{organizationId}/iam/users/authorizations`_
+PATH _`/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules`_
 
     {
-      "items": [
-        {
-          "authorizationId": "1284392014819",
-          "idpUserId": "1284392014819",
-          "expiresAt": "2018-02-11T00:00:00Z",
-          "startsAt": "2018-05-12T00:00:00Z",
-          "selfRegistered": false,
-          "status": "authorized",
-          "authZone": {
-            "id": "1284392014819",
-            "name": "SFO"
-          },
-          "authorizer": {
-            "name": "John Doe"
-          },
-          "createdAt": "2018-02-11T00:00:00Z",
-          "lastUpdatedAt": "2018-05-12T00:00:00Z"
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 10,
-            "remaining": 0
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List specific authorizations for the list of Meraki end users.
-> 
-> **GET** `/organizations/{organizationId}/iam/users/authorizations`  
-> 
->     {
->         "items": [
->             {
->                 "authorizationId": "1284392014819",
->                 "idpUserId": "1284392014819",
->                 "expiresAt": "2018-02-11T00:00:00Z",
->                 "startsAt": "2018-05-12T00:00:00Z",
->                 "selfRegistered": false,
->                 "status": "authorized",
->                 "authZone": {
->                     "id": "1284392014819",
->                     "name": "SFO"
->                 },
->                 "authorizer": {
->                     "name": "John Doe"
->                 },
->                 "createdAt": "2018-02-11T00:00:00Z",
->                 "lastUpdatedAt": "2018-05-12T00:00:00Z"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Authorize a Meraki end user for an auth zone.
-> 
-> **POST** `/organizations/{organizationId}/iam/users/authorizations`  
-> 
->     {
->         "authorizationId": "1284392014819",
->         "idpUserId": "1284392014819",
->         "expiresAt": "2018-02-11T00:00:00Z",
->         "startsAt": "2018-05-12T00:00:00Z",
->         "selfRegistered": false,
->         "status": "authorized",
->         "authZone": {
->             "id": "1284392014819",
->             "name": "SFO"
->         },
->         "authorizer": {
->             "name": "John Doe"
->         },
->         "createdAt": "2018-02-11T00:00:00Z",
->         "lastUpdatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update a Meraki end user's access to an auth zone.
-> 
-> **PUT** `/organizations/{organizationId}/iam/users/authorizations`  
-> 
->     {
->         "authorizationId": "1284392014819",
->         "idpUserId": "1284392014819",
->         "expiresAt": "2018-02-11T00:00:00Z",
->         "startsAt": "2018-05-12T00:00:00Z",
->         "selfRegistered": false,
->         "status": "authorized",
->         "authZone": {
->             "id": "1284392014819",
->             "name": "SFO"
->         },
->         "authorizer": {
->             "name": "John Doe"
->         },
->         "createdAt": "2018-02-11T00:00:00Z",
->         "lastUpdatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/revoke-organization-iam-users-authorizations-authorization/)
-
-#### Revoke a Meraki end user's access to an auth zone.
-
-Operation ID: `revokeOrganizationIamUsersAuthorizationsAuthorization`
-
-PATH _`/organizations/{organizationId}/iam/users/authorizations/authorization/revoke`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Revoke a Meraki end user's access to an auth zone.
-> 
-> **POST** `/organizations/{organizationId}/iam/users/authorizations/authorization/revoke`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-authorizations-zones/)
-
-#### List all of the available auth zones for an organization.
-
-Operation ID: `getOrganizationIamUsersAuthorizationsZones`
-
-PATH _`/organizations/{organizationId}/iam/users/authorizations/zones`_
-
-    {
-      "items": [
-        {
-          "id": "1284392014819",
-          "name": "Main Office",
-          "type": "Client VPN",
-          "network": {
-            "id": "1284392014819",
-            "name": "Main Office"
-          }
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 10,
-            "remaining": 0
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List all of the available auth zones for an organization.
-> 
-> **GET** `/organizations/{organizationId}/iam/users/authorizations/zones`  
-> 
->     {
->         "items": [
->             {
->                 "id": "1284392014819",
->                 "name": "Main Office",
->                 "type": "Client VPN",
->                 "network": {
->                     "id": "1284392014819",
->                     "name": "Main Office"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-iam-users-authorization/)
-
-#### Delete an authorization for a Meraki end user.
-
-Operation ID: `deleteOrganizationIamUsersAuthorization`
-
-PATH _`/organizations/{organizationId}/iam/users/authorizations/{authorizationId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Delete an authorization for a Meraki end user.
-> 
-> **DELETE** `/organizations/{organizationId}/iam/users/authorizations/{authorizationId}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-iam-users-idp/)
-
-#### Create an identity provider for an organization
-
-Operation ID: `createOrganizationIamUsersIdp`
-
-PATH _`/organizations/{organizationId}/iam/users/idps`_
-
-    {
-      "idpId": "1284392014819",
-      "name": "My Entra ID",
-      "description": "Some description",
-      "type": "Azure AD",
-      "syncable": true,
-      "syncType": "proactive",
-      "createdAt": "2018-02-11T00:00:00Z",
-      "lastUpdatedAt": "2018-05-12T00:00:00Z"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Create an identity provider for an organization. Only Entra ID(Azure AD) is supported at this time.
-> 
-> **POST** `/organizations/{organizationId}/iam/users/idps`  
-> 
->     {
->         "idpId": "1284392014819",
->         "name": "My Entra ID",
->         "description": "Some description",
->         "type": "Azure AD",
->         "syncable": true,
->         "syncType": "proactive",
->         "createdAt": "2018-02-11T00:00:00Z",
->         "lastUpdatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/search-organization-idp-groups/)
-
-#### Search all IdP groups for an organization
-
-Operation ID: `searchOrganizationIdpGroups`
-
-PATH _`/organizations/{organizationId}/iam/users/idps/groups/search`_
-
-    {
-      "items": [
-        {
-          "groupId": "1284392014819",
-          "idpId": "1284392014819",
-          "name": "sample idp group",
-          "externalId": "f5a28b7d-e41c-41a2-8b0f-244a4123c5d7",
-          "metadata": {
-            "someKey": "value"
-          },
-          "idp": {
-            "id": "1284392014819",
-            "name": "Azure AD IdP",
-            "type": "Azure AD"
-          }
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 10,
-            "remaining": 0
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Search all IdP groups for an organization. Filter by IdP IDs and Auth Zone. Parameters are assembled as an AND query.
-> 
-> **POST** `/organizations/{organizationId}/iam/users/idps/groups/search`  
-> 
->     {
->         "items": [
->             {
->                 "groupId": "1284392014819",
->                 "idpId": "1284392014819",
->                 "name": "sample idp group",
->                 "externalId": "f5a28b7d-e41c-41a2-8b0f-244a4123c5d7",
->                 "metadata": {
->                     "someKey": "value"
->                 },
->                 "idp": {
->                     "id": "1284392014819",
->                     "name": "Azure AD IdP",
->                     "type": "Azure AD"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-idps-product-integrations/)
-
-#### List all available IdP Product Integration urls for the organization
-
-Operation ID: `getOrganizationIamUsersIdpsProductIntegrations`
-
-PATH _`/organizations/{organizationId}/iam/users/idps/productIntegrations`_
-
-    [
-      {
-        "productIntegrationId": "access_manager",
-        "name": "Access Manager",
-        "description": "Use this IdP in your policies to control access to your resources.",
-        "url": ""
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List all available IdP Product Integration urls for the organization
-> 
-> **GET** `/organizations/{organizationId}/iam/users/idps/productIntegrations`  
-> 
->     [
->         {
->             "productIntegrationId": "access_manager",
->             "name": "Access Manager",
->             "description": "Use this IdP in your policies to control access to your resources.",
->             "url": ""
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-iam-users-idps-search/)
-
-#### Search all IdPs for an organization
-
-Operation ID: `createOrganizationIamUsersIdpsSearch`
-
-PATH _`/organizations/{organizationId}/iam/users/idps/search`_
-
-    {
-      "items": [
-        {
-          "idpId": "1284392014819",
-          "name": "My Entra ID",
-          "description": "Some description",
-          "type": "Azure AD",
-          "syncable": true,
-          "syncType": "proactive",
-          "createdAt": "2018-02-11T00:00:00Z",
-          "lastUpdatedAt": "2018-05-12T00:00:00Z"
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 10,
-            "remaining": 0
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Search all IdPs for an organization. Filter by IdP ID, IdP type, and Auth Zone. Parameters are assembled as an AND query.
-> 
-> **POST** `/organizations/{organizationId}/iam/users/idps/search`  
-> 
->     {
->         "items": [
->             {
->                 "idpId": "1284392014819",
->                 "name": "My Entra ID",
->                 "description": "Some description",
->                 "type": "Azure AD",
->                 "syncable": true,
->                 "syncType": "proactive",
->                 "createdAt": "2018-02-11T00:00:00Z",
->                 "lastUpdatedAt": "2018-05-12T00:00:00Z"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-idps-sync-history/)
-
-#### Get the IdP sync status records for an organization
-
-Operation ID: `getOrganizationIamUsersIdpsSyncHistory`
-
-PATH _`/organizations/{organizationId}/iam/users/idps/sync/history`_
-
-    {
-      "items": [
-        {
-          "idpSyncId": "1284392014819",
-          "idpId": "1284392014819",
-          "status": "In Progress",
-          "message": "sync was queued 10 minutes",
-          "createdAt": "2018-02-11T00:00:00Z",
-          "lastUpdatedAt": "2018-05-12T00:00:00Z"
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 10,
-            "remaining": 0
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get the IdP sync status records for an organization. Only Entra ID(Azure AD) is supported at this time.
-> 
-> **GET** `/organizations/{organizationId}/iam/users/idps/sync/history`  
-> 
->     {
->         "items": [
->             {
->                 "idpSyncId": "1284392014819",
->                 "idpId": "1284392014819",
->                 "status": "In Progress",
->                 "message": "sync was queued 10 minutes",
->                 "createdAt": "2018-02-11T00:00:00Z",
->                 "lastUpdatedAt": "2018-05-12T00:00:00Z"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-idps-sync-latest/)
-
-#### Get the latest IdP sync status records for all IdPs in an organization
-
-Operation ID: `getOrganizationIamUsersIdpsSyncLatest`
-
-PATH _`/organizations/{organizationId}/iam/users/idps/sync/latest`_
-
-    {
-      "items": [
-        {
-          "idpSyncId": "1284392014819",
-          "idpId": "1284392014819",
-          "status": "In Progress",
-          "message": "sync was queued 10 minutes",
-          "syncedBy": "api",
-          "createdAt": "2018-02-11T00:00:00Z",
-          "lastUpdatedAt": "2018-05-12T00:00:00Z"
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get the latest IdP sync status records for all IdPs in an organization. Only Entra ID(Azure AD) is supported at this time.
-> 
-> **GET** `/organizations/{organizationId}/iam/users/idps/sync/latest`  
-> 
->     {
->         "items": [
->             {
->                 "idpSyncId": "1284392014819",
->                 "idpId": "1284392014819",
->                 "status": "In Progress",
->                 "message": "sync was queued 10 minutes",
->                 "syncedBy": "api",
->                 "createdAt": "2018-02-11T00:00:00Z",
->                 "lastUpdatedAt": "2018-05-12T00:00:00Z"
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-iam-users-idps-test-connectivity/)
-
-#### Test connectivity to an Entra ID identity provider.
-
-Operation ID: `createOrganizationIamUsersIdpsTestConnectivity`
-
-PATH _`/organizations/{organizationId}/iam/users/idps/testConnectivity`_
-
-    {
-      "result": "failure",
-      "errors": [
-        {
-          "code": "AADSTS7000215",
-          "message": "Invalid client secret provided."
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Test connectivity to an Entra ID identity provider.
-> 
-> **POST** `/organizations/{organizationId}/iam/users/idps/testConnectivity`  
-> 
->     {
->         "result": "failure",
->         "errors": [
->             {
->                 "code": "AADSTS7000215",
->                 "message": "Invalid client secret provided."
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-iam-users-idps-user/)
-
-#### Create a Meraki user
-
-Operation ID: `createOrganizationIamUsersIdpsUser`
-
-PATH _`/organizations/{organizationId}/iam/users/idps/users`_
-
-    {
-      "idpUserId": "1284392014819",
-      "idp": {
-        "id": "1284392014819",
-        "name": "Azure AD IdP",
-        "type": "azure_ad"
+      "ruleId": "1",
+      "policyset": {
+        "policysetId": "2"
       },
-      "upn": "mdavis@meraki.com",
-      "displayName": "Miles Davis",
-      "externalId": "azure AD Id",
-      "accessTypes": [
-        "Wireless",
-        "Client VPN"
-      ],
-      "createdAt": "2018-02-11T00:00:00Z",
-      "lastUpdatedAt": "2018-05-12T00:00:00Z",
-      "groups": [
-        {
-          "id": "1",
-          "name": "Group name"
-        }
-      ]
+      "name": "rule_name",
+      "enabled": true,
+      "rank": 10,
+      "counts": {
+        "hits": 20
+      }
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Create a Meraki user
+> #### Create a rule in an authorization policy set of an organization
 > 
-> **POST** `/organizations/{organizationId}/iam/users/idps/users`  
-> 
->     {
->         "idpUserId": "1284392014819",
->         "idp": {
->             "id": "1284392014819",
->             "name": "Azure AD IdP",
->             "type": "azure_ad"
->         },
->         "upn": "mdavis@meraki.com",
->         "displayName": "Miles Davis",
->         "externalId": "azure AD Id",
->         "accessTypes": [
->             "Wireless",
->             "Client VPN"
->         ],
->         "createdAt": "2018-02-11T00:00:00Z",
->         "lastUpdatedAt": "2018-05-12T00:00:00Z",
->         "groups": [
->             {
->                 "id": "1",
->                 "name": "Group name"
->             }
->         ]
->     }
+> **POST** `/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules`  
 > 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-iam-users-idps-user/)
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-authorization-policy-rule/)
 
-#### Update a Meraki user
+#### Update an existing rule of an authorization policy set within an organization
 
-Operation ID: `updateOrganizationIamUsersIdpsUser`
+Operation ID: `updateOrganizationNacAuthorizationPolicyRule`
 
-PATH _`/organizations/{organizationId}/iam/users/idps/users/{id}`_
+PATH _`/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`_
 
     {
-      "idpUserId": "1284392014819",
-      "idp": {
-        "id": "1284392014819",
-        "name": "Azure AD IdP",
-        "type": "azure_ad"
+      "ruleId": "1",
+      "policyset": {
+        "policysetId": "2"
       },
-      "upn": "mdavis@meraki.com",
-      "displayName": "Miles Davis",
-      "externalId": "azure AD Id",
-      "accessTypes": [
-        "Wireless",
-        "Client VPN"
-      ],
-      "createdAt": "2018-02-11T00:00:00Z",
-      "lastUpdatedAt": "2018-05-12T00:00:00Z",
-      "groups": [
-        {
-          "id": "1",
-          "name": "Group name"
-        }
-      ]
+      "name": "rule_name",
+      "enabled": true,
+      "rank": 10,
+      "counts": {
+        "hits": 20
+      }
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Update a Meraki user
+> #### Update an existing rule of an authorization policy set within an organization
 > 
-> **PUT** `/organizations/{organizationId}/iam/users/idps/users/{id}`  
-> 
->     {
->         "idpUserId": "1284392014819",
->         "idp": {
->             "id": "1284392014819",
->             "name": "Azure AD IdP",
->             "type": "azure_ad"
->         },
->         "upn": "mdavis@meraki.com",
->         "displayName": "Miles Davis",
->         "externalId": "azure AD Id",
->         "accessTypes": [
->             "Wireless",
->             "Client VPN"
->         ],
->         "createdAt": "2018-02-11T00:00:00Z",
->         "lastUpdatedAt": "2018-05-12T00:00:00Z",
->         "groups": [
->             {
->                 "id": "1",
->                 "name": "Group name"
->             }
->         ]
->     }
+> **PUT** `/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`  
 > 
 > * * *
 > 
 >   
 > \- New endpoint
 > 
-> #### Delete a Meraki end user
+> #### Delete a rule in an authorization policy set of an organization
 > 
-> **DELETE** `/organizations/{organizationId}/iam/users/idps/users/{id}`  
+> **DELETE** `/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`  
 > 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-iam-users-idp-sync/)
+### certificates
 
-#### Trigger an IdP sync for an identity provider
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates/)
 
-Operation ID: `createOrganizationIamUsersIdpSync`
+#### Gets all certificates for an organization and can filter by certificate status, expiry date and last used date
 
-PATH _`/organizations/{organizationId}/iam/users/idps/{idpId}/sync`_
+Operation ID: `getOrganizationNacCertificates`
+
+PATH _`/organizations/{organizationId}/nac/certificates`_
 
     {
-      "idpSyncId": "1284392014819",
-      "idpId": "1284392014819",
-      "status": "In Progress",
-      "message": "sync was queued 10 minutes",
-      "syncedBy": "api",
-      "createdAt": "2018-02-11T00:00:00Z",
-      "lastUpdatedAt": "2018-05-12T00:00:00Z"
+      "certificateId": "1284392014819",
+      "parentCertificateId": "1284392014818",
+      "certificateChainId": "1",
+      "description": "Sample Description",
+      "source": "NAC",
+      "lastUsedAt": "2022-09-15T12:00:00Z",
+      "canBeDeleted": true,
+      "profile": {
+        "enabled": false,
+        "identity": "Sample profile identity",
+        "isLocalAuth": true,
+        "isTrustedAnchor": false,
+        "bypassExpiryDate": false
+      },
+      "fields": {
+        "validity": {
+          "start": "2022-09-01T12:00:00Z",
+          "end": "2022-10-01T12:00:00Z"
+        },
+        "subject": {
+          "commonName": "subjectRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "signatureAlgorithmId": "SHA256withRSA",
+        "issuer": {
+          "commonName": "issuerRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "hashes": [
+          {
+            "algorithm": "SHA1",
+            "hash": "hash text here"
+          }
+        ]
+      }
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Trigger an IdP sync for an identity provider. Only Entra ID(Azure AD) is supported at this time.
+> #### Gets all certificates for an organization and can filter by certificate status, expiry date and last used date
 > 
-> **POST** `/organizations/{organizationId}/iam/users/idps/{idpId}/sync`  
-> 
->     {
->         "idpSyncId": "1284392014819",
->         "idpId": "1284392014819",
->         "status": "In Progress",
->         "message": "sync was queued 10 minutes",
->         "syncedBy": "api",
->         "createdAt": "2018-02-11T00:00:00Z",
->         "lastUpdatedAt": "2018-05-12T00:00:00Z"
->     }
+> **GET** `/organizations/{organizationId}/nac/certificates`  
 > 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-idp-sync-latest/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates-authorities-crls-descriptors/)
 
-#### Get the latest IdP sync status for an identity provider
+#### Get all the organization's CRL descriptors (metadata only - revocation list data is excluded)
 
-Operation ID: `getOrganizationIamUsersIdpSyncLatest`
+Operation ID: `getOrganizationNacCertificatesAuthoritiesCrlsDescriptors`
 
-PATH _`/organizations/{organizationId}/iam/users/idps/{idpId}/sync/latest`_
-
-    {
-      "idpSyncId": "1284392014819",
-      "status": "In Progress",
-      "message": "sync was queued 10 minutes",
-      "createdAt": "2018-02-11T00:00:00Z",
-      "lastUpdatedAt": "2018-05-12T00:00:00Z"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get the latest IdP sync status for an identity provider. Only Entra ID(Azure AD) is supported at this time.
-> 
-> **GET** `/organizations/{organizationId}/iam/users/idps/{idpId}/sync/latest`  
-> 
->     {
->         "idpSyncId": "1284392014819",
->         "status": "In Progress",
->         "message": "sync was queued 10 minutes",
->         "createdAt": "2018-02-11T00:00:00Z",
->         "lastUpdatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-iam-users-idp/)
-
-#### Update an identity provider
-
-Operation ID: `updateOrganizationIamUsersIdp`
-
-PATH _`/organizations/{organizationId}/iam/users/idps/{id}`_
-
-    {
-      "idpId": "1284392014819",
-      "name": "My Entra ID",
-      "description": "Some description",
-      "type": "Azure AD",
-      "syncable": true,
-      "syncType": "proactive",
-      "createdAt": "2018-02-11T00:00:00Z",
-      "lastUpdatedAt": "2018-05-12T00:00:00Z"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update an identity provider. Only Entra ID(Azure AD) is supported at this time.
-> 
-> **PUT** `/organizations/{organizationId}/iam/users/idps/{id}`  
-> 
->     {
->         "idpId": "1284392014819",
->         "name": "My Entra ID",
->         "description": "Some description",
->         "type": "Azure AD",
->         "syncable": true,
->         "syncType": "proactive",
->         "createdAt": "2018-02-11T00:00:00Z",
->         "lastUpdatedAt": "2018-05-12T00:00:00Z"
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a identity provider from an organization. Only Entra ID(Azure AD) is supported at this time.
-> 
-> **DELETE** `/organizations/{organizationId}/iam/users/idps/{id}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-idp-auth-zones/)
-
-#### List all auth zones for an identity provider
-
-Operation ID: `getOrganizationIamUsersIdpAuthZones`
-
-PATH _`/organizations/{organizationId}/iam/users/idps/{id}/authZones`_
+PATH _`/organizations/{organizationId}/nac/certificates/authorities/crls/descriptors`_
 
     {
       "items": [
         {
-          "id": "1284392014819",
-          "name": "Main Office",
-          "type": "Client VPN",
-          "network": {
-            "id": "1284392014819",
-            "name": "Main Office"
+          "crlId": "1234",
+          "isDelta": false,
+          "caId": "12345",
+          "lastUpdatedAt": "2021-09-26T20:34:10Z"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1,
+            "remaining": 0
           }
         }
-      ]
+      }
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List all auth zones for an identity provider
+> #### Get all the organization's CRL descriptors (metadata only - revocation list data is excluded). It's possible to filter results by CRL issuers (CA) - see caIds query parameter
 > 
-> **GET** `/organizations/{organizationId}/iam/users/idps/{id}/authZones`  
-> 
->     {
->         "items": [
->             {
->                 "id": "1284392014819",
->                 "name": "Main Office",
->                 "type": "Client VPN",
->                 "network": {
->                     "id": "1284392014819",
->                     "name": "Main Office"
->                 }
->             }
->         ]
->     }
+> **GET** `/organizations/{organizationId}/nac/certificates/authorities/crls/descriptors`  
 > 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/search-organization-users/)
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-nac-certificates-authorities-crl/)
 
-#### List the end users and their associated identity providers for an organization.
+#### Deletes a whole CRL, including all its deltas (in case of base CRL removal)
 
-Operation ID: `searchOrganizationUsers`
+Operation ID: `deleteOrganizationNacCertificatesAuthoritiesCrl`
 
-PATH _`/organizations/{organizationId}/iam/users/search`_
+PATH _`/organizations/{organizationId}/nac/certificates/authorities/crls/{crlId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Deletes a whole CRL, including all its deltas (in case of base CRL removal)
+> 
+> **DELETE** `/organizations/{organizationId}/nac/certificates/authorities/crls/{crlId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-certificates-import/)
+
+#### Import certificate for this organization or validate without persisting
+
+Operation ID: `createOrganizationNacCertificatesImport`
+
+PATH _`/organizations/{organizationId}/nac/certificates/import`_
 
     {
-      "items": [
-        {
-          "userId": "1284392014819",
-          "upn": "mdavis@meraki.com",
-          "idpUsers": [
+      "certificateId": "1284392014819",
+      "parentCertificateId": "1284392014818",
+      "certificateChainId": "1",
+      "description": "Sample Description",
+      "source": "NAC",
+      "lastUsedAt": "2022-09-15T12:00:00Z",
+      "canBeDeleted": true,
+      "profile": {
+        "enabled": false,
+        "identity": "Sample profile identity",
+        "isLocalAuth": true,
+        "isTrustedAnchor": false,
+        "bypassExpiryDate": false
+      },
+      "fields": {
+        "validity": {
+          "start": "2022-09-01T12:00:00Z",
+          "end": "2022-10-01T12:00:00Z"
+        },
+        "subject": {
+          "commonName": "subjectRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "signatureAlgorithmId": "SHA256withRSA",
+        "issuer": {
+          "commonName": "issuerRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "hashes": [
+          {
+            "algorithm": "SHA1",
+            "hash": "hash text here"
+          }
+        ]
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Import certificate for this organization or validate without persisting
+> 
+> **POST** `/organizations/{organizationId}/nac/certificates/import`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates-overview/)
+
+#### Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization
+
+Operation ID: `getOrganizationNacCertificatesOverview`
+
+PATH _`/organizations/{organizationId}/nac/certificates/overview`_
+
+    {
+      "counts": {
+        "byEnabled": {
+          "true": 1,
+          "false": 1
+        },
+        "byValidity": {
+          "expired": 1,
+          "expiringWithin": [
             {
-              "id": "1284392014819",
-              "idp": {
-                "id": "1284392014819",
-                "name": "Azure AD IdP",
-                "type": "Azure AD"
-              },
-              "displayName": "Miles Davis",
-              "email": "mdavis@meraki.com",
-              "username": "mdavis",
-              "externalId": "external-Id",
-              "createdAt": "2018-02-11T00:00:00Z",
-              "lastUpdatedAt": "2018-05-12T00:00:00Z",
-              "groups": [
-                {
-                  "id": "1",
-                  "name": "Group name"
-                }
-              ],
-              "accessTypes": [
-                "Wireless",
-                "Client VPN"
-              ]
+              "period": 6,
+              "count": 1
+            }
+          ]
+        },
+        "byUsage": {
+          "unusedWithin": [
+            {
+              "period": 3,
+              "count": 1
             }
           ]
         }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 10,
-            "remaining": 0
-          }
-        }
       }
     }
 
@@ -4110,1696 +4454,38 @@ PATH _`/organizations/{organizationId}/iam/users/search`_
 >   
 > \- New endpoint
 > 
-> #### List the end users and their associated identity providers for an organization.
+> #### Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization
 > 
-> **POST** `/organizations/{organizationId}/iam/users/search`  
-> 
->     {
->         "items": [
->             {
->                 "userId": "1284392014819",
->                 "upn": "mdavis@meraki.com",
->                 "idpUsers": [
->                     {
->                         "id": "1284392014819",
->                         "idp": {
->                             "id": "1284392014819",
->                             "name": "Azure AD IdP",
->                             "type": "Azure AD"
->                         },
->                         "displayName": "Miles Davis",
->                         "email": "mdavis@meraki.com",
->                         "username": "mdavis",
->                         "externalId": "external-Id",
->                         "createdAt": "2018-02-11T00:00:00Z",
->                         "lastUpdatedAt": "2018-05-12T00:00:00Z",
->                         "groups": [
->                             {
->                                 "id": "1",
->                                 "name": "Group name"
->                             }
->                         ],
->                         "accessTypes": [
->                             "Wireless",
->                             "Client VPN"
->                         ]
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
+> **GET** `/organizations/{organizationId}/nac/certificates/overview`  
 > 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-summary-panel/)
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-certificate/)
 
-#### Get the count of users and user groups for an organization.
+#### Update certificate configuration by certificateId for this organization
 
-Operation ID: `getOrganizationIamUsersSummaryPanel`
+Operation ID: `updateOrganizationNacCertificate`
 
-PATH _`/organizations/{organizationId}/iam/users/summaryPanel`_
+PATH _`/organizations/{organizationId}/nac/certificates/{certificateId}`_
 
     {
-      "userCount": 100,
-      "userGroupCount": 10
+      "profileId": "1",
+      "status": "Disabled",
+      "identity": "Subject:CN",
+      "isLocalAuth": true,
+      "isTrustedAnchor": false,
+      "bypassExpiryDate": false
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Get the count of users and user groups for an organization.
+> #### Update certificate configuration by certificateId for this organization
 > 
-> **GET** `/organizations/{organizationId}/iam/users/summaryPanel`  
-> 
->     {
->         "userCount": 100,
->         "userGroupCount": 10
->     }
-> 
-> * * *
-
-* * *
-
-\[ camera \]
-------------
-
-### videoWalls
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-network-camera-video-wall/)
-
-#### Create a new video wall.
-
-Operation ID: `createNetworkCameraVideoWall`
-
-PATH _`/networks/{networkId}/camera/videoWalls`_
-
-    {
-      "id": "1284392014819",
-      "name": "Building-A",
-      "index": 0,
-      "tiles": [
-        {
-          "id": "1284392014819",
-          "serial": "Q234-ABCD-5678",
-          "x": 1,
-          "y": 1,
-          "width": 2,
-          "height": 1,
-          "theta": 3.14,
-          "phi": 1.2,
-          "imagerId": 1
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Create a new video wall.
-> 
-> **POST** `/networks/{networkId}/camera/videoWalls`  
-> 
->     {
->         "id": "1284392014819",
->         "name": "Building-A",
->         "index": 0,
->         "tiles": [
->             {
->                 "id": "1284392014819",
->                 "serial": "Q234-ABCD-5678",
->                 "x": 1,
->                 "y": 1,
->                 "width": 2,
->                 "height": 1,
->                 "theta": 3.14,
->                 "phi": 1.2,
->                 "imagerId": 1
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-camera-video-wall/)
-
-#### Update the specified video wall.
-
-Operation ID: `updateNetworkCameraVideoWall`
-
-PATH _`/networks/{networkId}/camera/videoWalls/{id}`_
-
-    {
-      "id": "1284392014819",
-      "name": "Building-A",
-      "index": 0,
-      "tiles": [
-        {
-          "id": "1284392014819",
-          "serial": "Q234-ABCD-5678",
-          "x": 1,
-          "y": 1,
-          "width": 2,
-          "height": 1,
-          "theta": 3.14,
-          "phi": 1.2,
-          "imagerId": 1
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update the specified video wall.
-> 
-> **PUT** `/networks/{networkId}/camera/videoWalls/{id}`  
-> 
->     {
->         "id": "1284392014819",
->         "name": "Building-A",
->         "index": 0,
->         "tiles": [
->             {
->                 "id": "1284392014819",
->                 "serial": "Q234-ABCD-5678",
->                 "x": 1,
->                 "y": 1,
->                 "width": 2,
->                 "height": 1,
->                 "theta": 3.14,
->                 "phi": 1.2,
->                 "imagerId": 1
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete the specified video wall.
-> 
-> **DELETE** `/networks/{networkId}/camera/videoWalls/{id}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-camera-video-walls/)
-
-#### Return a list of video walls.
-
-Operation ID: `getOrganizationCameraVideoWalls`
-
-PATH _`/organizations/{organizationId}/camera/videoWalls`_
-
-    [
-      {
-        "id": "1284392014819",
-        "name": "Building-A",
-        "index": 0,
-        "tiles": [
-          {
-            "id": "1284392014819",
-            "serial": "Q234-ABCD-5678",
-            "x": 1,
-            "y": 1,
-            "width": 2,
-            "height": 1,
-            "theta": 3.14,
-            "phi": 1.2,
-            "imagerId": 1
-          }
-        ]
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a list of video walls.
-> 
-> **GET** `/organizations/{organizationId}/camera/videoWalls`  
-> 
->     [
->         {
->             "id": "1284392014819",
->             "name": "Building-A",
->             "index": 0,
->             "tiles": [
->                 {
->                     "id": "1284392014819",
->                     "serial": "Q234-ABCD-5678",
->                     "x": 1,
->                     "y": 1,
->                     "width": 2,
->                     "height": 1,
->                     "theta": 3.14,
->                     "phi": 1.2,
->                     "imagerId": 1
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-camera-video-wall/)
-
-#### Return the specified video wall.
-
-Operation ID: `getOrganizationCameraVideoWall`
-
-PATH _`/organizations/{organizationId}/camera/videoWalls/{id}`_
-
-    {
-      "id": "1284392014819",
-      "name": "Building-A",
-      "index": 0,
-      "tiles": [
-        {
-          "id": "1284392014819",
-          "serial": "Q234-ABCD-5678",
-          "x": 1,
-          "y": 1,
-          "width": 2,
-          "height": 1,
-          "theta": 3.14,
-          "phi": 1.2,
-          "imagerId": 1
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the specified video wall.
-> 
-> **GET** `/organizations/{organizationId}/camera/videoWalls/{id}`  
-> 
->     {
->         "id": "1284392014819",
->         "name": "Building-A",
->         "index": 0,
->         "tiles": [
->             {
->                 "id": "1284392014819",
->                 "serial": "Q234-ABCD-5678",
->                 "x": 1,
->                 "y": 1,
->                 "width": 2,
->                 "height": 1,
->                 "theta": 3.14,
->                 "phi": 1.2,
->                 "imagerId": 1
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-camera-video-wall-video-link/)
-
-#### Returns video wall link to the specified video wall id
-
-Operation ID: `getOrganizationCameraVideoWallVideoLink`
-
-PATH _`/organizations/{organizationId}/camera/videoWalls/{id}/videoLink`_
-
-    [
-      {
-        "url": "https://nxx.meraki.com/office-cameras/n/bs0a1k/manage/video/video_wall/75290?timestamp=1535732570077",
-        "visionUrl": "https://vision.meraki.com/n/6482158978508419/cameras/29048243992402?ts=1535732570077"
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns video wall link to the specified video wall id. If a timestamp is supplied, it links to that timestamp.
-> 
-> **GET** `/organizations/{organizationId}/camera/videoWalls/{id}/videoLink`  
-> 
->     [
->         {
->             "url": "https://nxx.meraki.com/office-cameras/n/bs0a1k/manage/video/video_wall/75290?timestamp=1535732570077",
->             "visionUrl": "https://vision.meraki.com/n/6482158978508419/cameras/29048243992402?ts=1535732570077"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### devices
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-camera-devices-configurations/)
-
-#### Lists all the capabilities of cameras in this organization
-
-Operation ID: `getOrganizationCameraDevicesConfigurations`
-
-PATH _`/organizations/{organizationId}/camera/devices/configurations`_
-
-    [
-      {
-        "serial": "QWDE-OIJU-HIDB",
-        "network": {
-          "id": "N_24329156",
-          "name": "Main Office"
-        },
-        "model": "MV63-HW",
-        "category": "outdoor",
-        "audio": {
-          "isConfigurable": true,
-          "enabled": true
-        },
-        "lens": {
-          "isFisheye": true,
-          "zoom": {
-            "isConfigurable": true,
-            "maximum": 100,
-            "minimum": 0,
-            "value": 65
-          },
-          "aperture": {
-            "isConfigurable": true,
-            "maximum": 100,
-            "minimum": 0,
-            "value": 65
-          },
-          "focus": {
-            "isConfigurable": true,
-            "maximum": 100,
-            "minimum": 0,
-            "value": 65
-          }
-        },
-        "hdr": {
-          "isConfigurable": true,
-          "enabled": true
-        },
-        "sensorCrop": {
-          "isConfigurable": true,
-          "cropX": 0,
-          "cropY": 0,
-          "cropW": 0,
-          "cropH": 0
-        },
-        "searchModels": [
-          {
-            "name": "Body/Vehicle",
-            "enabled": true
-          }
-        ],
-        "cloudArchive": {
-          "isConfigurable": true,
-          "enabled": true,
-          "retentionDays": 90
-        }
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Lists all the capabilities of cameras in this organization
-> 
-> **GET** `/organizations/{organizationId}/camera/devices/configurations`  
-> 
->     [
->         {
->             "serial": "QWDE-OIJU-HIDB",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "model": "MV63-HW",
->             "category": "outdoor",
->             "audio": {
->                 "isConfigurable": true,
->                 "enabled": true
->             },
->             "lens": {
->                 "isFisheye": true,
->                 "zoom": {
->                     "isConfigurable": true,
->                     "maximum": 100,
->                     "minimum": 0,
->                     "value": 65
->                 },
->                 "aperture": {
->                     "isConfigurable": true,
->                     "maximum": 100,
->                     "minimum": 0,
->                     "value": 65
->                 },
->                 "focus": {
->                     "isConfigurable": true,
->                     "maximum": 100,
->                     "minimum": 0,
->                     "value": 65
->                 }
->             },
->             "hdr": {
->                 "isConfigurable": true,
->                 "enabled": true
->             },
->             "sensorCrop": {
->                 "isConfigurable": true,
->                 "cropX": 0,
->                 "cropY": 0,
->                 "cropW": 0,
->                 "cropH": 0
->             },
->             "searchModels": [
->                 {
->                     "name": "Body/Vehicle",
->                     "enabled": true
->                 }
->             ],
->             "cloudArchive": {
->                 "isConfigurable": true,
->                 "enabled": true,
->                 "retentionDays": 90
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-\[ devices \]
--------------
-
-### vrrpTable
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-vrrp-table/)
-
-#### Enqueue a job to perform a VRRP table request for the device
-
-Operation ID: `createDeviceLiveToolsVrrpTable`
-
-PATH _`/devices/{serial}/liveTools/vrrpTable`_
-
-    {
-      "vrrpTableId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/vrrpTable/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "status": "complete",
-      "callback": {
-        "id": "1284392014819",
-        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
-        "status": "new"
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a VRRP table request for the device. This endpoint currently supports Catalyst switches. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/vrrpTable`  
-> 
->     {
->         "vrrpTableId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/vrrpTable/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-vrrp-table/)
-
-#### Return an VRRP table live tool job.
-
-Operation ID: `getDeviceLiveToolsVrrpTable`
-
-PATH _`/devices/{serial}/liveTools/vrrpTable/{vrrpTableId}`_
-
-    {
-      "vrrpTableId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/vrrpTable/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "status": "complete",
-      "entries": [
-        {
-          "group": 123,
-          "protocol": "ipv4",
-          "addresses": {
-            "virtual": "10.0.0.1",
-            "primary": "10.0.0.2"
-          },
-          "vlanId": 100,
-          "priority": 100,
-          "preemption": {
-            "enabled": true
-          },
-          "status": {
-            "value": "primary",
-            "description": "Indicates that the virtual router is forwarding packets for IP addresses that are associated with this router",
-            "primaryReason": {
-              "value": "priority",
-              "description": "Won the primary election due to higher priority"
-            },
-            "lastChange": {
-              "ts": "2018-02-11T00:00:00.090210Z",
-              "reason": {
-                "value": "priority",
-                "description": "Elected primary due to higher priority"
-              }
-            }
-          }
-        }
-      ],
-      "error": "The device is unreachable."
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an VRRP table live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/vrrpTable/{vrrpTableId}`  
-> 
->     {
->         "vrrpTableId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/vrrpTable/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "entries": [
->             {
->                 "group": 123,
->                 "protocol": "ipv4",
->                 "addresses": {
->                     "virtual": "10.0.0.1",
->                     "primary": "10.0.0.2"
->                 },
->                 "vlanId": 100,
->                 "priority": 100,
->                 "preemption": {
->                     "enabled": true
->                 },
->                 "status": {
->                     "value": "primary",
->                     "description": "Indicates that the virtual router is forwarding packets for IP addresses that are associated with this router",
->                     "primaryReason": {
->                         "value": "priority",
->                         "description": "Won the primary election due to higher priority"
->                     },
->                     "lastChange": {
->                         "ts": "2018-02-11T00:00:00.090210Z",
->                         "reason": {
->                             "value": "priority",
->                             "description": "Elected primary due to higher priority"
->                         }
->                     }
->                 }
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### traceRoute
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-trace-route/)
-
-#### Enqueue a job to run trace route in the device
-
-Operation ID: `createDeviceLiveToolsTraceRoute`
-
-PATH _`/devices/{serial}/liveTools/traceRoute`_
-
-    {
-      "traceRouteId": "123",
-      "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
-      "request": {
-        "serial": "Q234-ABCD-5678",
-        "target": "www.cisco.com",
-        "sourceInterface": "100.100.0.1"
-      },
-      "status": "complete",
-      "callback": {
-        "id": "1284392014819",
-        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
-        "status": "new"
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to run trace route in the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/traceRoute`  
-> 
->     {
->         "traceRouteId": "123",
->         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "target": "www.cisco.com",
->             "sourceInterface": "100.100.0.1"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-trace-route/)
-
-#### Return a trace route job
-
-Operation ID: `getDeviceLiveToolsTraceRoute`
-
-PATH _`/devices/{serial}/liveTools/traceRoute/{traceRouteId}`_
-
-    {
-      "traceRouteId": "123",
-      "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
-      "request": {
-        "serial": "Q234-ABCD-5678",
-        "target": "www.cisco.com",
-        "sourceInterface": "100.100.0.1"
-      },
-      "status": "complete",
-      "results": [
-        {
-          "hop": 0,
-          "ip": "100.100.0.1",
-          "rttAvg": 0.00005,
-          "count": 3
-        }
-      ],
-      "error": "The device is unreachable."
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a trace route job
-> 
-> **GET** `/devices/{serial}/liveTools/traceRoute/{traceRouteId}`  
-> 
->     {
->         "traceRouteId": "123",
->         "url": "/devices/QXXX-YYYY-ZZZZ/liveTools/traceroute/123",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "target": "www.cisco.com",
->             "sourceInterface": "100.100.0.1"
->         },
->         "status": "complete",
->         "results": [
->             {
->                 "hop": 0,
->                 "ip": "100.100.0.1",
->                 "rttAvg": 0.00005,
->                 "count": 3
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### speedTest
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-speed-test/)
-
-#### Enqueue a job to execute a speed test from a device
-
-Operation ID: `createDeviceLiveToolsSpeedTest`
-
-PATH _`/devices/{serial}/liveTools/speedTest`_
-
-    {
-      "speedTestId": "1284392014819",
-      "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678",
-        "interface": "wan1"
-      },
-      "status": "complete",
-      "results": {
-        "speeds": {
-          "average": 123.45
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to execute a speed test from a device
-> 
-> **POST** `/devices/{serial}/liveTools/speedTest`  
-> 
->     {
->         "speedTestId": "1284392014819",
->         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "interface": "wan1"
->         },
->         "status": "complete",
->         "results": {
->             "speeds": {
->                 "average": 123.45
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-speed-test/)
-
-#### Returns a speed test result in megabits per second
-
-Operation ID: `getDeviceLiveToolsSpeedTest`
-
-PATH _`/devices/{serial}/liveTools/speedTest/{id}`_
-
-    {
-      "speedTestId": "1284392014819",
-      "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678",
-        "interface": "wan1"
-      },
-      "status": "complete",
-      "results": {
-        "speeds": {
-          "average": 123.45
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns a speed test result in megabits per second. If test is not complete, no results are present.
-> 
-> **GET** `/devices/{serial}/liveTools/speedTest/{id}`  
-> 
->     {
->         "speedTestId": "1284392014819",
->         "url": "/devices/SERIAL/liveTools/speedTest/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "interface": "wan1"
->         },
->         "status": "complete",
->         "results": {
->             "speeds": {
->                 "average": 123.45
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### routingTable
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-routing-table/)
-
-#### Enqueue a job to perform a routing table request for the device
-
-Operation ID: `createDeviceLiveToolsRoutingTable`
-
-PATH _`/devices/{serial}/liveTools/routingTable`_
-
-    {
-      "routingTableId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "status": "complete",
-      "callback": {
-        "id": "1284392014819",
-        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
-        "status": "new"
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/routingTable`  
-> 
->     {
->         "routingTableId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-routing-table/)
-
-#### Return an routing table live tool job.
-
-Operation ID: `getDeviceLiveToolsRoutingTable`
-
-PATH _`/devices/{serial}/liveTools/routingTable/{id}`_
-
-    {
-      "routingTableId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "status": "complete",
-      "entries": [
-        {
-          "type": "static",
-          "subnet": "10.200.10.1/32",
-          "staticGateway": "22.22.22.21",
-          "ipVersion": "ipv4"
-        }
-      ],
-      "error": "The device is unreachable"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an routing table live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/routingTable/{id}`  
-> 
->     {
->         "routingTableId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "entries": [
->             {
->                 "type": "static",
->                 "subnet": "10.200.10.1/32",
->                 "staticGateway": "22.22.22.21",
->                 "ipVersion": "ipv4"
->             }
->         ],
->         "error": "The device is unreachable"
->     }
-> 
-> * * *
-
-* * *
-
-### reboot
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-reboot/)
-
-#### Enqueue a job to reboot a device
-
-Operation ID: `createDeviceLiveToolsReboot`
-
-PATH _`/devices/{serial}/liveTools/reboot`_
-
-    {
-      "rebootId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/reboot/1284392014819",
-      "status": "complete",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "error": "error description",
-      "callback": {
-        "id": "1284392014819",
-        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
-        "status": "new"
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to reboot a device. This endpoint has a rate limit of one request every 60 seconds.
-> 
-> **POST** `/devices/{serial}/liveTools/reboot`  
-> 
->     {
->         "rebootId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/reboot/1284392014819",
->         "status": "complete",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "error": "error description",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-reboot/)
-
-#### Return a reboot job
-
-Operation ID: `getDeviceLiveToolsReboot`
-
-PATH _`/devices/{serial}/liveTools/reboot/{rebootId}`_
-
-    {
-      "rebootId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/reboot/1284392014819",
-      "status": "complete",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "error": "error description"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a reboot job
-> 
-> **GET** `/devices/{serial}/liveTools/reboot/{rebootId}`  
-> 
->     {
->         "rebootId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/reboot/1284392014819",
->         "status": "complete",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "error": "error description"
->     }
-> 
-> * * *
-
-* * *
-
-### ospfNeighbors
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-ospf-neighbor/)
-
-#### Enqueue a job to perform a OSPF neighbors request for the device
-
-Operation ID: `createDeviceLiveToolsOspfNeighbor`
-
-PATH _`/devices/{serial}/liveTools/ospfNeighbors`_
-
-    {
-      "ospfNeighborsId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/ospfNeighbors/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "status": "complete",
-      "callback": {
-        "id": "1284392014819",
-        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
-        "status": "new"
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a OSPF neighbors request for the device. This endpoint currently supports switches. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/ospfNeighbors`  
-> 
->     {
->         "ospfNeighborsId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/ospfNeighbors/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-ospf-neighbor/)
-
-#### Return an OSPF neighbors live tool job.
-
-Operation ID: `getDeviceLiveToolsOspfNeighbor`
-
-PATH _`/devices/{serial}/liveTools/ospfNeighbors/{ospfNeighborsId}`_
-
-    {
-      "ospfNeighborsId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/ospfNeighbors/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "status": "complete",
-      "routers": [
-        {
-          "id": "1.2.3.4",
-          "name": "My route",
-          "ip": "10.0.0.0/24",
-          "position": "DR",
-          "state": "full",
-          "vlanId": 100
-        }
-      ],
-      "error": "The device is unreachable."
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an OSPF neighbors live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/ospfNeighbors/{ospfNeighborsId}`  
-> 
->     {
->         "ospfNeighborsId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/ospfNeighbors/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "routers": [
->             {
->                 "id": "1.2.3.4",
->                 "name": "My route",
->                 "ip": "10.0.0.0/24",
->                 "position": "DR",
->                 "state": "full",
->                 "vlanId": 100
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### dhcpLeases
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-dhcp-lease/)
-
-#### Enqueue a job to perform a DHCP leases request for the device
-
-Operation ID: `createDeviceLiveToolsDhcpLease`
-
-PATH _`/devices/{serial}/liveTools/dhcpLeases`_
-
-    {
-      "dhcpLeasesId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/dhcpLeases/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "status": "complete",
-      "callback": {
-        "id": "1284392014819",
-        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
-        "status": "new"
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a DHCP leases request for the device. This endpoint currently supports all devices. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/dhcpLeases`  
-> 
->     {
->         "dhcpLeasesId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/dhcpLeases/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-dhcp-lease/)
-
-#### Return a DHCP leases live tool job.
-
-Operation ID: `getDeviceLiveToolsDhcpLease`
-
-PATH _`/devices/{serial}/liveTools/dhcpLeases/{dhcpLeasesId}`_
-
-    {
-      "dhcpLeasesId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/dhcpLeases/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "status": "complete",
-      "dhcpLeases": [
-        {
-          "ip": "10.0.0.0/24",
-          "mac": "00:11:22:33:44:55",
-          "expiresAt": "2018-02-11T00:00:00.090210Z"
-        }
-      ],
-      "error": "The device is unreachable."
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a DHCP leases live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/dhcpLeases/{dhcpLeasesId}`  
-> 
->     {
->         "dhcpLeasesId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/dhcpLeases/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "dhcpLeases": [
->             {
->                 "ip": "10.0.0.0/24",
->                 "mac": "00:11:22:33:44:55",
->                 "expiresAt": "2018-02-11T00:00:00.090210Z"
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### cyclePort
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-cycle-port/)
-
-#### Enqueue a job to perform a cycle port for the device on the specified ports
-
-Operation ID: `createDeviceLiveToolsCyclePort`
-
-PATH _`/devices/{serial}/liveTools/cyclePort`_
-
-    {
-      "cyclePortId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678",
-        "ports": [
-          "2",
-          "8"
-        ]
-      },
-      "status": "complete",
-      "callback": {
-        "id": "1284392014819",
-        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
-        "status": "new"
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform a cycle port for the device on the specified ports. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/cyclePort`  
-> 
->     {
->         "cyclePortId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "ports": [
->                 "2",
->                 "8"
->             ]
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-cycle-port/)
-
-#### Return a cycle port live tool job.
-
-Operation ID: `getDeviceLiveToolsCyclePort`
-
-PATH _`/devices/{serial}/liveTools/cyclePort/{id}`_
-
-    {
-      "cyclePortId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678",
-        "ports": [
-          "2",
-          "8"
-        ]
-      },
-      "status": "complete",
-      "error": "The device is unreachable."
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a cycle port live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/cyclePort/{id}`  
-> 
->     {
->         "cyclePortId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/cyclePort/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678",
->             "ports": [
->                 "2",
->                 "8"
->             ]
->         },
->         "status": "complete",
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### aclHitCount
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-acl-hit-count/)
-
-#### Enqueue a job to perform an ACL hit count for the device
-
-Operation ID: `createDeviceLiveToolsAclHitCount`
-
-PATH _`/devices/{serial}/liveTools/aclHitCount`_
-
-    {
-      "aclHitCountId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "status": "complete",
-      "callback": {
-        "id": "1284392014819",
-        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
-        "status": "new"
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Enqueue a job to perform an ACL hit count for the device. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
-> 
-> **POST** `/devices/{serial}/liveTools/aclHitCount`  
-> 
->     {
->         "aclHitCountId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-acl-hit-count/)
-
-#### Return an ACL hit count live tool job.
-
-Operation ID: `getDeviceLiveToolsAclHitCount`
-
-PATH _`/devices/{serial}/liveTools/aclHitCount/{id}`_
-
-    {
-      "aclHitCountId": "1284392014819",
-      "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
-      "request": {
-        "serial": "Q234-ABCD-5678"
-      },
-      "status": "complete",
-      "acls": [
-        {
-          "policy": "allow",
-          "ipVersion": "any",
-          "ipProtocol": {
-            "type": "number",
-            "number": 6,
-            "objectGroup": "object-group-123"
-          },
-          "counts": {
-            "total": 1234,
-            "ipv4": 1234,
-            "ipv6": 0
-          },
-          "source": {
-            "address": "1.2.3.4",
-            "port": {
-              "operator": "equals",
-              "ports": [
-                80,
-                443
-              ]
-            }
-          },
-          "destination": {
-            "address": "2.3.4.5",
-            "port": [
-              {
-                "operator": "range",
-                "ports": [
-                  80,
-                  89
-                ]
-              }
-            ]
-          }
-        }
-      ],
-      "error": "The device is unreachable."
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an ACL hit count live tool job.
-> 
-> **GET** `/devices/{serial}/liveTools/aclHitCount/{id}`  
-> 
->     {
->         "aclHitCountId": "1284392014819",
->         "url": "/devices/Q234-ABCD-5678/liveTools/aclHitCount/1284392014819",
->         "request": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "status": "complete",
->         "acls": [
->             {
->                 "policy": "allow",
->                 "ipVersion": "any",
->                 "ipProtocol": {
->                     "type": "number",
->                     "number": 6,
->                     "objectGroup": "object-group-123"
->                 },
->                 "counts": {
->                     "total": 1234,
->                     "ipv4": 1234,
->                     "ipv6": 0
->                 },
->                 "source": {
->                     "address": "1.2.3.4",
->                     "port": {
->                         "operator": "equals",
->                         "ports": [
->                             80,
->                             443
->                         ]
->                     }
->                 },
->                 "destination": {
->                     "address": "2.3.4.5",
->                     "port": [
->                         {
->                             "operator": "range",
->                             "ports": [
->                                 80,
->                                 89
->                             ]
->                         }
->                     ]
->                 }
->             }
->         ],
->         "error": "The device is unreachable."
->     }
-> 
-> * * *
-
-* * *
-
-### clients
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-clients-disconnect/)
-
-#### Return a client disconnect job.
-
-Operation ID: `getDeviceLiveToolsClientsDisconnect`
-
-PATH _`/devices/{serial}/liveTools/clients/disconnect/{id}`_
-
-    {
-      "id": "abcd-1234-efgh-5678",
-      "status": "queued",
-      "request": {
-        "mac": "00:11:22:33:44:55",
-        "serial": "ABCD-1234-ABCD"
-      },
-      "url": "/api/v1/devices/serial/liveTools/disconnect",
-      "results": {
-        "success": true,
-        "error": "Device (Access Point) took too long to respond."
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a client disconnect job.
-> 
-> **GET** `/devices/{serial}/liveTools/clients/disconnect/{id}`  
-> 
->     {
->         "id": "abcd-1234-efgh-5678",
->         "status": "queued",
->         "request": {
->             "mac": "00:11:22:33:44:55",
->             "serial": "ABCD-1234-ABCD"
->         },
->         "url": "/api/v1/devices/serial/liveTools/disconnect",
->         "results": {
->             "success": true,
->             "error": "Device (Access Point) took too long to respond."
->         }
->     }
-> 
-> * * *
-
-* * *
-
-\[ licensing \]
----------------
-
-### subscription
-
-[Docs](https://developer.cisco.com/meraki/api-v1/batch-administered-licensing-subscription-networks-feature-tiers-update/)
-
-#### Batch change networks to their desired feature tier for specified product types
-
-Operation ID: `batchAdministeredLicensingSubscriptionNetworksFeatureTiersUpdate`
-
-PATH _`/administered/licensing/subscription/networks/featureTiers/batchUpdate`_
-
-    {
-      "items": [
-        {
-          "network": {
-            "id": "N_1234",
-            "productTypes": [
-              {
-                "productType": "wireless",
-                "featureTier": "essentials"
-              }
-            ]
-          }
-        }
-      ],
-      "errors": [
-        {
-          "network": {
-            "id": "N_1234",
-            "productTypes": [
-              {
-                "productType": "wireless",
-                "featureTier": "essentials",
-                "error": "Insufficient entitlements"
-              }
-            ]
-          },
-          "error": "null"
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Batch change networks to their desired feature tier for specified product types
-> 
-> **POST** `/administered/licensing/subscription/networks/featureTiers/batchUpdate`  
-> 
->     {
->         "items": [
->             {
->                 "network": {
->                     "id": "N_1234",
->                     "productTypes": [
->                         {
->                             "productType": "wireless",
->                             "featureTier": "essentials"
->                         }
->                     ]
->                 }
->             }
->         ],
->         "errors": [
->             {
->                 "network": {
->                     "id": "N_1234",
->                     "productTypes": [
->                         {
->                             "productType": "wireless",
->                             "featureTier": "essentials",
->                             "error": "Insufficient entitlements"
->                         }
->                     ]
->                 },
->                 "error": "null"
->             }
->         ]
->     }
+> **PUT** `/organizations/{organizationId}/nac/certificates/{certificateId}`  
 > 
 > * * *
 
@@ -5845,25 +4531,6 @@ PATH _`/organizations/{organizationId}/insight/webApps`_
 > 
 > **GET** `/organizations/{organizationId}/insight/webApps`  
 > 
->     [
->         {
->             "counterSetRuleId": "12345",
->             "name": "Meraki HTTPS",
->             "category": "Remote monitoring & management",
->             "thresholds": {
->                 "goodput": "20000",
->                 "responseDelay": "3000"
->             },
->             "expression": "http_host[*.example.com] or http_host",
->             "signature": {
->                 "signatureType": "custom_host",
->                 "host": "exampled.com",
->                 "port": "123",
->                 "net": "10.0.2.1/20"
->             }
->         }
->     ]
-> 
 > * * *
 > 
 >   
@@ -5872,21 +4539,6 @@ PATH _`/organizations/{organizationId}/insight/webApps`_
 > #### Add a custom web application for Insight to be able to track
 > 
 > **POST** `/organizations/{organizationId}/insight/webApps`  
-> 
->     {
->         "counterSetRuleId": "12345",
->         "name": "Meraki HTTPS",
->         "category": "Remote monitoring & management",
->         "thresholds": {
->             "goodput": "20000",
->             "responseDelay": "3000"
->         },
->         "expression": "http_host[*.example.com] or http_host",
->         "signature": {
->             "signatureType": "custom_host",
->             "host": "exampled.com"
->         }
->     }
 > 
 > * * *
 
@@ -5922,21 +4574,6 @@ PATH _`/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`
 > #### Update a custom web application for Insight to be able to track
 > 
 > **PUT** `/organizations/{organizationId}/insight/webApps/{customCounterSetRuleId}`  
-> 
->     {
->         "counterSetRuleId": "12345",
->         "name": "Meraki HTTPS",
->         "category": "Remote monitoring & management",
->         "thresholds": {
->             "goodput": "20000",
->             "responseDelay": "3000"
->         },
->         "expression": "http_host[*.example.com] or http_host",
->         "signature": {
->             "signatureType": "custom_host",
->             "host": "exampled.com"
->         }
->     }
 > 
 > * * *
 > 
@@ -5986,23 +4623,6 @@ PATH _`/organizations/{organizationId}/insight/speedTestResults`_
 > 
 > **GET** `/organizations/{organizationId}/insight/speedTestResults`  
 > 
->     [
->         {
->             "speedTestId": "1284392014819",
->             "networkId": "N_24329156",
->             "request": {
->                 "serial": "Q234-ABCD-5678",
->                 "interface": "wan1"
->             },
->             "results": {
->                 "speeds": {
->                     "average": 247.279
->                 }
->             },
->             "startedAt": "2021-12-08T20:07:13Z"
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -6039,21 +4659,6 @@ PATH _`/organizations/{organizationId}/insight/applications/{applicationId}`_
 > #### Update an Insight tracked application
 > 
 > **PUT** `/organizations/{organizationId}/insight/applications/{applicationId}`  
-> 
->     {
->         "applicationId": "19.12",
->         "name": "Meraki HTTPS",
->         "thresholds": {
->             "type": "smart",
->             "byNetwork": [
->                 {
->                     "networkId": "N_12345678",
->                     "goodput": 50000,
->                     "responseDuration": 1000
->                 }
->             ]
->         }
->     }
 > 
 > * * *
 > 
@@ -6102,19 +4707,6 @@ PATH _`/organizations/{organizationId}/webhooks/httpServers`_
 > 
 > **GET** `/organizations/{organizationId}/webhooks/httpServers`  
 > 
->     [
->         {
->             "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->             "name": "Example Webhook Server",
->             "organizationId": "2930418",
->             "url": "https://www.example.com/my_custom_webhook",
->             "payloadTemplate": {
->                 "id": "wpt_00001",
->                 "name": "Meraki (included)"
->             }
->         }
->     ]
-> 
 > * * *
 > 
 >   
@@ -6123,17 +4715,6 @@ PATH _`/organizations/{organizationId}/webhooks/httpServers`_
 > #### Add an HTTP server to an organization
 > 
 > **POST** `/organizations/{organizationId}/webhooks/httpServers`  
-> 
->     {
->         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->         "name": "Example Webhook Server",
->         "organizationId": "2930418",
->         "url": "https://www.example.com/my_custom_webhook",
->         "payloadTemplate": {
->             "id": "wpt_00001",
->             "name": "Meraki (included)"
->         }
->     }
 > 
 > * * *
 
@@ -6166,17 +4747,6 @@ PATH _`/organizations/{organizationId}/webhooks/httpServers/{id}`_
 > 
 > **GET** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
 > 
->     {
->         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->         "name": "Example Webhook Server",
->         "organizationId": "2930418",
->         "url": "https://www.example.com/my_custom_webhook",
->         "payloadTemplate": {
->             "id": "wpt_00001",
->             "name": "Meraki (included)"
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -6185,17 +4755,6 @@ PATH _`/organizations/{organizationId}/webhooks/httpServers/{id}`_
 > #### Update an HTTP server for an organization
 > 
 > **PUT** `/organizations/{organizationId}/webhooks/httpServers/{id}`  
-> 
->     {
->         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->         "name": "Example Webhook Server",
->         "organizationId": "2930418",
->         "url": "https://www.example.com/my_custom_webhook",
->         "payloadTemplate": {
->             "id": "wpt_00001",
->             "name": "Meraki (included)"
->         }
->     }
 > 
 > * * *
 > 
@@ -6251,31 +4810,6 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
 > 
 > **GET** `/organizations/{organizationId}/webhooks/payloadTemplates`  
 > 
->     [
->         {
->             "payloadTemplateId": "wpt_343",
->             "type": "custom",
->             "name": "Custom Template",
->             "headers": [
->                 {
->                     "name": "Authorization",
->                     "template": "Bearer {{sharedSecret}}"
->                 }
->             ],
->             "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->             "sharing": {
->                 "byNetwork": {
->                     "withAll": true,
->                     "adminsCanModify": true,
->                     "ids": [
->                         "N_1234",
->                         "L_5678"
->                     ]
->                 }
->             }
->         }
->     ]
-> 
 > * * *
 > 
 >   
@@ -6284,29 +4818,6 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates`_
 > #### Create a webhook payload template for an organization
 > 
 > **POST** `/organizations/{organizationId}/webhooks/payloadTemplates`  
-> 
->     {
->         "payloadTemplateId": "wpt_343",
->         "type": "custom",
->         "name": "Custom Template",
->         "headers": [
->             {
->                 "name": "Authorization",
->                 "template": "Bearer {{sharedSecret}}"
->             }
->         ],
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "sharing": {
->             "byNetwork": {
->                 "withAll": true,
->                 "adminsCanModify": true,
->                 "ids": [
->                     "N_1234",
->                     "L_5678"
->                 ]
->             }
->         }
->     }
 > 
 > * * *
 
@@ -6351,29 +4862,6 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 > 
 > **GET** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
 > 
->     {
->         "payloadTemplateId": "wpt_343",
->         "type": "custom",
->         "name": "Custom Template",
->         "headers": [
->             {
->                 "name": "Authorization",
->                 "template": "Bearer {{sharedSecret}}"
->             }
->         ],
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "sharing": {
->             "byNetwork": {
->                 "withAll": true,
->                 "adminsCanModify": true,
->                 "ids": [
->                     "N_1234",
->                     "L_5678"
->                 ]
->             }
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -6382,29 +4870,6 @@ PATH _`/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplat
 > #### Update a webhook payload template for an organization
 > 
 > **PUT** `/organizations/{organizationId}/webhooks/payloadTemplates/{payloadTemplateId}`  
-> 
->     {
->         "payloadTemplateId": "wpt_343",
->         "type": "custom",
->         "name": "Custom Template",
->         "headers": [
->             {
->                 "name": "Authorization",
->                 "template": "Bearer {{sharedSecret}}"
->             }
->         ],
->         "body": "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"text\":\"{{alertData}}\"}}",
->         "sharing": {
->             "byNetwork": {
->                 "withAll": true,
->                 "adminsCanModify": true,
->                 "ids": [
->                     "N_1234",
->                     "L_5678"
->                 ]
->             }
->         }
->     }
 > 
 > * * *
 > 
@@ -6441,12 +4906,6 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests`_
 > 
 > **POST** `/organizations/{organizationId}/webhooks/webhookTests`  
 > 
->     {
->         "id": "1234",
->         "url": "https://www.example.com/path",
->         "status": "enqueued"
->     }
-> 
 > * * *
 
 * * *
@@ -6473,97 +4932,11 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 > 
 > **GET** `/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`  
 > 
->     {
->         "id": "1234",
->         "url": "https://www.example.com/path",
->         "status": "enqueued"
->     }
-> 
 > * * *
 
 * * *
 
 ### sase
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-connectivity-overview/)
-
-#### List high-level SSE site statuses (healthy, degraded, offline)
-
-Operation ID: `getOrganizationSaseConnectivityOverview`
-
-PATH _`/organizations/{organizationId}/sase/connectivity/overview`_
-
-    {
-      "status": {
-        "healthy": {
-          "count": 3,
-          "siteIds": [
-            {
-              "id": 123
-            }
-          ]
-        },
-        "degraded": {
-          "count": 3,
-          "siteIds": [
-            {
-              "id": 123
-            }
-          ]
-        },
-        "offline": {
-          "count": 3,
-          "siteIds": [
-            {
-              "id": 123
-            }
-          ]
-        }
-      },
-      "total": 4
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List high-level SSE site statuses (healthy, degraded, offline)
-> 
-> **GET** `/organizations/{organizationId}/sase/connectivity/overview`  
-> 
->     {
->         "status": {
->             "healthy": {
->                 "count": 3,
->                 "siteIds": [
->                     {
->                         "id": 123
->                     }
->                 ]
->             },
->             "degraded": {
->                 "count": 3,
->                 "siteIds": [
->                     {
->                         "id": 123
->                     }
->                 ]
->             },
->             "offline": {
->                 "count": 3,
->                 "siteIds": [
->                     {
->                         "id": 123
->                     }
->                 ]
->             }
->         },
->         "total": 4
->     }
-> 
-> * * *
-
-* * *
 
 [Docs](https://developer.cisco.com/meraki/api-v1/create-organization-sase-integration/)
 
@@ -6584,10 +4957,6 @@ PATH _`/organizations/{organizationId}/sase/integrations`_
 > #### Create a new Secure Access integration
 > 
 > **POST** `/organizations/{organizationId}/sase/integrations`  
-> 
->     {
->         "type": "SecureAccess"
->     }
 > 
 > * * *
 
@@ -6623,20 +4992,6 @@ PATH _`/organizations/{organizationId}/sase/integrations/{integrationId}`_
 > 
 > **GET** `/organizations/{organizationId}/sase/integrations/{integrationId}`  
 > 
->     {
->         "integrated": {
->             "by": {
->                 "admin": {
->                     "name": "John Doe"
->                 }
->             },
->             "at": "2025-04-01T12:00:00Z"
->         },
->         "lastUsedAt": "2025-04-01T12:00:00Z",
->         "externalOrgId": "1234567890",
->         "status": "active"
->     }
-> 
 > * * *
 > 
 >   
@@ -6645,6 +5000,59 @@ PATH _`/organizations/{organizationId}/sase/integrations/{integrationId}`_
 > #### Remove a Secure Access integration
 > 
 > **DELETE** `/organizations/{organizationId}/sase/integrations/{integrationId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-networks-eligible/)
+
+#### List of MX networks or templates that can be enrolled into Secure Access
+
+Operation ID: `getOrganizationSaseNetworksEligible`
+
+PATH _`/organizations/{organizationId}/sase/networks/eligible`_
+
+    {
+      "items": [
+        {
+          "networkId": "N_123",
+          "type": "Meraki spoke",
+          "name": "London Office",
+          "region": {
+            "name": "US East"
+          },
+          "model": "MX95",
+          "address": {
+            "street": "123 Main St"
+          },
+          "vpn": {
+            "type": "hub"
+          },
+          "routing": {
+            "defaultRoute": {
+              "enabled": true
+            }
+          }
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List of MX networks or templates that can be enrolled into Secure Access
+> 
+> **GET** `/organizations/{organizationId}/sase/networks/eligible`  
 > 
 > * * *
 
@@ -6687,34 +5095,13 @@ PATH _`/organizations/{organizationId}/sase/regions`_
 > 
 > **GET** `/organizations/{organizationId}/sase/regions`  
 > 
->     {
->         "items": [
->             {
->                 "connectorId": "123",
->                 "type": "CNHE",
->                 "name": "US West",
->                 "region": {
->                     "name": "us-west-1"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-sites/)
 
-#### List of enrolled sites in this organization
+#### List of enrolled SASE sites in this organization
 
 Operation ID: `getOrganizationSaseSites`
 
@@ -6737,17 +5124,14 @@ PATH _`/organizations/{organizationId}/sase/sites`_
             "street": "123 Main St"
           },
           "vpn": {
-            "type": "Spoke"
+            "type": "spoke"
           },
           "routing": {
             "defaultRoute": {
               "enabled": true
             }
           },
-          "status": {
-            "code": 4,
-            "label": "up"
-          }
+          "status": "good"
         }
       ],
       "meta": {
@@ -6764,59 +5148,114 @@ PATH _`/organizations/{organizationId}/sase/sites`_
 >   
 > \- New endpoint
 > 
-> #### List of enrolled sites in this organization
+> #### List of enrolled SASE sites in this organization
 > 
 > **GET** `/organizations/{organizationId}/sase/sites`  
-> 
->     {
->         "items": [
->             {
->                 "siteId": "1234",
->                 "network": {
->                     "id": "N_123"
->                 },
->                 "type": "Meraki spoke",
->                 "name": "London Office",
->                 "region": {
->                     "name": "US East"
->                 },
->                 "model": "MX95",
->                 "address": {
->                     "street": "123 Main St"
->                 },
->                 "vpn": {
->                     "type": "Spoke"
->                 },
->                 "routing": {
->                     "defaultRoute": {
->                         "enabled": true
->                     }
->                 },
->                 "status": {
->                     "code": 4,
->                     "label": "up"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-sase-sites-detach/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-sites-connectivity/)
+
+#### List high-level SASE site statuses (healthy, degraded, offline)
+
+Operation ID: `getOrganizationSaseSitesConnectivity`
+
+PATH _`/organizations/{organizationId}/sase/sites/connectivity`_
+
+    {
+      "counts": {
+        "byStatus": {
+          "healthy": {
+            "total": 3
+          },
+          "degraded": {
+            "total": 3
+          },
+          "offline": {
+            "total": 3
+          }
+        },
+        "total": 9
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List high-level SASE site statuses (healthy, degraded, offline)
+> 
+> **GET** `/organizations/{organizationId}/sase/sites/connectivity`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-sites-connectivity-history/)
+
+#### Get the connectivity history of SASE sites in this organization
+
+Operation ID: `getOrganizationSaseSitesConnectivityHistory`
+
+PATH _`/organizations/{organizationId}/sase/sites/connectivity/history`_
+
+    {
+      "items": [
+        {
+          "siteId": "123",
+          "name": "Frontizo Network 1",
+          "history": [
+            {
+              "id": "123",
+              "status": "good",
+              "timestamp": "2022-11-08T00:00:00Z"
+            }
+          ],
+          "devices": {
+            "primary": {
+              "id": "234",
+              "statuses": [
+                {
+                  "id": "234",
+                  "status": "good",
+                  "timestamp": "2022-11-08T00:00:00Z"
+                }
+              ]
+            },
+            "spare": {
+              "id": "345",
+              "statuses": [
+                {
+                  "id": "345",
+                  "status": "bad tunnel",
+                  "timestamp": "2022-11-08T00:15:00Z"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get the connectivity history of SASE sites in this organization
+> 
+> **GET** `/organizations/{organizationId}/sase/sites/connectivity/history`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/detach-organization-sase-sites/)
 
 #### Detach sites in this organization from Secure Access
 
-Operation ID: `deleteOrganizationSaseSitesDetach`
+Operation ID: `detachOrganizationSaseSites`
 
 PATH _`/organizations/{organizationId}/sase/sites/detach`_
 
@@ -6824,8 +5263,8 @@ PATH _`/organizations/{organizationId}/sase/sites/detach`_
       "items": [
         {
           "action": "detach",
-          "status": "success",
-          "message": "Site enrolled successfully",
+          "status": "complete",
+          "message": "Job is pending or already enqueued",
           "request": {
             "siteId": "1520758"
           }
@@ -6846,33 +5285,15 @@ PATH _`/organizations/{organizationId}/sase/sites/detach`_
 > 
 > **DELETE** `/organizations/{organizationId}/sase/sites/detach`  
 > 
->     {
->         "items": [
->             {
->                 "action": "detach",
->                 "status": "success",
->                 "message": "Site enrolled successfully",
->                 "request": {
->                     "siteId": "1520758"
->                 }
->             }
->         ],
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-sase-sites-enroll/)
+[Docs](https://developer.cisco.com/meraki/api-v1/enroll-organization-sase-sites/)
 
 #### Enroll sites in this organization to Secure Access
 
-Operation ID: `createOrganizationSaseSitesEnroll`
+Operation ID: `enrollOrganizationSaseSites`
 
 PATH _`/organizations/{organizationId}/sase/sites/enroll`_
 
@@ -6880,8 +5301,8 @@ PATH _`/organizations/{organizationId}/sase/sites/enroll`_
       "items": [
         {
           "action": "enroll",
-          "status": "success",
-          "message": "Site enrolled successfully",
+          "status": "complete",
+          "message": "Job is pending or already enqueued",
           "request": {
             "siteId": "1520758",
             "regionId": "42"
@@ -6903,130 +5324,15 @@ PATH _`/organizations/{organizationId}/sase/sites/enroll`_
 > 
 > **POST** `/organizations/{organizationId}/sase/sites/enroll`  
 > 
->     {
->         "items": [
->             {
->                 "action": "enroll",
->                 "status": "success",
->                 "message": "Site enrolled successfully",
->                 "request": {
->                     "siteId": "1520758",
->                     "regionId": "42"
->                 }
->             }
->         ],
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
-> 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-sites-statuses/)
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-sase-site/)
 
-#### Get the status of sites in this organization
+#### Update the configuration for a site
 
-Operation ID: `getOrganizationSaseSitesStatuses`
-
-PATH _`/organizations/{organizationId}/sase/sites/statuses`_
-
-    {
-      "items": [
-        {
-          "siteId": "123",
-          "siteName": "Frontizo Network 1",
-          "networkStatuses": [
-            {
-              "id": "123",
-              "status": "up",
-              "timestamp": "2022-11-08T00:00:00Z"
-            }
-          ],
-          "devices": {
-            "primary": {
-              "id": "234",
-              "statuses": [
-                {
-                  "id": "234",
-                  "status": "up",
-                  "timestamp": "2022-11-08T00:00:00Z"
-                }
-              ]
-            },
-            "spare": {
-              "id": "345",
-              "statuses": [
-                {
-                  "id": "345",
-                  "status": "degraded",
-                  "timestamp": "2022-11-08T00:15:00Z"
-                }
-              ]
-            }
-          }
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get the status of sites in this organization
-> 
-> **GET** `/organizations/{organizationId}/sase/sites/statuses`  
-> 
->     {
->         "items": [
->             {
->                 "siteId": "123",
->                 "siteName": "Frontizo Network 1",
->                 "networkStatuses": [
->                     {
->                         "id": "123",
->                         "status": "up",
->                         "timestamp": "2022-11-08T00:00:00Z"
->                     }
->                 ],
->                 "devices": {
->                     "primary": {
->                         "id": "234",
->                         "statuses": [
->                             {
->                                 "id": "234",
->                                 "status": "up",
->                                 "timestamp": "2022-11-08T00:00:00Z"
->                             }
->                         ]
->                     },
->                     "spare": {
->                         "id": "345",
->                         "statuses": [
->                             {
->                                 "id": "345",
->                                 "status": "degraded",
->                                 "timestamp": "2022-11-08T00:15:00Z"
->                             }
->                         ]
->                     }
->                 }
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-site/)
-
-#### Get details of a site in this organization
-
-Operation ID: `getOrganizationSaseSite`
+Operation ID: `updateOrganizationSaseSite`
 
 PATH _`/organizations/{organizationId}/sase/sites/{siteId}`_
 
@@ -7045,91 +5351,34 @@ PATH _`/organizations/{organizationId}/sase/sites/{siteId}`_
         "street": "123 Main St"
       },
       "vpn": {
-        "type": "Spoke"
+        "type": "spoke"
       },
       "routing": {
         "defaultRoute": {
           "enabled": true
         }
       },
-      "status": {
-        "code": 4,
-        "label": "up"
-      }
+      "devices": [
+        {
+          "name": "cc:03:d9:01:00:0a",
+          "model": "MX95"
+        }
+      ],
+      "localNetworks": [
+        {
+          "subnet": "192.168.100.0/24"
+        }
+      ],
+      "urlPrefix": "/London-Office/n/cEF-pd"
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Get details of a site in this organization
-> 
-> **GET** `/organizations/{organizationId}/sase/sites/{siteId}`  
-> 
->     {
->         "siteId": "1234",
->         "network": {
->             "id": "N_123"
->         },
->         "type": "Meraki spoke",
->         "name": "London Office",
->         "region": {
->             "name": "US East"
->         },
->         "model": "MX95",
->         "address": {
->             "street": "123 Main St"
->         },
->         "vpn": {
->             "type": "Spoke"
->         },
->         "routing": {
->             "defaultRoute": {
->                 "enabled": true
->             }
->         },
->         "status": {
->             "code": 4,
->             "label": "up"
->         }
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
 > #### Update the configuration for a site. Currently, only supports updating default route enablement.
 > 
 > **PUT** `/organizations/{organizationId}/sase/sites/{siteId}`  
-> 
->     {
->         "siteId": "1234",
->         "network": {
->             "id": "N_123"
->         },
->         "type": "Meraki spoke",
->         "name": "London Office",
->         "region": {
->             "name": "US East"
->         },
->         "model": "MX95",
->         "address": {
->             "street": "123 Main St"
->         },
->         "vpn": {
->             "type": "Spoke"
->         },
->         "routing": {
->             "defaultRoute": {
->                 "enabled": true
->             }
->         },
->         "status": {
->             "code": 4,
->             "label": "up"
->         }
->     }
 > 
 > * * *
 
@@ -7179,44 +5428,6 @@ PATH _`/organizations/{organizationId}/networks/moves`_
 > 
 > **GET** `/organizations/{organizationId}/networks/moves`  
 > 
->     {
->         "items": [
->             {
->                 "moveId": "123456",
->                 "initiator": {
->                     "admin": {
->                         "id": "8590064780"
->                     }
->                 },
->                 "organizations": {
->                     "source": {
->                         "id": "146307"
->                     },
->                     "target": {
->                         "id": "146308"
->                     }
->                 },
->                 "network": {
->                     "id": "N_569142402909112097"
->                 },
->                 "createdAt": "1970-01-20T15:57:36.000Z",
->                 "lastUpdatedAt": "1970-01-20T15:57:36.000Z",
->                 "result": {
->                     "status": "failed",
->                     "reason": "Cannot move network: Target organization is invalid or inaccessible."
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 42,
->                     "remaining": 12
->                 }
->             }
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -7225,208 +5436,6 @@ PATH _`/organizations/{organizationId}/networks/moves`_
 > #### Move networks from one organization to another. For more information and caveats around network move limitations see the Network Portability documentation.
 > 
 > **POST** `/organizations/{organizationId}/networks/moves`  
-> 
->     {
->         "moveId": "123456",
->         "initiator": {
->             "admin": {
->                 "id": "8590064780"
->             }
->         },
->         "organizations": {
->             "source": {
->                 "id": "146307"
->             },
->             "target": {
->                 "id": "146308"
->             }
->         },
->         "network": {
->             "id": "N_569142402909112097"
->         },
->         "createdAt": "1970-01-20T15:57:36.000Z",
->         "lastUpdatedAt": "1970-01-20T15:57:36.000Z",
->         "result": {
->             "status": "failed",
->             "reason": "Cannot move network: Target organization is invalid or inaccessible."
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### inventory
-
-[Docs](https://developer.cisco.com/meraki/api-v1/claim-organization-inventory-orders/)
-
-#### Claim an order by the secure unique order claim number, the order claim id
-
-Operation ID: `claimOrganizationInventoryOrders`
-
-PATH _`/organizations/{organizationId}/inventory/orders/claim`_
-
-    {
-      "claimId": "ABCDEFG12345",
-      "number": "97001888",
-      "serials": [
-        "1234-ABCD-4567"
-      ],
-      "subscriptions": [
-        {
-          "subscriptionId": "1234",
-          "name": "My UNX Subscription",
-          "description": "Wireless Networking Subscription",
-          "startDate": "2020-06-30T00:00:00Z",
-          "endDate": "2025-06-30T00:00:00Z",
-          "isClaimed": false,
-          "counts": {
-            "seats": {
-              "limit": 1
-            }
-          }
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Claim an order by the secure unique order claim number, the order claim id
-> 
-> **POST** `/organizations/{organizationId}/inventory/orders/claim`  
-> 
->     {
->         "claimId": "ABCDEFG12345",
->         "number": "97001888",
->         "serials": [
->             "1234-ABCD-4567"
->         ],
->         "subscriptions": [
->             {
->                 "subscriptionId": "1234",
->                 "name": "My UNX Subscription",
->                 "description": "Wireless Networking Subscription",
->                 "startDate": "2020-06-30T00:00:00Z",
->                 "endDate": "2025-06-30T00:00:00Z",
->                 "isClaimed": false,
->                 "counts": {
->                     "seats": {
->                         "limit": 1
->                     }
->                 }
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/preview-organization-inventory-orders/)
-
-#### Preview the results and status of an order claim by the secure order id
-
-Operation ID: `previewOrganizationInventoryOrders`
-
-PATH _`/organizations/{organizationId}/inventory/orders/preview`_
-
-    {
-      "claimId": "ABCD1EFGH4IJ",
-      "number": "97001888",
-      "shipping": {
-        "shipments": [
-          {
-            "shippedAt": "2024-06-30T00:00:00Z",
-            "number": 1,
-            "devices": [
-              {
-                "quantity": 5,
-                "sku": "MR70-HW",
-                "description": "Meraki MR70 Cloud Managed AP"
-              }
-            ]
-          }
-        ],
-        "pending": {
-          "devices": [
-            {
-              "quantity": 1,
-              "sku": "MR70-HW",
-              "description": "Meraki MX90 Cloud Managed Security Appliance"
-            }
-          ]
-        }
-      },
-      "subscriptions": [
-        {
-          "subscriptionId": "1234",
-          "name": "My UNX Subscription",
-          "description": "Wireless Networking Subscription",
-          "startDate": "2020-06-30T00:00:00Z",
-          "endDate": "2025-06-30T00:00:00Z",
-          "isClaimed": false,
-          "counts": {
-            "seats": {
-              "limit": 1
-            }
-          }
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Preview the results and status of an order claim by the secure order id
-> 
-> **POST** `/organizations/{organizationId}/inventory/orders/preview`  
-> 
->     {
->         "claimId": "ABCD1EFGH4IJ",
->         "number": "97001888",
->         "shipping": {
->             "shipments": [
->                 {
->                     "shippedAt": "2024-06-30T00:00:00Z",
->                     "number": 1,
->                     "devices": [
->                         {
->                             "quantity": 5,
->                             "sku": "MR70-HW",
->                             "description": "Meraki MR70 Cloud Managed AP"
->                         }
->                     ]
->                 }
->             ],
->             "pending": {
->                 "devices": [
->                     {
->                         "quantity": 1,
->                         "sku": "MR70-HW",
->                         "description": "Meraki MX90 Cloud Managed Security Appliance"
->                     }
->                 ]
->             }
->         },
->         "subscriptions": [
->             {
->                 "subscriptionId": "1234",
->                 "name": "My UNX Subscription",
->                 "description": "Wireless Networking Subscription",
->                 "startDate": "2020-06-30T00:00:00Z",
->                 "endDate": "2025-06-30T00:00:00Z",
->                 "isClaimed": false,
->                 "counts": {
->                     "seats": {
->                         "limit": 1
->                     }
->                 }
->             }
->         ]
->     }
 > 
 > * * *
 
@@ -7479,35 +5488,6 @@ PATH _`/organizations/{organizationId}/integrations/deployable`_
 > 
 > **GET** `/organizations/{organizationId}/integrations/deployable`  
 > 
->     [
->         {
->             "items": [
->                 {
->                     "type": "Catalyst SD-WAN",
->                     "name": "Catalyst SD-WAN",
->                     "provider": "Cisco",
->                     "tags": [
->                         "SD-WAN"
->                     ],
->                     "shortDescription": "Connect to a Catalyst SD-WAN overlay to enable simple SD-WAN interconnects.",
->                     "isDeployable": true,
->                     "releaseType": "Beta",
->                     "logoUrl": "https://example.com",
->                     "redirectUrl": "https://example.com",
->                     "isCiscoProduct": true
->                 }
->             ],
->             "meta": {
->                 "counts": {
->                     "items": {
->                         "total": 100,
->                         "remaining": 10
->                     }
->                 }
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -7553,31 +5533,6 @@ PATH _`/organizations/{organizationId}/integrations/deployed`_
 > 
 > **GET** `/organizations/{organizationId}/integrations/deployed`  
 > 
->     [
->         {
->             "items": [
->                 {
->                     "id": "98765",
->                     "type": "OAuth",
->                     "name": "OAuth Application",
->                     "provider": "partner",
->                     "tags": [
->                         "Wayfinding",
->                         "OAuth"
->                     ]
->                 }
->             ],
->             "meta": {
->                 "counts": {
->                     "items": {
->                         "total": 100,
->                         "remaining": 10
->                     }
->                 }
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -7618,24 +5573,6 @@ PATH _`/organizations/{organizationId}/extensions/sdwanmanager/interconnects/{in
 > 
 > **PUT** `/organizations/{organizationId}/extensions/sdwanmanager/interconnects/{interconnectId}`  
 > 
->     {
->         "id": "12345",
->         "name": "My Interconnect",
->         "status": "active",
->         "type": "Catalyst SD-WAN",
->         "vpnCount": 1,
->         "tunnelCount": 4,
->         "asNum": 12345,
->         "networkId": "N_12345",
->         "wiredId": "123456",
->         "networkLocaleId": "L_12345",
->         "createdAt": "2024-02-11T00:00:00Z",
->         "internalSubnets": [
->             "169.254.250.0/30",
->             "169.254.250.4/30"
->         ]
->     }
-> 
 > * * *
 
 * * *
@@ -7664,14 +5601,6 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks`_
 > 
 > **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks`  
 > 
->     [
->         {
->             "networkId": "N_24329156",
->             "enabled": true,
->             "agentId": "12345"
->         }
->     ]
-> 
 > * * *
 > 
 >   
@@ -7680,12 +5609,6 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks`_
 > #### Add a ThousandEyes agent for this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
 > **POST** `/organizations/{organizationId}/extensions/thousandEyes/networks`  
-> 
->     {
->         "networkId": "N_24329156",
->         "enabled": true,
->         "agentId": "12345"
->     }
 > 
 > * * *
 
@@ -7729,28 +5652,6 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/supporte
 > 
 > **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks/supported`  
 > 
->     [
->         {
->             "networkId": "N_24329156",
->             "name": "Main Office",
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ],
->             "device": {
->                 "model": "MX105",
->                 "firmware": {
->                     "currentVersion": {
->                         "shortName": "MX 18.104"
->                     }
->                 },
->                 "agent": {
->                     "isInstalled": false
->                 }
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -7777,12 +5678,6 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{network
 > 
 > **GET** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
 > 
->     {
->         "networkId": "N_24329156",
->         "enabled": true,
->         "agentId": "12345"
->     }
-> 
 > * * *
 > 
 >   
@@ -7791,12 +5686,6 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/networks/{network
 > #### Update a ThousandEyes agent from this network. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
 > **PUT** `/organizations/{organizationId}/extensions/thousandEyes/networks/{networkId}`  
-> 
->     {
->         "networkId": "N_24329156",
->         "enabled": true,
->         "agentId": "12345"
->     }
 > 
 > * * *
 > 
@@ -7831,11 +5720,6 @@ PATH _`/organizations/{organizationId}/extensions/thousandEyes/tests`_
 > #### Create a ThousandEyes test based on a provided test template. Only valid for networks with access to Meraki Insight. Organization must have a ThousandEyes account connected to perform this action.
 > 
 > **POST** `/organizations/{organizationId}/extensions/thousandEyes/tests`  
-> 
->     {
->         "jobStatus": "new",
->         "pccBackgroundJob": "13289785"
->     }
 > 
 > * * *
 
@@ -7900,46 +5784,623 @@ PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
 > 
 > **GET** `/organizations/{organizationId}/cloud/connectivity/requirements`  
 > 
->     [
->         {
->             "description": "Meraki cloud communication",
->             "productTypes": [
->                 "appliance",
->                 "wireless",
->                 "camera",
->                 "switch"
->             ],
->             "rule": {
->                 "sources": {
->                     "includeAddressesInYourNetworks": false,
->                     "addresses": [
->                         {
->                             "type": "ipv4",
->                             "address": "209.206.48.0/20"
->                         }
->                     ]
->                 },
->                 "destinations": {
->                     "includeAddressesInYourNetworks": false,
->                     "includeAnyAddress": false,
->                     "addresses": [
->                         {
->                             "type": "fqdn",
->                             "address": "webhook.site"
->                         }
->                     ]
->                 },
->                 "ports": [
->                     {
->                         "port": "443",
->                         "protocols": [
->                             "TCP"
->                         ]
->                     }
->                 ]
->             }
->         }
->     ]
+> * * *
+
+* * *
+
+### auth
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-auth-radius-servers/)
+
+#### List the organization-wide RADIUS servers in the organization
+
+Operation ID: `getOrganizationAuthRadiusServers`
+
+PATH _`/organizations/{organizationId}/auth/radius/servers`_
+
+    [
+      {
+        "serverId": "42",
+        "name": "HQ RADIUS server",
+        "address": "1.2.3.4",
+        "modes": [
+          {
+            "mode": "auth",
+            "port": 1812
+          }
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the organization-wide RADIUS servers in the organization
+> 
+> **GET** `/organizations/{organizationId}/auth/radius/servers`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add an organization-wide RADIUS server
+> 
+> **POST** `/organizations/{organizationId}/auth/radius/servers`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-auth-radius-servers-assignments/)
+
+#### Return list of network and policies that organization-wide RADIUS servers are bing used
+
+Operation ID: `getOrganizationAuthRadiusServersAssignments`
+
+PATH _`/organizations/{organizationId}/auth/radius/servers/assignments`_
+
+    {
+      "serverId": "42",
+      "name": "HQ RADIUS server",
+      "assignments": [
+        {
+          "network": {
+            "id": "L_1234",
+            "eid": "L_1234",
+            "tag": "San-Francisco",
+            "name": "San Francisco Office",
+            "dashboardUrl": "https://n1.meraki.dev.ikram.io/tag/n/1234/manage/nodes/list"
+          },
+          "assignee": {
+            "type": "Access policy",
+            "id": "42",
+            "name": "Access policy #42",
+            "dashboardUrl": "https://n1.meraki.dev.ikram.io/tag/n/1234/manage/configure/switch_access"
+          }
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return list of network and policies that organization-wide RADIUS servers are bing used
+> 
+> **GET** `/organizations/{organizationId}/auth/radius/servers/assignments`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-auth-radius-server/)
+
+#### Return an organization-wide RADIUS server
+
+Operation ID: `getOrganizationAuthRadiusServer`
+
+PATH _`/organizations/{organizationId}/auth/radius/servers/{serverId}`_
+
+    {
+      "serverId": "42",
+      "name": "HQ RADIUS server",
+      "address": "1.2.3.4",
+      "modes": [
+        {
+          "mode": "auth",
+          "port": 1812
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return an organization-wide RADIUS server
+> 
+> **GET** `/organizations/{organizationId}/auth/radius/servers/{serverId}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update an organization-wide RADIUS server
+> 
+> **PUT** `/organizations/{organizationId}/auth/radius/servers/{serverId}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an organization-wide RADIUS server from a organization
+> 
+> **DELETE** `/organizations/{organizationId}/auth/radius/servers/{serverId}`  
+> 
+> * * *
+
+* * *
+
+### workflows
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-workflows/)
+
+#### Return workflows filtered by organization ID, network ID, type, and category
+
+Operation ID: `getOrganizationAssuranceWorkflows`
+
+PATH _`/organizations/{organizationId}/assurance/workflows`_
+
+    [
+      {
+        "id": "workflow1",
+        "organizationId": "org1",
+        "network": {
+          "id": "L_123456",
+          "name": "Network 1"
+        },
+        "scopeId": "scope123",
+        "type": "type1",
+        "categoryType": "category1",
+        "scopeType": "scope1",
+        "workflowState": "active",
+        "timestamp": "2025-04-14T12:00:00Z",
+        "networkTags": [
+          "tag1",
+          "tag2"
+        ],
+        "clientTags": [
+          "clientTag1",
+          "clientTag2"
+        ],
+        "nodeTags": [
+          "nodeTag1",
+          "nodeTag2"
+        ],
+        "resolvedAt": "2018-02-11T00:00:00.090210Z"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return workflows filtered by organization ID, network ID, type, and category
+> 
+> **GET** `/organizations/{organizationId}/assurance/workflows`  
+> 
+> * * *
+
+* * *
+
+### thousandEyes
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-thousand-eyes-applications/)
+
+#### Get a list of Thousand Eyes applications with their alerts.
+
+Operation ID: `getOrganizationAssuranceThousandEyesApplications`
+
+PATH _`/organizations/{organizationId}/assurance/thousandEyes/applications`_
+
+    [
+      {
+        "selectedClient": "k2349",
+        "applications": [
+          {
+            "appId": "1001.12",
+            "testId": "123456",
+            "description": "Cisco WebEx",
+            "tagName": "Box",
+            "impactedClientsTotalCount": 3,
+            "networkImpactedClientsCount": 3,
+            "applicationImpactedClientsCount": 3,
+            "issues": [
+              {
+                "alertId": "webex",
+                "impactedClients": 3,
+                "type": "application",
+                "message": "Error: '503 Service Unavailable'",
+                "startTime": "2024-01-11 19:04:08",
+                "endTime": "2024-01-11 21:04:08",
+                "impactingSelectedClient": false
+              }
+            ]
+          }
+        ],
+        "score": {
+          "score": 87,
+          "change": -12
+        },
+        "agent": {
+          "deployed": true,
+          "enabled": true
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get a list of Thousand Eyes applications with their alerts.
+> 
+> **GET** `/organizations/{organizationId}/assurance/thousandEyes/applications`  
+> 
+> * * *
+
+* * *
+
+### scores
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-scores/)
+
+#### Get network health scores for a list of networks.
+
+Operation ID: `getOrganizationAssuranceScores`
+
+PATH _`/organizations/{organizationId}/assurance/scores`_
+
+    [
+      {
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "trend": 2,
+        "score": 90,
+        "byInterval": [
+          {
+            "ts": 1526087474,
+            "score": 90,
+            "byCategory": [
+              {
+                "name": "clients",
+                "score": 90
+              }
+            ]
+          }
+        ],
+        "byCategory": [
+          {
+            "name": "clients",
+            "score": 90,
+            "trend": 2,
+            "bySubcategory": [
+              {
+                "name": "wireless",
+                "score": 90,
+                "trend": 2,
+                "weight": {
+                  "count": 10,
+                  "percentage": 0.9,
+                  "description": "wireless onboarding attempts"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get network health scores for a list of networks.
+> 
+> **GET** `/organizations/{organizationId}/assurance/scores`  
+> 
+> * * *
+
+* * *
+
+### productAnnouncements
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-product-announcements/)
+
+#### Gets relevant product announcements for a user
+
+Operation ID: `getOrganizationAssuranceProductAnnouncements`
+
+PATH _`/organizations/{organizationId}/assurance/productAnnouncements`_
+
+    {
+      "items": [
+        {
+          "id": "123",
+          "boardId": "new-features",
+          "title": "Cisco Meraki India Region cloud now in GA",
+          "url": "https://community.meraki.com/t5/Feature-Announcements/Cisco-Meraki-India-Region-cloud-now-in-GA/ba-p/259490",
+          "snippet": "As part of our ongoing commitment to the cloud and helping customers meet their local data storage needs, we are excited to announce that Cisco Meraki India Region cloud is now released in GA (Genera...",
+          "publishedAt": "2018-02-11T00:00:00.090210Z",
+          "editedAt": "2018-02-11T00:00:00.090210Z",
+          "labels": [
+            {
+              "id": "1",
+              "name": "Features"
+            }
+          ]
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Gets relevant product announcements for a user
+> 
+> **GET** `/organizations/{organizationId}/assurance/productAnnouncements`  
+> 
+> * * *
+
+* * *
+
+### optimization
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-optimization-checkup-by-network/)
+
+#### Returns an array of checkup results for the networks
+
+Operation ID: `getOrganizationAssuranceOptimizationCheckupByNetwork`
+
+PATH _`/organizations/{organizationId}/assurance/optimization/checkup/byNetwork`_
+
+    {
+      "items": [
+        {
+          "scope": "Dashboard",
+          "rules": [
+            {
+              "id": "PASSWORD_EXPIRY",
+              "name": "Short-lived passwords",
+              "description": "Passwords are recommended to expire periodically to reduce the window of opportunity for unauthorized access in case of compromised credentials.",
+              "documentation": {
+                "pageName": "Documentation",
+                "pageUrl": "https://documentation.meraki.com"
+              },
+              "assessments": [
+                {
+                  "status": "recommendation",
+                  "networkIds": [
+                    "N_24329156"
+                  ]
+                }
+              ],
+              "resolutions": [
+                {
+                  "pageName": "Organization settings",
+                  "pageUrl": "https://url.com"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns an array of checkup results for the networks
+> 
+> **GET** `/organizations/{organizationId}/assurance/optimization/checkup/byNetwork`  
+> 
+> * * *
+
+* * *
+
+### apiRequests
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-admin/)
+
+#### Lists API request response codes and their counts aggregated by admin
+
+Operation ID: `getOrganizationApiRequestsResponseCodesHistoryByAdmin`
+
+PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/byAdmin`_
+
+    [
+      {
+        "adminId": "1738",
+        "name": "Admin Name",
+        "email": "email@example.com",
+        "overall": {
+          "counts": {
+            "byCode": [
+              {
+                "code": 200,
+                "total": 100
+              }
+            ],
+            "total": 100
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lists API request response codes and their counts aggregated by admin
+> 
+> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/byAdmin`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-application/)
+
+#### Lists API request response codes and their counts aggregated by application
+
+Operation ID: `getOrganizationApiRequestsResponseCodesHistoryByApplication`
+
+PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/byApplication`_
+
+    [
+      {
+        "userAgentString": "google/chrome",
+        "name": "My favorite OAuth app",
+        "overall": {
+          "counts": {
+            "byCode": [
+              {
+                "code": 200,
+                "total": 100
+              }
+            ],
+            "total": 100
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lists API request response codes and their counts aggregated by application
+> 
+> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/byApplication`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-operation/)
+
+#### Aggregates API usage data by operationId
+
+Operation ID: `getOrganizationApiRequestsResponseCodesHistoryByOperation`
+
+PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/byOperation`_
+
+    [
+      {
+        "operationId": "getNetworkClients",
+        "overall": {
+          "counts": {
+            "byCode": [
+              {
+                "code": 200,
+                "total": 100
+              }
+            ],
+            "total": 100
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Aggregates API usage data by operationId
+> 
+> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/byOperation`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-source-ip/)
+
+#### Aggregates API usage by source ip
+
+Operation ID: `getOrganizationApiRequestsResponseCodesHistoryBySourceIp`
+
+PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/bySourceIp`_
+
+    [
+      {
+        "sourceIp": "123.123.123.1",
+        "overall": {
+          "counts": {
+            "byCode": [
+              {
+                "code": 200,
+                "total": 100
+              }
+            ],
+            "total": 100
+          }
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Aggregates API usage by source ip
+> 
+> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/bySourceIp`  
+> 
+> * * *
+
+* * *
+
+### snmp
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-snmp-traps-by-network/)
+
+#### Retrieve the SNMP trap configuration for the networks in an organization
+
+Operation ID: `getOrganizationSnmpTrapsByNetwork`
+
+PATH _`/organizations/{organizationId}/snmp/traps/byNetwork`_
+
+    [
+      {
+        "network": {
+          "id": "N_12345678",
+          "name": "networkName"
+        },
+        "mode": "v3",
+        "receiver": {
+          "address": "1.1.1.1",
+          "port": "1234"
+        },
+        "v2": {
+          "community": "public"
+        },
+        "v3": {
+          "users": [
+            {
+              "name": "merakian"
+            }
+          ]
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Retrieve the SNMP trap configuration for the networks in an organization
+> 
+> **GET** `/organizations/{organizationId}/snmp/traps/byNetwork`  
 > 
 > * * *
 
@@ -8011,54 +6472,6 @@ PATH _`/organizations/{organizationId}/certificates`_
 > 
 > **GET** `/organizations/{organizationId}/certificates`  
 > 
->     {
->         "certificateId": "1284392014819",
->         "description": "friendly description",
->         "parentCertificateId": "1284392014818",
->         "source": "NAC",
->         "fields": {
->             "validity": {
->                 "start": "2022-09-01T12:00:00Z",
->                 "end": "2022-10-01T12:00:00Z"
->             },
->             "subject": {
->                 "commonName": "subjectRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
->             "issuer": {
->                 "commonName": "issuerRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "serial": "7C 08 29 E8 CC",
->             "policy": "policy string here",
->             "version": "1.2.3.4",
->             "signatureAlgorithmId": "SHA256withRSA",
->             "publicKeyAlgorithm": "RSA",
->             "keyUsage": {
->                 "isCritical": false,
->                 "data": [
->                     "Digital Signature",
->                     "Key Encipherment"
->                 ]
->             },
->             "hashes": [
->                 {
->                     "algorithm": "SHA1",
->                     "hash": "hash text here"
->                 }
->             ]
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -8127,53 +6540,30 @@ PATH _`/organizations/{organizationId}/certificates/import`_
 > 
 > **POST** `/organizations/{organizationId}/certificates/import`  
 > 
->     {
->         "certificateId": "1284392014819",
->         "description": "friendly description",
->         "parentCertificateId": "1284392014818",
->         "source": "NAC",
->         "fields": {
->             "validity": {
->                 "start": "2022-09-01T12:00:00Z",
->                 "end": "2022-10-01T12:00:00Z"
->             },
->             "subject": {
->                 "commonName": "subjectRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
->             "issuer": {
->                 "commonName": "issuerRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "serial": "7C 08 29 E8 CC",
->             "policy": "policy string here",
->             "version": "1.2.3.4",
->             "signatureAlgorithmId": "SHA256withRSA",
->             "publicKeyAlgorithm": "RSA",
->             "keyUsage": {
->                 "isCritical": false,
->                 "data": [
->                     "Digital Signature",
->                     "Key Encipherment"
->                 ]
->             },
->             "hashes": [
->                 {
->                     "algorithm": "SHA1",
->                     "hash": "hash text here"
->                 }
->             ]
->         }
->     }
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates-meraki-auth-contents/)
+
+#### Download the public RADIUS certificate.
+
+Operation ID: `getOrganizationCertificatesMerakiAuthContents`
+
+PATH _`/organizations/{organizationId}/certificates/merakiAuth/contents`_
+
+    {
+      "contents": "-----BEGIN CERTIFICATE-----\nContents of cert \n-----END CERTIFICATE-----",
+      "readMe": ""
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Download the public RADIUS certificate.
+> 
+> **GET** `/organizations/{organizationId}/certificates/merakiAuth/contents`  
 > 
 > * * *
 
@@ -8194,54 +6584,6 @@ PATH _`/organizations/{organizationId}/certificates/{certificateId}`_
 > #### Update a certificate's description for an organization
 > 
 > **PUT** `/organizations/{organizationId}/certificates/{certificateId}`  
-> 
->     {
->         "certificateId": "1284392014819",
->         "description": "friendly description",
->         "parentCertificateId": "1284392014818",
->         "source": "NAC",
->         "fields": {
->             "validity": {
->                 "start": "2022-09-01T12:00:00Z",
->                 "end": "2022-10-01T12:00:00Z"
->             },
->             "subject": {
->                 "commonName": "subjectRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
->             "issuer": {
->                 "commonName": "issuerRoot",
->                 "organizationalUnit": "CloudNAC",
->                 "organization": "Cisco Systems",
->                 "locality": "Bangalore",
->                 "state": "KA",
->                 "country": "IN"
->             },
->             "serial": "7C 08 29 E8 CC",
->             "policy": "policy string here",
->             "version": "1.2.3.4",
->             "signatureAlgorithmId": "SHA256withRSA",
->             "publicKeyAlgorithm": "RSA",
->             "keyUsage": {
->                 "isCritical": false,
->                 "data": [
->                     "Digital Signature",
->                     "Key Encipherment"
->                 ]
->             },
->             "hashes": [
->                 {
->                     "algorithm": "SHA1",
->                     "hash": "hash text here"
->                 }
->             ]
->         }
->     }
 > 
 > * * *
 > 
@@ -8275,879 +6617,6 @@ PATH _`/organizations/{organizationId}/certificates/{certificateId}/contents`_
 > #### Download the trusted certificate by certificate id.
 > 
 > **GET** `/organizations/{organizationId}/certificates/{certificateId}/contents`  
-> 
->     {
->         "contents": "-----BEGIN CERTIFICATE-----MIIHvjCCBqagAwIBAgIQB4CbtQD3es3UQ988CCKGPjANBgkqhkiG9w0BAQsFADBPMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMSkwJwYDVQQDEyBEaWdpQ2VydCBUTFMgUlNBIFNIQTI1NiAyMDIwIENBMTAeFw0yMjA4MTAwMDAwMDBaFw0yMzA4MDkyMzU5NTlaMG4xCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRMwEQYDVQQKEwpNZXJha2kgTExDMR0wGwYDVQQDExRyYWRpdXMuZGV2LmlrYXJlbS5pbzCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBANSxcK8g9J3nRwDqNurYbXDieo5vHw5wWO4m3uJSvWtQ+zDMZzjEhA6ix3VfftGLLE+0C99a9B2oOubZgO/sAIJmLD6Oz25bUinAtzuEmOQiqZ8OZjYZd//emPOty7POZSU5C3rGUX0ESzrStL20iJoGzyA0U9clI+14yZCyXY1+Th3VSQCvGs/DmOMPn+MdBoMXIgzVk7+wjMr53fN6H8Q26y52NlLTmAxum2L7ag4owTecURzC6-----END CERTIFICATE-----"
->     }
-> 
-> * * *
-
-* * *
-
-### auth
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-auth-radius-servers/)
-
-#### List the organization-wide RADIUS servers in the organization
-
-Operation ID: `getOrganizationAuthRadiusServers`
-
-PATH _`/organizations/{organizationId}/auth/radius/servers`_
-
-    [
-      {
-        "serverId": "42",
-        "name": "HQ RADIUS server",
-        "address": "1.2.3.4",
-        "modes": [
-          {
-            "mode": "auth",
-            "port": 1812
-          }
-        ]
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the organization-wide RADIUS servers in the organization
-> 
-> **GET** `/organizations/{organizationId}/auth/radius/servers`  
-> 
->     [
->         {
->             "serverId": "42",
->             "name": "HQ RADIUS server",
->             "address": "1.2.3.4",
->             "modes": [
->                 {
->                     "mode": "auth",
->                     "port": 1812
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Add an organization-wide RADIUS server
-> 
-> **POST** `/organizations/{organizationId}/auth/radius/servers`  
-> 
->     {
->         "serverId": "42",
->         "name": "HQ RADIUS server",
->         "address": "1.2.3.4",
->         "modes": [
->             {
->                 "mode": "auth",
->                 "port": 1812
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-auth-radius-servers-assignments/)
-
-#### Return list of network and policies that organization-wide RADIUS servers are bing used
-
-Operation ID: `getOrganizationAuthRadiusServersAssignments`
-
-PATH _`/organizations/{organizationId}/auth/radius/servers/assignments`_
-
-    {
-      "serverId": "42",
-      "name": "HQ RADIUS server",
-      "assignments": [
-        {
-          "network": {
-            "id": "L_1234",
-            "eid": "L_1234",
-            "tag": "San-Francisco",
-            "name": "San Francisco Office",
-            "dashboardUrl": "https://n1.meraki.dev.ikram.io/tag/n/1234/manage/nodes/list"
-          },
-          "assignee": {
-            "type": "Access policy",
-            "id": "42",
-            "name": "Access policy #42",
-            "dashboardUrl": "https://n1.meraki.dev.ikram.io/tag/n/1234/manage/configure/switch_access"
-          }
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return list of network and policies that organization-wide RADIUS servers are bing used
-> 
-> **GET** `/organizations/{organizationId}/auth/radius/servers/assignments`  
-> 
->     {
->         "serverId": "42",
->         "name": "HQ RADIUS server",
->         "assignments": [
->             {
->                 "network": {
->                     "id": "L_1234",
->                     "eid": "L_1234",
->                     "tag": "San-Francisco",
->                     "name": "San Francisco Office",
->                     "dashboardUrl": "https://n1.meraki.dev.ikram.io/tag/n/1234/manage/nodes/list"
->                 },
->                 "assignee": {
->                     "type": "Access policy",
->                     "id": "42",
->                     "name": "Access policy #42",
->                     "dashboardUrl": "https://n1.meraki.dev.ikram.io/tag/n/1234/manage/configure/switch_access"
->                 }
->             }
->         ]
->     }
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-auth-radius-server/)
-
-#### Return an organization-wide RADIUS server
-
-Operation ID: `getOrganizationAuthRadiusServer`
-
-PATH _`/organizations/{organizationId}/auth/radius/servers/{serverId}`_
-
-    {
-      "serverId": "42",
-      "name": "HQ RADIUS server",
-      "address": "1.2.3.4",
-      "modes": [
-        {
-          "mode": "auth",
-          "port": 1812
-        }
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return an organization-wide RADIUS server
-> 
-> **GET** `/organizations/{organizationId}/auth/radius/servers/{serverId}`  
-> 
->     {
->         "serverId": "42",
->         "name": "HQ RADIUS server",
->         "address": "1.2.3.4",
->         "modes": [
->             {
->                 "mode": "auth",
->                 "port": 1812
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Update an organization-wide RADIUS server
-> 
-> **PUT** `/organizations/{organizationId}/auth/radius/servers/{serverId}`  
-> 
->     {
->         "serverId": "42",
->         "name": "HQ RADIUS server",
->         "address": "1.2.3.4",
->         "modes": [
->             {
->                 "mode": "auth",
->                 "port": 1812
->             }
->         ]
->     }
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete an organization-wide RADIUS server from a organization
-> 
-> **DELETE** `/organizations/{organizationId}/auth/radius/servers/{serverId}`  
-> 
-> * * *
-
-* * *
-
-### workflows
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-workflows/)
-
-#### Return workflows filtered by organization ID, network ID, type, and category
-
-Operation ID: `getOrganizationAssuranceWorkflows`
-
-PATH _`/organizations/{organizationId}/assurance/workflows`_
-
-    [
-      {
-        "id": "workflow1",
-        "organizationId": "org1",
-        "network": {
-          "id": "L_123456",
-          "name": "Network 1"
-        },
-        "scopeId": "scope123",
-        "type": "type1",
-        "categoryType": "category1",
-        "scopeType": "scope1",
-        "workflowState": "active",
-        "timestamp": "2025-04-14T12:00:00Z",
-        "networkTags": [
-          "tag1",
-          "tag2"
-        ],
-        "clientTags": [
-          "clientTag1",
-          "clientTag2"
-        ],
-        "nodeTags": [
-          "nodeTag1",
-          "nodeTag2"
-        ],
-        "resolvedAt": "2018-02-11T00:00:00.090210Z"
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return workflows filtered by organization ID, network ID, type, and category
-> 
-> **GET** `/organizations/{organizationId}/assurance/workflows`  
-> 
->     [
->         {
->             "id": "workflow1",
->             "organizationId": "org1",
->             "network": {
->                 "id": "L_123456",
->                 "name": "Network 1"
->             },
->             "scopeId": "scope123",
->             "type": "type1",
->             "categoryType": "category1",
->             "scopeType": "scope1",
->             "workflowState": "active",
->             "timestamp": "2025-04-14T12:00:00Z",
->             "networkTags": [
->                 "tag1",
->                 "tag2"
->             ],
->             "clientTags": [
->                 "clientTag1",
->                 "clientTag2"
->             ],
->             "nodeTags": [
->                 "nodeTag1",
->                 "nodeTag2"
->             ],
->             "resolvedAt": "2018-02-11T00:00:00.090210Z"
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### thousandEyes
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-thousand-eyes-applications/)
-
-#### Get a list of Thousand Eyes applications with their alerts.
-
-Operation ID: `getOrganizationAssuranceThousandEyesApplications`
-
-PATH _`/organizations/{organizationId}/assurance/thousandEyes/applications`_
-
-    [
-      {
-        "selectedClient": "k2349",
-        "applications": [
-          {
-            "appId": "1001.12",
-            "testId": "123456",
-            "description": "Cisco WebEx",
-            "tagName": "Box",
-            "impactedClientsTotalCount": 3,
-            "networkImpactedClientsCount": 3,
-            "applicationImpactedClientsCount": 3,
-            "issues": [
-              {
-                "alertId": "webex",
-                "impactedClients": 3,
-                "type": "application",
-                "message": "Error: '503 Service Unavailable'",
-                "startTime": "2024-01-11 19:04:08",
-                "endTime": "2024-01-11 21:04:08",
-                "impactingSelectedClient": false
-              }
-            ]
-          }
-        ],
-        "score": {
-          "score": 87,
-          "change": -12
-        },
-        "agent": {
-          "deployed": true,
-          "enabled": true
-        },
-        "network": {
-          "id": "N_24329156",
-          "name": "Main Office"
-        }
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get a list of Thousand Eyes applications with their alerts.
-> 
-> **GET** `/organizations/{organizationId}/assurance/thousandEyes/applications`  
-> 
->     [
->         {
->             "selectedClient": "k2349",
->             "applications": [
->                 {
->                     "appId": "1001.12",
->                     "testId": "123456",
->                     "description": "Cisco WebEx",
->                     "tagName": "Box",
->                     "impactedClientsTotalCount": 3,
->                     "networkImpactedClientsCount": 3,
->                     "applicationImpactedClientsCount": 3,
->                     "issues": [
->                         {
->                             "alertId": "webex",
->                             "impactedClients": 3,
->                             "type": "application",
->                             "message": "Error: '503 Service Unavailable'",
->                             "startTime": "2024-01-11 19:04:08",
->                             "endTime": "2024-01-11 21:04:08",
->                             "impactingSelectedClient": false
->                         }
->                     ]
->                 }
->             ],
->             "score": {
->                 "score": 87,
->                 "change": -12
->             },
->             "agent": {
->                 "deployed": true,
->                 "enabled": true
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### scores
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-scores/)
-
-#### Get network health scores for a list of networks.
-
-Operation ID: `getOrganizationAssuranceScores`
-
-PATH _`/organizations/{organizationId}/assurance/scores`_
-
-    [
-      {
-        "network": {
-          "id": "N_24329156",
-          "name": "Main Office"
-        },
-        "trend": 2,
-        "score": 90,
-        "byInterval": [
-          {
-            "ts": 1526087474,
-            "score": 90,
-            "byCategory": [
-              {
-                "name": "clients",
-                "score": 90
-              }
-            ]
-          }
-        ],
-        "byCategory": [
-          {
-            "name": "clients",
-            "score": 90,
-            "trend": 2,
-            "bySubcategory": [
-              {
-                "name": "wireless",
-                "score": 90,
-                "trend": 2,
-                "weight": {
-                  "count": 10,
-                  "percentage": 0.9,
-                  "description": "wireless onboarding attempts"
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get network health scores for a list of networks.
-> 
-> **GET** `/organizations/{organizationId}/assurance/scores`  
-> 
->     [
->         {
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "trend": 2,
->             "score": 90,
->             "byInterval": [
->                 {
->                     "ts": 1526087474,
->                     "score": 90,
->                     "byCategory": [
->                         {
->                             "name": "clients",
->                             "score": 90
->                         }
->                     ]
->                 }
->             ],
->             "byCategory": [
->                 {
->                     "name": "clients",
->                     "score": 90,
->                     "trend": 2,
->                     "bySubcategory": [
->                         {
->                             "name": "wireless",
->                             "score": 90,
->                             "trend": 2,
->                             "weight": {
->                                 "count": 10,
->                                 "percentage": 0.9,
->                                 "description": "wireless onboarding attempts"
->                             }
->                         }
->                     ]
->                 }
->             ]
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### productAnnouncements
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-product-announcements/)
-
-#### Gets relevant product announcements for a user
-
-Operation ID: `getOrganizationAssuranceProductAnnouncements`
-
-PATH _`/organizations/{organizationId}/assurance/productAnnouncements`_
-
-    {
-      "items": [
-        {
-          "id": "123",
-          "boardId": "new-features",
-          "title": "Cisco Meraki India Region cloud now in GA",
-          "url": "https://community.meraki.com/t5/Feature-Announcements/Cisco-Meraki-India-Region-cloud-now-in-GA/ba-p/259490",
-          "snippet": "As part of our ongoing commitment to the cloud and helping customers meet their local data storage needs, we are excited to announce that Cisco Meraki India Region cloud is now released in GA (Genera...",
-          "publishedAt": "2018-02-11T00:00:00.090210Z",
-          "editedAt": "2018-02-11T00:00:00.090210Z",
-          "labels": [
-            {
-              "id": "1",
-              "name": "Features"
-            }
-          ]
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 1
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Gets relevant product announcements for a user
-> 
-> **GET** `/organizations/{organizationId}/assurance/productAnnouncements`  
-> 
->     {
->         "items": [
->             {
->                 "id": "123",
->                 "boardId": "new-features",
->                 "title": "Cisco Meraki India Region cloud now in GA",
->                 "url": "https://community.meraki.com/t5/Feature-Announcements/Cisco-Meraki-India-Region-cloud-now-in-GA/ba-p/259490",
->                 "snippet": "As part of our ongoing commitment to the cloud and helping customers meet their local data storage needs, we are excited to announce that Cisco Meraki India Region cloud is now released in GA (Genera...",
->                 "publishedAt": "2018-02-11T00:00:00.090210Z",
->                 "editedAt": "2018-02-11T00:00:00.090210Z",
->                 "labels": [
->                     {
->                         "id": "1",
->                         "name": "Features"
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1
->                 }
->             }
->         }
->     }
-> 
-> * * *
-
-* * *
-
-### apiRequests
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-admin/)
-
-#### Lists API request response codes and their counts aggregated by admin
-
-Operation ID: `getOrganizationApiRequestsResponseCodesHistoryByAdmin`
-
-PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/byAdmin`_
-
-    [
-      {
-        "adminId": "1738",
-        "name": "Admin Name",
-        "email": "email@example.com",
-        "overall": {
-          "counts": {
-            "byCode": [
-              {
-                "code": 200,
-                "total": 100
-              }
-            ],
-            "total": 100
-          }
-        }
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Lists API request response codes and their counts aggregated by admin
-> 
-> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/byAdmin`  
-> 
->     [
->         {
->             "adminId": "1738",
->             "name": "Admin Name",
->             "email": "email@example.com",
->             "overall": {
->                 "counts": {
->                     "byCode": [
->                         {
->                             "code": 200,
->                             "total": 100
->                         }
->                     ],
->                     "total": 100
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-application/)
-
-#### Lists API request response codes and their counts aggregated by application
-
-Operation ID: `getOrganizationApiRequestsResponseCodesHistoryByApplication`
-
-PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/byApplication`_
-
-    [
-      {
-        "userAgentString": "google/chrome",
-        "name": "My favorite OAuth app",
-        "overall": {
-          "counts": {
-            "byCode": [
-              {
-                "code": 200,
-                "total": 100
-              }
-            ],
-            "total": 100
-          }
-        }
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Lists API request response codes and their counts aggregated by application
-> 
-> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/byApplication`  
-> 
->     [
->         {
->             "userAgentString": "google/chrome",
->             "name": "My favorite OAuth app",
->             "overall": {
->                 "counts": {
->                     "byCode": [
->                         {
->                             "code": 200,
->                             "total": 100
->                         }
->                     ],
->                     "total": 100
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-operation/)
-
-#### Aggregates API usage data by operationId
-
-Operation ID: `getOrganizationApiRequestsResponseCodesHistoryByOperation`
-
-PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/byOperation`_
-
-    [
-      {
-        "operationId": "getNetworkClients",
-        "overall": {
-          "counts": {
-            "byCode": [
-              {
-                "code": 200,
-                "total": 100
-              }
-            ],
-            "total": 100
-          }
-        }
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Aggregates API usage data by operationId
-> 
-> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/byOperation`  
-> 
->     [
->         {
->             "operationId": "getNetworkClients",
->             "overall": {
->                 "counts": {
->                     "byCode": [
->                         {
->                             "code": 200,
->                             "total": 100
->                         }
->                     ],
->                     "total": 100
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-source-ip/)
-
-#### Aggregates API usage by source ip
-
-Operation ID: `getOrganizationApiRequestsResponseCodesHistoryBySourceIp`
-
-PATH _`/organizations/{organizationId}/apiRequests/responseCodes/history/bySourceIp`_
-
-    [
-      {
-        "sourceIp": "123.123.123.1",
-        "overall": {
-          "counts": {
-            "byCode": [
-              {
-                "code": 200,
-                "total": 100
-              }
-            ],
-            "total": 100
-          }
-        }
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Aggregates API usage by source ip
-> 
-> **GET** `/organizations/{organizationId}/apiRequests/responseCodes/history/bySourceIp`  
-> 
->     [
->         {
->             "sourceIp": "123.123.123.1",
->             "overall": {
->                 "counts": {
->                     "byCode": [
->                         {
->                             "code": 200,
->                             "total": 100
->                         }
->                     ],
->                     "total": 100
->                 }
->             }
->         }
->     ]
-> 
-> * * *
-
-* * *
-
-### snmp
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-snmp-traps-by-network/)
-
-#### Retrieve the SNMP trap configuration for the networks in an organization
-
-Operation ID: `getOrganizationSnmpTrapsByNetwork`
-
-PATH _`/organizations/{organizationId}/snmp/traps/byNetwork`_
-
-    [
-      {
-        "network": {
-          "id": "N_12345678",
-          "name": "networkName"
-        },
-        "mode": "v3",
-        "receiver": {
-          "address": "1.1.1.1",
-          "port": "1234"
-        },
-        "v2": {
-          "community": "public"
-        },
-        "v3": {
-          "users": [
-            {
-              "name": "merakian"
-            }
-          ]
-        }
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Retrieve the SNMP trap configuration for the networks in an organization
-> 
-> **GET** `/organizations/{organizationId}/snmp/traps/byNetwork`  
-> 
->     [
->         {
->             "network": {
->                 "id": "N_12345678",
->                 "name": "networkName"
->             },
->             "mode": "v3",
->             "receiver": {
->                 "address": "1.1.1.1",
->                 "port": "1234"
->             },
->             "v2": {
->                 "community": "public"
->             },
->             "v3": {
->                 "users": [
->                     {
->                         "name": "merakian"
->                     }
->                 ]
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -9202,37 +6671,6 @@ PATH _`/organizations/{organizationId}/assurance/devices/statuses/overview`_
 > 
 > **GET** `/organizations/{organizationId}/assurance/devices/statuses/overview`  
 > 
->     {
->         "byProductType": [
->             {
->                 "productType": "wireless",
->                 "online": 10,
->                 "offline": 5,
->                 "recovered": 3
->             }
->         ],
->         "byImpactedDevice": [
->             {
->                 "network": {
->                     "name": "Office HQ",
->                     "id": "L_123"
->                 },
->                 "device": {
->                     "name": "Lobby AP",
->                     "serial": "QXXX-YYYY-ZZZ0",
->                     "mac": "aa:bb:cc:dd:ee:ff",
->                     "productType": "wireless"
->                 },
->                 "offlineIntervals": [
->                     {
->                         "startTs": "2025-03-20T20:24:42.285237Z",
->                         "endTs": "2025-03-20T21:30:55.691996Z"
->                     }
->                 ]
->             }
->         ]
->     }
-> 
 > * * *
 
 * * *
@@ -9265,17 +6703,97 @@ PATH _`/organizations/{organizationId}/devices/boots/history`_
 > 
 > **GET** `/organizations/{organizationId}/devices/boots/history`  
 > 
->     [
->         {
->             "serial": "Q234-ABCD-5678",
->             "network": {
->                 "id": "N_24329156"
->             },
->             "start": {
->                 "bootedAt": "2018-02-11T00:00:00.090210Z"
->             }
->         }
->     ]
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-boots-overview-by-device/)
+
+#### Summarizes device reboots across an organization.
+
+Operation ID: `getOrganizationDevicesBootsOverviewByDevice`
+
+PATH _`/organizations/{organizationId}/devices/boots/overview/byDevice`_
+
+    [
+      {
+        "items": [
+          {
+            "counts": {
+              "total": 1000,
+              "byType": [
+                {
+                  "type": "unusual",
+                  "count": 5,
+                  "byReason": [
+                    {
+                      "reason": "panic",
+                      "count": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "device": {
+          "name": "My AP",
+          "serial": "Q234-ABCD-5678",
+          "mac": "00:11:22:33:44:55"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Summarizes device reboots across an organization.
+> 
+> **GET** `/organizations/{organizationId}/devices/boots/overview/byDevice`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-memory-by-device/)
+
+#### Summarizes memory status across devices of a given network
+
+Operation ID: `getOrganizationDevicesMemoryByDevice`
+
+PATH _`/organizations/{organizationId}/devices/memory/byDevice`_
+
+    [
+      {
+        "device": {
+          "name": "My switch",
+          "mac": "00:11:22:33:44:55",
+          "serial": "Q234-ABCD-5678",
+          "model": "MR34"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "used": {
+          "min": 2,
+          "max": 4,
+          "mean": 3,
+          "meanPercent": 30.56,
+          "median": 3,
+          "medianPercent": 25
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Summarizes memory status across devices of a given network
+> 
+> **GET** `/organizations/{organizationId}/devices/memory/byDevice`  
 > 
 > * * *
 
@@ -9317,27 +6835,6 @@ PATH _`/organizations/{organizationId}/devices/packetCapture/opportunistic/byNet
 > #### List the Opportunistic Pcap settings of an organization by network
 > 
 > **GET** `/organizations/{organizationId}/devices/packetCapture/opportunistic/byNetwork`  
-> 
->     [
->         {
->             "network": {
->                 "id": "123",
->                 "name": "sample-node-group-name"
->             },
->             "networkId": "L_12345",
->             "name": "My Network",
->             "enablement": {
->                 "networkWide": 0,
->                 "serials": [
->                     "Q234-ABCD-5678"
->                 ],
->                 "tags": [
->                     "tag1",
->                     "tag2"
->                 ]
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -9384,12 +6881,6 @@ PATH _`/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks`_
 > #### Enqueues a task for a specific packet capture. This endpoint has a sustained rate limit of one request every 60 seconds.
 > 
 > **POST** `/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks`  
-> 
->     {
->         "task": "analysis",
->         "taskId": "123456",
->         "status": "pending"
->     }
 > 
 > * * *
 
@@ -9494,89 +6985,6 @@ PATH _`/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks/{
 > 
 > **GET** `/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks/{id}`  
 > 
->     {
->         "task": "analysis",
->         "status": "completed",
->         "summary": {
->             "counts": {
->                 "total": 1,
->                 "successes": 0,
->                 "failures": 1
->             },
->             "macs": [
->                 "00:11:22:33:44:55"
->             ],
->             "ips": [
->                 "1.2.3.4"
->             ],
->             "devices": [
->                 {
->                     "name": "My AP",
->                     "url": "https://n1.meraki.com//n//manage/nodes/new_list/000000000000"
->                 }
->             ]
->         },
->         "analyzers": {
->             "analyzer": {
->                 "present": true,
->                 "macs": [
->                     "00:11:22:33:44:55"
->                 ],
->                 "ips": [
->                     "1.2.3.4"
->                 ],
->                 "devices": [
->                     "My AP"
->                 ],
->                 "testCounts": {
->                     "total": 1,
->                     "successes": 0,
->                     "failures": 1
->                 },
->                 "testResults": [
->                     {
->                         "passed": [
->                             {
->                                 "name": "Test",
->                                 "status": false,
->                                 "details": []
->                             }
->                         ],
->                         "failed": [
->                             {
->                                 "name": "Test",
->                                 "status": false,
->                                 "details": [
->                                     {
->                                         "subCategory": "DHCP Request not seen",
->                                         "failureCount": 3,
->                                         "packets": [
->                                             5,
->                                             6,
->                                             7
->                                         ],
->                                         "detailMessage": "Failed",
->                                         "macs": [
->                                             "00:11:22:33:44:55"
->                                         ],
->                                         "ips": [
->                                             "1.2.3.4"
->                                         ],
->                                         "devices": [
->                                             "My AP"
->                                         ]
->                                     }
->                                 ]
->                             }
->                         ]
->                     }
->                 ]
->             }
->         },
->         "fileName": "sample.pcap",
->         "filePathUrl": "https://www.meraki.com"
->     }
-> 
 > * * *
 
 * * *
@@ -9632,41 +7040,6 @@ PATH _`/organizations/{organizationId}/devices/syslog/servers/byNetwork`_
 > 
 > **GET** `/organizations/{organizationId}/devices/syslog/servers/byNetwork`  
 > 
->     {
->         "items": [
->             {
->                 "network": {
->                     "id": "N_123456789012345678"
->                 },
->                 "servers": [
->                     {
->                         "host": "1.2.3.4",
->                         "port": "443",
->                         "roles": [
->                             "Wireless event log",
->                             "Appliance URLs"
->                         ],
->                         "transportProtocol": "UDP",
->                         "encryption": {
->                             "enabled": true,
->                             "certificate": {
->                                 "id": "1637"
->                             }
->                         }
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -9710,30 +7083,6 @@ PATH _`/organizations/{organizationId}/devices/syslog/servers/roles/byNetwork`_
 > #### Returns roles that can be assigned to a syslog server for a given network.
 > 
 > **GET** `/organizations/{organizationId}/devices/syslog/servers/roles/byNetwork`  
-> 
->     {
->         "items": [
->             {
->                 "network": {
->                     "id": "N_123456789012345678"
->                 },
->                 "availableRoles": [
->                     {
->                         "name": "Wireless Event Log",
->                         "value": "wireless_event_log"
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 10,
->                     "remaining": 2
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -9796,45 +7145,6 @@ PATH _`/organizations/{organizationId}/assurance/clients/events`_
 > 
 > **GET** `/organizations/{organizationId}/assurance/clients/events`  
 > 
->     [
->         {
->             "client": {
->                 "id": "k74272e",
->                 "name": "Cisco Meraki valued client"
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "startTime": "2018-02-11T00:00:00Z",
->             "endTime": "2018-05-12T00:00:00Z",
->             "events": [
->                 {
->                     "category": "connectivity",
->                     "type": "dhcp_problem",
->                     "displayText": "DHCP Problem",
->                     "startedAt": "2018-02-11T00:00:00Z",
->                     "resolvedAt": "2018-05-12T00:00:00Z",
->                     "device": {
->                         "name": "Device Name",
->                         "mac": "00:11:22:33:44:55",
->                         "type": "MS",
->                         "serial": "Q234-ABCD-5678",
->                         "url": "https://n1.meraki.test/tag/n/testnetwork/manage/nodes/new_list/12345"
->                     },
->                     "ssid": {
->                         "name": "SSID Name",
->                         "url": "https://n1.meraki.test/tag/n/testnetwork/manage/configure/access_control?ssid_number=5"
->                     },
->                     "packetCapture": {
->                         "enabled": false,
->                         "captureId": "12345"
->                     }
->                 }
->             ]
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -9884,34 +7194,143 @@ PATH _`/organizations/{organizationId}/assurance/clients/events/correlated`_
 > 
 > **GET** `/organizations/{organizationId}/assurance/clients/events/correlated`  
 > 
->     [
->         {
->             "client": {
->                 "id": "k74272e",
->                 "name": "Cisco Meraki valued client"
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "timestamp": "2018-02-11T00:00:00Z",
->             "events": [
->                 {
->                     "id": "123",
->                     "category": "connectivity",
->                     "type": "dhcp_problem",
->                     "displayText": "DHCP Problem",
->                     "startedAt": "2018-02-11T00:00:00Z",
->                     "resolvedAt": "2018-05-12T00:00:00Z",
->                     "device": {
->                         "type": "MS",
->                         "serial": "Q234-ABCD-5678"
->                     },
->                     "url": "https://shard.meraki.com/network/n/id/manage/dashboard/event_log"
->                 }
->             ]
->         }
->     ]
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-clients-topology-current/)
+
+#### Given a client, return current topology
+
+Operation ID: `getOrganizationAssuranceClientsTopologyCurrent`
+
+PATH _`/organizations/{organizationId}/assurance/clients/topology/current`_
+
+    [
+      {
+        "client": {
+          "id": "k74272e",
+          "name": "Cisco Meraki valued client"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "topology": [
+          {
+            "fromNode": {
+              "serial": "123",
+              "name": "My MR",
+              "type": "MR"
+            },
+            "toNode": {
+              "serial": "456",
+              "name": "Other MS",
+              "type": "MS"
+            }
+          }
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Given a client, return current topology
+> 
+> **GET** `/organizations/{organizationId}/assurance/clients/topology/current`  
+> 
+> * * *
+
+* * *
+
+### routing
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-routing-vrfs/)
+
+#### List existing organization-wide VRFs (Virtual Routing and Forwarding).
+
+Operation ID: `getOrganizationRoutingVrfs`
+
+PATH _`/organizations/{organizationId}/routing/vrfs`_
+
+    {
+      "items": [
+        {
+          "vrfId": "42",
+          "autoRd": false,
+          "name": "Engineering",
+          "description": "Virtual network for Engineering",
+          "routeDistinguisher": "65000:42",
+          "routeTarget": "65000:42",
+          "switchFabricId": "123"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List existing organization-wide VRFs (Virtual Routing and Forwarding).
+> 
+> **GET** `/organizations/{organizationId}/routing/vrfs`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Add an organization-wide VRF (Virtual Routing and Forwarding)
+> 
+> **POST** `/organizations/{organizationId}/routing/vrfs`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-routing-vrf/)
+
+#### Update an organization-wide VRF (Virtual Routing and Forwarding)
+
+Operation ID: `updateOrganizationRoutingVrf`
+
+PATH _`/organizations/{organizationId}/routing/vrfs/{vrfId}`_
+
+    {
+      "vrfId": "42",
+      "autoRd": false,
+      "name": "Engineering",
+      "description": "Virtual network for Engineering",
+      "routeDistinguisher": "65000:42",
+      "routeTarget": "65000:42",
+      "switchFabricId": "123"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an organization-wide VRF (Virtual Routing and Forwarding)
+> 
+> **PUT** `/organizations/{organizationId}/routing/vrfs/{vrfId}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a VRF (Virtual Routing and Forwarding) from a organization
+> 
+> **DELETE** `/organizations/{organizationId}/routing/vrfs/{vrfId}`  
 > 
 > * * *
 
@@ -9960,28 +7379,6 @@ PATH _`/networks/{networkId}/snmp/traps`_
 > 
 > **PUT** `/networks/{networkId}/snmp/traps`  
 > 
->     {
->         "network": {
->             "id": "N_12345678",
->             "name": "networkName"
->         },
->         "mode": "v3",
->         "receiver": {
->             "address": "1.1.1.1",
->             "port": "1234"
->         },
->         "v2": {
->             "community": "public"
->         },
->         "v3": {
->             "users": [
->                 {
->                     "name": "merakian"
->                 }
->             ]
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -10010,12 +7407,6 @@ PATH _`/networks/{networkId}/locationScanning`_
 > 
 > **GET** `/networks/{networkId}/locationScanning`  
 > 
->     {
->         "analyticsEnabled": true,
->         "scanningApiEnabled": true,
->         "validator": "xxyzzy"
->     }
-> 
 > * * *
 > 
 >   
@@ -10024,12 +7415,6 @@ PATH _`/networks/{networkId}/locationScanning`_
 > #### Change scanning API settings
 > 
 > **PUT** `/networks/{networkId}/locationScanning`  
-> 
->     {
->         "analyticsEnabled": true,
->         "scanningApiEnabled": true,
->         "validator": "xxyzzy"
->     }
 > 
 > * * *
 
@@ -10074,29 +7459,6 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 > 
 > **GET** `/networks/{networkId}/locationScanning/httpServers`  
 > 
->     [
->         {
->             "endpoints": [
->                 {
->                     "httpServer": {
->                         "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->                         "name": "Example Webhook Server",
->                         "networkId": "N_12345678",
->                         "url": "https://www.example.com/my_custom_webhook",
->                         "sharedSecret": "******",
->                         "validator": "xxx",
->                         "validatedAt": "2018-02-11T00:00:00Z"
->                     },
->                     "scanningApiVersion": 123,
->                     "radioType": "WiFi",
->                     "successAt": "2018-05-12T00:00:00Z",
->                     "errorAt": "2018-02-11T00:00:00Z",
->                     "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
->                 }
->             ]
->         }
->     ]
-> 
 > * * *
 > 
 >   
@@ -10105,27 +7467,6 @@ PATH _`/networks/{networkId}/locationScanning/httpServers`_
 > #### Set the list of scanning API receivers. Old receivers will be removed
 > 
 > **PUT** `/networks/{networkId}/locationScanning/httpServers`  
-> 
->     {
->         "endpoints": [
->             {
->                 "httpServer": {
->                     "id": "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=",
->                     "name": "Example Webhook Server",
->                     "networkId": "N_12345678",
->                     "url": "https://www.example.com/my_custom_webhook",
->                     "sharedSecret": "******",
->                     "validator": "xxx",
->                     "validatedAt": "2018-02-11T00:00:00Z"
->                 },
->                 "scanningApiVersion": 123,
->                 "radioType": "WiFi",
->                 "successAt": "2018-05-12T00:00:00Z",
->                 "errorAt": "2018-02-11T00:00:00Z",
->                 "postErrors": "[{\"code\":200,\"delay\":{\"inMillis\":612},\"timestamp\":{\"millisFromEpoch\":1597255325467}}]"
->             }
->         ]
->     }
 > 
 > * * *
 
@@ -10172,29 +7513,6 @@ PATH _`/networks/{networkId}/devices/syslog/servers`_
 > 
 > **PUT** `/networks/{networkId}/devices/syslog/servers`  
 > 
->     {
->         "network": {
->             "id": "N_123456789012345678"
->         },
->         "servers": [
->             {
->                 "host": "1.2.3.4",
->                 "port": "443",
->                 "roles": [
->                     "Wireless event log",
->                     "Appliance URLs"
->                 ],
->                 "transportProtocol": "UDP",
->                 "encryption": {
->                     "enabled": true,
->                     "certificate": {
->                         "id": "1637"
->                     }
->                 }
->             }
->         ]
->     }
-> 
 > * * *
 
 * * *
@@ -10202,33 +7520,264 @@ PATH _`/networks/{networkId}/devices/syslog/servers`_
 \[ wireless \]
 --------------
 
-### certificates
+### roaming
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-certificates-open-roaming-certificate-authority/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-roaming-by-network-by-interval/)
 
-#### Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).
+#### Get all wireless clients' roam events within the specified timespan grouped by network and time interval.
 
-Operation ID: `getOrganizationWirelessCertificatesOpenRoamingCertificateAuthority`
+Operation ID: `getOrganizationWirelessRoamingByNetworkByInterval`
 
-PATH _`/organizations/{organizationId}/wireless/certificates/openRoaming/certificateAuthority`_
+PATH _`/organizations/{organizationId}/wireless/roaming/byNetwork/byInterval`_
+
+    [
+      {
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "byInterval": [
+          {
+            "startTs": "2024-08-20T18:00:00Z",
+            "endTs": "2024-08-20T20:00:00Z",
+            "roams": [
+              {
+                "origin": {
+                  "mac": "00:11:22:33:44:55",
+                  "serial": "Q234-ABCD-5678",
+                  "name": "My AP"
+                },
+                "destination": {
+                  "mac": "00:11:22:33:44:55",
+                  "serial": "Q234-ABCD-5678",
+                  "name": "My AP"
+                },
+                "ssid": {
+                  "number": 1,
+                  "name": "My SSID"
+                },
+                "client": {
+                  "id": "k74272e",
+                  "mac": "00:11:22:33:44:55"
+                },
+                "band": {
+                  "before": "5",
+                  "after": "2"
+                },
+                "protocol": "skc-roam",
+                "duration": 100,
+                "rssi": {
+                  "before": -70,
+                  "after": -70
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get all wireless clients' roam events within the specified timespan grouped by network and time interval.
+> 
+> **GET** `/organizations/{organizationId}/wireless/roaming/byNetwork/byInterval`  
+> 
+> * * *
+
+* * *
+
+### alerts
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-alerts-low-power-by-device/)
+
+#### Gets all low power related alerts over a given network and returns information by device
+
+Operation ID: `getOrganizationWirelessAlertsLowPowerByDevice`
+
+PATH _`/organizations/{organizationId}/wireless/alerts/lowPower/byDevice`_
+
+    [
+      {
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "name": "My switch",
+        "mac": "00:11:22:33:44:55",
+        "serial": "Q234-ABCD-5678",
+        "model": "MR34",
+        "failureCount": "MR34",
+        "startTime": "MR34",
+        "endTime": "MR34"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Gets all low power related alerts over a given network and returns information by device
+> 
+> **GET** `/organizations/{organizationId}/wireless/alerts/lowPower/byDevice`  
+> 
+> * * *
+
+* * *
+
+### connectivity
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-connectivity-wireless-rf-health-by-band/)
+
+#### Show the by-device RF Health score overview information for the organization in the given interval
+
+Operation ID: `getOrganizationAssuranceConnectivityWirelessRfHealthByBand`
+
+PATH _`/organizations/{organizationId}/assurance/connectivity/wireless/rfHealth/byBand`_
 
     {
-      "status": "trusted",
-      "contents": "-----BEGIN CERTIFICATE-----\n\n        MIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n\n        umkqeYeO30g1uYvDuWLXVA==\n\n        -----END CERTIFICATE-----\n"
+      "items": [
+        {
+          "twoPointFourImpactedCount": 10,
+          "fiveImpactedCount": 0,
+          "sixImpactedCount": 20,
+          "impactedTotal": 30,
+          "twoPointFour": [
+            {
+              "index": 0,
+              "rfHealthScores": {
+                "network": {
+                  "id": "N_24329156",
+                  "name": "Main Office"
+                },
+                "device": {
+                  "name": "My AP",
+                  "serial": "Q234-ABCD-5678",
+                  "mac": "00:11:22:33:44:55"
+                },
+                "readings": [
+                  {
+                    "startTs": "2024-04-19T00:05:00Z",
+                    "endTs": "2024-04-19T00:10:00Z",
+                    "index": 0,
+                    "band": "2.4",
+                    "coChannelNeighborScore": 22,
+                    "sideChannelNeighborScore": 22,
+                    "coChannelUtilizationScore": 22,
+                    "nonCoChannelNeighborScore": 22,
+                    "nonCoChannelUtilizationScore": 22,
+                    "neighborCoverageScore": 22,
+                    "ccaBusyScore": 22,
+                    "channelNoiseScore": 22,
+                    "sideChannelNoiseScore": 22,
+                    "channelInterferenceScore": 22,
+                    "sideChannelInterferenceScore": 22,
+                    "lowRssiClientsScore": 22,
+                    "clientScore": 22,
+                    "interferenceScore": 22,
+                    "neighborScore": 22,
+                    "noiseScore": 22,
+                    "overallScore": 22
+                  }
+                ]
+              }
+            }
+          ],
+          "five": [
+            {
+              "index": 0,
+              "rfHealthScores": {
+                "network": {
+                  "id": "N_24329156",
+                  "name": "Main Office"
+                },
+                "device": {
+                  "name": "My AP",
+                  "serial": "Q234-ABCD-5678",
+                  "mac": "00:11:22:33:44:55"
+                },
+                "readings": [
+                  {
+                    "startTs": "2024-04-19T00:05:00Z",
+                    "endTs": "2024-04-19T00:10:00Z",
+                    "index": 0,
+                    "band": "2.4",
+                    "coChannelNeighborScore": 22,
+                    "sideChannelNeighborScore": 22,
+                    "coChannelUtilizationScore": 22,
+                    "nonCoChannelNeighborScore": 22,
+                    "nonCoChannelUtilizationScore": 22,
+                    "neighborCoverageScore": 22,
+                    "ccaBusyScore": 22,
+                    "channelNoiseScore": 22,
+                    "sideChannelNoiseScore": 22,
+                    "channelInterferenceScore": 22,
+                    "sideChannelInterferenceScore": 22,
+                    "lowRssiClientsScore": 22,
+                    "clientScore": 22,
+                    "interferenceScore": 22,
+                    "neighborScore": 22,
+                    "noiseScore": 22,
+                    "overallScore": 22
+                  }
+                ]
+              }
+            }
+          ],
+          "six": [
+            {
+              "index": 0,
+              "rfHealthScores": {
+                "network": {
+                  "id": "N_24329156",
+                  "name": "Main Office"
+                },
+                "device": {
+                  "name": "My AP",
+                  "serial": "Q234-ABCD-5678",
+                  "mac": "00:11:22:33:44:55"
+                },
+                "readings": [
+                  {
+                    "startTs": "2024-04-19T00:05:00Z",
+                    "endTs": "2024-04-19T00:10:00Z",
+                    "index": 0,
+                    "band": "2.4",
+                    "coChannelNeighborScore": 22,
+                    "sideChannelNeighborScore": 22,
+                    "coChannelUtilizationScore": 22,
+                    "nonCoChannelNeighborScore": 22,
+                    "nonCoChannelUtilizationScore": 22,
+                    "neighborCoverageScore": 22,
+                    "ccaBusyScore": 22,
+                    "channelNoiseScore": 22,
+                    "sideChannelNoiseScore": 22,
+                    "channelInterferenceScore": 22,
+                    "sideChannelInterferenceScore": 22,
+                    "lowRssiClientsScore": 22,
+                    "clientScore": 22,
+                    "interferenceScore": 22,
+                    "neighborScore": 22,
+                    "noiseScore": 22,
+                    "overallScore": 22
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).
+> #### Show the by-device RF Health score overview information for the organization in the given interval. This includes the RF Health score for each device, as well as some more basic device info
 > 
-> **GET** `/organizations/{organizationId}/wireless/certificates/openRoaming/certificateAuthority`  
-> 
->     {
->         "status": "trusted",
->         "contents": "-----BEGIN CERTIFICATE-----\n\n        MIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n\n        umkqeYeO30g1uYvDuWLXVA==\n\n        -----END CERTIFICATE-----\n"
->     }
+> **GET** `/organizations/{organizationId}/assurance/connectivity/wireless/rfHealth/byBand`  
 > 
 > * * *
 
@@ -10267,21 +7816,6 @@ PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`_
 > 
 > **PUT** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`  
 > 
->     {
->         "ssid": {
->             "id": "12312333",
->             "number": 1,
->             "name": "My SSID"
->         },
->         "network": {
->             "id": "N_1234",
->             "name": "MR wireless 1"
->         },
->         "static": {
->             "enabled": true
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -10318,22 +7852,6 @@ PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/st
 > 
 > **PUT** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions`  
 > 
->     {
->         "ssid": {
->             "id": "12312333",
->             "number": 1,
->             "name": "My SSID"
->         },
->         "network": {
->             "id": "N_1234",
->             "name": "MR wireless 1"
->         },
->         "macs": [
->             "00:11:22:33:44:55",
->             "aa:bb:cc:dd:ee:ff"
->         ]
->     }
-> 
 > * * *
 
 * * *
@@ -10369,22 +7887,6 @@ PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/st
 > #### Add a list of MAC addresses to the static client exclusion list for the given SSID
 > 
 > **POST** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions/bulkAdd`  
-> 
->     {
->         "ssid": {
->             "id": "12312333",
->             "number": 1,
->             "name": "My SSID"
->         },
->         "network": {
->             "id": "N_1234",
->             "name": "MR wireless 1"
->         },
->         "macs": [
->             "00:11:22:33:44:55",
->             "aa:bb:cc:dd:ee:ff"
->         ]
->     }
 > 
 > * * *
 
@@ -10453,33 +7955,6 @@ PATH _`/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/b
 > 
 > **GET** `/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/bySsid`  
 > 
->     {
->         "items": [
->             {
->                 "ssid": {
->                     "id": "12312333",
->                     "number": 1,
->                     "name": "My SSID"
->                 },
->                 "network": {
->                     "id": "N_1234",
->                     "name": "MR wireless 1"
->                 },
->                 "static": {
->                     "enabled": true
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 105,
->                     "remaining": 25
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -10528,34 +8003,6 @@ PATH _`/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/s
 > 
 > **GET** `/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/static/exclusions/bySsid`  
 > 
->     {
->         "items": [
->             {
->                 "ssid": {
->                     "id": "12312333",
->                     "number": 1,
->                     "name": "My SSID"
->                 },
->                 "network": {
->                     "id": "N_1234",
->                     "name": "MR wireless 1"
->                 },
->                 "macs": [
->                     "00:11:22:33:44:55",
->                     "aa:bb:cc:dd:ee:ff"
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 105,
->                     "remaining": 25
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -10597,25 +8044,6 @@ PATH _`/networks/{networkId}/wireless/opportunisticPcap`_
 > 
 > **PUT** `/networks/{networkId}/wireless/opportunisticPcap`  
 > 
->     {
->         "network": {
->             "id": "123",
->             "name": "sample-node-group-name"
->         },
->         "networkId": "L_12345",
->         "name": "My Network",
->         "enablement": {
->             "networkWide": 0,
->             "serials": [
->                 "Q234-ABCD-5678"
->             ],
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ]
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -10644,14 +8072,6 @@ PATH _`/organizations/{organizationId}/wireless/opportunisticPcap/license/byNetw
 > 
 > **GET** `/organizations/{organizationId}/wireless/opportunisticPcap/license/byNetwork`  
 > 
->     [
->         {
->             "networkId": "L_12345",
->             "name": "My Network",
->             "licensed": true
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -10672,9 +8092,11 @@ PATH _`/devices/{serial}/wireless/radio/afc/position`_
         "id": "N_24329156"
       },
       "serial": "Q234-ABCD-5678",
-      "elevation": {
-        "height": 10,
-        "uncertainty": 1
+      "height": {
+        "aboveGround": {
+          "value": 10,
+          "uncertainty": 5
+        }
       },
       "gps": {
         "antenna": {
@@ -10691,23 +8113,6 @@ PATH _`/devices/{serial}/wireless/radio/afc/position`_
 > 
 > **GET** `/devices/{serial}/wireless/radio/afc/position`  
 > 
->     {
->         "name": "Some MR",
->         "network": {
->             "id": "N_24329156"
->         },
->         "serial": "Q234-ABCD-5678",
->         "elevation": {
->             "height": 10,
->             "uncertainty": 1
->         },
->         "gps": {
->             "antenna": {
->                 "cableLength": 10
->             }
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -10716,23 +8121,6 @@ PATH _`/devices/{serial}/wireless/radio/afc/position`_
 > #### Update the position attributes for this device
 > 
 > **PUT** `/devices/{serial}/wireless/radio/afc/position`  
-> 
->     {
->         "name": "Some MR",
->         "network": {
->             "id": "N_24329156"
->         },
->         "serial": "Q234-ABCD-5678",
->         "elevation": {
->             "height": 10,
->             "uncertainty": 1
->         },
->         "gps": {
->             "antenna": {
->                 "cableLength": 10
->             }
->         }
->     }
 > 
 > * * *
 
@@ -10779,31 +8167,6 @@ PATH _`/devices/{serial}/wireless/radio/afc/powerLimits`_
 > 
 > **GET** `/devices/{serial}/wireless/radio/afc/powerLimits`  
 > 
->     {
->         "name": "Device_name",
->         "network": {
->             "id": "N_12345"
->         },
->         "serial": "Q2KN-6CN7-EC4X",
->         "expiresAt": "2023-01-27T19:36:32Z",
->         "lastUpdatedAt": "2023-01-26T19:36:32Z",
->         "lastSuccessAt": "2023-01-26T19:36:32Z",
->         "byChannel": [
->             {
->                 "channel": 11,
->                 "channelWidth": 20,
->                 "limit": 30
->             }
->         ],
->         "status": "SUCCESS",
->         "location": {
->             "lat": 37.4180951010362,
->             "lng": -122.098531723022,
->             "uncertainty": 10,
->             "type": "GPS"
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -10841,24 +8204,6 @@ PATH _`/devices/{serial}/wireless/radio/status`_
 > #### Show the status of this device's radios
 > 
 > **GET** `/devices/{serial}/wireless/radio/status`  
-> 
->     [
->         {
->             "band": "6",
->             "channel": {
->                 "value": 2,
->                 "width": 80,
->                 "dfs": {
->                     "radarDetected": false
->                 }
->             },
->             "power": {
->                 "transmit": 18,
->                 "mode": "low power indoor"
->             },
->             "status": "up"
->         }
->     ]
 > 
 > * * *
 
@@ -10900,9 +8245,9 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
       "fra": {
         "enabled": false
       },
-      "aiRrm": {
+      "ai": {
         "enabled": true,
-        "enablementDate": "2025-11-03T09:01:47Z"
+        "lastEnabledAt": "2025-12-07T09:05:36Z"
       }
     }
 
@@ -10913,40 +8258,6 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
 > #### Update the AutoRF settings for a wireless network
 > 
 > **PUT** `/networks/{networkId}/wireless/radio/autoRf`  
-> 
->     {
->         "networkId": "L_12345",
->         "name": "My Network",
->         "timeZone": "America/Los_Angeles",
->         "busyHour": {
->             "schedule": {
->                 "mode": "automatic",
->                 "automatic": {
->                     "start": "08:00",
->                     "end": "17:00"
->                 },
->                 "manual": {
->                     "start": "10:00",
->                     "end": "15:00"
->                 }
->             },
->             "minimizeChanges": {
->                 "enabled": true
->             }
->         },
->         "channel": {
->             "avoidance": {
->                 "enabled": true
->             }
->         },
->         "fra": {
->             "enabled": false
->         },
->         "aiRrm": {
->             "enabled": true,
->             "enablementDate": "2025-11-03T09:01:47Z"
->         }
->     }
 > 
 > * * *
 
@@ -10988,9 +8299,9 @@ PATH _`/networks/{networkId}/wireless/radio/rrm`_
       "fra": {
         "enabled": false
       },
-      "aiRrm": {
+      "ai": {
         "enabled": true,
-        "enablementDate": "2025-11-03T09:01:47Z"
+        "lastEnabledAt": "2025-12-07T09:05:36Z"
       }
     }
 
@@ -11001,40 +8312,6 @@ PATH _`/networks/{networkId}/wireless/radio/rrm`_
 > #### Update the AutoRF settings for a wireless network
 > 
 > **PUT** `/networks/{networkId}/wireless/radio/rrm`  
-> 
->     {
->         "networkId": "L_12345",
->         "name": "My Network",
->         "timeZone": "America/Los_Angeles",
->         "busyHour": {
->             "schedule": {
->                 "mode": "automatic",
->                 "automatic": {
->                     "start": "08:00",
->                     "end": "17:00"
->                 },
->                 "manual": {
->                     "start": "10:00",
->                     "end": "15:00"
->                 }
->             },
->             "minimizeChanges": {
->                 "enabled": true
->             }
->         },
->         "channel": {
->             "avoidance": {
->                 "enabled": true
->             }
->         },
->         "fra": {
->             "enabled": false
->         },
->         "aiRrm": {
->             "enabled": true,
->             "enablementDate": "2025-11-03T09:01:47Z"
->         }
->     }
 > 
 > * * *
 
@@ -11055,9 +8332,11 @@ PATH _`/organizations/{organizationId}/wireless/radio/afc/position/byDevice`_
           "id": "N_24329156"
         },
         "serial": "Q234-ABCD-5678",
-        "elevation": {
-          "height": 10,
-          "uncertainty": 1
+        "height": {
+          "aboveGround": {
+            "value": 10,
+            "uncertainty": 5
+          }
         },
         "gps": {
           "antenna": {
@@ -11074,25 +8353,6 @@ PATH _`/organizations/{organizationId}/wireless/radio/afc/position/byDevice`_
 > #### List the AFC power limits of an organization by device
 > 
 > **GET** `/organizations/{organizationId}/wireless/radio/afc/position/byDevice`  
-> 
->     [
->         {
->             "name": "Some MR",
->             "network": {
->                 "id": "N_24329156"
->             },
->             "serial": "Q234-ABCD-5678",
->             "elevation": {
->                 "height": 10,
->                 "uncertainty": 1
->             },
->             "gps": {
->                 "antenna": {
->                     "cableLength": 10
->                 }
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -11141,33 +8401,6 @@ PATH _`/organizations/{organizationId}/wireless/radio/afc/powerLimits/byDevice`_
 > 
 > **GET** `/organizations/{organizationId}/wireless/radio/afc/powerLimits/byDevice`  
 > 
->     [
->         {
->             "name": "Device_name",
->             "network": {
->                 "id": "N_12345"
->             },
->             "serial": "Q2KN-6CN7-EC4X",
->             "expiresAt": "2023-01-27T19:36:32Z",
->             "lastUpdatedAt": "2023-01-26T19:36:32Z",
->             "lastSuccessAt": "2023-01-26T19:36:32Z",
->             "byChannel": [
->                 {
->                     "channel": 11,
->                     "channelWidth": 20,
->                     "limit": 30
->                 }
->             ],
->             "status": "SUCCESS",
->             "location": {
->                 "lat": 37.4180951010362,
->                 "lng": -122.098531723022,
->                 "uncertainty": 10,
->                 "type": "GPS"
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -11209,9 +8442,9 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`_
         "fra": {
           "enabled": false
         },
-        "aiRrm": {
+        "ai": {
           "enabled": true,
-          "enablementDate": "2025-11-03T09:01:47Z"
+          "lastEnabledAt": "2025-12-07T09:05:36Z"
         }
       }
     ]
@@ -11223,42 +8456,6 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`_
 > #### List the AutoRF settings of an organization by network
 > 
 > **GET** `/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`  
-> 
->     [
->         {
->             "networkId": "L_12345",
->             "name": "My Network",
->             "timeZone": "America/Los_Angeles",
->             "busyHour": {
->                 "schedule": {
->                     "mode": "automatic",
->                     "automatic": {
->                         "start": "08:00",
->                         "end": "17:00"
->                     },
->                     "manual": {
->                         "start": "10:00",
->                         "end": "15:00"
->                     }
->                 },
->                 "minimizeChanges": {
->                     "enabled": true
->                 }
->             },
->             "channel": {
->                 "avoidance": {
->                     "enabled": true
->                 }
->             },
->             "fra": {
->                 "enabled": false
->             },
->             "aiRrm": {
->                 "enabled": true,
->                 "enablementDate": "2025-11-03T09:01:47Z"
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -11309,35 +8506,6 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/a
 > 
 > **GET** `/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/activities`  
 > 
->     [
->         {
->             "startedAt": "2018-02-11T00:00:00Z",
->             "endsAt": "2018-05-12T00:00:00Z",
->             "type": "avoid",
->             "reason": "dfs",
->             "band": "5",
->             "channel": 44,
->             "severity": 6,
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office",
->                 "tags": [
->                     "tag1",
->                     "tag2"
->                 ]
->             },
->             "device": {
->                 "name": "My AP",
->                 "serial": "Q234-ABCD-5678",
->                 "mac": "00:11:22:33:44:55",
->                 "tags": [
->                     "tag1",
->                     "tag2"
->                 ]
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -11350,41 +8518,51 @@ Operation ID: `getOrganizationWirelessRadioRrmByNetwork`
 
 PATH _`/organizations/{organizationId}/wireless/radio/rrm/byNetwork`_
 
-    [
-      {
-        "networkId": "L_12345",
-        "name": "My Network",
-        "timeZone": "America/Los_Angeles",
-        "busyHour": {
-          "schedule": {
-            "mode": "automatic",
-            "automatic": {
-              "start": "08:00",
-              "end": "17:00"
+    {
+      "items": [
+        {
+          "networkId": "L_12345",
+          "name": "My Network",
+          "timeZone": "America/Los_Angeles",
+          "busyHour": {
+            "schedule": {
+              "mode": "automatic",
+              "automatic": {
+                "start": "08:00",
+                "end": "17:00"
+              },
+              "manual": {
+                "start": "10:00",
+                "end": "15:00"
+              }
             },
-            "manual": {
-              "start": "10:00",
-              "end": "15:00"
+            "minimizeChanges": {
+              "enabled": true
             }
           },
-          "minimizeChanges": {
-            "enabled": true
+          "channel": {
+            "avoidance": {
+              "enabled": true
+            }
+          },
+          "fra": {
+            "enabled": false
+          },
+          "ai": {
+            "enabled": true,
+            "lastEnabledAt": "2025-12-07T09:05:36Z"
           }
-        },
-        "channel": {
-          "avoidance": {
-            "enabled": true
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 42,
+            "remaining": 5
           }
-        },
-        "fra": {
-          "enabled": false
-        },
-        "aiRrm": {
-          "enabled": true,
-          "enablementDate": "2025-11-03T09:01:47Z"
         }
       }
-    ]
+    }
 
 > \- Path added  
 >   
@@ -11393,42 +8571,6 @@ PATH _`/organizations/{organizationId}/wireless/radio/rrm/byNetwork`_
 > #### List the AutoRF settings of an organization by network
 > 
 > **GET** `/organizations/{organizationId}/wireless/radio/rrm/byNetwork`  
-> 
->     [
->         {
->             "networkId": "L_12345",
->             "name": "My Network",
->             "timeZone": "America/Los_Angeles",
->             "busyHour": {
->                 "schedule": {
->                     "mode": "automatic",
->                     "automatic": {
->                         "start": "08:00",
->                         "end": "17:00"
->                     },
->                     "manual": {
->                         "start": "10:00",
->                         "end": "15:00"
->                     }
->                 },
->                 "minimizeChanges": {
->                     "enabled": true
->                 }
->             },
->             "channel": {
->                 "avoidance": {
->                     "enabled": true
->                 }
->             },
->             "fra": {
->                 "enabled": false
->             },
->             "aiRrm": {
->                 "enabled": true,
->                 "enablementDate": "2025-11-03T09:01:47Z"
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -11483,39 +8625,6 @@ PATH _`/organizations/{organizationId}/wireless/radio/status/byNetwork`_
 > 
 > **GET** `/organizations/{organizationId}/wireless/radio/status/byNetwork`  
 > 
->     [
->         {
->             "network": {
->                 "id": "N_1234",
->                 "name": "MyNetwork"
->             },
->             "data": {
->                 "byDevice": [
->                     {
->                         "serial": "ABC-123",
->                         "radios": [
->                             {
->                                 "band": 6,
->                                 "channelSettings": {
->                                     "channel": 2,
->                                     "width": 80,
->                                     "dfs": {
->                                         "radarDetected": false
->                                     }
->                                 },
->                                 "powerSettings": {
->                                     "transmitPower": 18,
->                                     "mode": "lpi"
->                                 },
->                                 "status": "Up"
->                             }
->                         ]
->                     }
->                 ]
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -11550,17 +8659,32 @@ PATH _`/devices/{serial}/wireless/healthScores`_
 > 
 > **GET** `/devices/{serial}/wireless/healthScores`  
 > 
->     {
->         "device": {
->             "serial": "Q234-ABCD-5678"
->         },
->         "performance": {
->             "latest": 80
->         },
->         "onboarding": {
->             "latest": 20
->         }
->     }
+> * * *
+
+* * *
+
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-certificates-open-roaming-certificate-authority/)
+
+#### Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).
+
+Operation ID: `getOrganizationWirelessCertificatesOpenRoamingCertificateAuthority`
+
+PATH _`/organizations/{organizationId}/wireless/certificates/openRoaming/certificateAuthority`_
+
+    {
+      "status": "trusted",
+      "contents": "-----BEGIN CERTIFICATE-----\n\n        MIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n\n        umkqeYeO30g1uYvDuWLXVA==\n\n        -----END CERTIFICATE-----\n"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).
+> 
+> **GET** `/organizations/{organizationId}/wireless/certificates/openRoaming/certificateAuthority`  
 > 
 > * * *
 
@@ -11598,20 +8722,6 @@ PATH _`/networks/{networkId}/wireless/devices/healthScores`_
 > 
 > **GET** `/networks/{networkId}/wireless/devices/healthScores`  
 > 
->     [
->         {
->             "device": {
->                 "serial": "Q234-ABCD-5678"
->             },
->             "performance": {
->                 "latest": 80
->             },
->             "onboarding": {
->                 "latest": 20
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -11647,21 +8757,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/accelerometer/statuses`_
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/accelerometer/statuses`  
 > 
->     [
->         {
->             "serial": "Q234-ABCD-5678",
->             "name": "My appliance",
->             "network": {
->                 "id": "N_24329156"
->             },
->             "status": {
->                 "titleAngle": 0,
->                 "status": "Active",
->                 "errorReason": "No error"
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -11696,21 +8791,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/dataRate/byClient`_
 > #### Get average uplink and downlink datarates for all clients in the organization
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/dataRate/byClient`  
-> 
->     [
->         {
->             "ulDatarate": 10000,
->             "dlDatarate": 20000,
->             "client": {
->                 "id": "k74272e",
->                 "mac": "22:33:44:55:66:77"
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -11750,24 +8830,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/latency/byClient`_
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/latency/byClient`  
 > 
->     [
->         {
->             "overall": {
->                 "frames": 1439,
->                 "average": 24.73
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "device": {
->                 "name": "My AP",
->                 "serial": "Q234-ABCD-5678",
->                 "mac": "00:11:22:33:44:55"
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -11806,24 +8868,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/latency/byDevice`_
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/latency/byDevice`  
 > 
->     [
->         {
->             "overall": {
->                 "frames": 1439,
->                 "average": 24.73
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "device": {
->                 "name": "My AP",
->                 "serial": "Q234-ABCD-5678",
->                 "mac": "00:11:22:33:44:55"
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -11856,19 +8900,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/latency/byNetwork`_
 > #### Get per-network latency summaries for all wireless networks in an organization.
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/latency/byNetwork`  
-> 
->     [
->         {
->             "overall": {
->                 "frames": 1439,
->                 "average": 24.73
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -11904,21 +8935,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/liveTools/clients/{clien
 > #### Enqueue a job to disconnect a client from an AP. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 > 
 > **POST** `/organizations/{organizationId}/wireless/devices/liveTools/clients/{clientId}/disconnect`  
-> 
->     {
->         "id": "abcd-1234-efgh-5678",
->         "status": "queued",
->         "request": {
->             "mac": "00:11:22:33:44:55",
->             "serial": "ABCD-1234-ABCD"
->         },
->         "url": "/api/v1/devices/serial/liveTools/disconnect",
->         "callback": {
->             "id": "1284392014819",
->             "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
->             "status": "new"
->         }
->     }
 > 
 > * * *
 
@@ -12003,69 +9019,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/provisioning/deployments
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/provisioning/deployments`  
 > 
->     [
->         {
->             "items": [
->                 {
->                     "deploymentId": "1284392014819",
->                     "devices": {
->                         "old": {
->                             "serial": "Q234-ABCD-5678",
->                             "afterAction": "unclaim",
->                             "name": "My AP",
->                             "model": "MR34",
->                             "mac": "00:11:22:33:44:55",
->                             "tags": [
->                                 "tag1",
->                                 "tag2"
->                             ],
->                             "rfProfile": {
->                                 "id": "1284392014819",
->                                 "name": "RF Profile Name"
->                             }
->                         },
->                         "new": {
->                             "serial": "Q234-ABCD-5678",
->                             "name": "My AP",
->                             "model": "CW9166I",
->                             "mac": "00:11:22:33:44:55",
->                             "tags": [
->                                 "tag1",
->                                 "tag2"
->                             ],
->                             "rfProfile": {
->                                 "id": "1284392014819",
->                                 "name": "RF Profile Name"
->                             }
->                         }
->                     },
->                     "status": "ready",
->                     "type": "replace",
->                     "network": {
->                         "id": "N_24329156",
->                         "name": "Main Office"
->                     },
->                     "createdAt": "2018-02-11T00:00:00.090210Z",
->                     "requestedAt": "2018-02-11T00:00:00.090210Z",
->                     "lastUpdatedAt": "2018-02-11T00:00:00.090210Z",
->                     "completedAt": "2018-02-11T00:00:00.090210Z",
->                     "errors": [
->                         "error message1",
->                         "error message2"
->                     ]
->                 }
->             ],
->             "meta": {
->                 "counts": {
->                     "items": {
->                         "total": 20,
->                         "remaining": 0
->                     }
->                 }
->             }
->         }
->     ]
-> 
 > * * *
 > 
 >   
@@ -12075,67 +9028,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/provisioning/deployments
 > 
 > **POST** `/organizations/{organizationId}/wireless/devices/provisioning/deployments`  
 > 
->     {
->         "items": [
->             {
->                 "deploymentId": "1284392014819",
->                 "devices": {
->                     "old": {
->                         "serial": "Q234-ABCD-5678",
->                         "afterAction": "unclaim",
->                         "name": "My AP",
->                         "model": "MR34",
->                         "mac": "00:11:22:33:44:55",
->                         "tags": [
->                             "tag1",
->                             "tag2"
->                         ],
->                         "rfProfile": {
->                             "id": "1284392014819",
->                             "name": "RF Profile Name"
->                         }
->                     },
->                     "new": {
->                         "serial": "Q234-ABCD-5678",
->                         "name": "My AP",
->                         "model": "CW9166I",
->                         "mac": "00:11:22:33:44:55",
->                         "tags": [
->                             "tag1",
->                             "tag2"
->                         ],
->                         "rfProfile": {
->                             "id": "1284392014819",
->                             "name": "RF Profile Name"
->                         }
->                     }
->                 },
->                 "status": "ready",
->                 "type": "replace",
->                 "network": {
->                     "id": "N_24329156",
->                     "name": "Main Office"
->                 },
->                 "createdAt": "2018-02-11T00:00:00.090210Z",
->                 "requestedAt": "2018-02-11T00:00:00.090210Z",
->                 "lastUpdatedAt": "2018-02-11T00:00:00.090210Z",
->                 "completedAt": "2018-02-11T00:00:00.090210Z",
->                 "errors": [
->                     "error message1",
->                     "error message2"
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 20,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -12144,67 +9036,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/provisioning/deployments
 > #### Updates a zero touch deployment
 > 
 > **PUT** `/organizations/{organizationId}/wireless/devices/provisioning/deployments`  
-> 
->     {
->         "items": [
->             {
->                 "deploymentId": "1284392014819",
->                 "devices": {
->                     "old": {
->                         "serial": "Q234-ABCD-5678",
->                         "afterAction": "unclaim",
->                         "name": "My AP",
->                         "model": "MR34",
->                         "mac": "00:11:22:33:44:55",
->                         "tags": [
->                             "tag1",
->                             "tag2"
->                         ],
->                         "rfProfile": {
->                             "id": "1284392014819",
->                             "name": "RF Profile Name"
->                         }
->                     },
->                     "new": {
->                         "serial": "Q234-ABCD-5678",
->                         "name": "My AP",
->                         "model": "CW9166I",
->                         "mac": "00:11:22:33:44:55",
->                         "tags": [
->                             "tag1",
->                             "tag2"
->                         ],
->                         "rfProfile": {
->                             "id": "1284392014819",
->                             "name": "RF Profile Name"
->                         }
->                     }
->                 },
->                 "status": "ready",
->                 "type": "replace",
->                 "network": {
->                     "id": "N_24329156",
->                     "name": "Main Office"
->                 },
->                 "createdAt": "2018-02-11T00:00:00.090210Z",
->                 "requestedAt": "2018-02-11T00:00:00.090210Z",
->                 "lastUpdatedAt": "2018-02-11T00:00:00.090210Z",
->                 "completedAt": "2018-02-11T00:00:00.090210Z",
->                 "errors": [
->                     "error message1",
->                     "error message2"
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 20,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -12287,67 +9118,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/provisioning/deployments
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/provisioning/deployments/byNewDevice`  
 > 
->     {
->         "items": [
->             {
->                 "deploymentId": "1234567890",
->                 "devices": {
->                     "old": {
->                         "serial": "Q234-ABCD-5678",
->                         "afterAction": "unclaim",
->                         "name": "My AP",
->                         "model": "MR34",
->                         "mac": "00:11:22:33:44:55",
->                         "tags": [
->                             "tag1",
->                             "tag2"
->                         ],
->                         "rfProfile": {
->                             "id": "1284392014819",
->                             "name": "RF Profile Name"
->                         }
->                     },
->                     "new": {
->                         "serial": "Q234-ABCD-5678",
->                         "name": "My AP",
->                         "model": "CW9166I",
->                         "mac": "00:11:22:33:44:55",
->                         "tags": [
->                             "tag1",
->                             "tag2"
->                         ],
->                         "rfProfile": {
->                             "id": "1284392014819",
->                             "name": "RF Profile Name"
->                         }
->                     }
->                 },
->                 "status": "ready",
->                 "type": "replace",
->                 "network": {
->                     "id": "N_24329156",
->                     "name": "Main Office"
->                 },
->                 "createdAt": "2018-02-11T00:00:00.090210Z",
->                 "requestedAt": "2018-02-11T00:00:00.090210Z",
->                 "lastUpdatedAt": "2018-02-11T00:00:00.090210Z",
->                 "completedAt": "2018-02-11T00:00:00.090210Z",
->                 "errors": [
->                     "error message1",
->                     "error message2"
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 80,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -12395,13 +9165,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/provisioning/recommendat
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/provisioning/recommendations/tags`  
 > 
->     [
->         {
->             "tag": "tag1",
->             "confidence": 0.5
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -12437,21 +9200,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/signalQuality/byClient`_
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/signalQuality/byClient`  
 > 
->     [
->         {
->             "snr": 37,
->             "rssi": -58,
->             "client": {
->                 "id": "k74272e",
->                 "mac": "22:33:44:55:66:77"
->             },
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -12483,17 +9231,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/signalQuality/byDevice`_
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/signalQuality/byDevice`  
 > 
->     [
->         {
->             "snr": 37,
->             "rssi": -58,
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -12524,17 +9261,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/signalQuality/byNetwork`
 > #### Get average signal quality for all networks in the organization
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/signalQuality/byNetwork`  
-> 
->     [
->         {
->             "snr": 37,
->             "rssi": -58,
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -12595,45 +9321,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/telemetry`_
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/telemetry`  
 > 
->     {
->         "items": [
->             {
->                 "network": {
->                     "id": "N_24329156",
->                     "name": "Main Office",
->                     "tags": [
->                         "tag1",
->                         "tag2"
->                     ]
->                 },
->                 "name": "My AP",
->                 "serial": "Q234-ABCD-5678",
->                 "mac": "00:11:22:33:44:55",
->                 "tags": [
->                     "tag1",
->                     "tag2"
->                 ],
->                 "rfProfile": {
->                     "id": "1",
->                     "name": "Basic Indoor RF Profile"
->                 },
->                 "metrics": [
->                     {
->                         "name": "Telemetry A"
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -12680,31 +9367,6 @@ PATH _`/networks/{networkId}/wireless/clients/healthScores`_
 > #### Fetch the health scores for all clients on this network
 > 
 > **GET** `/networks/{networkId}/wireless/clients/healthScores`  
-> 
->     [
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 80,
->                 "currentConnection": 100
->             },
->             "onboarding": {
->                 "latest": 100
->             }
->         },
->         {
->             "mac": "22:33:44:55:66:77",
->             "clientId": "k74272e",
->             "performance": {
->                 "latest": 30,
->                 "currentConnection": 50
->             },
->             "onboarding": {
->                 "latest": 70
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -12762,42 +9424,6 @@ PATH _`/networks/{networkId}/wireless/clients/onboardingHistory`_
 > 
 > **GET** `/networks/{networkId}/wireless/clients/onboardingHistory`  
 > 
->     [
->         {
->             "startTs": "2020-01-01T00:00:00Z",
->             "endTs": "2020-01-01T00:05:00Z",
->             "clientCounts": {
->                 "summary": {
->                     "prospective": 100,
->                     "successful": 75,
->                     "failed": 25
->                 },
->                 "connectionSteps": {
->                     "association": {
->                         "prospective": 100,
->                         "successful": 97,
->                         "failed": 3
->                     },
->                     "authentication": {
->                         "prospective": 97,
->                         "successful": 81,
->                         "failed": 16
->                     },
->                     "dhcp": {
->                         "prospective": 81,
->                         "successful": 75,
->                         "failed": 6
->                     },
->                     "dns": {
->                         "prospective": 75,
->                         "successful": 75,
->                         "failed": 0
->                     }
->                 }
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -12830,17 +9456,238 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 > 
 > **GET** `/networks/{networkId}/wireless/clients/{clientId}/healthScores`  
 > 
->     {
->         "mac": "22:33:44:55:66:77",
->         "clientId": "k74272e",
->         "performance": {
->             "latest": 80,
->             "currentConnection": 100
->         },
->         "onboarding": {
->             "latest": 100
->         }
->     }
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-client-roaming-history/)
+
+#### Get client roam events within the specified timespan.
+
+Operation ID: `getNetworkWirelessClientRoamingHistory`
+
+PATH _`/networks/{networkId}/wireless/clients/{clientId}/roaming/history`_
+
+    [
+      {
+        "status": "roam",
+        "ts": "2018-02-11T00:00:00.090210Z",
+        "device": {
+          "name": "My AP",
+          "serial": "Q234-ABCD-5678",
+          "mac": "00:11:22:33:44:55"
+        },
+        "details": {
+          "duration": 120,
+          "signalQuality": {
+            "previous": {
+              "snr": -30,
+              "rssi": 70
+            },
+            "current": {
+              "snr": -20,
+              "rssi": 80
+            }
+          },
+          "band": 5,
+          "roamProtocol": "non-802.11r",
+          "disconnectReason": "Client out of range"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get client roam events within the specified timespan.
+> 
+> **GET** `/networks/{networkId}/wireless/clients/{clientId}/roaming/history`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-clients-connections-association-by-client/)
+
+#### Summarize association outcomes per wireless client across an organization.
+
+Operation ID: `getOrganizationWirelessClientsConnectionsAssociationByClient`
+
+PATH _`/organizations/{organizationId}/wireless/clients/connections/association/byClient`_
+
+    [
+      {
+        "successes": {
+          "count": 1000
+        },
+        "failures": {
+          "byReason": [
+            {
+              "code": 5,
+              "count": 15,
+              "recentEvent": {
+                "ssid": {
+                  "number": 3,
+                  "name": "Guest Wifi"
+                },
+                "radio": {
+                  "number": 0,
+                  "band": "2.4"
+                }
+              }
+            }
+          ]
+        },
+        "device": {
+          "name": "My AP",
+          "serial": "Q234-ABCD-5678",
+          "mac": "00:11:22:33:44:55"
+        },
+        "client": {
+          "id": "k74272e",
+          "mac": "22:33:44:55:66:77"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Summarize association outcomes per wireless client across an organization.
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/connections/association/byClient`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-clients-connections-authentication-by-client/)
+
+#### Summarize authentication outcomes per wireless client across an organization.
+
+Operation ID: `getOrganizationWirelessClientsConnectionsAuthenticationByClient`
+
+PATH _`/organizations/{organizationId}/wireless/clients/connections/authentication/byClient`_
+
+    [
+      {
+        "successes": {
+          "count": 1000
+        },
+        "failures": {
+          "byReason": [
+            {
+              "code": 5,
+              "count": 15,
+              "recentEvent": {
+                "ssid": {
+                  "number": 3,
+                  "name": "Guest Wifi"
+                },
+                "radio": {
+                  "number": 0,
+                  "band": "2.4"
+                }
+              }
+            }
+          ]
+        },
+        "device": {
+          "name": "My AP",
+          "serial": "Q234-ABCD-5678",
+          "mac": "00:11:22:33:44:55"
+        },
+        "client": {
+          "id": "k74272e",
+          "mac": "22:33:44:55:66:77"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Summarize authentication outcomes per wireless client across an organization.
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/connections/authentication/byClient`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-clients-connections-dhcp-by-client/)
+
+#### Get IP assignment for all clients in the organization
+
+Operation ID: `getOrganizationWirelessClientsConnectionsDhcpByClient`
+
+PATH _`/organizations/{organizationId}/wireless/clients/connections/dhcp/byClient`_
+
+    [
+      {
+        "successes": {
+          "count": 4387
+        },
+        "warnings": {
+          "byReason": [
+            {
+              "reason": "DHCP_NAK_AFTER_ACK",
+              "count": 1
+            }
+          ]
+        },
+        "failures": {
+          "byReason": [
+            {
+              "reason": "DHCP_NAK",
+              "count": 109,
+              "recentEvent": {
+                "ssid": {
+                  "number": 3,
+                  "name": "Guest Wifi"
+                },
+                "radio": {
+                  "number": 0,
+                  "band": "2.4"
+                }
+              }
+            }
+          ]
+        },
+        "device": {
+          "name": "My AP",
+          "serial": "Q234-ABCD-5678",
+          "mac": "00:11:22:33:44:55"
+        },
+        "client": {
+          "id": "k74272e",
+          "mac": "22:33:44:55:66:77"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get IP assignment for all clients in the organization
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/connections/dhcp/byClient`  
 > 
 > * * *
 
@@ -12848,6 +9695,46 @@ PATH _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
 
 \[ switch \]
 ------------
+
+### alerts
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-alerts-poe-by-device/)
+
+#### Gets all poe related alerts over a given network and returns information by device
+
+Operation ID: `getOrganizationSwitchAlertsPoeByDevice`
+
+PATH _`/organizations/{organizationId}/switch/alerts/poe/byDevice`_
+
+    [
+      {
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "name": "My switch",
+        "mac": "00:11:22:33:44:55",
+        "serial": "Q234-ABCD-5678",
+        "model": "MR34",
+        "port": "1",
+        "issueType": 0,
+        "failureCount": "MR34",
+        "startTime": "MR34",
+        "endTime": "MR34"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Gets all poe related alerts over a given network and returns information by device
+> 
+> **GET** `/organizations/{organizationId}/switch/alerts/poe/byDevice`  
+> 
+> * * *
+
+* * *
 
 ### configTemplates
 
@@ -12922,61 +9809,6 @@ PATH _`/organizations/{organizationId}/configTemplates/switch/profiles/ports/mir
 > 
 > **GET** `/organizations/{organizationId}/configTemplates/switch/profiles/ports/mirrors/bySwitchProfile`  
 > 
->     {
->         "items": [
->             {
->                 "profileId": "1098",
->                 "configTemplate": {
->                     "id": "N_23952905",
->                     "name": "Main Office"
->                 },
->                 "mirror": {
->                     "source": {
->                         "ports": [
->                             {
->                                 "number": 2,
->                                 "module": {
->                                     "type": "C9800-2X40GE",
->                                     "slot": 1
->                                 }
->                             }
->                         ],
->                         "filter": {
->                             "vlans": "100, 200-210",
->                             "hasTransitVlan": true
->                         }
->                     },
->                     "destination": {
->                         "port": {
->                             "number": 7,
->                             "module": {
->                                 "type": "C9800-2X40GE",
->                                 "slot": 1
->                             }
->                         },
->                         "vlan": "10"
->                     },
->                     "role": "source",
->                     "comment": "My pretty comment",
->                     "tags": [
->                         "tag1",
->                         "tag2"
->                     ]
->                 },
->                 "warnings": [
->                     "sample warning message"
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -13041,49 +9873,218 @@ PATH _`/organizations/{organizationId}/configTemplates/{configTemplateId}/switch
 > 
 > **PUT** `/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports/mirror`  
 > 
->     {
->         "profileId": "1098",
->         "configTemplate": {
->             "id": "N_23952905",
->             "name": "Main Office"
->         },
->         "mirror": {
->             "source": {
->                 "ports": [
->                     {
->                         "number": 2,
->                         "module": {
->                             "type": "C9800-2X40GE",
->                             "slot": 1
->                         }
->                     }
->                 ],
->                 "filter": {
->                     "vlans": "100, 200-210",
->                     "hasTransitVlan": true
->                 }
->             },
->             "destination": {
->                 "port": {
->                     "number": 7,
->                     "module": {
->                         "type": "C9800-2X40GE",
->                         "slot": 1
->                     }
->                 },
->                 "vlan": "10"
->             },
->             "role": "source",
->             "comment": "My pretty comment",
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ]
->         },
->         "warnings": [
->             "sample warning message"
->         ]
->     }
+> * * *
+
+* * *
+
+### connectivity
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-connectivity-lan-link-errors-by-device-by-port/)
+
+#### Lan link errors by device and port.
+
+Operation ID: `getOrganizationSwitchConnectivityLanLinkErrorsByDeviceByPort`
+
+PATH _`/organizations/{organizationId}/switch/connectivity/lanLink/errors/byDevice/byPort`_
+
+    [
+      {
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "device": {
+          "name": "My AP",
+          "serial": "Q234-ABCD-5678",
+          "mac": "00:11:22:33:44:55"
+        },
+        "issueType": "crc",
+        "port": 1,
+        "startTime": "2024-04-26T18:02:24Z",
+        "endTime": "2024-04-26T18:07:05Z"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lan link errors by device and port.
+> 
+> **GET** `/organizations/{organizationId}/switch/connectivity/lanLink/errors/byDevice/byPort`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-connectivity-lan-stp-errors-by-device-by-port/)
+
+#### Lan STP errors by device and port.
+
+Operation ID: `getOrganizationSwitchConnectivityLanStpErrorsByDeviceByPort`
+
+PATH _`/organizations/{organizationId}/switch/connectivity/lanStp/errors/byDevice/byPort`_
+
+    [
+      {
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "device": {
+          "name": "My AP",
+          "serial": "Q234-ABCD-5678",
+          "mac": "00:11:22:33:44:55"
+        },
+        "issueType": "stp_rootguard_active",
+        "port": 2,
+        "startTime": "2024-04-26T18:02:24Z",
+        "endTime": "2024-04-26T18:07:05Z"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Lan STP errors by device and port.
+> 
+> **GET** `/organizations/{organizationId}/switch/connectivity/lanStp/errors/byDevice/byPort`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-connectivity-vrrp-failures-by-device/)
+
+#### Gets all vrrp related alerts over a given network and returns information by device
+
+Operation ID: `getOrganizationSwitchConnectivityVrrpFailuresByDevice`
+
+PATH _`/organizations/{organizationId}/switch/connectivity/vrrp/failures/byDevice`_
+
+    [
+      {
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "device": {
+          "name": "My AP",
+          "serial": "Q234-ABCD-5678",
+          "mac": "00:11:22:33:44:55"
+        },
+        "ssid": {
+          "model": "MR34"
+        },
+        "issueType": "vrrp_failover",
+        "failureCount": 0,
+        "startTime": "2024-04-26T18:02:24Z",
+        "endTime": "2024-04-26T18:07:05Z"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Gets all vrrp related alerts over a given network and returns information by device
+> 
+> **GET** `/organizations/{organizationId}/switch/connectivity/vrrp/failures/byDevice`  
+> 
+> * * *
+
+* * *
+
+### spanningTree
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-spanning-tree/)
+
+#### Updates Spanning Tree configuration
+
+Operation ID: `updateNetworkSwitchSpanningTree`
+
+PATH _`/networks/{networkId}/switch/spanningTree`_
+
+    {
+      "enabled": false,
+      "mode": "mst",
+      "priorities": [
+        {
+          "switches": [
+            "Q234-ABCD-0001",
+            "Q234-ABCD-0002",
+            "Q234-ABCD-0003"
+          ],
+          "stacks": [
+            "789102",
+            "123456",
+            "129102"
+          ],
+          "switchProfiles": [
+            "1098",
+            "1099",
+            "1100"
+          ],
+          "priority": 4096,
+          "vlanList": "40,10-19"
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Updates Spanning Tree configuration
+> 
+> **PUT** `/networks/{networkId}/switch/spanningTree`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-spanning-tree/)
+
+#### Returns Spanning Tree configuration settings
+
+Operation ID: `getOrganizationSwitchSpanningTree`
+
+PATH _`/organizations/{organizationId}/switch/spanningTree`_
+
+    {
+      "enabled": false,
+      "mode": "mst",
+      "priorities": [
+        {
+          "switches": [
+            "Q234-ABCD-0001",
+            "Q234-ABCD-0002",
+            "Q234-ABCD-0003"
+          ],
+          "stacks": [
+            "789102",
+            "123456",
+            "129102"
+          ],
+          "switchProfiles": [
+            "1098",
+            "1099",
+            "1100"
+          ],
+          "priority": 4096,
+          "vlanList": "40,10-19"
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns Spanning Tree configuration settings
+> 
+> **GET** `/organizations/{organizationId}/switch/spanningTree`  
 > 
 > * * *
 
@@ -13119,18 +10120,6 @@ PATH _`/networks/{networkId}/switch/raGuardPolicy`_
 > 
 > **GET** `/networks/{networkId}/switch/raGuardPolicy`  
 > 
->     {
->         "defaultPolicy": "allowed",
->         "blockedServers": [
->             "00:50:56:00:00:03",
->             "00:50:56:00:00:04"
->         ],
->         "allowedServers": [
->             "00:50:56:00:00:01",
->             "00:50:56:00:00:02"
->         ]
->     }
-> 
 > * * *
 > 
 >   
@@ -13139,18 +10128,6 @@ PATH _`/networks/{networkId}/switch/raGuardPolicy`_
 > #### Update RA Guard settings
 > 
 > **PUT** `/networks/{networkId}/switch/raGuardPolicy`  
-> 
->     {
->         "defaultPolicy": "allowed",
->         "blockedServers": [
->             "00:50:56:00:00:03",
->             "00:50:56:00:00:04"
->         ],
->         "allowedServers": [
->             "00:50:56:00:00:01",
->             "00:50:56:00:00:02"
->         ]
->     }
 > 
 > * * *
 
@@ -13271,102 +10248,90 @@ PATH _`/organizations/{organizationId}/switch/devices/system/queues/history/bySw
 > 
 > **GET** `/organizations/{organizationId}/switch/devices/system/queues/history/bySwitch/byInterval`  
 > 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-0001",
->                 "model": "MS",
->                 "name": "My switch",
->                 "mac": "00:11:22:33:44:55",
->                 "tags": [
->                     "tag1",
->                     "tag2"
->                 ],
->                 "network": {
->                     "id": "N_24329156",
->                     "name": "Main Office",
->                     "tags": [
->                         "tag1",
->                         "tag2"
->                     ]
->                 },
->                 "history": [
->                     {
->                         "startTs": "2018-02-11T00:00:00.090210Z",
->                         "endTs": "2018-02-11T00:00:00.090210Z",
->                         "counts": {
->                             "processed": {
->                                 "total": 9,
->                                 "byProtocol": {
->                                     "stp": 1,
->                                     "ospf": 1,
->                                     "lacp": 1,
->                                     "arp": 1,
->                                     "management": 5
->                                 }
->                             },
->                             "dropped": {
->                                 "total": 3,
->                                 "byProtocol": {
->                                     "stp": 0,
->                                     "ospf": 1,
->                                     "lacp": 0,
->                                     "arp": 2,
->                                     "management": 0
->                                 }
->                             }
->                         }
->                     }
->                 ],
->                 "stack": {
->                     "id": "Stack ID",
->                     "name": "Stack name",
->                     "members": [
->                         {
->                             "serial": "Q234-ABCD-0001",
->                             "model": "MS",
->                             "name": "My switch",
->                             "mac": "00:11:22:33:44:55",
->                             "tags": [
->                                 "tag1",
->                                 "tag2"
->                             ],
->                             "history": [
->                                 {
->                                     "startTs": "2018-02-11T00:00:00.090210Z",
->                                     "endTs": "2018-02-11T00:00:00.090210Z",
->                                     "counts": {
->                                         "processed": {
->                                             "total": 8,
->                                             "byProtocol": {
->                                                 "arp": 2,
->                                                 "management": 6
->                                             }
->                                         },
->                                         "dropped": {
->                                             "total": 3,
->                                             "byProtocol": {
->                                                 "arp": 1,
->                                                 "management": 2
->                                             }
->                                         }
->                                     }
->                                 }
->                             ]
->                         }
->                     ]
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 4,
->                     "remaining": 2
->                 }
->             }
->         }
->     }
+> * * *
+
+* * *
+
+### clients
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-clients-connections-authentication-by-client/)
+
+#### Summarizes authentication outcomes per switch client across an organization.
+
+Operation ID: `getOrganizationSwitchClientsConnectionsAuthenticationByClient`
+
+PATH _`/organizations/{organizationId}/switch/clients/connections/authentication/byClient`_
+
+    [
+      {
+        "successes": {
+          "count": 10
+        },
+        "failures": {
+          "byType": [
+            {
+              "type": "ap_noauth",
+              "count": 2
+            }
+          ]
+        },
+        "client": {
+          "id": "k74272e",
+          "mac": "22:33:44:55:66:77"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Summarizes authentication outcomes per switch client across an organization.
+> 
+> **GET** `/organizations/{organizationId}/switch/clients/connections/authentication/byClient`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-clients-connections-dhcp-by-client/)
+
+#### Get IP assignment for all clients in the organization
+
+Operation ID: `getOrganizationSwitchClientsConnectionsDhcpByClient`
+
+PATH _`/organizations/{organizationId}/switch/clients/connections/dhcp/byClient`_
+
+    [
+      {
+        "successes": {
+          "count": 1
+        },
+        "failures": {
+          "count": 1
+        },
+        "client": {
+          "id": "k74272e",
+          "mac": "22:33:44:55:66:77"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get IP assignment for all clients in the organization
+> 
+> **GET** `/organizations/{organizationId}/switch/clients/connections/dhcp/byClient`  
 > 
 > * * *
 
@@ -13435,52 +10400,6 @@ PATH _`/networks/{networkId}/switch/stacks/{switchStackId}/ports/mirror`_
 > #### Update switch port mirrors for switch stacks
 > 
 > **PUT** `/networks/{networkId}/switch/stacks/{switchStackId}/ports/mirror`  
-> 
->     {
->         "switchStackId": "123456",
->         "network": {
->             "id": "N_24329156",
->             "name": "Main Office"
->         },
->         "mirror": {
->             "source": {
->                 "ports": [
->                     {
->                         "serial": "Q234-ABCD-5678",
->                         "number": 2,
->                         "module": {
->                             "type": "C9800-2X40GE",
->                             "slot": 1
->                         }
->                     }
->                 ],
->                 "filter": {
->                     "vlans": "100, 200-210",
->                     "hasTransitVlan": true
->                 }
->             },
->             "destination": {
->                 "port": {
->                     "serial": "Q234-ABCD-5670",
->                     "number": 7,
->                     "module": {
->                         "type": "C9800-2X40GE",
->                         "slot": 2
->                     }
->                 },
->                 "vlan": "10"
->             },
->             "role": "source",
->             "comment": "My pretty comment",
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ]
->         },
->         "warnings": [
->             "Warnings from traffic mirror configuration changes"
->         ]
->     }
 > 
 > * * *
 
@@ -13561,65 +10480,6 @@ PATH _`/organizations/{organizationId}/switch/stacks/ports/mirrors/byStack`_
 > 
 > **GET** `/organizations/{organizationId}/switch/stacks/ports/mirrors/byStack`  
 > 
->     [
->         {
->             "items": [
->                 {
->                     "switchStackId": "123456",
->                     "network": {
->                         "id": "N_24329156",
->                         "name": "Main Office"
->                     },
->                     "mirror": {
->                         "source": {
->                             "ports": [
->                                 {
->                                     "serial": "Q234-ABCD-5678",
->                                     "number": 2,
->                                     "module": {
->                                         "type": "C9800-2X40GE",
->                                         "slot": 1
->                                     }
->                                 }
->                             ],
->                             "filter": {
->                                 "vlans": "100, 200-210",
->                                 "hasTransitVlan": true
->                             }
->                         },
->                         "destination": {
->                             "port": {
->                                 "serial": "Q234-ABCD-5670",
->                                 "number": 7,
->                                 "module": {
->                                     "type": "C9800-2X40GE",
->                                     "slot": 2
->                                 }
->                             },
->                             "vlan": "10"
->                         },
->                         "role": "source",
->                         "comment": "My pretty comment",
->                         "tags": [
->                             "tag1",
->                             "tag2"
->                         ]
->                     },
->                     "warnings": [
->                         "Warnings from traffic mirror configuration changes"
->                     ]
->                 }
->             ],
->             "meta": {
->                 "counts": {
->                     "items": {
->                         "total": 1
->                     }
->                 }
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -13660,24 +10520,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/autonomousSystems`_
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/autonomousSystems`  
 > 
->     {
->         "items": [
->             {
->                 "autonomousSystemId": "123",
->                 "number": 65000,
->                 "description": "Core AS"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -13686,12 +10528,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/autonomousSystems`_
 > #### Create an autonomous system. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **POST** `/organizations/{organizationId}/switch/routing/bgp/autonomousSystems`  
-> 
->     {
->         "autonomousSystemId": "123",
->         "number": 65000,
->         "description": "Core AS"
->     }
 > 
 > * * *
 
@@ -13734,27 +10570,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/autonomousSystems/over
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/autonomousSystems/overview/byAutonomousSystem`  
 > 
->     {
->         "items": [
->             {
->                 "autonomousSystemId": "123",
->                 "counts": {
->                     "routers": {
->                         "total": 2
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -13780,12 +10595,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/autonomousSystems/{aut
 > #### Update an autonomous system. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **PUT** `/organizations/{organizationId}/switch/routing/bgp/autonomousSystems/{autonomousSystemId}`  
-> 
->     {
->         "autonomousSystemId": "123",
->         "number": 65000,
->         "description": "Core AS"
->     }
 > 
 > * * *
 > 
@@ -13838,28 +10647,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/filterLists`_
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/filters/filterLists`  
 > 
->     {
->         "items": [
->             {
->                 "listId": "123",
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "name": "1",
->                 "description": "Sample filter list description"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -13901,28 +10688,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/filterLists/de
 > #### Create or update a filter list, in addition to its associated rules. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **POST** `/organizations/{organizationId}/switch/routing/bgp/filters/filterLists/deploy`  
-> 
->     {
->         "filterList": {
->             "id": "123",
->             "name": "1",
->             "description": "Sample filter list description"
->         },
->         "network": {
->             "id": "L_123",
->             "name": "My network name"
->         },
->         "rules": [
->             {
->                 "id": "123",
->                 "sequenceNumber": 10,
->                 "policy": "permit",
->                 "match": {
->                     "regex": "^109$"
->                 }
->             }
->         ]
->     }
 > 
 > * * *
 
@@ -13970,33 +10735,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/filterLists/ov
 > #### List the overview of the filter lists configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/filters/filterLists/overview/byFilterList`  
-> 
->     {
->         "items": [
->             {
->                 "listId": "135",
->                 "counts": {
->                     "neighbors": {
->                         "total": 3
->                     },
->                     "peerGroups": {
->                         "total": 2
->                     },
->                     "rules": {
->                         "total": 1
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -14046,35 +10784,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/filterLists/ru
 > #### List the filter list rules configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/filters/filterLists/rules`  
-> 
->     {
->         "items": [
->             {
->                 "ruleId": "123",
->                 "filterList": {
->                     "id": "456",
->                     "name": "3"
->                 },
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "sequenceNumber": 10,
->                 "policy": "permit",
->                 "match": {
->                     "regex": "^109$"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -14138,28 +10847,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists`_
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists`  
 > 
->     {
->         "items": [
->             {
->                 "listId": "123",
->                 "name": "SamplePrefixListName",
->                 "description": "Sample prefix list description",
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -14205,32 +10892,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/de
 > #### Create or update a prefix list, in addition to its associated rules. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **POST** `/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/deploy`  
-> 
->     {
->         "network": {
->             "id": "L_123",
->             "name": "My network name"
->         },
->         "prefixList": {
->             "id": "123",
->             "name": "SamplePrefixListName",
->             "description": "Sample prefix list description"
->         },
->         "rules": [
->             {
->                 "id": "123",
->                 "sequenceNumber": 10,
->                 "policy": "permit",
->                 "conditions": {
->                     "cidr": "10.0.0.0/8",
->                     "prefixLength": {
->                         "minimum": 16,
->                         "maximum": 28
->                     }
->                 }
->             }
->         ]
->     }
 > 
 > * * *
 
@@ -14278,33 +10939,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/ov
 > #### List the overview of the prefix lists configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/overview/byPrefixList`  
-> 
->     {
->         "items": [
->             {
->                 "listId": "135",
->                 "counts": {
->                     "neighbors": {
->                         "total": 3
->                     },
->                     "peerGroups": {
->                         "total": 2
->                     },
->                     "rules": {
->                         "total": 1
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -14358,39 +10992,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/ru
 > #### List the prefix list rules configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/rules`  
-> 
->     {
->         "items": [
->             {
->                 "ruleId": "123",
->                 "prefixList": {
->                     "id": "456",
->                     "name": "my-prefix-list"
->                 },
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "sequenceNumber": 10,
->                 "policy": "permit",
->                 "conditions": {
->                     "cidr": "10.0.0.0/8",
->                     "prefixLength": {
->                         "minimum": 16,
->                         "maximum": 28
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -14459,34 +11060,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/groups`_
 > #### List the BGP peer groups configured in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/peers/groups`  
-> 
->     {
->         "items": [
->             {
->                 "peerGroupId": "999",
->                 "router": {
->                     "id": "888"
->                 },
->                 "profile": {
->                     "id": "777",
->                     "name": "EBGP"
->                 },
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "name": "MyPeerGroup"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -14629,127 +11202,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/addressFa
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/peers/groups/addressFamilies/deployments`  
 > 
->     {
->         "items": [
->             {
->                 "addressFamily": {
->                     "id": "456",
->                     "description": "ipv4 unicast"
->                 },
->                 "listenRanges": [
->                     {
->                         "id": "999",
->                         "cidr": "192.0.2.0/24",
->                         "enabled": true,
->                         "description": "Campus-Bldg-1"
->                     }
->                 ],
->                 "neighbors": [
->                     {
->                         "id": "999",
->                         "description": "BGP gateway",
->                         "address": "10.0.0.1",
->                         "peering": {
->                             "enabled": true
->                         }
->                     }
->                 ],
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "peerGroup": {
->                     "id": "999",
->                     "name": "MyPeerGroup"
->                 },
->                 "peerGroupAddressFamilyBinding": {
->                     "id": "123"
->                 },
->                 "peerGroupAddressFamilyBindingProfile": {
->                     "id": "123",
->                     "advertisement": {
->                         "interval": 20,
->                         "defaultRoutes": {
->                             "enabled": true
->                         }
->                     },
->                     "communityAttribute": {
->                         "send": {
->                             "enabled": true
->                         }
->                     },
->                     "name": "Sample binding profile",
->                     "nextHop": {
->                         "self": {
->                             "enabled": true
->                         },
->                         "unchanged": {
->                             "enabled": false
->                         }
->                     },
->                     "removePrivateAs": {
->                         "enabled": true
->                     },
->                     "routeReflector": {
->                         "client": {
->                             "enabled": false
->                         }
->                     },
->                     "softReconfiguration": {
->                         "direction": "inbound"
->                     },
->                     "weight": 30
->                 },
->                 "peerGroupProfile": {
->                     "id": "456",
->                     "name": "DefaultPeerGroup",
->                     "description": "Standard settings",
->                     "ebgp": {
->                         "connectedCheck": {
->                             "enabled": true
->                         },
->                         "multihop": {
->                             "maximum": 10
->                         }
->                     },
->                     "authentication": {
->                         "enabled": true,
->                         "password": "my password"
->                     },
->                     "timers": {
->                         "hold": 90,
->                         "keepalive": 30
->                     },
->                     "autonomousSystem": {
->                         "remote": {
->                             "number": 65000
->                         }
->                     },
->                     "interfaces": {
->                         "loopback": {
->                             "source": {
->                                 "id": "555",
->                                 "name": "0",
->                                 "number": 0
->                             }
->                         }
->                     }
->                 },
->                 "router": {
->                     "id": "888"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -14871,108 +11323,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/deploy`_
 > #### Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **POST** `/organizations/{organizationId}/switch/routing/bgp/peers/groups/deploy`  
-> 
->     {
->         "addressFamily": {
->             "id": "456",
->             "description": "ipv4 unicast"
->         },
->         "network": {
->             "id": "L_123",
->             "name": "My network name"
->         },
->         "peerGroup": {
->             "id": "999",
->             "name": "MyPeerGroup"
->         },
->         "peerGroupAddressFamilyBinding": {
->             "id": "123"
->         },
->         "peerGroupAddressFamilyBindingProfile": {
->             "id": "123",
->             "advertisement": {
->                 "interval": 20,
->                 "defaultRoutes": {
->                     "enabled": true
->                 }
->             },
->             "communityAttribute": {
->                 "send": {
->                     "enabled": true
->                 }
->             },
->             "name": "Sample binding profile",
->             "nextHop": {
->                 "self": {
->                     "enabled": true
->                 },
->                 "unchanged": {
->                     "enabled": false
->                 }
->             },
->             "removePrivateAs": {
->                 "enabled": true
->             },
->             "routeReflector": {
->                 "client": {
->                     "enabled": false
->                 }
->             },
->             "softReconfiguration": {
->                 "direction": "inbound"
->             },
->             "weight": 30
->         },
->         "peerGroupProfile": {
->             "id": "456",
->             "name": "DefaultPeerGroup",
->             "description": "Standard settings",
->             "ebgp": {
->                 "connectedCheck": {
->                     "enabled": true
->                 },
->                 "multihop": {
->                     "maximum": 10
->                 }
->             },
->             "authentication": {
->                 "enabled": true,
->                 "password": "my password"
->             },
->             "timers": {
->                 "hold": 90,
->                 "keepalive": 30
->             },
->             "autonomousSystem": {
->                 "remote": {
->                     "number": 65000
->                 }
->             },
->             "interfaces": {
->                 "loopback": {
->                     "source": {
->                         "id": "555",
->                         "name": "0",
->                         "number": 0
->                     }
->                 }
->             }
->         },
->         "policies": [
->             {
->                 "id": "123",
->                 "ruleList": {
->                     "type": "Prefix list",
->                     "name": "SamplePrefixListName",
->                     "id": "789"
->                 },
->                 "direction": "in"
->             }
->         ],
->         "router": {
->             "id": "888"
->         }
->     }
 > 
 > * * *
 
@@ -15112,124 +11462,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/deploymen
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/peers/groups/deployments`  
 > 
->     {
->         "items": [
->             {
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "peerGroup": {
->                     "id": "999",
->                     "name": "MyPeerGroup"
->                 },
->                 "peerGroupProfile": {
->                     "id": "456",
->                     "name": "DefaultPeerGroup",
->                     "description": "Standard settings",
->                     "ebgp": {
->                         "connectedCheck": {
->                             "enabled": true
->                         },
->                         "multihop": {
->                             "maximum": 10
->                         }
->                     },
->                     "authentication": {
->                         "enabled": true,
->                         "password": "my password"
->                     },
->                     "timers": {
->                         "hold": 90,
->                         "keepalive": 30
->                     },
->                     "autonomousSystem": {
->                         "remote": {
->                             "number": 65000
->                         }
->                     },
->                     "interfaces": {
->                         "loopback": {
->                             "source": {
->                                 "id": "555",
->                                 "name": "0",
->                                 "number": 0
->                             }
->                         }
->                     }
->                 },
->                 "router": {
->                     "id": "888"
->                 },
->                 "deployments": [
->                     {
->                         "addressFamily": {
->                             "id": "456",
->                             "description": "ipv4 unicast"
->                         },
->                         "peerGroupAddressFamilyBinding": {
->                             "id": "123"
->                         },
->                         "peerGroupAddressFamilyBindingProfile": {
->                             "id": "123",
->                             "advertisement": {
->                                 "interval": 20,
->                                 "defaultRoutes": {
->                                     "enabled": true
->                                 }
->                             },
->                             "communityAttribute": {
->                                 "send": {
->                                     "enabled": true
->                                 }
->                             },
->                             "name": "Sample binding profile",
->                             "nextHop": {
->                                 "self": {
->                                     "enabled": true
->                                 },
->                                 "unchanged": {
->                                     "enabled": false
->                                 }
->                             },
->                             "removePrivateAs": {
->                                 "enabled": true
->                             },
->                             "routeReflector": {
->                                 "client": {
->                                     "enabled": false
->                                 }
->                             },
->                             "softReconfiguration": {
->                                 "direction": "inbound"
->                             },
->                             "weight": 30
->                         },
->                         "policies": [
->                             {
->                                 "id": "123",
->                                 "ruleList": {
->                                     "type": "Prefix list",
->                                     "name": "SamplePrefixListName",
->                                     "id": "789"
->                                 },
->                                 "direction": "in"
->                             }
->                         ]
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -15273,30 +11505,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/overview/
 > #### List the overview of the BGP peer groups configured in the given organization
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/peers/groups/overview/byPeerGroup`  
-> 
->     {
->         "items": [
->             {
->                 "peerGroupId": "123",
->                 "counts": {
->                     "listenRanges": {
->                         "total": 1
->                     },
->                     "neighbors": {
->                         "total": 2
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -15347,36 +11555,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/listenRanges`_
 > #### List the listen ranges configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/peers/listenRanges`  
-> 
->     {
->         "items": [
->             {
->                 "listenRangeId": "999",
->                 "router": {
->                     "id": "888"
->                 },
->                 "peerGroup": {
->                     "id": "777",
->                     "name": "MyPeerGroupName"
->                 },
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "cidr": "192.0.2.0/24",
->                 "enabled": true,
->                 "description": "Campus-Bldg-1"
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -15447,56 +11625,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors`_
 > #### List the neighbors configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/peers/neighbors`  
-> 
->     {
->         "items": [
->             {
->                 "neighborId": "999",
->                 "router": {
->                     "id": "888"
->                 },
->                 "peerGroup": {
->                     "id": "777",
->                     "name": "MyPeerGroupName"
->                 },
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "description": "BGP gateway",
->                 "address": "10.0.0.1",
->                 "authentication": {
->                     "enabled": true,
->                     "password": "my password"
->                 },
->                 "ebgp": {
->                     "connectedCheck": {
->                         "enabled": true
->                     },
->                     "multihop": {
->                         "maximum": 10
->                     }
->                 },
->                 "interfaces": {
->                     "loopback": {
->                         "source": {
->                             "id": "555",
->                             "name": "0",
->                             "number": 0
->                         }
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -15587,76 +11715,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors/deploy
 > #### Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **POST** `/organizations/{organizationId}/switch/routing/bgp/peers/neighbors/deploy`  
-> 
->     {
->         "addressFamily": {
->             "id": "456",
->             "description": "ipv4 unicast"
->         },
->         "neighbor": {
->             "id": "999",
->             "description": "BGP gateway",
->             "address": "10.0.0.1",
->             "authentication": {
->                 "enabled": true,
->                 "password": "my password"
->             },
->             "ebgp": {
->                 "connectedCheck": {
->                     "enabled": true
->                 },
->                 "multihop": {
->                     "maximum": 10
->                 }
->             },
->             "interfaces": {
->                 "loopback": {
->                     "source": {
->                         "id": "555",
->                         "name": "0",
->                         "number": 0
->                     }
->                 }
->             }
->         },
->         "neighborAddressFamilyBinding": {
->             "id": "123",
->             "peering": {
->                 "enabled": true
->             },
->             "weight": 10,
->             "advertisement": {
->                 "defaultRoutes": {
->                     "enabled": true
->                 }
->             },
->             "softReconfiguration": {
->                 "direction": "inbound"
->             }
->         },
->         "network": {
->             "id": "L_123",
->             "name": "My network name"
->         },
->         "peerGroup": {
->             "id": "777",
->             "name": "MyPeerGroupName"
->         },
->         "policies": [
->             {
->                 "id": "123",
->                 "ruleList": {
->                     "type": "Prefix list",
->                     "name": "SamplePrefixListName",
->                     "id": "789"
->                 },
->                 "direction": "in"
->             }
->         ],
->         "router": {
->             "id": "888"
->         }
->     }
 > 
 > * * *
 
@@ -15764,92 +11822,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors/deploy
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/peers/neighbors/deployments`  
 > 
->     {
->         "items": [
->             {
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "peerGroup": {
->                     "id": "777",
->                     "name": "MyPeerGroupName"
->                 },
->                 "router": {
->                     "id": "888"
->                 },
->                 "neighbor": {
->                     "id": "999",
->                     "description": "BGP gateway",
->                     "address": "10.0.0.1",
->                     "authentication": {
->                         "enabled": true,
->                         "password": "my password"
->                     },
->                     "ebgp": {
->                         "connectedCheck": {
->                             "enabled": true
->                         },
->                         "multihop": {
->                             "maximum": 10
->                         }
->                     },
->                     "interfaces": {
->                         "loopback": {
->                             "source": {
->                                 "id": "555",
->                                 "name": "0",
->                                 "number": 0
->                             }
->                         }
->                     }
->                 },
->                 "deployments": [
->                     {
->                         "addressFamily": {
->                             "id": "456",
->                             "description": "ipv4 unicast"
->                         },
->                         "neighborAddressFamilyBinding": {
->                             "id": "123",
->                             "peering": {
->                                 "enabled": true
->                             },
->                             "weight": 10,
->                             "advertisement": {
->                                 "defaultRoutes": {
->                                     "enabled": true
->                                 }
->                             },
->                             "softReconfiguration": {
->                                 "direction": "inbound"
->                             }
->                         },
->                         "policies": [
->                             {
->                                 "id": "123",
->                                 "ruleList": {
->                                     "type": "Prefix list",
->                                     "name": "SamplePrefixListName",
->                                     "id": "789"
->                                 },
->                                 "direction": "in"
->                             }
->                         ]
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -15918,55 +11890,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers`_
 > #### List the routers configured in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/routers`  
-> 
->     {
->         "items": [
->             {
->                 "routerId": "123",
->                 "autonomousSystem": {
->                     "id": "123",
->                     "number": 65000,
->                     "description": "Core AS"
->                 },
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "stack": {
->                     "id": "12345",
->                     "name": "A Switch Stack",
->                     "members": [
->                         "Q234-ABCD-0001",
->                         "Q234-ABCD-0002"
->                     ]
->                 },
->                 "switch": {
->                     "serial": "Q234-ABCD-0001",
->                     "name": "Core S1",
->                     "model": "C9300X-24Y"
->                 },
->                 "enabled": true,
->                 "bgpIdentifier": {
->                     "address": "1.2.3.4",
->                     "interfaces": {
->                         "loopback": {
->                             "id": "789",
->                             "name": "1",
->                             "number": 1
->                         }
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -16067,86 +11990,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers/deploy`_
 > #### Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile. This is helpful for the initial deployment of a BGP router.. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **POST** `/organizations/{organizationId}/switch/routing/bgp/routers/deploy`  
-> 
->     {
->         "addressFamily": {
->             "id": "987",
->             "afi": "ipv4",
->             "safi": "unicast",
->             "vrf": {
->                 "name": "Default"
->             }
->         },
->         "addressFamilyPrefixes": [
->             {
->                 "id": "987",
->                 "prefix": "10.128.0.0/16",
->                 "enabled": true,
->                 "description": "My prefix description"
->             }
->         ],
->         "addressFamilyProfile": {
->             "id": "456",
->             "name": "Default address family",
->             "ebgp": {
->                 "paths": {
->                     "maximum": 4
->                 }
->             },
->             "metrics": {
->                 "default": 300
->             },
->             "summarization": {
->                 "auto": {
->                     "enabled": true
->                 }
->             },
->             "redistribution": {
->                 "static": {
->                     "enabled": true
->                 },
->                 "connected": {
->                     "enabled": true
->                 }
->             }
->         },
->         "autonomousSystem": {
->             "id": "123",
->             "number": 65000,
->             "description": "Core AS"
->         },
->         "network": {
->             "id": "L_123",
->             "name": "My network name"
->         },
->         "router": {
->             "id": "123",
->             "enabled": true,
->             "bgpIdentifier": {
->                 "address": "1.2.3.4",
->                 "interfaces": {
->                     "loopback": {
->                         "id": "789",
->                         "name": "1",
->                         "number": 1
->                     }
->                 }
->             }
->         },
->         "stack": {
->             "id": "12345",
->             "name": "A Switch Stack",
->             "members": [
->                 "Q234-ABCD-0001",
->                 "Q234-ABCD-0002"
->             ]
->         },
->         "switch": {
->             "serial": "Q234-ABCD-0001",
->             "name": "Core S1",
->             "model": "C9300X-24Y"
->         }
->     }
 > 
 > * * *
 
@@ -16264,102 +12107,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers/deployments`_
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/routers/deployments`  
 > 
->     {
->         "items": [
->             {
->                 "autonomousSystem": {
->                     "id": "123",
->                     "number": 65000,
->                     "description": "Core AS"
->                 },
->                 "network": {
->                     "id": "L_123",
->                     "name": "My network name"
->                 },
->                 "stack": {
->                     "id": "12345",
->                     "name": "A Switch Stack",
->                     "members": [
->                         "Q234-ABCD-0001",
->                         "Q234-ABCD-0002"
->                     ]
->                 },
->                 "switch": {
->                     "serial": "Q234-ABCD-0001",
->                     "name": "Core S1",
->                     "model": "C9300X-24Y"
->                 },
->                 "router": {
->                     "id": "123",
->                     "enabled": true,
->                     "bgpIdentifier": {
->                         "address": "1.2.3.4",
->                         "interfaces": {
->                             "loopback": {
->                                 "id": "789",
->                                 "name": "1",
->                                 "number": 1
->                             }
->                         }
->                     }
->                 },
->                 "deployments": [
->                     {
->                         "addressFamily": {
->                             "id": "987",
->                             "afi": "ipv4",
->                             "safi": "unicast",
->                             "vrf": {
->                                 "name": "Default"
->                             }
->                         },
->                         "addressFamilyPrefixes": [
->                             {
->                                 "id": "987",
->                                 "prefix": "10.128.0.0/16",
->                                 "enabled": true,
->                                 "description": "My prefix description"
->                             }
->                         ],
->                         "addressFamilyProfile": {
->                             "id": "456",
->                             "name": "Default address family",
->                             "ebgp": {
->                                 "paths": {
->                                     "maximum": 4
->                                 }
->                             },
->                             "metrics": {
->                                 "default": 300
->                             },
->                             "summarization": {
->                                 "auto": {
->                                     "enabled": true
->                                 }
->                             },
->                             "redistribution": {
->                                 "static": {
->                                     "enabled": true
->                                 },
->                                 "connected": {
->                                     "enabled": true
->                                 }
->                             }
->                         }
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -16408,35 +12155,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers/overview/byRou
 > #### List the overview of the routers configured in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **GET** `/organizations/{organizationId}/switch/routing/bgp/routers/overview/byRouter`  
-> 
->     {
->         "items": [
->             {
->                 "routerId": "123",
->                 "counts": {
->                     "listenRanges": {
->                         "total": 1
->                     },
->                     "neighbors": {
->                         "total": 2
->                     },
->                     "routes": {
->                         "advertised": {
->                             "total": 4
->                         }
->                     }
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1,
->                     "remaining": 0
->                 }
->             }
->         }
->     }
 > 
 > * * *
 
@@ -16493,42 +12211,6 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers/peers/deploy`_
 > #### Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **POST** `/organizations/{organizationId}/switch/routing/bgp/routers/peers/deploy`  
-> 
->     {
->         "addressFamily": {
->             "id": "987"
->         },
->         "network": {
->             "id": "L_123",
->             "name": "My network name"
->         },
->         "peerGroups": [
->             {
->                 "id": "123",
->                 "listenRanges": [
->                     {
->                         "id": "999",
->                         "cidr": "192.0.2.0/24",
->                         "enabled": true,
->                         "description": "Campus-Bldg-1"
->                     }
->                 ],
->                 "neighbors": [
->                     {
->                         "id": "999",
->                         "description": "BGP gateway",
->                         "address": "10.0.0.1",
->                         "peering": {
->                             "enabled": true
->                         }
->                     }
->                 ]
->             }
->         ],
->         "router": {
->             "id": "123"
->         }
->     }
 > 
 > * * *
 
@@ -16615,50 +12297,6 @@ PATH _`/devices/{serial}/switch/ports/mirror`_
 > #### Update a port mirror
 > 
 > **PUT** `/devices/{serial}/switch/ports/mirror`  
-> 
->     {
->         "serial": "Q234-ABCD-5678",
->         "network": {
->             "id": "N_24329156",
->             "name": "Main Office"
->         },
->         "mirror": {
->             "source": {
->                 "ports": [
->                     {
->                         "number": 2,
->                         "module": {
->                             "type": "C9800-2X40GE",
->                             "slot": 2
->                         }
->                     }
->                 ],
->                 "filter": {
->                     "vlans": "100, 200-210",
->                     "hasTransitVlan": true
->                 }
->             },
->             "destination": {
->                 "port": {
->                     "number": 7,
->                     "module": {
->                         "type": "C9800-2X40GE",
->                         "slot": 1
->                     }
->                 },
->                 "vlan": "10"
->             },
->             "role": "source",
->             "comment": "My pretty comment",
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ]
->         },
->         "warnings": [
->             "Warnings from traffic mirror configuration changes"
->         ]
->     }
 > 
 > * * *
 
@@ -16776,102 +12414,6 @@ PATH _`/networks/{networkId}/switch/ports/profiles`_
 > 
 > **GET** `/networks/{networkId}/switch/ports/profiles`  
 > 
->     [
->         {
->             "profileId": "1284392014819",
->             "networkId": "N_24329156",
->             "name": "Phone",
->             "description": "IP Phones for all office workers",
->             "tags": [
->                 "tag1",
->                 "tag2"
->             ],
->             "associatedPorts": [
->                 {
->                     "portId": "8",
->                     "portNum": 8,
->                     "portName": "Dev - Cheshire Cat / 8",
->                     "serial": "Q234-ABCD-5678",
->                     "profile": {
->                         "enabled": true,
->                         "id": "1284392014819"
->                     }
->                 }
->             ],
->             "associatedSwitches": [
->                 {
->                     "switchId": 247165647951894,
->                     "name": "Dev - Cheshire Cat",
->                     "mac": "e0:cb:bc:a5:98:16",
->                     "serial": "Q234-ABCD-5678",
->                     "model": "MS120-48FP"
->                 }
->             ],
->             "assignedSwitchports": [
->                 {
->                     "portIds": [
->                         "1",
->                         "2",
->                         "3",
->                         "1_C3850-NM-8-10G_1",
->                         "1_C3850-NM-8-10G_2"
->                     ],
->                     "switch": {
->                         "serial": "Q234-ABCD-5678"
->                     },
->                     "template": {
->                         "id": 1983748489
->                     }
->                 }
->             ],
->             "createdAt": "2022-09-16T09:18:38Z",
->             "updatedAt": "2022-09-16T09:18:38Z",
->             "port": {
->                 "type": "access",
->                 "vlan": 10,
->                 "voiceVlan": 20,
->                 "allowedVlans": "1-100",
->                 "poeEnabled": true,
->                 "isolationEnabled": false,
->                 "rstpEnabled": true,
->                 "stpGuard": "disabled",
->                 "udld": "Alert only",
->                 "accessPolicyType": "Sticky MAC allow list",
->                 "accessPolicyNumber": 3,
->                 "macAllowList": [
->                     "34:56:fe:ce:8e:b0",
->                     "34:56:fe:ce:8e:b1"
->                 ],
->                 "stickyMacAllowList": [
->                     "34:56:fe:ce:8e:b0",
->                     "34:56:fe:ce:8e:b1"
->                 ],
->                 "stickyMacAllowListLimit": 5,
->                 "stormControlEnabled": true,
->                 "adaptivePolicyGroupId": "1284392014819",
->                 "peerSgtCapable": false,
->                 "daiTrusted": false
->             },
->             "isOrganizationWide": false,
->             "networks": {
->                 "values": [
->                     {
->                         "id": "N_11865",
->                         "name": "Wonderland-Dev"
->                     }
->                 ],
->                 "type": "included"
->             },
->             "automations": [
->                 {
->                     "id": "N_11865",
->                     "name": "RYOFXAPO"
->                 }
->             ],
->             "access": "full"
->         }
->     ]
-> 
 > * * *
 > 
 >   
@@ -16880,100 +12422,6 @@ PATH _`/networks/{networkId}/switch/ports/profiles`_
 > #### Create a port profile in a network
 > 
 > **POST** `/networks/{networkId}/switch/ports/profiles`  
-> 
->     {
->         "profileId": "1284392014819",
->         "networkId": "N_24329156",
->         "name": "Phone",
->         "description": "IP Phones for all office workers",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "associatedPorts": [
->             {
->                 "portId": "8",
->                 "portNum": 8,
->                 "portName": "Dev - Cheshire Cat / 8",
->                 "serial": "Q234-ABCD-5678",
->                 "profile": {
->                     "enabled": true,
->                     "id": "1284392014819"
->                 }
->             }
->         ],
->         "associatedSwitches": [
->             {
->                 "switchId": 247165647951894,
->                 "name": "Dev - Cheshire Cat",
->                 "mac": "e0:cb:bc:a5:98:16",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MS120-48FP"
->             }
->         ],
->         "assignedSwitchports": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "template": {
->                     "id": 1983748489
->                 }
->             }
->         ],
->         "createdAt": "2022-09-16T09:18:38Z",
->         "updatedAt": "2022-09-16T09:18:38Z",
->         "port": {
->             "type": "access",
->             "vlan": 10,
->             "voiceVlan": 20,
->             "allowedVlans": "1-100",
->             "poeEnabled": true,
->             "isolationEnabled": false,
->             "rstpEnabled": true,
->             "stpGuard": "disabled",
->             "udld": "Alert only",
->             "accessPolicyType": "Sticky MAC allow list",
->             "accessPolicyNumber": 3,
->             "macAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowListLimit": 5,
->             "stormControlEnabled": true,
->             "adaptivePolicyGroupId": "1284392014819",
->             "peerSgtCapable": false,
->             "daiTrusted": false
->         },
->         "isOrganizationWide": false,
->         "networks": {
->             "values": [
->                 {
->                     "id": "N_11865",
->                     "name": "Wonderland-Dev"
->                 }
->             ],
->             "type": "included"
->         },
->         "automations": [
->             {
->                 "id": "N_11865",
->                 "name": "RYOFXAPO"
->             }
->         ],
->         "access": "full"
->     }
 > 
 > * * *
 
@@ -17089,100 +12537,6 @@ PATH _`/networks/{networkId}/switch/ports/profiles/{id}`_
 > 
 > **PUT** `/networks/{networkId}/switch/ports/profiles/{id}`  
 > 
->     {
->         "profileId": "1284392014819",
->         "networkId": "N_24329156",
->         "name": "Phone",
->         "description": "IP Phones for all office workers",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "associatedPorts": [
->             {
->                 "portId": "8",
->                 "portNum": 8,
->                 "portName": "Dev - Cheshire Cat / 8",
->                 "serial": "Q234-ABCD-5678",
->                 "profile": {
->                     "enabled": true,
->                     "id": "1284392014819"
->                 }
->             }
->         ],
->         "associatedSwitches": [
->             {
->                 "switchId": 247165647951894,
->                 "name": "Dev - Cheshire Cat",
->                 "mac": "e0:cb:bc:a5:98:16",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MS120-48FP"
->             }
->         ],
->         "assignedSwitchports": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "template": {
->                     "id": 1983748489
->                 }
->             }
->         ],
->         "createdAt": "2022-09-16T09:18:38Z",
->         "updatedAt": "2022-09-16T09:18:38Z",
->         "port": {
->             "type": "access",
->             "vlan": 10,
->             "voiceVlan": 20,
->             "allowedVlans": "1-100",
->             "poeEnabled": true,
->             "isolationEnabled": false,
->             "rstpEnabled": true,
->             "stpGuard": "disabled",
->             "udld": "Alert only",
->             "accessPolicyType": "Sticky MAC allow list",
->             "accessPolicyNumber": 3,
->             "macAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowListLimit": 5,
->             "stormControlEnabled": true,
->             "adaptivePolicyGroupId": "1284392014819",
->             "peerSgtCapable": false,
->             "daiTrusted": false
->         },
->         "isOrganizationWide": false,
->         "networks": {
->             "values": [
->                 {
->                     "id": "N_11865",
->                     "name": "Wonderland-Dev"
->                 }
->             ],
->             "type": "included"
->         },
->         "automations": [
->             {
->                 "id": "N_11865",
->                 "name": "RYOFXAPO"
->             }
->         ],
->         "access": "full"
->     }
-> 
 > * * *
 > 
 >   
@@ -17267,61 +12621,6 @@ PATH _`/organizations/{organizationId}/switch/ports/mirrors/bySwitch`_
 > 
 > **GET** `/organizations/{organizationId}/switch/ports/mirrors/bySwitch`  
 > 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-5678",
->                 "network": {
->                     "id": "N_24329156",
->                     "name": "Main Office"
->                 },
->                 "mirror": {
->                     "source": {
->                         "ports": [
->                             {
->                                 "number": 2,
->                                 "module": {
->                                     "type": "C9800-2X40GE",
->                                     "slot": 2
->                                 }
->                             }
->                         ],
->                         "filter": {
->                             "vlans": "100, 200-210",
->                             "hasTransitVlan": true
->                         }
->                     },
->                     "destination": {
->                         "port": {
->                             "number": 7,
->                             "module": {
->                                 "type": "C9800-2X40GE",
->                                 "slot": 1
->                             }
->                         },
->                         "vlan": "10"
->                     },
->                     "role": "source",
->                     "comment": "My pretty comment",
->                     "tags": [
->                         "tag1",
->                         "tag2"
->                     ]
->                 },
->                 "warnings": [
->                     "Warnings from traffic mirror configuration changes"
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1
->                 }
->             }
->         }
->     }
-> 
 > * * *
 
 * * *
@@ -17377,41 +12676,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles`_
 > 
 > **GET** `/organizations/{organizationId}/switch/ports/profiles`  
 > 
->     [
->         {
->             "profileId": "1284392014819",
->             "name": "Phone",
->             "description": "IP Phones for all office workers",
->             "createdAt": "2018-02-11T00:00:00.090210Z",
->             "updatedAt": "2018-02-11T00:00:00.090210Z",
->             "network": {
->                 "id": "N_24329156"
->             },
->             "counts": {
->                 "assigned": {
->                     "ports": 4,
->                     "switches": 2,
->                     "automations": 6
->                 },
->                 "networksCount": {
->                     "included": 40,
->                     "excluded": 20
->                 }
->             },
->             "isOrganizationWide": false,
->             "networks": {
->                 "values": [
->                     {
->                         "id": "N_11865",
->                         "name": "Wonderland-Dev"
->                     }
->                 ],
->                 "type": "included"
->             },
->             "access": "full"
->         }
->     ]
-> 
 > * * *
 > 
 >   
@@ -17420,100 +12684,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles`_
 > #### Create a port profile in an organization
 > 
 > **POST** `/organizations/{organizationId}/switch/ports/profiles`  
-> 
->     {
->         "profileId": "1284392014819",
->         "networkId": "N_24329156",
->         "name": "Phone",
->         "description": "IP Phones for all office workers",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "associatedPorts": [
->             {
->                 "portId": "8",
->                 "portNum": 8,
->                 "portName": "Dev - Cheshire Cat / 8",
->                 "serial": "Q234-ABCD-5678",
->                 "profile": {
->                     "enabled": true,
->                     "id": "1284392014819"
->                 }
->             }
->         ],
->         "associatedSwitches": [
->             {
->                 "switchId": 247165647951894,
->                 "name": "Dev - Cheshire Cat",
->                 "mac": "e0:cb:bc:a5:98:16",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MS120-48FP"
->             }
->         ],
->         "assignedSwitchports": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "template": {
->                     "id": 1983748489
->                 }
->             }
->         ],
->         "createdAt": "2022-09-16T09:18:38Z",
->         "updatedAt": "2022-09-16T09:18:38Z",
->         "port": {
->             "type": "access",
->             "vlan": 10,
->             "voiceVlan": 20,
->             "allowedVlans": "1-100",
->             "poeEnabled": true,
->             "isolationEnabled": false,
->             "rstpEnabled": true,
->             "stpGuard": "disabled",
->             "udld": "Alert only",
->             "accessPolicyType": "Sticky MAC allow list",
->             "accessPolicyNumber": 3,
->             "macAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowListLimit": 5,
->             "stormControlEnabled": true,
->             "adaptivePolicyGroupId": "1284392014819",
->             "peerSgtCapable": false,
->             "daiTrusted": false
->         },
->         "isOrganizationWide": false,
->         "networks": {
->             "values": [
->                 {
->                     "id": "N_11865",
->                     "name": "Wonderland-Dev"
->                 }
->             ],
->             "type": "included"
->         },
->         "automations": [
->             {
->                 "id": "N_11865",
->                 "name": "RYOFXAPO"
->             }
->         ],
->         "access": "full"
->     }
 > 
 > * * *
 
@@ -17606,77 +12776,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
 > 
 > **GET** `/organizations/{organizationId}/switch/ports/profiles/automations`  
 > 
->     {
->         "items": [
->             {
->                 "id": "1284392014819",
->                 "name": "Automation 1",
->                 "description": "A full length description of the automation.",
->                 "types": [
->                     "Custom",
->                     "Built-in"
->                 ],
->                 "fallbackProfile": {
->                     "id": "1284392014819",
->                     "name": "Profile 1"
->                 },
->                 "rules": [
->                     {
->                         "priority": 1,
->                         "conditions": [
->                             {
->                                 "attribute": "LLDP system description",
->                                 "values": [
->                                     "Meraki MR*",
->                                     "*Wireless*"
->                                 ]
->                             }
->                         ],
->                         "profile": {
->                             "id": "32",
->                             "name": "Profile 2"
->                         }
->                     }
->                 ],
->                 "assignedSwitchPorts": [
->                     {
->                         "portIds": [
->                             "1",
->                             "2",
->                             "3",
->                             "1_C3850-NM-8-10G_1",
->                             "1_C3850-NM-8-10G_2"
->                         ],
->                         "switch": {
->                             "serial": "Q234-ABCD-5678"
->                         }
->                     }
->                 ],
->                 "counts": {
->                     "assigned": {
->                         "devices": 2,
->                         "ports": 51,
->                         "networks": 1
->                     }
->                 },
->                 "isOrganizationWide": false,
->                 "networks": [
->                     {
->                         "id": "N_11865",
->                         "name": "Wonderland-Dev"
->                     }
->                 ]
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 1
->                 }
->             }
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -17685,66 +12784,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations`_
 > #### Create a port profile automation for an organization
 > 
 > **POST** `/organizations/{organizationId}/switch/ports/profiles/automations`  
-> 
->     {
->         "id": "1284392014819",
->         "name": "Automation 1",
->         "description": "A full length description of the automation.",
->         "types": [
->             "Custom",
->             "Built-in"
->         ],
->         "fallbackProfile": {
->             "id": "1284392014819",
->             "name": "Profile 1"
->         },
->         "rules": [
->             {
->                 "priority": 1,
->                 "conditions": [
->                     {
->                         "attribute": "LLDP system description",
->                         "values": [
->                             "Meraki MR*",
->                             "*Wireless*"
->                         ]
->                     }
->                 ],
->                 "profile": {
->                     "id": "32",
->                     "name": "Profile 2"
->                 }
->             }
->         ],
->         "assignedSwitchPorts": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 }
->             }
->         ],
->         "counts": {
->             "assigned": {
->                 "devices": 2,
->                 "ports": 51,
->                 "networks": 1
->             }
->         },
->         "isOrganizationWide": false,
->         "networks": [
->             {
->                 "id": "N_11865",
->                 "name": "Wonderland-Dev"
->             }
->         ]
->     }
 > 
 > * * *
 
@@ -17826,66 +12865,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/automations/{id}`_
 > 
 > **PUT** `/organizations/{organizationId}/switch/ports/profiles/automations/{id}`  
 > 
->     {
->         "id": "1284392014819",
->         "name": "Automation 1",
->         "description": "A full length description of the automation.",
->         "types": [
->             "Custom",
->             "Built-in"
->         ],
->         "fallbackProfile": {
->             "id": "1284392014819",
->             "name": "Profile 1"
->         },
->         "rules": [
->             {
->                 "priority": 1,
->                 "conditions": [
->                     {
->                         "attribute": "LLDP system description",
->                         "values": [
->                             "Meraki MR*",
->                             "*Wireless*"
->                         ]
->                     }
->                 ],
->                 "profile": {
->                     "id": "32",
->                     "name": "Profile 2"
->                 }
->             }
->         ],
->         "assignedSwitchPorts": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 }
->             }
->         ],
->         "counts": {
->             "assigned": {
->                 "devices": 2,
->                 "ports": 51,
->                 "networks": 1
->             }
->         },
->         "isOrganizationWide": false,
->         "networks": [
->             {
->                 "id": "N_11865",
->                 "name": "Wonderland-Dev"
->             }
->         ]
->     }
-> 
 > * * *
 > 
 >   
@@ -17938,29 +12917,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignment
 > 
 > **GET** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments`  
 > 
->     {
->         "items": [
->             {
->                 "assignmentId": "123456",
->                 "type": "included",
->                 "profile": {
->                     "id": "4354353"
->                 },
->                 "network": {
->                     "id": "N_24329156"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 42,
->                     "remaining": 32
->                 }
->             }
->         }
->     }
-> 
 > * * *
 > 
 >   
@@ -17969,17 +12925,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignment
 > #### Create Network and Smart Ports Profile association for a specific profile
 > 
 > **POST** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments`  
-> 
->     {
->         "assignmentId": "123456",
->         "type": "included",
->         "profile": {
->             "id": "4354353"
->         },
->         "network": {
->             "id": "N_24329156"
->         }
->     }
 > 
 > * * *
 
@@ -18015,21 +12960,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/networks/assignment
 > #### Batch Create Network and Smart Ports Profile associations for a specific profile
 > 
 > **POST** `/organizations/{organizationId}/switch/ports/profiles/networks/assignments/batchCreate`  
-> 
->     {
->         "items": [
->             {
->                 "assignmentId": "123456",
->                 "type": "included",
->                 "profile": {
->                     "id": "4354353"
->                 },
->                 "network": {
->                     "id": "N_24329156"
->                 }
->             }
->         ]
->     }
 > 
 > * * *
 
@@ -18136,52 +13066,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/overview/byProfile`
 > #### List the port profiles in an organization
 > 
 > **GET** `/organizations/{organizationId}/switch/ports/profiles/overview/byProfile`  
-> 
->     [
->         {
->             "items": [
->                 {
->                     "profileId": "1284392014819",
->                     "name": "Phone",
->                     "description": "IP Phones for all office workers",
->                     "createdAt": "2018-02-11T00:00:00.090210Z",
->                     "updatedAt": "2018-02-11T00:00:00.090210Z",
->                     "network": {
->                         "id": "N_24329156"
->                     },
->                     "counts": {
->                         "assigned": {
->                             "ports": 4,
->                             "switches": 2,
->                             "automations": 6
->                         },
->                         "networksCount": {
->                             "included": 40,
->                             "excluded": 20
->                         }
->                     },
->                     "isOrganizationWide": false,
->                     "networks": {
->                         "values": [
->                             {
->                                 "id": "N_11865",
->                                 "name": "Wonderland-Dev"
->                             }
->                         ],
->                         "type": "included"
->                     },
->                     "access": "full"
->                 }
->             ],
->             "meta": {
->                 "counts": {
->                     "items": {
->                         "total": 1
->                     }
->                 }
->             }
->         }
->     ]
 > 
 > * * *
 
@@ -18297,100 +13181,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 > 
 > **GET** `/organizations/{organizationId}/switch/ports/profiles/{id}`  
 > 
->     {
->         "profileId": "1284392014819",
->         "networkId": "N_24329156",
->         "name": "Phone",
->         "description": "IP Phones for all office workers",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "associatedPorts": [
->             {
->                 "portId": "8",
->                 "portNum": 8,
->                 "portName": "Dev - Cheshire Cat / 8",
->                 "serial": "Q234-ABCD-5678",
->                 "profile": {
->                     "enabled": true,
->                     "id": "1284392014819"
->                 }
->             }
->         ],
->         "associatedSwitches": [
->             {
->                 "switchId": 247165647951894,
->                 "name": "Dev - Cheshire Cat",
->                 "mac": "e0:cb:bc:a5:98:16",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MS120-48FP"
->             }
->         ],
->         "assignedSwitchports": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "template": {
->                     "id": 1983748489
->                 }
->             }
->         ],
->         "createdAt": "2022-09-16T09:18:38Z",
->         "updatedAt": "2022-09-16T09:18:38Z",
->         "port": {
->             "type": "access",
->             "vlan": 10,
->             "voiceVlan": 20,
->             "allowedVlans": "1-100",
->             "poeEnabled": true,
->             "isolationEnabled": false,
->             "rstpEnabled": true,
->             "stpGuard": "disabled",
->             "udld": "Alert only",
->             "accessPolicyType": "Sticky MAC allow list",
->             "accessPolicyNumber": 3,
->             "macAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowListLimit": 5,
->             "stormControlEnabled": true,
->             "adaptivePolicyGroupId": "1284392014819",
->             "peerSgtCapable": false,
->             "daiTrusted": false
->         },
->         "isOrganizationWide": false,
->         "networks": {
->             "values": [
->                 {
->                     "id": "N_11865",
->                     "name": "Wonderland-Dev"
->                 }
->             ],
->             "type": "included"
->         },
->         "automations": [
->             {
->                 "id": "N_11865",
->                 "name": "RYOFXAPO"
->             }
->         ],
->         "access": "full"
->     }
-> 
 > * * *
 > 
 >   
@@ -18400,100 +13190,6 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 > 
 > **PUT** `/organizations/{organizationId}/switch/ports/profiles/{id}`  
 > 
->     {
->         "profileId": "1284392014819",
->         "networkId": "N_24329156",
->         "name": "Phone",
->         "description": "IP Phones for all office workers",
->         "tags": [
->             "tag1",
->             "tag2"
->         ],
->         "associatedPorts": [
->             {
->                 "portId": "8",
->                 "portNum": 8,
->                 "portName": "Dev - Cheshire Cat / 8",
->                 "serial": "Q234-ABCD-5678",
->                 "profile": {
->                     "enabled": true,
->                     "id": "1284392014819"
->                 }
->             }
->         ],
->         "associatedSwitches": [
->             {
->                 "switchId": 247165647951894,
->                 "name": "Dev - Cheshire Cat",
->                 "mac": "e0:cb:bc:a5:98:16",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MS120-48FP"
->             }
->         ],
->         "assignedSwitchports": [
->             {
->                 "portIds": [
->                     "1",
->                     "2",
->                     "3",
->                     "1_C3850-NM-8-10G_1",
->                     "1_C3850-NM-8-10G_2"
->                 ],
->                 "switch": {
->                     "serial": "Q234-ABCD-5678"
->                 },
->                 "template": {
->                     "id": 1983748489
->                 }
->             }
->         ],
->         "createdAt": "2022-09-16T09:18:38Z",
->         "updatedAt": "2022-09-16T09:18:38Z",
->         "port": {
->             "type": "access",
->             "vlan": 10,
->             "voiceVlan": 20,
->             "allowedVlans": "1-100",
->             "poeEnabled": true,
->             "isolationEnabled": false,
->             "rstpEnabled": true,
->             "stpGuard": "disabled",
->             "udld": "Alert only",
->             "accessPolicyType": "Sticky MAC allow list",
->             "accessPolicyNumber": 3,
->             "macAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowList": [
->                 "34:56:fe:ce:8e:b0",
->                 "34:56:fe:ce:8e:b1"
->             ],
->             "stickyMacAllowListLimit": 5,
->             "stormControlEnabled": true,
->             "adaptivePolicyGroupId": "1284392014819",
->             "peerSgtCapable": false,
->             "daiTrusted": false
->         },
->         "isOrganizationWide": false,
->         "networks": {
->             "values": [
->                 {
->                     "id": "N_11865",
->                     "name": "Wonderland-Dev"
->                 }
->             ],
->             "type": "included"
->         },
->         "automations": [
->             {
->                 "id": "N_11865",
->                 "name": "RYOFXAPO"
->             }
->         ],
->         "access": "full"
->     }
-> 
 > * * *
 > 
 >   
@@ -18502,6 +13198,58 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
 > #### Delete a port profile from an organization
 > 
 > **DELETE** `/organizations/{organizationId}/switch/ports/profiles/{id}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-statuses-packets-by-device-by-port/)
+
+#### Switch port packets by device and port.
+
+Operation ID: `getOrganizationSwitchPortsStatusesPacketsByDeviceByPort`
+
+PATH _`/organizations/{organizationId}/switch/ports/statuses/packets/byDevice/byPort`_
+
+    [
+      {
+        "device": {
+          "name": "My AP",
+          "serial": "Q234-ABCD-5678",
+          "mac": "00:11:22:33:44:55"
+        },
+        "ports": [
+          {
+            "port": 1,
+            "usage": [
+              {
+                "total": 1611860,
+                "broadcast": {
+                  "total": 20655,
+                  "rate": 0.25,
+                  "isStorm": false
+                },
+                "multicast": {
+                  "total": 28465,
+                  "rate": 0.54,
+                  "isStorm": false
+                },
+                "startTs": "2018-02-11T00:00:00.090210Z",
+                "endTs": "2018-02-11T00:00:00.090210Z"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Switch port packets by device and port.
+> 
+> **GET** `/organizations/{organizationId}/switch/ports/statuses/packets/byDevice/byPort`  
 > 
 > * * *
 
@@ -18688,170 +13436,64 @@ PATH _`/organizations/{organizationId}/switch/ports/transceivers/readings/histor
 > 
 > **GET** `/organizations/{organizationId}/switch/ports/transceivers/readings/history/bySwitch`  
 > 
->     {
->         "items": [
->             {
->                 "serial": "Q234-ABCD-0001",
->                 "ports": [
->                     {
->                         "portId": "1",
->                         "indices": {
->                             "switch": 1,
->                             "slot": 0,
->                             "port": 1
->                         },
->                         "readings": [
->                             {
->                                 "startTs": "2018-02-11T00:00:00.090210Z",
->                                 "endTs": "2018-02-11T00:00:00.090210Z",
->                                 "sfpProductId": "PRODUCT1",
->                                 "thresholdSetId": "ABC123",
->                                 "byMetric": {
->                                     "power": {
->                                         "transmit": {
->                                             "minimum": 4,
->                                             "maximum": 5,
->                                             "median": 4.5
->                                         },
->                                         "receive": {
->                                             "minimum": 4,
->                                             "maximum": 5,
->                                             "median": 4.5
->                                         }
->                                     },
->                                     "temperature": {
->                                         "fahrenheit": {
->                                             "minimum": 30,
->                                             "maximum": 33,
->                                             "median": 32
->                                         },
->                                         "celsius": {
->                                             "minimum": -1.1,
->                                             "maximum": 0.6,
->                                             "median": 0
->                                         }
->                                     },
->                                     "supplyVoltage": {
->                                         "level": {
->                                             "minimum": 3,
->                                             "maximum": 3.33,
->                                             "median": 3.11
->                                         }
->                                     },
->                                     "laserBiasCurrent": {
->                                         "draw": {
->                                             "minimum": 5,
->                                             "maximum": 7,
->                                             "median": 5.5
->                                         }
->                                     }
->                                 }
->                             }
->                         ]
->                     }
->                 ],
->                 "network": {
->                     "id": "N_12345678",
->                     "name": "San Francisco Office"
->                 }
->             }
->         ],
->         "meta": {
->             "counts": {
->                 "items": {
->                     "total": 4,
->                     "remaining": 2
->                 }
->             },
->             "units": {
->                 "power": {
->                     "name": "decibel milliwatts",
->                     "symbol": "dBm"
->                 },
->                 "supplyVoltage": {
->                     "name": "volts",
->                     "symbol": "V"
->                 },
->                 "laserBiasCurrent": {
->                     "name": "milliamps",
->                     "symbol": "mA"
->                 }
->             },
->             "thresholds": [
->                 {
->                     "thresholdSetId": "ABC123",
->                     "power": {
->                         "transmit": {
->                             "error": {
->                                 "upper": 1.8,
->                                 "lower": 0.3
->                             },
->                             "warning": {
->                                 "upper": 1.5,
->                                 "lower": 0.6
->                             }
->                         },
->                         "receive": {
->                             "error": {
->                                 "upper": 1.8,
->                                 "lower": 0.3
->                             },
->                             "warning": {
->                                 "upper": 1.5,
->                                 "lower": 0.6
->                             }
->                         }
->                     },
->                     "temperature": {
->                         "fahrenheit": {
->                             "error": {
->                                 "upper": 59,
->                                 "lower": 23
->                             },
->                             "warning": {
->                                 "upper": 50,
->                                 "lower": 14
->                             }
->                         },
->                         "celsius": {
->                             "error": {
->                                 "upper": 15,
->                                 "lower": -5
->                             },
->                             "warning": {
->                                 "upper": 10,
->                                 "lower": -10
->                             }
->                         }
->                     },
->                     "supplyVoltage": {
->                         "level": {
->                             "error": {
->                                 "upper": 7,
->                                 "lower": 2
->                             },
->                             "warning": {
->                                 "upper": 6,
->                                 "lower": 3
->                             }
->                         }
->                     },
->                     "laserBiasCurrent": {
->                         "draw": {
->                             "error": {
->                                 "upper": 6,
->                                 "lower": 1
->                             },
->                             "warning": {
->                                 "upper": 5,
->                                 "lower": 2
->                             }
->                         }
->                     }
->                 }
->             ]
->         }
->     }
+> * * *
+
+* * *
+
+### service
+
+[Docs](https://developer.cisco.com/meraki/api-v1/aurora-2-organization-switch-switch-templates/)
+
+#### List switch templates running IOS XE Catalyst firmware.
+
+Operation ID: `aurora2OrganizationSwitchSwitchTemplates`
+
+PATH _`/organizations/{organizationId}/switch/aurora2SwitchTemplates`_
+
+    [
+      {
+        "id": "4567",
+        "name": "A Simple Switch Template"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List switch templates running IOS XE Catalyst firmware.
+> 
+> **GET** `/organizations/{organizationId}/switch/aurora2SwitchTemplates`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/clone-organization-switch-profiles-to-template-network/)
+
+#### Clone existing switch templates into a destination template network.
+
+Operation ID: `cloneOrganizationSwitchProfilesToTemplateNetwork`
+
+PATH _`/organizations/{organizationId}/switch/cloneProfilesToTemplateNetwork`_
+
+    {
+      "profileIds": [
+        "1234"
+      ],
+      "templateNodeGroupId": "4567",
+      "clonedProfileIds": [
+        "1234"
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Clone existing switch templates into a destination template network.
+> 
+> **POST** `/organizations/{organizationId}/switch/cloneProfilesToTemplateNetwork`  
 > 
 > * * *
 
@@ -19018,146 +13660,6 @@ PATH _`/organizations/{organizationId}/sensor/readings/history/byInterval`_
 > 
 > **GET** `/organizations/{organizationId}/sensor/readings/history/byInterval`  
 > 
->     [
->         {
->             "startTs": "2022-01-07T23:00:00Z",
->             "endTs": "2022-01-07T23:59:59Z",
->             "serial": "Q234-ABCD-5678",
->             "model": "MT11",
->             "network": {
->                 "id": "N_24329156",
->                 "name": "Main Office"
->             },
->             "metric": "temperature",
->             "apparentPower": {
->                 "draw": {
->                     "minimum": 0,
->                     "maximum": 15.9,
->                     "average": 4.9
->                 }
->             },
->             "battery": {
->                 "percentage": {
->                     "minimum": 95,
->                     "maximum": 97,
->                     "average": 96
->                 }
->             },
->             "button": {
->                 "pressType": {
->                     "counts": {
->                         "short": 2,
->                         "long": 4
->                     }
->                 }
->             },
->             "co2": {
->                 "concentration": {
->                     "minimum": 221,
->                     "maximum": 504,
->                     "average": 440
->                 }
->             },
->             "current": {
->                 "draw": {
->                     "minimum": 0,
->                     "maximum": 0.13,
->                     "average": 0.04
->                 }
->             },
->             "door": {
->                 "counts": {
->                     "open": 6
->                 }
->             },
->             "energy": {
->                 "usage": 0.116
->             },
->             "frequency": {
->                 "draw": {
->                     "minimum": 59.6,
->                     "maximum": 60.2,
->                     "average": 60.1
->                 }
->             },
->             "humidity": {
->                 "relativePercentage": {
->                     "minimum": 33,
->                     "maximum": 35,
->                     "average": 33
->                 }
->             },
->             "indoorAirQuality": {
->                 "score": {
->                     "minimum": 33,
->                     "maximum": 35,
->                     "average": 33
->                 }
->             },
->             "noise": {
->                 "ambient": {
->                     "level": {
->                         "minimum": 22,
->                         "maximum": 45,
->                         "average": 31
->                     }
->                 }
->             },
->             "pm25": {
->                 "concentration": {
->                     "minimum": 0,
->                     "maximum": 3,
->                     "average": 1
->                 }
->             },
->             "powerFactor": {
->                 "percentage": {
->                     "minimum": 84,
->                     "maximum": 89,
->                     "average": 86
->                 }
->             },
->             "realPower": {
->                 "draw": {
->                     "minimum": 0,
->                     "maximum": 14.2,
->                     "average": 5
->                 }
->             },
->             "temperature": {
->                 "fahrenheit": {
->                     "minimum": 68.15,
->                     "maximum": 74.91,
->                     "average": 72.08
->                 },
->                 "celsius": {
->                     "minimum": 20.08,
->                     "maximum": 23.84,
->                     "average": 22.27
->                 }
->             },
->             "tvoc": {
->                 "concentration": {
->                     "minimum": 221,
->                     "maximum": 504,
->                     "average": 440
->                 }
->             },
->             "voltage": {
->                 "level": {
->                     "minimum": 120.7,
->                     "maximum": 124.6,
->                     "average": 122.6
->                 }
->             },
->             "water": {
->                 "counts": {
->                     "present": 6
->                 }
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -19321,147 +13823,6 @@ PATH _`/organizations/{organizationId}/sensor/alerts`_
 > 
 > **GET** `/organizations/{organizationId}/sensor/alerts`  
 > 
->     [
->         {
->             "startTs": "2018-02-11T00:00:00.090210Z",
->             "sensor": {
->                 "name": "My sensor",
->                 "serial": "Q234-ABCD-5678",
->                 "model": "MT10",
->                 "url": "http://example.com"
->             },
->             "trigger": {
->                 "ts": "2021-10-18T23:54:48.000000Z",
->                 "metric": "temperature",
->                 "apparentPower": {
->                     "draw": 15.9
->                 },
->                 "co2": {
->                     "concentration": 100
->                 },
->                 "current": {
->                     "draw": 0.13
->                 },
->                 "door": {
->                     "open": true
->                 },
->                 "frequency": {
->                     "level": 60.1
->                 },
->                 "humidity": {
->                     "relativePercentage": 34
->                 },
->                 "indoorAirQuality": {
->                     "score": 89
->                 },
->                 "noise": {
->                     "ambient": {
->                         "level": 45
->                     }
->                 },
->                 "pm25": {
->                     "concentration": 100
->                 },
->                 "powerFactor": {
->                     "percentage": 86
->                 },
->                 "realPower": {
->                     "draw": 13.7
->                 },
->                 "temperature": {
->                     "fahrenheit": 77.81,
->                     "celsius": 25.45
->                 },
->                 "tvoc": {
->                     "concentration": 100
->                 },
->                 "upstreamPower": {
->                     "outageDetected": true
->                 },
->                 "voltage": {
->                     "level": 122.4
->                 },
->                 "water": {
->                     "present": true
->                 }
->             },
->             "profile": {
->                 "id": "1",
->                 "name": "Too hot",
->                 "condition": {
->                     "metric": "temperature",
->                     "threshold": {
->                         "temperature": {
->                             "celsius": 20.5,
->                             "fahrenheit": 70,
->                             "quality": "good"
->                         },
->                         "humidity": {
->                             "relativePercentage": 65,
->                             "quality": "inadequate"
->                         },
->                         "water": {
->                             "present": true
->                         },
->                         "door": {
->                             "open": true
->                         },
->                         "tvoc": {
->                             "concentration": 400,
->                             "quality": "poor"
->                         },
->                         "co2": {
->                             "concentration": 400,
->                             "quality": "poor"
->                         },
->                         "pm25": {
->                             "concentration": 90,
->                             "quality": "fair"
->                         },
->                         "noise": {
->                             "ambient": {
->                                 "level": 120,
->                                 "quality": "poor"
->                             }
->                         },
->                         "indoorAirQuality": {
->                             "score": 80,
->                             "quality": "fair"
->                         },
->                         "realPower": {
->                             "draw": 14.1
->                         },
->                         "apparentPower": {
->                             "draw": 17.2
->                         },
->                         "powerFactor": {
->                             "percentage": 81
->                         },
->                         "current": {
->                             "draw": 0.14
->                         },
->                         "voltage": {
->                             "level": 119.5
->                         },
->                         "frequency": {
->                             "level": 58.8
->                         },
->                         "upstreamPower": {
->                             "outageDetected": true
->                         }
->                     },
->                     "direction": "above",
->                     "duration": 60
->                 }
->             },
->             "snapshotCamera": {
->                 "serial": "QAAA-AAAA-AAAA",
->                 "name": "Camera",
->                 "url": "http://example.com"
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
@@ -19480,10 +13841,6 @@ PATH _`/networks/{networkId}/sensor/schedules`_
       {
         "id": "123",
         "name": "Weekday schedule"
-      },
-      {
-        "id": "124",
-        "name": "Office hours"
       }
     ]
 
@@ -19494,17 +13851,6 @@ PATH _`/networks/{networkId}/sensor/schedules`_
 > #### Returns a list of all sensor schedules.
 > 
 > **GET** `/networks/{networkId}/sensor/schedules`  
-> 
->     [
->         {
->             "id": "123",
->             "name": "Weekday schedule"
->         },
->         {
->             "id": "124",
->             "name": "Office hours"
->         }
->     ]
 > 
 > * * *
 
@@ -19570,45 +13916,6 @@ PATH _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
 > 
 > **GET** `/organizations/{organizationId}/appliance/sdwan/internetPolicies`  
 > 
->     {
->         "wanTrafficUplinkPreferences": [
->             {
->                 "preferredUplink": "wan1",
->                 "failOverCriterion": "poorPerformance",
->                 "performanceClass": {
->                     "type": "custom",
->                     "builtinPerformanceClassName": "VoIP",
->                     "customPerformanceClassId": "123456"
->                 },
->                 "trafficFilters": [
->                     {
->                         "type": "custom",
->                         "value": {
->                             "protocol": "tcp",
->                             "source": {
->                                 "port": "1-1024",
->                                 "cidr": "192.168.1.0/24",
->                                 "vlan": 10,
->                                 "host": 254
->                             },
->                             "destination": {
->                                 "port": "any",
->                                 "cidr": "any",
->                                 "applications": [
->                                     {
->                                         "id": "meraki:layer7/application/3",
->                                         "name": "DNS",
->                                         "type": "major"
->                                     }
->                                 ]
->                             }
->                         }
->                     }
->                 ]
->             }
->         ]
->     }
-> 
 > * * *
 
 * * *
@@ -19635,10 +13942,6 @@ PATH _`/networks/{networkId}/appliance/umbrella/account/connect`_
 > 
 > **POST** `/networks/{networkId}/appliance/umbrella/account/connect`  
 > 
->     {
->         "umbrellaOrganizationId": "8769012"
->     }
-> 
 > * * *
 
 * * *
@@ -19663,11 +13966,6 @@ PATH _`/networks/{networkId}/appliance/umbrella/account/disconnect`_
 > #### Disconnect Umbrella account from this network
 > 
 > **DELETE** `/networks/{networkId}/appliance/umbrella/account/disconnect`  
-> 
->     {
->         "success": true,
->         "message": "Successfully updated"
->     }
 > 
 > * * *
 
@@ -19694,11 +13992,6 @@ PATH _`/networks/{networkId}/appliance/umbrella/disableProtection`_
 > 
 > **DELETE** `/networks/{networkId}/appliance/umbrella/disableProtection`  
 > 
->     {
->         "success": true,
->         "message": "Successfully updated"
->     }
-> 
 > * * *
 
 * * *
@@ -19723,11 +14016,6 @@ PATH _`/networks/{networkId}/appliance/umbrella/enableProtection`_
 > #### Enable umbrella protection for an MX network
 > 
 > **POST** `/networks/{networkId}/appliance/umbrella/enableProtection`  
-> 
->     {
->         "success": true,
->         "message": "Successfully updated"
->     }
 > 
 > * * *
 
@@ -19754,11 +14042,6 @@ PATH _`/networks/{networkId}/appliance/umbrella/excludeDomains`_
 > 
 > **PUT** `/networks/{networkId}/appliance/umbrella/excludeDomains`  
 > 
->     {
->         "success": true,
->         "message": "Successfully updated"
->     }
-> 
 > * * *
 
 * * *
@@ -19784,10 +14067,60 @@ PATH _`/networks/{networkId}/appliance/umbrella/policies`_
 > 
 > **PUT** `/networks/{networkId}/appliance/umbrella/policies`  
 > 
->     {
->         "success": true,
->         "message": "Successfully updated"
->     }
+> * * *
+
+* * *
+
+### vpn
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-connectivity-vpn-peers-by-network/)
+
+#### Summarizes by-device vpn peers for the organization in the given interval.
+
+Operation ID: `getOrganizationApplianceVpnConnectivityVpnPeersByNetwork`
+
+PATH _`/organizations/{organizationId}/appliance/vpn/connectivity/vpnPeers/byNetwork`_
+
+    [
+      {
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "merakiVpnPeers": [
+          {
+            "id": "N_123",
+            "name": "Network 1",
+            "url": "https://n1.meraki.com/Network_1/n/Abc123/manage/vpn/overview/Xyz456",
+            "avgLatencyMs": 35.3,
+            "usageBytes": 1000,
+            "outage": [
+              {
+                "ts": 1767769514,
+                "isConnected": true
+              }
+            ],
+            "usageIntervals": [
+              {
+                "ts": 1767769514,
+                "latency": 35.3,
+                "loss": {
+                  "percentage": 50
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Summarizes by-device vpn peers for the organization in the given interval.
+> 
+> **GET** `/organizations/{organizationId}/appliance/vpn/connectivity/vpnPeers/byNetwork`  
 > 
 > * * *
 
@@ -19875,76 +14208,35 @@ PATH _`/organizations/{organizationId}/appliance/vlans`_
 > 
 > **GET** `/organizations/{organizationId}/appliance/vlans`  
 > 
->     [
->         {
->             "id": "1234",
->             "interfaceId": "1284392014819",
->             "name": "My VLAN",
->             "subnet": "192.168.1.0/24",
->             "applianceIp": "192.168.1.2",
->             "groupPolicyId": "101",
->             "templateVlanType": "same",
->             "cidr": "192.168.1.0/24",
->             "mask": 28,
->             "dhcpRelayServerIps": [
->                 "192.168.1.0",
->                 "192.168.128.0"
->             ],
->             "dhcpHandling": "Run a DHCP server",
->             "dhcpLeaseTime": "1 day",
->             "dhcpBootOptionsEnabled": false,
->             "dhcpBootNextServer": "1.2.3.4",
->             "dhcpBootFilename": "sample.file",
->             "fixedIpAssignments": {
->                 "00:11:22:33:44:55": {
->                     "ip": "1.2.3.4",
->                     "name": "My favorite IP"
->                 }
->             },
->             "reservedIpRanges": [
->                 {
->                     "start": "192.168.1.0",
->                     "end": "192.168.1.1",
->                     "comment": "A reserved IP range"
->                 }
->             ],
->             "dnsNameservers": "google_dns",
->             "dhcpOptions": [
->                 {
->                     "code": "5",
->                     "type": "text",
->                     "value": "five"
->                 }
->             ],
->             "vpnNatSubnet": "192.168.1.0/24",
->             "mandatoryDhcp": {
->                 "enabled": true
->             },
->             "ipv6": {
->                 "enabled": true,
->                 "prefixAssignments": [
->                     {
->                         "autonomous": false,
->                         "staticPrefix": "2001:db8:3c4d:15::/64",
->                         "staticApplianceIp6": "2001:db8:3c4d:15::1",
->                         "origin": {
->                             "type": "internet",
->                             "interfaces": [
->                                 "wan0"
->                             ]
->                         }
->                     }
->                 ]
->             }
->         }
->     ]
-> 
 > * * *
 
 * * *
 
 Changed
 =======
+
+\[ nac \]
+---------
+
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates-authorities-crls/)
+
+#### Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter
+
+Operation ID: `getOrganizationNacCertificatesAuthoritiesCrls`
+
+GET _`/organizations/{organizationId}/nac/certificates/authorities/crls`_
+
+> \- Added endpoint method  
+> 
+> #### Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter
+> 
+> _getOrganizationNacCertificatesAuthoritiesCrls_
+> 
+> * * *
+
+* * *
 
 \[ insight \]
 -------------
@@ -19964,21 +14256,6 @@ POST _`/organizations/{organizationId}/insight/applications`_
 > #### Add an Insight tracked application
 > 
 > _createOrganizationInsightApplication_
-> 
->     {
->         "applicationId": "19.12",
->         "name": "Meraki HTTPS",
->         "thresholds": {
->             "type": "smart",
->             "byNetwork": [
->                 {
->                     "networkId": "N_12345678",
->                     "goodput": 50000,
->                     "responseDuration": 1000
->                 }
->             ]
->         }
->     }
 > 
 > * * *
 
@@ -20508,6 +14785,20 @@ GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
 
 * * *
 
+### linkAggregations
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-link-aggregations/)
+
+#### List link aggregation groups
+
+Operation ID: `getNetworkSwitchLinkAggregations`
+
+GET _`/networks/{networkId}/switch/linkAggregations`_
+
+> \- Optional param `serials` added
+
+* * *
+
 ### routing
 
 [Docs](https://developer.cisco.com/meraki/api-v1/create-device-switch-routing-interface/)
@@ -20753,6 +15044,52 @@ POST _`/devices/{serial}/sensor/commands`_
 
 \[ appliance \]
 ---------------
+
+### vpn
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-bgp/)
+
+#### Update a Hub BGP Configuration
+
+Operation ID: `updateNetworkApplianceVpnBgp`
+
+PUT _`/networks/{networkId}/appliance/vpn/bgp`_
+
+> \- Optional property `filterIn` Added
+
+> \- Optional property `communityOut` Added
+
+> \- Optional property `routerId` Added
+
+> \- Optional property `filterIn` Added
+
+> \- Optional property `communityOut` Added
+
+> \- Optional property `routerId` Added
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vpn-bgp/)
+
+#### Return a Hub BGP Configuration
+
+Operation ID: `getNetworkApplianceVpnBgp`
+
+GET _`/networks/{networkId}/appliance/vpn/bgp`_
+
+> \- Optional property `filterIn` Added
+
+> \- Optional property `communityOut` Added
+
+> \- Optional property `routerId` Added
+
+> \- Response property `filterIn` value added
+
+> \- Response property `communityOut` value added
+
+> \- Response property `routerId` value added
+
+* * *
 
 ### vlans
 
