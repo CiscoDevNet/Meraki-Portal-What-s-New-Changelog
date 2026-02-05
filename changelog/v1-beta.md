@@ -78,6 +78,44 @@
       - [Return the details of a specific private application group](#return-the-details-of-a-specific-private-application-group)
       - [Update an application group in an Organization. Updates are allowed on Group Name and Group Description. Applications can be added or removed. Group type and Policy cannot be changed.](#update-an-application-group-in-an-organization-updates-are-allowed-on-group-name-and-group-description-applications-can-be-added-or-removed-group-type-and-policy-cannot-be-changed)
       - [Deletes private application group from an Organization. Detaches application from groups before deleting](#deletes-private-application-group-from-an-organization-detaches-application-from-groups-before-deleting)
+  * [\[ nac \]](#-nac-)
+    + [sessions](#sessions)
+      - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization)
+      - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization-1)
+      - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions)
+      - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions-1)
+    + [license](#license)
+      - [Returns license usage data for a specific organization](#returns-license-usage-data-for-a-specific-organization)
+      - [Returns license usage data for a specific organization](#returns-license-usage-data-for-a-specific-organization-1)
+    + [dictionaries](#dictionaries)
+      - [Get all NAC dictionaries](#get-all-nac-dictionaries)
+      - [Get all NAC dictionaries](#get-all-nac-dictionaries-1)
+      - [Get all attributes by dictionary ID](#get-all-attributes-by-dictionary-id)
+      - [Get all attributes by dictionary ID](#get-all-attributes-by-dictionary-id-1)
+    + [authorization](#authorization)
+      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization)
+      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-1)
+      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization)
+      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-1)
+      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization)
+      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-1)
+      - [Delete a rule in an authorization policy set of an organization](#delete-a-rule-in-an-authorization-policy-set-of-an-organization)
+    + [certificates](#certificates)
+      - [Gets all certificates for an organization and can filter by certificate status, expiry date and last used date](#gets-all-certificates-for-an-organization-and-can-filter-by-certificate-status-expiry-date-and-last-used-date)
+      - [Gets all certificates for an organization and can filter by certificate status, expiry date and last used date](#gets-all-certificates-for-an-organization-and-can-filter-by-certificate-status-expiry-date-and-last-used-date-1)
+      - [Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter](#get-all-the-organizations-crlits-possible-to-filter-results-by-crl-issuers-ca-or-crls-id---see-caids-and-crlids-query-parametersthis-endpoint-could-be-used-for-show-action-when-you-specify-a-single-crl-id-in-crlids-parameter)
+      - [Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter](#get-all-the-organizations-crlits-possible-to-filter-results-by-crl-issuers-ca-or-crls-id---see-caids-and-crlids-query-parametersthis-endpoint-could-be-used-for-show-action-when-you-specify-a-single-crl-id-in-crlids-parameter-1)
+      - [Create a new CRL (either base or delta) for an existing CA](#create-a-new-crl-either-base-or-delta-for-an-existing-ca)
+      - [Get all the organization's CRL descriptors (metadata only - revocation list data is excluded)](#get-all-the-organizations-crl-descriptors-metadata-only---revocation-list-data-is-excluded)
+      - [Get all the organization's CRL descriptors (metadata only - revocation list data is excluded). It's possible to filter results by CRL issuers (CA) - see caIds query parameter](#get-all-the-organizations-crl-descriptors-metadata-only---revocation-list-data-is-excluded-its-possible-to-filter-results-by-crl-issuers-ca---see-caids-query-parameter)
+      - [Deletes a whole CRL, including all its deltas (in case of base CRL removal)](#deletes-a-whole-crl-including-all-its-deltas-in-case-of-base-crl-removal)
+      - [Deletes a whole CRL, including all its deltas (in case of base CRL removal)](#deletes-a-whole-crl-including-all-its-deltas-in-case-of-base-crl-removal-1)
+      - [Import certificate for this organization or validate without persisting](#import-certificate-for-this-organization-or-validate-without-persisting)
+      - [Import certificate for this organization or validate without persisting](#import-certificate-for-this-organization-or-validate-without-persisting-1)
+      - [Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization](#get-counts-of-enabled-disabled-expired-and-last-used-certificates-for-this-organization)
+      - [Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization](#get-counts-of-enabled-disabled-expired-and-last-used-certificates-for-this-organization-1)
+      - [Update certificate configuration by certificateId for this organization](#update-certificate-configuration-by-certificateid-for-this-organization)
+      - [Update certificate configuration by certificateId for this organization](#update-certificate-configuration-by-certificateid-for-this-organization-1)
   * [\[ users \]](#-users-)
     + [iam](#iam)
       - [List specific authorizations for the list of Meraki end users.](#list-specific-authorizations-for-the-list-of-meraki-end-users)
@@ -171,7 +209,7 @@
       - [Return an OSPF neighbors live tool job.](#return-an-ospf-neighbors-live-tool-job-1)
     + [dhcpLeases](#dhcpleases)
       - [Enqueue a job to perform a DHCP leases request for the device](#enqueue-a-job-to-perform-a-dhcp-leases-request-for-the-device)
-      - [Enqueue a job to perform a DHCP leases request for the device. This endpoint currently supports all devices. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-perform-a-dhcp-leases-request-for-the-device-this-endpoint-currently-supports-all-devices-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
+      - [Enqueue a job to perform a DHCP leases request for the device. This endpoint currently supports all MS devices. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-perform-a-dhcp-leases-request-for-the-device-this-endpoint-currently-supports-all-ms-devices-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
       - [Return a DHCP leases live tool job.](#return-a-dhcp-leases-live-tool-job)
       - [Return a DHCP leases live tool job.](#return-a-dhcp-leases-live-tool-job-1)
     + [cyclePort](#cycleport)
@@ -187,45 +225,14 @@
     + [clients](#clients)
       - [Return a client disconnect job.](#return-a-client-disconnect-job)
       - [Return a client disconnect job.](#return-a-client-disconnect-job-1)
+  * [\[ administered \]](#-administered-)
+    + [search](#search)
+      - [List the appropriate results for a given global search utilizing live\_search\_react](#list-the-appropriate-results-for-a-given-global-search-utilizing-live_search_react)
+      - [List the appropriate results for a given global search utilizing live\_search\_react](#list-the-appropriate-results-for-a-given-global-search-utilizing-live_search_react-1)
   * [\[ licensing \]](#-licensing-)
     + [subscription](#subscription)
       - [Batch change networks to their desired feature tier for specified product types](#batch-change-networks-to-their-desired-feature-tier-for-specified-product-types)
       - [Batch change networks to their desired feature tier for specified product types](#batch-change-networks-to-their-desired-feature-tier-for-specified-product-types-1)
-  * [\[ nac \]](#-nac-)
-    + [sessions](#sessions)
-      - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization)
-      - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization-1)
-      - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions)
-      - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions-1)
-    + [license](#license)
-      - [Returns license usage data for a specific organization](#returns-license-usage-data-for-a-specific-organization)
-      - [Returns license usage data for a specific organization](#returns-license-usage-data-for-a-specific-organization-1)
-    + [dictionaries](#dictionaries)
-      - [Get all NAC dictionaries](#get-all-nac-dictionaries)
-      - [Get all NAC dictionaries](#get-all-nac-dictionaries-1)
-      - [Get all attributes by dictionary ID](#get-all-attributes-by-dictionary-id)
-      - [Get all attributes by dictionary ID](#get-all-attributes-by-dictionary-id-1)
-    + [authorization](#authorization)
-      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization)
-      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-1)
-      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization)
-      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-1)
-      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization)
-      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-1)
-      - [Delete a rule in an authorization policy set of an organization](#delete-a-rule-in-an-authorization-policy-set-of-an-organization)
-    + [certificates](#certificates)
-      - [Gets all certificates for an organization and can filter by certificate status, expiry date and last used date](#gets-all-certificates-for-an-organization-and-can-filter-by-certificate-status-expiry-date-and-last-used-date)
-      - [Gets all certificates for an organization and can filter by certificate status, expiry date and last used date](#gets-all-certificates-for-an-organization-and-can-filter-by-certificate-status-expiry-date-and-last-used-date-1)
-      - [Get all the organization's CRL descriptors (metadata only - revocation list data is excluded)](#get-all-the-organizations-crl-descriptors-metadata-only---revocation-list-data-is-excluded)
-      - [Get all the organization's CRL descriptors (metadata only - revocation list data is excluded). It's possible to filter results by CRL issuers (CA) - see caIds query parameter](#get-all-the-organizations-crl-descriptors-metadata-only---revocation-list-data-is-excluded-its-possible-to-filter-results-by-crl-issuers-ca---see-caids-query-parameter)
-      - [Deletes a whole CRL, including all its deltas (in case of base CRL removal)](#deletes-a-whole-crl-including-all-its-deltas-in-case-of-base-crl-removal)
-      - [Deletes a whole CRL, including all its deltas (in case of base CRL removal)](#deletes-a-whole-crl-including-all-its-deltas-in-case-of-base-crl-removal-1)
-      - [Import certificate for this organization or validate without persisting](#import-certificate-for-this-organization-or-validate-without-persisting)
-      - [Import certificate for this organization or validate without persisting](#import-certificate-for-this-organization-or-validate-without-persisting-1)
-      - [Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization](#get-counts-of-enabled-disabled-expired-and-last-used-certificates-for-this-organization)
-      - [Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization](#get-counts-of-enabled-disabled-expired-and-last-used-certificates-for-this-organization-1)
-      - [Update certificate configuration by certificateId for this organization](#update-certificate-configuration-by-certificateid-for-this-organization)
-      - [Update certificate configuration by certificateId for this organization](#update-certificate-configuration-by-certificateid-for-this-organization-1)
   * [\[ insight \]](#-insight-)
     + [webApps](#webapps)
       - [Lists all default web applications rules with counter set rule ids](#lists-all-default-web-applications-rules-with-counter-set-rule-ids)
@@ -283,10 +290,6 @@
       - [Enroll sites in this organization to Secure Access. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.](#enroll-sites-in-this-organization-to-secure-access-for-an-organization-a-maximum-of-4000-sites-can-be-enrolled-if-they-are-in-spoke-mode-or-a-maximum-of-10-sites-can-be-enrolled-in-hub-mode)
       - [Update the configuration for a site](#update-the-configuration-for-a-site)
       - [Update the configuration for a site. Currently, only supports updating default route enablement.](#update-the-configuration-for-a-site-currently-only-supports-updating-default-route-enablement)
-    + [networks](#networks)
-      - [Move networks from one organization to another](#move-networks-from-one-organization-to-another)
-      - [Return a list of network move operations in the organization](#return-a-list-of-network-move-operations-in-the-organization)
-      - [Move networks from one organization to another. For more information and caveats around network move limitations see the Network Portability documentation.](#move-networks-from-one-organization-to-another-for-more-information-and-caveats-around-network-move-limitations-see-the-network-portability-documentation)
     + [integrations](#integrations)
       - [Provides a list of integrations that can be enabled for an Organization.](#provides-a-list-of-integrations-that-can-be-enabled-for-an-organization)
       - [Provides a list of integrations that can be enabled for an Organization.](#provides-a-list-of-integrations-that-can-be-enabled-for-an-organization-1)
@@ -309,6 +312,18 @@
     + [cloud](#cloud)
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules)
       - [List of source/destination traffic rules](#list-of-sourcedestination-traffic-rules-1)
+    + [certificates](#certificates-1)
+      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
+      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization-1)
+      - [Import certificate for this organization](#import-certificate-for-this-organization)
+      - [Import certificate for this organization](#import-certificate-for-this-organization-1)
+      - [Download the public RADIUS certificate.](#download-the-public-radius-certificate)
+      - [Download the public RADIUS certificate.](#download-the-public-radius-certificate-1)
+      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
+      - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
+      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization-1)
+      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
+      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id-1)
     + [auth](#auth)
       - [List the organization-wide RADIUS servers in the organization](#list-the-organization-wide-radius-servers-in-the-organization)
       - [List the organization-wide RADIUS servers in the organization](#list-the-organization-wide-radius-servers-in-the-organization-1)
@@ -334,6 +349,9 @@
     + [optimization](#optimization)
       - [Returns an array of checkup results for the networks](#returns-an-array-of-checkup-results-for-the-networks)
       - [Returns an array of checkup results for the networks](#returns-an-array-of-checkup-results-for-the-networks-1)
+    + [fetchTableQuery](#fetchtablequery)
+      - [Returns the table data for a given timespan](#returns-the-table-data-for-a-given-timespan)
+      - [Returns the table data for a given timespan](#returns-the-table-data-for-a-given-timespan-1)
     + [apiRequests](#apirequests)
       - [Lists API request response codes and their counts aggregated by admin](#lists-api-request-response-codes-and-their-counts-aggregated-by-admin)
       - [Lists API request response codes and their counts aggregated by admin](#lists-api-request-response-codes-and-their-counts-aggregated-by-admin-1)
@@ -346,18 +364,6 @@
     + [snmp](#snmp)
       - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization)
       - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization-1)
-    + [certificates](#certificates-1)
-      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
-      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization-1)
-      - [Import certificate for this organization](#import-certificate-for-this-organization)
-      - [Import certificate for this organization](#import-certificate-for-this-organization-1)
-      - [Download the public RADIUS certificate.](#download-the-public-radius-certificate)
-      - [Download the public RADIUS certificate.](#download-the-public-radius-certificate-1)
-      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization)
-      - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
-      - [Delete a certificate for an organization](#delete-a-certificate-for-an-organization-1)
-      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id)
-      - [Download the trusted certificate by certificate id.](#download-the-trusted-certificate-by-certificate-id-1)
     + [devices](#devices-1)
       - [Returns counts of online, offline, and recovered devices by product type, along with offline intervals for impacted devices in the organization.](#returns-counts-of-online-offline-and-recovered-devices-by-product-type-along-with-offline-intervals-for-impacted-devices-in-the-organization)
       - [Returns counts of online, offline, and recovered devices by product type, along with offline intervals for impacted devices in the organization.](#returns-counts-of-online-offline-and-recovered-devices-by-product-type-along-with-offline-intervals-for-impacted-devices-in-the-organization-1)
@@ -414,22 +420,12 @@
     + [alerts](#alerts)
       - [Gets all low power related alerts over a given network and returns information by device](#gets-all-low-power-related-alerts-over-a-given-network-and-returns-information-by-device)
       - [Gets all low power related alerts over a given network and returns information by device](#gets-all-low-power-related-alerts-over-a-given-network-and-returns-information-by-device-1)
+    + [certificates](#certificates-2)
+      - [Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).](#query-for-details-on-the-organizations-openroaming-certificate-authority-certificate-cas)
+      - [Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).](#query-for-details-on-the-organizations-openroaming-certificate-authority-certificate-cas-1)
     + [connectivity](#connectivity)
       - [Show the by-device RF Health score overview information for the organization in the given interval](#show-the-by-device-rf-health-score-overview-information-for-the-organization-in-the-given-interval)
       - [Show the by-device RF Health score overview information for the organization in the given interval. This includes the RF Health score for each device, as well as some more basic device info](#show-the-by-device-rf-health-score-overview-information-for-the-organization-in-the-given-interval-this-includes-the-rf-health-score-for-each-device-as-well-as-some-more-basic-device-info)
-    + [ssids](#ssids)
-      - [Update the client exclusion status configuration for a given SSID](#update-the-client-exclusion-status-configuration-for-a-given-ssid)
-      - [Update the client exclusion status configuration for a given SSID](#update-the-client-exclusion-status-configuration-for-a-given-ssid-1)
-      - [Set the static client exclusion list for the given SSID](#set-the-static-client-exclusion-list-for-the-given-ssid)
-      - [Set the static client exclusion list for the given SSID](#set-the-static-client-exclusion-list-for-the-given-ssid-1)
-      - [Add a list of MAC addresses to the static client exclusion list for the given SSID](#add-a-list-of-mac-addresses-to-the-static-client-exclusion-list-for-the-given-ssid)
-      - [Add a list of MAC addresses to the static client exclusion list for the given SSID](#add-a-list-of-mac-addresses-to-the-static-client-exclusion-list-for-the-given-ssid-1)
-      - [Delete a list of MAC addresses from the static client exclusion list for the given SSID](#delete-a-list-of-mac-addresses-from-the-static-client-exclusion-list-for-the-given-ssid)
-      - [Delete a list of MAC addresses from the static client exclusion list for the given SSID](#delete-a-list-of-mac-addresses-from-the-static-client-exclusion-list-for-the-given-ssid-1)
-      - [Returns an array of objects, each containing client exclusion enablement statuses for one SSID](#returns-an-array-of-objects-each-containing-client-exclusion-enablement-statuses-for-one-ssid)
-      - [Returns an array of objects, each containing client exclusion enablement statuses for one SSID](#returns-an-array-of-objects-each-containing-client-exclusion-enablement-statuses-for-one-ssid-1)
-      - [Returns an array of objects, each containing a list of MAC's excluded from a given SSID](#returns-an-array-of-objects-each-containing-a-list-of-macs-excluded-from-a-given-ssid)
-      - [Returns an array of objects, each containing a list of MAC's excluded from a given SSID](#returns-an-array-of-objects-each-containing-a-list-of-macs-excluded-from-a-given-ssid-1)
     + [opportunisticPcap](#opportunisticpcap)
       - [Update the Opportunistic Pcap settings for a wireless network](#update-the-opportunistic-pcap-settings-for-a-wireless-network)
       - [Update the Opportunistic Pcap settings for a wireless network](#update-the-opportunistic-pcap-settings-for-a-wireless-network-1)
@@ -445,8 +441,6 @@
       - [Show the status of this device's radios](#show-the-status-of-this-devices-radios-1)
       - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
       - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network-1)
-      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network-2)
-      - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network-3)
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device)
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-1)
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-2)
@@ -455,16 +449,15 @@
       - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network-1)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization-1)
-      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network-2)
-      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network-3)
+      - [Show the by-device neighbor rssi information for the organization in the given interval](#show-the-by-device-neighbor-rssi-information-for-the-organization-in-the-given-interval)
+      - [Show the by-device neighbor rssi information for the organization in the given interval. This includes some basic device and network data, the number of neighbors for each device (total and by band), and the rssi and information of each neighbor](#show-the-by-device-neighbor-rssi-information-for-the-organization-in-the-given-interval-this-includes-some-basic-device-and-network-data-the-number-of-neighbors-for-each-device-total-and-by-band-and-the-rssi-and-information-of-each-neighbor)
+      - [Show the by-network RF Health score overview information for the organization in the given interval](#show-the-by-network-rf-health-score-overview-information-for-the-organization-in-the-given-interval)
+      - [Show the by-network RF Health score overview information for the organization in the given interval. This includes RF Health score, high interference APs, number of APs and of clients](#show-the-by-network-rf-health-score-overview-information-for-the-organization-in-the-given-interval-this-includes-rf-health-score-high-interference-aps-number-of-aps-and-of-clients)
       - [Show the status of this organization's radios, categorized by network and device](#show-the-status-of-this-organizations-radios-categorized-by-network-and-device)
       - [Show the status of this organization's radios, categorized by network and device](#show-the-status-of-this-organizations-radios-categorized-by-network-and-device-1)
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network-1)
-    + [certificates](#certificates-2)
-      - [Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).](#query-for-details-on-the-organizations-openroaming-certificate-authority-certificate-cas)
-      - [Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).](#query-for-details-on-the-organizations-openroaming-certificate-authority-certificate-cas-1)
     + [devices](#devices-3)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network-1)
@@ -513,6 +506,21 @@
       - [Summarize authentication outcomes per wireless client across an organization.](#summarize-authentication-outcomes-per-wireless-client-across-an-organization-1)
       - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization)
       - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization-1)
+      - [Show the by-network client information for the organization in the given interval](#show-the-by-network-client-information-for-the-organization-in-the-given-interval)
+      - [Show the by-network client information for the organization in the given interval. This includes average SNR](#show-the-by-network-client-information-for-the-organization-in-the-given-interval-this-includes-average-snr)
+    + [ssids](#ssids)
+      - [Update the client exclusion status configuration for a given SSID](#update-the-client-exclusion-status-configuration-for-a-given-ssid)
+      - [Update the client exclusion status configuration for a given SSID](#update-the-client-exclusion-status-configuration-for-a-given-ssid-1)
+      - [Set the static client exclusion list for the given SSID](#set-the-static-client-exclusion-list-for-the-given-ssid)
+      - [Set the static client exclusion list for the given SSID](#set-the-static-client-exclusion-list-for-the-given-ssid-1)
+      - [Add a list of MAC addresses to the static client exclusion list for the given SSID](#add-a-list-of-mac-addresses-to-the-static-client-exclusion-list-for-the-given-ssid)
+      - [Add a list of MAC addresses to the static client exclusion list for the given SSID](#add-a-list-of-mac-addresses-to-the-static-client-exclusion-list-for-the-given-ssid-1)
+      - [Delete a list of MAC addresses from the static client exclusion list for the given SSID](#delete-a-list-of-mac-addresses-from-the-static-client-exclusion-list-for-the-given-ssid)
+      - [Delete a list of MAC addresses from the static client exclusion list for the given SSID](#delete-a-list-of-mac-addresses-from-the-static-client-exclusion-list-for-the-given-ssid-1)
+      - [Returns an array of objects, each containing client exclusion enablement statuses for one SSID](#returns-an-array-of-objects-each-containing-client-exclusion-enablement-statuses-for-one-ssid)
+      - [Returns an array of objects, each containing client exclusion enablement statuses for one SSID](#returns-an-array-of-objects-each-containing-client-exclusion-enablement-statuses-for-one-ssid-1)
+      - [Returns an array of objects, each containing a list of MAC's excluded from a given SSID](#returns-an-array-of-objects-each-containing-a-list-of-macs-excluded-from-a-given-ssid)
+      - [Returns an array of objects, each containing a list of MAC's excluded from a given SSID](#returns-an-array-of-objects-each-containing-a-list-of-macs-excluded-from-a-given-ssid-1)
   * [\[ switch \]](#-switch-)
     + [alerts](#alerts-1)
       - [Gets all poe related alerts over a given network and returns information by device](#gets-all-poe-related-alerts-over-a-given-network-and-returns-information-by-device)
@@ -546,6 +554,8 @@
       - [Summarizes authentication outcomes per switch client across an organization.](#summarizes-authentication-outcomes-per-switch-client-across-an-organization-1)
       - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization-2)
       - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization-3)
+      - [Switch port status by client.](#switch-port-status-by-client)
+      - [Switch port status by client.](#switch-port-status-by-client-1)
     + [stacks](#stacks)
       - [Update switch port mirrors for switch stacks](#update-switch-port-mirrors-for-switch-stacks)
       - [Update switch port mirrors for switch stacks](#update-switch-port-mirrors-for-switch-stacks-1)
@@ -610,6 +620,8 @@
       - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router. Border Gateway Protocol requires IOS XE 17.18 or higher](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router-border-gateway-protocol-requires-ios-xe-1718-or-higher)
       - [Delete a router from an organization](#delete-a-router-from-an-organization)
       - [Delete a router from an organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#delete-a-router-from-an-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
+      - [List layer 3 static routes for switches within an organization](#list-layer-3-static-routes-for-switches-within-an-organization)
+      - [List layer 3 static routes for switches within an organization](#list-layer-3-static-routes-for-switches-within-an-organization-1)
     + [ports](#ports)
       - [Update a port mirror](#update-a-port-mirror-2)
       - [Update a port mirror](#update-a-port-mirror-3)
@@ -688,10 +700,6 @@
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization)
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization-1)
 - [Changed](#changed)
-  * [\[ nac \]](#-nac--1)
-    + [certificates](#certificates-3)
-      - [Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter](#get-all-the-organizations-crlits-possible-to-filter-results-by-crl-issuers-ca-or-crls-id---see-caids-and-crlids-query-parametersthis-endpoint-could-be-used-for-show-action-when-you-specify-a-single-crl-id-in-crlids-parameter)
-      - [Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter](#get-all-the-organizations-crlits-possible-to-filter-results-by-crl-issuers-ca-or-crls-id---see-caids-and-crlids-query-parametersthis-endpoint-could-be-used-for-show-action-when-you-specify-a-single-crl-id-in-crlids-parameter-1)
   * [\[ insight \]](#-insight--1)
     + [applications](#applications-1)
       - [Add an Insight tracked application](#add-an-insight-tracked-application)
@@ -719,6 +727,9 @@
       - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network)
       - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network)
   * [\[ wireless \]](#-wireless--1)
+    + [ssids](#ssids-1)
+      - [Modify the splash page settings for the given SSID](#modify-the-splash-page-settings-for-the-given-ssid)
+      - [Display the splash page settings for the given SSID](#display-the-splash-page-settings-for-the-given-ssid)
     + [rfProfiles](#rfprofiles)
       - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
       - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
@@ -758,7 +769,9 @@
   * [\[ appliance \]](#-appliance--1)
     + [vpn](#vpn-1)
       - [Update a Hub BGP Configuration](#update-a-hub-bgp-configuration)
+      - [Update the site-to-site VPN settings of a network](#update-the-site-to-site-vpn-settings-of-a-network)
       - [Return a Hub BGP Configuration](#return-a-hub-bgp-configuration)
+      - [Return the site-to-site VPN settings of a network](#return-the-site-to-site-vpn-settings-of-a-network)
     + [vlans](#vlans-1)
       - [Add a VLAN](#add-a-vlan)
       - [Update a VLAN](#update-a-vlan)
@@ -770,19 +783,19 @@
       - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
       - [Return the uplink settings for an MX appliance](#return-the-uplink-settings-for-an-mx-appliance)
  
-Version **1.66.0** _to_ **1.66.0-beta.0**
+Version **1.67.0** _to_ **1.67.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**265 - New**
+**270 - New**
 
-**195 - Updated**
+**245 - Updated**
 
-**1186 - Total Endpoints**
+**1194 - Total Endpoints**
 
-**856 - Total Paths**
+**864 - Total Paths**
 
 * * *
 
@@ -1906,6 +1919,826 @@ PATH _`/organizations/{organizationId}/secureConnect/privateApplicationGroups/{i
 > #### Deletes private application group from an Organization. Detaches application from groups before deleting
 > 
 > **DELETE** `/organizations/{organizationId}/secureConnect/privateApplicationGroups/{id}`  
+> 
+> * * *
+
+* * *
+
+\[ nac \]
+---------
+
+### sessions
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-sessions-history/)
+
+#### List the NAC Sessions for this organization
+
+Operation ID: `getOrganizationNacSessionsHistory`
+
+PATH _`/organizations/{organizationId}/nac/sessions/history`_
+
+    {
+      "items": [
+        {
+          "sessionId": "0677ba3c-a867-461d-97c9-e5b60066f2b3",
+          "counts": {
+            "events": {
+              "total": 5
+            }
+          },
+          "ts": "2023-02-01T11:36:25.480Z",
+          "status": "Success",
+          "details": "A policy for whose first matched rule will return its assigned authz profile",
+          "user": {
+            "id": "stress"
+          },
+          "client": {
+            "id": "00-14-11-12-12-12:mab2",
+            "url": "/SJC-Test-Network/n/OSYcyb2h/manage/clients?timespan=2592000&searchQuery=00-14-11-12-12-12%3Amab2"
+          },
+          "authentication": {
+            "protocol": "MAB"
+          },
+          "ssid": {
+            "name": ""
+          },
+          "device": {
+            "url": "/SJC-Test-Network/n/OSYcyb2h/manage/nodes/new_list/167231144861997/summary"
+          }
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 4,
+            "byResult": [
+              {
+                "result": "Authentication Failed",
+                "total": 120
+              }
+            ]
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the NAC Sessions for this organization
+> 
+> **GET** `/organizations/{organizationId}/nac/sessions/history`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-session-details/)
+
+#### Return the details of selected NAC Sessions
+
+Operation ID: `getOrganizationNacSessionDetails`
+
+PATH _`/organizations/{organizationId}/nac/sessions/{sessionId}/details`_
+
+    {
+      "sessionId": "e6b7d57b-1ddb-47f5-8d76-c06e10570297",
+      "hasCompleteEvent": true,
+      "ts": "2023-02-01T13:25:26.181Z",
+      "status": "Success",
+      "details": "",
+      "counts": {
+        "events": {
+          "total": 5
+        }
+      },
+      "user": {
+        "id": "Device ID Username",
+        "idp": "Active Directory",
+        "groups": "ID group names"
+      },
+      "client": {
+        "id": "2c:3f:0b:00:14:00",
+        "addresses": [
+          {
+            "protocol": "ipv4",
+            "address": "112.112.112.112"
+          }
+        ],
+        "groups": "ID group names",
+        "deviceProfiling": "Macbook Pro",
+        "guid": "00-00-00-00-00-00",
+        "url": "/SJC-Test-Network/n/OSYcyb2h/manage/clients?timespan=2592000&searchQuery=2c%3A3f%3A0b%3A00%3A14%3A00"
+      },
+      "authentication": {
+        "latency": 500,
+        "method": "EAP-TLS",
+        "protocol": "EAP",
+        "policy": "Active Directory",
+        "endpointCertificate": {
+          "title": "Endpoint Certificate Name",
+          "issuer": "Issuer's Name",
+          "isExpired": false,
+          "status": "Trusted",
+          "subjectName": {
+            "commonName": "hosuk",
+            "organizationalUnit": "Example Unit",
+            "organization": "Company Name",
+            "locality": "City",
+            "state": "State",
+            "country": "US"
+          },
+          "issuerName": {
+            "commonName": "Certificate Services Endpoint Sub CA - ise",
+            "serial": "58 BA BA 47 4F 4B 58 BA BA 47 4F 4B 74 72",
+            "version": "3",
+            "signatureAlgorithm": "XXX",
+            "parameters": "None",
+            "validity": {
+              "start": "2023-01-01T13:25:26.181Z",
+              "end": "2024-01-01T13:25:26.181Z"
+            }
+          },
+          "publicKey": {
+            "algorithm": "XXX",
+            "parameters": "XXX",
+            "body": "XXX",
+            "exponent": "XXX",
+            "size": "XXX",
+            "usage": "XXX",
+            "signature": "XXX"
+          },
+          "directoryName": {
+            "commonName": "XXX",
+            "serial": "XXX"
+          },
+          "fingerprints": {
+            "sha256": "XXX",
+            "sha1": "XXX"
+          },
+          "extensions": [
+            {
+              "oid": "2.5.28.15",
+              "name": "Key Usage",
+              "fields": [
+                {
+                  "name": "Critical",
+                  "value": "Yes"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "authorization": {
+        "rule": "Rule Name",
+        "profile": "List all the profiles here"
+      },
+      "network": {
+        "name": "Name",
+        "accessType": "Wired",
+        "ssid": {
+          "name": "SSID"
+        },
+        "port": {
+          "name": "Port"
+        },
+        "tags": "tag names"
+      },
+      "device": {
+        "name": "Device model name",
+        "model": "Device model name",
+        "addresses": [
+          {
+            "protocol": "ipv4",
+            "address": "100.10.100.10"
+          }
+        ],
+        "tags": "tag names",
+        "url": "/SJC-Test-Network/n/OSYcyb2h/manage/nodes/new_list/167231144861997/summary"
+      },
+      "radius": {
+        "attributes": {
+          "incoming": [
+            {
+              "code": "1",
+              "name": "Username",
+              "value": "hosuk"
+            }
+          ],
+          "outgoing": [
+            {
+              "code": "1",
+              "name": "Username",
+              "value": "hosuk"
+            }
+          ]
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the details of selected NAC Sessions
+> 
+> **GET** `/organizations/{organizationId}/nac/sessions/{sessionId}/details`  
+> 
+> * * *
+
+* * *
+
+### license
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-license-usage/)
+
+#### Returns license usage data for a specific organization
+
+Operation ID: `getOrganizationNacLicenseUsage`
+
+PATH _`/organizations/{organizationId}/nac/license/usage`_
+
+    {
+      "organizationId": "1284392014819",
+      "type": "CoTerm",
+      "timeRange": {
+        "startDate": "2025-05-13",
+        "endDate": "2025-07-11"
+      },
+      "licenseLimit": 100,
+      "usageData": [
+        {
+          "date": "2025-08-21",
+          "peakConcurrentSessions": 100
+        }
+      ],
+      "summary": {
+        "daysInPeriod": 60,
+        "highestPeakConcurrentSessions": 145,
+        "p90PeakConcurrentSessions": 120.5,
+        "p95PeakConcurrentSessions": 135.2
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns license usage data for a specific organization
+> 
+> **GET** `/organizations/{organizationId}/nac/license/usage`  
+> 
+> * * *
+
+* * *
+
+### dictionaries
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-dictionaries/)
+
+#### Get all NAC dictionaries
+
+Operation ID: `getOrganizationNacDictionaries`
+
+PATH _`/organizations/{organizationId}/nac/dictionaries`_
+
+    [
+      {
+        "dictionaryId": "1",
+        "name": "Clients",
+        "description": "Client dictionary",
+        "category": "clients"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get all NAC dictionaries
+> 
+> **GET** `/organizations/{organizationId}/nac/dictionaries`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-dictionary-attributes/)
+
+#### Get all attributes by dictionary ID
+
+Operation ID: `getOrganizationNacDictionaryAttributes`
+
+PATH _`/organizations/{organizationId}/nac/dictionaries/{dictionaryId}/attributes`_
+
+    [
+      {
+        "attributeId": "urn:client-cert:cn",
+        "title": "Common Name",
+        "description": "common Name attribute",
+        "maximum": 100,
+        "minimum": 0,
+        "pattern": ".*",
+        "type": "string",
+        "format": "string",
+        "enum": [
+          "Permit",
+          "Deny"
+        ],
+        "isLargeDataSet": false,
+        "items": {
+          "title": "SAN",
+          "description": "subject alternative name",
+          "type": "string"
+        },
+        "isReadOnly": false,
+        "isWriteOnly": false,
+        "default": "Permit"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get all attributes by dictionary ID
+> 
+> **GET** `/organizations/{organizationId}/nac/dictionaries/{dictionaryId}/attributes`  
+> 
+> * * *
+
+* * *
+
+### authorization
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-authorization-policies/)
+
+#### Get all nac authorization policies for this organization
+
+Operation ID: `getOrganizationNacAuthorizationPolicies`
+
+PATH _`/organizations/{organizationId}/nac/authorization/policies`_
+
+    [
+      {
+        "policyId": "1",
+        "name": "auth_policy",
+        "enabled": true,
+        "rank": 5,
+        "version": "20",
+        "counts": {
+          "hits": 10
+        },
+        "rules": [
+          {
+            "ruleId": "1",
+            "name": "rule_name",
+            "rank": 10,
+            "enabled": true,
+            "counts": {
+              "hits": 20
+            },
+            "authorizationProfile": {
+              "vlan": {
+                "value": "123",
+                "type": "CONSTANT"
+              },
+              "adaptivePolicy": {
+                "value": "Sample_Adaptive_Policy",
+                "type": "CONSTANT"
+              },
+              "voiceDomain": {
+                "value": "true",
+                "type": "CONSTANT"
+              },
+              "groupPolicy": {
+                "value": "Sample_Group_Policy",
+                "type": "CONSTANT"
+              },
+              "result": "PERMIT",
+              "ipsk": {
+                "value": "Moon@15",
+                "type": "CONSTANT"
+              }
+            }
+          }
+        ],
+        "hasOutdatedCondition": false,
+        "conditionTags": [
+          "Client certificates: Issuer - Common Name = spa.meraki.com",
+          "Networks: Network Name = Dev Test Network"
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get all nac authorization policies for this organization
+> 
+> **GET** `/organizations/{organizationId}/nac/authorization/policies`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-authorization-policy-rule/)
+
+#### Create a rule in an authorization policy set of an organization
+
+Operation ID: `createOrganizationNacAuthorizationPolicyRule`
+
+PATH _`/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules`_
+
+    {
+      "ruleId": "1",
+      "policyset": {
+        "policysetId": "2"
+      },
+      "name": "rule_name",
+      "enabled": true,
+      "rank": 10,
+      "counts": {
+        "hits": 20
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Create a rule in an authorization policy set of an organization
+> 
+> **POST** `/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-authorization-policy-rule/)
+
+#### Update an existing rule of an authorization policy set within an organization
+
+Operation ID: `updateOrganizationNacAuthorizationPolicyRule`
+
+PATH _`/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`_
+
+    {
+      "ruleId": "1",
+      "policyset": {
+        "policysetId": "2"
+      },
+      "name": "rule_name",
+      "enabled": true,
+      "rank": 10,
+      "counts": {
+        "hits": 20
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an existing rule of an authorization policy set within an organization
+> 
+> **PUT** `/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a rule in an authorization policy set of an organization
+> 
+> **DELETE** `/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`  
+> 
+> * * *
+
+* * *
+
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates/)
+
+#### Gets all certificates for an organization and can filter by certificate status, expiry date and last used date
+
+Operation ID: `getOrganizationNacCertificates`
+
+PATH _`/organizations/{organizationId}/nac/certificates`_
+
+    {
+      "certificateId": "1284392014819",
+      "parentCertificateId": "1284392014818",
+      "certificateChainId": "1",
+      "description": "Sample Description",
+      "source": "NAC",
+      "lastUsedAt": "2022-09-15T12:00:00Z",
+      "canBeDeleted": true,
+      "profile": {
+        "enabled": false,
+        "identity": "Sample profile identity",
+        "isLocalAuth": true,
+        "isTrustedAnchor": false,
+        "bypassExpiryDate": false
+      },
+      "fields": {
+        "validity": {
+          "start": "2022-09-01T12:00:00Z",
+          "end": "2022-10-01T12:00:00Z"
+        },
+        "subject": {
+          "commonName": "subjectRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "signatureAlgorithmId": "SHA256withRSA",
+        "issuer": {
+          "commonName": "issuerRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "hashes": [
+          {
+            "algorithm": "SHA1",
+            "hash": "hash text here"
+          }
+        ]
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Gets all certificates for an organization and can filter by certificate status, expiry date and last used date
+> 
+> **GET** `/organizations/{organizationId}/nac/certificates`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates-authorities-crls/)
+
+#### Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter
+
+Operation ID: `getOrganizationNacCertificatesAuthoritiesCrls`
+
+PATH _`/organizations/{organizationId}/nac/certificates/authorities/crls`_
+
+    {
+      "items": [
+        {
+          "crlId": "1234",
+          "data": [
+            {
+              "serial": "121B0A22949BAD8B639B6987DC10326E",
+              "revocationDate": "2022-08-28T07:34:01Z",
+              "reason": "Key Compromise"
+            }
+          ],
+          "isDelta": false,
+          "caId": "12345",
+          "createdAt": "2021-09-19T19:34:10Z",
+          "lastUpdatedAt": "2021-09-26T20:34:10Z"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter
+> 
+> **GET** `/organizations/{organizationId}/nac/certificates/authorities/crls`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create a new CRL (either base or delta) for an existing CA
+> 
+> **POST** `/organizations/{organizationId}/nac/certificates/authorities/crls`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates-authorities-crls-descriptors/)
+
+#### Get all the organization's CRL descriptors (metadata only - revocation list data is excluded)
+
+Operation ID: `getOrganizationNacCertificatesAuthoritiesCrlsDescriptors`
+
+PATH _`/organizations/{organizationId}/nac/certificates/authorities/crls/descriptors`_
+
+    {
+      "items": [
+        {
+          "crlId": "1234",
+          "isDelta": false,
+          "caId": "12345",
+          "lastUpdatedAt": "2021-09-26T20:34:10Z"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get all the organization's CRL descriptors (metadata only - revocation list data is excluded). It's possible to filter results by CRL issuers (CA) - see caIds query parameter
+> 
+> **GET** `/organizations/{organizationId}/nac/certificates/authorities/crls/descriptors`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-nac-certificates-authorities-crl/)
+
+#### Deletes a whole CRL, including all its deltas (in case of base CRL removal)
+
+Operation ID: `deleteOrganizationNacCertificatesAuthoritiesCrl`
+
+PATH _`/organizations/{organizationId}/nac/certificates/authorities/crls/{crlId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Deletes a whole CRL, including all its deltas (in case of base CRL removal)
+> 
+> **DELETE** `/organizations/{organizationId}/nac/certificates/authorities/crls/{crlId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-certificates-import/)
+
+#### Import certificate for this organization or validate without persisting
+
+Operation ID: `createOrganizationNacCertificatesImport`
+
+PATH _`/organizations/{organizationId}/nac/certificates/import`_
+
+    {
+      "certificateId": "1284392014819",
+      "parentCertificateId": "1284392014818",
+      "certificateChainId": "1",
+      "description": "Sample Description",
+      "source": "NAC",
+      "lastUsedAt": "2022-09-15T12:00:00Z",
+      "canBeDeleted": true,
+      "profile": {
+        "enabled": false,
+        "identity": "Sample profile identity",
+        "isLocalAuth": true,
+        "isTrustedAnchor": false,
+        "bypassExpiryDate": false
+      },
+      "fields": {
+        "validity": {
+          "start": "2022-09-01T12:00:00Z",
+          "end": "2022-10-01T12:00:00Z"
+        },
+        "subject": {
+          "commonName": "subjectRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "signatureAlgorithmId": "SHA256withRSA",
+        "issuer": {
+          "commonName": "issuerRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "hashes": [
+          {
+            "algorithm": "SHA1",
+            "hash": "hash text here"
+          }
+        ]
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Import certificate for this organization or validate without persisting
+> 
+> **POST** `/organizations/{organizationId}/nac/certificates/import`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates-overview/)
+
+#### Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization
+
+Operation ID: `getOrganizationNacCertificatesOverview`
+
+PATH _`/organizations/{organizationId}/nac/certificates/overview`_
+
+    {
+      "counts": {
+        "byEnabled": {
+          "true": 1,
+          "false": 1
+        },
+        "byValidity": {
+          "expired": 1,
+          "expiringWithin": [
+            {
+              "period": 6,
+              "count": 1
+            }
+          ]
+        },
+        "byUsage": {
+          "unusedWithin": [
+            {
+              "period": 3,
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization
+> 
+> **GET** `/organizations/{organizationId}/nac/certificates/overview`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-certificate/)
+
+#### Update certificate configuration by certificateId for this organization
+
+Operation ID: `updateOrganizationNacCertificate`
+
+PATH _`/organizations/{organizationId}/nac/certificates/{certificateId}`_
+
+    {
+      "profileId": "1",
+      "status": "Disabled",
+      "identity": "Subject:CN",
+      "isLocalAuth": true,
+      "isTrustedAnchor": false,
+      "bypassExpiryDate": false
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update certificate configuration by certificateId for this organization
+> 
+> **PUT** `/organizations/{organizationId}/nac/certificates/{certificateId}`  
 > 
 > * * *
 
@@ -3412,7 +4245,7 @@ PATH _`/devices/{serial}/liveTools/dhcpLeases`_
 >   
 > \- New endpoint
 > 
-> #### Enqueue a job to perform a DHCP leases request for the device. This endpoint currently supports all devices. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
+> #### Enqueue a job to perform a DHCP leases request for the device. This endpoint currently supports all MS devices. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.
 > 
 > **POST** `/devices/{serial}/liveTools/dhcpLeases`  
 > 
@@ -3671,6 +4504,58 @@ PATH _`/devices/{serial}/liveTools/clients/disconnect/{id}`_
 
 * * *
 
+\[ administered \]
+------------------
+
+### search
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-administered-search-live/)
+
+#### List the appropriate results for a given global search utilizing live\_search\_react
+
+Operation ID: `getAdministeredSearchLive`
+
+PATH _`/administered/search/live`_
+
+    [
+      {
+        "label": "Device",
+        "deviceList": {
+          "deviceType": [
+            {
+              "itemId": "1111111111111",
+              "label": "00:00:00:00:00:00",
+              "keywords": [
+                "this is a keyword"
+              ]
+            }
+          ]
+        },
+        "list": [
+          {
+            "itemId": "1111111111111",
+            "label": "00:00:00:00:00:00",
+            "externalLink": "https://community.meraki.com/t5/Community-Announcements/Happy-New-Year-What-are-your-Networking-Resolutions/ba-p/7894",
+            "keywords": [
+              "this is a keyword"
+            ]
+          }
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List the appropriate results for a given global search utilizing live\_search\_react
+> 
+> **GET** `/administered/search/live`  
+> 
+> * * *
+
+* * *
+
 \[ licensing \]
 ---------------
 
@@ -3722,770 +4607,6 @@ PATH _`/administered/licensing/subscription/networks/featureTiers/batchUpdate`_
 > #### Batch change networks to their desired feature tier for specified product types
 > 
 > **POST** `/administered/licensing/subscription/networks/featureTiers/batchUpdate`  
-> 
-> * * *
-
-* * *
-
-\[ nac \]
----------
-
-### sessions
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-sessions-history/)
-
-#### List the NAC Sessions for this organization
-
-Operation ID: `getOrganizationNacSessionsHistory`
-
-PATH _`/organizations/{organizationId}/nac/sessions/history`_
-
-    {
-      "items": [
-        {
-          "sessionId": "0677ba3c-a867-461d-97c9-e5b60066f2b3",
-          "counts": {
-            "events": {
-              "total": 5
-            }
-          },
-          "ts": "2023-02-01T11:36:25.480Z",
-          "status": "Success",
-          "details": "A policy for whose first matched rule will return its assigned authz profile",
-          "user": {
-            "id": "stress"
-          },
-          "client": {
-            "id": "00-14-11-12-12-12:mab2",
-            "url": "/SJC-Test-Network/n/OSYcyb2h/manage/clients?timespan=2592000&searchQuery=00-14-11-12-12-12%3Amab2"
-          },
-          "authentication": {
-            "protocol": "MAB"
-          },
-          "ssid": {
-            "name": ""
-          },
-          "device": {
-            "url": "/SJC-Test-Network/n/OSYcyb2h/manage/nodes/new_list/167231144861997/summary"
-          }
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 4,
-            "byResult": [
-              {
-                "result": "Authentication Failed",
-                "total": 120
-              }
-            ]
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List the NAC Sessions for this organization
-> 
-> **GET** `/organizations/{organizationId}/nac/sessions/history`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-session-details/)
-
-#### Return the details of selected NAC Sessions
-
-Operation ID: `getOrganizationNacSessionDetails`
-
-PATH _`/organizations/{organizationId}/nac/sessions/{sessionId}/details`_
-
-    {
-      "sessionId": "e6b7d57b-1ddb-47f5-8d76-c06e10570297",
-      "hasCompleteEvent": true,
-      "ts": "2023-02-01T13:25:26.181Z",
-      "status": "Success",
-      "details": "",
-      "counts": {
-        "events": {
-          "total": 5
-        }
-      },
-      "user": {
-        "id": "Device ID Username",
-        "idp": "Active Directory",
-        "groups": "ID group names"
-      },
-      "client": {
-        "id": "2c:3f:0b:00:14:00",
-        "addresses": [
-          {
-            "protocol": "ipv4",
-            "address": "112.112.112.112"
-          }
-        ],
-        "groups": "ID group names",
-        "deviceProfiling": "Macbook Pro",
-        "guid": "00-00-00-00-00-00",
-        "url": "/SJC-Test-Network/n/OSYcyb2h/manage/clients?timespan=2592000&searchQuery=2c%3A3f%3A0b%3A00%3A14%3A00"
-      },
-      "authentication": {
-        "latency": 500,
-        "method": "EAP-TLS",
-        "protocol": "EAP",
-        "policy": "Active Directory",
-        "endpointCertificate": {
-          "title": "Endpoint Certificate Name",
-          "issuer": "Issuer's Name",
-          "isExpired": false,
-          "status": "Trusted",
-          "subjectName": {
-            "commonName": "hosuk",
-            "organizationalUnit": "Example Unit",
-            "organization": "Company Name",
-            "locality": "City",
-            "state": "State",
-            "country": "US"
-          },
-          "issuerName": {
-            "commonName": "Certificate Services Endpoint Sub CA - ise",
-            "serial": "58 BA BA 47 4F 4B 58 BA BA 47 4F 4B 74 72",
-            "version": "3",
-            "signatureAlgorithm": "XXX",
-            "parameters": "None",
-            "validity": {
-              "start": "2023-01-01T13:25:26.181Z",
-              "end": "2024-01-01T13:25:26.181Z"
-            }
-          },
-          "publicKey": {
-            "algorithm": "XXX",
-            "parameters": "XXX",
-            "body": "XXX",
-            "exponent": "XXX",
-            "size": "XXX",
-            "usage": "XXX",
-            "signature": "XXX"
-          },
-          "directoryName": {
-            "commonName": "XXX",
-            "serial": "XXX"
-          },
-          "fingerprints": {
-            "sha256": "XXX",
-            "sha1": "XXX"
-          },
-          "extensions": [
-            {
-              "oid": "2.5.28.15",
-              "name": "Key Usage",
-              "fields": [
-                {
-                  "name": "Critical",
-                  "value": "Yes"
-                }
-              ]
-            }
-          ]
-        }
-      },
-      "authorization": {
-        "rule": "Rule Name",
-        "profile": "List all the profiles here"
-      },
-      "network": {
-        "name": "Name",
-        "accessType": "Wired",
-        "ssid": {
-          "name": "SSID"
-        },
-        "port": {
-          "name": "Port"
-        },
-        "tags": "tag names"
-      },
-      "device": {
-        "name": "Device model name",
-        "model": "Device model name",
-        "addresses": [
-          {
-            "protocol": "ipv4",
-            "address": "100.10.100.10"
-          }
-        ],
-        "tags": "tag names",
-        "url": "/SJC-Test-Network/n/OSYcyb2h/manage/nodes/new_list/167231144861997/summary"
-      },
-      "radius": {
-        "attributes": {
-          "incoming": [
-            {
-              "code": "1",
-              "name": "Username",
-              "value": "hosuk"
-            }
-          ],
-          "outgoing": [
-            {
-              "code": "1",
-              "name": "Username",
-              "value": "hosuk"
-            }
-          ]
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return the details of selected NAC Sessions
-> 
-> **GET** `/organizations/{organizationId}/nac/sessions/{sessionId}/details`  
-> 
-> * * *
-
-* * *
-
-### license
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-license-usage/)
-
-#### Returns license usage data for a specific organization
-
-Operation ID: `getOrganizationNacLicenseUsage`
-
-PATH _`/organizations/{organizationId}/nac/license/usage`_
-
-    {
-      "organizationId": "1284392014819",
-      "type": "CoTerm",
-      "timeRange": {
-        "startDate": "2025-05-13",
-        "endDate": "2025-07-11"
-      },
-      "licenseLimit": 100,
-      "usageData": [
-        {
-          "date": "2025-08-21",
-          "peakConcurrentSessions": 100
-        }
-      ],
-      "summary": {
-        "daysInPeriod": 60,
-        "highestPeakConcurrentSessions": 145,
-        "p90PeakConcurrentSessions": 120.5,
-        "p95PeakConcurrentSessions": 135.2
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns license usage data for a specific organization
-> 
-> **GET** `/organizations/{organizationId}/nac/license/usage`  
-> 
-> * * *
-
-* * *
-
-### dictionaries
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-dictionaries/)
-
-#### Get all NAC dictionaries
-
-Operation ID: `getOrganizationNacDictionaries`
-
-PATH _`/organizations/{organizationId}/nac/dictionaries`_
-
-    [
-      {
-        "dictionaryId": "1",
-        "name": "Clients",
-        "description": "Client dictionary",
-        "category": "clients"
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get all NAC dictionaries
-> 
-> **GET** `/organizations/{organizationId}/nac/dictionaries`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-dictionary-attributes/)
-
-#### Get all attributes by dictionary ID
-
-Operation ID: `getOrganizationNacDictionaryAttributes`
-
-PATH _`/organizations/{organizationId}/nac/dictionaries/{dictionaryId}/attributes`_
-
-    [
-      {
-        "attributeId": "urn:client-cert:cn",
-        "title": "Common Name",
-        "description": "common Name attribute",
-        "maximum": 100,
-        "minimum": 0,
-        "pattern": ".*",
-        "type": "string",
-        "format": "string",
-        "enum": [
-          "Permit",
-          "Deny"
-        ],
-        "isLargeDataSet": false,
-        "items": {
-          "title": "SAN",
-          "description": "subject alternative name",
-          "type": "string"
-        },
-        "isReadOnly": false,
-        "isWriteOnly": false,
-        "default": "Permit"
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get all attributes by dictionary ID
-> 
-> **GET** `/organizations/{organizationId}/nac/dictionaries/{dictionaryId}/attributes`  
-> 
-> * * *
-
-* * *
-
-### authorization
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-authorization-policies/)
-
-#### Get all nac authorization policies for this organization
-
-Operation ID: `getOrganizationNacAuthorizationPolicies`
-
-PATH _`/organizations/{organizationId}/nac/authorization/policies`_
-
-    [
-      {
-        "policyId": "1",
-        "name": "auth_policy",
-        "enabled": true,
-        "rank": 5,
-        "version": "20",
-        "counts": {
-          "hits": 10
-        },
-        "rules": [
-          {
-            "ruleId": "1",
-            "name": "rule_name",
-            "rank": 10,
-            "enabled": true,
-            "counts": {
-              "hits": 20
-            },
-            "authorizationProfile": {
-              "vlan": {
-                "value": "123",
-                "type": "CONSTANT"
-              },
-              "adaptivePolicy": {
-                "value": "Sample_Adaptive_Policy",
-                "type": "CONSTANT"
-              },
-              "voiceDomain": {
-                "value": "true",
-                "type": "CONSTANT"
-              },
-              "groupPolicy": {
-                "value": "Sample_Group_Policy",
-                "type": "CONSTANT"
-              },
-              "result": "PERMIT",
-              "ipsk": {
-                "value": "Moon@15",
-                "type": "CONSTANT"
-              }
-            }
-          }
-        ],
-        "hasOutdatedCondition": false,
-        "conditionTags": [
-          "Client certificates: Issuer - Common Name = spa.meraki.com",
-          "Networks: Network Name = Dev Test Network"
-        ]
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get all nac authorization policies for this organization
-> 
-> **GET** `/organizations/{organizationId}/nac/authorization/policies`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-authorization-policy-rule/)
-
-#### Create a rule in an authorization policy set of an organization
-
-Operation ID: `createOrganizationNacAuthorizationPolicyRule`
-
-PATH _`/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules`_
-
-    {
-      "ruleId": "1",
-      "policyset": {
-        "policysetId": "2"
-      },
-      "name": "rule_name",
-      "enabled": true,
-      "rank": 10,
-      "counts": {
-        "hits": 20
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Create a rule in an authorization policy set of an organization
-> 
-> **POST** `/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-authorization-policy-rule/)
-
-#### Update an existing rule of an authorization policy set within an organization
-
-Operation ID: `updateOrganizationNacAuthorizationPolicyRule`
-
-PATH _`/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`_
-
-    {
-      "ruleId": "1",
-      "policyset": {
-        "policysetId": "2"
-      },
-      "name": "rule_name",
-      "enabled": true,
-      "rank": 10,
-      "counts": {
-        "hits": 20
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update an existing rule of an authorization policy set within an organization
-> 
-> **PUT** `/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`  
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a rule in an authorization policy set of an organization
-> 
-> **DELETE** `/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`  
-> 
-> * * *
-
-* * *
-
-### certificates
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates/)
-
-#### Gets all certificates for an organization and can filter by certificate status, expiry date and last used date
-
-Operation ID: `getOrganizationNacCertificates`
-
-PATH _`/organizations/{organizationId}/nac/certificates`_
-
-    {
-      "certificateId": "1284392014819",
-      "parentCertificateId": "1284392014818",
-      "certificateChainId": "1",
-      "description": "Sample Description",
-      "source": "NAC",
-      "lastUsedAt": "2022-09-15T12:00:00Z",
-      "canBeDeleted": true,
-      "profile": {
-        "enabled": false,
-        "identity": "Sample profile identity",
-        "isLocalAuth": true,
-        "isTrustedAnchor": false,
-        "bypassExpiryDate": false
-      },
-      "fields": {
-        "validity": {
-          "start": "2022-09-01T12:00:00Z",
-          "end": "2022-10-01T12:00:00Z"
-        },
-        "subject": {
-          "commonName": "subjectRoot",
-          "organizationalUnit": "CloudNAC",
-          "organization": "Cisco Systems",
-          "locality": "Bangalore",
-          "state": "KA",
-          "country": "IN"
-        },
-        "signatureAlgorithmId": "SHA256withRSA",
-        "issuer": {
-          "commonName": "issuerRoot",
-          "organizationalUnit": "CloudNAC",
-          "organization": "Cisco Systems",
-          "locality": "Bangalore",
-          "state": "KA",
-          "country": "IN"
-        },
-        "hashes": [
-          {
-            "algorithm": "SHA1",
-            "hash": "hash text here"
-          }
-        ]
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Gets all certificates for an organization and can filter by certificate status, expiry date and last used date
-> 
-> **GET** `/organizations/{organizationId}/nac/certificates`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates-authorities-crls-descriptors/)
-
-#### Get all the organization's CRL descriptors (metadata only - revocation list data is excluded)
-
-Operation ID: `getOrganizationNacCertificatesAuthoritiesCrlsDescriptors`
-
-PATH _`/organizations/{organizationId}/nac/certificates/authorities/crls/descriptors`_
-
-    {
-      "items": [
-        {
-          "crlId": "1234",
-          "isDelta": false,
-          "caId": "12345",
-          "lastUpdatedAt": "2021-09-26T20:34:10Z"
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 1,
-            "remaining": 0
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get all the organization's CRL descriptors (metadata only - revocation list data is excluded). It's possible to filter results by CRL issuers (CA) - see caIds query parameter
-> 
-> **GET** `/organizations/{organizationId}/nac/certificates/authorities/crls/descriptors`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-nac-certificates-authorities-crl/)
-
-#### Deletes a whole CRL, including all its deltas (in case of base CRL removal)
-
-Operation ID: `deleteOrganizationNacCertificatesAuthoritiesCrl`
-
-PATH _`/organizations/{organizationId}/nac/certificates/authorities/crls/{crlId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Deletes a whole CRL, including all its deltas (in case of base CRL removal)
-> 
-> **DELETE** `/organizations/{organizationId}/nac/certificates/authorities/crls/{crlId}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-certificates-import/)
-
-#### Import certificate for this organization or validate without persisting
-
-Operation ID: `createOrganizationNacCertificatesImport`
-
-PATH _`/organizations/{organizationId}/nac/certificates/import`_
-
-    {
-      "certificateId": "1284392014819",
-      "parentCertificateId": "1284392014818",
-      "certificateChainId": "1",
-      "description": "Sample Description",
-      "source": "NAC",
-      "lastUsedAt": "2022-09-15T12:00:00Z",
-      "canBeDeleted": true,
-      "profile": {
-        "enabled": false,
-        "identity": "Sample profile identity",
-        "isLocalAuth": true,
-        "isTrustedAnchor": false,
-        "bypassExpiryDate": false
-      },
-      "fields": {
-        "validity": {
-          "start": "2022-09-01T12:00:00Z",
-          "end": "2022-10-01T12:00:00Z"
-        },
-        "subject": {
-          "commonName": "subjectRoot",
-          "organizationalUnit": "CloudNAC",
-          "organization": "Cisco Systems",
-          "locality": "Bangalore",
-          "state": "KA",
-          "country": "IN"
-        },
-        "signatureAlgorithmId": "SHA256withRSA",
-        "issuer": {
-          "commonName": "issuerRoot",
-          "organizationalUnit": "CloudNAC",
-          "organization": "Cisco Systems",
-          "locality": "Bangalore",
-          "state": "KA",
-          "country": "IN"
-        },
-        "hashes": [
-          {
-            "algorithm": "SHA1",
-            "hash": "hash text here"
-          }
-        ]
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Import certificate for this organization or validate without persisting
-> 
-> **POST** `/organizations/{organizationId}/nac/certificates/import`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates-overview/)
-
-#### Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization
-
-Operation ID: `getOrganizationNacCertificatesOverview`
-
-PATH _`/organizations/{organizationId}/nac/certificates/overview`_
-
-    {
-      "counts": {
-        "byEnabled": {
-          "true": 1,
-          "false": 1
-        },
-        "byValidity": {
-          "expired": 1,
-          "expiringWithin": [
-            {
-              "period": 6,
-              "count": 1
-            }
-          ]
-        },
-        "byUsage": {
-          "unusedWithin": [
-            {
-              "period": 3,
-              "count": 1
-            }
-          ]
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization
-> 
-> **GET** `/organizations/{organizationId}/nac/certificates/overview`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-certificate/)
-
-#### Update certificate configuration by certificateId for this organization
-
-Operation ID: `updateOrganizationNacCertificate`
-
-PATH _`/organizations/{organizationId}/nac/certificates/{certificateId}`_
-
-    {
-      "profileId": "1",
-      "status": "Disabled",
-      "identity": "Subject:CN",
-      "isLocalAuth": true,
-      "isTrustedAnchor": false,
-      "bypassExpiryDate": false
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update certificate configuration by certificateId for this organization
-> 
-> **PUT** `/organizations/{organizationId}/nac/certificates/{certificateId}`  
 > 
 > * * *
 
@@ -5117,7 +5238,7 @@ PATH _`/organizations/{organizationId}/sase/sites`_
           "type": "Meraki spoke",
           "name": "London Office",
           "region": {
-            "name": "US East"
+            "name": "us-east-1"
           },
           "model": "MX95",
           "address": {
@@ -5344,7 +5465,7 @@ PATH _`/organizations/{organizationId}/sase/sites/{siteId}`_
       "type": "Meraki spoke",
       "name": "London Office",
       "region": {
-        "name": "US East"
+        "name": "us-east-1"
       },
       "model": "MX95",
       "address": {
@@ -5384,63 +5505,6 @@ PATH _`/organizations/{organizationId}/sase/sites/{siteId}`_
 
 * * *
 
-### networks
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-network-move/)
-
-#### Move networks from one organization to another
-
-Operation ID: `createNetworkMove`
-
-PATH _`/organizations/{organizationId}/networks/moves`_
-
-    {
-      "moveId": "123456",
-      "initiator": {
-        "admin": {
-          "id": "8590064780"
-        }
-      },
-      "organizations": {
-        "source": {
-          "id": "146307"
-        },
-        "target": {
-          "id": "146308"
-        }
-      },
-      "network": {
-        "id": "N_569142402909112097"
-      },
-      "createdAt": "1970-01-20T15:57:36.000Z",
-      "lastUpdatedAt": "1970-01-20T15:57:36.000Z",
-      "result": {
-        "status": "failed",
-        "reason": "Cannot move network: Target organization is invalid or inaccessible."
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Return a list of network move operations in the organization
-> 
-> **GET** `/organizations/{organizationId}/networks/moves`  
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Move networks from one organization to another. For more information and caveats around network move limitations see the Network Portability documentation.
-> 
-> **POST** `/organizations/{organizationId}/networks/moves`  
-> 
-> * * *
-
-* * *
-
 ### integrations
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-integrations-deployable/)
@@ -5451,34 +5515,32 @@ Operation ID: `getOrganizationIntegrationsDeployable`
 
 PATH _`/organizations/{organizationId}/integrations/deployable`_
 
-    [
-      {
-        "items": [
-          {
-            "type": "Catalyst SD-WAN",
-            "name": "Catalyst SD-WAN",
-            "provider": "Cisco",
-            "tags": [
-              "SD-WAN"
-            ],
-            "shortDescription": "Connect to a Catalyst SD-WAN overlay to enable simple SD-WAN interconnects.",
-            "isDeployable": true,
-            "releaseType": "Beta",
-            "logoUrl": "https://example.com",
-            "redirectUrl": "https://example.com",
-            "isCiscoProduct": true
-          }
-        ],
-        "meta": {
-          "counts": {
-            "items": {
-              "total": 100,
-              "remaining": 10
-            }
+    {
+      "items": [
+        {
+          "type": "Catalyst SD-WAN",
+          "name": "Catalyst SD-WAN",
+          "provider": "Cisco",
+          "tags": [
+            "SD-WAN"
+          ],
+          "shortDescription": "Connect to a Catalyst SD-WAN overlay to enable simple SD-WAN interconnects.",
+          "isDeployable": true,
+          "releaseType": "Beta",
+          "logoUrl": "https://example.com",
+          "redirectUrl": "https://example.com",
+          "isCiscoProduct": true
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 100,
+            "remaining": 10
           }
         }
       }
-    ]
+    }
 
 > \- Path added  
 >   
@@ -5500,30 +5562,28 @@ Operation ID: `getOrganizationIntegrationsDeployed`
 
 PATH _`/organizations/{organizationId}/integrations/deployed`_
 
-    [
-      {
-        "items": [
-          {
-            "id": "98765",
-            "type": "OAuth",
-            "name": "OAuth Application",
-            "provider": "partner",
-            "tags": [
-              "Wayfinding",
-              "OAuth"
-            ]
-          }
-        ],
-        "meta": {
-          "counts": {
-            "items": {
-              "total": 100,
-              "remaining": 10
-            }
+    {
+      "items": [
+        {
+          "id": "98765",
+          "type": "OAuth",
+          "name": "OAuth Application",
+          "provider": "partner",
+          "tags": [
+            "Wayfinding",
+            "OAuth"
+          ]
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 100,
+            "remaining": 10
           }
         }
       }
-    ]
+    }
 
 > \- Path added  
 >   
@@ -5788,6 +5848,222 @@ PATH _`/organizations/{organizationId}/cloud/connectivity/requirements`_
 
 * * *
 
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates/)
+
+#### Gets all or specific certificates for an organization
+
+Operation ID: `getOrganizationCertificates`
+
+PATH _`/organizations/{organizationId}/certificates`_
+
+    {
+      "certificateId": "1284392014819",
+      "description": "friendly description",
+      "parentCertificateId": "1284392014818",
+      "source": "NAC",
+      "fields": {
+        "validity": {
+          "start": "2022-09-01T12:00:00Z",
+          "end": "2022-10-01T12:00:00Z"
+        },
+        "subject": {
+          "commonName": "subjectRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
+        "issuer": {
+          "commonName": "issuerRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "serial": "7C 08 29 E8 CC",
+        "policy": "policy string here",
+        "version": "1.2.3.4",
+        "signatureAlgorithmId": "SHA256withRSA",
+        "publicKeyAlgorithm": "RSA",
+        "keyUsage": {
+          "isCritical": false,
+          "data": [
+            "Digital Signature",
+            "Key Encipherment"
+          ]
+        },
+        "hashes": [
+          {
+            "algorithm": "SHA1",
+            "hash": "hash text here"
+          }
+        ]
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Gets all or specific certificates for an organization
+> 
+> **GET** `/organizations/{organizationId}/certificates`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/import-organization-certificates/)
+
+#### Import certificate for this organization
+
+Operation ID: `importOrganizationCertificates`
+
+PATH _`/organizations/{organizationId}/certificates/import`_
+
+    {
+      "certificateId": "1284392014819",
+      "description": "friendly description",
+      "parentCertificateId": "1284392014818",
+      "source": "NAC",
+      "fields": {
+        "validity": {
+          "start": "2022-09-01T12:00:00Z",
+          "end": "2022-10-01T12:00:00Z"
+        },
+        "subject": {
+          "commonName": "subjectRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
+        "issuer": {
+          "commonName": "issuerRoot",
+          "organizationalUnit": "CloudNAC",
+          "organization": "Cisco Systems",
+          "locality": "Bangalore",
+          "state": "KA",
+          "country": "IN"
+        },
+        "serial": "7C 08 29 E8 CC",
+        "policy": "policy string here",
+        "version": "1.2.3.4",
+        "signatureAlgorithmId": "SHA256withRSA",
+        "publicKeyAlgorithm": "RSA",
+        "keyUsage": {
+          "isCritical": false,
+          "data": [
+            "Digital Signature",
+            "Key Encipherment"
+          ]
+        },
+        "hashes": [
+          {
+            "algorithm": "SHA1",
+            "hash": "hash text here"
+          }
+        ]
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Import certificate for this organization
+> 
+> **POST** `/organizations/{organizationId}/certificates/import`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates-meraki-auth-contents/)
+
+#### Download the public RADIUS certificate.
+
+Operation ID: `getOrganizationCertificatesMerakiAuthContents`
+
+PATH _`/organizations/{organizationId}/certificates/merakiAuth/contents`_
+
+    {
+      "contents": "-----BEGIN CERTIFICATE-----\nContents of cert \n-----END CERTIFICATE-----",
+      "readMe": ""
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Download the public RADIUS certificate.
+> 
+> **GET** `/organizations/{organizationId}/certificates/merakiAuth/contents`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-certificate/)
+
+#### Delete a certificate for an organization
+
+Operation ID: `deleteOrganizationCertificate`
+
+PATH _`/organizations/{organizationId}/certificates/{certificateId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update a certificate's description for an organization
+> 
+> **PUT** `/organizations/{organizationId}/certificates/{certificateId}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete a certificate for an organization
+> 
+> **DELETE** `/organizations/{organizationId}/certificates/{certificateId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificate-contents/)
+
+#### Download the trusted certificate by certificate id.
+
+Operation ID: `getOrganizationCertificateContents`
+
+PATH _`/organizations/{organizationId}/certificates/{certificateId}/contents`_
+
+    {
+      "contents": "-----BEGIN CERTIFICATE-----MIIHvjCCBqagAwIBAgIQB4CbtQD3es3UQ988CCKGPjANBgkqhkiG9w0BAQsFADBPMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMSkwJwYDVQQDEyBEaWdpQ2VydCBUTFMgUlNBIFNIQTI1NiAyMDIwIENBMTAeFw0yMjA4MTAwMDAwMDBaFw0yMzA4MDkyMzU5NTlaMG4xCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRMwEQYDVQQKEwpNZXJha2kgTExDMR0wGwYDVQQDExRyYWRpdXMuZGV2LmlrYXJlbS5pbzCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBANSxcK8g9J3nRwDqNurYbXDieo5vHw5wWO4m3uJSvWtQ+zDMZzjEhA6ix3VfftGLLE+0C99a9B2oOubZgO/sAIJmLD6Oz25bUinAtzuEmOQiqZ8OZjYZd//emPOty7POZSU5C3rGUX0ESzrStL20iJoGzyA0U9clI+14yZCyXY1+Th3VSQCvGs/DmOMPn+MdBoMXIgzVk7+wjMr53fN6H8Q26y52NlLTmAxum2L7ag4owTecURzC6-----END CERTIFICATE-----"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Download the trusted certificate by certificate id.
+> 
+> **GET** `/organizations/{organizationId}/certificates/{certificateId}/contents`  
+> 
+> * * *
+
+* * *
+
 ### auth
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-auth-radius-servers/)
@@ -5961,7 +6237,13 @@ PATH _`/organizations/{organizationId}/assurance/workflows`_
           "nodeTag1",
           "nodeTag2"
         ],
-        "resolvedAt": "2018-02-11T00:00:00.090210Z"
+        "resolvedAt": "2018-02-11T00:00:00.090210Z",
+        "impacts": [
+          {
+            "name": "clients",
+            "value": 12.5
+          }
+        ]
       }
     ]
 
@@ -6207,6 +6489,30 @@ PATH _`/organizations/{organizationId}/assurance/optimization/checkup/byNetwork`
 
 * * *
 
+### fetchTableQuery
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-fetch-table-query/)
+
+#### Returns the table data for a given timespan
+
+Operation ID: `getOrganizationAssuranceFetchTableQuery`
+
+PATH _`/organizations/{organizationId}/assurance/fetchTableQuery`_
+
+    {}
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns the table data for a given timespan
+> 
+> **GET** `/organizations/{organizationId}/assurance/fetchTableQuery`  
+> 
+> * * *
+
+* * *
+
 ### apiRequests
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests-response-codes-history-by-admin/)
@@ -6401,222 +6707,6 @@ PATH _`/organizations/{organizationId}/snmp/traps/byNetwork`_
 > #### Retrieve the SNMP trap configuration for the networks in an organization
 > 
 > **GET** `/organizations/{organizationId}/snmp/traps/byNetwork`  
-> 
-> * * *
-
-* * *
-
-### certificates
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates/)
-
-#### Gets all or specific certificates for an organization
-
-Operation ID: `getOrganizationCertificates`
-
-PATH _`/organizations/{organizationId}/certificates`_
-
-    {
-      "certificateId": "1284392014819",
-      "description": "friendly description",
-      "parentCertificateId": "1284392014818",
-      "source": "NAC",
-      "fields": {
-        "validity": {
-          "start": "2022-09-01T12:00:00Z",
-          "end": "2022-10-01T12:00:00Z"
-        },
-        "subject": {
-          "commonName": "subjectRoot",
-          "organizationalUnit": "CloudNAC",
-          "organization": "Cisco Systems",
-          "locality": "Bangalore",
-          "state": "KA",
-          "country": "IN"
-        },
-        "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
-        "issuer": {
-          "commonName": "issuerRoot",
-          "organizationalUnit": "CloudNAC",
-          "organization": "Cisco Systems",
-          "locality": "Bangalore",
-          "state": "KA",
-          "country": "IN"
-        },
-        "serial": "7C 08 29 E8 CC",
-        "policy": "policy string here",
-        "version": "1.2.3.4",
-        "signatureAlgorithmId": "SHA256withRSA",
-        "publicKeyAlgorithm": "RSA",
-        "keyUsage": {
-          "isCritical": false,
-          "data": [
-            "Digital Signature",
-            "Key Encipherment"
-          ]
-        },
-        "hashes": [
-          {
-            "algorithm": "SHA1",
-            "hash": "hash text here"
-          }
-        ]
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Gets all or specific certificates for an organization
-> 
-> **GET** `/organizations/{organizationId}/certificates`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-certificates-import/)
-
-#### Import certificate for this organization
-
-Operation ID: `createOrganizationCertificatesImport`
-
-PATH _`/organizations/{organizationId}/certificates/import`_
-
-    {
-      "certificateId": "1284392014819",
-      "description": "friendly description",
-      "parentCertificateId": "1284392014818",
-      "source": "NAC",
-      "fields": {
-        "validity": {
-          "start": "2022-09-01T12:00:00Z",
-          "end": "2022-10-01T12:00:00Z"
-        },
-        "subject": {
-          "commonName": "subjectRoot",
-          "organizationalUnit": "CloudNAC",
-          "organization": "Cisco Systems",
-          "locality": "Bangalore",
-          "state": "KA",
-          "country": "IN"
-        },
-        "subjectAlternativeName": "AAA Certificate Services Hidden Certificate",
-        "issuer": {
-          "commonName": "issuerRoot",
-          "organizationalUnit": "CloudNAC",
-          "organization": "Cisco Systems",
-          "locality": "Bangalore",
-          "state": "KA",
-          "country": "IN"
-        },
-        "serial": "7C 08 29 E8 CC",
-        "policy": "policy string here",
-        "version": "1.2.3.4",
-        "signatureAlgorithmId": "SHA256withRSA",
-        "publicKeyAlgorithm": "RSA",
-        "keyUsage": {
-          "isCritical": false,
-          "data": [
-            "Digital Signature",
-            "Key Encipherment"
-          ]
-        },
-        "hashes": [
-          {
-            "algorithm": "SHA1",
-            "hash": "hash text here"
-          }
-        ]
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Import certificate for this organization
-> 
-> **POST** `/organizations/{organizationId}/certificates/import`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates-meraki-auth-contents/)
-
-#### Download the public RADIUS certificate.
-
-Operation ID: `getOrganizationCertificatesMerakiAuthContents`
-
-PATH _`/organizations/{organizationId}/certificates/merakiAuth/contents`_
-
-    {
-      "contents": "-----BEGIN CERTIFICATE-----\nContents of cert \n-----END CERTIFICATE-----",
-      "readMe": ""
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Download the public RADIUS certificate.
-> 
-> **GET** `/organizations/{organizationId}/certificates/merakiAuth/contents`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-certificate/)
-
-#### Delete a certificate for an organization
-
-Operation ID: `deleteOrganizationCertificate`
-
-PATH _`/organizations/{organizationId}/certificates/{certificateId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update a certificate's description for an organization
-> 
-> **PUT** `/organizations/{organizationId}/certificates/{certificateId}`  
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Delete a certificate for an organization
-> 
-> **DELETE** `/organizations/{organizationId}/certificates/{certificateId}`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificate-contents/)
-
-#### Download the trusted certificate by certificate id.
-
-Operation ID: `getOrganizationCertificateContents`
-
-PATH _`/organizations/{organizationId}/certificates/{certificateId}/contents`_
-
-    {
-      "contents": "-----BEGIN CERTIFICATE-----MIIHvjCCBqagAwIBAgIQB4CbtQD3es3UQ988CCKGPjANBgkqhkiG9w0BAQsFADBPMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMSkwJwYDVQQDEyBEaWdpQ2VydCBUTFMgUlNBIFNIQTI1NiAyMDIwIENBMTAeFw0yMjA4MTAwMDAwMDBaFw0yMzA4MDkyMzU5NTlaMG4xCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRMwEQYDVQQKEwpNZXJha2kgTExDMR0wGwYDVQQDExRyYWRpdXMuZGV2LmlrYXJlbS5pbzCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBANSxcK8g9J3nRwDqNurYbXDieo5vHw5wWO4m3uJSvWtQ+zDMZzjEhA6ix3VfftGLLE+0C99a9B2oOubZgO/sAIJmLD6Oz25bUinAtzuEmOQiqZ8OZjYZd//emPOty7POZSU5C3rGUX0ESzrStL20iJoGzyA0U9clI+14yZCyXY1+Th3VSQCvGs/DmOMPn+MdBoMXIgzVk7+wjMr53fN6H8Q26y52NlLTmAxum2L7ag4owTecURzC6-----END CERTIFICATE-----"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Download the trusted certificate by certificate id.
-> 
-> **GET** `/organizations/{organizationId}/certificates/{certificateId}/contents`  
 > 
 > * * *
 
@@ -7627,6 +7717,33 @@ PATH _`/organizations/{organizationId}/wireless/alerts/lowPower/byDevice`_
 
 * * *
 
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-certificates-open-roaming-certificate-authority/)
+
+#### Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).
+
+Operation ID: `getOrganizationWirelessCertificatesOpenRoamingCertificateAuthority`
+
+PATH _`/organizations/{organizationId}/wireless/certificates/openRoaming/certificateAuthority`_
+
+    {
+      "status": "trusted",
+      "contents": "-----BEGIN CERTIFICATE-----\n\n        MIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n\n        umkqeYeO30g1uYvDuWLXVA==\n\n        -----END CERTIFICATE-----\n"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).
+> 
+> **GET** `/organizations/{organizationId}/wireless/certificates/openRoaming/certificateAuthority`  
+> 
+> * * *
+
+* * *
+
 ### connectivity
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-connectivity-wireless-rf-health-by-band/)
@@ -7778,230 +7895,6 @@ PATH _`/organizations/{organizationId}/assurance/connectivity/wireless/rfHealth/
 > #### Show the by-device RF Health score overview information for the organization in the given interval. This includes the RF Health score for each device, as well as some more basic device info
 > 
 > **GET** `/organizations/{organizationId}/assurance/connectivity/wireless/rfHealth/byBand`  
-> 
-> * * *
-
-* * *
-
-### ssids
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-policies-client-exclusion/)
-
-#### Update the client exclusion status configuration for a given SSID
-
-Operation ID: `updateNetworkWirelessSsidPoliciesClientExclusion`
-
-PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`_
-
-    {
-      "ssid": {
-        "id": "12312333",
-        "number": 1,
-        "name": "My SSID"
-      },
-      "network": {
-        "id": "N_1234",
-        "name": "MR wireless 1"
-      },
-      "static": {
-        "enabled": true
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update the client exclusion status configuration for a given SSID
-> 
-> **PUT** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-policies-client-exclusion-static-exclusions/)
-
-#### Set the static client exclusion list for the given SSID
-
-Operation ID: `updateNetworkWirelessSsidPoliciesClientExclusionStaticExclusions`
-
-PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions`_
-
-    {
-      "ssid": {
-        "id": "12312333",
-        "number": 1,
-        "name": "My SSID"
-      },
-      "network": {
-        "id": "N_1234",
-        "name": "MR wireless 1"
-      },
-      "macs": [
-        "00:11:22:33:44:55",
-        "aa:bb:cc:dd:ee:ff"
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Set the static client exclusion list for the given SSID
-> 
-> **PUT** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-ssid-policies-client-exclusion-static-exclusions-bulk-add/)
-
-#### Add a list of MAC addresses to the static client exclusion list for the given SSID
-
-Operation ID: `createNetworkWirelessSsidPoliciesClientExclusionStaticExclusionsBulkAdd`
-
-PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions/bulkAdd`_
-
-    {
-      "ssid": {
-        "id": "12312333",
-        "number": 1,
-        "name": "My SSID"
-      },
-      "network": {
-        "id": "N_1234",
-        "name": "MR wireless 1"
-      },
-      "macs": [
-        "00:11:22:33:44:55",
-        "aa:bb:cc:dd:ee:ff"
-      ]
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Add a list of MAC addresses to the static client exclusion list for the given SSID
-> 
-> **POST** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions/bulkAdd`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-ssid-policies-client-exclusion-static-exclusions-bulk-remove/)
-
-#### Delete a list of MAC addresses from the static client exclusion list for the given SSID
-
-Operation ID: `createNetworkWirelessSsidPoliciesClientExclusionStaticExclusionsBulkRemove`
-
-PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions/bulkRemove`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Delete a list of MAC addresses from the static client exclusion list for the given SSID
-> 
-> **POST** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions/bulkRemove`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-policies-client-exclusion-by-ssid/)
-
-#### Returns an array of objects, each containing client exclusion enablement statuses for one SSID
-
-Operation ID: `getOrganizationWirelessSsidsPoliciesClientExclusionBySsid`
-
-PATH _`/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/bySsid`_
-
-    {
-      "items": [
-        {
-          "ssid": {
-            "id": "12312333",
-            "number": 1,
-            "name": "My SSID"
-          },
-          "network": {
-            "id": "N_1234",
-            "name": "MR wireless 1"
-          },
-          "static": {
-            "enabled": true
-          }
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 105,
-            "remaining": 25
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns an array of objects, each containing client exclusion enablement statuses for one SSID
-> 
-> **GET** `/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/bySsid`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-policies-client-exclusion-static-exclusions-by-ssid/)
-
-#### Returns an array of objects, each containing a list of MAC's excluded from a given SSID
-
-Operation ID: `getOrganizationWirelessSsidsPoliciesClientExclusionStaticExclusionsBySsid`
-
-PATH _`/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/static/exclusions/bySsid`_
-
-    {
-      "items": [
-        {
-          "ssid": {
-            "id": "12312333",
-            "number": 1,
-            "name": "My SSID"
-          },
-          "network": {
-            "id": "N_1234",
-            "name": "MR wireless 1"
-          },
-          "macs": [
-            "00:11:22:33:44:55",
-            "aa:bb:cc:dd:ee:ff"
-          ]
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 105,
-            "remaining": 25
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Returns an array of objects, each containing a list of MAC's excluded from a given SSID
-> 
-> **GET** `/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/static/exclusions/bySsid`  
 > 
 > * * *
 
@@ -8247,7 +8140,7 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
       },
       "ai": {
         "enabled": true,
-        "lastEnabledAt": "2025-12-07T09:05:36Z"
+        "lastEnabledAt": "2026-01-04T09:05:44Z"
       }
     }
 
@@ -8258,60 +8151,6 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
 > #### Update the AutoRF settings for a wireless network
 > 
 > **PUT** `/networks/{networkId}/wireless/radio/autoRf`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-radio-rrm/)
-
-#### Update the AutoRF settings for a wireless network
-
-Operation ID: `updateNetworkWirelessRadioRrm`
-
-PATH _`/networks/{networkId}/wireless/radio/rrm`_
-
-    {
-      "networkId": "L_12345",
-      "name": "My Network",
-      "timeZone": "America/Los_Angeles",
-      "busyHour": {
-        "schedule": {
-          "mode": "automatic",
-          "automatic": {
-            "start": "08:00",
-            "end": "17:00"
-          },
-          "manual": {
-            "start": "10:00",
-            "end": "15:00"
-          }
-        },
-        "minimizeChanges": {
-          "enabled": true
-        }
-      },
-      "channel": {
-        "avoidance": {
-          "enabled": true
-        }
-      },
-      "fra": {
-        "enabled": false
-      },
-      "ai": {
-        "enabled": true,
-        "lastEnabledAt": "2025-12-07T09:05:36Z"
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Update the AutoRF settings for a wireless network
-> 
-> **PUT** `/networks/{networkId}/wireless/radio/rrm`  
 > 
 > * * *
 
@@ -8444,7 +8283,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`_
         },
         "ai": {
           "enabled": true,
-          "lastEnabledAt": "2025-12-07T09:05:36Z"
+          "lastEnabledAt": "2026-01-04T09:05:44Z"
         }
       }
     ]
@@ -8510,67 +8349,98 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/a
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-radio-rrm-by-network/)
+[Docs](https://developer.cisco.com/meraki/api-v1/by-organization-wireless-radio-rf-health-neighbors-rssi-device/)
 
-#### List the AutoRF settings of an organization by network
+#### Show the by-device neighbor rssi information for the organization in the given interval
 
-Operation ID: `getOrganizationWirelessRadioRrmByNetwork`
+Operation ID: `byOrganizationWirelessRadioRfHealthNeighborsRssiDevice`
 
-PATH _`/organizations/{organizationId}/wireless/radio/rrm/byNetwork`_
+PATH _`/organizations/{organizationId}/wireless/radio/rfHealth/neighbors/rssi/byDevice`_
 
     {
       "items": [
         {
-          "networkId": "L_12345",
-          "name": "My Network",
-          "timeZone": "America/Los_Angeles",
-          "busyHour": {
-            "schedule": {
-              "mode": "automatic",
-              "automatic": {
-                "start": "08:00",
-                "end": "17:00"
-              },
-              "manual": {
-                "start": "10:00",
-                "end": "15:00"
+          "serial": "ABC-123",
+          "model": "HW-123",
+          "mac": "aa:bb:cc:00:11:22",
+          "network": {
+            "id": "N_1234",
+            "name": "MyNetwork"
+          },
+          "neighbors": {
+            "total": 12,
+            "byBand": [
+              {
+                "band": "2.4",
+                "total": 7,
+                "stats": [
+                  {
+                    "mac": "00:22:11:ff:ee:bb",
+                    "model": "MR42",
+                    "serial": "Q2BY-2871-2281",
+                    "rssi": -80,
+                    "channel": 6
+                  }
+                ]
               }
-            },
-            "minimizeChanges": {
-              "enabled": true
-            }
-          },
-          "channel": {
-            "avoidance": {
-              "enabled": true
-            }
-          },
-          "fra": {
-            "enabled": false
-          },
-          "ai": {
-            "enabled": true,
-            "lastEnabledAt": "2025-12-07T09:05:36Z"
+            ]
           }
         }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 42,
-            "remaining": 5
-          }
-        }
-      }
+      ]
     }
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### List the AutoRF settings of an organization by network
+> #### Show the by-device neighbor rssi information for the organization in the given interval. This includes some basic device and network data, the number of neighbors for each device (total and by band), and the rssi and information of each neighbor
 > 
-> **GET** `/organizations/{organizationId}/wireless/radio/rrm/byNetwork`  
+> **GET** `/organizations/{organizationId}/wireless/radio/rfHealth/neighbors/rssi/byDevice`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-radio-rf-health-overview-by-network-by-interval/)
+
+#### Show the by-network RF Health score overview information for the organization in the given interval
+
+Operation ID: `getOrganizationWirelessRadioRfHealthOverviewByNetworkByInterval`
+
+PATH _`/organizations/{organizationId}/wireless/radio/rfHealth/overview/byNetwork/byInterval`_
+
+    {
+      "items": [
+        {
+          "network": {
+            "id": "N_1234",
+            "name": "MyNetwork"
+          },
+          "readings": [
+            {
+              "startTs": "2024-04-19T00:05:00Z",
+              "endTs": "2024-04-19T00:10:00Z",
+              "healthMetrics": {
+                "byBand": {
+                  "band": "2.4",
+                  "rfScore": 85,
+                  "highCciPercentage": 15,
+                  "channelChanges": 21
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Show the by-network RF Health score overview information for the organization in the given interval. This includes RF Health score, high interference APs, number of APs and of clients
+> 
+> **GET** `/organizations/{organizationId}/wireless/radio/rfHealth/overview/byNetwork/byInterval`  
 > 
 > * * *
 
@@ -8658,33 +8528,6 @@ PATH _`/devices/{serial}/wireless/healthScores`_
 > #### Fetch the health scores for a given AP on this network
 > 
 > **GET** `/devices/{serial}/wireless/healthScores`  
-> 
-> * * *
-
-* * *
-
-### certificates
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-certificates-open-roaming-certificate-authority/)
-
-#### Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).
-
-Operation ID: `getOrganizationWirelessCertificatesOpenRoamingCertificateAuthority`
-
-PATH _`/organizations/{organizationId}/wireless/certificates/openRoaming/certificateAuthority`_
-
-    {
-      "status": "trusted",
-      "contents": "-----BEGIN CERTIFICATE-----\n\n        MIIDzDCCAragAwIBAgIUOd0ukLcjH43TfTHFG9qE0FtlMVgwCwYJKoZIhvcNAQEL\n\n        umkqeYeO30g1uYvDuWLXVA==\n\n        -----END CERTIFICATE-----\n"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Query for details on the organization's OpenRoaming Certificate Authority certificate (CAs).
-> 
-> **GET** `/organizations/{organizationId}/wireless/certificates/openRoaming/certificateAuthority`  
 > 
 > * * *
 
@@ -9693,6 +9536,273 @@ PATH _`/organizations/{organizationId}/wireless/clients/connections/dhcp/byClien
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/by-organization-wireless-clients-rf-health-overview-network/)
+
+#### Show the by-network client information for the organization in the given interval
+
+Operation ID: `byOrganizationWirelessClientsRfHealthOverviewNetwork`
+
+PATH _`/organizations/{organizationId}/wireless/clients/rfHealth/overview/byNetwork`_
+
+    {
+      "items": [
+        {
+          "network": {
+            "id": "N_1234",
+            "name": "MyNetwork"
+          },
+          "readings": {
+            "count": 30,
+            "byBand": [
+              {
+                "band": "2.4",
+                "count": 30,
+                "snr": {
+                  "average": 22
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Show the by-network client information for the organization in the given interval. This includes average SNR
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/rfHealth/overview/byNetwork`  
+> 
+> * * *
+
+* * *
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-policies-client-exclusion/)
+
+#### Update the client exclusion status configuration for a given SSID
+
+Operation ID: `updateNetworkWirelessSsidPoliciesClientExclusion`
+
+PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`_
+
+    {
+      "ssid": {
+        "id": "12312333",
+        "number": 1,
+        "name": "My SSID"
+      },
+      "network": {
+        "id": "N_1234",
+        "name": "MR wireless 1"
+      },
+      "static": {
+        "enabled": true
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update the client exclusion status configuration for a given SSID
+> 
+> **PUT** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-policies-client-exclusion-static-exclusions/)
+
+#### Set the static client exclusion list for the given SSID
+
+Operation ID: `updateNetworkWirelessSsidPoliciesClientExclusionStaticExclusions`
+
+PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions`_
+
+    {
+      "ssid": {
+        "id": "12312333",
+        "number": 1,
+        "name": "My SSID"
+      },
+      "network": {
+        "id": "N_1234",
+        "name": "MR wireless 1"
+      },
+      "macs": [
+        "00:11:22:33:44:55",
+        "aa:bb:cc:dd:ee:ff"
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Set the static client exclusion list for the given SSID
+> 
+> **PUT** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-ssid-policies-client-exclusion-static-exclusions-bulk-add/)
+
+#### Add a list of MAC addresses to the static client exclusion list for the given SSID
+
+Operation ID: `createNetworkWirelessSsidPoliciesClientExclusionStaticExclusionsBulkAdd`
+
+PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions/bulkAdd`_
+
+    {
+      "ssid": {
+        "id": "12312333",
+        "number": 1,
+        "name": "My SSID"
+      },
+      "network": {
+        "id": "N_1234",
+        "name": "MR wireless 1"
+      },
+      "macs": [
+        "00:11:22:33:44:55",
+        "aa:bb:cc:dd:ee:ff"
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Add a list of MAC addresses to the static client exclusion list for the given SSID
+> 
+> **POST** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions/bulkAdd`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-ssid-policies-client-exclusion-static-exclusions-bulk-remove/)
+
+#### Delete a list of MAC addresses from the static client exclusion list for the given SSID
+
+Operation ID: `createNetworkWirelessSsidPoliciesClientExclusionStaticExclusionsBulkRemove`
+
+PATH _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions/bulkRemove`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Delete a list of MAC addresses from the static client exclusion list for the given SSID
+> 
+> **POST** `/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion/static/exclusions/bulkRemove`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-policies-client-exclusion-by-ssid/)
+
+#### Returns an array of objects, each containing client exclusion enablement statuses for one SSID
+
+Operation ID: `getOrganizationWirelessSsidsPoliciesClientExclusionBySsid`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/bySsid`_
+
+    {
+      "items": [
+        {
+          "ssid": {
+            "id": "12312333",
+            "number": 1,
+            "name": "My SSID"
+          },
+          "network": {
+            "id": "N_1234",
+            "name": "MR wireless 1"
+          },
+          "static": {
+            "enabled": true
+          }
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 105,
+            "remaining": 25
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns an array of objects, each containing client exclusion enablement statuses for one SSID
+> 
+> **GET** `/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/bySsid`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-policies-client-exclusion-static-exclusions-by-ssid/)
+
+#### Returns an array of objects, each containing a list of MAC's excluded from a given SSID
+
+Operation ID: `getOrganizationWirelessSsidsPoliciesClientExclusionStaticExclusionsBySsid`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/static/exclusions/bySsid`_
+
+    {
+      "items": [
+        {
+          "ssid": {
+            "id": "12312333",
+            "number": 1,
+            "name": "My SSID"
+          },
+          "network": {
+            "id": "N_1234",
+            "name": "MR wireless 1"
+          },
+          "macs": [
+            "00:11:22:33:44:55",
+            "aa:bb:cc:dd:ee:ff"
+          ]
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 105,
+            "remaining": 25
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns an array of objects, each containing a list of MAC's excluded from a given SSID
+> 
+> **GET** `/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/static/exclusions/bySsid`  
+> 
+> * * *
+
+* * *
+
 \[ switch \]
 ------------
 
@@ -9717,10 +9827,10 @@ PATH _`/organizations/{organizationId}/switch/alerts/poe/byDevice`_
         "serial": "Q234-ABCD-5678",
         "model": "MR34",
         "port": "1",
-        "issueType": 0,
-        "failureCount": "MR34",
-        "startTime": "MR34",
-        "endTime": "MR34"
+        "issueType": "poe_denied",
+        "failureCount": 0,
+        "startTime": "2024-04-26T18:02:24Z",
+        "endTime": "2024-04-26T18:07:05Z"
       }
     ]
 
@@ -10337,6 +10447,55 @@ PATH _`/organizations/{organizationId}/switch/clients/connections/dhcp/byClient`
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-clients-connections-switch-port-status-by-client/)
+
+#### Switch port status by client.
+
+Operation ID: `getOrganizationSwitchClientsConnectionsSwitchPortStatusByClient`
+
+PATH _`/organizations/{organizationId}/switch/clients/connections/switchPortStatus/byClient`_
+
+    [
+      {
+        "successes": {
+          "count": 3
+        },
+        "failures": {
+          "byType": [
+            {
+              "type": "poe",
+              "count": 2
+            }
+          ]
+        },
+        "client": {
+          "id": "k74272e",
+          "mac": "22:33:44:55:66:77"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        },
+        "device": {
+          "name": "My AP",
+          "serial": "Q234-ABCD-5678",
+          "mac": "00:11:22:33:44:55"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Switch port status by client.
+> 
+> **GET** `/organizations/{organizationId}/switch/clients/connections/switchPortStatus/byClient`  
+> 
+> * * *
+
+* * *
+
 ### stacks
 
 [Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-stack-ports-mirror/)
@@ -10499,14 +10658,18 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/autonomousSystems`_
         {
           "autonomousSystemId": "123",
           "number": 65000,
-          "description": "Core AS"
+          "description": "Core AS",
+          "switchFabric": {
+            "id": "789",
+            "name": "Fabric 1"
+          }
         }
       ],
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -10555,8 +10718,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/autonomousSystems/over
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -10585,7 +10748,11 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/autonomousSystems/{aut
     {
       "autonomousSystemId": "123",
       "number": 65000,
-      "description": "Core AS"
+      "description": "Core AS",
+      "switchFabric": {
+        "id": "789",
+        "name": "Fabric 1"
+      }
     }
 
 > \- Path added  
@@ -10632,8 +10799,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/filterLists`_
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -10721,8 +10888,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/filterLists/ov
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -10770,8 +10937,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/filterLists/ru
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -10832,8 +10999,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists`_
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -10925,8 +11092,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/ov
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -10978,8 +11145,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/ru
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -11046,8 +11213,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/groups`_
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -11187,8 +11354,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/addressFa
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -11447,8 +11614,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/deploymen
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -11491,8 +11658,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/overview/
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -11541,8 +11708,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/listenRanges`_
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -11611,8 +11778,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors`_
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -11807,8 +11974,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors/deploy
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -11843,6 +12010,14 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers`_
             "number": 65000,
             "description": "Core AS"
           },
+          "esiMhPair": {
+            "id": "7890",
+            "name": "My ESI-MH Pair",
+            "members": [
+              "Q234-ABCD-0003",
+              "Q234-ABCD-0004"
+            ]
+          },
           "network": {
             "id": "L_123",
             "name": "My network name"
@@ -11860,6 +12035,10 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers`_
             "name": "Core S1",
             "model": "C9300X-24Y"
           },
+          "switchFabric": {
+            "id": "789",
+            "name": "Fabric 1"
+          },
           "enabled": true,
           "bgpIdentifier": {
             "address": "1.2.3.4",
@@ -11876,8 +12055,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers`_
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -11980,6 +12159,10 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers/deploy`_
         "serial": "Q234-ABCD-0001",
         "name": "Core S1",
         "model": "C9300X-24Y"
+      },
+      "switchFabric": {
+        "id": "789",
+        "name": "Fabric 1"
       }
     }
 
@@ -12042,6 +12225,10 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers/deployments`_
               }
             }
           },
+          "switchFabric": {
+            "id": "789",
+            "name": "Fabric 1"
+          },
           "deployments": [
             {
               "addressFamily": {
@@ -12092,8 +12279,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers/deployments`_
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -12141,8 +12328,8 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers/overview/byRou
       "meta": {
         "counts": {
           "items": {
-            "total": 1,
-            "remaining": 0
+            "total": 100,
+            "remaining": 10
           }
         }
       }
@@ -12231,6 +12418,61 @@ PATH _`/organizations/{organizationId}/switch/routing/bgp/routers/{routerId}`_
 > #### Delete a router from an organization. Border Gateway Protocol requires IOS XE 17.18 or higher
 > 
 > **DELETE** `/organizations/{organizationId}/switch/routing/bgp/routers/{routerId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-static-routes/)
+
+#### List layer 3 static routes for switches within an organization
+
+Operation ID: `getOrganizationSwitchRoutingStaticRoutes`
+
+PATH _`/organizations/{organizationId}/switch/routing/staticRoutes`_
+
+    {
+      "items": [
+        {
+          "staticRouteId": "1234",
+          "name": "My route",
+          "subnet": "192.168.1.0/24",
+          "nextHopIp": "1.2.3.4",
+          "managementNextHop": "1.2.3.5",
+          "vrf": {
+            "name": "Blue",
+            "leakRouteToDefaultVrf": false
+          },
+          "advertiseViaOspf": false,
+          "preferOverOspfRoutes": false,
+          "networkId": "N_24329156",
+          "serial": "Q234-ABCD-5678",
+          "switchStackId": "789102"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1,
+            "remaining": 0
+          }
+        }
+      },
+      "errors": [
+        {
+          "interfaceId": "42",
+          "message": "Cannot delete default route"
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List layer 3 static routes for switches within an organization
+> 
+> **GET** `/organizations/{organizationId}/switch/routing/staticRoutes`  
 > 
 > * * *
 
@@ -12649,7 +12891,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles`_
             "switches": 2,
             "automations": 6
           },
-          "networksCount": {
+          "networkCounts": {
             "included": 40,
             "excluded": 20
           }
@@ -13031,7 +13273,7 @@ PATH _`/organizations/{organizationId}/switch/ports/profiles/overview/byProfile`
                 "switches": 2,
                 "automations": 6
               },
-              "networksCount": {
+              "networkCounts": {
                 "included": 40,
                 "excluded": 20
               }
@@ -14096,13 +14338,13 @@ PATH _`/organizations/{organizationId}/appliance/vpn/connectivity/vpnPeers/byNet
             "usageBytes": 1000,
             "outage": [
               {
-                "ts": 1767769514,
+                "ts": 1770188724,
                 "isConnected": true
               }
             ],
             "usageIntervals": [
               {
-                "ts": 1767769514,
+                "ts": 1770188724,
                 "latency": 35.3,
                 "loss": {
                   "percentage": 50
@@ -14214,29 +14456,6 @@ PATH _`/organizations/{organizationId}/appliance/vlans`_
 
 Changed
 =======
-
-\[ nac \]
----------
-
-### certificates
-
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates-authorities-crls/)
-
-#### Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter
-
-Operation ID: `getOrganizationNacCertificatesAuthoritiesCrls`
-
-GET _`/organizations/{organizationId}/nac/certificates/authorities/crls`_
-
-> \- Added endpoint method  
-> 
-> #### Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter
-> 
-> _getOrganizationNacCertificatesAuthoritiesCrls_
-> 
-> * * *
-
-* * *
 
 \[ insight \]
 -------------
@@ -14490,6 +14709,44 @@ GET _`/networks/{networkId}/firmwareUpgrades`_
 \[ wireless \]
 --------------
 
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-splash-settings/)
+
+#### Modify the splash page settings for the given SSID
+
+Operation ID: `updateNetworkWirelessSsidSplashSettings`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}/splash/settings`_
+
+> \- Optional property `language` Added
+
+> \- Optional property `userConsent` Added
+
+> \- Optional property `language` Added
+
+> \- Optional property `userConsent` Added
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssid-splash-settings/)
+
+#### Display the splash page settings for the given SSID
+
+Operation ID: `getNetworkWirelessSsidSplashSettings`
+
+GET _`/networks/{networkId}/wireless/ssids/{number}/splash/settings`_
+
+> \- Optional property `language` Added
+
+> \- Optional property `userConsent` Added
+
+> \- Response property `language` value added
+
+> \- Response property `userConsent` value added
+
+* * *
+
 ### rfProfiles
 
 [Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-rf-profile/)
@@ -14500,7 +14757,11 @@ Operation ID: `createNetworkWirelessRfProfile`
 
 POST _`/networks/{networkId}/wireless/rfProfiles`_
 
+> \- Optional property `axEnabled` Added
+
 > \- Optional property `afcEnabled` Added
+
+> \- Optional property `axEnabled` Added
 
 > \- Optional property `afcEnabled` Added
 
@@ -14516,6 +14777,8 @@ PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 
 > \- Optional property `afcEnabled` Added
 
+> \- Optional property `axEnabled` Added
+
 > \- Optional property `afcEnabled` Added
 
 * * *
@@ -14528,7 +14791,11 @@ Operation ID: `getNetworkWirelessRfProfiles`
 
 GET _`/networks/{networkId}/wireless/rfProfiles`_
 
+> \- Optional property `axEnabled` Added
+
 > \- Optional property `afcEnabled` Added
+
+> \- Response property `axEnabled` value added
 
 > \- Response property `afcEnabled` value added
 
@@ -14542,7 +14809,11 @@ Operation ID: `getNetworkWirelessRfProfile`
 
 GET _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 
+> \- Optional property `axEnabled` Added
+
 > \- Optional property `afcEnabled` Added
+
+> \- Response property `axEnabled` value added
 
 > \- Response property `afcEnabled` value added
 
@@ -14649,11 +14920,15 @@ Operation ID: `createNetworkSwitchStackRoutingInterface`
 
 POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
 
 > \- Optional property `candidateUplink` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
 
 > \- Optional property `uplinkV4` Added
 
@@ -14665,6 +14940,8 @@ POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 
 > \- Optional property `staticV4Dns2` Added
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
@@ -14676,6 +14953,8 @@ POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 > \- Optional property `staticV4Dns1` Added
 
 > \- Optional property `staticV4Dns2` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
 
 * * *
 
@@ -14687,11 +14966,15 @@ Operation ID: `updateNetworkSwitchStackRoutingInterface`
 
 PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
 
 > \- Optional property `candidateUplink` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
 
 > \- Optional property `uplinkV4` Added
 
@@ -14702,6 +14985,8 @@ PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
 > \- Optional property `staticV4Dns1` Added
 
 > \- Optional property `staticV4Dns2` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
 
 > \- Optional property `staticV6Dns1` Added
 
@@ -14725,6 +15010,8 @@ Operation ID: `getNetworkSwitchStackRoutingInterfaces`
 
 GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
@@ -14737,6 +15024,10 @@ GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 
 > \- Optional property `staticV4Dns2` Added
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
+> \- Response property `isSwitchDefaultGateway` value added
+
 > \- Response property `staticV6Dns1` value added
 
 > \- Response property `staticV6Dns2` value added
@@ -14748,6 +15039,8 @@ GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 > \- Response property `staticV4Dns1` value added
 
 > \- Response property `staticV4Dns2` value added
+
+> \- Response property `isSwitchDefaultGateway` value added
 
 * * *
 
@@ -14759,6 +15052,8 @@ Operation ID: `getNetworkSwitchStackRoutingInterface`
 
 GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
@@ -14771,6 +15066,10 @@ GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
 
 > \- Optional property `staticV4Dns2` Added
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
+> \- Response property `isSwitchDefaultGateway` value added
+
 > \- Response property `staticV6Dns1` value added
 
 > \- Response property `staticV6Dns2` value added
@@ -14782,6 +15081,8 @@ GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
 > \- Response property `staticV4Dns1` value added
 
 > \- Response property `staticV4Dns2` value added
+
+> \- Response property `isSwitchDefaultGateway` value added
 
 * * *
 
@@ -14809,11 +15110,15 @@ Operation ID: `createDeviceSwitchRoutingInterface`
 
 POST _`/devices/{serial}/switch/routing/interfaces`_
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
 
 > \- Optional property `candidateUplink` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
 
 > \- Optional property `uplinkV4` Added
 
@@ -14825,6 +15130,8 @@ POST _`/devices/{serial}/switch/routing/interfaces`_
 
 > \- Optional property `staticV4Dns2` Added
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
@@ -14836,6 +15143,8 @@ POST _`/devices/{serial}/switch/routing/interfaces`_
 > \- Optional property `staticV4Dns1` Added
 
 > \- Optional property `staticV4Dns2` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
 
 * * *
 
@@ -14859,11 +15168,15 @@ Operation ID: `updateDeviceSwitchRoutingInterface`
 
 PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
 
 > \- Optional property `candidateUplink` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
 
 > \- Optional property `uplinkV4` Added
 
@@ -14875,6 +15188,8 @@ PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
 
 > \- Optional property `staticV4Dns2` Added
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
@@ -14886,6 +15201,8 @@ PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
 > \- Optional property `staticV4Dns1` Added
 
 > \- Optional property `staticV4Dns2` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
 
 * * *
 
@@ -14909,6 +15226,8 @@ Operation ID: `getDeviceSwitchRoutingInterfaces`
 
 GET _`/devices/{serial}/switch/routing/interfaces`_
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
@@ -14921,6 +15240,10 @@ GET _`/devices/{serial}/switch/routing/interfaces`_
 
 > \- Optional property `staticV4Dns2` Added
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
+> \- Response property `isSwitchDefaultGateway` value added
+
 > \- Response property `staticV6Dns1` value added
 
 > \- Response property `staticV6Dns2` value added
@@ -14932,6 +15255,8 @@ GET _`/devices/{serial}/switch/routing/interfaces`_
 > \- Response property `staticV4Dns1` value added
 
 > \- Response property `staticV4Dns2` value added
+
+> \- Response property `isSwitchDefaultGateway` value added
 
 * * *
 
@@ -14943,6 +15268,8 @@ Operation ID: `getDeviceSwitchRoutingInterface`
 
 GET _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
 > \- Optional property `staticV6Dns1` Added
 
 > \- Optional property `staticV6Dns2` Added
@@ -14955,6 +15282,10 @@ GET _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
 
 > \- Optional property `staticV4Dns2` Added
 
+> \- Optional property `isSwitchDefaultGateway` Added
+
+> \- Response property `isSwitchDefaultGateway` value added
+
 > \- Response property `staticV6Dns1` value added
 
 > \- Response property `staticV6Dns2` value added
@@ -14966,6 +15297,8 @@ GET _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
 > \- Response property `staticV4Dns1` value added
 
 > \- Response property `staticV4Dns2` value added
+
+> \- Response property `isSwitchDefaultGateway` value added
 
 * * *
 
@@ -15023,6 +15356,8 @@ GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
 
 > \- Optional param `hideDefaultPorts` added
 
+> \- Optional param `type` added
+
 * * *
 
 \[ sensor \]
@@ -15069,6 +15404,20 @@ PUT _`/networks/{networkId}/appliance/vpn/bgp`_
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-site-to-site-vpn/)
+
+#### Update the site-to-site VPN settings of a network
+
+Operation ID: `updateNetworkApplianceVpnSiteToSiteVpn`
+
+PUT _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
+
+> \- Optional property `hostTranslations` Added
+
+> \- Optional property `hostTranslations` Added
+
+* * *
+
 [Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vpn-bgp/)
 
 #### Return a Hub BGP Configuration
@@ -15088,6 +15437,20 @@ GET _`/networks/{networkId}/appliance/vpn/bgp`_
 > \- Response property `communityOut` value added
 
 > \- Response property `routerId` value added
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vpn-site-to-site-vpn/)
+
+#### Return the site-to-site VPN settings of a network
+
+Operation ID: `getNetworkApplianceVpnSiteToSiteVpn`
+
+GET _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
+
+> \- Optional property `hostTranslations` Added
+
+> \- Response property `hostTranslations` value added
 
 * * *
 
