@@ -195,6 +195,14 @@
     + [routingTable](#routingtable)
       - [Enqueue a job to perform a routing table request for the device](#enqueue-a-job-to-perform-a-routing-table-request-for-the-device)
       - [Enqueue a job to perform a routing table request for the device. Only native Catalyst switches are supported. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-perform-a-routing-table-request-for-the-device-only-native-catalyst-switches-are-supported-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
+      - [Enqueue a job to perform a routing table lookup request for the device](#enqueue-a-job-to-perform-a-routing-table-lookup-request-for-the-device)
+      - [Enqueue a job to perform a routing table lookup request for the device. Only Cisco routers are supported. Any combination of search filters can be applied.](#enqueue-a-job-to-perform-a-routing-table-lookup-request-for-the-device-only-cisco-routers-are-supported-any-combination-of-search-filters-can-be-applied)
+      - [Return a routing table live tool lookup job.](#return-a-routing-table-live-tool-lookup-job)
+      - [Return a routing table live tool lookup job.](#return-a-routing-table-live-tool-lookup-job-1)
+      - [Enqueue a job to perform a routing table summary request for the device](#enqueue-a-job-to-perform-a-routing-table-summary-request-for-the-device)
+      - [Enqueue a job to perform a routing table summary request for the device. Only Cisco routers are supported.](#enqueue-a-job-to-perform-a-routing-table-summary-request-for-the-device-only-cisco-routers-are-supported)
+      - [Return a routing table live tool summary job.](#return-a-routing-table-live-tool-summary-job)
+      - [Return a routing table live tool summary job.](#return-a-routing-table-live-tool-summary-job-1)
       - [Return an routing table live tool job.](#return-an-routing-table-live-tool-job)
       - [Return an routing table live tool job.](#return-an-routing-table-live-tool-job-1)
     + [reboot](#reboot)
@@ -269,13 +277,15 @@
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization)
       - [Return the status of a webhook test for an organization](#return-the-status-of-a-webhook-test-for-an-organization-1)
     + [sase](#sase)
+      - [Retrieves a batch summary with aggregated job status counts](#retrieves-a-batch-summary-with-aggregated-job-status-counts)
+      - [Retrieves a batch summary with aggregated job status counts](#retrieves-a-batch-summary-with-aggregated-job-status-counts-1)
+      - [List jobs within a batch, with optional status filtering](#list-jobs-within-a-batch-with-optional-status-filtering)
+      - [List jobs within a batch, with optional status filtering](#list-jobs-within-a-batch-with-optional-status-filtering-1)
       - [Create a new Secure Access integration](#create-a-new-secure-access-integration)
       - [Create a new Secure Access integration](#create-a-new-secure-access-integration-1)
       - [Get details of a Secure Access integration](#get-details-of-a-secure-access-integration)
       - [Get details of a Secure Access integration](#get-details-of-a-secure-access-integration-1)
       - [Remove a Secure Access integration](#remove-a-secure-access-integration)
-      - [List of MX networks or templates that can be enrolled into Secure Access](#list-of-mx-networks-or-templates-that-can-be-enrolled-into-secure-access)
-      - [List of MX networks or templates that can be enrolled into Secure Access](#list-of-mx-networks-or-templates-that-can-be-enrolled-into-secure-access-1)
       - [List regions](#list-regions)
       - [List regions](#list-regions-1)
       - [List of enrolled SASE sites in this organization](#list-of-enrolled-sase-sites-in-this-organization)
@@ -290,11 +300,39 @@
       - [Enroll sites in this organization to Secure Access. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.](#enroll-sites-in-this-organization-to-secure-access-for-an-organization-a-maximum-of-4000-sites-can-be-enrolled-if-they-are-in-spoke-mode-or-a-maximum-of-10-sites-can-be-enrolled-in-hub-mode)
       - [Update the configuration for a site](#update-the-configuration-for-a-site)
       - [Update the configuration for a site. Currently, only supports updating default route enablement.](#update-the-configuration-for-a-site-currently-only-supports-updating-default-route-enablement)
-    + [integrations](#integrations)
-      - [Provides a list of integrations that can be enabled for an Organization.](#provides-a-list-of-integrations-that-can-be-enabled-for-an-organization)
-      - [Provides a list of integrations that can be enabled for an Organization.](#provides-a-list-of-integrations-that-can-be-enabled-for-an-organization-1)
-      - [Provides a list of integrations enabled for an Organization.](#provides-a-list-of-integrations-enabled-for-an-organization)
-      - [Provides a list of integrations enabled for an Organization.](#provides-a-list-of-integrations-enabled-for-an-organization-1)
+    + [policies](#policies)
+      - [List application categories with their associated applications](#list-application-categories-with-their-associated-applications)
+      - [List application categories with their associated applications](#list-application-categories-with-their-associated-applications-1)
+      - [List Organization-Wide Policy Firewall Rulesets](#list-organization-wide-policy-firewall-rulesets)
+      - [List Organization-Wide Policy Firewall Rulesets](#list-organization-wide-policy-firewall-rulesets-1)
+      - [Create an Organization-Wide Policy Firewall Ruleset](#create-an-organization-wide-policy-firewall-ruleset)
+      - [Create an Organization-Wide Policy Firewall Rule](#create-an-organization-wide-policy-firewall-rule)
+      - [List Organization-Wide Policy Firewall Rules](#list-organization-wide-policy-firewall-rules)
+      - [Create an Organization-Wide Policy Firewall Rule](#create-an-organization-wide-policy-firewall-rule-1)
+      - [Delete an Organization-Wide Policy Firewall Rule](#delete-an-organization-wide-policy-firewall-rule)
+      - [Update an Organization-Wide Policy Firewall Rule](#update-an-organization-wide-policy-firewall-rule)
+      - [Delete an Organization-Wide Policy Firewall Rule](#delete-an-organization-wide-policy-firewall-rule-1)
+      - [Update an Organization-Wide Policy Firewall Ruleset](#update-an-organization-wide-policy-firewall-ruleset)
+      - [Update an Organization-Wide Policy Firewall Ruleset](#update-an-organization-wide-policy-firewall-ruleset-1)
+      - [Delete an Organization-Wide Policy Firewall Ruleset](#delete-an-organization-wide-policy-firewall-ruleset)
+      - [List Organization-Wide Policies](#list-organization-wide-policies)
+      - [List Organization-Wide Policies](#list-organization-wide-policies-1)
+      - [Create an Organization-Wide Policy](#create-an-organization-wide-policy)
+      - [Assign adaptive policy groups to a policy](#assign-adaptive-policy-groups-to-a-policy)
+      - [Assign adaptive policy groups to a policy](#assign-adaptive-policy-groups-to-a-policy-1)
+      - [List adaptive policy group assignments](#list-adaptive-policy-group-assignments)
+      - [List adaptive policy group assignments](#list-adaptive-policy-group-assignments-1)
+      - [Remove adaptive policy groups from a policy](#remove-adaptive-policy-groups-from-a-policy)
+      - [Remove adaptive policy groups from a policy](#remove-adaptive-policy-groups-from-a-policy-1)
+      - [List Organization-Wide Policy Ruleset Assignments](#list-organization-wide-policy-ruleset-assignments)
+      - [List Organization-Wide Policy Ruleset Assignments](#list-organization-wide-policy-ruleset-assignments-1)
+      - [Create an Organization-Wide Policy Ruleset Assignment](#create-an-organization-wide-policy-ruleset-assignment)
+      - [Update an Organization-Wide Policy Ruleset Assignment](#update-an-organization-wide-policy-ruleset-assignment)
+      - [Update an Organization-Wide Policy Ruleset Assignment](#update-an-organization-wide-policy-ruleset-assignment-1)
+      - [Delete an Organization-Wide Policy Ruleset Assignment](#delete-an-organization-wide-policy-ruleset-assignment)
+      - [Update an Organization-Wide Policy](#update-an-organization-wide-policy)
+      - [Update an Organization-Wide Policy](#update-an-organization-wide-policy-1)
+      - [Delete an Organization-Wide Policy](#delete-an-organization-wide-policy)
     + [extensions](#extensions)
       - [Update name and status of an Interconnect](#update-name-and-status-of-an-interconnect)
       - [Update name and status of an Interconnect](#update-name-and-status-of-an-interconnect-1)
@@ -347,6 +385,8 @@
       - [Gets relevant product announcements for a user](#gets-relevant-product-announcements-for-a-user)
       - [Gets relevant product announcements for a user](#gets-relevant-product-announcements-for-a-user-1)
     + [optimization](#optimization)
+      - [Returns an array of checkup results for the organization](#returns-an-array-of-checkup-results-for-the-organization)
+      - [Returns an array of checkup results for the organization](#returns-an-array-of-checkup-results-for-the-organization-1)
       - [Returns an array of checkup results for the networks](#returns-an-array-of-checkup-results-for-the-networks)
       - [Returns an array of checkup results for the networks](#returns-an-array-of-checkup-results-for-the-networks-1)
     + [fetchTableQuery](#fetchtablequery)
@@ -437,6 +477,9 @@
       - [Update the position attributes for this device](#update-the-position-attributes-for-this-device)
       - [Return the AFC power limits for a wireless device](#return-the-afc-power-limits-for-a-wireless-device)
       - [Return the AFC power limits for a wireless device](#return-the-afc-power-limits-for-a-wireless-device-1)
+      - [Return the radio overrides of a device](#return-the-radio-overrides-of-a-device)
+      - [Return the radio overrides of a device](#return-the-radio-overrides-of-a-device-1)
+      - [Update the radio overrides of a device](#update-the-radio-overrides-of-a-device)
       - [Show the status of this device's radios](#show-the-status-of-this-devices-radios)
       - [Show the status of this device's radios](#show-the-status-of-this-devices-radios-1)
       - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
@@ -449,6 +492,8 @@
       - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network-1)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization-1)
+      - [Return a list of radio overrides](#return-a-list-of-radio-overrides)
+      - [Return a list of radio overrides](#return-a-list-of-radio-overrides-1)
       - [Show the by-device neighbor rssi information for the organization in the given interval](#show-the-by-device-neighbor-rssi-information-for-the-organization-in-the-given-interval)
       - [Show the by-device neighbor rssi information for the organization in the given interval. This includes some basic device and network data, the number of neighbors for each device (total and by band), and the rssi and information of each neighbor](#show-the-by-device-neighbor-rssi-information-for-the-organization-in-the-given-interval-this-includes-some-basic-device-and-network-data-the-number-of-neighbors-for-each-device-total-and-by-band-and-the-rssi-and-information-of-each-neighbor)
       - [Show the by-network RF Health score overview information for the organization in the given interval](#show-the-by-network-rf-health-score-overview-information-for-the-organization-in-the-given-interval)
@@ -473,14 +518,8 @@
       - [Get per-network latency summaries for all wireless networks in an organization.](#get-per-network-latency-summaries-for-all-wireless-networks-in-an-organization-1)
       - [Enqueue a job to disconnect a client from an AP](#enqueue-a-job-to-disconnect-a-client-from-an-ap)
       - [Enqueue a job to disconnect a client from an AP. This endpoint has a sustained rate limit of one request every five seconds per device, with an allowed burst of five requests.](#enqueue-a-job-to-disconnect-a-client-from-an-ap-this-endpoint-has-a-sustained-rate-limit-of-one-request-every-five-seconds-per-device-with-an-allowed-burst-of-five-requests)
-      - [Lists the zero touch deployments available for the organization](#lists-the-zero-touch-deployments-available-for-the-organization)
-      - [Lists the zero touch deployments available for the organization](#lists-the-zero-touch-deployments-available-for-the-organization-1)
-      - [Creates a zero touch deployment for a wireless access point](#creates-a-zero-touch-deployment-for-a-wireless-access-point)
-      - [Updates a zero touch deployment](#updates-a-zero-touch-deployment)
       - [Returns deployment IDs for the given new node serial numbers](#returns-deployment-ids-for-the-given-new-node-serial-numbers)
       - [Returns deployment IDs for the given new node serial numbers](#returns-deployment-ids-for-the-given-new-node-serial-numbers-1)
-      - [Deletes a zero touch deployment](#deletes-a-zero-touch-deployment)
-      - [Deletes a zero touch deployment](#deletes-a-zero-touch-deployment-1)
       - [List the recommended device tags for zero touch deployments available for the organization](#list-the-recommended-device-tags-for-zero-touch-deployments-available-for-the-organization)
       - [List the recommended device tags for zero touch deployments available for the organization](#list-the-recommended-device-tags-for-zero-touch-deployments-available-for-the-organization-1)
       - [Get average signal quality for all clients in the organization](#get-average-signal-quality-for-all-clients-in-the-organization)
@@ -506,6 +545,8 @@
       - [Summarize authentication outcomes per wireless client across an organization.](#summarize-authentication-outcomes-per-wireless-client-across-an-organization-1)
       - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization)
       - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization-1)
+      - [Returns failed wireless client connections for this organization by device](#returns-failed-wireless-client-connections-for-this-organization-by-device)
+      - [Returns failed wireless client connections for this organization by device](#returns-failed-wireless-client-connections-for-this-organization-by-device-1)
       - [Show the by-network client information for the organization in the given interval](#show-the-by-network-client-information-for-the-organization-in-the-given-interval)
       - [Show the by-network client information for the organization in the given interval. This includes average SNR](#show-the-by-network-client-information-for-the-organization-in-the-given-interval-this-includes-average-snr)
     + [ssids](#ssids)
@@ -677,14 +718,19 @@
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules-1)
   * [\[ appliance \]](#-appliance-)
+    + [policies](#policies-1)
+      - [Assign VLANs to a policy](#assign-vlans-to-a-policy)
+      - [Assign VLANs to a policy](#assign-vlans-to-a-policy-1)
+      - [List appliance VLAN policy assignments](#list-appliance-vlan-policy-assignments)
+      - [List appliance VLAN policy assignments](#list-appliance-vlan-policy-assignments-1)
+      - [List policies by appliance VLANs](#list-policies-by-appliance-vlans)
+      - [List policies by appliance VLANs](#list-policies-by-appliance-vlans-1)
+      - [Remove VLANs from a policy](#remove-vlans-from-a-policy)
+      - [Remove VLANs from a policy](#remove-vlans-from-a-policy-1)
     + [sdwan](#sdwan)
       - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network)
       - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network-1)
     + [umbrella](#umbrella)
-      - [Connect to Cisco Umbrella account to this network](#connect-to-cisco-umbrella-account-to-this-network)
-      - [Connect to Cisco Umbrella account to this network](#connect-to-cisco-umbrella-account-to-this-network-1)
-      - [Disconnect Umbrella account from this network](#disconnect-umbrella-account-from-this-network)
-      - [Disconnect Umbrella account from this network](#disconnect-umbrella-account-from-this-network-1)
       - [Disable umbrella protection for an MX network](#disable-umbrella-protection-for-an-mx-network)
       - [Disable umbrella protection for an MX network](#disable-umbrella-protection-for-an-mx-network-1)
       - [Enable umbrella protection for an MX network](#enable-umbrella-protection-for-an-mx-network)
@@ -693,12 +739,40 @@
       - [Specify one or more domain names to be excluded from being routed to Cisco Umbrella.](#specify-one-or-more-domain-names-to-be-excluded-from-being-routed-to-cisco-umbrella-1)
       - [Update umbrella policies applied to MX network.](#update-umbrella-policies-applied-to-mx-network)
       - [Update umbrella policies applied to MX network.](#update-umbrella-policies-applied-to-mx-network-1)
+      - [Enable or disable umbrella protection for an MX network](#enable-or-disable-umbrella-protection-for-an-mx-network)
+      - [Enable or disable umbrella protection for an MX network. When disabling, the umbrella property will be omitted from the response.](#enable-or-disable-umbrella-protection-for-an-mx-network-when-disabling-the-umbrella-property-will-be-omitted-from-the-response)
+    + [interfaces](#interfaces)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+      - [Create wired L3 interface configuration](#create-wired-l3-interface-configuration)
+      - [Create wired L3 interface configuration](#create-wired-l3-interface-configuration-1)
+      - [Update wired L3 interface configuration](#update-wired-l3-interface-configuration)
+      - [Update wired L3 interface configuration](#update-wired-l3-interface-configuration-1)
+      - [Delete wired L3 interface configuration](#delete-wired-l3-interface-configuration)
+    + [devices](#devices-5)
+      - [Listing of L3 Interface Configurations across networks for the organization](#listing-of-l3-interface-configurations-across-networks-for-the-organization)
+      - [Listing of L3 Interface Configurations across networks for the organization](#listing-of-l3-interface-configurations-across-networks-for-the-organization-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+      - [Return the appliance utilization history for devices in the organization](#return-the-appliance-utilization-history-for-devices-in-the-organization)
+      - [Return the appliance utilization history for devices in the organization. Only primary MX devices are supported.](#return-the-appliance-utilization-history-for-devices-in-the-organization-only-primary-mx-devices-are-supported)
     + [vpn](#vpn)
       - [Summarizes by-device vpn peers for the organization in the given interval.](#summarizes-by-device-vpn-peers-for-the-organization-in-the-given-interval)
       - [Summarizes by-device vpn peers for the organization in the given interval.](#summarizes-by-device-vpn-peers-for-the-organization-in-the-given-interval-1)
+      - [Get authentication for all clients in organization](#get-authentication-for-all-clients-in-organization)
+      - [Get authentication for all clients in organization](#get-authentication-for-all-clients-in-organization-1)
+      - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization-4)
+      - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization-5)
+      - [Get tunnel creation events for all clients in the organization](#get-tunnel-creation-events-for-all-clients-in-the-organization)
+      - [Get tunnel creation events for all clients in the organization](#get-tunnel-creation-events-for-all-clients-in-the-organization-1)
     + [vlans](#vlans)
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization)
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization-1)
+    + [uplinks](#uplinks)
+      - [Update uplink NAT settings of the specified network](#update-uplink-nat-settings-of-the-specified-network)
+      - [Update uplink NAT settings of the specified network](#update-uplink-nat-settings-of-the-specified-network-1)
+      - [Fetch uplink NAT settings of each network in the organization](#fetch-uplink-nat-settings-of-each-network-in-the-organization)
+      - [Fetch uplink NAT settings of each network in the organization](#fetch-uplink-nat-settings-of-each-network-in-the-organization-1)
 - [Changed](#changed)
   * [\[ insight \]](#-insight--1)
     + [applications](#applications-1)
@@ -714,7 +788,9 @@
       - [List the client and status overview information for the networks in an organization](#list-the-client-and-status-overview-information-for-the-networks-in-an-organization)
       - [Return metrics for organization's top 10 ssids by data usage over given time range](#return-metrics-for-organizations-top-10-ssids-by-data-usage-over-given-time-range)
       - [Return metrics for organization's top 10 switches by energy usage over given time range](#return-metrics-for-organizations-top-10-switches-by-energy-usage-over-given-time-range)
-    + [devices](#devices-5)
+    + [networks](#networks)
+      - [Create a network](#create-a-network)
+    + [devices](#devices-6)
       - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
     + [clients](#clients-4)
@@ -724,42 +800,42 @@
       - [Update the settings for a network](#update-the-settings-for-a-network)
     + [firmwareUpgrades](#firmwareupgrades)
       - [Rollback a Firmware Upgrade For A Network](#rollback-a-firmware-upgrade-for-a-network)
-      - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network)
       - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network)
+      - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network)
   * [\[ wireless \]](#-wireless--1)
     + [ssids](#ssids-1)
-      - [Modify the splash page settings for the given SSID](#modify-the-splash-page-settings-for-the-given-ssid)
       - [Display the splash page settings for the given SSID](#display-the-splash-page-settings-for-the-given-ssid)
+      - [Modify the splash page settings for the given SSID](#modify-the-splash-page-settings-for-the-given-ssid)
     + [rfProfiles](#rfprofiles)
       - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network)
-      - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
       - [List RF profiles for this network](#list-rf-profiles-for-this-network)
       - [Return a RF profile](#return-a-rf-profile)
+      - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network)
     + [settings](#settings-1)
-      - [Update the wireless settings for a network](#update-the-wireless-settings-for-a-network)
       - [Return the wireless settings for a network](#return-the-wireless-settings-for-a-network)
+      - [Update the wireless settings for a network](#update-the-wireless-settings-for-a-network)
     + [bluetooth](#bluetooth)
-      - [Update the bluetooth settings for a wireless device](#update-the-bluetooth-settings-for-a-wireless-device)
-      - [Update the Bluetooth settings for a network](#update-the-bluetooth-settings-for-a-network)
       - [Return the bluetooth settings for a wireless device](#return-the-bluetooth-settings-for-a-wireless-device)
       - [Return the Bluetooth settings for a network. Bluetooth settings must be enabled on the network.](#return-the-bluetooth-settings-for-a-network-bluetooth-settings-must-be-enabled-on-the-network)
+      - [Update the bluetooth settings for a wireless device](#update-the-bluetooth-settings-for-a-wireless-device)
+      - [Update the Bluetooth settings for a network](#update-the-bluetooth-settings-for-a-network)
   * [\[ switch \]](#-switch--1)
     + [stacks](#stacks-1)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
-      - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
       - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack)
       - [Return a layer 3 interface from a switch stack](#return-a-layer-3-interface-from-a-switch-stack)
+      - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack)
     + [linkAggregations](#linkaggregations)
       - [List link aggregation groups](#list-link-aggregation-groups)
     + [routing](#routing-2)
       - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch)
       - [Create a multicast rendezvous point](#create-a-multicast-rendezvous-point)
-      - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch)
-      - [Update a multicast rendezvous point](#update-a-multicast-rendezvous-point)
       - [List layer 3 interfaces for a switch](#list-layer-3-interfaces-for-a-switch)
       - [Return a layer 3 interface for a switch](#return-a-layer-3-interface-for-a-switch)
       - [List multicast rendezvous points](#list-multicast-rendezvous-points)
       - [Return a multicast rendezvous point](#return-a-multicast-rendezvous-point)
+      - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch)
+      - [Update a multicast rendezvous point](#update-a-multicast-rendezvous-point)
     + [ports](#ports-1)
       - [List the switch ports for a switch](#list-the-switch-ports-for-a-switch)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
@@ -768,34 +844,42 @@
       - [Sends a command to a sensor](#sends-a-command-to-a-sensor)
   * [\[ appliance \]](#-appliance--1)
     + [vpn](#vpn-1)
-      - [Update a Hub BGP Configuration](#update-a-hub-bgp-configuration)
-      - [Update the site-to-site VPN settings of a network](#update-the-site-to-site-vpn-settings-of-a-network)
       - [Return a Hub BGP Configuration](#return-a-hub-bgp-configuration)
       - [Return the site-to-site VPN settings of a network](#return-the-site-to-site-vpn-settings-of-a-network)
+      - [Update a Hub BGP Configuration](#update-a-hub-bgp-configuration)
+      - [Update the site-to-site VPN settings of a network](#update-the-site-to-site-vpn-settings-of-a-network)
     + [vlans](#vlans-1)
       - [Add a VLAN](#add-a-vlan)
       - [Update a VLAN](#update-a-vlan)
     + [ports](#ports-2)
-      - [Update the per-port VLAN settings for a single MX port.](#update-the-per-port-vlan-settings-for-a-single-mx-port)
-      - [List per-port VLAN settings for all ports of a MX.](#list-per-port-vlan-settings-for-all-ports-of-a-mx)
-      - [Return per-port VLAN settings for a single MX port.](#return-per-port-vlan-settings-for-a-single-mx-port)
-    + [uplinks](#uplinks)
-      - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
+      - [List per-port VLAN settings for all ports of a secure router or security appliance.](#list-per-port-vlan-settings-for-all-ports-of-a-secure-router-or-security-appliance)
+      - [Return per-port VLAN settings for a single secure router or security appliance port.](#return-per-port-vlan-settings-for-a-single-secure-router-or-security-appliance-port)
+      - [Update the per-port VLAN settings for a single secure router or security appliance port.](#update-the-per-port-vlan-settings-for-a-single-secure-router-or-security-appliance-port)
+    + [uplinks](#uplinks-1)
       - [Return the uplink settings for an MX appliance](#return-the-uplink-settings-for-an-mx-appliance)
+      - [Update the uplink settings for an MX appliance](#update-the-uplink-settings-for-an-mx-appliance)
+    + [trafficShaping](#trafficshaping)
+      - [Display VPN exclusion rules for MX networks.](#display-vpn-exclusion-rules-for-mx-networks)
+      - [Update VPN exclusion rules for an MX network.](#update-vpn-exclusion-rules-for-an-mx-network)
+- [Changed](#changed-1)
+  * [\[ appliance \]](#-appliance--2)
+    + [trafficShaping](#trafficshaping-1)
+      - [Display VPN exclusion rules for MX networks.](#display-vpn-exclusion-rules-for-mx-networks-1)
+      - [Update VPN exclusion rules for an MX network.](#update-vpn-exclusion-rules-for-an-mx-network-1)
  
-Version **1.67.0** _to_ **1.67.0-beta.0**
+Version **1.68.0** _to_ **1.68.0-beta.0**
 
 * * *
 
 **Summary of Changes**
 
-**270 - New**
+**301 - New**
 
-**245 - Updated**
+**260 - Updated**
 
-**1194 - Total Endpoints**
+**1242 - Total Endpoints**
 
-**864 - Total Paths**
+**902 - Total Paths**
 
 * * *
 
@@ -4036,6 +4120,196 @@ PATH _`/devices/{serial}/liveTools/routingTable`_
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-routing-table-lookup/)
+
+#### Enqueue a job to perform a routing table lookup request for the device
+
+Operation ID: `createDeviceLiveToolsRoutingTableLookup`
+
+PATH _`/devices/{serial}/liveTools/routingTable/lookups`_
+
+    {
+      "lookupId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/lookups/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678",
+        "type": "static",
+        "destination": {
+          "address": "192.168.0.10",
+          "subnet": "192.168.0.0/24"
+        },
+        "nextHop": {
+          "address": "10.10.0.1"
+        },
+        "vpn": {
+          "peer": {
+            "id": "N_12345678"
+          }
+        }
+      },
+      "status": "scheduled",
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a routing table lookup request for the device. Only Cisco routers are supported. Any combination of search filters can be applied.
+> 
+> **POST** `/devices/{serial}/liveTools/routingTable/lookups`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-routing-table-lookup/)
+
+#### Return a routing table live tool lookup job.
+
+Operation ID: `getDeviceLiveToolsRoutingTableLookup`
+
+PATH _`/devices/{serial}/liveTools/routingTable/lookups/{id}`_
+
+    {
+      "lookupId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/lookups/1284392014819",
+      "request": {
+        "serial": "Q234-ABCD-5678",
+        "type": "static",
+        "destination": {
+          "address": "192.168.0.10",
+          "subnet": "192.168.0.0/24"
+        },
+        "nextHop": {
+          "address": "10.10.0.1"
+        },
+        "vpn": {
+          "peer": {
+            "id": "N_12345678"
+          }
+        }
+      },
+      "status": "scheduled",
+      "entries": [
+        {
+          "type": "static",
+          "subnet": "192.168.0.0/24",
+          "nextHops": [
+            {
+              "number": 1,
+              "address": "10.10.0.1",
+              "vpn": {
+                "peer": {
+                  "id": "N_12345678",
+                  "name": "Branch Office"
+                }
+              }
+            }
+          ],
+          "ipVersion": "ipv4",
+          "vrf": {
+            "name": "default"
+          }
+        }
+      ],
+      "errors": [
+        "The device is unreachable"
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a routing table live tool lookup job.
+> 
+> **GET** `/devices/{serial}/liveTools/routingTable/lookups/{id}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-routing-table-summary/)
+
+#### Enqueue a job to perform a routing table summary request for the device
+
+Operation ID: `createDeviceLiveToolsRoutingTableSummary`
+
+PATH _`/devices/{serial}/liveTools/routingTable/summaries`_
+
+    {
+      "summaryId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/summaries/1284392014819",
+      "status": "scheduled",
+      "callback": {
+        "id": "1284392014819",
+        "url": "https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031",
+        "status": "new"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enqueue a job to perform a routing table summary request for the device. Only Cisco routers are supported.
+> 
+> **POST** `/devices/{serial}/liveTools/routingTable/summaries`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-routing-table-summary/)
+
+#### Return a routing table live tool summary job.
+
+Operation ID: `getDeviceLiveToolsRoutingTableSummary`
+
+PATH _`/devices/{serial}/liveTools/routingTable/summaries/{id}`_
+
+    {
+      "summaryId": "1284392014819",
+      "url": "/devices/Q234-ABCD-5678/liveTools/routingTable/summaries/1284392014819",
+      "status": "scheduled",
+      "counts": {
+        "total": 150,
+        "byVrf": [
+          {
+            "name": "default",
+            "byProtocol": {
+              "ipv4": {
+                "total": 100
+              },
+              "ipv6": {
+                "total": 50
+              }
+            }
+          }
+        ]
+      },
+      "errors": [
+        "The device is unreachable"
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a routing table live tool summary job.
+> 
+> **GET** `/devices/{serial}/liveTools/routingTable/summaries/{id}`  
+> 
+> * * *
+
+* * *
+
 [Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-routing-table/)
 
 #### Return an routing table live tool job.
@@ -5059,6 +5333,80 @@ PATH _`/organizations/{organizationId}/webhooks/webhookTests/{webhookTestId}`_
 
 ### sase
 
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-batch/)
+
+#### Retrieves a batch summary with aggregated job status counts
+
+Operation ID: `getOrganizationSaseBatch`
+
+PATH _`/organizations/{organizationId}/sase/batches/{batchId}`_
+
+    {
+      "batchId": "123",
+      "batchType": "saseSiteEnroll",
+      "status": "active",
+      "counts": {
+        "total": 100,
+        "complete": 50,
+        "failed": 10,
+        "pending": 40
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Retrieves a batch summary with aggregated job status counts
+> 
+> **GET** `/organizations/{organizationId}/sase/batches/{batchId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-batch-jobs/)
+
+#### List jobs within a batch, with optional status filtering
+
+Operation ID: `getOrganizationSaseBatchJobs`
+
+PATH _`/organizations/{organizationId}/sase/batches/{batchId}/jobs`_
+
+    {
+      "batchId": "123",
+      "batchType": "saseSiteEnroll",
+      "status": "active",
+      "items": [
+        {
+          "id": "456",
+          "type": "enroll_wired_site",
+          "status": "complete",
+          "error": "Job failed due to network timeout"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 1,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List jobs within a batch, with optional status filtering
+> 
+> **GET** `/organizations/{organizationId}/sase/batches/{batchId}/jobs`  
+> 
+> * * *
+
+* * *
+
 [Docs](https://developer.cisco.com/meraki/api-v1/create-organization-sase-integration/)
 
 #### Create a new Secure Access integration
@@ -5068,7 +5416,21 @@ Operation ID: `createOrganizationSaseIntegration`
 PATH _`/organizations/{organizationId}/sase/integrations`_
 
     {
-      "type": "SecureAccess"
+      "integrated": {
+        "by": {
+          "admin": {
+            "name": "John Doe"
+          }
+        },
+        "at": "2025-04-01T12:00:00Z"
+      },
+      "lastUsedAt": "2025-04-01T12:00:00Z",
+      "external": {
+        "organization": {
+          "id": "1234567890"
+        }
+      },
+      "status": "active"
     }
 
 > \- Path added  
@@ -5101,7 +5463,11 @@ PATH _`/organizations/{organizationId}/sase/integrations/{integrationId}`_
         "at": "2025-04-01T12:00:00Z"
       },
       "lastUsedAt": "2025-04-01T12:00:00Z",
-      "externalOrgId": "1234567890",
+      "external": {
+        "organization": {
+          "id": "1234567890"
+        }
+      },
       "status": "active"
     }
 
@@ -5126,59 +5492,6 @@ PATH _`/organizations/{organizationId}/sase/integrations/{integrationId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-networks-eligible/)
-
-#### List of MX networks or templates that can be enrolled into Secure Access
-
-Operation ID: `getOrganizationSaseNetworksEligible`
-
-PATH _`/organizations/{organizationId}/sase/networks/eligible`_
-
-    {
-      "items": [
-        {
-          "networkId": "N_123",
-          "type": "Meraki spoke",
-          "name": "London Office",
-          "region": {
-            "name": "US East"
-          },
-          "model": "MX95",
-          "address": {
-            "street": "123 Main St"
-          },
-          "vpn": {
-            "type": "hub"
-          },
-          "routing": {
-            "defaultRoute": {
-              "enabled": true
-            }
-          }
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 1,
-            "remaining": 0
-          }
-        }
-      }
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### List of MX networks or templates that can be enrolled into Secure Access
-> 
-> **GET** `/organizations/{organizationId}/sase/networks/eligible`  
-> 
-> * * *
-
-* * *
-
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-regions/)
 
 #### List regions
@@ -5193,9 +5506,7 @@ PATH _`/organizations/{organizationId}/sase/regions`_
           "connectorId": "123",
           "type": "CNHE",
           "name": "US West",
-          "region": {
-            "name": "us-west-1"
-          }
+          "slug": "us-west-1"
         }
       ],
       "meta": {
@@ -5238,7 +5549,7 @@ PATH _`/organizations/{organizationId}/sase/sites`_
           "type": "Meraki spoke",
           "name": "London Office",
           "region": {
-            "name": "us-east-1"
+            "slug": "us-east-1"
           },
           "model": "MX95",
           "address": {
@@ -5252,7 +5563,19 @@ PATH _`/organizations/{organizationId}/sase/sites`_
               "enabled": true
             }
           },
-          "status": "good"
+          "status": "good",
+          "devices": [
+            {
+              "name": "cc:03:d9:01:00:0a",
+              "model": "MX95"
+            }
+          ],
+          "localNetworks": [
+            {
+              "subnet": "192.168.100.0/24"
+            }
+          ],
+          "urlPrefix": "/London-Office/n/cEF-pd"
         }
       ],
       "meta": {
@@ -5465,7 +5788,7 @@ PATH _`/organizations/{organizationId}/sase/sites/{siteId}`_
       "type": "Meraki spoke",
       "name": "London Office",
       "region": {
-        "name": "us-east-1"
+        "slug": "us-east-1"
       },
       "model": "MX95",
       "address": {
@@ -5479,6 +5802,7 @@ PATH _`/organizations/{organizationId}/sase/sites/{siteId}`_
           "enabled": true
         }
       },
+      "status": "good",
       "devices": [
         {
           "name": "cc:03:d9:01:00:0a",
@@ -5505,81 +5829,71 @@ PATH _`/organizations/{organizationId}/sase/sites/{siteId}`_
 
 * * *
 
-### integrations
+### policies
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-integrations-deployable/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policies-global-firewall-application-categories/)
 
-#### Provides a list of integrations that can be enabled for an Organization.
+#### List application categories with their associated applications
 
-Operation ID: `getOrganizationIntegrationsDeployable`
+Operation ID: `getOrganizationPoliciesGlobalFirewallApplicationCategories`
 
-PATH _`/organizations/{organizationId}/integrations/deployable`_
+PATH _`/organizations/{organizationId}/policies/global/firewall/applicationCategories`_
 
-    {
-      "items": [
-        {
-          "type": "Catalyst SD-WAN",
-          "name": "Catalyst SD-WAN",
-          "provider": "Cisco",
-          "tags": [
-            "SD-WAN"
-          ],
-          "shortDescription": "Connect to a Catalyst SD-WAN overlay to enable simple SD-WAN interconnects.",
-          "isDeployable": true,
-          "releaseType": "Beta",
-          "logoUrl": "https://example.com",
-          "redirectUrl": "https://example.com",
-          "isCiscoProduct": true
-        }
-      ],
-      "meta": {
-        "counts": {
-          "items": {
-            "total": 100,
-            "remaining": 10
+    [
+      {
+        "id": "meraki:layer7/category/1",
+        "name": "Email",
+        "applications": [
+          {
+            "id": "meraki:layer7/application/4",
+            "name": "Gmail",
+            "nbar": {
+              "mappings": [
+                {
+                  "id": 1658
+                }
+              ]
+            }
           }
-        }
+        ]
       }
-    }
+    ]
 
 > \- Path added  
 >   
 > \- New endpoint
 > 
-> #### Provides a list of integrations that can be enabled for an Organization.
+> #### List application categories with their associated applications
 > 
-> **GET** `/organizations/{organizationId}/integrations/deployable`  
+> **GET** `/organizations/{organizationId}/policies/global/firewall/applicationCategories`  
 > 
 > * * *
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-integrations-deployed/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policies-global-firewall-rulesets/)
 
-#### Provides a list of integrations enabled for an Organization.
+#### List Organization-Wide Policy Firewall Rulesets
 
-Operation ID: `getOrganizationIntegrationsDeployed`
+Operation ID: `getOrganizationPoliciesGlobalFirewallRulesets`
 
-PATH _`/organizations/{organizationId}/integrations/deployed`_
+PATH _`/organizations/{organizationId}/policies/global/firewall/rulesets`_
 
     {
       "items": [
         {
-          "id": "98765",
-          "type": "OAuth",
-          "name": "OAuth Application",
-          "provider": "partner",
-          "tags": [
-            "Wayfinding",
-            "OAuth"
-          ]
+          "rulesetId": "123",
+          "name": "Block Social Media",
+          "description": "Block all Social Media",
+          "createdAt": "2021-01-01T00:00:00Z",
+          "lastUpdatedAt": "2021-01-01T00:00:00Z"
         }
       ],
       "meta": {
         "counts": {
           "items": {
-            "total": 100,
-            "remaining": 10
+            "total": 12,
+            "remaining": 2
           }
         }
       }
@@ -5589,9 +5903,511 @@ PATH _`/organizations/{organizationId}/integrations/deployed`_
 >   
 > \- New endpoint
 > 
-> #### Provides a list of integrations enabled for an Organization.
+> #### List Organization-Wide Policy Firewall Rulesets
 > 
-> **GET** `/organizations/{organizationId}/integrations/deployed`  
+> **GET** `/organizations/{organizationId}/policies/global/firewall/rulesets`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create an Organization-Wide Policy Firewall Ruleset
+> 
+> **POST** `/organizations/{organizationId}/policies/global/firewall/rulesets`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-policies-global-firewall-rulesets-rule/)
+
+#### Create an Organization-Wide Policy Firewall Rule
+
+Operation ID: `createOrganizationPoliciesGlobalFirewallRulesetsRule`
+
+PATH _`/organizations/{organizationId}/policies/global/firewall/rulesets/rules`_
+
+    {
+      "ruleId": "123",
+      "name": "Allow developers",
+      "rulesetId": "32",
+      "policy": "deny",
+      "enabled": true,
+      "priority": 100,
+      "description": "This is rule 1",
+      "sources": {
+        "matchCriteria": [
+          "addressRanges",
+          "ports",
+          "policyObjects",
+          "policyObjectGroups",
+          "applianceVlans"
+        ],
+        "criteria": {
+          "addressRanges": [
+            "1.1.1.1",
+            "2.2.2.2"
+          ],
+          "ports": [
+            "22",
+            "42-46"
+          ],
+          "policyObjects": [
+            {
+              "id": "23"
+            }
+          ],
+          "policyObjectGroups": [
+            {
+              "id": "45"
+            }
+          ],
+          "applianceVlans": [
+            {
+              "interfaceId": "L_123456789012345678_vlan_200"
+            }
+          ],
+          "siteSpecificVlans": [
+            {
+              "id": 100,
+              "address": {
+                "offsets": {
+                  "ipv4": 25,
+                  "ipv6": "0:ff:fe01:0"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "destinations": {
+        "matchCriteria": [
+          "addressRanges",
+          "services",
+          "applicationCategories",
+          "applications",
+          "policyObjects",
+          "policyObjectGroups",
+          "applianceVlans"
+        ],
+        "criteria": {
+          "addressRanges": [
+            "1.1.1.1",
+            "2.2.2.2"
+          ],
+          "ports": [
+            "22",
+            "42-46"
+          ],
+          "services": [
+            {
+              "protocol": "tcp",
+              "ports": [
+                "80",
+                "443"
+              ]
+            }
+          ],
+          "applicationCategories": [
+            {
+              "id": "meraki:layer7/category/24"
+            }
+          ],
+          "applications": [
+            {
+              "id": "meraki:layer7/application/5",
+              "name": "Advertising.com"
+            }
+          ],
+          "policyObjects": [
+            {
+              "id": "23"
+            }
+          ],
+          "policyObjectGroups": [
+            {
+              "id": "45"
+            }
+          ],
+          "applianceVlans": [
+            {
+              "interfaceId": "L_123456789012345678_vlan_200"
+            }
+          ],
+          "countries": [
+            {
+              "code": "US"
+            }
+          ],
+          "fqdns": [
+            "*.example.com"
+          ],
+          "siteSpecificVlans": [
+            {
+              "id": 100,
+              "address": {
+                "offsets": {
+                  "ipv4": 25,
+                  "ipv6": "0:ff:fe01:0"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "createdAt": "2021-01-01T00:00:00Z",
+      "lastUpdatedAt": "2021-01-01T00:00:00Z"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List Organization-Wide Policy Firewall Rules
+> 
+> **GET** `/organizations/{organizationId}/policies/global/firewall/rulesets/rules`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create an Organization-Wide Policy Firewall Rule
+> 
+> **POST** `/organizations/{organizationId}/policies/global/firewall/rulesets/rules`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-policies-global-firewall-rulesets-rule/)
+
+#### Delete an Organization-Wide Policy Firewall Rule
+
+Operation ID: `deleteOrganizationPoliciesGlobalFirewallRulesetsRule`
+
+PATH _`/organizations/{organizationId}/policies/global/firewall/rulesets/rules/{ruleId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an Organization-Wide Policy Firewall Rule
+> 
+> **PUT** `/organizations/{organizationId}/policies/global/firewall/rulesets/rules/{ruleId}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an Organization-Wide Policy Firewall Rule
+> 
+> **DELETE** `/organizations/{organizationId}/policies/global/firewall/rulesets/rules/{ruleId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-policies-global-firewall-ruleset/)
+
+#### Update an Organization-Wide Policy Firewall Ruleset
+
+Operation ID: `updateOrganizationPoliciesGlobalFirewallRuleset`
+
+PATH _`/organizations/{organizationId}/policies/global/firewall/rulesets/{rulesetId}`_
+
+    {
+      "rulesetId": "123",
+      "name": "Block Social Media",
+      "description": "Block all Social Media",
+      "createdAt": "2021-01-01T00:00:00Z",
+      "lastUpdatedAt": "2021-01-01T00:00:00Z"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an Organization-Wide Policy Firewall Ruleset
+> 
+> **PUT** `/organizations/{organizationId}/policies/global/firewall/rulesets/{rulesetId}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an Organization-Wide Policy Firewall Ruleset
+> 
+> **DELETE** `/organizations/{organizationId}/policies/global/firewall/rulesets/{rulesetId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policies-global-group-policies/)
+
+#### List Organization-Wide Policies
+
+Operation ID: `getOrganizationPoliciesGlobalGroupPolicies`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies`_
+
+    {
+      "items": [
+        {
+          "policyId": "123",
+          "name": "My policy",
+          "description": "My policy description",
+          "group": {
+            "number": 100
+          },
+          "createdAt": "2021-01-01T00:00:00Z",
+          "lastUpdatedAt": "2021-01-01T00:00:00Z"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 12,
+            "remaining": 2
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List Organization-Wide Policies
+> 
+> **GET** `/organizations/{organizationId}/policies/global/group/policies`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create an Organization-Wide Policy
+> 
+> **POST** `/organizations/{organizationId}/policies/global/group/policies`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/assign-organization-policies-global-group-policies-adaptive-policy-groups/)
+
+#### Assign adaptive policy groups to a policy
+
+Operation ID: `assignOrganizationPoliciesGlobalGroupPoliciesAdaptivePolicyGroups`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies/adaptivePolicyGroups/assign`_
+
+    {
+      "success": true
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Assign adaptive policy groups to a policy
+> 
+> **POST** `/organizations/{organizationId}/policies/global/group/policies/adaptivePolicyGroups/assign`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policies-global-group-policies-adaptive-policy-groups-assignments/)
+
+#### List adaptive policy group assignments
+
+Operation ID: `getOrganizationPoliciesGlobalGroupPoliciesAdaptivePolicyGroupsAssignments`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies/adaptivePolicyGroups/assignments`_
+
+    {
+      "items": [
+        {
+          "assignmentId": "assignment_123",
+          "policyId": "policy_456",
+          "adaptivePolicyGroupId": "1234"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 25,
+            "remaining": 15
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List adaptive policy group assignments
+> 
+> **GET** `/organizations/{organizationId}/policies/global/group/policies/adaptivePolicyGroups/assignments`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/remove-organization-policies-global-group-policies-adaptive-policy-groups/)
+
+#### Remove adaptive policy groups from a policy
+
+Operation ID: `removeOrganizationPoliciesGlobalGroupPoliciesAdaptivePolicyGroups`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies/adaptivePolicyGroups/remove`_
+
+    {
+      "success": true
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Remove adaptive policy groups from a policy
+> 
+> **POST** `/organizations/{organizationId}/policies/global/group/policies/adaptivePolicyGroups/remove`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policies-global-group-policies-firewall-rulesets-assignments/)
+
+#### List Organization-Wide Policy Ruleset Assignments
+
+Operation ID: `getOrganizationPoliciesGlobalGroupPoliciesFirewallRulesetsAssignments`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies/firewall/rulesets/assignments`_
+
+    {
+      "items": [
+        {
+          "assignmentId": "123",
+          "rulesetId": "456",
+          "policyId": "789",
+          "priority": 0,
+          "createdAt": "2021-01-01T00:00:00Z",
+          "lastUpdatedAt": "2021-01-01T00:00:00Z"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 15,
+            "remaining": 5
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List Organization-Wide Policy Ruleset Assignments
+> 
+> **GET** `/organizations/{organizationId}/policies/global/group/policies/firewall/rulesets/assignments`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Create an Organization-Wide Policy Ruleset Assignment
+> 
+> **POST** `/organizations/{organizationId}/policies/global/group/policies/firewall/rulesets/assignments`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-policies-global-group-policies-firewall-rulesets-assignment/)
+
+#### Update an Organization-Wide Policy Ruleset Assignment
+
+Operation ID: `updateOrganizationPoliciesGlobalGroupPoliciesFirewallRulesetsAssignment`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies/firewall/rulesets/assignments/{assignmentId}`_
+
+    {
+      "assignmentId": "123",
+      "rulesetId": "456",
+      "policyId": "789",
+      "priority": 0,
+      "createdAt": "2021-01-01T00:00:00Z",
+      "lastUpdatedAt": "2021-01-01T00:00:00Z"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an Organization-Wide Policy Ruleset Assignment
+> 
+> **PUT** `/organizations/{organizationId}/policies/global/group/policies/firewall/rulesets/assignments/{assignmentId}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an Organization-Wide Policy Ruleset Assignment
+> 
+> **DELETE** `/organizations/{organizationId}/policies/global/group/policies/firewall/rulesets/assignments/{assignmentId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-policies-global-group-policy/)
+
+#### Update an Organization-Wide Policy
+
+Operation ID: `updateOrganizationPoliciesGlobalGroupPolicy`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies/{policyId}`_
+
+    {
+      "policyId": "123",
+      "name": "My policy",
+      "description": "My policy description",
+      "group": {
+        "number": 100
+      },
+      "createdAt": "2021-01-01T00:00:00Z",
+      "lastUpdatedAt": "2021-01-01T00:00:00Z"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update an Organization-Wide Policy
+> 
+> **PUT** `/organizations/{organizationId}/policies/global/group/policies/{policyId}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete an Organization-Wide Policy
+> 
+> **DELETE** `/organizations/{organizationId}/policies/global/group/policies/{policyId}`  
 > 
 > * * *
 
@@ -6435,6 +7251,59 @@ PATH _`/organizations/{organizationId}/assurance/productAnnouncements`_
 * * *
 
 ### optimization
+
+[Docs](https://developer.cisco.com/meraki/api-v1/checkup-organization-assurance-optimization/)
+
+#### Returns an array of checkup results for the organization
+
+Operation ID: `checkupOrganizationAssuranceOptimization`
+
+PATH _`/organizations/{organizationId}/assurance/optimization/checkup`_
+
+    {
+      "items": [
+        {
+          "scope": "Dashboard",
+          "rules": [
+            {
+              "id": "PASSWORD_EXPIRY",
+              "name": "Short-lived passwords",
+              "description": "Passwords are recommended to expire periodically to reduce the window of opportunity for unauthorized access in case of compromised credentials.",
+              "documentation": {
+                "pageName": "Documentation",
+                "pageUrl": "https://documentation.meraki.com"
+              },
+              "assessments": [
+                {
+                  "status": "recommendation",
+                  "networkIds": [
+                    "N_24329156"
+                  ]
+                }
+              ],
+              "resolutions": [
+                {
+                  "pageName": "Organization settings",
+                  "pageUrl": "https://url.com"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns an array of checkup results for the organization
+> 
+> **GET** `/organizations/{organizationId}/assurance/optimization/checkup`  
+> 
+> * * *
+
+* * *
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-optimization-checkup-by-network/)
 
@@ -8064,6 +8933,55 @@ PATH _`/devices/{serial}/wireless/radio/afc/powerLimits`_
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-wireless-radio-overrides/)
+
+#### Return the radio overrides of a device
+
+Operation ID: `getDeviceWirelessRadioOverrides`
+
+PATH _`/devices/{serial}/wireless/radio/overrides`_
+
+    {
+      "serial": "Q234-ABCD-5678",
+      "network": {
+        "id": "N_24329156"
+      },
+      "rfProfile": {
+        "id": "1234"
+      },
+      "radios": [
+        {
+          "enabled": true,
+          "index": "1",
+          "band": "5",
+          "channel": 149,
+          "channelWidth": 20,
+          "targetPower": 15
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the radio overrides of a device
+> 
+> **GET** `/devices/{serial}/wireless/radio/overrides`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Update the radio overrides of a device
+> 
+> **PUT** `/devices/{serial}/wireless/radio/overrides`  
+> 
+> * * *
+
+* * *
+
 [Docs](https://developer.cisco.com/meraki/api-v1/get-device-wireless-radio-status/)
 
 #### Show the status of this device's radios
@@ -8140,7 +9058,7 @@ PATH _`/networks/{networkId}/wireless/radio/autoRf`_
       },
       "ai": {
         "enabled": true,
-        "lastEnabledAt": "2026-01-04T09:05:44Z"
+        "lastEnabledAt": "2026-02-04T09:06:21Z"
       }
     }
 
@@ -8283,7 +9201,7 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/byNetwork`_
         },
         "ai": {
           "enabled": true,
-          "lastEnabledAt": "2026-01-04T09:05:44Z"
+          "lastEnabledAt": "2026-02-04T09:06:21Z"
         }
       }
     ]
@@ -8344,6 +9262,50 @@ PATH _`/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/a
 > #### List the channel planning activities of an organization
 > 
 > **GET** `/organizations/{organizationId}/wireless/radio/autoRf/channels/planning/activities`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-radio-overrides-by-device/)
+
+#### Return a list of radio overrides
+
+Operation ID: `getOrganizationWirelessRadioOverridesByDevice`
+
+PATH _`/organizations/{organizationId}/wireless/radio/overrides/byDevice`_
+
+    {
+      "items": [
+        {
+          "serial": "Q234-ABCD-5678",
+          "network": {
+            "id": "N_24329156"
+          },
+          "rfProfile": {
+            "id": "1234"
+          },
+          "radios": [
+            {
+              "enabled": true,
+              "index": "1",
+              "band": "5",
+              "channel": 149,
+              "channelWidth": 20,
+              "targetPower": 15
+            }
+          ]
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return a list of radio overrides
+> 
+> **GET** `/organizations/{organizationId}/wireless/radio/overrides/byDevice`  
 > 
 > * * *
 
@@ -8783,107 +9745,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/liveTools/clients/{clien
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-devices-provisioning-deployments/)
-
-#### Lists the zero touch deployments available for the organization
-
-Operation ID: `getOrganizationWirelessDevicesProvisioningDeployments`
-
-PATH _`/organizations/{organizationId}/wireless/devices/provisioning/deployments`_
-
-    [
-      {
-        "items": [
-          {
-            "deploymentId": "1284392014819",
-            "devices": {
-              "old": {
-                "serial": "Q234-ABCD-5678",
-                "afterAction": "unclaim",
-                "name": "My AP",
-                "model": "MR34",
-                "mac": "00:11:22:33:44:55",
-                "tags": [
-                  "tag1",
-                  "tag2"
-                ],
-                "rfProfile": {
-                  "id": "1284392014819",
-                  "name": "RF Profile Name"
-                }
-              },
-              "new": {
-                "serial": "Q234-ABCD-5678",
-                "name": "My AP",
-                "model": "CW9166I",
-                "mac": "00:11:22:33:44:55",
-                "tags": [
-                  "tag1",
-                  "tag2"
-                ],
-                "rfProfile": {
-                  "id": "1284392014819",
-                  "name": "RF Profile Name"
-                }
-              }
-            },
-            "status": "ready",
-            "type": "replace",
-            "network": {
-              "id": "N_24329156",
-              "name": "Main Office"
-            },
-            "createdAt": "2018-02-11T00:00:00.090210Z",
-            "requestedAt": "2018-02-11T00:00:00.090210Z",
-            "lastUpdatedAt": "2018-02-11T00:00:00.090210Z",
-            "completedAt": "2018-02-11T00:00:00.090210Z",
-            "errors": [
-              "error message1",
-              "error message2"
-            ]
-          }
-        ],
-        "meta": {
-          "counts": {
-            "items": {
-              "total": 20,
-              "remaining": 0
-            }
-          }
-        }
-      }
-    ]
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Lists the zero touch deployments available for the organization
-> 
-> **GET** `/organizations/{organizationId}/wireless/devices/provisioning/deployments`  
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Creates a zero touch deployment for a wireless access point
-> 
-> **POST** `/organizations/{organizationId}/wireless/devices/provisioning/deployments`  
-> 
-> * * *
-> 
->   
-> \- New endpoint
-> 
-> #### Updates a zero touch deployment
-> 
-> **PUT** `/organizations/{organizationId}/wireless/devices/provisioning/deployments`  
-> 
-> * * *
-
-* * *
-
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-devices-provisioning-deployments-by-new-device/)
 
 #### Returns deployment IDs for the given new node serial numbers
@@ -8960,26 +9821,6 @@ PATH _`/organizations/{organizationId}/wireless/devices/provisioning/deployments
 > #### Returns deployment IDs for the given new node serial numbers
 > 
 > **GET** `/organizations/{organizationId}/wireless/devices/provisioning/deployments/byNewDevice`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-wireless-devices-provisioning-deployment/)
-
-#### Deletes a zero touch deployment
-
-Operation ID: `deleteOrganizationWirelessDevicesProvisioningDeployment`
-
-PATH _`/organizations/{organizationId}/wireless/devices/provisioning/deployments/{deploymentId}`_
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Deletes a zero touch deployment
-> 
-> **DELETE** `/organizations/{organizationId}/wireless/devices/provisioning/deployments/{deploymentId}`  
 > 
 > * * *
 
@@ -9531,6 +10372,45 @@ PATH _`/organizations/{organizationId}/wireless/clients/connections/dhcp/byClien
 > #### Get IP assignment for all clients in the organization
 > 
 > **GET** `/organizations/{organizationId}/wireless/clients/connections/dhcp/byClient`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-clients-connections-failures-history-by-device/)
+
+#### Returns failed wireless client connections for this organization by device
+
+Operation ID: `getOrganizationWirelessClientsConnectionsFailuresHistoryByDevice`
+
+PATH _`/organizations/{organizationId}/wireless/clients/connections/failures/history/byDevice`_
+
+    {
+      "mac": "5c:83:8f:58:b1:81",
+      "description": " auth_mode='radius_mac_auth-802.1x' vap='7' channel='11' rssi='55'",
+      "step": "auth",
+      "radio": {
+        "index": 0,
+        "channel": 12,
+        "rssi": 55
+      },
+      "ssid": {
+        "number": 1
+      },
+      "ts": "2023-05-23T12:02:46.298Z",
+      "network": {
+        "id": "L_12345"
+      },
+      "failureId": "MTc0NTM3NzY3NDgwNy1hdXRo"
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns failed wireless client connections for this organization by device
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/connections/failures/history/byDevice`  
 > 
 > * * *
 
@@ -14101,6 +14981,144 @@ PATH _`/networks/{networkId}/sensor/schedules`_
 \[ appliance \]
 ---------------
 
+### policies
+
+[Docs](https://developer.cisco.com/meraki/api-v1/assign-organization-policies-global-group-policies-appliance-vlans/)
+
+#### Assign VLANs to a policy
+
+Operation ID: `assignOrganizationPoliciesGlobalGroupPoliciesApplianceVlans`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies/appliance/vlans/assign`_
+
+    {
+      "success": true
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Assign VLANs to a policy
+> 
+> **POST** `/organizations/{organizationId}/policies/global/group/policies/appliance/vlans/assign`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policies-global-group-policies-appliance-vlans-assignments/)
+
+#### List appliance VLAN policy assignments
+
+Operation ID: `getOrganizationPoliciesGlobalGroupPoliciesApplianceVlansAssignments`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies/appliance/vlans/assignments`_
+
+    {
+      "items": [
+        {
+          "assignmentId": "assignment_123",
+          "policyId": "policy_456",
+          "interfaceId": "L_123456789012345678_vlan_200"
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 25,
+            "remaining": 15
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List appliance VLAN policy assignments
+> 
+> **GET** `/organizations/{organizationId}/policies/global/group/policies/appliance/vlans/assignments`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policies-global-group-policies-appliance-vlans-assignments-by-vlan/)
+
+#### List policies by appliance VLANs
+
+Operation ID: `getOrganizationPoliciesGlobalGroupPoliciesApplianceVlansAssignmentsByVlan`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies/appliance/vlans/assignments/byVlan`_
+
+    {
+      "items": [
+        {
+          "network": {
+            "id": "L_123456789012345678",
+            "name": "Main Office Network"
+          },
+          "name": "Production VLAN",
+          "subnet": "192.168.1.0/24",
+          "interfaceId": "1234",
+          "vlanId": "100",
+          "policy": {
+            "id": "456",
+            "name": "Production Policy",
+            "group": {
+              "number": 100
+            }
+          }
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 25,
+            "remaining": 15
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### List policies by appliance VLANs
+> 
+> **GET** `/organizations/{organizationId}/policies/global/group/policies/appliance/vlans/assignments/byVlan`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/remove-organization-policies-global-group-policies-appliance-vlans/)
+
+#### Remove VLANs from a policy
+
+Operation ID: `removeOrganizationPoliciesGlobalGroupPoliciesApplianceVlans`
+
+PATH _`/organizations/{organizationId}/policies/global/group/policies/appliance/vlans/remove`_
+
+    {
+      "success": true
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Remove VLANs from a policy
+> 
+> **POST** `/organizations/{organizationId}/policies/global/group/policies/appliance/vlans/remove`  
+> 
+> * * *
+
+* * *
+
 ### sdwan
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-sdwan-internet-policies/)
@@ -14164,55 +15182,6 @@ PATH _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
 
 ### umbrella
 
-[Docs](https://developer.cisco.com/meraki/api-v1/connect-network-appliance-umbrella-account/)
-
-#### Connect to Cisco Umbrella account to this network
-
-Operation ID: `connectNetworkApplianceUmbrellaAccount`
-
-PATH _`/networks/{networkId}/appliance/umbrella/account/connect`_
-
-    {
-      "umbrellaOrganizationId": "8769012"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Connect to Cisco Umbrella account to this network
-> 
-> **POST** `/networks/{networkId}/appliance/umbrella/account/connect`  
-> 
-> * * *
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/disconnect-network-appliance-umbrella-account/)
-
-#### Disconnect Umbrella account from this network
-
-Operation ID: `disconnectNetworkApplianceUmbrellaAccount`
-
-PATH _`/networks/{networkId}/appliance/umbrella/account/disconnect`_
-
-    {
-      "success": true,
-      "message": "Successfully updated"
-    }
-
-> \- Path added  
->   
-> \- New endpoint
-> 
-> #### Disconnect Umbrella account from this network
-> 
-> **DELETE** `/networks/{networkId}/appliance/umbrella/account/disconnect`  
-> 
-> * * *
-
-* * *
-
 [Docs](https://developer.cisco.com/meraki/api-v1/disable-network-appliance-umbrella-protection/)
 
 #### Disable umbrella protection for an MX network
@@ -14222,8 +15191,7 @@ Operation ID: `disableNetworkApplianceUmbrellaProtection`
 PATH _`/networks/{networkId}/appliance/umbrella/disableProtection`_
 
     {
-      "success": true,
-      "message": "Successfully updated"
+      "enabled": false
     }
 
 > \- Path added  
@@ -14247,8 +15215,15 @@ Operation ID: `enableNetworkApplianceUmbrellaProtection`
 PATH _`/networks/{networkId}/appliance/umbrella/enableProtection`_
 
     {
-      "success": true,
-      "message": "Successfully updated"
+      "umbrella": {
+        "organization": {
+          "id": "8706910"
+        },
+        "origin": {
+          "id": "606932410"
+        }
+      },
+      "enabled": true
     }
 
 > \- Path added  
@@ -14313,6 +15288,336 @@ PATH _`/networks/{networkId}/appliance/umbrella/policies`_
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/protection-network-appliance-umbrella/)
+
+#### Enable or disable umbrella protection for an MX network
+
+Operation ID: `protectionNetworkApplianceUmbrella`
+
+PATH _`/networks/{networkId}/appliance/umbrella/protection`_
+
+    {
+      "umbrella": {
+        "organization": {
+          "id": "8706910"
+        },
+        "origin": {
+          "id": "606932410"
+        }
+      },
+      "enabled": true
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Enable or disable umbrella protection for an MX network. When disabling, the umbrella property will be omitted from the response.
+> 
+> **PUT** `/networks/{networkId}/appliance/umbrella/protection`  
+> 
+> * * *
+
+* * *
+
+### interfaces
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-port/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPort`
+
+PATH _`/devices/{serial}/appliance/interfaces/ports/{number}`_
+
+    {
+      "number": "1",
+      "enabled": true,
+      "name": "wan1",
+      "personality": {
+        "mode": "wan",
+        "isFlexible": false
+      },
+      "uplink": {
+        "type": "ethernet",
+        "primary": true
+      },
+      "downlink": {
+        "mode": "access",
+        "adaptivePolicyGroupId": "1234",
+        "access": {
+          "vlan": "1",
+          "policyType": "802.1x"
+        },
+        "trunk": {
+          "nativeVlan": "2",
+          "allowedVlans": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "peerSgtCapable": false
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update configurations for an appliance's specified port
+> 
+> **PUT** `/devices/{serial}/appliance/interfaces/ports/{number}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l-3-/)
+
+#### Create wired L3 interface configuration
+
+Operation ID: `createNetworkApplianceInterfacesL3`
+
+PATH _`/networks/{networkId}/appliance/interfaces/l3`_
+
+    {
+      "interfaceId": "1234",
+      "port": {
+        "number": 1
+      },
+      "ipv4": {
+        "address": "192.168.1.2",
+        "subnet": "192.168.1.0/24"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Create wired L3 interface configuration
+> 
+> **POST** `/networks/{networkId}/appliance/interfaces/l3`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l-3-/)
+
+#### Update wired L3 interface configuration
+
+Operation ID: `updateNetworkApplianceInterfacesL3`
+
+PATH _`/networks/{networkId}/appliance/interfaces/l3/{interfaceId}`_
+
+    {
+      "interfaceId": "1234",
+      "port": {
+        "number": 1
+      },
+      "ipv4": {
+        "address": "192.168.1.2",
+        "subnet": "192.168.1.0/24"
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update wired L3 interface configuration
+> 
+> **PUT** `/networks/{networkId}/appliance/interfaces/l3/{interfaceId}`  
+> 
+> * * *
+> 
+>   
+> \- New endpoint
+> 
+> #### Delete wired L3 interface configuration
+> 
+> **DELETE** `/networks/{networkId}/appliance/interfaces/l3/{interfaceId}`  
+> 
+> * * *
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-l-3-by-network/)
+
+#### Listing of L3 Interface Configurations across networks for the organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesL3ByNetwork`
+
+PATH _`/organizations/{organizationId}/appliance/devices/interfaces/l3/byNetwork`_
+
+    {
+      "items": [
+        {
+          "networkId": "L_123456",
+          "interfaces": [
+            {
+              "interfaceId": "1234",
+              "port": {
+                "number": 1
+              },
+              "ipv4": {
+                "address": "192.168.1.2",
+                "subnet": "192.168.1.0/24"
+              }
+            }
+          ]
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 10,
+            "remaining": 0
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Listing of L3 Interface Configurations across networks for the organization
+> 
+> **GET** `/organizations/{organizationId}/appliance/devices/interfaces/l3/byNetwork`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+PATH _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+    {
+      "items": [
+        {
+          "serial": "Q234-ABCD-5678",
+          "ports": [
+            {
+              "number": "1",
+              "enabled": true,
+              "name": "wan1",
+              "personality": {
+                "mode": "wan",
+                "isFlexible": false
+              },
+              "uplink": {
+                "type": "ethernet",
+                "primary": true
+              },
+              "downlink": {
+                "mode": "access",
+                "adaptivePolicyGroupId": "1234",
+                "access": {
+                  "vlan": "1",
+                  "policyType": "802.1x"
+                },
+                "trunk": {
+                  "nativeVlan": "2",
+                  "allowedVlans": [
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  "peerSgtCapable": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Returns port configurations for appliances in a given organization
+> 
+> **GET** `/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-system-utilization-by-interval/)
+
+#### Return the appliance utilization history for devices in the organization
+
+Operation ID: `getOrganizationApplianceDevicesSystemUtilizationByInterval`
+
+PATH _`/organizations/{organizationId}/appliance/devices/system/utilization/byInterval`_
+
+    {
+      "items": [
+        {
+          "serial": "Q234-ABCD-0001",
+          "model": "MX450",
+          "name": "My appliance",
+          "mac": "00:11:22:33:44:55",
+          "tags": [
+            "tag1",
+            "tag2"
+          ],
+          "network": {
+            "id": "N_24329156",
+            "name": "Main Office",
+            "tags": [
+              "tag1",
+              "tag2"
+            ]
+          },
+          "intervals": [
+            {
+              "startTs": "2018-02-11T00:00:00.090210Z",
+              "endTs": "2018-02-11T00:00:00.090210Z",
+              "utilization": {
+                "average": {
+                  "percentage": 60
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "meta": {
+        "counts": {
+          "items": {
+            "total": 4,
+            "remaining": 2
+          }
+        }
+      }
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Return the appliance utilization history for devices in the organization. Only primary MX devices are supported.
+> 
+> **GET** `/organizations/{organizationId}/appliance/devices/system/utilization/byInterval`  
+> 
+> * * *
+
+* * *
+
 ### vpn
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-connectivity-vpn-peers-by-network/)
@@ -14338,13 +15643,13 @@ PATH _`/organizations/{organizationId}/appliance/vpn/connectivity/vpnPeers/byNet
             "usageBytes": 1000,
             "outage": [
               {
-                "ts": 1770188724,
+                "ts": 1772607956,
                 "isConnected": true
               }
             ],
             "usageIntervals": [
               {
-                "ts": 1770188724,
+                "ts": 1772607956,
                 "latency": 35.3,
                 "loss": {
                   "percentage": 50
@@ -14363,6 +15668,128 @@ PATH _`/organizations/{organizationId}/appliance/vpn/connectivity/vpnPeers/byNet
 > #### Summarizes by-device vpn peers for the organization in the given interval.
 > 
 > **GET** `/organizations/{organizationId}/appliance/vpn/connectivity/vpnPeers/byNetwork`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-remote-access-secure-client-authentication-by-client/)
+
+#### Get authentication for all clients in organization
+
+Operation ID: `getOrganizationApplianceVpnRemoteAccessSecureClientAuthenticationByClient`
+
+PATH _`/organizations/{organizationId}/appliance/vpn/remoteAccess/secureClient/authentication/byClient`_
+
+    [
+      {
+        "client": {
+          "id": "k74272e",
+          "username": "Miles Meraki",
+          "publicIp": "123.123.123.1"
+        },
+        "successes": {
+          "count": 1000
+        },
+        "failures": {
+          "count": 15
+        },
+        "lastFailedTime": "2024-02-21 01:30:53"
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get authentication for all clients in organization
+> 
+> **GET** `/organizations/{organizationId}/appliance/vpn/remoteAccess/secureClient/authentication/byClient`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-remote-access-secure-client-ip-assignment-by-client/)
+
+#### Get IP assignment for all clients in the organization
+
+Operation ID: `getOrganizationApplianceVpnRemoteAccessSecureClientIpAssignmentByClient`
+
+PATH _`/organizations/{organizationId}/appliance/vpn/remoteAccess/secureClient/ipAssignment/byClient`_
+
+    [
+      {
+        "successes": {
+          "count": 4387
+        },
+        "failures": {
+          "count": 109
+        },
+        "lastFailedTime": "2024-02-21 01:30:53",
+        "client": {
+          "id": "k74272e",
+          "mac": "22:33:44:55:66:77"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get IP assignment for all clients in the organization
+> 
+> **GET** `/organizations/{organizationId}/appliance/vpn/remoteAccess/secureClient/ipAssignment/byClient`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-remote-access-secure-client-tunnel-creation-by-client/)
+
+#### Get tunnel creation events for all clients in the organization
+
+Operation ID: `getOrganizationApplianceVpnRemoteAccessSecureClientTunnelCreationByClient`
+
+PATH _`/organizations/{organizationId}/appliance/vpn/remoteAccess/secureClient/tunnelCreation/byClient`_
+
+    [
+      {
+        "successes": {
+          "byType": [
+            {
+              "type": "dtls",
+              "count": 23
+            }
+          ]
+        },
+        "failures": {
+          "count": 5
+        },
+        "lastFailedTime": "2024-02-21 01:30:53",
+        "client": {
+          "id": "k74272e",
+          "mac": "22:33:44:55:66:77"
+        },
+        "network": {
+          "id": "N_24329156",
+          "name": "Main Office"
+        }
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Get tunnel creation events for all clients in the organization
+> 
+> **GET** `/organizations/{organizationId}/appliance/vpn/remoteAccess/secureClient/tunnelCreation/byClient`  
 > 
 > * * *
 
@@ -14449,6 +15876,73 @@ PATH _`/organizations/{organizationId}/appliance/vlans`_
 > #### List the VLANs for an Organization
 > 
 > **GET** `/organizations/{organizationId}/appliance/vlans`  
+> 
+> * * *
+
+* * *
+
+### uplinks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-uplinks-nat/)
+
+#### Update uplink NAT settings of the specified network
+
+Operation ID: `updateNetworkApplianceUplinksNat`
+
+PATH _`/networks/{networkId}/appliance/uplinks/nat`_
+
+    {
+      "uplinks": [
+        {
+          "interface": "wan1",
+          "nat": {
+            "enabled": false
+          }
+        }
+      ]
+    }
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Update uplink NAT settings of the specified network
+> 
+> **PUT** `/networks/{networkId}/appliance/uplinks/nat`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-uplinks-nat-by-network/)
+
+#### Fetch uplink NAT settings of each network in the organization
+
+Operation ID: `getOrganizationApplianceUplinksNatByNetwork`
+
+PATH _`/organizations/{organizationId}/appliance/uplinks/nat/byNetwork`_
+
+    [
+      {
+        "networkId": "N_123456",
+        "uplinks": [
+          {
+            "interface": "wan1",
+            "nat": {
+              "enabled": false
+            }
+          }
+        ]
+      }
+    ]
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> #### Fetch uplink NAT settings of each network in the organization
+> 
+> **GET** `/organizations/{organizationId}/appliance/uplinks/nat/byNetwork`  
 > 
 > * * *
 
@@ -14581,6 +16075,20 @@ GET _`/organizations/{organizationId}/summary/top/switches/byEnergyUsage`_
 
 * * *
 
+### networks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-network/)
+
+#### Create a network
+
+Operation ID: `createOrganizationNetwork`
+
+POST _`/organizations/{organizationId}/networks`_
+
+> \- Optional property `details` Added
+
+* * *
+
 ### devices
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-availabilities-change-history/)
@@ -14670,24 +16178,6 @@ POST _`/networks/{networkId}/firmwareUpgrades/rollbacks`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-firmware-upgrades/)
-
-#### Update firmware upgrade information for a network
-
-Operation ID: `updateNetworkFirmwareUpgrades`
-
-PUT _`/networks/{networkId}/firmwareUpgrades`_
-
-> \- Optional property `upgradeStrategy` Added
-
-> \- Optional property `predownloadFirmware` Added
-
-> \- Optional property `upgradeStrategy` Added
-
-> \- Optional property `predownloadFirmware` Added
-
-* * *
-
 [Docs](https://developer.cisco.com/meraki/api-v1/get-network-firmware-upgrades/)
 
 #### Get firmware upgrade information for a network
@@ -14706,28 +16196,28 @@ GET _`/networks/{networkId}/firmwareUpgrades`_
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-firmware-upgrades/)
+
+#### Update firmware upgrade information for a network
+
+Operation ID: `updateNetworkFirmwareUpgrades`
+
+PUT _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- Optional property `upgradeStrategy` Added
+
+> \- Optional property `predownloadFirmware` Added
+
+> \- Optional property `upgradeStrategy` Added
+
+> \- Optional property `predownloadFirmware` Added
+
+* * *
+
 \[ wireless \]
 --------------
 
 ### ssids
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-splash-settings/)
-
-#### Modify the splash page settings for the given SSID
-
-Operation ID: `updateNetworkWirelessSsidSplashSettings`
-
-PUT _`/networks/{networkId}/wireless/ssids/{number}/splash/settings`_
-
-> \- Optional property `language` Added
-
-> \- Optional property `userConsent` Added
-
-> \- Optional property `language` Added
-
-> \- Optional property `userConsent` Added
-
-* * *
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssid-splash-settings/)
 
@@ -14747,6 +16237,24 @@ GET _`/networks/{networkId}/wireless/ssids/{number}/splash/settings`_
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-splash-settings/)
+
+#### Modify the splash page settings for the given SSID
+
+Operation ID: `updateNetworkWirelessSsidSplashSettings`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}/splash/settings`_
+
+> \- Optional property `language` Added
+
+> \- Optional property `userConsent` Added
+
+> \- Optional property `language` Added
+
+> \- Optional property `userConsent` Added
+
+* * *
+
 ### rfProfiles
 
 [Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-rf-profile/)
@@ -14758,22 +16266,6 @@ Operation ID: `createNetworkWirelessRfProfile`
 POST _`/networks/{networkId}/wireless/rfProfiles`_
 
 > \- Optional property `axEnabled` Added
-
-> \- Optional property `afcEnabled` Added
-
-> \- Optional property `axEnabled` Added
-
-> \- Optional property `afcEnabled` Added
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-rf-profile/)
-
-#### Updates specified RF profile for this network
-
-Operation ID: `updateNetworkWirelessRfProfile`
-
-PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 
 > \- Optional property `afcEnabled` Added
 
@@ -14819,21 +16311,23 @@ GET _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 
 * * *
 
-### settings
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-rf-profile/)
 
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-settings/)
+#### Updates specified RF profile for this network
 
-#### Update the wireless settings for a network
+Operation ID: `updateNetworkWirelessRfProfile`
 
-Operation ID: `updateNetworkWirelessSettings`
+PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 
-PUT _`/networks/{networkId}/wireless/settings`_
+> \- Optional property `afcEnabled` Added
 
-> \- Optional property `predownloadFirmware` Added
+> \- Optional property `axEnabled` Added
 
-> \- Optional property `predownloadFirmware` Added
+> \- Optional property `afcEnabled` Added
 
 * * *
+
+### settings
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-settings/)
 
@@ -14849,35 +16343,21 @@ GET _`/networks/{networkId}/wireless/settings`_
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-settings/)
+
+#### Update the wireless settings for a network
+
+Operation ID: `updateNetworkWirelessSettings`
+
+PUT _`/networks/{networkId}/wireless/settings`_
+
+> \- Optional property `predownloadFirmware` Added
+
+> \- Optional property `predownloadFirmware` Added
+
+* * *
+
 ### bluetooth
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-device-wireless-bluetooth-settings/)
-
-#### Update the bluetooth settings for a wireless device
-
-Operation ID: `updateDeviceWirelessBluetoothSettings`
-
-PUT _`/devices/{serial}/wireless/bluetooth/settings`_
-
-> \- Optional property `transmit` Added
-
-> \- Optional property `transmit` Added
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-bluetooth-settings/)
-
-#### Update the Bluetooth settings for a network
-
-Operation ID: `updateNetworkWirelessBluetoothSettings`
-
-PUT _`/networks/{networkId}/wireless/bluetooth/settings`_
-
-> \- Optional property `transmit` Added
-
-> \- Optional property `transmit` Added
-
-* * *
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-device-wireless-bluetooth-settings/)
 
@@ -14904,6 +16384,34 @@ GET _`/networks/{networkId}/wireless/bluetooth/settings`_
 > \- Optional property `transmit` Added
 
 > \- Response property `transmit` value added
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-wireless-bluetooth-settings/)
+
+#### Update the bluetooth settings for a wireless device
+
+Operation ID: `updateDeviceWirelessBluetoothSettings`
+
+PUT _`/devices/{serial}/wireless/bluetooth/settings`_
+
+> \- Optional property `transmit` Added
+
+> \- Optional property `transmit` Added
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-bluetooth-settings/)
+
+#### Update the Bluetooth settings for a network
+
+Operation ID: `updateNetworkWirelessBluetoothSettings`
+
+PUT _`/networks/{networkId}/wireless/bluetooth/settings`_
+
+> \- Optional property `transmit` Added
+
+> \- Optional property `transmit` Added
 
 * * *
 
@@ -14955,50 +16463,6 @@ POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
 > \- Optional property `staticV4Dns2` Added
 
 > \- Optional property `isSwitchDefaultGateway` Added
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-stack-routing-interface/)
-
-#### Update a layer 3 interface for a switch stack
-
-Operation ID: `updateNetworkSwitchStackRoutingInterface`
-
-PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
-
-> \- Optional property `isSwitchDefaultGateway` Added
-
-> \- Optional property `staticV6Dns1` Added
-
-> \- Optional property `staticV6Dns2` Added
-
-> \- Optional property `candidateUplink` Added
-
-> \- Optional property `isSwitchDefaultGateway` Added
-
-> \- Optional property `uplinkV4` Added
-
-> \- Optional property `candidateUplinkV4` Added
-
-> \- Optional property `uplinkV6` Added
-
-> \- Optional property `staticV4Dns1` Added
-
-> \- Optional property `staticV4Dns2` Added
-
-> \- Optional property `isSwitchDefaultGateway` Added
-
-> \- Optional property `staticV6Dns1` Added
-
-> \- Optional property `staticV6Dns2` Added
-
-> \- Optional property `candidateUplink` Added
-
-> \- Optional property `candidateUplinkV4` Added
-
-> \- Optional property `staticV4Dns1` Added
-
-> \- Optional property `staticV4Dns2` Added
 
 * * *
 
@@ -15086,6 +16550,50 @@ GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-stack-routing-interface/)
+
+#### Update a layer 3 interface for a switch stack
+
+Operation ID: `updateNetworkSwitchStackRoutingInterface`
+
+PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
+
+> \- Optional property `isSwitchDefaultGateway` Added
+
+> \- Optional property `staticV6Dns1` Added
+
+> \- Optional property `staticV6Dns2` Added
+
+> \- Optional property `candidateUplink` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
+
+> \- Optional property `uplinkV4` Added
+
+> \- Optional property `candidateUplinkV4` Added
+
+> \- Optional property `uplinkV6` Added
+
+> \- Optional property `staticV4Dns1` Added
+
+> \- Optional property `staticV4Dns2` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
+
+> \- Optional property `staticV6Dns1` Added
+
+> \- Optional property `staticV6Dns2` Added
+
+> \- Optional property `candidateUplink` Added
+
+> \- Optional property `candidateUplinkV4` Added
+
+> \- Optional property `staticV4Dns1` Added
+
+> \- Optional property `staticV4Dns2` Added
+
+* * *
+
 ### linkAggregations
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-link-aggregations/)
@@ -15155,64 +16663,6 @@ POST _`/devices/{serial}/switch/routing/interfaces`_
 Operation ID: `createNetworkSwitchRoutingMulticastRendezvousPoint`
 
 POST _`/networks/{networkId}/switch/routing/multicast/rendezvousPoints`_
-
-> \- Optional property `vrf` Added
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-device-switch-routing-interface/)
-
-#### Update a layer 3 interface for a switch
-
-Operation ID: `updateDeviceSwitchRoutingInterface`
-
-PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
-
-> \- Optional property `isSwitchDefaultGateway` Added
-
-> \- Optional property `staticV6Dns1` Added
-
-> \- Optional property `staticV6Dns2` Added
-
-> \- Optional property `candidateUplink` Added
-
-> \- Optional property `isSwitchDefaultGateway` Added
-
-> \- Optional property `uplinkV4` Added
-
-> \- Optional property `candidateUplinkV4` Added
-
-> \- Optional property `uplinkV6` Added
-
-> \- Optional property `staticV4Dns1` Added
-
-> \- Optional property `staticV4Dns2` Added
-
-> \- Optional property `isSwitchDefaultGateway` Added
-
-> \- Optional property `staticV6Dns1` Added
-
-> \- Optional property `staticV6Dns2` Added
-
-> \- Optional property `candidateUplink` Added
-
-> \- Optional property `candidateUplinkV4` Added
-
-> \- Optional property `staticV4Dns1` Added
-
-> \- Optional property `staticV4Dns2` Added
-
-> \- Optional property `isSwitchDefaultGateway` Added
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-routing-multicast-rendezvous-point/)
-
-#### Update a multicast rendezvous point
-
-Operation ID: `updateNetworkSwitchRoutingMulticastRendezvousPoint`
-
-PUT _`/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}`_
 
 > \- Optional property `vrf` Added
 
@@ -15330,6 +16780,64 @@ GET _`/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvou
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-switch-routing-interface/)
+
+#### Update a layer 3 interface for a switch
+
+Operation ID: `updateDeviceSwitchRoutingInterface`
+
+PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
+
+> \- Optional property `isSwitchDefaultGateway` Added
+
+> \- Optional property `staticV6Dns1` Added
+
+> \- Optional property `staticV6Dns2` Added
+
+> \- Optional property `candidateUplink` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
+
+> \- Optional property `uplinkV4` Added
+
+> \- Optional property `candidateUplinkV4` Added
+
+> \- Optional property `uplinkV6` Added
+
+> \- Optional property `staticV4Dns1` Added
+
+> \- Optional property `staticV4Dns2` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
+
+> \- Optional property `staticV6Dns1` Added
+
+> \- Optional property `staticV6Dns2` Added
+
+> \- Optional property `candidateUplink` Added
+
+> \- Optional property `candidateUplinkV4` Added
+
+> \- Optional property `staticV4Dns1` Added
+
+> \- Optional property `staticV4Dns2` Added
+
+> \- Optional property `isSwitchDefaultGateway` Added
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-routing-multicast-rendezvous-point/)
+
+#### Update a multicast rendezvous point
+
+Operation ID: `updateNetworkSwitchRoutingMulticastRendezvousPoint`
+
+PUT _`/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}`_
+
+> \- Optional property `vrf` Added
+
+* * *
+
 ### ports
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-device-switch-ports/)
@@ -15382,42 +16890,6 @@ POST _`/devices/{serial}/sensor/commands`_
 
 ### vpn
 
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-bgp/)
-
-#### Update a Hub BGP Configuration
-
-Operation ID: `updateNetworkApplianceVpnBgp`
-
-PUT _`/networks/{networkId}/appliance/vpn/bgp`_
-
-> \- Optional property `filterIn` Added
-
-> \- Optional property `communityOut` Added
-
-> \- Optional property `routerId` Added
-
-> \- Optional property `filterIn` Added
-
-> \- Optional property `communityOut` Added
-
-> \- Optional property `routerId` Added
-
-* * *
-
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-site-to-site-vpn/)
-
-#### Update the site-to-site VPN settings of a network
-
-Operation ID: `updateNetworkApplianceVpnSiteToSiteVpn`
-
-PUT _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
-
-> \- Optional property `hostTranslations` Added
-
-> \- Optional property `hostTranslations` Added
-
-* * *
-
 [Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vpn-bgp/)
 
 #### Return a Hub BGP Configuration
@@ -15454,6 +16926,42 @@ GET _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-bgp/)
+
+#### Update a Hub BGP Configuration
+
+Operation ID: `updateNetworkApplianceVpnBgp`
+
+PUT _`/networks/{networkId}/appliance/vpn/bgp`_
+
+> \- Optional property `filterIn` Added
+
+> \- Optional property `communityOut` Added
+
+> \- Optional property `routerId` Added
+
+> \- Optional property `filterIn` Added
+
+> \- Optional property `communityOut` Added
+
+> \- Optional property `routerId` Added
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-site-to-site-vpn/)
+
+#### Update the site-to-site VPN settings of a network
+
+Operation ID: `updateNetworkApplianceVpnSiteToSiteVpn`
+
+PUT _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
+
+> \- Optional property `hostTranslations` Added
+
+> \- Optional property `hostTranslations` Added
+
+* * *
+
 ### vlans
 
 [Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-vlan/)
@@ -15465,6 +16973,8 @@ Operation ID: `createNetworkApplianceVlan`
 POST _`/networks/{networkId}/appliance/vlans`_
 
 > \- Optional property `adaptivePolicyGroupId` Added
+
+> \- Optional property `uplinks` Added
 
 * * *
 
@@ -15478,29 +16988,15 @@ PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
 
 > \- Optional property `adaptivePolicyGroupId` Added
 
+> \- Optional property `uplinks` Added
+
 * * *
 
 ### ports
 
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-port/)
-
-#### Update the per-port VLAN settings for a single MX port.
-
-Operation ID: `updateNetworkAppliancePort`
-
-PUT _`/networks/{networkId}/appliance/ports/{portId}`_
-
-> \- Optional property `peerSgtCapable` Added
-
-> \- Optional property `adaptivePolicyGroupId` Added
-
-> \- Optional property `peerSgtCapable` Added
-
-* * *
-
 [Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-ports/)
 
-#### List per-port VLAN settings for all ports of a MX.
+#### List per-port VLAN settings for all ports of a secure router or security appliance.
 
 Operation ID: `getNetworkAppliancePorts`
 
@@ -15514,7 +17010,7 @@ GET _`/networks/{networkId}/appliance/ports`_
 
 [Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-port/)
 
-#### Return per-port VLAN settings for a single MX port.
+#### Return per-port VLAN settings for a single secure router or security appliance port.
 
 Operation ID: `getNetworkAppliancePort`
 
@@ -15526,7 +17022,41 @@ GET _`/networks/{networkId}/appliance/ports/{portId}`_
 
 * * *
 
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-port/)
+
+#### Update the per-port VLAN settings for a single secure router or security appliance port.
+
+Operation ID: `updateNetworkAppliancePort`
+
+PUT _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- Optional property `peerSgtCapable` Added
+
+> \- Optional property `adaptivePolicyGroupId` Added
+
+> \- Optional property `peerSgtCapable` Added
+
+* * *
+
 ### uplinks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-appliance-uplinks-settings/)
+
+#### Return the uplink settings for an MX appliance
+
+Operation ID: `getDeviceApplianceUplinksSettings`
+
+GET _`/devices/{serial}/appliance/uplinks/settings`_
+
+> \- Optional property `sgt` Added
+
+> \- Optional property `sgt` Added
+
+> \- Response property `sgt` value added
+
+> \- Response property `sgt` value added
+
+* * *
 
 [Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-uplinks-settings/)
 
@@ -15544,20 +17074,84 @@ PUT _`/devices/{serial}/appliance/uplinks/settings`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-device-appliance-uplinks-settings/)
+### trafficShaping
 
-#### Return the uplink settings for an MX appliance
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-traffic-shaping-vpn-exclusions-by-network/)
 
-Operation ID: `getDeviceApplianceUplinksSettings`
+#### Display VPN exclusion rules for MX networks.
 
-GET _`/devices/{serial}/appliance/uplinks/settings`_
+Operation ID: `getOrganizationApplianceTrafficShapingVpnExclusionsByNetwork`
 
-> \- Optional property `sgt` Added
+GET _`/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork`_
 
-> \- Optional property `sgt` Added
+> \- Optional property `source` Added
 
-> \- Response property `sgt` value added
+> \- Optional property `source` Added
 
-> \- Response property `sgt` value added
+> \- Response property `source` value added
+
+> \- Response property `protocol` value added
+
+> \- Response property `source` value added
+
+> \- Response property `applications` value added
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-traffic-shaping-vpn-exclusions/)
+
+#### Update VPN exclusion rules for an MX network.
+
+Operation ID: `updateNetworkApplianceTrafficShapingVpnExclusions`
+
+PUT _`/networks/{networkId}/appliance/trafficShaping/vpnExclusions`_
+
+> \- Optional property `source` Added
+
+> \- Optional property `protocol` Added
+
+> \- Optional property `source` Added
+
+> \- Optional property `applications` Added
+
+> \- Optional property `source` Added
+
+> \- Optional property `source` Added
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+---------------
+
+### trafficShaping
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-traffic-shaping-vpn-exclusions-by-network/)
+
+#### Display VPN exclusion rules for MX networks.
+
+Operation ID: `getOrganizationApplianceTrafficShapingVpnExclusionsByNetwork`
+
+GET _`/organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork`_
+
+> \- Required property `protocol` added
+
+> \- Required property `applications` added
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-traffic-shaping-vpn-exclusions/)
+
+#### Update VPN exclusion rules for an MX network.
+
+Operation ID: `updateNetworkApplianceTrafficShapingVpnExclusions`
+
+PUT _`/networks/{networkId}/appliance/trafficShaping/vpnExclusions`_
+
+> \- Required property `protocol` added
+
+> \- Required property `applications` added
 
 * * *
