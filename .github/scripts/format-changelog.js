@@ -316,8 +316,6 @@ function generateVerboseChangelog(endpoints, groups, oldVersion, newVersion) {
           markdown += `>   \n`;
           markdown += `> \\- New endpoint\n`;
           markdown += `> \n`;
-          markdown += `> #### ${endpoint.operationSummary || 'New endpoint'}\n`;
-          markdown += `> \n`;
           markdown += `> **${endpoint.method}** \`${endpoint.path}\`  \n`;
           markdown += `> \n`;
           markdown += `> * * *\n\n`;

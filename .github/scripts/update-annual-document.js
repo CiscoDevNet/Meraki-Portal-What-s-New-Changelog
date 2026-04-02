@@ -66,6 +66,13 @@ function updateAnnualDocument(releaseNotesPath, version, branch) {
     isNewFile = true;
   }
 
+  // Check if version already exists in annual document
+  const versionPattern = new RegExp(`Meraki API Release Notes \\*\\*${version.replace(/\./g, '\\.')}\\*\\*`, 'm');
+  if (existingContent && versionPattern.test(existingContent)) {
+    console.log(`ℹ️  Version ${version} already exists in ${year}.md, skipping update`);
+    return false;
+  }
+
   // Prepend release notes to existing content
   let updatedContent;
 

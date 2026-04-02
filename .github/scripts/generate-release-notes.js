@@ -38,12 +38,18 @@ function generateDocUrl(method, path) {
 }
 
 /**
- * Parse oasdiff changelog to extract changes
+ * Parse verbose changelog to extract changes
  *
- * oasdiff format:
- * ### GET /path/to/endpoint
- * - endpoint added
- * - added property X
+ * Verbose format:
+ * Added
+ * =====
+ * \[ module \]
+ * ### resource
+ * #### Operation Summary
+ * Operation ID: `operationId`
+ * PATH _`/path`_
+ * > \- Path added
+ * > \- New endpoint
  */
 function parseChangelog(content) {
   const sections = {
@@ -56,15 +62,25 @@ function parseChangelog(content) {
   };
 
   const lines = content.split('\n');
+  let currentSection = null; // 'Added' or 'Changed'
   let currentEndpoint = null;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
 
-    // Match endpoint headers: ### METHOD /path
-    const endpointMatch = line.match(/^###\s+(GET|POST|PUT|DELETE|PATCH)\s+(.+)$/);
+    // Detect section headers
+    if (line === 'Added') {
+      currentSection = 'Added';
+      continue;
+    }
+    if (line === 'Changed') {
+      currentSection = 'Changed';
+      continue;
+    }
 
-    if (endpointMatch) {
+    // Match operation summary headers: #### Summary text
+    const summaryMatch = line.match(/^####\s+(.+)$/);
+    if (summaryMatch) {
       // Save previous endpoint if exists
       if (currentEndpoint) {
         if (currentEndpoint.isNew) {
@@ -77,27 +93,64 @@ function parseChangelog(content) {
       }
 
       // Start new endpoint
-      const [, method, endpoint] = endpointMatch;
       currentEndpoint = {
-        method,
-        path: endpoint,
+        operationSummary: summaryMatch[1],
+        method: null,
+        path: null,
         changes: [],
-        isNew: false
+        isNew: currentSection === 'Added'
       };
       continue;
     }
 
-    // Parse change bullet points
-    if (line.startsWith('-') && currentEndpoint) {
-      const change = line.substring(1).trim();
+    // Extract Operation ID
+    if (line.startsWith('Operation ID:') && currentEndpoint) {
+      const opIdMatch = line.match(/Operation ID:\s*`([^`]+)`/);
+      if (opIdMatch) {
+        currentEndpoint.operationId = opIdMatch[1];
+      }
+      continue;
+    }
 
-      // Remove warning emoji
-      const cleanChange = change.replace(/^:warning:\s*/, '');
+    // Extract PATH and METHOD
+    const pathMatch = line.match(/^(GET|POST|PUT|DELETE|PATCH)\s+_`([^`]+)`_$/);
+    if (pathMatch && currentEndpoint) {
+      currentEndpoint.method = pathMatch[1];
+      currentEndpoint.path = pathMatch[2];
+      continue;
+    }
 
-      if (cleanChange.toLowerCase().includes('endpoint added')) {
-        currentEndpoint.isNew = true;
-      } else {
-        currentEndpoint.changes.push(cleanChange);
+    // Also check for PATH without method (format: PATH _`/path`_)
+    const pathOnlyMatch = line.match(/^PATH\s+_`([^`]+)`_$/);
+    if (pathOnlyMatch && currentEndpoint) {
+      currentEndpoint.path = pathOnlyMatch[1];
+      continue;
+    }
+
+    // Extract method from blockquote if not already found
+    const blockquoteMethodMatch = line.match(/^>\s+\*\*(GET|POST|PUT|DELETE|PATCH)\*\*\s+`([^`]+)`/);
+    if (blockquoteMethodMatch && currentEndpoint && !currentEndpoint.method) {
+      currentEndpoint.method = blockquoteMethodMatch[1];
+      if (!currentEndpoint.path) {
+        currentEndpoint.path = blockquoteMethodMatch[2];
+      }
+      continue;
+    }
+
+    // Parse changes from blockquotes (skip standard new endpoint markers)
+    if (line.startsWith('> \\-') && currentEndpoint) {
+      const change = line.substring(4).trim(); // Remove "> \-"
+
+      // Skip standard markers for new endpoints
+      if (change.toLowerCase() === 'path added' ||
+          change.toLowerCase() === 'new endpoint' ||
+          change === '') {
+        continue;
+      }
+
+      // For modified endpoints, collect actual changes
+      if (!currentEndpoint.isNew) {
+        currentEndpoint.changes.push(change);
       }
     }
   }
