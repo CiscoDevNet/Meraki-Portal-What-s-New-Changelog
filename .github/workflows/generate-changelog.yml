@@ -107,6 +107,11 @@ jobs:
           echo "Installing oasdiff via Go..."
           go install github.com/oasdiff/oasdiff@latest
 
+          echo "Adding Go bin to PATH..."
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+
+      - name: Verify oasdiff installation
+        run: |
           echo "Verifying installation..."
           which oasdiff
           oasdiff version
@@ -254,6 +259,11 @@ jobs:
           echo "Installing oasdiff via Go..."
           go install github.com/oasdiff/oasdiff@latest
 
+          echo "Adding Go bin to PATH..."
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+
+      - name: Verify oasdiff installation
+        run: |
           echo "Verifying installation..."
           which oasdiff
           oasdiff version
