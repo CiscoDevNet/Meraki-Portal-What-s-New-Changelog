@@ -157,6 +157,22 @@ jobs:
             --include-path-params \
             > BREAKING-CHANGES-TEMP.md || echo "No breaking changes detected"
 
+      - name: Format changelog to verbose style
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "Formatting changelog to verbose style..."
+
+          node .github/scripts/format-changelog.js \
+            "CHANGELOG-TEMP.md" \
+            "${OLD_VERSION}" \
+            "${NEW_VERSION}" \
+            "CHANGELOG-VERBOSE.md"
+
+          # Replace simple changelog with verbose version
+          mv CHANGELOG-VERBOSE.md CHANGELOG-TEMP.md
+
+          echo "✅ Formatted changelog"
+
       - name: Save changelog to repository
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
@@ -301,6 +317,22 @@ jobs:
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "ℹ️  No changes detected, skipping..."
           fi
+
+      - name: Format changelog to verbose style
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "Formatting changelog to verbose style..."
+
+          node .github/scripts/format-changelog.js \
+            "CHANGELOG-TEMP.md" \
+            "${OLD_VERSION}" \
+            "${NEW_VERSION}" \
+            "CHANGELOG-VERBOSE.md"
+
+          # Replace simple changelog with verbose version
+          mv CHANGELOG-VERBOSE.md CHANGELOG-TEMP.md
+
+          echo "✅ Formatted changelog"
 
       - name: Save changelog to repository (append to beta file)
         if: steps.check_changes.outputs.has_changes == 'true'

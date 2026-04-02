@@ -25,18 +25,16 @@ if (!changelogPath || !version || !branch || !outputPath) {
 const changelog = fs.readFileSync(changelogPath, 'utf8');
 
 /**
- * Generate Cisco Developer Portal URL from operation ID or path
+ * Generate Cisco Developer Portal URL from endpoint path
  */
-function generateDocUrl(operationId) {
-  if (!operationId) return null;
+function generateDocUrl(method, path) {
+  // Extract the resource name from the path
+  // E.g., /networks/{networkId}/appliance/vlans -> appliance-vlans
+  const parts = path.split('/').filter(p => p && !p.startsWith('{'));
+  const resource = parts.slice(1).join('-'); // Skip first part (usually 'networks' or 'organizations')
 
-  // Convert camelCase operationId to kebab-case
-  const slug = operationId
-    .replace(/([A-Z])/g, '-$1')
-    .toLowerCase()
-    .replace(/^-/, '');
-
-  return `https://developer.cisco.com/meraki/api-v1/${slug}/`;
+  const methodLower = method.toLowerCase();
+  return `https://developer.cisco.com/meraki/api-v1/${methodLower}-${resource}/`;
 }
 
 /**
@@ -44,12 +42,8 @@ function generateDocUrl(operationId) {
  *
  * oasdiff format:
  * ### GET /path/to/endpoint
- * #### What's New
- * - added the new endpoint
- *
- * ### POST /path/to/endpoint
- * #### What's Changed
- * - added the optional request property 'foo'
+ * - endpoint added
+ * - added property X
  */
 function parseChangelog(content) {
   const sections = {
@@ -63,7 +57,6 @@ function parseChangelog(content) {
 
   const lines = content.split('\n');
   let currentEndpoint = null;
-  let currentSection = null;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
@@ -72,67 +65,51 @@ function parseChangelog(content) {
     const endpointMatch = line.match(/^###\s+(GET|POST|PUT|DELETE|PATCH)\s+(.+)$/);
 
     if (endpointMatch) {
+      // Save previous endpoint if exists
+      if (currentEndpoint) {
+        if (currentEndpoint.isNew) {
+          sections.newEndpoints.push(currentEndpoint);
+          sections.stats.new++;
+        } else if (currentEndpoint.changes.length > 0) {
+          sections.modifiedEndpoints.push(currentEndpoint);
+          sections.stats.modified++;
+        }
+      }
+
+      // Start new endpoint
       const [, method, endpoint] = endpointMatch;
       currentEndpoint = {
         method,
         path: endpoint,
-        description: '',
-        operationId: null,
         changes: [],
         isNew: false
       };
-      currentSection = null;
-      continue;
-    }
-
-    // Match section headers: #### What's New, #### What's Changed
-    const sectionMatch = line.match(/^####\s+What'?s\s+(New|Changed|Updated)/i);
-    if (sectionMatch && currentEndpoint) {
-      currentSection = sectionMatch[1].toLowerCase();
-      continue;
-    }
-
-    // Extract operation ID from API design elements section
-    const operationIdMatch = line.match(/^\*\*operationId\*\*:\s*`?([a-zA-Z0-9_]+)`?/);
-    if (operationIdMatch && currentEndpoint) {
-      currentEndpoint.operationId = operationIdMatch[1];
       continue;
     }
 
     // Parse change bullet points
-    if (line.startsWith('-') && currentEndpoint && currentSection) {
-      const change = line.replace(/^[-*]\s*/, '').trim();
+    if (line.startsWith('-') && currentEndpoint) {
+      const change = line.substring(1).trim();
 
-      if (change.toLowerCase().includes('endpoint') && change.toLowerCase().includes('added')) {
+      // Remove warning emoji
+      const cleanChange = change.replace(/^:warning:\s*/, '');
+
+      if (cleanChange.toLowerCase().includes('endpoint added')) {
         currentEndpoint.isNew = true;
       } else {
-        currentEndpoint.changes.push(change);
+        currentEndpoint.changes.push(cleanChange);
       }
     }
+  }
 
-    // When we reach the next endpoint or end of section, save current endpoint
-    if ((endpointMatch || line.startsWith('## ') || i === lines.length - 1) && currentEndpoint) {
-      if (currentEndpoint.isNew) {
-        sections.newEndpoints.push({...currentEndpoint});
-        sections.stats.new++;
-      } else if (currentEndpoint.changes.length > 0) {
-        sections.modifiedEndpoints.push({...currentEndpoint});
-        sections.stats.modified++;
-      }
-
-      if (endpointMatch) {
-        // Reset for new endpoint
-        const [, method, endpoint] = endpointMatch;
-        currentEndpoint = {
-          method,
-          path: endpoint,
-          description: '',
-          operationId: null,
-          changes: [],
-          isNew: false
-        };
-        currentSection = null;
-      }
+  // Don't forget the last endpoint
+  if (currentEndpoint) {
+    if (currentEndpoint.isNew) {
+      sections.newEndpoints.push(currentEndpoint);
+      sections.stats.new++;
+    } else if (currentEndpoint.changes.length > 0) {
+      sections.modifiedEndpoints.push(currentEndpoint);
+      sections.stats.modified++;
     }
   }
 
@@ -140,22 +117,37 @@ function parseChangelog(content) {
 }
 
 /**
- * Group endpoints by category (first part of path)
+ * Group endpoints by category (extracted from path)
  */
 function groupByCategory(endpoints) {
   const groups = {};
 
   endpoints.forEach(endpoint => {
-    // Extract category from path (e.g., /organizations/... -> organizations)
+    // Extract category from path
+    // /devices/{serial}/... -> devices
+    // /networks/{networkId}/appliance/... -> appliance
+    // /organizations/{organizationId}/... -> organizations
     const pathParts = endpoint.path.split('/').filter(p => p && !p.startsWith('{'));
-    const category = pathParts[0] || 'other';
+
+    let category, subcategory;
+
+    if (pathParts[0] === 'devices') {
+      category = 'devices';
+      subcategory = pathParts[1] || 'general';
+    } else if (pathParts[0] === 'networks' && pathParts.length > 1) {
+      category = pathParts[1]; // appliance, wireless, switch, etc.
+      subcategory = pathParts[2] || 'general';
+    } else if (pathParts[0] === 'organizations' && pathParts.length > 1) {
+      category = 'organizations';
+      subcategory = pathParts[1];
+    } else {
+      category = pathParts[0] || 'other';
+      subcategory = pathParts[1] || 'general';
+    }
 
     if (!groups[category]) {
       groups[category] = {};
     }
-
-    // Extract subcategory (resource type)
-    const subcategory = pathParts[pathParts.length - 1] || 'general';
 
     if (!groups[category][subcategory]) {
       groups[category][subcategory] = [];
@@ -171,21 +163,20 @@ function groupByCategory(endpoints) {
  * Generate human-readable description from endpoint
  */
 function generateDescription(endpoint) {
-  // Try to create a description from the operation ID
-  if (endpoint.operationId) {
-    // Convert camelCase to words
-    const words = endpoint.operationId
-      .replace(/([A-Z])/g, ' $1')
-      .trim()
-      .toLowerCase();
-
-    return words.charAt(0).toUpperCase() + words.slice(1);
-  }
-
-  // Fallback: use method and path
+  // Create description from method and path
   const pathParts = endpoint.path.split('/').filter(p => p && !p.startsWith('{'));
   const resource = pathParts[pathParts.length - 1] || 'resource';
-  return `${endpoint.method} ${resource}`;
+
+  const methodMap = {
+    'GET': 'Get',
+    'POST': 'Create',
+    'PUT': 'Update',
+    'DELETE': 'Delete',
+    'PATCH': 'Update'
+  };
+
+  const verb = methodMap[endpoint.method] || endpoint.method;
+  return `${verb} ${resource}`;
 }
 
 /**
@@ -230,13 +221,8 @@ function generateReleaseNotes(sections, version, branch) {
 
         grouped[category][subcategory].forEach(endpoint => {
           const description = generateDescription(endpoint);
-          const url = generateDocUrl(endpoint.operationId);
-
-          if (url) {
-            markdown += `- ${description}, [${endpoint.operationId}](${url})\n`;
-          } else {
-            markdown += `- ${description}\n`;
-          }
+          const url = generateDocUrl(endpoint.method, endpoint.path);
+          markdown += `- ${description}, [${endpoint.method} ${endpoint.path}](${url})\n`;
         });
         markdown += `\n`;
       });
@@ -256,18 +242,19 @@ function generateReleaseNotes(sections, version, branch) {
 
         grouped[category][subcategory].forEach(endpoint => {
           const description = generateDescription(endpoint);
-          const url = generateDocUrl(endpoint.operationId);
+          const url = generateDocUrl(endpoint.method, endpoint.path);
+          markdown += `- ${description}, [${endpoint.method} ${endpoint.path}](${url})\n`;
 
-          if (url) {
-            markdown += `- ${description}, [${endpoint.operationId}](${url})\n`;
-          } else {
-            markdown += `- ${description}\n`;
-          }
-
-          // Add change details
-          endpoint.changes.forEach(change => {
+          // Add change details (limit to first 3 for brevity)
+          const changesToShow = endpoint.changes.slice(0, 3);
+          changesToShow.forEach(change => {
             markdown += `\n> \\- ${change}\n`;
           });
+
+          if (endpoint.changes.length > 3) {
+            markdown += `\n> \\- ... and ${endpoint.changes.length - 3} more changes\n`;
+          }
+
           markdown += `\n`;
         });
       });
