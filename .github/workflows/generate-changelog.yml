@@ -105,7 +105,7 @@ jobs:
       - name: Install oasdiff
         run: |
           echo "Downloading oasdiff..."
-          wget https://github.com/Tufin/oasdiff/releases/latest/download/oasdiff_linux_amd64.tar.gz
+          wget https://github.com/oasdiff/oasdiff/releases/latest/download/oasdiff_linux_amd64.tar.gz
 
           echo "Extracting oasdiff..."
           tar -xzf oasdiff_linux_amd64.tar.gz
@@ -264,7 +264,7 @@ jobs:
       - name: Install oasdiff
         run: |
           echo "Downloading oasdiff..."
-          wget https://github.com/Tufin/oasdiff/releases/latest/download/oasdiff_linux_amd64.tar.gz
+          wget https://github.com/oasdiff/oasdiff/releases/latest/download/oasdiff_linux_amd64.tar.gz
 
           echo "Extracting oasdiff..."
           tar -xzf oasdiff_linux_amd64.tar.gz

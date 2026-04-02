@@ -88,7 +88,7 @@ This will show which versions need changelog generation.
 brew install oasdiff
 
 # Or download directly
-# wget https://github.com/Tufin/oasdiff/releases/latest/download/oasdiff_darwin_amd64.tar.gz
+# wget https://github.com/oasdiff/oasdiff/releases/latest/download/oasdiff_darwin_amd64.tar.gz
 # tar -xzf oasdiff_darwin_amd64.tar.gz
 
 # Generate changelog
@@ -221,7 +221,7 @@ Use past versions to test without affecting production:
 
 ## References
 
-- [oasdiff Documentation](https://github.com/Tufin/oasdiff)
+- [oasdiff Documentation](https://github.com/oasdiff/oasdiff)
 - [Meraki OpenAPI Specs](https://github.com/meraki/openapi)
 - [PubHub Documentation](https://pubhub.cisco.com/)
 
