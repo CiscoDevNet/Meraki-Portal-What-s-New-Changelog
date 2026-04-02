@@ -114,7 +114,7 @@ jobs:
         run: |
           echo "Verifying installation..."
           which oasdiff
-          oasdiff version
+          oasdiff --help | head -n 5
 
       - name: Set environment variables
         run: |
@@ -266,7 +266,7 @@ jobs:
         run: |
           echo "Verifying installation..."
           which oasdiff
-          oasdiff version
+          oasdiff --help | head -n 5
 
       - name: Set environment variables
         run: |
