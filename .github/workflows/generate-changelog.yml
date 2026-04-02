@@ -1,0 +1,403 @@
+name: Generate Changelog and Release Notes
+
+on:
+  # Automatic trigger - runs daily to check for new releases
+  schedule:
+    - cron: '0 10 * * *'  # 10 AM UTC daily
+
+  # Manual trigger - optional version override
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Mode: auto (detect versions) or manual'
+        required: false
+        default: 'auto'
+        type: choice
+        options:
+          - auto
+          - manual
+      old_version:
+        description: '[Manual only] Old version tag (e.g., v1.68.0)'
+        required: false
+      new_version:
+        description: '[Manual only] New version tag (e.g., v1.69.0)'
+        required: false
+      branch:
+        description: '[Manual only] Branch (master or v1-beta)'
+        required: false
+        default: 'master'
+
+jobs:
+  # Detect which versions need changelog generation
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      ga_needs_update: ${{ steps.detect.outputs.ga_needs_update }}
+      ga_old_version: ${{ steps.detect.outputs.ga_old_version }}
+      ga_new_version: ${{ steps.detect.outputs.ga_new_version }}
+      beta_needs_update: ${{ steps.detect.outputs.beta_needs_update }}
+      beta_old_version: ${{ steps.detect.outputs.beta_old_version }}
+      beta_new_version: ${{ steps.detect.outputs.beta_new_version }}
+      is_manual: ${{ steps.detect.outputs.is_manual }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Detect versions or use manual input
+        id: detect
+        run: |
+          # Determine if this is manual mode with version override
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ "${{ github.event.inputs.mode }}" == "manual" ]; then
+            echo "is_manual=true" >> $GITHUB_OUTPUT
+
+            # Use manual inputs
+            BRANCH="${{ github.event.inputs.branch }}"
+
+            if [ "$BRANCH" == "v1-beta" ]; then
+              echo "beta_needs_update=true" >> $GITHUB_OUTPUT
+              echo "beta_old_version=${{ github.event.inputs.old_version }}" >> $GITHUB_OUTPUT
+              echo "beta_new_version=${{ github.event.inputs.new_version }}" >> $GITHUB_OUTPUT
+              echo "ga_needs_update=false" >> $GITHUB_OUTPUT
+            else
+              echo "ga_needs_update=true" >> $GITHUB_OUTPUT
+              echo "ga_old_version=${{ github.event.inputs.old_version }}" >> $GITHUB_OUTPUT
+              echo "ga_new_version=${{ github.event.inputs.new_version }}" >> $GITHUB_OUTPUT
+              echo "beta_needs_update=false" >> $GITHUB_OUTPUT
+            fi
+
+            echo "✅ Manual mode: using provided versions"
+          else
+            echo "is_manual=false" >> $GITHUB_OUTPUT
+            echo "🔍 Auto mode: detecting versions..."
+
+            # Run detection script
+            chmod +x .github/scripts/detect-versions.js
+            node .github/scripts/detect-versions.js both
+
+            echo "✅ Version detection complete"
+          fi
+
+  # Generate changelog for GA releases
+  generate-ga:
+    needs: detect
+    if: needs.detect.outputs.ga_needs_update == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install oasdiff
+        run: |
+          wget -q https://github.com/Tufin/oasdiff/releases/latest/download/oasdiff_linux_amd64.tar.gz
+          tar -xzf oasdiff_linux_amd64.tar.gz
+          chmod +x oasdiff
+          sudo mv oasdiff /usr/local/bin/
+          oasdiff --version
+
+      - name: Set environment variables
+        run: |
+          echo "OLD_VERSION=${{ needs.detect.outputs.ga_old_version }}" >> $GITHUB_ENV
+          echo "NEW_VERSION=${{ needs.detect.outputs.ga_new_version }}" >> $GITHUB_ENV
+          echo "BRANCH=master" >> $GITHUB_ENV
+          echo "CHANGELOG_FILE=${{ needs.detect.outputs.ga_new_version }}.md" >> $GITHUB_ENV
+
+      - name: Check for changes with oasdiff
+        id: check_changes
+        run: |
+          echo "Checking for changes from ${OLD_VERSION} to ${NEW_VERSION}..."
+
+          oasdiff changelog \
+            "https://raw.githubusercontent.com/meraki/openapi/${OLD_VERSION}/openapi/spec3.json" \
+            "https://raw.githubusercontent.com/meraki/openapi/${NEW_VERSION}/openapi/spec3.json" \
+            --format markdown \
+            --include-path-params \
+            > CHANGELOG-TEMP.md
+
+          # Check if there are actual changes
+          if grep -q "### " CHANGELOG-TEMP.md; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ Changes detected"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  No changes detected, skipping..."
+          fi
+
+      - name: Generate breaking changes report
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "Generating breaking changes report..."
+
+          oasdiff changelog \
+            "https://raw.githubusercontent.com/meraki/openapi/${OLD_VERSION}/openapi/spec3.json" \
+            "https://raw.githubusercontent.com/meraki/openapi/${NEW_VERSION}/openapi/spec3.json" \
+            --format markdown \
+            --level ERR \
+            --include-path-params \
+            > BREAKING-CHANGES-TEMP.md || echo "No breaking changes detected"
+
+      - name: Save changelog to repository
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "Saving changelog to changelog/${CHANGELOG_FILE}..."
+          mv CHANGELOG-TEMP.md changelog/${CHANGELOG_FILE}
+          echo "✅ Saved changelog"
+
+      - name: Generate release notes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "Generating release notes..."
+
+          node .github/scripts/generate-release-notes.js \
+            "changelog/${CHANGELOG_FILE}" \
+            "${NEW_VERSION}" \
+            "${BRANCH}" \
+            "RELEASE-NOTES-TEMP.md"
+
+          echo "✅ Generated release notes"
+
+      - name: Update changelog config
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "Updating changelog-config.json..."
+
+          node .github/scripts/update-changelog-config.js \
+            "${NEW_VERSION}" \
+            "${BRANCH}" \
+            "${CHANGELOG_FILE}"
+
+          echo "✅ Updated changelog config"
+
+      - name: Update annual document
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "Updating annual document..."
+
+          node .github/scripts/update-annual-document.js \
+            "RELEASE-NOTES-TEMP.md" \
+            "${NEW_VERSION}" \
+            "${BRANCH}"
+
+          echo "✅ Updated annual document"
+
+      - name: Configure git
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "Meraki API Bot"
+          git config user.email "meraki-api-bot@cisco.com"
+
+      - name: Commit changes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git add changelog/ documents/ config.json
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add changelog and release notes for ${NEW_VERSION}
+
+          Branch: ${BRANCH}
+          Previous version: ${OLD_VERSION}
+
+          Generated by GitHub Actions
+          Workflow: ${{ github.workflow }}
+          Run: ${{ github.run_id }}"
+            git push
+            echo "✅ Pushed changes to repository"
+          fi
+
+      - name: Upload artifacts
+        if: steps.check_changes.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ga-changelog-${{ needs.detect.outputs.ga_new_version }}
+          path: |
+            changelog/${{ env.CHANGELOG_FILE }}
+            RELEASE-NOTES-TEMP.md
+            BREAKING-CHANGES-TEMP.md
+
+  # Generate changelog for Beta releases
+  generate-beta:
+    needs: detect
+    if: needs.detect.outputs.beta_needs_update == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install oasdiff
+        run: |
+          wget -q https://github.com/Tufin/oasdiff/releases/latest/download/oasdiff_linux_amd64.tar.gz
+          tar -xzf oasdiff_linux_amd64.tar.gz
+          chmod +x oasdiff
+          sudo mv oasdiff /usr/local/bin/
+          oasdiff --version
+
+      - name: Set environment variables
+        run: |
+          echo "OLD_VERSION=${{ needs.detect.outputs.beta_old_version }}" >> $GITHUB_ENV
+          echo "NEW_VERSION=${{ needs.detect.outputs.beta_new_version }}" >> $GITHUB_ENV
+          echo "BRANCH=v1-beta" >> $GITHUB_ENV
+          echo "CHANGELOG_FILE=v1-beta.md" >> $GITHUB_ENV
+
+      - name: Check for changes with oasdiff
+        id: check_changes
+        run: |
+          echo "Checking for changes from ${OLD_VERSION} to ${NEW_VERSION}..."
+
+          oasdiff changelog \
+            "https://raw.githubusercontent.com/meraki/openapi/${OLD_VERSION}/openapi/spec3.json" \
+            "https://raw.githubusercontent.com/meraki/openapi/${NEW_VERSION}/openapi/spec3.json" \
+            --format markdown \
+            --include-path-params \
+            > CHANGELOG-TEMP.md
+
+          # Check if there are actual changes
+          if grep -q "### " CHANGELOG-TEMP.md; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ Changes detected"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  No changes detected, skipping..."
+          fi
+
+      - name: Save changelog to repository (append to beta file)
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "Updating changelog/${CHANGELOG_FILE}..."
+
+          # For beta, append to existing file
+          if [ -f "changelog/${CHANGELOG_FILE}" ]; then
+            # Prepend new changes
+            echo -e "\n---\n\n## ${NEW_VERSION}\n\n" > TEMP_HEADER.md
+            cat TEMP_HEADER.md CHANGELOG-TEMP.md changelog/${CHANGELOG_FILE} > TEMP_COMBINED.md
+            mv TEMP_COMBINED.md changelog/${CHANGELOG_FILE}
+          else
+            mv CHANGELOG-TEMP.md changelog/${CHANGELOG_FILE}
+          fi
+
+          echo "✅ Updated beta changelog"
+
+      - name: Generate release notes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "Generating release notes..."
+
+          node .github/scripts/generate-release-notes.js \
+            "changelog/${CHANGELOG_FILE}" \
+            "${NEW_VERSION}" \
+            "${BRANCH}" \
+            "RELEASE-NOTES-TEMP.md"
+
+          echo "✅ Generated release notes"
+
+      - name: Update changelog config
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "Updating changelog-config.json..."
+
+          node .github/scripts/update-changelog-config.js \
+            "${NEW_VERSION}" \
+            "${BRANCH}" \
+            "${CHANGELOG_FILE}"
+
+          echo "✅ Updated changelog config"
+
+      - name: Configure git
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "Meraki API Bot"
+          git config user.email "meraki-api-bot@cisco.com"
+
+      - name: Commit changes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git add changelog/ documents/ config.json
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add beta changelog for ${NEW_VERSION}
+
+          Branch: ${BRANCH}
+          Previous version: ${OLD_VERSION}
+
+          Generated by GitHub Actions
+          Workflow: ${{ github.workflow }}
+          Run: ${{ github.run_id }}"
+            git push
+            echo "✅ Pushed changes to repository"
+          fi
+
+      - name: Upload artifacts
+        if: steps.check_changes.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: beta-changelog-${{ needs.detect.outputs.beta_new_version }}
+          path: |
+            changelog/${{ env.CHANGELOG_FILE }}
+            RELEASE-NOTES-TEMP.md
+
+  # Summary job
+  summary:
+    needs: [detect, generate-ga, generate-beta]
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate summary
+        run: |
+          echo "## 📊 Changelog Generation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.detect.outputs.ga_needs_update }}" == "true" ]; then
+            echo "### ✅ GA Release" >> $GITHUB_STEP_SUMMARY
+            echo "- **Version:** ${{ needs.detect.outputs.ga_new_version }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Previous:** ${{ needs.detect.outputs.ga_old_version }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Status:** ${{ needs.generate-ga.result }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ℹ️ GA Release" >> $GITHUB_STEP_SUMMARY
+            echo "No new GA releases detected" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${{ needs.detect.outputs.beta_needs_update }}" == "true" ]; then
+            echo "### ✅ Beta Release" >> $GITHUB_STEP_SUMMARY
+            echo "- **Version:** ${{ needs.detect.outputs.beta_new_version }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Previous:** ${{ needs.detect.outputs.beta_old_version }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Status:** ${{ needs.generate-beta.result }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ℹ️ Beta Release" >> $GITHUB_STEP_SUMMARY
+            echo "No new beta releases detected" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Mode:** ${{ needs.detect.outputs.is_manual == 'true' && 'Manual' || 'Automatic' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
