@@ -1,3 +1,150 @@
+
+---
+
+## v1.69.0-beta.0
+
+
+# API Changelog v1.68.1-beta.0 vs. 1.69.0-beta.0
+
+
+## API Changes
+
+### GET /devices/{serial}/camera/clip
+-  endpoint added
+
+
+### POST /devices/{serial}/liveTools/speedTest
+-  added the new 'wan3' enum value to the request property 'interface'
+-  added the new 'wan4' enum value to the request property 'interface'
+
+
+### GET /devices/{serial}/lossAndLatencyHistory
+-  added the new enum value 'wan4' to the 'query' request parameter 'uplink'
+
+
+### GET /networks/{networkId}/wireless/electronicShelfLabel
+-  added the optional property 'sepioo' to the response with the '200' status
+
+
+### PUT /networks/{networkId}/wireless/electronicShelfLabel
+-  added the optional property 'sepioo' to the response with the '200' status
+
+
+### GET /networks/{networkId}/wireless/electronicShelfLabel/configuredDevices
+-  added the optional property '/items/sepioo' to the response with the '200' status
+
+
+### PUT /networks/{networkId}/wireless/ssids/{number}
+-  added the new optional request property 'ssidAdminAccessible'
+
+
+### POST /organizations/{organizationId}/alerts/profiles
+-  added the new 'wan4' enum value to the request property 'alertCondition/interface'
+
+
+### PUT /organizations/{organizationId}/alerts/profiles/{alertConfigId}
+-  added the new 'wan4' enum value to the request property 'alertCondition/interface'
+
+
+### GET /organizations/{organizationId}/assurance/alerts
+-  added the new enum value 'experience_metrics' to the 'query' request parameter 'category'
+
+
+### GET /organizations/{organizationId}/assurance/alerts/overview
+-  added the new enum value 'experience_metrics' to the 'query' request parameter 'category'
+
+
+### GET /organizations/{organizationId}/assurance/alerts/overview/byNetwork
+-  added the new enum value 'experience_metrics' to the 'query' request parameter 'category'
+
+
+### GET /organizations/{organizationId}/assurance/alerts/overview/byType
+-  added the new enum value 'experience_metrics' to the 'query' request parameter 'category'
+
+
+### GET /organizations/{organizationId}/assurance/alerts/overview/historical
+-  added the new enum value 'experience_metrics' to the 'query' request parameter 'category'
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/byClient
+- :warning: for the 'query' request parameter 'timespan', the min was set to '900.00'
+- :warning: deleted the 'query' request parameter 'interval'
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/byClientType
+- :warning: for the 'query' request parameter 'timespan', the min was set to '900.00'
+- :warning: deleted the 'query' request parameter 'interval'
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/byDevice
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/bySsid
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byClient
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byDevice
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/bySsid
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byClient
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byDevice
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/bySsid
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClient
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byDevice
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/bySsid
+-  added the optional property '/items/items/items/connections' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/nac/dictionaries/{dictionaryId}/attributes
+-  added the optional property '/items/sourceGroup' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/nac/dictionaries/{dictionaryId}/attributes/{attributeName}/values
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/switch/ports/profiles/assignments/batchAssign
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/switch/ports/profiles/assignments/byPort
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/switch/ports/profiles/assignments/bySwitch
+-  endpoint added
+
+
+
+
+
+
  - [Added](#added)
   * [\[ wirelessController \]](#-wirelesscontroller-)
     + [regulatoryDomain](#regulatorydomain)
