@@ -104,20 +104,8 @@ jobs:
 
       - name: Install oasdiff
         run: |
-          echo "Downloading oasdiff..."
-          wget https://github.com/oasdiff/oasdiff/releases/latest/download/oasdiff_linux_amd64.tar.gz
-
-          echo "Extracting oasdiff..."
-          tar -xzf oasdiff_linux_amd64.tar.gz
-
-          echo "Files after extraction:"
-          ls -la
-
-          echo "Setting permissions..."
-          chmod +x oasdiff
-
-          echo "Moving to /usr/local/bin..."
-          sudo mv oasdiff /usr/local/bin/
+          echo "Installing oasdiff via Go..."
+          go install github.com/oasdiff/oasdiff@latest
 
           echo "Verifying installation..."
           which oasdiff
@@ -263,20 +251,8 @@ jobs:
 
       - name: Install oasdiff
         run: |
-          echo "Downloading oasdiff..."
-          wget https://github.com/oasdiff/oasdiff/releases/latest/download/oasdiff_linux_amd64.tar.gz
-
-          echo "Extracting oasdiff..."
-          tar -xzf oasdiff_linux_amd64.tar.gz
-
-          echo "Files after extraction:"
-          ls -la
-
-          echo "Setting permissions..."
-          chmod +x oasdiff
-
-          echo "Moving to /usr/local/bin..."
-          sudo mv oasdiff /usr/local/bin/
+          echo "Installing oasdiff via Go..."
+          go install github.com/oasdiff/oasdiff@latest
 
           echo "Verifying installation..."
           which oasdiff

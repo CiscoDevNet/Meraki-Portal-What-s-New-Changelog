@@ -84,12 +84,11 @@ This will show which versions need changelog generation.
 #### 2. Generate test changelog with oasdiff
 
 ```bash
-# Install oasdiff (macOS)
-brew install oasdiff
+# Install oasdiff (requires Go)
+go install github.com/oasdiff/oasdiff@latest
 
-# Or download directly
-# wget https://github.com/oasdiff/oasdiff/releases/latest/download/oasdiff_darwin_amd64.tar.gz
-# tar -xzf oasdiff_darwin_amd64.tar.gz
+# Or via Homebrew (macOS)
+# brew install oasdiff
 
 # Generate changelog
 oasdiff changelog \
