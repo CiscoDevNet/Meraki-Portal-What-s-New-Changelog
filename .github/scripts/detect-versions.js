@@ -175,6 +175,8 @@ detectVersions()
         fs.appendFileSync(process.env.GITHUB_OUTPUT, `ga_new_version=${result.ga.new_version}\n`);
       } else {
         fs.appendFileSync(process.env.GITHUB_OUTPUT, `ga_needs_update=false\n`);
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, `ga_old_version=\n`);
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, `ga_new_version=\n`);
       }
 
       if (result.beta) {
@@ -183,6 +185,8 @@ detectVersions()
         fs.appendFileSync(process.env.GITHUB_OUTPUT, `beta_new_version=${result.beta.new_version}\n`);
       } else {
         fs.appendFileSync(process.env.GITHUB_OUTPUT, `beta_needs_update=false\n`);
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, `beta_old_version=\n`);
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, `beta_new_version=\n`);
       }
     }
 
