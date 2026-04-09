@@ -1,6 +1,422 @@
 
 ---
 
+## v1.69.0-beta.1
+
+
+- [Added](#added)
+  * [\[ appliance \]](#-appliance-)
+    + [devices](#devices)
+      - [Update MX warm spare settings](#update-mx-warm-spare-settings)
+      - [Swap MX primary and warm spare appliances](#swap-mx-primary-and-warm-spare-appliances)
+  * [\[ devices \]](#-devices-)
+    + [liveTools](#livetools)
+      - [Enqueue a job to retrieve port status for a device](#enqueue-a-job-to-retrieve-port-status-for-a-device)
+      - [Return a port status live tool job.](#return-a-port-status-live-tool-job)
+  * [\[ organizations \]](#-organizations-)
+    + [appliance](#appliance)
+      - [Return MX warm spare settings](#return-mx-warm-spare-settings)
+    + [wireless](#wireless)
+      - [Get sticky client events within the specified timespan.](#get-sticky-client-events-within-the-specified-timespan)
+- [Changed](#changed)
+  * [\[ appliance \]](#-appliance--1)
+    + [contentFiltering](#contentfiltering-1)
+      - [List all available content filtering categories for an MX network](#list-all-available-content-filtering-categories-for-an-mx-network-1)
+    + [umbrella](#umbrella-1)
+      - [Remove one umbrella policy from your network.](#remove-one-umbrella-policy-from-your-network-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [assurance](#assurance-1)
+      - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-1)
+      - [Returns counts of online, offline, and recovered devices by product type, along with offline intervals for impacted devices in the organization.](#returns-counts-of-online-offline-and-recovered-devices-by-product-type-along-with-offline-intervals-for-impacted-devices-in-the-organization-1)
+      - [Returns organization wireless experience metrics overview grouped by network.](#returns-organization-wireless-experience-metrics-overview-grouped-by-network-1)
+    + [switch](#switch-1)
+      - [Create a port profile in an organization](#create-a-port-profile-in-an-organization-1)
+      - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile-1)
+      - [Update a port profile in an organization](#update-a-port-profile-in-an-organization-1)
+    + [wireless](#wireless-1)
+      - [List the wireless device telemetry of an organization](#list-the-wireless-device-telemetry-of-an-organization-1)
+  * [\[ switch \]](#-switch--1)
+    + [ports](#ports-1)
+      - [List the port profiles in a network](#list-the-port-profiles-in-a-network-1)
+      - [Create a port profile in a network](#create-a-port-profile-in-a-network-1)
+      - [Update a port profile in a network](#update-a-port-profile-in-a-network-1)
+    + [settings](#settings-1)
+      - [Returns the switch network settings](#returns-the-switch-network-settings-1)
+      - [Update switch network settings](#update-switch-network-settings-1)
+ 
+Version **v1.69.0-beta.0** _to_ **v1.69.0-beta.1**
+
+* * *
+
+**Summary of Changes**
+
+**6 - New**
+
+**14 - Updated**
+
+**856 - Total Endpoints**
+
+**582 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ appliance \]
+--------------
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-devices-redundancy/)
+
+#### Update MX warm spare settings
+
+Operation ID: `updateNetworkApplianceDevicesRedundancy`
+
+PATH _`/networks/{networkId}/appliance/devices/redundancy`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/networks/{networkId}/appliance/devices/redundancy`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-devices-redundancy-swap/)
+
+#### Swap MX primary and warm spare appliances
+
+Operation ID: `createNetworkApplianceDevicesRedundancySwap`
+
+PATH _`/networks/{networkId}/appliance/devices/redundancy/swap`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/networks/{networkId}/appliance/devices/redundancy/swap`  
+> 
+> * * *
+
+* * *
+
+\[ devices \]
+--------------
+
+### liveTools
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-port-status/)
+
+#### Enqueue a job to retrieve port status for a device
+
+Operation ID: `createDeviceLiveToolsPortStatus`
+
+PATH _`/devices/{serial}/liveTools/portStatus`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/devices/{serial}/liveTools/portStatus`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-port-status/)
+
+#### Return a port status live tool job.
+
+Operation ID: `getDeviceLiveToolsPortStatus`
+
+PATH _`/devices/{serial}/liveTools/portStatus/{portStatusId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/devices/{serial}/liveTools/portStatus/{portStatusId}`  
+> 
+> * * *
+
+* * *
+
+\[ organizations \]
+--------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-redundancy-by-network/)
+
+#### Return MX warm spare settings
+
+Operation ID: `getOrganizationApplianceDevicesRedundancyByNetwork`
+
+PATH _`/organizations/{organizationId}/appliance/devices/redundancy/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/devices/redundancy/byNetwork`  
+> 
+> * * *
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-clients-sticky-events/)
+
+#### Get sticky client events within the specified timespan.
+
+Operation ID: `getOrganizationWirelessClientsStickyEvents`
+
+PATH _`/organizations/{organizationId}/wireless/clients/stickyEvents`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/stickyEvents`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+------------
+
+### contentFiltering
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-content-filtering-categories/)
+
+#### List all available content filtering categories for an MX network
+
+Operation ID: `getNetworkApplianceContentFilteringCategories`
+
+GET _`/networks/{networkId}/appliance/contentFiltering/categories`_
+
+> \- added the optional property 'categories' to the response with the '200' status
+
+* * *
+
+### umbrella
+
+[Docs](https://developer.cisco.com/meraki/api-v1/remove-network-appliance-umbrella-policies/)
+
+#### Remove one umbrella policy from your network.
+
+Operation ID: `removeNetworkApplianceUmbrellaPolicies`
+
+DELETE _`/networks/{networkId}/appliance/umbrella/policies/remove`_
+
+> \- removed the success response with the status '200'
+
+> \- added the success response with the status '204'
+
+* * *
+
+\[ organizations \]
+------------
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-type/)
+
+#### Return a Summary of Alerts grouped by type and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByType`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byType`_
+
+> \- added the new optional 'query' request parameter 'includeDeviceTags'
+
+> \- added the new optional 'query' request parameter 'includeNetworks'
+
+> \- added the required property 'items/items/categoryType' to the response with the '200' status
+
+> \- added the required property 'items/items/deviceTags' to the response with the '200' status
+
+> \- added the required property 'items/items/deviceTypes' to the response with the '200' status
+
+> \- added the required property 'items/items/lastAlertedAt' to the response with the '200' status
+
+> \- added the required property 'items/items/networkCount' to the response with the '200' status
+
+> \- added the required property 'items/items/networks' to the response with the '200' status
+
+> \- added the required property 'items/items/severity' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-devices-statuses-overview/)
+
+#### Returns counts of online, offline, and recovered devices by product type, along with offline intervals for impacted devices in the organization.
+
+Operation ID: `getOrganizationAssuranceDevicesStatusesOverview`
+
+GET _`/organizations/{organizationId}/assurance/devices/statuses/overview`_
+
+> \- for the 'query' request parameter 'timespan', the max was increased from '604800.00' to '1209600.00'
+
+> \- for the 'query' request parameter 'timespan', the min was decreased from '3600.00' to '900.00'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-metrics-overview-history-by-network/)
+
+#### Returns organization wireless experience metrics overview grouped by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceMetricsOverviewHistoryByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/metrics/overview/history/byNetwork`_
+
+> \- added the optional property 'items/items/wirelessCoverage' to the response with the '200' status
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-ports-profile/)
+
+#### Create a port profile in an organization
+
+Operation ID: `createOrganizationSwitchPortsProfile`
+
+POST _`/organizations/{organizationId}/switch/ports/profiles`_
+
+> \- added the new optional request property 'authentication'
+
+> \- added the optional property 'authentication' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profile/)
+
+#### Get detailed information about a port profile
+
+Operation ID: `getOrganizationSwitchPortsProfile`
+
+GET _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
+
+> \- added the optional property 'authentication' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-switch-ports-profile/)
+
+#### Update a port profile in an organization
+
+Operation ID: `updateOrganizationSwitchPortsProfile`
+
+PUT _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
+
+> \- added the new optional request property 'authentication'
+
+> \- added the optional property 'authentication' to the response with the '200' status
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-devices-telemetry/)
+
+#### List the wireless device telemetry of an organization
+
+Operation ID: `getOrganizationWirelessDevicesTelemetry`
+
+GET _`/organizations/{organizationId}/wireless/devices/telemetry`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+\[ switch \]
+------------
+
+### ports
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-ports-profiles/)
+
+#### List the port profiles in a network
+
+Operation ID: `getNetworkSwitchPortsProfiles`
+
+GET _`/networks/{networkId}/switch/ports/profiles`_
+
+> \- added the optional property '/items/authentication' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-switch-ports-profile/)
+
+#### Create a port profile in a network
+
+Operation ID: `createNetworkSwitchPortsProfile`
+
+POST _`/networks/{networkId}/switch/ports/profiles`_
+
+> \- added the new optional request property 'authentication'
+
+> \- added the optional property 'authentication' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-ports-profile/)
+
+#### Update a port profile in a network
+
+Operation ID: `updateNetworkSwitchPortsProfile`
+
+PUT _`/networks/{networkId}/switch/ports/profiles/{id}`_
+
+> \- added the new optional request property 'authentication'
+
+> \- added the optional property 'authentication' to the response with the '200' status
+
+* * *
+
+### settings
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-settings/)
+
+#### Returns the switch network settings
+
+Operation ID: `getNetworkSwitchSettings`
+
+GET _`/networks/{networkId}/switch/settings`_
+
+> \- added the optional property 'portChannelFallback' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-settings/)
+
+#### Update switch network settings
+
+Operation ID: `updateNetworkSwitchSettings`
+
+PUT _`/networks/{networkId}/switch/settings`_
+
+> \- added the new optional request property 'portChannelFallback'
+
+> \- added the optional property 'portChannelFallback' to the response with the '200' status
+
+* * *
+
+
+---
+
 ## v1.69.0-beta.0
 
 
