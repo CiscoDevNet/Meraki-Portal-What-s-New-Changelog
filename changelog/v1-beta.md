@@ -1,6 +1,1319 @@
 
 ---
 
+## v1.69.0-beta.2
+
+
+- [Added](#added)
+  * [\[ organizations \]](#-organizations-)
+    + [api](#api)
+      - [List pipeline IDs for the organization, with optional status and timespan filtering](#list-pipeline-ids-for-the-organization-with-optional-status-and-timespan-filtering)
+    + [assurance](#assurance)
+      - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network)
+      - [Summarizes wireless post connection capacity successes and failures by band.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-band)
+      - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network)
+      - [Summarizes wireless post connection capacity successes and failures by client OS.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-client-os)
+      - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network)
+      - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device)
+      - [Time-series of wireless post connection capacity successes and failures by network.](#time-series-of-wireless-post-connection-capacity-successes-and-failures-by-network)
+      - [Summarizes wireless post connection capacity successes and failures by ssid.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-ssid)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network)
+    + [devices](#devices)
+      - [Provides devices that are available to be assigned to a given Cellular Data Management Profile](#provides-devices-that-are-available-to-be-assigned-to-a-given-cellular-data-management-profile)
+      - [Listing of Cellular Data Management Profiles for the organization.](#listing-of-cellular-data-management-profiles-for-the-organization)
+      - [Add a Cellular Data Management Profile to the organization.](#add-a-cellular-data-management-profile-to-the-organization)
+      - [List assignments](#list-assignments)
+      - [Assign a Cellular Data Management Profile to devices](#assign-a-cellular-data-management-profile-to-devices)
+      - [Unassign a Cellular Data Management Profile from devices](#unassign-a-cellular-data-management-profile-from-devices)
+      - [Delete a Cellular Data Management Profile from the organization.](#delete-a-cellular-data-management-profile-from-the-organization)
+      - [Update a Cellular Data Management Profile](#update-a-cellular-data-management-profile)
+      - [Provides current usage statistics for devices in the organization](#provides-current-usage-statistics-for-devices-in-the-organization)
+      - [Provides the cellular data usage history per device and per SIM.](#provides-the-cellular-data-usage-history-per-device-and-per-sim)
+    + [nac](#nac)
+      - [Get all known clients for the organization](#get-all-known-clients-for-the-organization)
+      - [Create a client for the organization](#create-a-client-for-the-organization)
+      - [Delete existing client(s) for the organization](#delete-existing-clients-for-the-organization)
+      - [Bulk Update of existing clients for the organization](#bulk-update-of-existing-clients-for-the-organization)
+      - [Bulk upload of clients, client groups and their associations for the organization](#bulk-upload-of-clients-client-groups-and-their-associations-for-the-organization)
+      - [Get all known client groups for the organization](#get-all-known-client-groups-for-the-organization)
+      - [Create a client group for the organization](#create-a-client-group-for-the-organization)
+      - [Delete an existing client group for the organization](#delete-an-existing-client-group-for-the-organization)
+      - [Update an existing client group for the organization with bulk member operations](#update-an-existing-client-group-for-the-organization-with-bulk-member-operations)
+      - [Get overview data for all known clients for the organization](#get-overview-data-for-all-known-clients-for-the-organization)
+      - [Update an existing client for the organization](#update-an-existing-client-for-the-organization)
+- [Changed](#changed)
+  * [\[ appliance \]](#-appliance--1)
+    + [firewall](#firewall-1)
+      - [Return the cellular firewall rules for an MX network](#return-the-cellular-firewall-rules-for-an-mx-network-1)
+      - [Update the cellular firewall rules of an MX network](#update-the-cellular-firewall-rules-of-an-mx-network-1)
+      - [Return the inbound firewall rules for an MX network](#return-the-inbound-firewall-rules-for-an-mx-network-1)
+      - [Return the 1:Many NAT mapping rules for an MX network](#return-the-1many-nat-mapping-rules-for-an-mx-network-1)
+      - [Set the 1:Many NAT mapping rules for an MX network](#set-the-1many-nat-mapping-rules-for-an-mx-network-1)
+      - [Return the 1:1 NAT mapping rules for an MX network](#return-the-11-nat-mapping-rules-for-an-mx-network-1)
+      - [Set the 1:1 NAT mapping rules for an MX network](#set-the-11-nat-mapping-rules-for-an-mx-network-1)
+    + [sdwan](#sdwan-1)
+      - [Update SDWAN internet traffic preferences for an MX network](#update-sdwan-internet-traffic-preferences-for-an-mx-network-1)
+    + [trafficShaping](#trafficshaping-1)
+      - [Updates the uplink bandwidth settings for your MX network.](#updates-the-uplink-bandwidth-settings-for-your-mx-network-1)
+  * [\[ camera \]](#-camera--1)
+    + [qualityRetentionProfiles](#qualityretentionprofiles-1)
+      - [Creates new quality retention profile for this network.](#creates-new-quality-retention-profile-for-this-network-1)
+      - [Update an existing quality retention profile for this network.](#update-an-existing-quality-retention-profile-for-this-network-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [appliance](#appliance-1)
+      - [Returns an overview of uplink statuses](#returns-an-overview-of-uplink-statuses-1)
+      - [Return the third party VPN peers for an organization](#return-the-third-party-vpn-peers-for-an-organization-1)
+      - [Update the third party VPN peers for an organization](#update-the-third-party-vpn-peers-for-an-organization-1)
+    + [assurance](#assurance-1)
+      - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-1)
+      - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-1)
+      - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-1)
+      - [Return a singular Health Alert by its id](#return-a-singular-health-alert-by-its-id-1)
+      - [Given a client, return current topology](#given-a-client-return-current-topology-1)
+      - [Summarizes wireless coverage successes and failures by client.](#summarizes-wireless-coverage-successes-and-failures-by-client-1)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-1)
+      - [Summarizes wireless connection successes and failures by client.](#summarizes-wireless-connection-successes-and-failures-by-client-1)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-1)
+      - [Summarizes wireless time to connect metrics by client.](#summarizes-wireless-time-to-connect-metrics-by-client-1)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-1)
+      - [Return workflows filtered by organization ID, network ID, type, and category](#return-workflows-filtered-by-organization-id-network-id-type-and-category-1)
+    + [devices](#devices-1)
+      - [Enqueues a task for a specific packet capture](#enqueues-a-task-for-a-specific-packet-capture-1)
+      - [Retrieves packet capture analysis result for a specific packet capture task.](#retrieves-packet-capture-analysis-result-for-a-specific-packet-capture-task-1)
+    + [inventory](#inventory-1)
+      - [Return the device inventory for an organization](#return-the-device-inventory-for-an-organization-1)
+      - [Return a single device from the inventory of an organization](#return-a-single-device-from-the-inventory-of-an-organization-1)
+      - [Preview the results and status of an order claim by the secure order id](#preview-the-results-and-status-of-an-order-claim-by-the-secure-order-id-1)
+    + [switch](#switch-1)
+      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-1)
+      - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-1)
+      - [Returns Spanning Tree configuration settings](#returns-spanning-tree-configuration-settings-1)
+  * [\[ switch \]](#-switch--1)
+    + [spanningTree](#spanningtree-1)
+      - [Updates Spanning Tree configuration](#updates-spanning-tree-configuration-1)
+  * [\[ traffic \]](#-traffic--1)
+    + [general](#general-1)
+      - [Return the traffic analysis data for this network](#return-the-traffic-analysis-data-for-this-network-1)
+  * [\[ trafficShaping \]](#-trafficshaping--1)
+    + [applicationCategories](#applicationcategories-1)
+      - [Returns the application categories for traffic shaping rules](#returns-the-application-categories-for-traffic-shaping-rules-1)
+ 
+Version **v1.69.0-beta.1** _to_ **v1.69.0-beta.2**
+
+* * *
+
+**Summary of Changes**
+
+**31 - New**
+
+**46 - Updated**
+
+**881 - Total Endpoints**
+
+**599 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ organizations \]
+--------------
+
+### api
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-rest-provisioning-pipelines/)
+
+#### List pipeline IDs for the organization, with optional status and timespan filtering
+
+Operation ID: `getOrganizationApiRestProvisioningPipelines`
+
+PATH _`/organizations/{organizationId}/api/rest/provisioning/pipelines`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/api/rest/provisioning/pipelines`  
+> 
+> * * *
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network/)
+
+#### Summarizes wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetwork`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-band/)
+
+#### Summarizes wireless post connection capacity successes and failures by band.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByBand`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byBand`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byBand`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client/)
+
+#### Summarizes wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClient`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClient`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClient`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-os/)
+
+#### Summarizes wireless post connection capacity successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientOs`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientOs`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientOs`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-type/)
+
+#### Summarizes wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientType`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientType`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientType`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-device/)
+
+#### Summarizes wireless post connection capacity successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByDevice`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byDevice`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-interval/)
+
+#### Time-series of wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByInterval`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byInterval`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-ssid/)
+
+#### Summarizes wireless post connection capacity successes and failures by ssid.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkBySsid`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/bySsid`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/bySsid`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-insights-by-network/)
+
+#### Provides insights into wireless capacity experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityInsightsByNetwork`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/insights/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/insights/byNetwork`  
+> 
+> * * *
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-devices/)
+
+#### Provides devices that are available to be assigned to a given Cellular Data Management Profile
+
+Operation ID: `getOrganizationDevicesCellularDataDevices`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/devices`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/cellular/data/devices`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-profiles/)
+
+#### Listing of Cellular Data Management Profiles for the organization.
+
+Operation ID: `getOrganizationDevicesCellularDataProfiles`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/cellular/data/profiles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-devices-cellular-data-profile/)
+
+#### Add a Cellular Data Management Profile to the organization.
+
+Operation ID: `createOrganizationDevicesCellularDataProfile`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/devices/cellular/data/profiles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-profiles-assignments/)
+
+#### List assignments
+
+Operation ID: `getOrganizationDevicesCellularDataProfilesAssignments`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/profiles/assignments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/cellular/data/profiles/assignments`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/bulk-organization-devices-cellular-data-profiles-assignments-create/)
+
+#### Assign a Cellular Data Management Profile to devices
+
+Operation ID: `bulkOrganizationDevicesCellularDataProfilesAssignmentsCreate`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/profiles/assignments/bulkCreate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/devices/cellular/data/profiles/assignments/bulkCreate`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/bulk-organization-devices-cellular-data-profiles-assignments-delete/)
+
+#### Unassign a Cellular Data Management Profile from devices
+
+Operation ID: `bulkOrganizationDevicesCellularDataProfilesAssignmentsDelete`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/profiles/assignments/bulkDelete`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/devices/cellular/data/profiles/assignments/bulkDelete`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-devices-cellular-data-profile/)
+
+#### Delete a Cellular Data Management Profile from the organization.
+
+Operation ID: `deleteOrganizationDevicesCellularDataProfile`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/profiles/{profileId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/devices/cellular/data/profiles/{profileId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-devices-cellular-data-profile/)
+
+#### Update a Cellular Data Management Profile
+
+Operation ID: `updateOrganizationDevicesCellularDataProfile`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/profiles/{profileId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/devices/cellular/data/profiles/{profileId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-usage-by-device/)
+
+#### Provides current usage statistics for devices in the organization
+
+Operation ID: `getOrganizationDevicesCellularDataUsageByDevice`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/usage/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/cellular/data/usage/byDevice`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-usage-history-by-device-by-interval/)
+
+#### Provides the cellular data usage history per device and per SIM.
+
+Operation ID: `getOrganizationDevicesCellularDataUsageHistoryByDeviceByInterval`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/usage/history/byDevice/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/cellular/data/usage/history/byDevice/byInterval`  
+> 
+> * * *
+
+* * *
+
+### nac
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-clients/)
+
+#### Get all known clients for the organization
+
+Operation ID: `getOrganizationNacClients`
+
+PATH _`/organizations/{organizationId}/nac/clients`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/nac/clients`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-client/)
+
+#### Create a client for the organization
+
+Operation ID: `createOrganizationNacClient`
+
+PATH _`/organizations/{organizationId}/nac/clients`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/nac/clients`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/bulk-organization-nac-clients-delete/)
+
+#### Delete existing client(s) for the organization
+
+Operation ID: `bulkOrganizationNacClientsDelete`
+
+PATH _`/organizations/{organizationId}/nac/clients/bulkDelete`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/nac/clients/bulkDelete`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-clients-bulk-edit/)
+
+#### Bulk Update of existing clients for the organization
+
+Operation ID: `createOrganizationNacClientsBulkEdit`
+
+PATH _`/organizations/{organizationId}/nac/clients/bulkEdit`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/nac/clients/bulkEdit`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-clients-bulk-upload/)
+
+#### Bulk upload of clients, client groups and their associations for the organization
+
+Operation ID: `createOrganizationNacClientsBulkUpload`
+
+PATH _`/organizations/{organizationId}/nac/clients/bulkUpload`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/nac/clients/bulkUpload`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-clients-groups/)
+
+#### Get all known client groups for the organization
+
+Operation ID: `getOrganizationNacClientsGroups`
+
+PATH _`/organizations/{organizationId}/nac/clients/groups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/nac/clients/groups`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-clients-group/)
+
+#### Create a client group for the organization
+
+Operation ID: `createOrganizationNacClientsGroup`
+
+PATH _`/organizations/{organizationId}/nac/clients/groups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/nac/clients/groups`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-nac-clients-group/)
+
+#### Delete an existing client group for the organization
+
+Operation ID: `deleteOrganizationNacClientsGroup`
+
+PATH _`/organizations/{organizationId}/nac/clients/groups/{groupId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/nac/clients/groups/{groupId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-clients-group/)
+
+#### Update an existing client group for the organization with bulk member operations
+
+Operation ID: `updateOrganizationNacClientsGroup`
+
+PATH _`/organizations/{organizationId}/nac/clients/groups/{groupId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/nac/clients/groups/{groupId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-clients-overview/)
+
+#### Get overview data for all known clients for the organization
+
+Operation ID: `getOrganizationNacClientsOverview`
+
+PATH _`/organizations/{organizationId}/nac/clients/overview`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/nac/clients/overview`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-client/)
+
+#### Update an existing client for the organization
+
+Operation ID: `updateOrganizationNacClient`
+
+PATH _`/organizations/{organizationId}/nac/clients/{clientId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/nac/clients/{clientId}`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+------------
+
+### firewall
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-firewall-cellular-firewall-rules/)
+
+#### Return the cellular firewall rules for an MX network
+
+Operation ID: `getNetworkApplianceFirewallCellularFirewallRules`
+
+GET _`/networks/{networkId}/appliance/firewall/cellularFirewallRules`_
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-firewall-cellular-firewall-rules/)
+
+#### Update the cellular firewall rules of an MX network
+
+Operation ID: `updateNetworkApplianceFirewallCellularFirewallRules`
+
+PUT _`/networks/{networkId}/appliance/firewall/cellularFirewallRules`_
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-firewall-inbound-firewall-rules/)
+
+#### Return the inbound firewall rules for an MX network
+
+Operation ID: `getNetworkApplianceFirewallInboundFirewallRules`
+
+GET _`/networks/{networkId}/appliance/firewall/inboundFirewallRules`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-firewall-one-to-many-nat-rules/)
+
+#### Return the 1:Many NAT mapping rules for an MX network
+
+Operation ID: `getNetworkApplianceFirewallOneToManyNatRules`
+
+GET _`/networks/{networkId}/appliance/firewall/oneToManyNatRules`_
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-firewall-one-to-many-nat-rules/)
+
+#### Set the 1:Many NAT mapping rules for an MX network
+
+Operation ID: `updateNetworkApplianceFirewallOneToManyNatRules`
+
+PUT _`/networks/{networkId}/appliance/firewall/oneToManyNatRules`_
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-firewall-one-to-one-nat-rules/)
+
+#### Return the 1:1 NAT mapping rules for an MX network
+
+Operation ID: `getNetworkApplianceFirewallOneToOneNatRules`
+
+GET _`/networks/{networkId}/appliance/firewall/oneToOneNatRules`_
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-firewall-one-to-one-nat-rules/)
+
+#### Set the 1:1 NAT mapping rules for an MX network
+
+Operation ID: `updateNetworkApplianceFirewallOneToOneNatRules`
+
+PUT _`/networks/{networkId}/appliance/firewall/oneToOneNatRules`_
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+### sdwan
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-sdwan-internet-policies/)
+
+#### Update SDWAN internet traffic preferences for an MX network
+
+Operation ID: `updateNetworkApplianceSdwanInternetPolicies`
+
+PUT _`/networks/{networkId}/appliance/sdwan/internetPolicies`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+### trafficShaping
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-traffic-shaping-uplink-bandwidth/)
+
+#### Updates the uplink bandwidth settings for your MX network.
+
+Operation ID: `updateNetworkApplianceTrafficShapingUplinkBandwidth`
+
+PUT _`/networks/{networkId}/appliance/trafficShaping/uplinkBandwidth`_
+
+> \- added the optional property `bandwidthLimits` to the response with the `200` status
+
+* * *
+
+\[ camera \]
+------------
+
+### qualityRetentionProfiles
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-camera-quality-retention-profile/)
+
+#### Creates new quality retention profile for this network.
+
+Operation ID: `createNetworkCameraQualityRetentionProfile`
+
+POST _`/networks/{networkId}/camera/qualityRetentionProfiles`_
+
+> \- added the new optional request property `videoSettings/MV44X`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-camera-quality-retention-profile/)
+
+#### Update an existing quality retention profile for this network.
+
+Operation ID: `updateNetworkCameraQualityRetentionProfile`
+
+PUT _`/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}`_
+
+> \- added the new optional request property `videoSettings/MV44X`
+
+* * *
+
+\[ organizations \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-uplinks-statuses-overview/)
+
+#### Returns an overview of uplink statuses
+
+Operation ID: `getOrganizationApplianceUplinksStatusesOverview`
+
+GET _`/organizations/{organizationId}/appliance/uplinks/statuses/overview`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-third-party-v-p-n-peers/)
+
+#### Return the third party VPN peers for an organization
+
+Operation ID: `getOrganizationApplianceVpnThirdPartyVPNPeers`
+
+GET _`/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers`_
+
+> \- added the optional property `peers/items/ebgpNeighbor/receiveLimit` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-appliance-vpn-third-party-v-p-n-peers/)
+
+#### Update the third party VPN peers for an organization
+
+Operation ID: `updateOrganizationApplianceVpnThirdPartyVPNPeers`
+
+PUT _`/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers`_
+
+> \- added the optional property `peers/items/ebgpNeighbor/receiveLimit` to the response with the `200` status
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts/)
+
+#### Return all health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlerts`
+
+GET _`/organizations/{organizationId}/assurance/alerts`_
+
+> \- added the required property `/items/network/url` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview/)
+
+#### Return overview of active health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlertsOverview`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-type/)
+
+#### Return a Summary of Alerts grouped by type and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByType`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byType`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alert/)
+
+#### Return a singular Health Alert by its id
+
+Operation ID: `getOrganizationAssuranceAlert`
+
+GET _`/organizations/{organizationId}/assurance/alerts/{id}`_
+
+> \- added the required property `network/url` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-clients-topology-current/)
+
+#### Given a client, return current topology
+
+Operation ID: `getOrganizationAssuranceClientsTopologyCurrent`
+
+GET _`/organizations/{organizationId}/assurance/clients/topology/current`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/byBand`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/byClient`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/byClientOs`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/byClientType`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/byDevice`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/byInterval`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/capacity/byNetwork/bySsid`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/capacity/insights/byNetwork`_
+
+> \- api path removed without deprecation
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-client/)
+
+#### Summarizes wireless coverage successes and failures by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byClient`_
+
+> \- added the optional property `/items/items/items/client/username` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-insights-by-network/)
+
+#### Provides insights into wireless coverage experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/insights/byNetwork`_
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/excessFailures` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/failures` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/relativeRisk` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/uncertaintyExplainedPercent` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-client/)
+
+#### Summarizes wireless connection successes and failures by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byClient`_
+
+> \- added the optional property `/items/items/items/client/name` to the response with the `200` status
+
+> \- added the optional property `/items/items/items/client/username` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-insights-by-network/)
+
+#### Provides insights into wireless successful connects experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/insights/byNetwork`_
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/excessFailures` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/failures` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/relativeRisk` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/serverHealth` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/uncertaintyExplainedPercent` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-client/)
+
+#### Summarizes wireless time to connect metrics by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClient`_
+
+> \- added the optional property `/items/items/items/client/name` to the response with the `200` status
+
+> \- added the optional property `/items/items/items/client/username` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-insights-by-network/)
+
+#### Provides insights into wireless time to connect experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/insights/byNetwork`_
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/excessFailures` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/failures` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/relativeRisk` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/serverHealth` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/insights/items/entities/items/uncertaintyExplainedPercent` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-workflows/)
+
+#### Return workflows filtered by organization ID, network ID, type, and category
+
+Operation ID: `getOrganizationAssuranceWorkflows`
+
+GET _`/organizations/{organizationId}/assurance/workflows`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/tasks-organization-devices-packet-capture/)
+
+#### Enqueues a task for a specific packet capture
+
+Operation ID: `tasksOrganizationDevicesPacketCapture`
+
+POST _`/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks`_
+
+> \- the security scope `dashboard:general:telemetry:write` was added to the endpoint's security scheme `oauth2`
+
+> \- the security scope `dashboard:general:telemetry:packetcapture:read` was removed from the endpoint's security scheme `oauth2`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-packet-capture-task/)
+
+#### Retrieves packet capture analysis result for a specific packet capture task.
+
+Operation ID: `getOrganizationDevicesPacketCaptureTask`
+
+GET _`/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks/{id}`_
+
+> \- the security scope `dashboard:general:telemetry:read` was added to the endpoint's security scheme `oauth2`
+
+> \- the security scope `dashboard:general:telemetry:packetcapture:read` was removed from the endpoint's security scheme `oauth2`
+
+* * *
+
+### inventory
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-inventory-devices/)
+
+#### Return the device inventory for an organization
+
+Operation ID: `getOrganizationInventoryDevices`
+
+GET _`/organizations/{organizationId}/inventory/devices`_
+
+> \- added the optional property `/items/sku` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-inventory-device/)
+
+#### Return a single device from the inventory of an organization
+
+Operation ID: `getOrganizationInventoryDevice`
+
+GET _`/organizations/{organizationId}/inventory/devices/{serial}`_
+
+> \- added the optional property `sku` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/preview-organization-inventory-orders/)
+
+#### Preview the results and status of an order claim by the secure order id
+
+Operation ID: `previewOrganizationInventoryOrders`
+
+POST _`/organizations/{organizationId}/inventory/orders/preview`_
+
+> \- added the optional property `resolution` to the response with the `200` status
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles/)
+
+#### List the port profiles in an organization
+
+Operation ID: `getOrganizationSwitchPortsProfiles`
+
+GET _`/organizations/{organizationId}/switch/ports/profiles`_
+
+> \- the `/items/counts/assigned/automations` response's property type/format changed from `integer`/`` to `object`/`` for status `200`
+
+> \- the `/items/counts/assigned/ports` response's property type/format changed from `integer`/`` to `object`/`` for status `200`
+
+> \- removed the optional property `/items/counts/assigned/switches` from the response with the `200` status
+
+> \- removed the optional property `/items/counts/networkCounts` from the response with the `200` status
+
+> \- added the optional property `/items/counts/assigned/automations/total` to the response with the `200` status
+
+> \- added the optional property `/items/counts/assigned/devices` to the response with the `200` status
+
+> \- added the optional property `/items/counts/assigned/ports/byProductType` to the response with the `200` status
+
+> \- added the optional property `/items/counts/assigned/ports/total` to the response with the `200` status
+
+> \- added the optional property `/items/counts/networks` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles-overview-by-profile/)
+
+#### List the port profiles in an organization
+
+Operation ID: `getOrganizationSwitchPortsProfilesOverviewByProfile`
+
+GET _`/organizations/{organizationId}/switch/ports/profiles/overview/byProfile`_
+
+> \- the `/items/items/items/counts/assigned/automations` response's property type/format changed from `integer`/`` to `object`/`` for status `200`
+
+> \- the `/items/items/items/counts/assigned/ports` response's property type/format changed from `integer`/`` to `object`/`` for status `200`
+
+> \- removed the optional property `/items/items/items/counts/assigned/switches` from the response with the `200` status
+
+> \- removed the optional property `/items/items/items/counts/networkCounts` from the response with the `200` status
+
+> \- added the optional property `/items/items/items/counts/assigned/automations/total` to the response with the `200` status
+
+> \- added the optional property `/items/items/items/counts/assigned/devices` to the response with the `200` status
+
+> \- added the optional property `/items/items/items/counts/assigned/ports/byProductType` to the response with the `200` status
+
+> \- added the optional property `/items/items/items/counts/assigned/ports/total` to the response with the `200` status
+
+> \- added the optional property `/items/items/items/counts/networks` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-spanning-tree/)
+
+#### Returns Spanning Tree configuration settings
+
+Operation ID: `getOrganizationSwitchSpanningTree`
+
+GET _`/organizations/{organizationId}/switch/spanningTree`_
+
+> \- deleted the `query` request parameter `networkId`
+
+> \- removed the optional property `enabled` from the response with the `200` status
+
+> \- removed the optional property `mode` from the response with the `200` status
+
+> \- removed the optional property `priorities` from the response with the `200` status
+
+> \- added the new optional `query` request parameter `endingBefore`
+
+> \- added the new optional `query` request parameter `networkIds`
+
+> \- added the new optional `query` request parameter `perPage`
+
+> \- added the new optional `query` request parameter `startingAfter`
+
+> \- added the optional property `items` to the response with the `200` status
+
+> \- added the optional property `meta` to the response with the `200` status
+
+* * *
+
+\[ switch \]
+------------
+
+### spanningTree
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-spanning-tree/)
+
+#### Updates Spanning Tree configuration
+
+Operation ID: `updateNetworkSwitchSpanningTree`
+
+PUT _`/networks/{networkId}/switch/spanningTree`_
+
+> \- added the optional property `networkId` to the response with the `200` status
+
+* * *
+
+\[ traffic \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-traffic/)
+
+#### Return the traffic analysis data for this network
+
+Operation ID: `getNetworkTraffic`
+
+GET _`/networks/{networkId}/traffic`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+\[ trafficShaping \]
+------------
+
+### applicationCategories
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-traffic-shaping-application-categories/)
+
+#### Returns the application categories for traffic shaping rules
+
+Operation ID: `getNetworkTrafficShapingApplicationCategories`
+
+GET _`/networks/{networkId}/trafficShaping/applicationCategories`_
+
+> \- added the optional property `applicationCategories` to the response with the `200` status
+
+* * *
+
+
+---
+
 ## v1.69.0-beta.1
 
 
