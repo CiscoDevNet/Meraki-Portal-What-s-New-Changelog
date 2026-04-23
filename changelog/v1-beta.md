@@ -1,6 +1,1357 @@
 
 ---
 
+## v1.69.0-beta.3
+
+
+- [Added](#added)
+  * [\[ organizations \]](#-organizations-)
+    + [assurance](#assurance)
+      - [Returns count of impacted wireless devices per network on a given organization and time range.](#returns-count-of-impacted-wireless-devices-per-network-on-a-given-organization-and-time-range)
+      - [Summarizes wired connection successes and failures by network.](#summarizes-wired-connection-successes-and-failures-by-network)
+      - [Time-series of wired connection successes and failures by network.](#time-series-of-wired-connection-successes-and-failures-by-network)
+    + [campusGateway](#campusgateway)
+      - [Returns client usage details for campus gateway clusters within an organization.](#returns-client-usage-details-for-campus-gateway-clusters-within-an-organization)
+    + [devices](#devices)
+      - [Bulk update the attributes related to positions for provided devices](#bulk-update-the-attributes-related-to-positions-for-provided-devices)
+      - [Returns details about software updates for networks within an organization.](#returns-details-about-software-updates-for-networks-within-an-organization)
+    + [iam](#iam)
+      - [List the authenticated caller admin's permissions for an organization](#list-the-authenticated-caller-admins-permissions-for-an-organization)
+    + [sites](#sites)
+      - [List the buildings belonging to the organization](#list-the-buildings-belonging-to-the-organization)
+    + [wireless](#wireless)
+      - [Summarize the number of wireless clients impacted by connection failures on network SSIDs, across an organization.](#summarize-the-number-of-wireless-clients-impacted-by-connection-failures-on-network-ssids-across-an-organization)
+      - [Returns client usage details for wireless networks within an organization.](#returns-client-usage-details-for-wireless-networks-within-an-organization)
+      - [Returns client usage details for wireless network SSIDs within an organization.](#returns-client-usage-details-for-wireless-network-ssids-within-an-organization)
+      - [Returns client usage details for SSIDs within an organization.](#returns-client-usage-details-for-ssids-within-an-organization)
+      - [Returns the SSID profiles for an organization](#returns-the-ssid-profiles-for-an-organization)
+      - [Create a new SSID profile in an organization](#create-a-new-ssid-profile-in-an-organization)
+      - [Unassigns the SSID profile assigned to an SSID](#unassigns-the-ssid-profile-assigned-to-an-ssid)
+      - [List the SSID profile assignments in an organization](#list-the-ssid-profile-assignments-in-an-organization)
+      - [Assigns an SSID profile to an SSID in the organization](#assigns-an-ssid-profile-to-an-ssid-in-the-organization)
+      - [List the SSID profile assignments in an organization, grouped by network](#list-the-ssid-profile-assignments-in-an-organization-grouped-by-network)
+      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization)
+      - [Delete an SSID profile](#delete-an-ssid-profile)
+      - [Update this SSID profile](#update-this-ssid-profile)
+  * [\[ sites \]](#-sites-)
+    + [buildings](#buildings)
+      - [Create a new building](#create-a-new-building)
+      - [Delete a building](#delete-a-building)
+      - [Update a building](#update-a-building)
+- [Changed](#changed)
+  * [\[ appliance \]](#-appliance--1)
+    + [firewall](#firewall-1)
+      - [Return the L3 firewall rules for an MX network](#return-the-l3-firewall-rules-for-an-mx-network-1)
+      - [Update the L3 firewall rules of an MX network](#update-the-l3-firewall-rules-of-an-mx-network-1)
+    + [prefixes](#prefixes-1)
+      - [List static delegated prefixes for a network](#list-static-delegated-prefixes-for-a-network-1)
+      - [Add a static delegated prefix from a network](#add-a-static-delegated-prefix-from-a-network-1)
+      - [Delete a static delegated prefix from a network](#delete-a-static-delegated-prefix-from-a-network-1)
+      - [Return a static delegated prefix from a network](#return-a-static-delegated-prefix-from-a-network-1)
+      - [Update a static delegated prefix from a network](#update-a-static-delegated-prefix-from-a-network-1)
+    + [staticRoutes](#staticroutes-1)
+      - [Add a static route for an MX or teleworker network](#add-a-static-route-for-an-mx-or-teleworker-network-1)
+      - [Update a static route for an MX or teleworker network](#update-a-static-route-for-an-mx-or-teleworker-network-1)
+  * [\[ clients \]](#-clients--1)
+    + [general](#general-1)
+      - [Return the client associated with the given identifier](#return-the-client-associated-with-the-given-identifier-1)
+  * [\[ devices \]](#-devices--1)
+    + [appliance](#appliance-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+      - [Return the uplink settings for a secure router or security appliance](#return-the-uplink-settings-for-a-secure-router-or-security-appliance-1)
+      - [Update the uplink settings for a secure router or security appliance](#update-the-uplink-settings-for-a-secure-router-or-security-appliance-1)
+    + [liveTools](#livetools-1)
+      - [Return an OSPF neighbors live tool job.](#return-an-ospf-neighbors-live-tool-job-1)
+    + [switch](#switch-1)
+      - [List layer 3 interfaces for a switch](#list-layer-3-interfaces-for-a-switch-1)
+      - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch-1)
+      - [Return a layer 3 interface for a switch](#return-a-layer-3-interface-for-a-switch-1)
+      - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch-1)
+    + [wireless](#wireless-1)
+      - [Return the position for a wireless device](#return-the-position-for-a-wireless-device-1)
+      - [Update the position attributes for this device](#update-the-position-attributes-for-this-device-1)
+  * [\[ floorPlans \]](#-floorplans--1)
+    + [general](#general-1)
+      - [List the floor plans that belong to your network](#list-the-floor-plans-that-belong-to-your-network-1)
+      - [Upload a floor plan](#upload-a-floor-plan-1)
+      - [Destroy a floor plan](#destroy-a-floor-plan-1)
+      - [Find a floor plan by ID](#find-a-floor-plan-by-id-1)
+      - [Update a floor plan's geolocation and other meta data](#update-a-floor-plans-geolocation-and-other-meta-data-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [appliance](#appliance-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+    + [assurance](#assurance-1)
+      - [Given a client, return current topology](#given-a-client-return-current-topology-1)
+      - [Returns the top wireless service-level insights for the specified time window, including each network and the impacted client count per metric.](#returns-the-top-wireless-service-level-insights-for-the-specified-time-window-including-each-network-and-the-impacted-client-count-per-metric-1)
+      - [Summarizes wireless connection successes and failures by client.](#summarizes-wireless-connection-successes-and-failures-by-client-1)
+      - [Summarizes wireless connection successes and failures by device.](#summarizes-wireless-connection-successes-and-failures-by-device-1)
+      - [Summarizes wireless connection successes and failures by ssid.](#summarizes-wireless-connection-successes-and-failures-by-ssid-1)
+      - [Summarizes wireless time to connect metrics by client.](#summarizes-wireless-time-to-connect-metrics-by-client-1)
+      - [Summarizes wireless connection time to connect metrics by device.](#summarizes-wireless-connection-time-to-connect-metrics-by-device-1)
+      - [Summarizes wireless connection time to connect metrics by ssid.](#summarizes-wireless-connection-time-to-connect-metrics-by-ssid-1)
+    + [inventory](#inventory-1)
+    + [sase](#sase-1)
+    + [wireless](#wireless-1)
+      - [Returns the current Air Marshal rules for this organization](#returns-the-current-air-marshal-rules-for-this-organization-1)
+      - [List access point client count at the moment in an organization](#list-access-point-client-count-at-the-moment-in-an-organization-1)
+      - [Show the by-network client information for the organization in the given interval](#show-the-by-network-client-information-for-the-organization-in-the-given-interval-1)
+      - [Get average packet loss for the given timespan for all networks in the organization.](#get-average-packet-loss-for-the-given-timespan-for-all-networks-in-the-organization-1)
+      - [Return the CPU Load history for a list of wireless devices in the organization.](#return-the-cpu-load-history-for-a-list-of-wireless-devices-in-the-organization-1)
+      - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-1)
+      - [List the RF profiles of an organization by device](#list-the-rf-profiles-of-an-organization-by-device-1)
+  * [\[ switch \]](#-switch--1)
+    + [stacks](#stacks-1)
+      - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack-1)
+      - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack-1)
+      - [Return a layer 3 interface from a switch stack](#return-a-layer-3-interface-from-a-switch-stack-1)
+      - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack-1)
+  * [\[ wireless \]](#-wireless--1)
+    + [clients](#clients-1)
+      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network-1)
+      - [Return counts of distinct wireless clients connecting to a network over time](#return-counts-of-distinct-wireless-clients-connecting-to-a-network-over-time-1)
+    + [ssids](#ssids-1)
+      - [List the MR SSIDs in a network](#list-the-mr-ssids-in-a-network-1)
+      - [Return a single MR SSID](#return-a-single-mr-ssid-1)
+      - [Update the attributes of an MR SSID](#update-the-attributes-of-an-mr-ssid-1)
+ 
+Version **v1.69.0-beta.2** _to_ **v1.69.0-beta.3**
+
+* * *
+
+**Summary of Changes**
+
+**24 - New**
+
+**56 - Updated**
+
+**874 - Total Endpoints**
+
+**594 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ organizations \]
+--------------
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-impacted-device-wireless-by-network/)
+
+#### Returns count of impacted wireless devices per network on a given organization and time range.
+
+Operation ID: `getOrganizationAssuranceImpactedDeviceWirelessByNetwork`
+
+PATH _`/organizations/{organizationId}/assurance/impactedDevice/wireless/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/impactedDevice/wireless/byNetwork`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network/)
+
+#### Summarizes wired connection successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetwork`
+
+PATH _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-interval/)
+
+#### Time-series of wired connection successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByInterval`
+
+PATH _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byInterval`  
+> 
+> * * *
+
+* * *
+
+### campusGateway
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-clients-usage-by-network-by-cluster/)
+
+#### Returns client usage details for campus gateway clusters within an organization.
+
+Operation ID: `getOrganizationCampusGatewayClientsUsageByNetworkByCluster`
+
+PATH _`/organizations/{organizationId}/campusGateway/clients/usage/byNetwork/byCluster`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/clients/usage/byNetwork/byCluster`  
+> 
+> * * *
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/bulk-organization-devices-placement-positions-update/)
+
+#### Bulk update the attributes related to positions for provided devices
+
+Operation ID: `bulkOrganizationDevicesPlacementPositionsUpdate`
+
+PATH _`/organizations/{organizationId}/devices/placement/positions/bulkUpdate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/devices/placement/positions/bulkUpdate`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-software-updates-overviews-by-network/)
+
+#### Returns details about software updates for networks within an organization.
+
+Operation ID: `getOrganizationDevicesSoftwareUpdatesOverviewsByNetwork`
+
+PATH _`/organizations/{organizationId}/devices/software/updates/overviews/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/software/updates/overviews/byNetwork`  
+> 
+> * * *
+
+* * *
+
+### iam
+
+[Docs](https://developer.cisco.com/meraki/api-v1/resolve-organization-iam-admins-administrators-me-permissions/)
+
+#### List the authenticated caller admin's permissions for an organization
+
+Operation ID: `resolveOrganizationIamAdminsAdministratorsMePermissions`
+
+PATH _`/organizations/{organizationId}/iam/admins/administrators/me/permissions/resolve`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/iam/admins/administrators/me/permissions/resolve`  
+> 
+> * * *
+
+* * *
+
+### sites
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sites-buildings/)
+
+#### List the buildings belonging to the organization
+
+Operation ID: `getOrganizationSitesBuildings`
+
+PATH _`/organizations/{organizationId}/sites/buildings`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/sites/buildings`  
+> 
+> * * *
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-clients-connections-impacted-by-network-by-ssid/)
+
+#### Summarize the number of wireless clients impacted by connection failures on network SSIDs, across an organization.
+
+Operation ID: `getOrganizationWirelessClientsConnectionsImpactedByNetworkBySsid`
+
+PATH _`/organizations/{organizationId}/wireless/clients/connections/impacted/byNetwork/bySsid`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/connections/impacted/byNetwork/bySsid`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-clients-usage-by-network/)
+
+#### Returns client usage details for wireless networks within an organization.
+
+Operation ID: `getOrganizationWirelessClientsUsageByNetwork`
+
+PATH _`/organizations/{organizationId}/wireless/clients/usage/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/usage/byNetwork`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-clients-usage-by-network-by-ssid/)
+
+#### Returns client usage details for wireless network SSIDs within an organization.
+
+Operation ID: `getOrganizationWirelessClientsUsageByNetworkBySsid`
+
+PATH _`/organizations/{organizationId}/wireless/clients/usage/byNetwork/bySsid`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/usage/byNetwork/bySsid`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-clients-usage-by-ssid/)
+
+#### Returns client usage details for SSIDs within an organization.
+
+Operation ID: `getOrganizationWirelessClientsUsageBySsid`
+
+PATH _`/organizations/{organizationId}/wireless/clients/usage/bySsid`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/clients/usage/bySsid`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles/)
+
+#### Returns the SSID profiles for an organization
+
+Operation ID: `getOrganizationWirelessSsidsProfiles`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/ssids/profiles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-wireless-ssids-profile/)
+
+#### Create a new SSID profile in an organization
+
+Operation ID: `createOrganizationWirelessSsidsProfile`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/wireless/ssids/profiles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-wireless-ssids-profiles-assignments/)
+
+#### Unassigns the SSID profile assigned to an SSID
+
+Operation ID: `deleteOrganizationWirelessSsidsProfilesAssignments`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/profiles/assignments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/wireless/ssids/profiles/assignments`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles-assignments/)
+
+#### List the SSID profile assignments in an organization
+
+Operation ID: `getOrganizationWirelessSsidsProfilesAssignments`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/profiles/assignments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/ssids/profiles/assignments`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-wireless-ssids-profiles-assignment/)
+
+#### Assigns an SSID profile to an SSID in the organization
+
+Operation ID: `createOrganizationWirelessSsidsProfilesAssignment`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/profiles/assignments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/wireless/ssids/profiles/assignments`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles-assignments-by-network/)
+
+#### List the SSID profile assignments in an organization, grouped by network
+
+Operation ID: `getOrganizationWirelessSsidsProfilesAssignmentsByNetwork`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/profiles/assignments/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/ssids/profiles/assignments/byNetwork`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles-overviews/)
+
+#### Returns the SSID profiles' overview information for an organization
+
+Operation ID: `getOrganizationWirelessSsidsProfilesOverviews`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/profiles/overviews`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/ssids/profiles/overviews`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-wireless-ssids-profile/)
+
+#### Delete an SSID profile
+
+Operation ID: `deleteOrganizationWirelessSsidsProfile`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/profiles/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/wireless/ssids/profiles/{id}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-wireless-ssids-profile/)
+
+#### Update this SSID profile
+
+Operation ID: `updateOrganizationWirelessSsidsProfile`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/profiles/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/wireless/ssids/profiles/{id}`  
+> 
+> * * *
+
+* * *
+
+\[ sites \]
+--------------
+
+### buildings
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-sites-building/)
+
+#### Create a new building
+
+Operation ID: `createNetworkSitesBuilding`
+
+PATH _`/networks/{networkId}/sites/buildings`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/networks/{networkId}/sites/buildings`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-network-sites-building/)
+
+#### Delete a building
+
+Operation ID: `deleteNetworkSitesBuilding`
+
+PATH _`/networks/{networkId}/sites/buildings/{buildingId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/networks/{networkId}/sites/buildings/{buildingId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-sites-building/)
+
+#### Update a building
+
+Operation ID: `updateNetworkSitesBuilding`
+
+PATH _`/networks/{networkId}/sites/buildings/{buildingId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/networks/{networkId}/sites/buildings/{buildingId}`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+------------
+
+### firewall
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-firewall-l3-firewall-rules/)
+
+#### Return the L3 firewall rules for an MX network
+
+Operation ID: `getNetworkApplianceFirewallL3FirewallRules`
+
+GET _`/networks/{networkId}/appliance/firewall/l3FirewallRules`_
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-firewall-l3-firewall-rules/)
+
+#### Update the L3 firewall rules of an MX network
+
+Operation ID: `updateNetworkApplianceFirewallL3FirewallRules`
+
+PUT _`/networks/{networkId}/appliance/firewall/l3FirewallRules`_
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+### prefixes
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-prefixes-delegated-statics/)
+
+#### List static delegated prefixes for a network
+
+Operation ID: `getNetworkAppliancePrefixesDelegatedStatics`
+
+GET _`/networks/{networkId}/appliance/prefixes/delegated/statics`_
+
+> \- the response property `/items/description` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-prefixes-delegated-static/)
+
+#### Add a static delegated prefix from a network
+
+Operation ID: `createNetworkAppliancePrefixesDelegatedStatic`
+
+POST _`/networks/{networkId}/appliance/prefixes/delegated/statics`_
+
+> \- added the optional property `createdAt` to the response with the `201` status
+
+> \- added the optional property `description` to the response with the `201` status
+
+> \- added the optional property `origin` to the response with the `201` status
+
+> \- added the optional property `prefix` to the response with the `201` status
+
+> \- added the optional property `staticDelegatedPrefixId` to the response with the `201` status
+
+> \- added the optional property `updatedAt` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-network-appliance-prefixes-delegated-static/)
+
+#### Delete a static delegated prefix from a network
+
+Operation ID: `deleteNetworkAppliancePrefixesDelegatedStatic`
+
+DELETE _`/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`_
+
+> \- added the media type `application/json` for the response with the status `204`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-prefixes-delegated-static/)
+
+#### Return a static delegated prefix from a network
+
+Operation ID: `getNetworkAppliancePrefixesDelegatedStatic`
+
+GET _`/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`_
+
+> \- the response property `description` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-prefixes-delegated-static/)
+
+#### Update a static delegated prefix from a network
+
+Operation ID: `updateNetworkAppliancePrefixesDelegatedStatic`
+
+PUT _`/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}`_
+
+> \- added the optional property `createdAt` to the response with the `200` status
+
+> \- added the optional property `description` to the response with the `200` status
+
+> \- added the optional property `origin` to the response with the `200` status
+
+> \- added the optional property `prefix` to the response with the `200` status
+
+> \- added the optional property `staticDelegatedPrefixId` to the response with the `200` status
+
+> \- added the optional property `updatedAt` to the response with the `200` status
+
+* * *
+
+### staticRoutes
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-static-route/)
+
+#### Add a static route for an MX or teleworker network
+
+Operation ID: `createNetworkApplianceStaticRoute`
+
+POST _`/networks/{networkId}/appliance/staticRoutes`_
+
+> \- the `gatewayVlanId` request property type/format changed from `string`/`` to `integer`/``
+
+> \- the `gatewayVlanId` request property's max was set to `4094.00`
+
+> \- the `gatewayVlanId` request property's min was set to `0.00`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-static-route/)
+
+#### Update a static route for an MX or teleworker network
+
+Operation ID: `updateNetworkApplianceStaticRoute`
+
+PUT _`/networks/{networkId}/appliance/staticRoutes/{staticRouteId}`_
+
+> \- the `gatewayVlanId` request property type/format changed from `string`/`` to `integer`/``
+
+> \- the `gatewayVlanId` request property's max was set to `4094.00`
+
+> \- the `gatewayVlanId` request property's min was set to `0.00`
+
+* * *
+
+\[ clients \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-client/)
+
+#### Return the client associated with the given identifier
+
+Operation ID: `getNetworkClient`
+
+GET _`/networks/{networkId}/clients/{clientId}`_
+
+> \- added the optional property `recentDeviceId` to the response with the `200` status
+
+* * *
+
+\[ devices \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-port/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPort`
+
+PUT _`/devices/{serial}/appliance/interfaces/ports/{number}`_
+
+> \- added the new optional request property `downlink`
+
+> \- added the optional property `interface` to the response with the `200` status
+
+> \- added the optional property `personality/layer` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-appliance-uplinks-settings/)
+
+#### Return the uplink settings for a secure router or security appliance
+
+Operation ID: `getDeviceApplianceUplinksSettings`
+
+GET _`/devices/{serial}/appliance/uplinks/settings`_
+
+> \- added the optional property `interfaces/wan1/transition` to the response with the `200` status
+
+> \- added the optional property `interfaces/wan2/transition` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-uplinks-settings/)
+
+#### Update the uplink settings for a secure router or security appliance
+
+Operation ID: `updateDeviceApplianceUplinksSettings`
+
+PUT _`/devices/{serial}/appliance/uplinks/settings`_
+
+> \- added the new optional request property `interfaces/wan1/transition`
+
+> \- added the new optional request property `interfaces/wan2/transition`
+
+> \- added the optional property `interfaces/wan1/transition` to the response with the `200` status
+
+> \- added the optional property `interfaces/wan2/transition` to the response with the `200` status
+
+* * *
+
+### liveTools
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-ospf-neighbor/)
+
+#### Return an OSPF neighbors live tool job.
+
+Operation ID: `getDeviceLiveToolsOspfNeighbor`
+
+GET _`/devices/{serial}/liveTools/ospfNeighbors/{ospfNeighborsId}`_
+
+> \- added the optional property `routers/items/interfaceName` to the response with the `200` status
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-switch-routing-interfaces/)
+
+#### List layer 3 interfaces for a switch
+
+Operation ID: `getDeviceSwitchRoutingInterfaces`
+
+GET _`/devices/{serial}/switch/routing/interfaces`_
+
+> \- added the optional property `/items/mtu` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-switch-routing-interface/)
+
+#### Create a layer 3 interface for a switch
+
+Operation ID: `createDeviceSwitchRoutingInterface`
+
+POST _`/devices/{serial}/switch/routing/interfaces`_
+
+> \- added the new optional request property `mtu`
+
+> \- added the optional property `mtu` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-switch-routing-interface/)
+
+#### Return a layer 3 interface for a switch
+
+Operation ID: `getDeviceSwitchRoutingInterface`
+
+GET _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
+
+> \- added the optional property `mtu` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-switch-routing-interface/)
+
+#### Update a layer 3 interface for a switch
+
+Operation ID: `updateDeviceSwitchRoutingInterface`
+
+PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
+
+> \- added the new optional request property `mtu`
+
+> \- added the optional property `mtu` to the response with the `200` status
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-wireless-radio-afc-position/)
+
+#### Return the position for a wireless device
+
+Operation ID: `getDeviceWirelessRadioAfcPosition`
+
+GET _`/devices/{serial}/wireless/radio/afc/position`_
+
+> \- added the optional property `height/aboveFloor` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-wireless-radio-afc-position/)
+
+#### Update the position attributes for this device
+
+Operation ID: `updateDeviceWirelessRadioAfcPosition`
+
+PUT _`/devices/{serial}/wireless/radio/afc/position`_
+
+> \- added the new optional request property `height/aboveFloor`
+
+> \- added the optional property `height/aboveFloor` to the response with the `200` status
+
+* * *
+
+\[ floorPlans \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-floor-plans/)
+
+#### List the floor plans that belong to your network
+
+Operation ID: `getNetworkFloorPlans`
+
+GET _`/networks/{networkId}/floorPlans`_
+
+> \- added the optional property `/items/buildingId` to the response with the `200` status
+
+> \- added the optional property `/items/devices/items/height` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-floor-plan/)
+
+#### Upload a floor plan
+
+Operation ID: `createNetworkFloorPlan`
+
+POST _`/networks/{networkId}/floorPlans`_
+
+> \- added the new optional request property `buildingId`
+
+> \- added the optional property `buildingId` to the response with the `201` status
+
+> \- added the optional property `devices/items/height` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-network-floor-plan/)
+
+#### Destroy a floor plan
+
+Operation ID: `deleteNetworkFloorPlan`
+
+DELETE _`/networks/{networkId}/floorPlans/{floorPlanId}`_
+
+> \- added the optional property `buildingId` to the response with the `204` status
+
+> \- added the optional property `devices/items/height` to the response with the `204` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-floor-plan/)
+
+#### Find a floor plan by ID
+
+Operation ID: `getNetworkFloorPlan`
+
+GET _`/networks/{networkId}/floorPlans/{floorPlanId}`_
+
+> \- added the optional property `buildingId` to the response with the `200` status
+
+> \- added the optional property `devices/items/height` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-floor-plan/)
+
+#### Update a floor plan's geolocation and other meta data
+
+Operation ID: `updateNetworkFloorPlan`
+
+PUT _`/networks/{networkId}/floorPlans/{floorPlanId}`_
+
+> \- added the new optional request property `buildingId`
+
+> \- added the optional property `buildingId` to the response with the `200` status
+
+> \- added the optional property `devices/items/height` to the response with the `200` status
+
+* * *
+
+\[ organizations \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- added the optional property `items/items/ports/items/interface` to the response with the `200` status
+
+> \- added the optional property `items/items/ports/items/personality/layer` to the response with the `200` status
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-clients-topology-new/)
+
+#### Given a client, return current topology
+
+Operation ID: `getOrganizationAssuranceClientsTopologyNew`
+
+GET _`/organizations/{organizationId}/assurance/clients/topology/new`_
+
+> \- added the optional property `/items/items/items/topology/path/items/isAurora2` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-clients-insights/)
+
+#### Returns the top wireless service-level insights for the specified time window, including each network and the impacted client count per metric.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceClientsInsights`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/clients/insights`_
+
+> \- added the new `coverage` enum value to the `items/items/metric/name` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-client/)
+
+#### Summarizes wireless connection successes and failures by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byClient`_
+
+> \- removed the optional property `/items/items/items/connections` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-device/)
+
+#### Summarizes wireless connection successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byDevice`_
+
+> \- removed the optional property `/items/items/items/connections` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-ssid/)
+
+#### Summarizes wireless connection successes and failures by ssid.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkBySsid`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/bySsid`_
+
+> \- removed the optional property `/items/items/items/connections` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-client/)
+
+#### Summarizes wireless time to connect metrics by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClient`_
+
+> \- removed the optional property `/items/items/items/connections` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-device/)
+
+#### Summarizes wireless connection time to connect metrics by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byDevice`_
+
+> \- removed the optional property `/items/items/items/connections` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-ssid/)
+
+#### Summarizes wireless connection time to connect metrics by ssid.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkBySsid`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/bySsid`_
+
+> \- removed the optional property `/items/items/items/connections` from the response with the `200` status
+
+* * *
+
+### inventory
+
+POST _`/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/exportEvents`_
+
+> \- api path removed with deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/imports`_
+
+> \- api path removed with deprecation
+
+* * *
+
+POST _`/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/imports`_
+
+> \- api path removed with deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/networks`_
+
+> \- api path removed with deprecation
+
+* * *
+
+POST _`/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/prepare`_
+
+> \- api path removed with deprecation
+
+* * *
+
+### sase
+
+POST _`/organizations/{organizationId}/sase/connectors/batchCreate`_
+
+> \- api path removed without deprecation
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-air-marshal-rules/)
+
+#### Returns the current Air Marshal rules for this organization
+
+Operation ID: `getOrganizationWirelessAirMarshalRules`
+
+GET _`/organizations/{organizationId}/wireless/airMarshal/rules`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-clients-overview-by-device/)
+
+#### List access point client count at the moment in an organization
+
+Operation ID: `getOrganizationWirelessClientsOverviewByDevice`
+
+GET _`/organizations/{organizationId}/wireless/clients/overview/byDevice`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/by-organization-wireless-clients-rf-health-overview-network/)
+
+#### Show the by-network client information for the organization in the given interval
+
+Operation ID: `byOrganizationWirelessClientsRfHealthOverviewNetwork`
+
+GET _`/organizations/{organizationId}/wireless/clients/rfHealth/overview/byNetwork`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-devices-packet-loss-by-network/)
+
+#### Get average packet loss for the given timespan for all networks in the organization.
+
+Operation ID: `getOrganizationWirelessDevicesPacketLossByNetwork`
+
+GET _`/organizations/{organizationId}/wireless/devices/packetLoss/byNetwork`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-devices-system-cpu-load-history/)
+
+#### Return the CPU Load history for a list of wireless devices in the organization.
+
+Operation ID: `getOrganizationWirelessDevicesSystemCpuLoadHistory`
+
+GET _`/organizations/{organizationId}/wireless/devices/system/cpu/load/history`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-radio-afc-position-by-device/)
+
+#### List the AFC power limits of an organization by device
+
+Operation ID: `getOrganizationWirelessRadioAfcPositionByDevice`
+
+GET _`/organizations/{organizationId}/wireless/radio/afc/position/byDevice`_
+
+> \- added the optional property `/items/height/aboveFloor` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-rf-profiles-assignments-by-device/)
+
+#### List the RF profiles of an organization by device
+
+Operation ID: `getOrganizationWirelessRfProfilesAssignmentsByDevice`
+
+GET _`/organizations/{organizationId}/wireless/rfProfiles/assignments/byDevice`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+\[ switch \]
+------------
+
+### stacks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-stack-routing-interfaces/)
+
+#### List layer 3 interfaces for a switch stack
+
+Operation ID: `getNetworkSwitchStackRoutingInterfaces`
+
+GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
+
+> \- added the optional property `/items/mtu` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-switch-stack-routing-interface/)
+
+#### Create a layer 3 interface for a switch stack
+
+Operation ID: `createNetworkSwitchStackRoutingInterface`
+
+POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
+
+> \- added the new optional request property `mtu`
+
+> \- added the optional property `mtu` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-stack-routing-interface/)
+
+#### Return a layer 3 interface from a switch stack
+
+Operation ID: `getNetworkSwitchStackRoutingInterface`
+
+GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
+
+> \- added the optional property `mtu` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-stack-routing-interface/)
+
+#### Update a layer 3 interface for a switch stack
+
+Operation ID: `updateNetworkSwitchStackRoutingInterface`
+
+PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
+
+> \- added the new optional request property `mtu`
+
+> \- added the optional property `mtu` to the response with the `200` status
+
+* * *
+
+\[ wireless \]
+------------
+
+### clients
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-clients-health-scores/)
+
+#### Fetch the health scores for all clients on this network
+
+Operation ID: `getNetworkWirelessClientsHealthScores`
+
+GET _`/networks/{networkId}/wireless/clients/healthScores`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-clients-onboarding-history/)
+
+#### Return counts of distinct wireless clients connecting to a network over time
+
+Operation ID: `getNetworkWirelessClientsOnboardingHistory`
+
+GET _`/networks/{networkId}/wireless/clients/onboardingHistory`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssids/)
+
+#### List the MR SSIDs in a network
+
+Operation ID: `getNetworkWirelessSsids`
+
+GET _`/networks/{networkId}/wireless/ssids`_
+
+> \- added the optional property `/items/psk` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssid/)
+
+#### Return a single MR SSID
+
+Operation ID: `getNetworkWirelessSsid`
+
+GET _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- added the optional property `psk` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid/)
+
+#### Update the attributes of an MR SSID
+
+Operation ID: `updateNetworkWirelessSsid`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- added the new optional request property `campusGateway`
+
+> \- added the optional property `psk` to the response with the `200` status
+
+* * *
+
+
+---
+
 ## v1.69.0-beta.2
 
 
