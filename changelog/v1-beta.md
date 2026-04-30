@@ -1,6 +1,685 @@
 
 ---
 
+## v1.69.0-beta.4
+
+
+- [Added](#added)
+  * [\[ devices \]](#-devices-)
+    + [appliance](#appliance)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port)
+    + [cellular](#cellular)
+      - [Update the cellular band masks for a device](#update-the-cellular-band-masks-for-a-device)
+    + [liveTools](#livetools)
+      - [Enqueue a job to perform a cycle port for the device on the specified ports](#enqueue-a-job-to-perform-a-cycle-port-for-the-device-on-the-specified-ports)
+      - [Return a cycle port live tool job.](#return-a-cycle-port-live-tool-job)
+  * [\[ organizations \]](#-organizations-)
+    + [appliance](#appliance)
+      - [Return the VRF setting for an organization.](#return-the-vrf-setting-for-an-organization)
+      - [Update the VRF setting for an organization.](#update-the-vrf-setting-for-an-organization)
+    + [assurance](#assurance)
+      - [Summarizes wired connection successes and failures by client.](#summarizes-wired-connection-successes-and-failures-by-client)
+      - [Summarizes wired connection successes and failures by device.](#summarizes-wired-connection-successes-and-failures-by-device)
+- [Changed](#changed)
+  * [\[ appliance \]](#-appliance--1)
+    + [firewall](#firewall-1)
+      - [List the MX L7 firewall rules for an MX network](#list-the-mx-l7-firewall-rules-for-an-mx-network-1)
+      - [Update the MX L7 firewall rules for an MX network](#update-the-mx-l7-firewall-rules-for-an-mx-network-1)
+    + [ports](#ports-1)
+      - [List per-port VLAN settings for all ports of a secure router or security appliance.](#list-per-port-vlan-settings-for-all-ports-of-a-secure-router-or-security-appliance-1)
+      - [Return per-port VLAN settings for a single secure router or security appliance port.](#return-per-port-vlan-settings-for-a-single-secure-router-or-security-appliance-port-1)
+      - [Update the per-port VLAN settings for a single secure router or security appliance port.](#update-the-per-port-vlan-settings-for-a-single-secure-router-or-security-appliance-port-1)
+    + [singleLan](#singlelan-1)
+      - [Return single LAN configuration](#return-single-lan-configuration-1)
+      - [Update single LAN configuration](#update-single-lan-configuration-1)
+    + [trafficShaping](#trafficshaping-1)
+      - [Display the traffic shaping settings for an MX network](#display-the-traffic-shaping-settings-for-an-mx-network-1)
+      - [Update the traffic shaping settings for an MX network](#update-the-traffic-shaping-settings-for-an-mx-network-1)
+      - [Display the traffic shaping settings rules for an MX network](#display-the-traffic-shaping-settings-rules-for-an-mx-network-1)
+      - [Update the traffic shaping settings rules for an MX network](#update-the-traffic-shaping-settings-rules-for-an-mx-network-1)
+    + [vlans](#vlans-1)
+      - [List the VLANs for a Security Appliance network](#list-the-vlans-for-a-security-appliance-network-1)
+      - [Add a VLAN](#add-a-vlan-1)
+      - [Return a VLAN](#return-a-vlan-1)
+      - [Update a VLAN](#update-a-vlan-1)
+    + [vpn](#vpn-1)
+      - [Return the site-to-site VPN settings of a network](#return-the-site-to-site-vpn-settings-of-a-network-1)
+      - [Update the site-to-site VPN settings of a network](#update-the-site-to-site-vpn-settings-of-a-network-1)
+  * [\[ devices \]](#-devices--1)
+    + [appliance](#appliance-1)
+      - [Return current delegated IPv6 prefixes on an appliance.](#return-current-delegated-ipv6-prefixes-on-an-appliance-1)
+      - [Return prefixes assigned to all IPv6 enabled VLANs on an appliance.](#return-prefixes-assigned-to-all-ipv6-enabled-vlans-on-an-appliance-1)
+    + [cellular](#cellular-1)
+    + [liveTools](#livetools-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [appliance](#appliance-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+      - [List the VLANs for an Organization](#list-the-vlans-for-an-organization-1)
+    + [assurance](#assurance-1)
+      - [Summarizes wired connection successes and failures by network.](#summarizes-wired-connection-successes-and-failures-by-network-1)
+    + [devices](#devices-1)
+      - [List cellular data management profiles in this organization](#list-cellular-data-management-profiles-in-this-organization-1)
+      - [List the latest cellular geolocation telemetry for devices in an organization](#list-the-latest-cellular-geolocation-telemetry-for-devices-in-an-organization-1)
+    + [iam](#iam-1)
+    + [webhooks](#webhooks-1)
+      - [Return the log of webhook POSTs sent](#return-the-log-of-webhook-posts-sent-1)
+ 
+Version **v1.69.0-beta.3** _to_ **v1.69.0-beta.4**
+
+* * *
+
+**Summary of Changes**
+
+**8 - New**
+
+**29 - Updated**
+
+**858 - Total Endpoints**
+
+**583 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ devices \]
+--------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-ports/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPorts`
+
+PATH _`/devices/{serial}/appliance/interfaces/ports`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/devices/{serial}/appliance/interfaces/ports`  
+> 
+> * * *
+
+* * *
+
+### cellular
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-cellular-uplinks-bands-masks/)
+
+#### Update the cellular band masks for a device
+
+Operation ID: `updateDeviceCellularUplinksBandsMasks`
+
+PATH _`/devices/{serial}/cellular/uplinks/bands/masks`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/devices/{serial}/cellular/uplinks/bands/masks`  
+> 
+> * * *
+
+* * *
+
+### liveTools
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-ports-cycle/)
+
+#### Enqueue a job to perform a cycle port for the device on the specified ports
+
+Operation ID: `createDeviceLiveToolsPortsCycle`
+
+PATH _`/devices/{serial}/liveTools/ports/cycle`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/devices/{serial}/liveTools/ports/cycle`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-ports-cycle/)
+
+#### Return a cycle port live tool job.
+
+Operation ID: `getDeviceLiveToolsPortsCycle`
+
+PATH _`/devices/{serial}/liveTools/ports/cycle/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/devices/{serial}/liveTools/ports/cycle/{id}`  
+> 
+> * * *
+
+* * *
+
+\[ organizations \]
+--------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-routing-vrfs-settings/)
+
+#### Return the VRF setting for an organization.
+
+Operation ID: `getOrganizationApplianceRoutingVrfsSettings`
+
+PATH _`/organizations/{organizationId}/appliance/routing/vrfs/settings`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/routing/vrfs/settings`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-appliance-routing-vrfs-settings/)
+
+#### Update the VRF setting for an organization.
+
+Operation ID: `updateOrganizationApplianceRoutingVrfsSettings`
+
+PATH _`/organizations/{organizationId}/appliance/routing/vrfs/settings`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/appliance/routing/vrfs/settings`  
+> 
+> * * *
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-client/)
+
+#### Summarizes wired connection successes and failures by client.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByClient`
+
+PATH _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byClient`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byClient`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-device/)
+
+#### Summarizes wired connection successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByDevice`
+
+PATH _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byDevice`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+------------
+
+### firewall
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-firewall-l7-firewall-rules/)
+
+#### List the MX L7 firewall rules for an MX network
+
+Operation ID: `getNetworkApplianceFirewallL7FirewallRules`
+
+GET _`/networks/{networkId}/appliance/firewall/l7FirewallRules`_
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-firewall-l7-firewall-rules/)
+
+#### Update the MX L7 firewall rules for an MX network
+
+Operation ID: `updateNetworkApplianceFirewallL7FirewallRules`
+
+PUT _`/networks/{networkId}/appliance/firewall/l7FirewallRules`_
+
+> \- added the new `allowedCountries` enum value to the request property `rules/items/type`
+
+> \- added the new `blacklistedCountries` enum value to the request property `rules/items/type`
+
+> \- added the new `blockedCountries` enum value to the request property `rules/items/type`
+
+> \- added the new `whitelistedCountries` enum value to the request property `rules/items/type`
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+### ports
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-ports/)
+
+#### List per-port VLAN settings for all ports of a secure router or security appliance.
+
+Operation ID: `getNetworkAppliancePorts`
+
+GET _`/networks/{networkId}/appliance/ports`_
+
+> \- added the optional property `items/adaptivePolicyGroupId` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-port/)
+
+#### Return per-port VLAN settings for a single secure router or security appliance port.
+
+Operation ID: `getNetworkAppliancePort`
+
+GET _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- added the optional property `adaptivePolicyGroupId` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-port/)
+
+#### Update the per-port VLAN settings for a single secure router or security appliance port.
+
+Operation ID: `updateNetworkAppliancePort`
+
+PUT _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- added the optional property `adaptivePolicyGroupId` to the response with the `200` status
+
+* * *
+
+### singleLan
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-single-lan/)
+
+#### Return single LAN configuration
+
+Operation ID: `getNetworkApplianceSingleLan`
+
+GET _`/networks/{networkId}/appliance/singleLan`_
+
+> \- added the optional property `vrf` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-single-lan/)
+
+#### Update single LAN configuration
+
+Operation ID: `updateNetworkApplianceSingleLan`
+
+PUT _`/networks/{networkId}/appliance/singleLan`_
+
+> \- added the new optional request property `vrf`
+
+> \- added the optional property `vrf` to the response with the `200` status
+
+* * *
+
+### trafficShaping
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-traffic-shaping/)
+
+#### Display the traffic shaping settings for an MX network
+
+Operation ID: `getNetworkApplianceTrafficShaping`
+
+GET _`/networks/{networkId}/appliance/trafficShaping`_
+
+> \- added the required property `globalBandwidthLimits` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-traffic-shaping/)
+
+#### Update the traffic shaping settings for an MX network
+
+Operation ID: `updateNetworkApplianceTrafficShaping`
+
+PUT _`/networks/{networkId}/appliance/trafficShaping`_
+
+> \- request body became required
+
+> \- the request property `globalBandwidthLimits` became required
+
+> \- added the required property `globalBandwidthLimits` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-traffic-shaping-rules/)
+
+#### Display the traffic shaping settings rules for an MX network
+
+Operation ID: `getNetworkApplianceTrafficShapingRules`
+
+GET _`/networks/{networkId}/appliance/trafficShaping/rules`_
+
+> \- added the optional property `defaultRulesEnabled` to the response with the `200` status
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-traffic-shaping-rules/)
+
+#### Update the traffic shaping settings rules for an MX network
+
+Operation ID: `updateNetworkApplianceTrafficShapingRules`
+
+PUT _`/networks/{networkId}/appliance/trafficShaping/rules`_
+
+> \- added the optional property `defaultRulesEnabled` to the response with the `200` status
+
+> \- added the optional property `rules` to the response with the `200` status
+
+* * *
+
+### vlans
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vlans/)
+
+#### List the VLANs for a Security Appliance network
+
+Operation ID: `getNetworkApplianceVlans`
+
+GET _`/networks/{networkId}/appliance/vlans`_
+
+> \- added the optional property `items/adaptivePolicyGroupId` to the response with the `200` status
+
+> \- added the optional property `items/vrf` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-vlan/)
+
+#### Add a VLAN
+
+Operation ID: `createNetworkApplianceVlan`
+
+POST _`/networks/{networkId}/appliance/vlans`_
+
+> \- added the new optional request property `vrf`
+
+> \- added the optional property `adaptivePolicyGroupId` to the response with the `201` status
+
+> \- added the optional property `vrf` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vlan/)
+
+#### Return a VLAN
+
+Operation ID: `getNetworkApplianceVlan`
+
+GET _`/networks/{networkId}/appliance/vlans/{vlanId}`_
+
+> \- added the optional property `adaptivePolicyGroupId` to the response with the `200` status
+
+> \- added the optional property `vrf` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vlan/)
+
+#### Update a VLAN
+
+Operation ID: `updateNetworkApplianceVlan`
+
+PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
+
+> \- added the new optional request property `vrf`
+
+> \- added the optional property `adaptivePolicyGroupId` to the response with the `200` status
+
+> \- added the optional property `vrf` to the response with the `200` status
+
+* * *
+
+### vpn
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vpn-site-to-site-vpn/)
+
+#### Return the site-to-site VPN settings of a network
+
+Operation ID: `getNetworkApplianceVpnSiteToSiteVpn`
+
+GET _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
+
+> \- added the optional property `peerSgtCapable` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-site-to-site-vpn/)
+
+#### Update the site-to-site VPN settings of a network
+
+Operation ID: `updateNetworkApplianceVpnSiteToSiteVpn`
+
+PUT _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
+
+> \- added the new optional request property `peerSgtCapable`
+
+> \- added the optional property `peerSgtCapable` to the response with the `200` status
+
+* * *
+
+\[ devices \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-appliance-prefixes-delegated/)
+
+#### Return current delegated IPv6 prefixes on an appliance.
+
+Operation ID: `getDeviceAppliancePrefixesDelegated`
+
+GET _`/devices/{serial}/appliance/prefixes/delegated`_
+
+> \- added the optional property `items/counts` to the response with the `200` status
+
+> \- added the optional property `items/description` to the response with the `200` status
+
+> \- added the optional property `items/expiresAt` to the response with the `200` status
+
+> \- added the optional property `items/origin` to the response with the `200` status
+
+> \- added the optional property `items/staticDelegatedPrefixId` to the response with the `200` status
+
+> \- added the required property `items/isPreferred` to the response with the `200` status
+
+> \- added the required property `items/method` to the response with the `200` status
+
+> \- added the required property `items/prefix` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-appliance-prefixes-delegated-vlan-assignments/)
+
+#### Return prefixes assigned to all IPv6 enabled VLANs on an appliance.
+
+Operation ID: `getDeviceAppliancePrefixesDelegatedVlanAssignments`
+
+GET _`/devices/{serial}/appliance/prefixes/delegated/vlanAssignments`_
+
+> \- added the optional property `items/ipv6` to the response with the `200` status
+
+> \- added the optional property `items/origin` to the response with the `200` status
+
+> \- added the optional property `items/vlan` to the response with the `200` status
+
+> \- added the required property `items/status` to the response with the `200` status
+
+* * *
+
+### cellular
+
+PUT _`/devices/{serial}/cellular/uplinks/bands`_
+
+> \- api path removed without deprecation
+
+* * *
+
+### liveTools
+
+POST _`/devices/{serial}/liveTools/cyclePort`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/devices/{serial}/liveTools/cyclePort/{id}`_
+
+> \- api path removed without deprecation
+
+* * *
+
+\[ organizations \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- added the new optional `query` request parameter `interfaces`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vlans/)
+
+#### List the VLANs for an Organization
+
+Operation ID: `getOrganizationApplianceVlans`
+
+GET _`/organizations/{organizationId}/appliance/vlans`_
+
+> \- added the optional property `items/adaptivePolicyGroupId` to the response with the `200` status
+
+> \- added the optional property `items/vrf` to the response with the `200` status
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network/)
+
+#### Summarizes wired connection successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork`_
+
+> \- added the optional property `items/items/items/byContributor` to the response with the `200` status
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-profiles/)
+
+#### List cellular data management profiles in this organization
+
+Operation ID: `getOrganizationDevicesCellularDataProfiles`
+
+GET _`/organizations/{organizationId}/devices/cellular/data/profiles`_
+
+> \- the response's body type/format changed from `array`/`` to `object`/`` for status `200`
+
+> \- for the `query` request parameter `profileIds`, the type/format of property `items/` was changed from `integer`/`` to `string`/``
+
+> \- deleted the `query` request parameter `deviceSerial`
+
+> \- added the new optional `query` request parameter `serials`
+
+> \- added the optional property `items` to the response with the `200` status
+
+> \- added the optional property `meta` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-geolocations/)
+
+#### List the latest cellular geolocation telemetry for devices in an organization
+
+Operation ID: `getOrganizationDevicesCellularGeolocations`
+
+GET _`/organizations/{organizationId}/devices/cellular/geolocations`_
+
+> \- the `items/items/geolocation/lastReportedAt` response's property type/format changed from `string`/`` to `string`/`date-time` for status `200`
+
+> \- the `items/items/geolocation/latitude` response's property type/format changed from `string`/`` to `number`/`float` for status `200`
+
+> \- the `items/items/geolocation/longitude` response's property type/format changed from `string`/`` to `number`/`float` for status `200`
+
+* * *
+
+### iam
+
+POST _`/organizations/{organizationId}/iam/admins/administrators/me/permissions/resolve`_
+
+> \- api path removed without deprecation
+
+* * *
+
+### webhooks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-webhooks-logs/)
+
+#### Return the log of webhook POSTs sent
+
+Operation ID: `getOrganizationWebhooksLogs`
+
+GET _`/organizations/{organizationId}/webhooks/logs`_
+
+> \- for the `query` request parameter `timespan`, the max was decreased from `2678400.00` to `2592000.00`
+
+* * *
+
+
+---
+
 ## v1.69.0-beta.3
 
 
