@@ -1,6 +1,1170 @@
 
 ---
 
+## v1.70.0-beta.0
+
+
+- [Added](#added)
+  * [\[ campusGateway \]](#-campusgateway-)
+    + [clusters](#clusters)
+      - [Delete a cluster](#delete-a-cluster)
+  * [\[ devices \]](#-devices-)
+    + [appliance](#appliance)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port)
+    + [cellular](#cellular)
+      - [Update the cellular band masks for a device](#update-the-cellular-band-masks-for-a-device)
+  * [\[ organizations \]](#-organizations-)
+    + [assurance](#assurance)
+      - [Return combined wireless and wired connected client counts over time for a network.](#return-combined-wireless-and-wired-connected-client-counts-over-time-for-a-network)
+    + [campusGateway](#campusgateway)
+      - [List the details of a Failover Targets for a Campus Gateway cluster](#list-the-details-of-a-failover-targets-for-a-campus-gateway-cluster)
+      - [Get available backup cluster targets for campus gateway failover configuration](#get-available-backup-cluster-targets-for-campus-gateway-failover-configuration)
+      - [List networks tunneling through Campus Gateway clusters with their AP, ssids and client counts](#list-networks-tunneling-through-campus-gateway-clusters-with-their-ap-ssids-and-client-counts)
+      - [Provisions a cluster,adds campus gateways to it and associate/dissociate failover targets.](#provisions-a-clusteradds-campus-gateways-to-it-and-associatedissociate-failover-targets)
+      - [List SSIDs tunneling through Campus Gateway clusters](#list-ssids-tunneling-through-campus-gateway-clusters)
+      - [List the details of APs tunneling through the Campus Gateway clusters](#list-the-details-of-aps-tunneling-through-the-campus-gateway-clusters)
+      - [List the count of connections(APs) with tunneling status up and down through the Campus Gateway clusters](#list-the-count-of-connectionsaps-with-tunneling-status-up-and-down-through-the-campus-gateway-clusters)
+    + [devices](#devices)
+      - [Assign devices to a Cellular Data Management Profile in batch](#assign-devices-to-a-cellular-data-management-profile-in-batch)
+- [Changed](#changed)
+  * [\[ appliance \]](#-appliance--1)
+    + [firewall](#firewall-1)
+      - [Return the firewall settings for this network](#return-the-firewall-settings-for-this-network-1)
+      - [Update the firewall settings for this network](#update-the-firewall-settings-for-this-network-1)
+    + [interfaces](#interfaces-1)
+      - [Create wired L3 interface configuration](#create-wired-l3-interface-configuration-1)
+      - [Update wired L3 interface configuration](#update-wired-l3-interface-configuration-1)
+  * [\[ devices \]](#-devices--1)
+    + [appliance](#appliance-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+    + [cellular](#cellular-1)
+    + [switch](#switch-1)
+      - [Cycle a set of switch ports on non-Catalyst MS devices](#cycle-a-set-of-switch-ports-on-non-catalyst-ms-devices-1)
+    + [syslog](#syslog-1)
+      - [Updates the syslog servers configuration for a network.](#updates-the-syslog-servers-configuration-for-a-network-1)
+  * [\[ networks \]](#-networks--1)
+    + [general](#general-1)
+      - [Return a network](#return-a-network-1)
+      - [Update a network](#update-a-network-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [appliance](#appliance-1)
+      - [Listing of L3 Interface Configurations across networks for the organization](#listing-of-l3-interface-configurations-across-networks-for-the-organization-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+    + [assurance](#assurance-1)
+      - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-1)
+      - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-1)
+      - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-1)
+      - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-1)
+      - [Returns historical health alert overviews](#returns-historical-health-alert-overviews-1)
+      - [Return a list of alert types](#return-a-list-of-alert-types-1)
+      - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-1)
+      - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device-1)
+      - [Summarizes wireless post connection capacity successes and failures by ssid.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-ssid-1)
+      - [Summarizes wireless coverage successes and failures by client.](#summarizes-wireless-coverage-successes-and-failures-by-client-1)
+      - [Summarizes wireless coverage successes and failures by device.](#summarizes-wireless-coverage-successes-and-failures-by-device-1)
+      - [Summarizes wireless coverage successes and failures by SSID.](#summarizes-wireless-coverage-successes-and-failures-by-ssid-1)
+    + [devices](#devices-1)
+      - [List devices eligible for Cellular Data Management profile assignment in this organization](#list-devices-eligible-for-cellular-data-management-profile-assignment-in-this-organization-1)
+      - [Add a cellular data management profile to this organization](#add-a-cellular-data-management-profile-to-this-organization-1)
+      - [List Cellular Data Management Profile assignments in this organization](#list-cellular-data-management-profile-assignments-in-this-organization-1)
+      - [Unassign devices from a Cellular Data Management Profile in batch](#unassign-devices-from-a-cellular-data-management-profile-in-batch-1)
+      - [Update a Cellular Data Management Profile](#update-a-cellular-data-management-profile-1)
+      - [List current cellular data usage for devices in this organization](#list-current-cellular-data-usage-for-devices-in-this-organization-1)
+      - [List historical cellular data usage grouped by device and interval in this organization](#list-historical-cellular-data-usage-grouped-by-device-and-interval-in-this-organization-1)
+      - [Returns syslog servers configured for the networks within an organization.](#returns-syslog-servers-configured-for-the-networks-within-an-organization-1)
+      - [Returns roles that can be assigned to a syslog server for a given network.](#returns-roles-that-can-be-assigned-to-a-syslog-server-for-a-given-network-1)
+    + [networks](#networks-1)
+      - [List the networks that the user has privileges on in an organization](#list-the-networks-that-the-user-has-privileges-on-in-an-organization-1)
+      - [Create a network](#create-a-network-1)
+      - [Combine multiple networks into a single network](#combine-multiple-networks-into-a-single-network-1)
+  * [\[ snmp \]](#-snmp--1)
+    + [general](#general-1)
+      - [Return the SNMP settings for a network](#return-the-snmp-settings-for-a-network-1)
+      - [Update the SNMP settings for a network](#update-the-snmp-settings-for-a-network-1)
+  * [\[ split \]](#-split--1)
+    + [general](#general-1)
+      - [Split a combined network into individual networks for each type of device](#split-a-combined-network-into-individual-networks-for-each-type-of-device-1)
+  * [\[ unbind \]](#-unbind--1)
+    + [general](#general-1)
+      - [Unbind a network from a template.](#unbind-a-network-from-a-template-1)
+ 
+Version **v1.69.0-beta.4** _to_ **v1.70.0-beta.0**
+
+* * *
+
+**Summary of Changes**
+
+**12 - New**
+
+**42 - Updated**
+
+**862 - Total Endpoints**
+
+**586 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ campusGateway \]
+--------------
+
+### clusters
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-network-campus-gateway-cluster/)
+
+#### Delete a cluster
+
+Operation ID: `deleteNetworkCampusGatewayCluster`
+
+PATH _`/networks/{networkId}/campusGateway/clusters/{clusterId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/networks/{networkId}/campusGateway/clusters/{clusterId}`  
+> 
+> * * *
+
+* * *
+
+\[ devices \]
+--------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-appliance-interfaces-ports-update/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `createDeviceApplianceInterfacesPortsUpdate`
+
+PATH _`/devices/{serial}/appliance/interfaces/ports/update`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/devices/{serial}/appliance/interfaces/ports/update`  
+> 
+> * * *
+
+* * *
+
+### cellular
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-cellular-uplinks-bands-masks-update/)
+
+#### Update the cellular band masks for a device
+
+Operation ID: `createDeviceCellularUplinksBandsMasksUpdate`
+
+PATH _`/devices/{serial}/cellular/uplinks/bands/masks/update`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/devices/{serial}/cellular/uplinks/bands/masks/update`  
+> 
+> * * *
+
+* * *
+
+\[ organizations \]
+--------------
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-clients-connected-count-history/)
+
+#### Return combined wireless and wired connected client counts over time for a network.
+
+Operation ID: `getOrganizationAssuranceClientsConnectedCountHistory`
+
+PATH _`/organizations/{organizationId}/assurance/clients/connectedCountHistory`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/clients/connectedCountHistory`  
+> 
+> * * *
+
+* * *
+
+### campusGateway
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-clusters-failover-targets/)
+
+#### List the details of a Failover Targets for a Campus Gateway cluster
+
+Operation ID: `getOrganizationCampusGatewayClustersFailoverTargets`
+
+PATH _`/organizations/{organizationId}/campusGateway/clusters/failover/targets`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/clusters/failover/targets`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-clusters-failover-targets-by-cluster/)
+
+#### Get available backup cluster targets for campus gateway failover configuration
+
+Operation ID: `getOrganizationCampusGatewayClustersFailoverTargetsByCluster`
+
+PATH _`/organizations/{organizationId}/campusGateway/clusters/failover/targets/byCluster`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/clusters/failover/targets/byCluster`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-clusters-networks-overviews/)
+
+#### List networks tunneling through Campus Gateway clusters with their AP, ssids and client counts
+
+Operation ID: `getOrganizationCampusGatewayClustersNetworksOverviews`
+
+PATH _`/organizations/{organizationId}/campusGateway/clusters/networks/overviews`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/clusters/networks/overviews`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/provision-organization-campus-gateway-clusters/)
+
+#### Provisions a cluster,adds campus gateways to it and associate/dissociate failover targets.
+
+Operation ID: `provisionOrganizationCampusGatewayClusters`
+
+PATH _`/organizations/{organizationId}/campusGateway/clusters/provision`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/campusGateway/clusters/provision`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-clusters-ssids/)
+
+#### List SSIDs tunneling through Campus Gateway clusters
+
+Operation ID: `getOrganizationCampusGatewayClustersSsids`
+
+PATH _`/organizations/{organizationId}/campusGateway/clusters/ssids`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/clusters/ssids`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-connections/)
+
+#### List the details of APs tunneling through the Campus Gateway clusters
+
+Operation ID: `getOrganizationCampusGatewayConnections`
+
+PATH _`/organizations/{organizationId}/campusGateway/connections`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/connections`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-connections-overview/)
+
+#### List the count of connections(APs) with tunneling status up and down through the Campus Gateway clusters
+
+Operation ID: `getOrganizationCampusGatewayConnectionsOverview`
+
+PATH _`/organizations/{organizationId}/campusGateway/connections/overview`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/connections/overview`  
+> 
+> * * *
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/batch-organization-devices-cellular-data-profiles-assignments-create/)
+
+#### Assign devices to a Cellular Data Management Profile in batch
+
+Operation ID: `batchOrganizationDevicesCellularDataProfilesAssignmentsCreate`
+
+PATH _`/organizations/{organizationId}/devices/cellular/data/profiles/assignments/batchCreate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/devices/cellular/data/profiles/assignments/batchCreate`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+------------
+
+### firewall
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-firewall-settings/)
+
+#### Return the firewall settings for this network
+
+Operation ID: `getNetworkApplianceFirewallSettings`
+
+GET _`/networks/{networkId}/appliance/firewall/settings`_
+
+> \- added the optional property `spoofingProtection` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-firewall-settings/)
+
+#### Update the firewall settings for this network
+
+Operation ID: `updateNetworkApplianceFirewallSettings`
+
+PUT _`/networks/{networkId}/appliance/firewall/settings`_
+
+> \- added the optional property `spoofingProtection` to the response with the `200` status
+
+* * *
+
+### interfaces
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l3/)
+
+#### Create wired L3 interface configuration
+
+Operation ID: `createNetworkApplianceInterfacesL3`
+
+POST _`/networks/{networkId}/appliance/interfaces/l3`_
+
+> \- removed the request property `port/number`
+
+> \- removed the optional property `port/number` from the response with the `201` status
+
+> \- added the new optional request property `port/interface`
+
+> \- added the optional property `port/interface` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l3/)
+
+#### Update wired L3 interface configuration
+
+Operation ID: `updateNetworkApplianceInterfacesL3`
+
+PUT _`/networks/{networkId}/appliance/interfaces/l3/{interfaceId}`_
+
+> \- removed the request property `port/number`
+
+> \- removed the optional property `port/number` from the response with the `200` status
+
+> \- added the new optional request property `port/interface`
+
+> \- added the optional property `port/interface` to the response with the `200` status
+
+* * *
+
+\[ devices \]
+------------
+
+### appliance
+
+PUT _`/devices/{serial}/appliance/interfaces/ports`_
+
+> \- api path removed without deprecation
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-port/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPort`
+
+PUT _`/devices/{serial}/appliance/interfaces/ports/{number}`_
+
+> \- request property `downlink/access/policyType` was restricted to a list of enum values
+
+> \- removed the optional property `interfaceName` from the response with the `200` status
+
+> \- added the new `8021x` enum value to the `downlink/access/policyType` response property for the response status `200`
+
+> \- added the new `hybrid_8021x_mac` enum value to the `downlink/access/policyType` response property for the response status `200`
+
+> \- added the new `mac_radius` enum value to the `downlink/access/policyType` response property for the response status `200`
+
+> \- added the new `open` enum value to the `downlink/access/policyType` response property for the response status `200`
+
+> \- added the new `8021x` enum value to the request property `downlink/access/policyType`
+
+> \- added the new `hybrid_8021x_mac` enum value to the request property `downlink/access/policyType`
+
+> \- added the new `mac_radius` enum value to the request property `downlink/access/policyType`
+
+> \- added the new `open` enum value to the request property `downlink/access/policyType`
+
+* * *
+
+### cellular
+
+PUT _`/devices/{serial}/cellular/uplinks/bands/masks`_
+
+> \- api path removed without deprecation
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/cycle-device-switch-ports/)
+
+#### Cycle a set of switch ports on non-Catalyst MS devices
+
+Operation ID: `cycleDeviceSwitchPorts`
+
+POST _`/devices/{serial}/switch/ports/cycle`_
+
+> \- endpoint deprecated
+
+* * *
+
+### syslog
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-devices-syslog-servers/)
+
+#### Updates the syslog servers configuration for a network.
+
+Operation ID: `updateNetworkDevicesSyslogServers`
+
+PUT _`/networks/{networkId}/devices/syslog/servers`_
+
+> \- the `servers/items/port` request property type/format changed from `string`/`` to `integer`/``
+
+> \- the `servers/items/port` response's property type/format changed from `string`/`` to `integer`/`` for status `200`
+
+* * *
+
+\[ networks \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network/)
+
+#### Return a network
+
+Operation ID: `getNetwork`
+
+GET _`/networks/{networkId}`_
+
+> \- added the optional property `details` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network/)
+
+#### Update a network
+
+Operation ID: `updateNetwork`
+
+PUT _`/networks/{networkId}`_
+
+> \- added the optional property `details` to the response with the `200` status
+
+* * *
+
+\[ organizations \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-l3-by-network/)
+
+#### Listing of L3 Interface Configurations across networks for the organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesL3ByNetwork`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/l3/byNetwork`_
+
+> \- removed the optional property `items/items/interfaces/items/port/number` from the response with the `200` status
+
+> \- added the optional property `items/items/interfaces/items/port/interface` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- deleted the `query` request parameter `interfaces`
+
+> \- removed the optional property `items/items/ports/items/interfaceName` from the response with the `200` status
+
+> \- added the new `8021x` enum value to the `items/items/ports/items/downlink/access/policyType` response property for the response status `200`
+
+> \- added the new `hybrid_8021x_mac` enum value to the `items/items/ports/items/downlink/access/policyType` response property for the response status `200`
+
+> \- added the new `mac_radius` enum value to the `items/items/ports/items/downlink/access/policyType` response property for the response status `200`
+
+> \- added the new `open` enum value to the `items/items/ports/items/downlink/access/policyType` response property for the response status `200`
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts/)
+
+#### Return all health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlerts`
+
+GET _`/organizations/{organizationId}/assurance/alerts`_
+
+> \- added the enum value `image_sensor_failure` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `wireless_capacity_degraded` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `wireless_coverage_degraded` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview/)
+
+#### Return overview of active health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlertsOverview`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview`_
+
+> \- added the enum value `image_sensor_failure` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `wireless_capacity_degraded` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `wireless_coverage_degraded` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-network/)
+
+#### Return a Summary of Alerts grouped by network and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byNetwork`_
+
+> \- added the enum value `image_sensor_failure` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `wireless_capacity_degraded` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `wireless_coverage_degraded` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-type/)
+
+#### Return a Summary of Alerts grouped by type and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByType`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byType`_
+
+> \- added the enum value `image_sensor_failure` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `wireless_capacity_degraded` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `wireless_coverage_degraded` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-historical/)
+
+#### Returns historical health alert overviews
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewHistorical`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/historical`_
+
+> \- added the enum value `image_sensor_failure` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `wireless_capacity_degraded` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `wireless_coverage_degraded` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-taxonomy-types/)
+
+#### Return a list of alert types
+
+Operation ID: `getOrganizationAssuranceAlertsTaxonomyTypes`
+
+GET _`/organizations/{organizationId}/assurance/alerts/taxonomy/types`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client/)
+
+#### Summarizes wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClient`_
+
+> \- removed the optional property `items/items/items/connections/observedBands` from the response with the `200` status
+
+> \- added the optional property `items/items/items/connections/impactedBands` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-device/)
+
+#### Summarizes wireless post connection capacity successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byDevice`_
+
+> \- removed the optional property `items/items/items/connections/observedBands` from the response with the `200` status
+
+> \- added the optional property `items/items/items/connections/impactedBands` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-ssid/)
+
+#### Summarizes wireless post connection capacity successes and failures by ssid.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkBySsid`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/bySsid`_
+
+> \- removed the optional property `items/items/items/connections/observedBands` from the response with the `200` status
+
+> \- added the optional property `items/items/items/connections/impactedBands` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-client/)
+
+#### Summarizes wireless coverage successes and failures by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byClient`_
+
+> \- removed the optional property `items/items/items/connections/observedBands` from the response with the `200` status
+
+> \- added the optional property `items/items/items/connections/impactedBands` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-device/)
+
+#### Summarizes wireless coverage successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byDevice`_
+
+> \- removed the optional property `items/items/items/connections/observedBands` from the response with the `200` status
+
+> \- added the optional property `items/items/items/connections/impactedBands` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-ssid/)
+
+#### Summarizes wireless coverage successes and failures by SSID.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkBySsid`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/bySsid`_
+
+> \- removed the optional property `items/items/items/connections/observedBands` from the response with the `200` status
+
+> \- added the optional property `items/items/items/connections/impactedBands` to the response with the `200` status
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-devices/)
+
+#### List devices eligible for Cellular Data Management profile assignment in this organization
+
+Operation ID: `getOrganizationDevicesCellularDataDevices`
+
+GET _`/organizations/{organizationId}/devices/cellular/data/devices`_
+
+> \- deleted the `query` request parameter `excludedDevices`
+
+> \- deleted the `query` request parameter `excludedProfiles`
+
+> \- deleted the `query` request parameter `includedDevices`
+
+> \- deleted the `query` request parameter `includedProfiles`
+
+> \- removed the optional property `items/items/deviceType` from the response with the `200` status
+
+> \- removed the optional property `items/items/software/majorNumber` from the response with the `200` status
+
+> \- removed the optional property `items/items/software/minorNumber` from the response with the `200` status
+
+> \- removed the optional property `items/items/software/patchNumber` from the response with the `200` status
+
+> \- removed the optional property `meta/count` from the response with the `200` status
+
+> \- added the new `esim` enum value to the `items/items/modems/items/sims/items/slot` response property for the response status `200`
+
+> \- added the new optional `query` request parameter `excludedProfileIds`
+
+> \- added the new optional `query` request parameter `excludedSerials`
+
+> \- added the new optional `query` request parameter `includedProfileIds`
+
+> \- added the new optional `query` request parameter `includedSerials`
+
+> \- added the optional property `items/items/model` to the response with the `200` status
+
+> \- added the optional property `items/items/software/currentVersion` to the response with the `200` status
+
+> \- added the optional property `meta/counts` to the response with the `200` status
+
+> \- removed the `sim3` enum value from the `items/items/modems/items/sims/items/slot` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-devices-cellular-data-profile/)
+
+#### Add a cellular data management profile to this organization
+
+Operation ID: `createOrganizationDevicesCellularDataProfile`
+
+POST _`/organizations/{organizationId}/devices/cellular/data/profiles`_
+
+> \- added the new required request property `rules/items/cap/term`
+
+> \- added the new required request property `rules/items/uplink`
+
+> \- request property `rules/items/actions/items/type` was restricted to a list of enum values
+
+> \- request property `rules/items/slot` was restricted to a list of enum values
+
+> \- the `rules/items/cap/term` response's property type/format changed from `string`/`` to `object`/`` for status `200`
+
+> \- the `rules/items/cap/threshold` request property's max was set to `1.00`
+
+> \- the `rules/items/cap/value` request property's max was set to `1024000.00`
+
+> \- the `rules/items/cap/threshold` request property's min was set to `0.01`
+
+> \- the `rules/items/cap/value` request property's min was set to `1.00`
+
+> \- removed the request property `rules/items/cap/termStart`
+
+> \- removed the request property `rules/items/isPreferredUplink`
+
+> \- removed the request property `rules/items/uplinkPriority`
+
+> \- removed the optional property `rules/items/cap/termStart` from the response with the `200` status
+
+> \- removed the optional property `rules/items/isPreferredUplink` from the response with the `200` status
+
+> \- removed the optional property `rules/items/uplinkPriority` from the response with the `200` status
+
+> \- added the new `failover` enum value to the `rules/items/actions/items/type` response property for the response status `200`
+
+> \- added the new `send_message` enum value to the `rules/items/actions/items/type` response property for the response status `200`
+
+> \- added the new `sim1` enum value to the `rules/items/slot` response property for the response status `200`
+
+> \- added the new `sim2` enum value to the `rules/items/slot` response property for the response status `200`
+
+> \- added the new `sim3` enum value to the `rules/items/slot` response property for the response status `200`
+
+> \- added the new `failover` enum value to the request property `rules/items/actions/items/type`
+
+> \- added the new `send_message` enum value to the request property `rules/items/actions/items/type`
+
+> \- added the new `sim1` enum value to the request property `rules/items/slot`
+
+> \- added the new `sim2` enum value to the request property `rules/items/slot`
+
+> \- added the new `sim3` enum value to the request property `rules/items/slot`
+
+> \- added the optional property `rules/items/cap/term/resets` to the response with the `200` status
+
+> \- added the optional property `rules/items/cap/term/starts` to the response with the `200` status
+
+> \- added the optional property `rules/items/uplink` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-profiles-assignments/)
+
+#### List Cellular Data Management Profile assignments in this organization
+
+Operation ID: `getOrganizationDevicesCellularDataProfilesAssignments`
+
+GET _`/organizations/{organizationId}/devices/cellular/data/profiles/assignments`_
+
+> \- removed the optional property `items/items/profileId` from the response with the `200` status
+
+> \- removed the optional property `items/items/serial` from the response with the `200` status
+
+> \- removed the optional property `meta/counts/remaining` from the response with the `200` status
+
+> \- removed the optional property `meta/counts/total` from the response with the `200` status
+
+> \- added the optional property `items/items/device` to the response with the `200` status
+
+> \- added the optional property `items/items/profile` to the response with the `200` status
+
+> \- added the optional property `meta/counts/items` to the response with the `200` status
+
+* * *
+
+POST _`/organizations/{organizationId}/devices/cellular/data/profiles/assignments/bulkCreate`_
+
+> \- api path removed without deprecation
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/bulk-organization-devices-cellular-data-profiles-assignments-delete/)
+
+#### Unassign devices from a Cellular Data Management Profile in batch
+
+Operation ID: `bulkOrganizationDevicesCellularDataProfilesAssignmentsDelete`
+
+POST _`/organizations/{organizationId}/devices/cellular/data/profiles/assignments/bulkDelete`_
+
+> \- added the new required request property `items/items/device`
+
+> \- added the new required request property `items/items/profile`
+
+> \- removed the request property `items/items/profileId`
+
+> \- removed the request property `items/items/serial`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-devices-cellular-data-profile/)
+
+#### Update a Cellular Data Management Profile
+
+Operation ID: `updateOrganizationDevicesCellularDataProfile`
+
+PUT _`/organizations/{organizationId}/devices/cellular/data/profiles/{profileId}`_
+
+> \- added the new required request property `rules/items/cap/term`
+
+> \- added the new required request property `rules/items/uplink`
+
+> \- request property `rules/items/actions/items/type` was restricted to a list of enum values
+
+> \- request property `rules/items/slot` was restricted to a list of enum values
+
+> \- the `rules/items/cap/term` response's property type/format changed from `string`/`` to `object`/`` for status `200`
+
+> \- the `rules/items/cap/threshold` request property's max was set to `1.00`
+
+> \- the `rules/items/cap/value` request property's max was set to `1024000.00`
+
+> \- the `rules/items/cap/threshold` request property's min was set to `0.01`
+
+> \- the `rules/items/cap/value` request property's min was set to `1.00`
+
+> \- removed the request property `rules/items/cap/termStart`
+
+> \- removed the request property `rules/items/isPreferredUplink`
+
+> \- removed the request property `rules/items/uplinkPriority`
+
+> \- removed the optional property `rules/items/cap/termStart` from the response with the `200` status
+
+> \- removed the optional property `rules/items/isPreferredUplink` from the response with the `200` status
+
+> \- removed the optional property `rules/items/uplinkPriority` from the response with the `200` status
+
+> \- added the new `failover` enum value to the `rules/items/actions/items/type` response property for the response status `200`
+
+> \- added the new `send_message` enum value to the `rules/items/actions/items/type` response property for the response status `200`
+
+> \- added the new `sim1` enum value to the `rules/items/slot` response property for the response status `200`
+
+> \- added the new `sim2` enum value to the `rules/items/slot` response property for the response status `200`
+
+> \- added the new `sim3` enum value to the `rules/items/slot` response property for the response status `200`
+
+> \- added the new `failover` enum value to the request property `rules/items/actions/items/type`
+
+> \- added the new `send_message` enum value to the request property `rules/items/actions/items/type`
+
+> \- added the new `sim1` enum value to the request property `rules/items/slot`
+
+> \- added the new `sim2` enum value to the request property `rules/items/slot`
+
+> \- added the new `sim3` enum value to the request property `rules/items/slot`
+
+> \- added the optional property `rules/items/cap/term/resets` to the response with the `200` status
+
+> \- added the optional property `rules/items/cap/term/starts` to the response with the `200` status
+
+> \- added the optional property `rules/items/uplink` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-usage-by-device/)
+
+#### List current cellular data usage for devices in this organization
+
+Operation ID: `getOrganizationDevicesCellularDataUsageByDevice`
+
+GET _`/organizations/{organizationId}/devices/cellular/data/usage/byDevice`_
+
+> \- removed the optional property `items/items/bySlot/items/active` from the response with the `200` status
+
+> \- removed the optional property `items/items/bySlot/items/dataUsage` from the response with the `200` status
+
+> \- removed the optional property `meta/count` from the response with the `200` status
+
+> \- added the new `esim` enum value to the `items/items/bySlot/items/slot` response property for the response status `200`
+
+> \- added the new `sim1` enum value to the `items/items/bySlot/items/slot` response property for the response status `200`
+
+> \- added the new `sim2` enum value to the `items/items/bySlot/items/slot` response property for the response status `200`
+
+> \- added the optional property `items/items/bySlot/items/endTs` to the response with the `200` status
+
+> \- added the optional property `items/items/bySlot/items/isActive` to the response with the `200` status
+
+> \- added the optional property `items/items/bySlot/items/lastUpdatedAt` to the response with the `200` status
+
+> \- added the optional property `items/items/bySlot/items/limit` to the response with the `200` status
+
+> \- added the optional property `items/items/bySlot/items/startTs` to the response with the `200` status
+
+> \- added the optional property `items/items/bySlot/items/total` to the response with the `200` status
+
+> \- added the optional property `meta/counts` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-usage-history-by-device-by-interval/)
+
+#### List historical cellular data usage grouped by device and interval in this organization
+
+Operation ID: `getOrganizationDevicesCellularDataUsageHistoryByDeviceByInterval`
+
+GET _`/organizations/{organizationId}/devices/cellular/data/usage/history/byDevice/byInterval`_
+
+> \- removed the optional property `meta/count` from the response with the `200` status
+
+> \- added the new `sim1` enum value to the `items/items/intervals/items/usage/bySim/items/name` response property for the response status `200`
+
+> \- added the new `sim2` enum value to the `items/items/intervals/items/usage/bySim/items/name` response property for the response status `200`
+
+> \- added the new `sim3` enum value to the `items/items/intervals/items/usage/bySim/items/name` response property for the response status `200`
+
+> \- added the optional property `meta/counts` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-syslog-servers-by-network/)
+
+#### Returns syslog servers configured for the networks within an organization.
+
+Operation ID: `getOrganizationDevicesSyslogServersByNetwork`
+
+GET _`/organizations/{organizationId}/devices/syslog/servers/byNetwork`_
+
+> \- the `items/items/servers/items/port` response's property type/format changed from `string`/`` to `integer`/`` for status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-syslog-servers-roles-by-network/)
+
+#### Returns roles that can be assigned to a syslog server for a given network.
+
+Operation ID: `getOrganizationDevicesSyslogServersRolesByNetwork`
+
+GET _`/organizations/{organizationId}/devices/syslog/servers/roles/byNetwork`_
+
+> \- removed the required property `items/items/availableRoles` from the response with the `200` status
+
+> \- added the required property `items/items/available` to the response with the `200` status
+
+* * *
+
+### networks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-networks/)
+
+#### List the networks that the user has privileges on in an organization
+
+Operation ID: `getOrganizationNetworks`
+
+GET _`/organizations/{organizationId}/networks`_
+
+> \- added the optional property `items/details` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-network/)
+
+#### Create a network
+
+Operation ID: `createOrganizationNetwork`
+
+POST _`/organizations/{organizationId}/networks`_
+
+> \- added the optional property `details` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/combine-organization-networks/)
+
+#### Combine multiple networks into a single network
+
+Operation ID: `combineOrganizationNetworks`
+
+POST _`/organizations/{organizationId}/networks/combine`_
+
+> \- added the optional property `resultingNetwork/details` to the response with the `200` status
+
+* * *
+
+\[ snmp \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-snmp/)
+
+#### Return the SNMP settings for a network
+
+Operation ID: `getNetworkSnmp`
+
+GET _`/networks/{networkId}/snmp`_
+
+> \- added the optional property `authentication` to the response with the `200` status
+
+> \- added the optional property `privacy` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-snmp/)
+
+#### Update the SNMP settings for a network
+
+Operation ID: `updateNetworkSnmp`
+
+PUT _`/networks/{networkId}/snmp`_
+
+> \- added the new optional request property `authentication`
+
+> \- added the new optional request property `privacy`
+
+> \- added the optional property `authentication` to the response with the `200` status
+
+> \- added the optional property `privacy` to the response with the `200` status
+
+* * *
+
+\[ split \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/split-network/)
+
+#### Split a combined network into individual networks for each type of device
+
+Operation ID: `splitNetwork`
+
+POST _`/networks/{networkId}/split`_
+
+> \- added the optional property `resultingNetworks/items/details` to the response with the `200` status
+
+* * *
+
+\[ unbind \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/unbind-network/)
+
+#### Unbind a network from a template.
+
+Operation ID: `unbindNetwork`
+
+POST _`/networks/{networkId}/unbind`_
+
+> \- added the optional property `details` to the response with the `200` status
+
+* * *
+
+
+---
+
 ## v1.69.0-beta.4
 
 
