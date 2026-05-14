@@ -1,6 +1,617 @@
 
 ---
 
+## v1.70.0-beta.1
+
+
+- [Added](#added)
+  * [\[ devices \]](#-devices-)
+    + [json](#json)
+      - [Extraction of the legacy nodes JSON endpoint for a network](#extraction-of-the-legacy-nodes-json-endpoint-for-a-network)
+  * [\[ organizations \]](#-organizations-)
+    + [assurance](#assurance)
+      - [Summarizes wired connection successes and failures by client OS.](#summarizes-wired-connection-successes-and-failures-by-client-os)
+    + [networks](#networks)
+      - [List the network groups in an organization](#list-the-network-groups-in-an-organization)
+      - [Create a network group](#create-a-network-group)
+      - [List the client and status overview information for the network groups in an organization](#list-the-client-and-status-overview-information-for-the-network-groups-in-an-organization)
+      - [Delete a network group](#delete-a-network-group)
+      - [Update a network group](#update-a-network-group)
+      - [Add networks to a network group](#add-networks-to-a-network-group)
+      - [Remove networks from a network group](#remove-networks-from-a-network-group)
+    + [openRoaming](#openroaming)
+      - [Delete an open roaming certificate.](#delete-an-open-roaming-certificate)
+- [Changed](#changed)
+  * [\[ firmwareUpgrades \]](#-firmwareupgrades--1)
+    + [general](#general-1)
+      - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network-1)
+      - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network-1)
+  * [\[ mqttBrokers \]](#-mqttbrokers--1)
+    + [general](#general-1)
+      - [List the MQTT brokers for this network](#list-the-mqtt-brokers-for-this-network-1)
+      - [Add an MQTT broker](#add-an-mqtt-broker-1)
+      - [Return an MQTT broker](#return-an-mqtt-broker-1)
+      - [Update an MQTT broker](#update-an-mqtt-broker-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [api](#api-1)
+      - [Retrieves pipeline overviews with aggregated job status counts](#retrieves-pipeline-overviews-with-aggregated-job-status-counts-1)
+    + [appliance](#appliance-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+    + [assurance](#assurance-1)
+      - [Summarizes wired connection successes and failures by network.](#summarizes-wired-connection-successes-and-failures-by-network-1)
+      - [Summarizes wired connection successes and failures by client.](#summarizes-wired-connection-successes-and-failures-by-client-1)
+      - [Summarizes wired connection successes and failures by device.](#summarizes-wired-connection-successes-and-failures-by-device-1)
+      - [Summarizes wireless post connection capacity successes and failures by client OS and driver version.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-client-os-and-driver-version-1)
+      - [Summarizes wireless coverage successes and failures by client OS.](#summarizes-wireless-coverage-successes-and-failures-by-client-os-1)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-1)
+      - [Returns organization wireless experience metrics overview grouped by network.](#returns-organization-wireless-experience-metrics-overview-grouped-by-network-1)
+      - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-1)
+      - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-1)
+    + [certificates](#certificates-1)
+      - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization-1)
+      - [Import certificate for this organization](#import-certificate-for-this-organization-1)
+    + [iam](#iam-1)
+      - [List the end users and their associated identity providers for an organization.](#list-the-end-users-and-their-associated-identity-providers-for-an-organization-1)
+  * [\[ wireless \]](#-wireless--1)
+    + [bluetooth](#bluetooth-1)
+      - [Return the Bluetooth settings for a network. <a href="https://documentation.meraki.com/MR/Bluetooth/Bluetooth_Low_Energy_(BLE)">Bluetooth settings</a> must be enabled on the network.](#return-the-bluetooth-settings-for-a-network-a-hrefhttpsdocumentationmerakicommrbluetoothbluetooth_low_energy_blebluetooth-settingsa-must-be-enabled-on-the-network-1)
+      - [Update the Bluetooth settings for a network](#update-the-bluetooth-settings-for-a-network-1)
+    + [ssids](#ssids-1)
+      - [Update the attributes of an MR SSID](#update-the-attributes-of-an-mr-ssid-1)
+ 
+Version **v1.70.0-beta.0** _to_ **v1.70.0-beta.1**
+
+* * *
+
+**Summary of Changes**
+
+**10 - New**
+
+**23 - Updated**
+
+**860 - Total Endpoints**
+
+**584 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ devices \]
+--------------
+
+### json
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-devices-json/)
+
+#### Extraction of the legacy nodes JSON endpoint for a network
+
+Operation ID: `getNetworkDevicesJson`
+
+PATH _`/networks/{networkId}/devices/json`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/networks/{networkId}/devices/json`  
+> 
+> * * *
+
+* * *
+
+\[ organizations \]
+--------------
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-client-os/)
+
+#### Summarizes wired connection successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByClientOs`
+
+PATH _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byClientOs`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byClientOs`  
+> 
+> * * *
+
+* * *
+
+### networks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-networks-groups/)
+
+#### List the network groups in an organization
+
+Operation ID: `getOrganizationNetworksGroups`
+
+PATH _`/organizations/{organizationId}/networks/groups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/networks/groups`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-networks-group/)
+
+#### Create a network group
+
+Operation ID: `createOrganizationNetworksGroup`
+
+PATH _`/organizations/{organizationId}/networks/groups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/networks/groups`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-networks-groups-overview-by-group/)
+
+#### List the client and status overview information for the network groups in an organization
+
+Operation ID: `getOrganizationNetworksGroupsOverviewByGroup`
+
+PATH _`/organizations/{organizationId}/networks/groups/overview/byGroup`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/networks/groups/overview/byGroup`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-networks-group/)
+
+#### Delete a network group
+
+Operation ID: `deleteOrganizationNetworksGroup`
+
+PATH _`/organizations/{organizationId}/networks/groups/{groupId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/networks/groups/{groupId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-networks-group/)
+
+#### Update a network group
+
+Operation ID: `updateOrganizationNetworksGroup`
+
+PATH _`/organizations/{organizationId}/networks/groups/{groupId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/networks/groups/{groupId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/bulk-organization-networks-group-assign/)
+
+#### Add networks to a network group
+
+Operation ID: `bulkOrganizationNetworksGroupAssign`
+
+PATH _`/organizations/{organizationId}/networks/groups/{groupId}/bulkAssign`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/networks/groups/{groupId}/bulkAssign`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/bulk-organization-networks-group-unassign/)
+
+#### Remove networks from a network group
+
+Operation ID: `bulkOrganizationNetworksGroupUnassign`
+
+PATH _`/organizations/{organizationId}/networks/groups/{groupId}/bulkUnassign`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/networks/groups/{groupId}/bulkUnassign`  
+> 
+> * * *
+
+* * *
+
+### openRoaming
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-open-roaming-certificate/)
+
+#### Delete an open roaming certificate.
+
+Operation ID: `deleteOrganizationOpenRoamingCertificate`
+
+PATH _`/organizations/{organizationId}/openRoaming/certificates/{id}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/openRoaming/certificates/{id}`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ firmwareUpgrades \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-firmware-upgrades/)
+
+#### Get firmware upgrade information for a network
+
+Operation ID: `getNetworkFirmwareUpgrades`
+
+GET _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- added the optional property `products/campusGateway` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-firmware-upgrades/)
+
+#### Update firmware upgrade information for a network
+
+Operation ID: `updateNetworkFirmwareUpgrades`
+
+PUT _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- added the new optional request property `products/campusGateway`
+
+> \- added the optional property `products/campusGateway` to the response with the `200` status
+
+* * *
+
+\[ mqttBrokers \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-mqtt-brokers/)
+
+#### List the MQTT brokers for this network
+
+Operation ID: `getNetworkMqttBrokers`
+
+GET _`/networks/{networkId}/mqttBrokers`_
+
+> \- added the new optional `query` request parameter `productTypes`
+
+> \- added the optional property `items/productType` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-mqtt-broker/)
+
+#### Add an MQTT broker
+
+Operation ID: `createNetworkMqttBroker`
+
+POST _`/networks/{networkId}/mqttBrokers`_
+
+> \- added the new optional request property `productType`
+
+> \- added the optional property `productType` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-mqtt-broker/)
+
+#### Return an MQTT broker
+
+Operation ID: `getNetworkMqttBroker`
+
+GET _`/networks/{networkId}/mqttBrokers/{mqttBrokerId}`_
+
+> \- added the optional property `productType` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-mqtt-broker/)
+
+#### Update an MQTT broker
+
+Operation ID: `updateNetworkMqttBroker`
+
+PUT _`/networks/{networkId}/mqttBrokers/{mqttBrokerId}`_
+
+> \- added the optional property `productType` to the response with the `200` status
+
+* * *
+
+\[ organizations \]
+------------
+
+### api
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-rest-provisioning-pipelines-jobs-overviews-by-pipeline/)
+
+#### Retrieves pipeline overviews with aggregated job status counts
+
+Operation ID: `getOrganizationApiRestProvisioningPipelinesJobsOverviewsByPipeline`
+
+GET _`/organizations/{organizationId}/api/rest/provisioning/pipelines/jobs/overviews/byPipeline`_
+
+> \- added the optional property `items/items/counts/byJobOperation` to the response with the `200` status
+
+* * *
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- added the new optional `query` request parameter `interfaces`
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network/)
+
+#### Summarizes wired connection successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/byReason/items/port` to the response with the `200` status
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/byReason/items/serial` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-client/)
+
+#### Summarizes wired connection successes and failures by client.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byClient`_
+
+> \- added the optional property `items/items/items/device` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-device/)
+
+#### Summarizes wired connection successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byDevice`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/byReason/items/port` to the response with the `200` status
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/byReason/items/serial` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-os/)
+
+#### Summarizes wireless post connection capacity successes and failures by client OS and driver version.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/driverVersion` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-client-os/)
+
+#### Summarizes wireless coverage successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/driverVersion` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-insights-by-network/)
+
+#### Provides insights into wireless coverage experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/insights/byNetwork`_
+
+> \- removed the enum value `Weak client signal` from the `query` request parameter `contributor`
+
+> \- added the new enum value `Transient weak signal` to the `query` request parameter `contributor`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-metrics-overview-history-by-network/)
+
+#### Returns organization wireless experience metrics overview grouped by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceMetricsOverviewHistoryByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/metrics/overview/history/byNetwork`_
+
+> \- removed the optional property `items/items/successfulConnects` from the response with the `200` status
+
+> \- removed the optional property `items/items/wirelessCapacity` from the response with the `200` status
+
+> \- added the optional property `items/items/channelAvailability` to the response with the `200` status
+
+> \- added the optional property `items/items/wirelessSuccessfulConnections` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-client-os/)
+
+#### Summarizes wireless connection successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/driverVersion` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-client-os/)
+
+#### Summarizes wireless connection successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/driverVersion` to the response with the `200` status
+
+* * *
+
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates/)
+
+#### Gets all or specific certificates for an organization
+
+Operation ID: `getOrganizationCertificates`
+
+GET _`/organizations/{organizationId}/certificates`_
+
+> \- added the enum value `grpc_dial_out` to the property `items/` of the `query` request parameter `certManagedBy`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/import-organization-certificates/)
+
+#### Import certificate for this organization
+
+Operation ID: `importOrganizationCertificates`
+
+POST _`/organizations/{organizationId}/certificates/import`_
+
+> \- added the new `grpc_dial_out` enum value to the request property `managedBy`
+
+* * *
+
+### iam
+
+[Docs](https://developer.cisco.com/meraki/api-v1/search-organization-users/)
+
+#### List the end users and their associated identity providers for an organization.
+
+Operation ID: `searchOrganizationUsers`
+
+POST _`/organizations/{organizationId}/iam/users/search`_
+
+> \- added the new `IKEv2 Client VPN` enum value to the request property `accessTypes/items/`
+
+* * *
+
+\[ wireless \]
+------------
+
+### bluetooth
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-bluetooth-settings/)
+
+#### Return the Bluetooth settings for a network. <a href="https://documentation.meraki.com/MR/Bluetooth/Bluetooth_Low_Energy_(BLE)">Bluetooth settings</a> must be enabled on the network.
+
+Operation ID: `getNetworkWirelessBluetoothSettings`
+
+GET _`/networks/{networkId}/wireless/bluetooth/settings`_
+
+> \- removed the optional property `transmit/interval` from the response with the `200` status
+
+> \- removed the optional property `transmit/power` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-bluetooth-settings/)
+
+#### Update the Bluetooth settings for a network
+
+Operation ID: `updateNetworkWirelessBluetoothSettings`
+
+PUT _`/networks/{networkId}/wireless/bluetooth/settings`_
+
+> \- removed the request property `transmit/interval`
+
+> \- removed the request property `transmit/power`
+
+> \- removed the optional property `transmit/interval` from the response with the `200` status
+
+> \- removed the optional property `transmit/power` from the response with the `200` status
+
+* * *
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid/)
+
+#### Update the attributes of an MR SSID
+
+Operation ID: `updateNetworkWirelessSsid`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- added the new optional request property `security`
+
+* * *
+
+
+---
+
 ## v1.70.0-beta.0
 
 
