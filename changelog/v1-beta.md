@@ -1,6 +1,1354 @@
 
 ---
 
+## v1.70.0-beta.2
+
+
+- [Added](#added)
+  * [\[ appliance \]](#-appliance-)
+    + [umbrella](#umbrella)
+      - [Remove one umbrella policy from your network.](#remove-one-umbrella-policy-from-your-network)
+    + [vpn](#vpn)
+      - [Update the VRF mappings for a source network and hub pair.](#update-the-vrf-mappings-for-a-source-network-and-hub-pair)
+  * [\[ campusGateway \]](#-campusgateway-)
+    + [ssids](#ssids)
+      - [List the currently configured mDNS settings for the SSID](#list-the-currently-configured-mdns-settings-for-the-ssid)
+      - [Update the mDNS gateway settings and rules for a SSID and cluster](#update-the-mdns-gateway-settings-and-rules-for-a-ssid-and-cluster)
+  * [\[ organizations \]](#-organizations-)
+    + [api](#api)
+      - [List the push profiles in the organization](#list-the-push-profiles-in-the-organization)
+      - [Create a new push profile](#create-a-new-push-profile)
+      - [Delete a push profile](#delete-a-push-profile)
+      - [Update a push profile](#update-a-push-profile)
+      - [List the push receiver profiles in the organization](#list-the-push-receiver-profiles-in-the-organization)
+      - [Create a new push receiver profile](#create-a-new-push-receiver-profile)
+      - [Delete a push receiver profile](#delete-a-push-receiver-profile)
+      - [Update a push receiver profile](#update-a-push-receiver-profile)
+      - [List of push topics](#list-of-push-topics)
+    + [appliance](#appliance)
+      - [List L3 interfaces across networks for the organization](#list-l3-interfaces-across-networks-for-the-organization)
+      - [Return source-to-hub VRF mappings for site-to-site VPN within an organization.](#return-source-to-hub-vrf-mappings-for-site-to-site-vpn-within-an-organization)
+    + [assurance](#assurance)
+      - [Summarizes wired connection successes and failures by client type.](#summarizes-wired-connection-successes-and-failures-by-client-type)
+      - [Provides root-cause diagnostics for wireless successful connects experience by network.](#provides-root-cause-diagnostics-for-wireless-successful-connects-experience-by-network)
+    + [campusGateway](#campusgateway)
+      - [List all the MCG cluster-network tunnel settings](#list-all-the-mcg-cluster-network-tunnel-settings)
+      - [Update MCG cluster-network tunnel settings for multiple networks](#update-mcg-cluster-network-tunnel-settings-for-multiple-networks)
+    + [devices](#devices)
+      - [List topology interfaces in an organization, including layer 2 and layer 3 metadata when available.](#list-topology-interfaces-in-an-organization-including-layer-2-and-layer-3-metadata-when-available)
+      - [List layer 2 topology links originating from devices in an organization.](#list-layer-2-topology-links-originating-from-devices-in-an-organization)
+      - [List topology nodes discovered by LLDP/CDP from devices in an organization, including reported metadata when available.](#list-topology-nodes-discovered-by-lldpcdp-from-devices-in-an-organization-including-reported-metadata-when-available)
+    + [iam](#iam)
+      - [List effective Catalyst Center access groups for the requested Catalyst Center administrators in the specified organization](#list-effective-catalyst-center-access-groups-for-the-requested-catalyst-center-administrators-in-the-specified-organization)
+      - [List the authenticated caller admin's permissions for an organization](#list-the-authenticated-caller-admins-permissions-for-an-organization)
+    + [inventory](#inventory)
+      - [Return inventory devices with additional site, geolocation, software, licensing, lifecycle, and Catalyst Center-specific fields](#return-inventory-devices-with-additional-site-geolocation-software-licensing-lifecycle-and-catalyst-center-specific-fields)
+    + [routing](#routing)
+      - [List existing organization-wide VRFs (Virtual Routing and Forwarding) overviews.](#list-existing-organization-wide-vrfs-virtual-routing-and-forwarding-overviews)
+    + [sites](#sites)
+      - [Lists unified site resources for an organization across Meraki networks and Catalyst Center sites](#lists-unified-site-resources-for-an-organization-across-meraki-networks-and-catalyst-center-sites)
+- [Changed](#changed)
+  * [\[ appliance \]](#-appliance--1)
+    + [sdwan](#sdwan-1)
+      - [Update SDWAN internet traffic preferences for an MX network](#update-sdwan-internet-traffic-preferences-for-an-mx-network-1)
+    + [staticRoutes](#staticroutes-1)
+      - [List the static routes for an MX or teleworker network](#list-the-static-routes-for-an-mx-or-teleworker-network-1)
+      - [Add a static route for an MX or teleworker network](#add-a-static-route-for-an-mx-or-teleworker-network-1)
+      - [Return a static route for an MX or teleworker network](#return-a-static-route-for-an-mx-or-teleworker-network-1)
+      - [Update a static route for an MX or teleworker network](#update-a-static-route-for-an-mx-or-teleworker-network-1)
+    + [trafficShaping](#trafficshaping-1)
+      - [Show uplink selection settings for an MX network](#show-uplink-selection-settings-for-an-mx-network-1)
+      - [Update uplink selection settings for an MX network](#update-uplink-selection-settings-for-an-mx-network-1)
+    + [umbrella](#umbrella-1)
+      - [Add one umbrella policy to your network.](#add-one-umbrella-policy-to-your-network-1)
+    + [vpn](#vpn-1)
+      - [Return a Hub BGP Configuration](#return-a-hub-bgp-configuration-1)
+      - [Update a Hub BGP Configuration](#update-a-hub-bgp-configuration-1)
+  * [\[ clients \]](#-clients--1)
+    + [general](#general-1)
+      - [Return the client associated with the given identifier](#return-the-client-associated-with-the-given-identifier-1)
+  * [\[ devices \]](#-devices--1)
+    + [appliance](#appliance-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [api](#api-1)
+      - [List pipeline IDs for the organization, with optional status and timespan filtering](#list-pipeline-ids-for-the-organization-with-optional-status-and-timespan-filtering-1)
+    + [appliance](#appliance-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+      - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network-1)
+      - [List Umbrella policy IDs applied to MX networks in the organization](#list-umbrella-policy-ids-applied-to-mx-networks-in-the-organization-1)
+    + [assurance](#assurance-1)
+      - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-1)
+      - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-1)
+      - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-1)
+      - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-1)
+      - [Returns historical health alert overviews](#returns-historical-health-alert-overviews-1)
+      - [Summarizes wired connection successes and failures by network.](#summarizes-wired-connection-successes-and-failures-by-network-1)
+      - [Summarizes wired connection successes and failures by client OS.](#summarizes-wired-connection-successes-and-failures-by-client-os-1)
+      - [Summarizes wired connection successes and failures by device.](#summarizes-wired-connection-successes-and-failures-by-device-1)
+      - [Time-series of wired connection successes and failures by network.](#time-series-of-wired-connection-successes-and-failures-by-network-1)
+      - [Summarizes wireless post connection capacity successes and failures by client OS and driver version.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-client-os-and-driver-version-1)
+    + [routing](#routing-1)
+      - [List existing organization-wide VRFs (Virtual Routing and Forwarding).](#list-existing-organization-wide-vrfs-virtual-routing-and-forwarding-1)
+      - [Add an organization-wide VRF (Virtual Routing and Forwarding)](#add-an-organization-wide-vrf-virtual-routing-and-forwarding-1)
+      - [Update an organization-wide VRF (Virtual Routing and Forwarding)](#update-an-organization-wide-vrf-virtual-routing-and-forwarding-1)
+    + [switch](#switch-1)
+      - [Create a port profile in an organization](#create-a-port-profile-in-an-organization-1)
+      - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile-1)
+      - [Update a port profile in an organization](#update-a-port-profile-in-an-organization-1)
+      - [List the prefix lists configured for BGP in the given organization](#list-the-prefix-lists-configured-for-bgp-in-the-given-organization-1)
+      - [Create or update a prefix list, in addition to its associated rules](#create-or-update-a-prefix-list-in-addition-to-its-associated-rules-1)
+  * [\[ switch \]](#-switch--1)
+    + [ports](#ports-1)
+      - [List the port profiles in a network](#list-the-port-profiles-in-a-network-1)
+      - [Create a port profile in a network](#create-a-port-profile-in-a-network-1)
+      - [Update a port profile in a network](#update-a-port-profile-in-a-network-1)
+  * [\[ wireless \]](#-wireless--1)
+    + [ethernet](#ethernet-1)
+      - [List the AP port profiles for this network](#list-the-ap-port-profiles-for-this-network-1)
+      - [Create an AP port profile](#create-an-ap-port-profile-1)
+      - [Show the AP port profile by ID for this network](#show-the-ap-port-profile-by-id-for-this-network-1)
+      - [Update the AP port profile by ID for this network](#update-the-ap-port-profile-by-id-for-this-network-1)
+ 
+Version **v1.70.0-beta.1** _to_ **v1.70.0-beta.2**
+
+* * *
+
+**Summary of Changes**
+
+**27 - New**
+
+**44 - Updated**
+
+**877 - Total Endpoints**
+
+**596 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ appliance \]
+--------------
+
+### umbrella
+
+[Docs](https://developer.cisco.com/meraki/api-v1/remove-network-appliance-umbrella-policies/)
+
+#### Remove one umbrella policy from your network.
+
+Operation ID: `removeNetworkApplianceUmbrellaPolicies`
+
+PATH _`/networks/{networkId}/appliance/umbrella/policies/remove`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/networks/{networkId}/appliance/umbrella/policies/remove`  
+> 
+> * * *
+
+* * *
+
+### vpn
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-site-to-site-hub-vrfs/)
+
+#### Update the VRF mappings for a source network and hub pair.
+
+Operation ID: `updateNetworkApplianceVpnSiteToSiteHubVrfs`
+
+PATH _`/networks/{networkId}/appliance/vpn/siteToSite/hubs/{hubNetworkId}/vrfs`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/networks/{networkId}/appliance/vpn/siteToSite/hubs/{hubNetworkId}/vrfs`  
+> 
+> * * *
+
+* * *
+
+\[ campusGateway \]
+--------------
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-campus-gateway-ssid-mdns/)
+
+#### List the currently configured mDNS settings for the SSID
+
+Operation ID: `getNetworkCampusGatewaySsidMdns`
+
+PATH _`/networks/{networkId}/campusGateway/ssids/{number}/mdns`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/networks/{networkId}/campusGateway/ssids/{number}/mdns`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-campus-gateway-ssid-mdns/)
+
+#### Update the mDNS gateway settings and rules for a SSID and cluster
+
+Operation ID: `updateNetworkCampusGatewaySsidMdns`
+
+PATH _`/networks/{networkId}/campusGateway/ssids/{number}/mdns`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/networks/{networkId}/campusGateway/ssids/{number}/mdns`  
+> 
+> * * *
+
+* * *
+
+\[ organizations \]
+--------------
+
+### api
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-push-profiles/)
+
+#### List the push profiles in the organization
+
+Operation ID: `getOrganizationApiPushProfiles`
+
+PATH _`/organizations/{organizationId}/api/push/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/api/push/profiles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-api-push-profile/)
+
+#### Create a new push profile
+
+Operation ID: `createOrganizationApiPushProfile`
+
+PATH _`/organizations/{organizationId}/api/push/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/api/push/profiles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-api-push-profile/)
+
+#### Delete a push profile
+
+Operation ID: `deleteOrganizationApiPushProfile`
+
+PATH _`/organizations/{organizationId}/api/push/profiles/{iname}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/api/push/profiles/{iname}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-api-push-profile/)
+
+#### Update a push profile
+
+Operation ID: `updateOrganizationApiPushProfile`
+
+PATH _`/organizations/{organizationId}/api/push/profiles/{iname}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/api/push/profiles/{iname}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-push-receivers-profiles/)
+
+#### List the push receiver profiles in the organization
+
+Operation ID: `getOrganizationApiPushReceiversProfiles`
+
+PATH _`/organizations/{organizationId}/api/push/receivers/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/api/push/receivers/profiles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-api-push-receivers-profile/)
+
+#### Create a new push receiver profile
+
+Operation ID: `createOrganizationApiPushReceiversProfile`
+
+PATH _`/organizations/{organizationId}/api/push/receivers/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/api/push/receivers/profiles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-api-push-receivers-profile/)
+
+#### Delete a push receiver profile
+
+Operation ID: `deleteOrganizationApiPushReceiversProfile`
+
+PATH _`/organizations/{organizationId}/api/push/receivers/profiles/{iname}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/api/push/receivers/profiles/{iname}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-api-push-receivers-profile/)
+
+#### Update a push receiver profile
+
+Operation ID: `updateOrganizationApiPushReceiversProfile`
+
+PATH _`/organizations/{organizationId}/api/push/receivers/profiles/{iname}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/api/push/receivers/profiles/{iname}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-push-topics/)
+
+#### List of push topics
+
+Operation ID: `getOrganizationApiPushTopics`
+
+PATH _`/organizations/{organizationId}/api/push/topics`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/api/push/topics`  
+> 
+> * * *
+
+* * *
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-l3/)
+
+#### List L3 interfaces across networks for the organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesL3`
+
+PATH _`/organizations/{organizationId}/appliance/devices/interfaces/l3`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/devices/interfaces/l3`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-site-to-site-hubs-vrfs/)
+
+#### Return source-to-hub VRF mappings for site-to-site VPN within an organization.
+
+Operation ID: `getOrganizationApplianceVpnSiteToSiteHubsVrfs`
+
+PATH _`/organizations/{organizationId}/appliance/vpn/siteToSite/hubs/vrfs`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/vpn/siteToSite/hubs/vrfs`  
+> 
+> * * *
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-client-type/)
+
+#### Summarizes wired connection successes and failures by client type.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByClientType`
+
+PATH _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byClientType`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byClientType`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-insights-v2-by-network/)
+
+#### Provides root-cause diagnostics for wireless successful connects experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsInsightsV2ByNetwork`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/insightsV2/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/insightsV2/byNetwork`  
+> 
+> * * *
+
+* * *
+
+### campusGateway
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-clusters-tunneling-by-cluster-by-network/)
+
+#### List all the MCG cluster-network tunnel settings
+
+Operation ID: `getOrganizationCampusGatewayClustersTunnelingByClusterByNetwork`
+
+PATH _`/organizations/{organizationId}/campusGateway/clusters/tunneling/byCluster/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/clusters/tunneling/byCluster/byNetwork`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/batch-organization-campus-gateway-clusters-tunneling-by-cluster-by-network-update/)
+
+#### Update MCG cluster-network tunnel settings for multiple networks
+
+Operation ID: `batchOrganizationCampusGatewayClustersTunnelingByClusterByNetworkUpdate`
+
+PATH _`/organizations/{organizationId}/campusGateway/clusters/tunneling/byCluster/byNetwork/batchUpdate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/campusGateway/clusters/tunneling/byCluster/byNetwork/batchUpdate`  
+> 
+> * * *
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-topology-interfaces/)
+
+#### List topology interfaces in an organization, including layer 2 and layer 3 metadata when available.
+
+Operation ID: `getOrganizationDevicesTopologyInterfaces`
+
+PATH _`/organizations/{organizationId}/devices/topology/interfaces`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/topology/interfaces`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-topology-l2-links/)
+
+#### List layer 2 topology links originating from devices in an organization.
+
+Operation ID: `getOrganizationDevicesTopologyL2Links`
+
+PATH _`/organizations/{organizationId}/devices/topology/l2/links`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/topology/l2/links`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-topology-nodes-discovered/)
+
+#### List topology nodes discovered by LLDP/CDP from devices in an organization, including reported metadata when available.
+
+Operation ID: `getOrganizationDevicesTopologyNodesDiscovered`
+
+PATH _`/organizations/{organizationId}/devices/topology/nodes/discovered`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/topology/nodes/discovered`  
+> 
+> * * *
+
+* * *
+
+### iam
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-access-groups/)
+
+#### List effective Catalyst Center access groups for the requested Catalyst Center administrators in the specified organization
+
+Operation ID: `getOrganizationAccessGroups`
+
+PATH _`/organizations/{organizationId}/iam/admins/accessGroups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/iam/admins/accessGroups`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/resolve-organization-iam-admins-administrators-me-permissions/)
+
+#### List the authenticated caller admin's permissions for an organization
+
+Operation ID: `resolveOrganizationIamAdminsAdministratorsMePermissions`
+
+PATH _`/organizations/{organizationId}/iam/admins/administrators/me/permissions/resolve`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/iam/admins/administrators/me/permissions/resolve`  
+> 
+> * * *
+
+* * *
+
+### inventory
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-inventory-devices-details/)
+
+#### Return inventory devices with additional site, geolocation, software, licensing, lifecycle, and Catalyst Center-specific fields
+
+Operation ID: `getOrganizationInventoryDevicesDetails`
+
+PATH _`/organizations/{organizationId}/inventory/devices/details`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/inventory/devices/details`  
+> 
+> * * *
+
+* * *
+
+### routing
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-routing-vrfs-overview-by-vrf/)
+
+#### List existing organization-wide VRFs (Virtual Routing and Forwarding) overviews.
+
+Operation ID: `getOrganizationRoutingVrfsOverviewByVrf`
+
+PATH _`/organizations/{organizationId}/routing/vrfs/overview/byVrf`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/routing/vrfs/overview/byVrf`  
+> 
+> * * *
+
+* * *
+
+### sites
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sites/)
+
+#### Lists unified site resources for an organization across Meraki networks and Catalyst Center sites
+
+Operation ID: `getOrganizationSites`
+
+PATH _`/organizations/{organizationId}/sites`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/sites`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+------------
+
+### sdwan
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-sdwan-internet-policies/)
+
+#### Update SDWAN internet traffic preferences for an MX network
+
+Operation ID: `updateNetworkApplianceSdwanInternetPolicies`
+
+PUT _`/networks/{networkId}/appliance/sdwan/internetPolicies`_
+
+> \- added the new optional request property `wanTrafficUplinkPreferences/items/vrf`
+
+> \- added the optional property `wanTrafficUplinkPreferences/items/vrf` to the response with the `200` status
+
+* * *
+
+### staticRoutes
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-static-routes/)
+
+#### List the static routes for an MX or teleworker network
+
+Operation ID: `getNetworkApplianceStaticRoutes`
+
+GET _`/networks/{networkId}/appliance/staticRoutes`_
+
+> \- added the optional property `items/vrf` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-static-route/)
+
+#### Add a static route for an MX or teleworker network
+
+Operation ID: `createNetworkApplianceStaticRoute`
+
+POST _`/networks/{networkId}/appliance/staticRoutes`_
+
+> \- added the new optional request property `vrf`
+
+> \- added the optional property `vrf` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-static-route/)
+
+#### Return a static route for an MX or teleworker network
+
+Operation ID: `getNetworkApplianceStaticRoute`
+
+GET _`/networks/{networkId}/appliance/staticRoutes/{staticRouteId}`_
+
+> \- added the optional property `vrf` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-static-route/)
+
+#### Update a static route for an MX or teleworker network
+
+Operation ID: `updateNetworkApplianceStaticRoute`
+
+PUT _`/networks/{networkId}/appliance/staticRoutes/{staticRouteId}`_
+
+> \- added the new optional request property `vrf`
+
+> \- added the optional property `vrf` to the response with the `200` status
+
+* * *
+
+### trafficShaping
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-traffic-shaping-uplink-selection/)
+
+#### Show uplink selection settings for an MX network
+
+Operation ID: `getNetworkApplianceTrafficShapingUplinkSelection`
+
+GET _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
+
+> \- added the optional property `vpnTrafficUplinkPreferences/items/vrf` to the response with the `200` status
+
+> \- added the optional property `wanTrafficUplinkPreferences/items/vrf` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-traffic-shaping-uplink-selection/)
+
+#### Update uplink selection settings for an MX network
+
+Operation ID: `updateNetworkApplianceTrafficShapingUplinkSelection`
+
+PUT _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
+
+> \- added the new optional request property `vpnTrafficUplinkPreferences/items/vrf`
+
+> \- added the new optional request property `wanTrafficUplinkPreferences/items/vrf`
+
+> \- added the optional property `vpnTrafficUplinkPreferences/items/vrf` to the response with the `200` status
+
+> \- added the optional property `wanTrafficUplinkPreferences/items/vrf` to the response with the `200` status
+
+* * *
+
+### umbrella
+
+[Docs](https://developer.cisco.com/meraki/api-v1/add-network-appliance-umbrella-policies/)
+
+#### Add one umbrella policy to your network.
+
+Operation ID: `addNetworkApplianceUmbrellaPolicies`
+
+POST _`/networks/{networkId}/appliance/umbrella/policies/add`_
+
+> \- added the new required request property `policy`
+
+> \- removed the request property `policyId`
+
+> \- removed the optional property `policyId` from the response with the `200` status
+
+> \- added the optional property `network` to the response with the `200` status
+
+> \- added the optional property `policies` to the response with the `200` status
+
+* * *
+
+DELETE _`/networks/{networkId}/appliance/umbrella/policies/remove`_
+
+> \- api removed without deprecation
+
+* * *
+
+### vpn
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vpn-bgp/)
+
+#### Return a Hub BGP Configuration
+
+Operation ID: `getNetworkApplianceVpnBgp`
+
+GET _`/networks/{networkId}/appliance/vpn/bgp`_
+
+> \- added the optional property `neighbors/items/vrf` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-bgp/)
+
+#### Update a Hub BGP Configuration
+
+Operation ID: `updateNetworkApplianceVpnBgp`
+
+PUT _`/networks/{networkId}/appliance/vpn/bgp`_
+
+> \- added the optional property `neighbors/items/vrf` to the response with the `200` status
+
+* * *
+
+\[ clients \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-client/)
+
+#### Return the client associated with the given identifier
+
+Operation ID: `getNetworkClient`
+
+GET _`/networks/{networkId}/clients/{clientId}`_
+
+> \- added the optional property `is320MhzCapable` to the response with the `200` status
+
+> \- added the optional property `isEmlmrCapable` to the response with the `200` status
+
+> \- added the optional property `isEmlsrCapable` to the response with the `200` status
+
+> \- added the optional property `isMloCapable` to the response with the `200` status
+
+> \- added the optional property `mloMaxSimultaneousLinks` to the response with the `200` status
+
+> \- added the optional property `wirelessChannelWidthMhz` to the response with the `200` status
+
+> \- added the optional property `wirelessStandard` to the response with the `200` status
+
+* * *
+
+\[ devices \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-appliance-interfaces-ports-update/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `createDeviceApplianceInterfacesPortsUpdate`
+
+POST _`/devices/{serial}/appliance/interfaces/ports/update`_
+
+> \- removed the request property `downlink/access/policyType`
+
+> \- removed the request property `downlink/adaptivePolicyGroupId`
+
+> \- removed the request property `downlink/trunk/peerSgtCapable`
+
+> \- removed the request property `interface/name`
+
+> \- added the new optional request property `downlink/access/policy`
+
+> \- added the new optional request property `downlink/adaptivePolicy`
+
+> \- added the new optional request property `downlink/trunk/peer`
+
+> \- added the optional property `downlink/access/policy` to the response with the `200` status
+
+> \- added the optional property `downlink/adaptivePolicy` to the response with the `200` status
+
+> \- added the optional property `downlink/trunk/peer` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-port/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPort`
+
+PUT _`/devices/{serial}/appliance/interfaces/ports/{number}`_
+
+> \- removed the request property `downlink/access/policyType`
+
+> \- removed the request property `downlink/adaptivePolicyGroupId`
+
+> \- removed the request property `downlink/trunk/peerSgtCapable`
+
+> \- added the new optional request property `downlink/access/policy`
+
+> \- added the new optional request property `downlink/adaptivePolicy`
+
+> \- added the new optional request property `downlink/trunk/peer`
+
+> \- added the optional property `downlink/access/policy` to the response with the `200` status
+
+> \- added the optional property `downlink/adaptivePolicy` to the response with the `200` status
+
+> \- added the optional property `downlink/trunk/peer` to the response with the `200` status
+
+* * *
+
+\[ organizations \]
+------------
+
+### api
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-rest-provisioning-pipelines/)
+
+#### List pipeline IDs for the organization, with optional status and timespan filtering
+
+Operation ID: `getOrganizationApiRestProvisioningPipelines`
+
+GET _`/organizations/{organizationId}/api/rest/provisioning/pipelines`_
+
+> \- removed the enum value `-1days` from the `query` request parameter `timespan`
+
+> \- removed the enum value `-2hours` from the `query` request parameter `timespan`
+
+> \- removed the enum value `-30days` from the `query` request parameter `timespan`
+
+> \- removed the enum value `-7days` from the `query` request parameter `timespan`
+
+> \- for the `query` request parameter `timespan`, the type/format was changed from `string`/`` to `integer`/``
+
+> \- for the `query` request parameter `timespan`, the max was set to `2592000.00`
+
+> \- for the `query` request parameter `timespan`, the min was set to `1.00`
+
+* * *
+
+### appliance
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/l3/byNetwork`_
+
+> \- api path removed without deprecation
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- added the optional property `items/items/ports/items/downlink/access/policy` to the response with the `200` status
+
+> \- added the optional property `items/items/ports/items/downlink/adaptivePolicy` to the response with the `200` status
+
+> \- added the optional property `items/items/ports/items/downlink/trunk/peer` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-sdwan-internet-policies/)
+
+#### Get the SDWAN internet traffic preferences for an MX network
+
+Operation ID: `getOrganizationApplianceSdwanInternetPolicies`
+
+GET _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
+
+> \- added the optional property `wanTrafficUplinkPreferences/items/vrf` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-umbrella-policies-by-network/)
+
+#### List Umbrella policy IDs applied to MX networks in the organization
+
+Operation ID: `getOrganizationApplianceUmbrellaPoliciesByNetwork`
+
+GET _`/organizations/{organizationId}/appliance/umbrella/policies/byNetwork`_
+
+> \- deleted the `query` request parameter `organizationId`
+
+> \- removed the optional property `items/items/networkId` from the response with the `200` status
+
+> \- removed the optional property `items/items/policyIds` from the response with the `200` status
+
+> \- added the optional property `items/items/network` to the response with the `200` status
+
+> \- added the optional property `items/items/policies` to the response with the `200` status
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts/)
+
+#### Return all health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlerts`
+
+GET _`/organizations/{organizationId}/assurance/alerts`_
+
+> \- added the enum value `mcg_dr_allowed_vlans_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview/)
+
+#### Return overview of active health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlertsOverview`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview`_
+
+> \- added the enum value `mcg_dr_allowed_vlans_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-network/)
+
+#### Return a Summary of Alerts grouped by network and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byNetwork`_
+
+> \- added the enum value `mcg_dr_allowed_vlans_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-type/)
+
+#### Return a Summary of Alerts grouped by type and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByType`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byType`_
+
+> \- added the enum value `mcg_dr_allowed_vlans_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-historical/)
+
+#### Returns historical health alert overviews
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewHistorical`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/historical`_
+
+> \- added the enum value `mcg_dr_allowed_vlans_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network/)
+
+#### Summarizes wired connection successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork`_
+
+> \- the `items/items/items/byContributor/items/failureContribution/percent` response's property type/format changed from `integer`/`` to `number`/`float` for status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-client-os/)
+
+#### Summarizes wired connection successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byClientOs`_
+
+> \- the `items/items/items/byContributor/items/failureContribution/percent` response's property type/format changed from `integer`/`` to `number`/`float` for status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-device/)
+
+#### Summarizes wired connection successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byDevice`_
+
+> \- the `items/items/items/byContributor/items/failureContribution/percent` response's property type/format changed from `integer`/`` to `number`/`float` for status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-interval/)
+
+#### Time-series of wired connection successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByInterval`
+
+GET _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byInterval`_
+
+> \- added the optional property `items/meta` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-os/)
+
+#### Summarizes wireless post connection capacity successes and failures by client OS and driver version.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientOs`_
+
+> \- the `items/items/items/driverVersion` response's property type/format changed from `object`/`` to `string`/`` for status `200`
+
+> \- removed the optional property `items/items/items/driverVersion/version` from the response with the `200` status
+
+* * *
+
+### routing
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-routing-vrfs/)
+
+#### List existing organization-wide VRFs (Virtual Routing and Forwarding).
+
+Operation ID: `getOrganizationRoutingVrfs`
+
+GET _`/organizations/{organizationId}/routing/vrfs`_
+
+> \- added the optional property `items/items/appliance` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-routing-vrf/)
+
+#### Add an organization-wide VRF (Virtual Routing and Forwarding)
+
+Operation ID: `createOrganizationRoutingVrf`
+
+POST _`/organizations/{organizationId}/routing/vrfs`_
+
+> \- added the new optional request property `appliance`
+
+> \- added the optional property `appliance` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-routing-vrf/)
+
+#### Update an organization-wide VRF (Virtual Routing and Forwarding)
+
+Operation ID: `updateOrganizationRoutingVrf`
+
+PUT _`/organizations/{organizationId}/routing/vrfs/{vrfId}`_
+
+> \- added the new optional request property `appliance`
+
+> \- added the optional property `appliance` to the response with the `200` status
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-ports-profile/)
+
+#### Create a port profile in an organization
+
+Operation ID: `createOrganizationSwitchPortsProfile`
+
+POST _`/organizations/{organizationId}/switch/ports/profiles`_
+
+> \- removed the optional property `assignedSwitchports` from the response with the `200` status
+
+> \- removed the optional property `associatedPorts` from the response with the `200` status
+
+> \- removed the optional property `associatedSwitches` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profile/)
+
+#### Get detailed information about a port profile
+
+Operation ID: `getOrganizationSwitchPortsProfile`
+
+GET _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
+
+> \- removed the optional property `assignedSwitchports` from the response with the `200` status
+
+> \- removed the optional property `associatedPorts` from the response with the `200` status
+
+> \- removed the optional property `associatedSwitches` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-switch-ports-profile/)
+
+#### Update a port profile in an organization
+
+Operation ID: `updateOrganizationSwitchPortsProfile`
+
+PUT _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
+
+> \- removed the optional property `assignedSwitchports` from the response with the `200` status
+
+> \- removed the optional property `associatedPorts` from the response with the `200` status
+
+> \- removed the optional property `associatedSwitches` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-filters-prefix-lists/)
+
+#### List the prefix lists configured for BGP in the given organization
+
+Operation ID: `getOrganizationSwitchRoutingBgpFiltersPrefixLists`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists`_
+
+> \- added the optional property `items/items/protocol` to the response with the `200` status
+
+> \- added the optional property `items/items/switchFabric` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-filters-prefix-lists-deploy/)
+
+#### Create or update a prefix list, in addition to its associated rules
+
+Operation ID: `createOrganizationSwitchRoutingBgpFiltersPrefixListsDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/deploy`_
+
+> \- added the optional property `prefixList/protocol` to the response with the `201` status
+
+> \- added the optional property `switchFabric` to the response with the `201` status
+
+* * *
+
+\[ switch \]
+------------
+
+### ports
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-ports-profiles/)
+
+#### List the port profiles in a network
+
+Operation ID: `getNetworkSwitchPortsProfiles`
+
+GET _`/networks/{networkId}/switch/ports/profiles`_
+
+> \- removed the optional property `items/assignedSwitchports` from the response with the `200` status
+
+> \- removed the optional property `items/associatedPorts` from the response with the `200` status
+
+> \- removed the optional property `items/associatedSwitches` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-switch-ports-profile/)
+
+#### Create a port profile in a network
+
+Operation ID: `createNetworkSwitchPortsProfile`
+
+POST _`/networks/{networkId}/switch/ports/profiles`_
+
+> \- removed the optional property `assignedSwitchports` from the response with the `200` status
+
+> \- removed the optional property `associatedPorts` from the response with the `200` status
+
+> \- removed the optional property `associatedSwitches` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-ports-profile/)
+
+#### Update a port profile in a network
+
+Operation ID: `updateNetworkSwitchPortsProfile`
+
+PUT _`/networks/{networkId}/switch/ports/profiles/{id}`_
+
+> \- removed the optional property `assignedSwitchports` from the response with the `200` status
+
+> \- removed the optional property `associatedPorts` from the response with the `200` status
+
+> \- removed the optional property `associatedSwitches` from the response with the `200` status
+
+* * *
+
+\[ wireless \]
+------------
+
+### ethernet
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ethernet-ports-profiles/)
+
+#### List the AP port profiles for this network
+
+Operation ID: `getNetworkWirelessEthernetPortsProfiles`
+
+GET _`/networks/{networkId}/wireless/ethernet/ports/profiles`_
+
+> \- added the optional property `items/security` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-ethernet-ports-profile/)
+
+#### Create an AP port profile
+
+Operation ID: `createNetworkWirelessEthernetPortsProfile`
+
+POST _`/networks/{networkId}/wireless/ethernet/ports/profiles`_
+
+> \- added the new optional request property `security`
+
+> \- added the optional property `security` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ethernet-ports-profile/)
+
+#### Show the AP port profile by ID for this network
+
+Operation ID: `getNetworkWirelessEthernetPortsProfile`
+
+GET _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
+
+> \- added the optional property `security` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ethernet-ports-profile/)
+
+#### Update the AP port profile by ID for this network
+
+Operation ID: `updateNetworkWirelessEthernetPortsProfile`
+
+PUT _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
+
+> \- added the new optional request property `security`
+
+> \- added the optional property `security` to the response with the `200` status
+
+* * *
+
+
+---
+
 ## v1.70.0-beta.1
 
 
