@@ -1,6 +1,656 @@
 
 ---
 
+## v1.70.0-beta.3
+
+
+- [Added](#added)
+  * [\[ appliance \]](#-appliance-)
+    + [umbrella](#umbrella)
+      - [Specify one or more domain names to be excluded from being routed to Cisco Umbrella.](#specify-one-or-more-domain-names-to-be-excluded-from-being-routed-to-cisco-umbrella)
+  * [\[ devices \]](#-devices-)
+    + [liveTools](#livetools)
+      - [Enqueue a job to retrieve port status for a device](#enqueue-a-job-to-retrieve-port-status-for-a-device)
+      - [Return a port status live tool job.](#return-a-port-status-live-tool-job)
+  * [\[ organizations \]](#-organizations-)
+    + [appliance](#appliance)
+      - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled Catalyst appliance in an organization.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-catalyst-appliance-in-an-organization)
+      - [Returns packet counter overviews for all interfaces on Secure Routers in the organization, including totals and average rates by packet type over the requested timespan.](#returns-packet-counter-overviews-for-all-interfaces-on-secure-routers-in-the-organization-including-totals-and-average-rates-by-packet-type-over-the-requested-timespan)
+    + [automate](#automate)
+      - [Generate a single use short lived code that can be used to retrieve the identity of the current user in the organization.](#generate-a-single-use-short-lived-code-that-can-be-used-to-retrieve-the-identity-of-the-current-user-in-the-organization)
+- [Changed](#changed)
+  * [\[ appliance \]](#-appliance--1)
+    + [ports](#ports-1)
+      - [List per-port VLAN settings for all ports of a secure router or security appliance.](#list-per-port-vlan-settings-for-all-ports-of-a-secure-router-or-security-appliance-1)
+      - [Return per-port VLAN settings for a single secure router or security appliance port.](#return-per-port-vlan-settings-for-a-single-secure-router-or-security-appliance-port-1)
+      - [Update the per-port VLAN settings for a single secure router or security appliance port.](#update-the-per-port-vlan-settings-for-a-single-secure-router-or-security-appliance-port-1)
+    + [umbrella](#umbrella-1)
+      - [Disable umbrella protection for an MX network](#disable-umbrella-protection-for-an-mx-network-1)
+      - [Enable or disable umbrella protection for an appliance network](#enable-or-disable-umbrella-protection-for-an-appliance-network-1)
+    + [vlans](#vlans-1)
+      - [List the VLANs for a Security Appliance network](#list-the-vlans-for-a-security-appliance-network-1)
+      - [Add a VLAN](#add-a-vlan-1)
+      - [Return a VLAN](#return-a-vlan-1)
+      - [Update a VLAN](#update-a-vlan-1)
+    + [vpn](#vpn-1)
+      - [Return the site-to-site VPN settings of a network](#return-the-site-to-site-vpn-settings-of-a-network-1)
+      - [Update the site-to-site VPN settings of a network](#update-the-site-to-site-vpn-settings-of-a-network-1)
+  * [\[ campusGateway \]](#-campusgateway--1)
+    + [ssids](#ssids-1)
+      - [Update the mDNS gateway settings and rules for a SSID and cluster](#update-the-mdns-gateway-settings-and-rules-for-a-ssid-and-cluster-1)
+  * [\[ devices \]](#-devices--1)
+    + [liveTools](#livetools-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [api](#api-1)
+      - [Retrieves pipeline overviews with aggregated job status counts](#retrieves-pipeline-overviews-with-aggregated-job-status-counts-1)
+    + [appliance](#appliance-1)
+      - [List the VLANs for an Organization](#list-the-vlans-for-an-organization-1)
+    + [assurance](#assurance-1)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-1)
+    + [secureConnect](#secureconnect-1)
+      - [Creates an export for a provided timestamp interval.](#creates-an-export-for-a-provided-timestamp-interval-1)
+    + [switch](#switch-1)
+      - [List the filter lists configured for BGP in the given organization](#list-the-filter-lists-configured-for-bgp-in-the-given-organization-1)
+      - [Create or update a filter list, in addition to its associated rules](#create-or-update-a-filter-list-in-addition-to-its-associated-rules-1)
+    + [wireless](#wireless-1)
+      - [Returns an array of objects, each containing client exclusion enablement statuses for one SSID](#returns-an-array-of-objects-each-containing-client-exclusion-enablement-statuses-for-one-ssid-1)
+      - [Returns the SSID profiles for an organization](#returns-the-ssid-profiles-for-an-organization-1)
+      - [Create a new SSID profile in an organization](#create-a-new-ssid-profile-in-an-organization-1)
+      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization-1)
+      - [Update this SSID profile](#update-this-ssid-profile-1)
+  * [\[ switch \]](#-switch--1)
+    + [linkAggregations](#linkaggregations-1)
+      - [Create a link aggregation group](#create-a-link-aggregation-group-1)
+  * [\[ wireless \]](#-wireless--1)
+    + [airMarshal](#airmarshal-1)
+      - [List Air Marshal scan results from a network](#list-air-marshal-scan-results-from-a-network-1)
+    + [ssids](#ssids-1)
+      - [Update the client exclusion status configuration for a given SSID](#update-the-client-exclusion-status-configuration-for-a-given-ssid-1)
+ 
+Version **v1.70.0-beta.2** _to_ **v1.70.0-beta.3**
+
+* * *
+
+**Summary of Changes**
+
+**6 - New**
+
+**30 - Updated**
+
+**856 - Total Endpoints**
+
+**582 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ appliance \]
+--------------
+
+### umbrella
+
+[Docs](https://developer.cisco.com/meraki/api-v1/exclusions-network-appliance-umbrella-domains/)
+
+#### Specify one or more domain names to be excluded from being routed to Cisco Umbrella.
+
+Operation ID: `exclusionsNetworkApplianceUmbrellaDomains`
+
+PATH _`/networks/{networkId}/appliance/umbrella/domains/exclusions`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/networks/{networkId}/appliance/umbrella/domains/exclusions`  
+> 
+> * * *
+
+* * *
+
+\[ devices \]
+--------------
+
+### liveTools
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-ports-status/)
+
+#### Enqueue a job to retrieve port status for a device
+
+Operation ID: `createDeviceLiveToolsPortsStatus`
+
+PATH _`/devices/{serial}/liveTools/ports/status`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/devices/{serial}/liveTools/ports/status`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-ports-status/)
+
+#### Return a port status live tool job.
+
+Operation ID: `getDeviceLiveToolsPortsStatus`
+
+PATH _`/devices/{serial}/liveTools/ports/status/{jobId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/devices/{serial}/liveTools/ports/status/{jobId}`  
+> 
+> * * *
+
+* * *
+
+\[ organizations \]
+--------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-ports-transceivers-readings-history-by-device/)
+
+#### Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled Catalyst appliance in an organization.
+
+Operation ID: `getOrganizationApplianceDevicesPortsTransceiversReadingsHistoryByDevice`
+
+PATH _`/organizations/{organizationId}/appliance/devices/ports/transceivers/readings/history/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/devices/ports/transceivers/readings/history/byDevice`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-interfaces-packets-overviews-by-device/)
+
+#### Returns packet counter overviews for all interfaces on Secure Routers in the organization, including totals and average rates by packet type over the requested timespan.
+
+Operation ID: `getOrganizationApplianceInterfacesPacketsOverviewsByDevice`
+
+PATH _`/organizations/{organizationId}/appliance/interfaces/packets/overviews/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/interfaces/packets/overviews/byDevice`  
+> 
+> * * *
+
+* * *
+
+### automate
+
+[Docs](https://developer.cisco.com/meraki/api-v1/code-organization-automate-identity/)
+
+#### Generate a single use short lived code that can be used to retrieve the identity of the current user in the organization.
+
+Operation ID: `codeOrganizationAutomateIdentity`
+
+PATH _`/organizations/{organizationId}/automate/identity/code`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/automate/identity/code`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+------------
+
+### ports
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-ports/)
+
+#### List per-port VLAN settings for all ports of a secure router or security appliance.
+
+Operation ID: `getNetworkAppliancePorts`
+
+GET _`/networks/{networkId}/appliance/ports`_
+
+> \- added the optional property `items/sgt` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-port/)
+
+#### Return per-port VLAN settings for a single secure router or security appliance port.
+
+Operation ID: `getNetworkAppliancePort`
+
+GET _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- added the optional property `sgt` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-port/)
+
+#### Update the per-port VLAN settings for a single secure router or security appliance port.
+
+Operation ID: `updateNetworkAppliancePort`
+
+PUT _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- added the new optional request property `sgt`
+
+> \- added the optional property `sgt` to the response with the `200` status
+
+* * *
+
+### umbrella
+
+[Docs](https://developer.cisco.com/meraki/api-v1/disable-network-appliance-umbrella-protection/)
+
+#### Disable umbrella protection for an MX network
+
+Operation ID: `disableNetworkApplianceUmbrellaProtection`
+
+DELETE _`/networks/{networkId}/appliance/umbrella/disableProtection`_
+
+> \- removed the optional property `enabled` from the response with the `200` status
+
+> \- added the optional property `message` to the response with the `200` status
+
+> \- added the optional property `success` to the response with the `200` status
+
+* * *
+
+PUT _`/networks/{networkId}/appliance/umbrella/excludeDomains`_
+
+> \- api path removed without deprecation
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/protection-network-appliance-umbrella/)
+
+#### Enable or disable umbrella protection for an appliance network
+
+Operation ID: `protectionNetworkApplianceUmbrella`
+
+PUT _`/networks/{networkId}/appliance/umbrella/protection`_
+
+> \- added the new required request property `enabled`
+
+> \- removed the request property `enable`
+
+* * *
+
+### vlans
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vlans/)
+
+#### List the VLANs for a Security Appliance network
+
+Operation ID: `getNetworkApplianceVlans`
+
+GET _`/networks/{networkId}/appliance/vlans`_
+
+> \- added the optional property `items/sgt` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-vlan/)
+
+#### Add a VLAN
+
+Operation ID: `createNetworkApplianceVlan`
+
+POST _`/networks/{networkId}/appliance/vlans`_
+
+> \- added the new optional request property `sgt`
+
+> \- added the optional property `sgt` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vlan/)
+
+#### Return a VLAN
+
+Operation ID: `getNetworkApplianceVlan`
+
+GET _`/networks/{networkId}/appliance/vlans/{vlanId}`_
+
+> \- added the optional property `sgt` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vlan/)
+
+#### Update a VLAN
+
+Operation ID: `updateNetworkApplianceVlan`
+
+PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
+
+> \- added the new optional request property `sgt`
+
+> \- added the optional property `sgt` to the response with the `200` status
+
+* * *
+
+### vpn
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vpn-site-to-site-vpn/)
+
+#### Return the site-to-site VPN settings of a network
+
+Operation ID: `getNetworkApplianceVpnSiteToSiteVpn`
+
+GET _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
+
+> \- added the optional property `sgt` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-site-to-site-vpn/)
+
+#### Update the site-to-site VPN settings of a network
+
+Operation ID: `updateNetworkApplianceVpnSiteToSiteVpn`
+
+PUT _`/networks/{networkId}/appliance/vpn/siteToSiteVpn`_
+
+> \- added the new optional request property `sgt`
+
+> \- added the optional property `sgt` to the response with the `200` status
+
+* * *
+
+\[ campusGateway \]
+------------
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-campus-gateway-ssid-mdns/)
+
+#### Update the mDNS gateway settings and rules for a SSID and cluster
+
+Operation ID: `updateNetworkCampusGatewaySsidMdns`
+
+PUT _`/networks/{networkId}/campusGateway/ssids/{number}/mdns`_
+
+> \- removed the success response with the status `201`
+
+> \- added the success response with the status `200`
+
+* * *
+
+\[ devices \]
+------------
+
+### liveTools
+
+POST _`/devices/{serial}/liveTools/portStatus`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/devices/{serial}/liveTools/portStatus/{portStatusId}`_
+
+> \- api path removed without deprecation
+
+* * *
+
+\[ organizations \]
+------------
+
+### api
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-rest-provisioning-pipelines-jobs-overviews-by-pipeline/)
+
+#### Retrieves pipeline overviews with aggregated job status counts
+
+Operation ID: `getOrganizationApiRestProvisioningPipelinesJobsOverviewsByPipeline`
+
+GET _`/organizations/{organizationId}/api/rest/provisioning/pipelines/jobs/overviews/byPipeline`_
+
+> \- added the new `attach spoke to connectors` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `complete hub offboarding` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `complete hub onboarding` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `complete multi cloud onboarding` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `deploy multi cloud region` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `teardown multi cloud connector` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+* * *
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vlans/)
+
+#### List the VLANs for an Organization
+
+Operation ID: `getOrganizationApplianceVlans`
+
+GET _`/organizations/{organizationId}/appliance/vlans`_
+
+> \- added the optional property `items/sgt` to the response with the `200` status
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-insights-by-network/)
+
+#### Provides insights into wireless successful connects experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/insights/byNetwork`_
+
+> \- added the new optional `query` request parameter `insights`
+
+* * *
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/insightsV2/byNetwork`_
+
+> \- api path removed without deprecation
+
+* * *
+
+### secureConnect
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-secure-connect-remote-access-logs-export/)
+
+#### Creates an export for a provided timestamp interval.
+
+Operation ID: `createOrganizationSecureConnectRemoteAccessLogsExport`
+
+POST _`/organizations/{organizationId}/secureConnect/remoteAccessLogsExports`_
+
+> \- added the new optional request property `t0`
+
+> \- added the new optional request property `t1`
+
+> \- request body became optional
+
+> \- the request property `from` became optional
+
+> \- the request property `to` became optional
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-filters-filter-lists/)
+
+#### List the filter lists configured for BGP in the given organization
+
+Operation ID: `getOrganizationSwitchRoutingBgpFiltersFilterLists`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/filters/filterLists`_
+
+> \- added the optional property `items/items/switchFabric` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-filters-filter-lists-deploy/)
+
+#### Create or update a filter list, in addition to its associated rules
+
+Operation ID: `createOrganizationSwitchRoutingBgpFiltersFilterListsDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/filters/filterLists/deploy`_
+
+> \- added the optional property `switchFabric` to the response with the `201` status
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-policies-client-exclusion-by-ssid/)
+
+#### Returns an array of objects, each containing client exclusion enablement statuses for one SSID
+
+Operation ID: `getOrganizationWirelessSsidsPoliciesClientExclusionBySsid`
+
+GET _`/organizations/{organizationId}/wireless/ssids/policies/clientExclusion/bySsid`_
+
+> \- added the optional property `items/items/dynamic` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles/)
+
+#### Returns the SSID profiles for an organization
+
+Operation ID: `getOrganizationWirelessSsidsProfiles`
+
+GET _`/organizations/{organizationId}/wireless/ssids/profiles`_
+
+> \- added the new `cisco-ise` enum value to the `ssid/splash/mode` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-wireless-ssids-profile/)
+
+#### Create a new SSID profile in an organization
+
+Operation ID: `createOrganizationWirelessSsidsProfile`
+
+POST _`/organizations/{organizationId}/wireless/ssids/profiles`_
+
+> \- added the new `cisco-ise` enum value to the `ssid/splash/mode` response property for the response status `200`
+
+> \- added the new `cisco-ise` enum value to the request property `ssid/splash/mode`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles-overviews/)
+
+#### Returns the SSID profiles' overview information for an organization
+
+Operation ID: `getOrganizationWirelessSsidsProfilesOverviews`
+
+GET _`/organizations/{organizationId}/wireless/ssids/profiles/overviews`_
+
+> \- added the new `cisco-ise` enum value to the `ssid/splash/mode` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-wireless-ssids-profile/)
+
+#### Update this SSID profile
+
+Operation ID: `updateOrganizationWirelessSsidsProfile`
+
+PUT _`/organizations/{organizationId}/wireless/ssids/profiles/{id}`_
+
+> \- added the new `cisco-ise` enum value to the `ssid/splash/mode` response property for the response status `200`
+
+> \- added the new `cisco-ise` enum value to the request property `ssid/splash/mode`
+
+* * *
+
+\[ switch \]
+------------
+
+### linkAggregations
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-switch-link-aggregation/)
+
+#### Create a link aggregation group
+
+Operation ID: `createNetworkSwitchLinkAggregation`
+
+POST _`/networks/{networkId}/switch/linkAggregations`_
+
+> \- added the new optional request property `esiMhPairId`
+
+* * *
+
+\[ wireless \]
+------------
+
+### airMarshal
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-air-marshal/)
+
+#### List Air Marshal scan results from a network
+
+Operation ID: `getNetworkWirelessAirMarshal`
+
+GET _`/networks/{networkId}/wireless/airMarshal`_
+
+> \- added the optional property `items/encryption` to the response with the `200` status
+
+> \- added the optional property `items/manufacturers` to the response with the `200` status
+
+> \- added the optional property `items/types` to the response with the `200` status
+
+* * *
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-policies-client-exclusion/)
+
+#### Update the client exclusion status configuration for a given SSID
+
+Operation ID: `updateNetworkWirelessSsidPoliciesClientExclusion`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`_
+
+> \- added the new optional request property `dynamic`
+
+> \- request body became optional
+
+> \- the request property `static` became optional
+
+> \- added the optional property `dynamic` to the response with the `200` status
+
+* * *
+
+
+---
+
 ## v1.70.0-beta.2
 
 
