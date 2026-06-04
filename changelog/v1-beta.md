@@ -1,6 +1,858 @@
 
 ---
 
+## v1.71.0-beta.0
+
+
+- [Added](#added)
+  * [\[ devices \]](#-devices-)
+    + [liveTools](#livetools)
+      - [Enqueues a live tool job that retrieves details about a device's overall power usage](#enqueues-a-live-tool-job-that-retrieves-details-about-a-devices-overall-power-usage)
+      - [Retrieve the status and results of a previously created live tool job fetching details about a device's overall power usage.](#retrieve-the-status-and-results-of-a-previously-created-live-tool-job-fetching-details-about-a-devices-overall-power-usage)
+  * [\[ organizations \]](#-organizations-)
+    + [assistant](#assistant)
+      - [List the AI assistant's available capabilities and agents for this organization.](#list-the-ai-assistants-available-capabilities-and-agents-for-this-organization)
+      - [Create a chat completion with the AI assistant](#create-a-chat-completion-with-the-ai-assistant)
+      - [List all active conversation threads for the authenticated user.](#list-all-active-conversation-threads-for-the-authenticated-user)
+      - [Create a new conversation thread.](#create-a-new-conversation-thread)
+      - [Delete a conversation thread and all its messages.](#delete-a-conversation-thread-and-all-its-messages)
+      - [Return a single conversation thread.](#return-a-single-conversation-thread)
+      - [Update the name of a conversation thread.](#update-the-name-of-a-conversation-thread)
+      - [List messages in a conversation thread.](#list-messages-in-a-conversation-thread)
+      - [Create a new chat message in a thread.](#create-a-new-chat-message-in-a-thread)
+      - [Return a single message in a conversation thread.](#return-a-single-message-in-a-conversation-thread)
+      - [List artifacts attached to a specific message](#list-artifacts-attached-to-a-specific-message)
+      - [Return a single artifact with its full content.](#return-a-single-artifact-with-its-full-content)
+      - [Return all feedback entries previously submitted for a specific message in a thread.](#return-all-feedback-entries-previously-submitted-for-a-specific-message-in-a-thread)
+      - [Submit or replace feedback for a specific assistant message.](#submit-or-replace-feedback-for-a-specific-assistant-message)
+      - [Get query limits for the AI assistant for this organization.](#get-query-limits-for-the-ai-assistant-for-this-organization)
+    + [assurance](#assurance)
+      - [Returns the most impacted wireless experience networks and the top failure contributor for each network.](#returns-the-most-impacted-wireless-experience-networks-and-the-top-failure-contributor-for-each-network)
+- [Changed](#changed)
+  * [\[ devices \]](#-devices--1)
+    + [appliance](#appliance-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+    + [camera](#camera-1)
+      - [Returns quality and retention settings for the given camera](#returns-quality-and-retention-settings-for-the-given-camera-1)
+      - [Update quality and retention settings for the given camera](#update-quality-and-retention-settings-for-the-given-camera-1)
+    + [liveTools](#livetools-1)
+      - [Enqueue a job to perform a routing table lookup request for a device](#enqueue-a-job-to-perform-a-routing-table-lookup-request-for-a-device-1)
+      - [Return a routing table live tool lookup job for a device](#return-a-routing-table-live-tool-lookup-job-for-a-device-1)
+      - [Enqueue a routing table summary job for a device](#enqueue-a-routing-table-summary-job-for-a-device-1)
+      - [Return the status and result of a routing table summary job](#return-the-status-and-result-of-a-routing-table-summary-job-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [api](#api-1)
+      - [Retrieves pipeline overviews with aggregated job status counts](#retrieves-pipeline-overviews-with-aggregated-job-status-counts-1)
+    + [appliance](#appliance-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+    + [assurance](#assurance-1)
+      - [Return combined wireless and wired connected client counts over time for a network.](#return-combined-wireless-and-wired-connected-client-counts-over-time-for-a-network-1)
+      - [Summarizes wireless post connection capacity successes and failures by band.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-band-1)
+      - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device-1)
+      - [Returns organization wireless experience metrics overview grouped by network.](#returns-organization-wireless-experience-metrics-overview-grouped-by-network-1)
+    + [campusGateway](#campusgateway-1)
+      - [List networks tunneling through Campus Gateway clusters with their AP, ssids and client counts](#list-networks-tunneling-through-campus-gateway-clusters-with-their-ap-ssids-and-client-counts-1)
+    + [clone](#clone-1)
+      - [Create a new organization by cloning the addressed organization](#create-a-new-organization-by-cloning-the-addressed-organization-1)
+    + [floorPlans](#floorplans-1)
+      - [List auto locate details for each device in your organization](#list-auto-locate-details-for-each-device-in-your-organization-1)
+    + [general](#general-1)
+      - [List the organizations that the user has privileges on](#list-the-organizations-that-the-user-has-privileges-on-1)
+      - [Create a new organization](#create-a-new-organization-1)
+      - [Return an organization](#return-an-organization-1)
+      - [Update an organization](#update-an-organization-1)
+    + [loginSecurity](#loginsecurity-1)
+      - [Returns the login security settings for an organization.](#returns-the-login-security-settings-for-an-organization-1)
+      - [Update the login security settings for an organization](#update-the-login-security-settings-for-an-organization-1)
+    + [switch](#switch-1)
+      - [List the filter list rules configured for BGP in the given organization](#list-the-filter-list-rules-configured-for-bgp-in-the-given-organization-1)
+      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-1)
+      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-1)
+ 
+Version **v1.70.0-beta.3** _to_ **v1.71.0-beta.0**
+
+* * *
+
+**Summary of Changes**
+
+**18 - New**
+
+**26 - Updated**
+
+**868 - Total Endpoints**
+
+**590 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ devices \]
+--------------
+
+### liveTools
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-power-usage/)
+
+#### Enqueues a live tool job that retrieves details about a device's overall power usage
+
+Operation ID: `createDeviceLiveToolsPowerUsage`
+
+PATH _`/devices/{serial}/liveTools/power/usage`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/devices/{serial}/liveTools/power/usage`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-power-usage/)
+
+#### Retrieve the status and results of a previously created live tool job fetching details about a device's overall power usage.
+
+Operation ID: `getDeviceLiveToolsPowerUsage`
+
+PATH _`/devices/{serial}/liveTools/power/usage/{jobId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/devices/{serial}/liveTools/power/usage/{jobId}`  
+> 
+> * * *
+
+* * *
+
+\[ organizations \]
+--------------
+
+### assistant
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-capabilities/)
+
+#### List the AI assistant's available capabilities and agents for this organization.
+
+Operation ID: `getOrganizationAssistantCapabilities`
+
+PATH _`/organizations/{organizationId}/assistant/capabilities`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assistant/capabilities`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-completion/)
+
+#### Create a chat completion with the AI assistant
+
+Operation ID: `createOrganizationAssistantChatCompletion`
+
+PATH _`/organizations/{organizationId}/assistant/chat/completions`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/assistant/chat/completions`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-threads/)
+
+#### List all active conversation threads for the authenticated user.
+
+Operation ID: `getOrganizationAssistantChatThreads`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assistant/chat/threads`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-thread/)
+
+#### Create a new conversation thread.
+
+Operation ID: `createOrganizationAssistantChatThread`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/assistant/chat/threads`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-assistant-chat-thread/)
+
+#### Delete a conversation thread and all its messages.
+
+Operation ID: `deleteOrganizationAssistantChatThread`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads/{threadId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/assistant/chat/threads/{threadId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread/)
+
+#### Return a single conversation thread.
+
+Operation ID: `getOrganizationAssistantChatThread`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads/{threadId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assistant/chat/threads/{threadId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-assistant-chat-thread/)
+
+#### Update the name of a conversation thread.
+
+Operation ID: `updateOrganizationAssistantChatThread`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads/{threadId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/assistant/chat/threads/{threadId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-messages/)
+
+#### List messages in a conversation thread.
+
+Operation ID: `getOrganizationAssistantChatThreadMessages`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-thread-message/)
+
+#### Create a new chat message in a thread.
+
+Operation ID: `createOrganizationAssistantChatThreadMessage`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message/)
+
+#### Return a single message in a conversation thread.
+
+Operation ID: `getOrganizationAssistantChatThreadMessage`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message-artifacts/)
+
+#### List artifacts attached to a specific message
+
+Operation ID: `getOrganizationAssistantChatThreadMessageArtifacts`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/artifacts`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/artifacts`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message-artifact/)
+
+#### Return a single artifact with its full content.
+
+Operation ID: `getOrganizationAssistantChatThreadMessageArtifact`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/artifacts/{artifactId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/artifacts/{artifactId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message-feedback/)
+
+#### Return all feedback entries previously submitted for a specific message in a thread.
+
+Operation ID: `getOrganizationAssistantChatThreadMessageFeedback`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/feedback`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/feedback`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-thread-message-feedback/)
+
+#### Submit or replace feedback for a specific assistant message.
+
+Operation ID: `createOrganizationAssistantChatThreadMessageFeedback`
+
+PATH _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/feedback`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/feedback`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-query-limits/)
+
+#### Get query limits for the AI assistant for this organization.
+
+Operation ID: `getOrganizationAssistantQuery-limits`
+
+PATH _`/organizations/{organizationId}/assistant/query-limits`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assistant/query-limits`  
+> 
+> * * *
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-most-impacted-networks/)
+
+#### Returns the most impacted wireless experience networks and the top failure contributor for each network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceMostImpactedNetworks`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/mostImpactedNetworks`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/mostImpactedNetworks`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ devices \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-appliance-interfaces-ports-update/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `createDeviceApplianceInterfacesPortsUpdate`
+
+POST _`/devices/{serial}/appliance/interfaces/ports/update`_
+
+> \- removed the request property `downlink/adaptivePolicy`
+
+> \- removed the request property `downlink/trunk/peer`
+
+> \- removed the optional property `downlink/adaptivePolicy` from the response with the `200` status
+
+> \- removed the optional property `downlink/trunk/peer` from the response with the `200` status
+
+> \- added the new optional request property `downlink/adaptivePolicyGroupId`
+
+> \- added the new optional request property `downlink/sgt`
+
+> \- added the new optional request property `downlink/trunk/peerSgtCapable`
+
+> \- added the new optional request property `downlink/trunk/sgt`
+
+> \- added the optional property `downlink/sgt` to the response with the `200` status
+
+> \- added the optional property `downlink/trunk/sgt` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-port/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPort`
+
+PUT _`/devices/{serial}/appliance/interfaces/ports/{number}`_
+
+> \- removed the request property `downlink/adaptivePolicy`
+
+> \- removed the request property `downlink/trunk/peer`
+
+> \- removed the optional property `downlink/adaptivePolicy` from the response with the `200` status
+
+> \- removed the optional property `downlink/trunk/peer` from the response with the `200` status
+
+> \- added the new optional request property `downlink/adaptivePolicyGroupId`
+
+> \- added the new optional request property `downlink/sgt`
+
+> \- added the new optional request property `downlink/trunk/peerSgtCapable`
+
+> \- added the new optional request property `downlink/trunk/sgt`
+
+> \- added the optional property `downlink/sgt` to the response with the `200` status
+
+> \- added the optional property `downlink/trunk/sgt` to the response with the `200` status
+
+* * *
+
+### camera
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-camera-quality-and-retention/)
+
+#### Returns quality and retention settings for the given camera
+
+Operation ID: `getDeviceCameraQualityAndRetention`
+
+GET _`/devices/{serial}/camera/qualityAndRetention`_
+
+> \- the response property `quality` became nullable for the status `200`
+
+> \- the response property `resolution` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-camera-quality-and-retention/)
+
+#### Update quality and retention settings for the given camera
+
+Operation ID: `updateDeviceCameraQualityAndRetention`
+
+PUT _`/devices/{serial}/camera/qualityAndRetention`_
+
+> \- the response property `quality` became nullable for the status `200`
+
+> \- the response property `resolution` became nullable for the status `200`
+
+* * *
+
+### liveTools
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-routing-table-lookup/)
+
+#### Enqueue a job to perform a routing table lookup request for a device
+
+Operation ID: `createDeviceLiveToolsRoutingTableLookup`
+
+POST _`/devices/{serial}/liveTools/routingTable/lookups`_
+
+> \- the security scope `sdwan:telemetry:write` was added to the endpoint's security scheme `oauth2`
+
+> \- the security scope `dashboard:general:telemetry:write` was removed from the endpoint's security scheme `oauth2`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-routing-table-lookup/)
+
+#### Return a routing table live tool lookup job for a device
+
+Operation ID: `getDeviceLiveToolsRoutingTableLookup`
+
+GET _`/devices/{serial}/liveTools/routingTable/lookups/{id}`_
+
+> \- the security scope `sdwan:telemetry:read` was added to the endpoint's security scheme `oauth2`
+
+> \- the security scope `dashboard:general:telemetry:read` was removed from the endpoint's security scheme `oauth2`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-routing-table-summary/)
+
+#### Enqueue a routing table summary job for a device
+
+Operation ID: `createDeviceLiveToolsRoutingTableSummary`
+
+POST _`/devices/{serial}/liveTools/routingTable/summaries`_
+
+> \- the security scope `sdwan:telemetry:write` was added to the endpoint's security scheme `oauth2`
+
+> \- the security scope `dashboard:general:telemetry:write` was removed from the endpoint's security scheme `oauth2`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-routing-table-summary/)
+
+#### Return the status and result of a routing table summary job
+
+Operation ID: `getDeviceLiveToolsRoutingTableSummary`
+
+GET _`/devices/{serial}/liveTools/routingTable/summaries/{id}`_
+
+> \- the security scope `sdwan:telemetry:read` was added to the endpoint's security scheme `oauth2`
+
+> \- the security scope `dashboard:general:telemetry:read` was removed from the endpoint's security scheme `oauth2`
+
+* * *
+
+\[ organizations \]
+------------
+
+### api
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-rest-provisioning-pipelines-jobs-overviews-by-pipeline/)
+
+#### Retrieves pipeline overviews with aggregated job status counts
+
+Operation ID: `getOrganizationApiRestProvisioningPipelinesJobsOverviewsByPipeline`
+
+GET _`/organizations/{organizationId}/api/rest/provisioning/pipelines/jobs/overviews/byPipeline`_
+
+> \- added the new `bulk detachment workflow` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `bulk enrollment workflow` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `complete bulk detachment` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `complete bulk enrollment` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `complete connector deployment` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `complete connector teardown` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `detach spoke from connectors` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+> \- added the new `onboard multi cloud sites workflow` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+* * *
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- removed the optional property `items/items/ports/items/downlink/adaptivePolicy` from the response with the `200` status
+
+> \- removed the optional property `items/items/ports/items/downlink/trunk/peer` from the response with the `200` status
+
+> \- added the optional property `items/items/ports/items/downlink/sgt` to the response with the `200` status
+
+> \- added the optional property `items/items/ports/items/downlink/trunk/sgt` to the response with the `200` status
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-clients-connected-count-history/)
+
+#### Return combined wireless and wired connected client counts over time for a network.
+
+Operation ID: `getOrganizationAssuranceClientsConnectedCountHistory`
+
+GET _`/organizations/{organizationId}/assurance/clients/connectedCountHistory`_
+
+> \- added the new optional `query` request parameter `bands`
+
+> \- added the new optional `query` request parameter `serials`
+
+> \- added the new optional `query` request parameter `ssidNumbers`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-band/)
+
+#### Summarizes wireless post connection capacity successes and failures by band.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByBand`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byBand`_
+
+> \- added the optional property `items/items/items/connections` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-device/)
+
+#### Summarizes wireless post connection capacity successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byDevice`_
+
+> \- added the optional property `items/items/items/connections/mostImpactedChannel` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-metrics-overview-history-by-network/)
+
+#### Returns organization wireless experience metrics overview grouped by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceMetricsOverviewHistoryByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/metrics/overview/history/byNetwork`_
+
+> \- added the optional property `items/items/wiredSuccessfulConnections` to the response with the `200` status
+
+* * *
+
+### campusGateway
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-clusters-networks-overviews/)
+
+#### List networks tunneling through Campus Gateway clusters with their AP, ssids and client counts
+
+Operation ID: `getOrganizationCampusGatewayClustersNetworksOverviews`
+
+GET _`/organizations/{organizationId}/campusGateway/clusters/networks/overviews`_
+
+> \- added the new optional `query` request parameter `tunnelingSources`
+
+> \- added the required property `items/items/tunneling` to the response with the `200` status
+
+* * *
+
+### clone
+
+[Docs](https://developer.cisco.com/meraki/api-v1/clone-organization/)
+
+#### Create a new organization by cloning the addressed organization
+
+Operation ID: `cloneOrganization`
+
+POST _`/organizations/{organizationId}/clone`_
+
+> \- added the optional property `privacy` to the response with the `201` status
+
+* * *
+
+### floorPlans
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-floor-plans-auto-locate-devices/)
+
+#### List auto locate details for each device in your organization
+
+Operation ID: `getOrganizationFloorPlansAutoLocateDevices`
+
+GET _`/organizations/{organizationId}/floorPlans/autoLocate/devices`_
+
+> \- added the optional property `items/items/items/positionAccurate` to the response with the `200` status
+
+* * *
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organizations/)
+
+#### List the organizations that the user has privileges on
+
+Operation ID: `getOrganizations`
+
+GET _`/organizations`_
+
+> \- added the optional property `items/privacy` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization/)
+
+#### Create a new organization
+
+Operation ID: `createOrganization`
+
+POST _`/organizations`_
+
+> \- added the optional property `privacy` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization/)
+
+#### Return an organization
+
+Operation ID: `getOrganization`
+
+GET _`/organizations/{organizationId}`_
+
+> \- added the optional property `privacy` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization/)
+
+#### Update an organization
+
+Operation ID: `updateOrganization`
+
+PUT _`/organizations/{organizationId}`_
+
+> \- added the new optional request property `privacy`
+
+> \- added the optional property `privacy` to the response with the `200` status
+
+* * *
+
+### loginSecurity
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-login-security/)
+
+#### Returns the login security settings for an organization.
+
+Operation ID: `getOrganizationLoginSecurity`
+
+GET _`/organizations/{organizationId}/loginSecurity`_
+
+> \- added the optional property `enforceLockedIpSessions` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-login-security/)
+
+#### Update the login security settings for an organization
+
+Operation ID: `updateOrganizationLoginSecurity`
+
+PUT _`/organizations/{organizationId}/loginSecurity`_
+
+> \- added the new optional request property `enforceLockedIpSessions`
+
+> \- added the optional property `enforceLockedIpSessions` to the response with the `200` status
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-filters-filter-lists-rules/)
+
+#### List the filter list rules configured for BGP in the given organization
+
+Operation ID: `getOrganizationSwitchRoutingBgpFiltersFilterListsRules`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/filters/filterLists/rules`_
+
+> \- added the optional property `items/items/switchFabric` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-routers-deploy/)
+
+#### Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile
+
+Operation ID: `createOrganizationSwitchRoutingBgpRoutersDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/routers/deploy`_
+
+> \- added the optional property `esiMhPair` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-routers-deployments/)
+
+#### List all BGP deployment information for routers configured in a given organization, including all address families
+
+Operation ID: `getOrganizationSwitchRoutingBgpRoutersDeployments`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/routers/deployments`_
+
+> \- added the optional property `items/items/esiMhPair` to the response with the `200` status
+
+* * *
+
+
+---
+
 ## v1.70.0-beta.3
 
 
