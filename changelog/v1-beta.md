@@ -1,6 +1,374 @@
 
 ---
 
+## v1.71.0-beta.1
+
+
+- [Changed](#changed)
+  * [\[ devices \]](#-devices--1)
+    + [appliance](#appliance-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [api](#api-1)
+      - [Retrieves pipeline overviews with aggregated job status counts](#retrieves-pipeline-overviews-with-aggregated-job-status-counts-1)
+    + [appliance](#appliance-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+    + [assistant](#assistant-1)
+      - [Create a chat completion with the AI assistant](#create-a-chat-completion-with-the-ai-assistant-1)
+    + [assurance](#assurance-1)
+      - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-1)
+      - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-1)
+      - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-1)
+      - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-1)
+      - [Returns historical health alert overviews](#returns-historical-health-alert-overviews-1)
+    + [sase](#sase-1)
+    + [switch](#switch-1)
+      - [Create a port profile in an organization](#create-a-port-profile-in-an-organization-1)
+      - [List the prefix list rules configured for BGP in the given organization](#list-the-prefix-list-rules-configured-for-bgp-in-the-given-organization-1)
+      - [List the BGP peer groups configured in the given organization](#list-the-bgp-peer-groups-configured-in-the-given-organization-1)
+      - [List the listen ranges configured for BGP in the given organization](#list-the-listen-ranges-configured-for-bgp-in-the-given-organization-1)
+      - [List the neighbors configured for BGP in the given organization](#list-the-neighbors-configured-for-bgp-in-the-given-organization-1)
+    + [wireless](#wireless-1)
+      - [Returns the SSID profiles for an organization](#returns-the-ssid-profiles-for-an-organization-1)
+      - [Create a new SSID profile in an organization](#create-a-new-ssid-profile-in-an-organization-1)
+      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization-1)
+      - [Update this SSID profile](#update-this-ssid-profile-1)
+  * [\[ switch \]](#-switch--1)
+    + [ports](#ports-1)
+      - [Create a port profile in a network](#create-a-port-profile-in-a-network-1)
+ 
+Version **v1.71.0-beta.0** _to_ **v1.71.0-beta.1**
+
+* * *
+
+**Summary of Changes**
+
+**0 - New**
+
+**22 - Updated**
+
+**850 - Total Endpoints**
+
+**578 - Total Paths**
+
+* * *
+
+* * *
+
+Changed
+=======
+
+\[ devices \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-appliance-interfaces-ports-update/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `createDeviceApplianceInterfacesPortsUpdate`
+
+POST _`/devices/{serial}/appliance/interfaces/ports/update`_
+
+> \- the `downlink/sgt/id` request property type/format changed from `integer`/`` to `string`/``
+
+> \- the `downlink/sgt/id` response's property type/format changed from `integer`/`` to `string`/`` for status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-port/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPort`
+
+PUT _`/devices/{serial}/appliance/interfaces/ports/{number}`_
+
+> \- the `downlink/sgt/id` request property type/format changed from `integer`/`` to `string`/``
+
+> \- the `downlink/sgt/id` response's property type/format changed from `integer`/`` to `string`/`` for status `200`
+
+* * *
+
+\[ organizations \]
+------------
+
+### api
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-rest-provisioning-pipelines-jobs-overviews-by-pipeline/)
+
+#### Retrieves pipeline overviews with aggregated job status counts
+
+Operation ID: `getOrganizationApiRestProvisioningPipelinesJobsOverviewsByPipeline`
+
+GET _`/organizations/{organizationId}/api/rest/provisioning/pipelines/jobs/overviews/byPipeline`_
+
+> \- added the new `offboard multi cloud sites workflow` enum value to the `items/items/counts/byJobOperation/items/name` response property for the response status `200`
+
+* * *
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- the `items/items/ports/items/downlink/sgt/id` response's property type/format changed from `integer`/`` to `string`/`` for status `200`
+
+* * *
+
+### assistant
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-completion/)
+
+#### Create a chat completion with the AI assistant
+
+Operation ID: `createOrganizationAssistantChatCompletion`
+
+POST _`/organizations/{organizationId}/assistant/chat/completions`_
+
+> \- removed the optional property `toolsUsed` from the response with the `201` status
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts/)
+
+#### Return all health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlerts`
+
+GET _`/organizations/{organizationId}/assurance/alerts`_
+
+> \- added the enum value `stack_cable_auth_failure` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `stack_version_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview/)
+
+#### Return overview of active health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlertsOverview`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview`_
+
+> \- added the enum value `stack_cable_auth_failure` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `stack_version_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-network/)
+
+#### Return a Summary of Alerts grouped by network and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byNetwork`_
+
+> \- added the enum value `stack_cable_auth_failure` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `stack_version_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-type/)
+
+#### Return a Summary of Alerts grouped by type and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByType`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byType`_
+
+> \- added the enum value `stack_cable_auth_failure` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `stack_version_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-historical/)
+
+#### Returns historical health alert overviews
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewHistorical`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/historical`_
+
+> \- added the enum value `stack_cable_auth_failure` to the property `items/` of the `query` request parameter `types`
+
+> \- added the enum value `stack_version_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+### sase
+
+GET _`/organizations/{organizationId}/sase/batches/{batchId}`_
+
+> \- api path removed without deprecation
+
+* * *
+
+GET _`/organizations/{organizationId}/sase/batches/{batchId}/jobs`_
+
+> \- api path removed without deprecation
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-ports-profile/)
+
+#### Create a port profile in an organization
+
+Operation ID: `createOrganizationSwitchPortsProfile`
+
+POST _`/organizations/{organizationId}/switch/ports/profiles`_
+
+> \- removed the success response with the status `200`
+
+> \- added the success response with the status `201`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-filters-prefix-lists-rules/)
+
+#### List the prefix list rules configured for BGP in the given organization
+
+Operation ID: `getOrganizationSwitchRoutingBgpFiltersPrefixListsRules`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/rules`_
+
+> \- added the optional property `items/items/switchFabric` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-groups/)
+
+#### List the BGP peer groups configured in the given organization
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersGroups`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/groups`_
+
+> \- added the optional property `items/items/esiMhPair` to the response with the `200` status
+
+> \- added the optional property `items/items/switchFabric` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-listen-ranges/)
+
+#### List the listen ranges configured for BGP in the given organization
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersListenRanges`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/listenRanges`_
+
+> \- added the optional property `items/items/esiMhPair` to the response with the `200` status
+
+> \- added the optional property `items/items/switchFabric` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-neighbors/)
+
+#### List the neighbors configured for BGP in the given organization
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersNeighbors`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors`_
+
+> \- added the optional property `items/items/esiMhPair` to the response with the `200` status
+
+> \- added the optional property `items/items/switchFabric` to the response with the `200` status
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles/)
+
+#### Returns the SSID profiles for an organization
+
+Operation ID: `getOrganizationWirelessSsidsProfiles`
+
+GET _`/organizations/{organizationId}/wireless/ssids/profiles`_
+
+> \- added the new `ipsk-with-radius-easy-psk` enum value to the `ssid/security/mode` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-wireless-ssids-profile/)
+
+#### Create a new SSID profile in an organization
+
+Operation ID: `createOrganizationWirelessSsidsProfile`
+
+POST _`/organizations/{organizationId}/wireless/ssids/profiles`_
+
+> \- added the new `ipsk-with-radius-easy-psk` enum value to the `ssid/security/mode` response property for the response status `200`
+
+> \- added the new `ipsk-with-radius-easy-psk` enum value to the request property `ssid/security/mode`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles-overviews/)
+
+#### Returns the SSID profiles' overview information for an organization
+
+Operation ID: `getOrganizationWirelessSsidsProfilesOverviews`
+
+GET _`/organizations/{organizationId}/wireless/ssids/profiles/overviews`_
+
+> \- added the new `ipsk-with-radius-easy-psk` enum value to the `ssid/security/mode` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-wireless-ssids-profile/)
+
+#### Update this SSID profile
+
+Operation ID: `updateOrganizationWirelessSsidsProfile`
+
+PUT _`/organizations/{organizationId}/wireless/ssids/profiles/{id}`_
+
+> \- added the new `ipsk-with-radius-easy-psk` enum value to the `ssid/security/mode` response property for the response status `200`
+
+> \- added the new `ipsk-with-radius-easy-psk` enum value to the request property `ssid/security/mode`
+
+* * *
+
+\[ switch \]
+------------
+
+### ports
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-switch-ports-profile/)
+
+#### Create a port profile in a network
+
+Operation ID: `createNetworkSwitchPortsProfile`
+
+POST _`/networks/{networkId}/switch/ports/profiles`_
+
+> \- removed the success response with the status `200`
+
+> \- added the success response with the status `201`
+
+* * *
+
+
+---
+
 ## v1.71.0-beta.0
 
 
