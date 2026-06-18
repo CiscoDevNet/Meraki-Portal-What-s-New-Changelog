@@ -1,6 +1,1186 @@
 
 ---
 
+## v1.71.0-beta.2
+
+
+- [Added](#added)
+  * [\[ devices \]](#-devices-)
+    + [certificates](#certificates)
+      - [Revoke a device certificate](#revoke-a-device-certificate)
+  * [\[ organizations \]](#-organizations-)
+    + [assistant](#assistant)
+      - [Get query limits for the AI assistant for this organization.](#get-query-limits-for-the-ai-assistant-for-this-organization)
+    + [assurance](#assurance)
+      - [Returns the most impacted wireless experience metrics and the top failure contributor for each metric/network pair.](#returns-the-most-impacted-wireless-experience-metrics-and-the-top-failure-contributor-for-each-metricnetwork-pair)
+    + [certificates](#certificates)
+      - [Delete a certificate authority](#delete-a-certificate-authority)
+      - [List certificate authorities for an organization](#list-certificate-authorities-for-an-organization)
+      - [Create a certificate authority for an organization](#create-a-certificate-authority-for-an-organization)
+      - [Trust a newly created certificate authority (transition from untrusted to trusted).](#trust-a-newly-created-certificate-authority-transition-from-untrusted-to-trusted)
+      - [Return the status and result of a certificate authority job.](#return-the-status-and-result-of-a-certificate-authority-job)
+      - [Revoke a trusted feature certificate authority.](#revoke-a-trusted-feature-certificate-authority)
+      - [Return full certificate revocation lists (CRLs) for the organization's certificate authorities](#return-full-certificate-revocation-lists-crls-for-the-organizations-certificate-authorities)
+    + [devices](#devices)
+      - [List device certificates for the organization](#list-device-certificates-for-the-organization)
+- [Changed](#changed)
+  * [\[ appliance \]](#-appliance--1)
+    + [interfaces](#interfaces-1)
+      - [Create wired L3 interface](#create-wired-l3-interface-1)
+      - [Update wired L3 interface](#update-wired-l3-interface-1)
+  * [\[ devices \]](#-devices--1)
+    + [appliance](#appliance-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+    + [general](#general-1)
+      - [Return a single device](#return-a-single-device-1)
+      - [Update the attributes of a device](#update-the-attributes-of-a-device-1)
+      - [List the devices in a network](#list-the-devices-in-a-network-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [api](#api-1)
+      - [Create a new push profile](#create-a-new-push-profile-1)
+      - [Delete a push profile](#delete-a-push-profile-1)
+      - [Create a new push receiver profile](#create-a-new-push-receiver-profile-1)
+      - [Delete a push receiver profile](#delete-a-push-receiver-profile-1)
+    + [appliance](#appliance-1)
+      - [List L3 interfaces across networks for the organization](#list-l3-interfaces-across-networks-for-the-organization-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+    + [assistant](#assistant-1)
+    + [assurance](#assurance-1)
+      - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-1)
+      - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-1)
+      - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-1)
+      - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-1)
+      - [Returns historical health alert overviews](#returns-historical-health-alert-overviews-1)
+      - [Summarizes wireless post connection capacity successes and failures by client OS and driver version.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-client-os-and-driver-version-1)
+      - [Summarizes wireless coverage successes and failures by client OS.](#summarizes-wireless-coverage-successes-and-failures-by-client-os-1)
+      - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-1)
+      - [Summarizes wireless time to connect metrics by client.](#summarizes-wireless-time-to-connect-metrics-by-client-1)
+      - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-1)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-1)
+    + [policyObjects](#policyobjects-1)
+      - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization-1)
+      - [Creates a new Policy Object](#creates-a-new-policy-object-1)
+      - [Shows details of a Policy Object.](#shows-details-of-a-policy-object-1)
+      - [Updates a Policy Object](#updates-a-policy-object-1)
+    + [switch](#switch-1)
+      - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch-1)
+      - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router-1)
+    + [webhooks](#webhooks-1)
+      - [Add an HTTP server to an organization](#add-an-http-server-to-an-organization-1)
+      - [Delete an HTTP server from an organization](#delete-an-http-server-from-an-organization-1)
+    + [wireless](#wireless-1)
+      - [List the wireless device telemetry of an organization](#list-the-wireless-device-telemetry-of-an-organization-1)
+  * [\[ wireless \]](#-wireless--1)
+    + [rfProfiles](#rfprofiles-1)
+      - [List RF profiles for this network](#list-rf-profiles-for-this-network-1)
+      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network-1)
+      - [Return a RF profile](#return-a-rf-profile-1)
+      - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network-1)
+    + [ssids](#ssids-1)
+      - [List the MR SSIDs in a network](#list-the-mr-ssids-in-a-network-1)
+      - [Return a single MR SSID](#return-a-single-mr-ssid-1)
+      - [Update the attributes of an MR SSID](#update-the-attributes-of-an-mr-ssid-1)
+ 
+Version **v1.71.0-beta.1** _to_ **v1.71.0-beta.2**
+
+* * *
+
+**Summary of Changes**
+
+**11 - New**
+
+**41 - Updated**
+
+**861 - Total Endpoints**
+
+**585 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ devices \]
+--------------
+
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/revoke-device-certificate/)
+
+#### Revoke a device certificate
+
+Operation ID: `revokeDeviceCertificate`
+
+PATH _`/devices/{serial}/certificates/{certificateSerial}/revoke`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/devices/{serial}/certificates/{certificateSerial}/revoke`  
+> 
+> * * *
+
+* * *
+
+\[ organizations \]
+--------------
+
+### assistant
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-query-limits/)
+
+#### Get query limits for the AI assistant for this organization.
+
+Operation ID: `getOrganizationAssistantQueryLimits`
+
+PATH _`/organizations/{organizationId}/assistant/queryLimits`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assistant/queryLimits`  
+> 
+> * * *
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-most-impacted-x-ms/)
+
+#### Returns the most impacted wireless experience metrics and the top failure contributor for each metric/network pair.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceMostImpactedXMs`
+
+PATH _`/organizations/{organizationId}/assurance/wireless/experience/mostImpactedXMs`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wireless/experience/mostImpactedXMs`  
+> 
+> * * *
+
+* * *
+
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-certificates-authorities/)
+
+#### Delete a certificate authority
+
+Operation ID: `deleteOrganizationCertificatesAuthorities`
+
+PATH _`/organizations/{organizationId}/certificates/authorities`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/certificates/authorities`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates-authorities/)
+
+#### List certificate authorities for an organization
+
+Operation ID: `getOrganizationCertificatesAuthorities`
+
+PATH _`/organizations/{organizationId}/certificates/authorities`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/certificates/authorities`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-certificates-authority/)
+
+#### Create a certificate authority for an organization
+
+Operation ID: `createOrganizationCertificatesAuthority`
+
+PATH _`/organizations/{organizationId}/certificates/authorities`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/certificates/authorities`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-certificates-authorities/)
+
+#### Trust a newly created certificate authority (transition from untrusted to trusted).
+
+Operation ID: `updateOrganizationCertificatesAuthorities`
+
+PATH _`/organizations/{organizationId}/certificates/authorities`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/certificates/authorities`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates-authorities-job/)
+
+#### Return the status and result of a certificate authority job.
+
+Operation ID: `getOrganizationCertificatesAuthoritiesJob`
+
+PATH _`/organizations/{organizationId}/certificates/authorities/jobs/{jobId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/certificates/authorities/jobs/{jobId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/revoke-organization-certificates-authorities/)
+
+#### Revoke a trusted feature certificate authority.
+
+Operation ID: `revokeOrganizationCertificatesAuthorities`
+
+PATH _`/organizations/{organizationId}/certificates/authorities/revoke`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/certificates/authorities/revoke`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates-revocation-lists/)
+
+#### Return full certificate revocation lists (CRLs) for the organization's certificate authorities
+
+Operation ID: `getOrganizationCertificatesRevocationLists`
+
+PATH _`/organizations/{organizationId}/certificates/revocationLists`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/certificates/revocationLists`  
+> 
+> * * *
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-certificates/)
+
+#### List device certificates for the organization
+
+Operation ID: `getOrganizationDevicesCertificates`
+
+PATH _`/organizations/{organizationId}/devices/certificates`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/certificates`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+------------
+
+### interfaces
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l3/)
+
+#### Create wired L3 interface
+
+Operation ID: `createNetworkApplianceInterfacesL3`
+
+POST _`/networks/{networkId}/appliance/interfaces/l3`_
+
+> \- added the optional property `vrf` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l3/)
+
+#### Update wired L3 interface
+
+Operation ID: `updateNetworkApplianceInterfacesL3`
+
+PUT _`/networks/{networkId}/appliance/interfaces/l3/{interfaceId}`_
+
+> \- added the optional property `vrf` to the response with the `200` status
+
+* * *
+
+\[ devices \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-appliance-interfaces-ports-update/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `createDeviceApplianceInterfacesPortsUpdate`
+
+POST _`/devices/{serial}/appliance/interfaces/ports/update`_
+
+> \- removed the request property `downlink/adaptivePolicyGroupId`
+
+> \- removed the request property `downlink/trunk/peerSgtCapable`
+
+> \- removed the optional property `downlink/access/policyType` from the response with the `200` status
+
+> \- removed the optional property `downlink/adaptivePolicyGroupId` from the response with the `200` status
+
+> \- removed the optional property `downlink/trunk/peerSgtCapable` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-port/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPort`
+
+PUT _`/devices/{serial}/appliance/interfaces/ports/{number}`_
+
+> \- removed the request property `downlink/adaptivePolicyGroupId`
+
+> \- removed the request property `downlink/trunk/peerSgtCapable`
+
+> \- removed the optional property `downlink/access/policyType` from the response with the `200` status
+
+> \- removed the optional property `downlink/adaptivePolicyGroupId` from the response with the `200` status
+
+> \- removed the optional property `downlink/trunk/peerSgtCapable` from the response with the `200` status
+
+* * *
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device/)
+
+#### Return a single device
+
+Operation ID: `getDevice`
+
+GET _`/devices/{serial}`_
+
+> \- the response property `floorPlanId` became nullable for the status `200`
+
+> \- added the optional property `url` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device/)
+
+#### Update the attributes of a device
+
+Operation ID: `updateDevice`
+
+PUT _`/devices/{serial}`_
+
+> \- the response property `floorPlanId` became nullable for the status `200`
+
+> \- added the optional property `url` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-devices/)
+
+#### List the devices in a network
+
+Operation ID: `getNetworkDevices`
+
+GET _`/networks/{networkId}/devices`_
+
+> \- the response property `items/floorPlanId` became nullable for the status `200`
+
+> \- added the optional property `items/url` to the response with the `200` status
+
+* * *
+
+\[ organizations \]
+------------
+
+### api
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-api-push-profile/)
+
+#### Create a new push profile
+
+Operation ID: `createOrganizationApiPushProfile`
+
+POST _`/organizations/{organizationId}/api/push/profiles`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-api-push-profile/)
+
+#### Delete a push profile
+
+Operation ID: `deleteOrganizationApiPushProfile`
+
+DELETE _`/organizations/{organizationId}/api/push/profiles/{iname}`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-api-push-receivers-profile/)
+
+#### Create a new push receiver profile
+
+Operation ID: `createOrganizationApiPushReceiversProfile`
+
+POST _`/organizations/{organizationId}/api/push/receivers/profiles`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-api-push-receivers-profile/)
+
+#### Delete a push receiver profile
+
+Operation ID: `deleteOrganizationApiPushReceiversProfile`
+
+DELETE _`/organizations/{organizationId}/api/push/receivers/profiles/{iname}`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-l3/)
+
+#### List L3 interfaces across networks for the organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesL3`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/l3`_
+
+> \- added the optional property `items/items/vrf` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- removed the optional property `items/items/ports/items/downlink/access/policyType` from the response with the `200` status
+
+> \- removed the optional property `items/items/ports/items/downlink/adaptivePolicyGroupId` from the response with the `200` status
+
+> \- removed the optional property `items/items/ports/items/downlink/trunk/peerSgtCapable` from the response with the `200` status
+
+* * *
+
+### assistant
+
+GET _`/organizations/{organizationId}/assistant/query-limits`_
+
+> \- api path removed without deprecation
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts/)
+
+#### Return all health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlerts`
+
+GET _`/organizations/{organizationId}/assurance/alerts`_
+
+> \- added the enum value `telemetry_streaming_failure` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview/)
+
+#### Return overview of active health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlertsOverview`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview`_
+
+> \- added the enum value `telemetry_streaming_failure` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-network/)
+
+#### Return a Summary of Alerts grouped by network and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byNetwork`_
+
+> \- added the enum value `telemetry_streaming_failure` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-type/)
+
+#### Return a Summary of Alerts grouped by type and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByType`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byType`_
+
+> \- added the enum value `telemetry_streaming_failure` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-historical/)
+
+#### Returns historical health alert overviews
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewHistorical`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/historical`_
+
+> \- added the enum value `telemetry_streaming_failure` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-os/)
+
+#### Summarizes wireless post connection capacity successes and failures by client OS and driver version.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/driver` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-client-os/)
+
+#### Summarizes wireless coverage successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/driver` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-client-os/)
+
+#### Summarizes wireless connection successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/driver` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-client/)
+
+#### Summarizes wireless time to connect metrics by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClient`_
+
+> \- added the optional property `items/items/items/byContributor/items/failures/durationInMs` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-client-os/)
+
+#### Summarizes wireless connection successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/driver` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-insights-by-network/)
+
+#### Provides insights into wireless time to connect experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/insights/byNetwork`_
+
+> \- added the new optional `query` request parameter `insights`
+
+> \- added the new optional `query` request parameter `subContributor`
+
+* * *
+
+### policyObjects
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policy-objects/)
+
+#### Lists Policy Objects belonging to the organization.
+
+Operation ID: `getOrganizationPolicyObjects`
+
+GET _`/organizations/{organizationId}/policyObjects`_
+
+> \- added the new `adaptivePolicyIpv4Cidr` enum value to the `items/type` response property for the response status `200`
+
+> \- added the new `cidr` enum value to the `items/type` response property for the response status `200`
+
+> \- added the new `fqdn` enum value to the `items/type` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-policy-object/)
+
+#### Creates a new Policy Object
+
+Operation ID: `createOrganizationPolicyObject`
+
+POST _`/organizations/{organizationId}/policyObjects`_
+
+> \- request property `type` was restricted to a list of enum values
+
+> \- added the new `adaptivePolicyIpv4Cidr` enum value to the `type` response property for the response status `201`
+
+> \- added the new `cidr` enum value to the `type` response property for the response status `201`
+
+> \- added the new `fqdn` enum value to the `type` response property for the response status `201`
+
+> \- added the new `adaptivePolicyIpv4Cidr` enum value to the request property `type`
+
+> \- added the new `cidr` enum value to the request property `type`
+
+> \- added the new `fqdn` enum value to the request property `type`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policy-object/)
+
+#### Shows details of a Policy Object.
+
+Operation ID: `getOrganizationPolicyObject`
+
+GET _`/organizations/{organizationId}/policyObjects/{policyObjectId}`_
+
+> \- added the new `adaptivePolicyIpv4Cidr` enum value to the `type` response property for the response status `200`
+
+> \- added the new `cidr` enum value to the `type` response property for the response status `200`
+
+> \- added the new `fqdn` enum value to the `type` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-policy-object/)
+
+#### Updates a Policy Object
+
+Operation ID: `updateOrganizationPolicyObject`
+
+PUT _`/organizations/{organizationId}/policyObjects/{policyObjectId}`_
+
+> \- added the new `adaptivePolicyIpv4Cidr` enum value to the `type` response property for the response status `200`
+
+> \- added the new `cidr` enum value to the `type` response property for the response status `200`
+
+> \- added the new `fqdn` enum value to the `type` response property for the response status `200`
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-by-switch/)
+
+#### List the switchports in an organization by switch
+
+Operation ID: `getOrganizationSwitchPortsBySwitch`
+
+GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
+
+> \- the response's body type/format changed from `object`/`` to `array`/`` for status `200`
+
+> \- removed the optional property `mac` from the response with the `200` status
+
+> \- removed the optional property `model` from the response with the `200` status
+
+> \- removed the optional property `name` from the response with the `200` status
+
+> \- removed the optional property `network` from the response with the `200` status
+
+> \- removed the optional property `ports` from the response with the `200` status
+
+> \- removed the optional property `serial` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-routers-peers-deploy/)
+
+#### Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router
+
+Operation ID: `createOrganizationSwitchRoutingBgpRoutersPeersDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/routers/peers/deploy`_
+
+> \- added the optional property `esiMhPair` to the response with the `200` status
+
+> \- added the optional property `switchFabric` to the response with the `200` status
+
+* * *
+
+### webhooks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-webhooks-http-server/)
+
+#### Add an HTTP server to an organization
+
+Operation ID: `createOrganizationWebhooksHttpServer`
+
+POST _`/organizations/{organizationId}/webhooks/httpServers`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-webhooks-http-server/)
+
+#### Delete an HTTP server from an organization
+
+Operation ID: `deleteOrganizationWebhooksHttpServer`
+
+DELETE _`/organizations/{organizationId}/webhooks/httpServers/{id}`_
+
+> \- the endpoint scheme security `oauth2` was added to the API
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-devices-telemetry/)
+
+#### List the wireless device telemetry of an organization
+
+Operation ID: `getOrganizationWirelessDevicesTelemetry`
+
+GET _`/organizations/{organizationId}/wireless/devices/telemetry`_
+
+> \- added the optional property `items/items/uplink` to the response with the `200` status
+
+* * *
+
+\[ wireless \]
+------------
+
+### rfProfiles
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-rf-profiles/)
+
+#### List RF profiles for this network
+
+Operation ID: `getNetworkWirelessRfProfiles`
+
+GET _`/networks/{networkId}/wireless/rfProfiles`_
+
+> \- added the optional property `dot11be` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-rf-profile/)
+
+#### Creates new RF profile for this network
+
+Operation ID: `createNetworkWirelessRfProfile`
+
+POST _`/networks/{networkId}/wireless/rfProfiles`_
+
+> \- added the new optional request property `dot11be`
+
+> \- added the optional property `dot11be` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-rf-profile/)
+
+#### Return a RF profile
+
+Operation ID: `getNetworkWirelessRfProfile`
+
+GET _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
+
+> \- added the optional property `dot11be` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-rf-profile/)
+
+#### Updates specified RF profile for this network
+
+Operation ID: `updateNetworkWirelessRfProfile`
+
+PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
+
+> \- added the new optional request property `dot11be`
+
+> \- added the optional property `dot11be` to the response with the `200` status
+
+* * *
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssids/)
+
+#### List the MR SSIDs in a network
+
+Operation ID: `getNetworkWirelessSsids`
+
+GET _`/networks/{networkId}/wireless/ssids`_
+
+> \- the `items/minBitrate` response's property type/format changed from `integer`/`` to `number`/`float` for status `200`
+
+> \- added the optional property `items/adaptivePolicyGroupId` to the response with the `200` status
+
+> \- added the optional property `items/adultContentFilteringEnabled` to the response with the `200` status
+
+> \- added the optional property `items/defaultVlanId` to the response with the `200` status
+
+> \- added the optional property `items/dnsRewrite` to the response with the `200` status
+
+> \- added the optional property `items/dot11r` to the response with the `200` status
+
+> \- added the optional property `items/dot11w` to the response with the `200` status
+
+> \- added the optional property `items/enterpriseAdminAccess` to the response with the `200` status
+
+> \- added the optional property `items/gre` to the response with the `200` status
+
+> \- added the optional property `items/lanIsolationEnabled` to the response with the `200` status
+
+> \- added the optional property `items/localAuthFallback` to the response with the `200` status
+
+> \- added the optional property `items/namedVlans` to the response with the `200` status
+
+> \- added the optional property `items/oauth` to the response with the `200` status
+
+> \- added the optional property `items/radiusAuthenticationNasId` to the response with the `200` status
+
+> \- added the optional property `items/radiusCalledStationId` to the response with the `200` status
+
+> \- added the optional property `items/radiusCoaEnabled` to the response with the `200` status
+
+> \- added the optional property `items/radiusFallbackEnabled` to the response with the `200` status
+
+> \- added the optional property `items/radiusOverride` to the response with the `200` status
+
+> \- added the optional property `items/radiusProxyEnabled` to the response with the `200` status
+
+> \- added the optional property `items/radiusServerAttemptsLimit` to the response with the `200` status
+
+> \- added the optional property `items/radiusServerTimeout` to the response with the `200` status
+
+> \- added the optional property `items/radiusServers/items/id` to the response with the `200` status
+
+> \- added the optional property `items/radiusServers/items/radsecEnabled` to the response with the `200` status
+
+> \- added the optional property `items/radiusTestingEnabled` to the response with the `200` status
+
+> \- added the optional property `items/security` to the response with the `200` status
+
+> \- added the optional property `items/useVlanTagging` to the response with the `200` status
+
+> \- added the optional property `items/wifiPersonalNetworkEnabled` to the response with the `200` status
+
+> \- the response property `items/authMode` became required for the status `200`
+
+> \- the response property `items/availabilityTags` became required for the status `200`
+
+> \- the response property `items/availableOnAllAps` became required for the status `200`
+
+> \- the response property `items/bandSelection` became required for the status `200`
+
+> \- the response property `items/enabled` became required for the status `200`
+
+> \- the response property `items/ipAssignmentMode` became required for the status `200`
+
+> \- the response property `items/mandatoryDhcpEnabled` became required for the status `200`
+
+> \- the response property `items/minBitrate` became required for the status `200`
+
+> \- the response property `items/name` became required for the status `200`
+
+> \- the response property `items/number` became required for the status `200`
+
+> \- the response property `items/perClientBandwidthLimitDown` became required for the status `200`
+
+> \- the response property `items/perClientBandwidthLimitUp` became required for the status `200`
+
+> \- the response property `items/perSsidBandwidthLimitDown` became required for the status `200`
+
+> \- the response property `items/perSsidBandwidthLimitUp` became required for the status `200`
+
+> \- the response property `items/splashPage` became required for the status `200`
+
+> \- the response property `items/ssidAdminAccessible` became required for the status `200`
+
+> \- the response property `items/visible` became required for the status `200`
+
+> \- added the required property `items/speedBurst` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssid/)
+
+#### Return a single MR SSID
+
+Operation ID: `getNetworkWirelessSsid`
+
+GET _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- the `minBitrate` response's property type/format changed from `integer`/`` to `number`/`float` for status `200`
+
+> \- added the optional property `adaptivePolicyGroupId` to the response with the `200` status
+
+> \- added the optional property `adultContentFilteringEnabled` to the response with the `200` status
+
+> \- added the optional property `defaultVlanId` to the response with the `200` status
+
+> \- added the optional property `dnsRewrite` to the response with the `200` status
+
+> \- added the optional property `dot11r` to the response with the `200` status
+
+> \- added the optional property `dot11w` to the response with the `200` status
+
+> \- added the optional property `enterpriseAdminAccess` to the response with the `200` status
+
+> \- added the optional property `gre` to the response with the `200` status
+
+> \- added the optional property `lanIsolationEnabled` to the response with the `200` status
+
+> \- added the optional property `localAuthFallback` to the response with the `200` status
+
+> \- added the optional property `namedVlans` to the response with the `200` status
+
+> \- added the optional property `oauth` to the response with the `200` status
+
+> \- added the optional property `radiusAuthenticationNasId` to the response with the `200` status
+
+> \- added the optional property `radiusCalledStationId` to the response with the `200` status
+
+> \- added the optional property `radiusCoaEnabled` to the response with the `200` status
+
+> \- added the optional property `radiusFallbackEnabled` to the response with the `200` status
+
+> \- added the optional property `radiusOverride` to the response with the `200` status
+
+> \- added the optional property `radiusProxyEnabled` to the response with the `200` status
+
+> \- added the optional property `radiusServerAttemptsLimit` to the response with the `200` status
+
+> \- added the optional property `radiusServerTimeout` to the response with the `200` status
+
+> \- added the optional property `radiusServers/items/id` to the response with the `200` status
+
+> \- added the optional property `radiusServers/items/radsecEnabled` to the response with the `200` status
+
+> \- added the optional property `radiusTestingEnabled` to the response with the `200` status
+
+> \- added the optional property `security` to the response with the `200` status
+
+> \- added the optional property `useVlanTagging` to the response with the `200` status
+
+> \- added the optional property `wifiPersonalNetworkEnabled` to the response with the `200` status
+
+> \- the response property `authMode` became required for the status `200`
+
+> \- the response property `availabilityTags` became required for the status `200`
+
+> \- the response property `availableOnAllAps` became required for the status `200`
+
+> \- the response property `bandSelection` became required for the status `200`
+
+> \- the response property `enabled` became required for the status `200`
+
+> \- the response property `ipAssignmentMode` became required for the status `200`
+
+> \- the response property `mandatoryDhcpEnabled` became required for the status `200`
+
+> \- the response property `minBitrate` became required for the status `200`
+
+> \- the response property `name` became required for the status `200`
+
+> \- the response property `number` became required for the status `200`
+
+> \- the response property `perClientBandwidthLimitDown` became required for the status `200`
+
+> \- the response property `perClientBandwidthLimitUp` became required for the status `200`
+
+> \- the response property `perSsidBandwidthLimitDown` became required for the status `200`
+
+> \- the response property `perSsidBandwidthLimitUp` became required for the status `200`
+
+> \- the response property `splashPage` became required for the status `200`
+
+> \- the response property `ssidAdminAccessible` became required for the status `200`
+
+> \- the response property `visible` became required for the status `200`
+
+> \- added the required property `speedBurst` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid/)
+
+#### Update the attributes of an MR SSID
+
+Operation ID: `updateNetworkWirelessSsid`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- the `minBitrate` response's property type/format changed from `integer`/`` to `number`/`float` for status `200`
+
+> \- added the optional property `adaptivePolicyGroupId` to the response with the `200` status
+
+> \- added the optional property `adultContentFilteringEnabled` to the response with the `200` status
+
+> \- added the optional property `defaultVlanId` to the response with the `200` status
+
+> \- added the optional property `dnsRewrite` to the response with the `200` status
+
+> \- added the optional property `dot11r` to the response with the `200` status
+
+> \- added the optional property `dot11w` to the response with the `200` status
+
+> \- added the optional property `enterpriseAdminAccess` to the response with the `200` status
+
+> \- added the optional property `gre` to the response with the `200` status
+
+> \- added the optional property `lanIsolationEnabled` to the response with the `200` status
+
+> \- added the optional property `localAuthFallback` to the response with the `200` status
+
+> \- added the optional property `namedVlans` to the response with the `200` status
+
+> \- added the optional property `oauth` to the response with the `200` status
+
+> \- added the optional property `radiusAuthenticationNasId` to the response with the `200` status
+
+> \- added the optional property `radiusCalledStationId` to the response with the `200` status
+
+> \- added the optional property `radiusCoaEnabled` to the response with the `200` status
+
+> \- added the optional property `radiusFallbackEnabled` to the response with the `200` status
+
+> \- added the optional property `radiusOverride` to the response with the `200` status
+
+> \- added the optional property `radiusProxyEnabled` to the response with the `200` status
+
+> \- added the optional property `radiusServerAttemptsLimit` to the response with the `200` status
+
+> \- added the optional property `radiusServerTimeout` to the response with the `200` status
+
+> \- added the optional property `radiusServers/items/id` to the response with the `200` status
+
+> \- added the optional property `radiusServers/items/radsecEnabled` to the response with the `200` status
+
+> \- added the optional property `radiusTestingEnabled` to the response with the `200` status
+
+> \- added the optional property `security` to the response with the `200` status
+
+> \- added the optional property `useVlanTagging` to the response with the `200` status
+
+> \- added the optional property `wifiPersonalNetworkEnabled` to the response with the `200` status
+
+> \- the response property `authMode` became required for the status `200`
+
+> \- the response property `availabilityTags` became required for the status `200`
+
+> \- the response property `availableOnAllAps` became required for the status `200`
+
+> \- the response property `bandSelection` became required for the status `200`
+
+> \- the response property `enabled` became required for the status `200`
+
+> \- the response property `ipAssignmentMode` became required for the status `200`
+
+> \- the response property `mandatoryDhcpEnabled` became required for the status `200`
+
+> \- the response property `minBitrate` became required for the status `200`
+
+> \- the response property `name` became required for the status `200`
+
+> \- the response property `number` became required for the status `200`
+
+> \- the response property `perClientBandwidthLimitDown` became required for the status `200`
+
+> \- the response property `perClientBandwidthLimitUp` became required for the status `200`
+
+> \- the response property `perSsidBandwidthLimitDown` became required for the status `200`
+
+> \- the response property `perSsidBandwidthLimitUp` became required for the status `200`
+
+> \- the response property `splashPage` became required for the status `200`
+
+> \- the response property `ssidAdminAccessible` became required for the status `200`
+
+> \- the response property `visible` became required for the status `200`
+
+> \- added the required property `speedBurst` to the response with the `200` status
+
+* * *
+
+
+---
+
 ## v1.71.0-beta.1
 
 
