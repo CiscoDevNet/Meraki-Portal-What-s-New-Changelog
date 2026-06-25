@@ -1,6 +1,3891 @@
 
 ---
 
+## v1.71.0-beta.3
+
+
+- [Added](#added)
+  * [\[ organizations \]](#-organizations-)
+    + [appliance](#appliance)
+      - [List the intrusion policies configured for an organization along with base policies.](#list-the-intrusion-policies-configured-for-an-organization-along-with-base-policies)
+      - [Create a new intrusion policy for the organization.](#create-a-new-intrusion-policy-for-the-organization)
+      - [List counts for the intrusion and base policies configured for an organization.](#list-counts-for-the-intrusion-and-base-policies-configured-for-an-organization)
+      - [Delete a single intrusion policy for the organization.](#delete-a-single-intrusion-policy-for-the-organization)
+      - [Update a single intrusion policy for the organization.](#update-a-single-intrusion-policy-for-the-organization)
+      - [Declare the desired rule group overrides for an intrusion policy.](#declare-the-desired-rule-group-overrides-for-an-intrusion-policy)
+      - [Create a rule group override for an intrusion policy.](#create-a-rule-group-override-for-an-intrusion-policy)
+      - [Update a rule group override for an intrusion policy.](#update-a-rule-group-override-for-an-intrusion-policy)
+      - [Declare the desired rule overrides for an intrusion policy.](#declare-the-desired-rule-overrides-for-an-intrusion-policy)
+      - [Create a rule override for an intrusion policy.](#create-a-rule-override-for-an-intrusion-policy)
+      - [Update a rule override for an intrusion policy.](#update-a-rule-override-for-an-intrusion-policy)
+      - [List the rule groups that belong to a security policy.](#list-the-rule-groups-that-belong-to-a-security-policy)
+      - [List the rule group overrides configured for an intrusion policy.](#list-the-rule-group-overrides-configured-for-an-intrusion-policy)
+      - [Delete a rule group override for an intrusion policy.](#delete-a-rule-group-override-for-an-intrusion-policy)
+      - [List counts for the child rule groups and rules for each rule group in a security policy.](#list-counts-for-the-child-rule-groups-and-rules-for-each-rule-group-in-a-security-policy)
+      - [List the rules that belong to a security policy.](#list-the-rules-that-belong-to-a-security-policy)
+      - [List the rule overrides configured for an intrusion policy.](#list-the-rule-overrides-configured-for-an-intrusion-policy)
+      - [Delete a rule override for an intrusion policy.](#delete-a-rule-override-for-an-intrusion-policy)
+    + [compute](#compute)
+      - [List the Application Deployment agent configurations for all hosts under this organization](#list-the-application-deployment-agent-configurations-for-all-hosts-under-this-organization)
+      - [Add Application Deployment agents for a list of hosts](#add-application-deployment-agents-for-a-list-of-hosts)
+      - [Delete a Application Deployment agent from the host](#delete-a-application-deployment-agent-from-the-host)
+      - [Update a Deployment agent configuration](#update-a-deployment-agent-configuration)
+      - [Retrieves a list of compute hosts eligible for application deployment within a given organization, filtered by the specified application developer and application name, with optional network ID filtering.](#retrieves-a-list-of-compute-hosts-eligible-for-application-deployment-within-a-given-organization-filtered-by-the-specified-application-developer-and-application-name-with-optional-network-id-filtering)
+- [Changed](#changed)
+  * [\[ administered \]](#-administered--1)
+    + [licensing](#licensing-1)
+      - [Batch change networks to their desired feature tier for specified product types](#batch-change-networks-to-their-desired-feature-tier-for-specified-product-types-1)
+  * [\[ alerts \]](#-alerts--1)
+    + [settings](#settings-1)
+      - [Return the alert configuration for this network](#return-the-alert-configuration-for-this-network-1)
+      - [Update the alert configuration for this network](#update-the-alert-configuration-for-this-network-1)
+  * [\[ appliance \]](#-appliance--1)
+    + [connectivityMonitoringDestinations](#connectivitymonitoringdestinations-1)
+      - [Update the connectivity testing destinations for an MX network](#update-the-connectivity-testing-destinations-for-an-mx-network-1)
+    + [devices](#devices-1)
+      - [Update MX warm spare settings](#update-mx-warm-spare-settings-1)
+      - [Swap MX primary and warm spare appliances](#swap-mx-primary-and-warm-spare-appliances-1)
+    + [interfaces](#interfaces-1)
+      - [Create wired L3 interface](#create-wired-l3-interface-1)
+      - [Update wired L3 interface](#update-wired-l3-interface-1)
+    + [ports](#ports-1)
+      - [List per-port VLAN settings for all ports of a secure router or security appliance.](#list-per-port-vlan-settings-for-all-ports-of-a-secure-router-or-security-appliance-1)
+      - [Return per-port VLAN settings for a single secure router or security appliance port.](#return-per-port-vlan-settings-for-a-single-secure-router-or-security-appliance-port-1)
+      - [Update the per-port VLAN settings for a single secure router or security appliance port.](#update-the-per-port-vlan-settings-for-a-single-secure-router-or-security-appliance-port-1)
+    + [sdwan](#sdwan-1)
+      - [Update SDWAN internet traffic preferences for an MX network](#update-sdwan-internet-traffic-preferences-for-an-mx-network-1)
+    + [security](#security-1)
+      - [Returns all supported intrusion settings for an MX network](#returns-all-supported-intrusion-settings-for-an-mx-network-1)
+      - [Set the supported intrusion settings for an MX network](#set-the-supported-intrusion-settings-for-an-mx-network-1)
+    + [singleLan](#singlelan-1)
+      - [Update single LAN configuration](#update-single-lan-configuration-1)
+    + [trafficShaping](#trafficshaping-1)
+      - [Display the traffic shaping settings rules for an MX network](#display-the-traffic-shaping-settings-rules-for-an-mx-network-1)
+      - [Update the traffic shaping settings rules for an MX network](#update-the-traffic-shaping-settings-rules-for-an-mx-network-1)
+      - [Returns the uplink bandwidth limits for your MX network](#returns-the-uplink-bandwidth-limits-for-your-mx-network-1)
+      - [Updates the uplink bandwidth settings for your MX network.](#updates-the-uplink-bandwidth-settings-for-your-mx-network-1)
+      - [Show uplink selection settings for an MX network](#show-uplink-selection-settings-for-an-mx-network-1)
+      - [Update uplink selection settings for an MX network](#update-uplink-selection-settings-for-an-mx-network-1)
+    + [umbrella](#umbrella-1)
+      - [Enable umbrella protection for an MX network](#enable-umbrella-protection-for-an-mx-network-1)
+      - [Enable or disable umbrella protection for an appliance network](#enable-or-disable-umbrella-protection-for-an-appliance-network-1)
+    + [vlans](#vlans-1)
+      - [List the VLANs for a Security Appliance network](#list-the-vlans-for-a-security-appliance-network-1)
+      - [Add a VLAN](#add-a-vlan-1)
+      - [Return a VLAN](#return-a-vlan-1)
+      - [Update a VLAN](#update-a-vlan-1)
+    + [vpn](#vpn-1)
+      - [Return a Hub BGP Configuration](#return-a-hub-bgp-configuration-1)
+      - [Update a Hub BGP Configuration](#update-a-hub-bgp-configuration-1)
+  * [\[ camera \]](#-camera--1)
+    + [qualityRetentionProfiles](#qualityretentionprofiles-1)
+      - [List the quality retention profiles for this network](#list-the-quality-retention-profiles-for-this-network-1)
+      - [Creates new quality retention profile for this network.](#creates-new-quality-retention-profile-for-this-network-1)
+      - [Retrieve a single quality retention profile](#retrieve-a-single-quality-retention-profile-1)
+      - [Update an existing quality retention profile for this network.](#update-an-existing-quality-retention-profile-for-this-network-1)
+  * [\[ cellularGateway \]](#-cellulargateway--1)
+    + [connectivityMonitoringDestinations](#connectivitymonitoringdestinations-1)
+      - [Update the connectivity testing destinations for an MG network](#update-the-connectivity-testing-destinations-for-an-mg-network-1)
+    + [uplink](#uplink-1)
+      - [Updates the uplink settings for your MG network.](#updates-the-uplink-settings-for-your-mg-network-1)
+  * [\[ clients \]](#-clients--1)
+    + [splashAuthorizationStatus](#splashauthorizationstatus-1)
+      - [Return the splash authorization for a client, for each SSID they've associated with through splash](#return-the-splash-authorization-for-a-client-for-each-ssid-theyve-associated-with-through-splash-1)
+      - [Update a client's splash authorization](#update-a-clients-splash-authorization-1)
+  * [\[ devices \]](#-devices--1)
+    + [appliance](#appliance-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+      - [Return prefixes assigned to all IPv6 enabled VLANs on an appliance.](#return-prefixes-assigned-to-all-ipv6-enabled-vlans-on-an-appliance-1)
+      - [Update the radio settings of an appliance](#update-the-radio-settings-of-an-appliance-1)
+      - [Update the uplink settings for a secure router or security appliance](#update-the-uplink-settings-for-a-secure-router-or-security-appliance-1)
+    + [camera](#camera-1)
+      - [Assign wireless profiles to the given camera](#assign-wireless-profiles-to-the-given-camera-1)
+    + [cellular](#cellular-1)
+      - [Updates the SIM and APN configurations for a cellular device.](#updates-the-sim-and-apn-configurations-for-a-cellular-device-1)
+    + [liveTools](#livetools-1)
+      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job-1)
+    + [managementInterface](#managementinterface-1)
+      - [Return the management interface settings for a device](#return-the-management-interface-settings-for-a-device-1)
+      - [Update the management interface settings for a device](#update-the-management-interface-settings-for-a-device-1)
+    + [switch](#switch-1)
+      - [Update a switch port](#update-a-switch-port-1)
+      - [List layer 3 interfaces for a switch](#list-layer-3-interfaces-for-a-switch-1)
+      - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch-1)
+      - [Return a layer 3 interface for a switch](#return-a-layer-3-interface-for-a-switch-1)
+      - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch-1)
+    + [wireless](#wireless-1)
+      - [Return the position for a wireless device](#return-the-position-for-a-wireless-device-1)
+      - [Update the position attributes for this device](#update-the-position-attributes-for-this-device-1)
+      - [Update 2.4 GHz, 5 GHz, and 6 GHz radio settings (channel, channel width, power, and enable/disable) that override RF profiles.](#update-24-ghz-5-ghz-and-6-ghz-radio-settings-channel-channel-width-power-and-enabledisable-that-override-rf-profiles-1)
+      - [Update 2.4 GHz and 5 GHz radio settings (channel, channel width, power) that override RF profiles](#update-24-ghz-and-5-ghz-radio-settings-channel-channel-width-power-that-override-rf-profiles-1)
+  * [\[ floorPlans \]](#-floorplans--1)
+    + [devices](#devices-1)
+      - [Update floorplan assignments for a batch of devices](#update-floorplan-assignments-for-a-batch-of-devices-1)
+  * [\[ groupPolicies \]](#-grouppolicies--1)
+    + [general](#general-1)
+      - [List the group policies in a network](#list-the-group-policies-in-a-network-1)
+      - [Create a group policy](#create-a-group-policy-1)
+      - [Display a group policy](#display-a-group-policy-1)
+      - [Update a group policy](#update-a-group-policy-1)
+  * [\[ mqttBrokers \]](#-mqttbrokers--1)
+    + [general](#general-1)
+      - [Add an MQTT broker](#add-an-mqtt-broker-1)
+      - [Update an MQTT broker](#update-an-mqtt-broker-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [admins](#admins-1)
+      - [List the dashboard administrators in this organization](#list-the-dashboard-administrators-in-this-organization-1)
+      - [Create a new dashboard administrator](#create-a-new-dashboard-administrator-1)
+      - [Update an administrator](#update-an-administrator-1)
+    + [api](#api-1)
+      - [List pipelines with operation and status metadata, sorted by pipeline ID](#list-pipelines-with-operation-and-status-metadata-sorted-by-pipeline-id-1)
+    + [apiRequests](#apirequests-1)
+      - [List the API requests made by an organization](#list-the-api-requests-made-by-an-organization-1)
+    + [appliance](#appliance-1)
+      - [List L3 interfaces across networks for the organization](#list-l3-interfaces-across-networks-for-the-organization-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+      - [Return MX warm spare settings](#return-mx-warm-spare-settings-1)
+      - [Returns packet counter overviews for all interfaces on Secure Routers in the organization, including totals and average rates by packet type over the requested timespan.](#returns-packet-counter-overviews-for-all-interfaces-on-secure-routers-in-the-organization-including-totals-and-average-rates-by-packet-type-over-the-requested-timespan-1)
+      - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network-1)
+      - [Returns all supported intrusion settings for an organization](#returns-all-supported-intrusion-settings-for-an-organization-1)
+      - [Sets supported intrusion settings for an organization](#sets-supported-intrusion-settings-for-an-organization-1)
+      - [List the VLANs for an Organization](#list-the-vlans-for-an-organization-1)
+      - [Return the third party VPN peers for an organization](#return-the-third-party-vpn-peers-for-an-organization-1)
+      - [Update the third party VPN peers for an organization](#update-the-third-party-vpn-peers-for-an-organization-1)
+    + [assistant](#assistant-1)
+      - [List all active conversation threads for the authenticated user.](#list-all-active-conversation-threads-for-the-authenticated-user-1)
+      - [List messages in a conversation thread.](#list-messages-in-a-conversation-thread-1)
+      - [Return a single artifact with its full content.](#return-a-single-artifact-with-its-full-content-1)
+    + [assurance](#assurance-1)
+      - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-1)
+      - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-1)
+      - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-1)
+      - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-1)
+      - [Returns historical health alert overviews](#returns-historical-health-alert-overviews-1)
+      - [Return combined wireless and wired connected client counts over time for a network.](#return-combined-wireless-and-wired-connected-client-counts-over-time-for-a-network-1)
+      - [Summarizes wireless post connection capacity successes and failures by band.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-band-1)
+      - [Summarizes wireless post connection capacity successes and failures by client OS and driver version.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-client-os-and-driver-version-1)
+      - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-1)
+      - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device-1)
+      - [Summarizes wireless post connection capacity successes and failures by ssid.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-ssid-1)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-1)
+      - [Summarizes wireless coverage successes and failures by client OS.](#summarizes-wireless-coverage-successes-and-failures-by-client-os-1)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-1)
+      - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-1)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-1)
+      - [Summarizes wireless time to connect metrics by client.](#summarizes-wireless-time-to-connect-metrics-by-client-1)
+      - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-1)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-1)
+    + [certificates](#certificates-1)
+      - [Delete a certificate authority](#delete-a-certificate-authority-1)
+      - [List certificate authorities for an organization](#list-certificate-authorities-for-an-organization-1)
+      - [Create a certificate authority for an organization](#create-a-certificate-authority-for-an-organization-1)
+      - [Trust a newly created certificate authority (transition from untrusted to trusted).](#trust-a-newly-created-certificate-authority-transition-from-untrusted-to-trusted-1)
+      - [Return the status and result of a certificate authority job.](#return-the-status-and-result-of-a-certificate-authority-job-1)
+      - [Revoke a trusted feature certificate authority.](#revoke-a-trusted-feature-certificate-authority-1)
+    + [configTemplates](#configtemplates-1)
+      - [Update a switch template port](#update-a-switch-template-port-1)
+    + [devices](#devices-1)
+      - [List devices eligible for Cellular Data Management profile assignment in this organization](#list-devices-eligible-for-cellular-data-management-profile-assignment-in-this-organization-1)
+      - [List the latest cellular geolocation telemetry for devices in an organization](#list-the-latest-cellular-geolocation-telemetry-for-devices-in-an-organization-1)
+      - [List the latest cellular tower information for devices in an organization](#list-the-latest-cellular-tower-information-for-devices-in-an-organization-1)
+      - [List device certificates for the organization](#list-device-certificates-for-the-organization-1)
+      - [Retrieve device migration statuses in an organization](#retrieve-device-migration-statuses-in-an-organization-1)
+      - [Returns details about software updates for networks within an organization.](#returns-details-about-software-updates-for-networks-within-an-organization-1)
+      - [List topology interfaces in an organization, including layer 2 and layer 3 metadata when available.](#list-topology-interfaces-in-an-organization-including-layer-2-and-layer-3-metadata-when-available-1)
+      - [List layer 2 topology links originating from devices in an organization.](#list-layer-2-topology-links-originating-from-devices-in-an-organization-1)
+      - [List topology nodes discovered by LLDP/CDP from devices in an organization, including reported metadata when available.](#list-topology-nodes-discovered-by-lldpcdp-from-devices-in-an-organization-including-reported-metadata-when-available-1)
+    + [firmware](#firmware-1)
+      - [Get firmware upgrade status for the filtered devices](#get-firmware-upgrade-status-for-the-filtered-devices-1)
+    + [iam](#iam-1)
+      - [List specific authorizations for the list of Meraki end users.](#list-specific-authorizations-for-the-list-of-meraki-end-users-1)
+    + [inventory](#inventory-1)
+      - [Return the device inventory for an organization](#return-the-device-inventory-for-an-organization-1)
+      - [Return inventory devices with additional site, geolocation, software, licensing, lifecycle, and Catalyst Center-specific fields](#return-inventory-devices-with-additional-site-geolocation-software-licensing-lifecycle-and-catalyst-center-specific-fields-1)
+      - [Return a single device from the inventory of an organization](#return-a-single-device-from-the-inventory-of-an-organization-1)
+    + [sase](#sase-1)
+      - [List SSE Connectors for an organization](#list-sse-connectors-for-an-organization-1)
+    + [sensor](#sensor-1)
+      - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events-1)
+      - [Return the latest available reading for each metric from each sensor, sorted by sensor serial](#return-the-latest-available-reading-for-each-metric-from-each-sensor-sorted-by-sensor-serial-1)
+    + [switch](#switch-1)
+      - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch-1)
+      - [Create a port profile in an organization](#create-a-port-profile-in-an-organization-1)
+      - [Batch assign or unassign port profiles to switch ports](#batch-assign-or-unassign-port-profiles-to-switch-ports-1)
+      - [List the port profile assignments in an organization, grouped by port](#list-the-port-profile-assignments-in-an-organization-grouped-by-port-1)
+      - [List the port profile assignments in an organization, grouped by switch](#list-the-port-profile-assignments-in-an-organization-grouped-by-switch-1)
+      - [Create a port profile automation for an organization](#create-a-port-profile-automation-for-an-organization-1)
+      - [Update a port profile automation in an organization](#update-a-port-profile-automation-in-an-organization-1)
+      - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile-1)
+      - [Update a port profile in an organization](#update-a-port-profile-in-an-organization-1)
+      - [Switch port packets by device and port.](#switch-port-packets-by-device-and-port-1)
+      - [Create or update a prefix list, in addition to its associated rules](#create-or-update-a-prefix-list-in-addition-to-its-associated-rules-1)
+      - [List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges](#list-all-bgp-deployment-information-for-multiple-peer-groups-or-address-families-configured-in-the-given-organization-including-profile-information-peer-group-address-family-information-neighbors-and-listen-ranges-1)
+      - [Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group](#create-or-update-a-peer-group-in-addition-to-an-associated-peer-group-profile-peer-group-address-family-binding-peer-group-address-family-binding-profile-and-routing-policies-associated-with-the-peer-group-1)
+      - [List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies](#list-all-bgp-deployment-information-for-peer-groups-configured-in-the-given-organization-including-peer-group-address-family-information-as-well-as-routing-policies-1)
+      - [List the neighbors configured for BGP in the given organization](#list-the-neighbors-configured-for-bgp-in-the-given-organization-1)
+      - [Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor](#create-or-update-a-neighor-in-addition-to-an-associated-neighbor-address-family-binding-and-routing-policies-associated-with-the-neighbor-1)
+      - [List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies](#list-all-bgp-deployment-information-for-neighbors-configured-in-the-given-organization-including-address-family-information-as-well-as-routing-policies-1)
+      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-1)
+    + [webhooks](#webhooks-1)
+      - [Return a list of alert types to be used with managing webhook alerts](#return-a-list-of-alert-types-to-be-used-with-managing-webhook-alerts-1)
+    + [wireless](#wireless-1)
+      - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-1)
+  * [\[ sensor \]](#-sensor--1)
+    + [alerts](#alerts-1)
+      - [Creates a sensor alert profile for a network.](#creates-a-sensor-alert-profile-for-a-network-1)
+      - [Updates a sensor alert profile for a network.](#updates-a-sensor-alert-profile-for-a-network-1)
+  * [\[ settings \]](#-settings--1)
+    + [general](#general-1)
+      - [Update the settings for a network](#update-the-settings-for-a-network-1)
+  * [\[ switch \]](#-switch--1)
+    + [accessPolicies](#accesspolicies-1)
+      - [List the access policies for a switch network](#list-the-access-policies-for-a-switch-network-1)
+      - [Create an access policy for a switch network](#create-an-access-policy-for-a-switch-network-1)
+      - [Return a specific access policy for a switch network](#return-a-specific-access-policy-for-a-switch-network-1)
+      - [Update an access policy for a switch network](#update-an-access-policy-for-a-switch-network-1)
+    + [ports](#ports-1)
+      - [List the port profiles in a network](#list-the-port-profiles-in-a-network-1)
+      - [Create a port profile in a network](#create-a-port-profile-in-a-network-1)
+      - [Update a port profile in a network](#update-a-port-profile-in-a-network-1)
+    + [stacks](#stacks-1)
+      - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack-1)
+      - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack-1)
+      - [Return a layer 3 interface from a switch stack](#return-a-layer-3-interface-from-a-switch-stack-1)
+      - [Update a layer 3 interface for a switch stack](#update-a-layer-3-interface-for-a-switch-stack-1)
+  * [\[ vlanProfiles \]](#-vlanprofiles--1)
+    + [assignments](#assignments-1)
+      - [Get the assigned VLAN Profiles for devices in a network](#get-the-assigned-vlan-profiles-for-devices-in-a-network-1)
+  * [\[ wireless \]](#-wireless--1)
+    + [billing](#billing-1)
+      - [Update the billing settings](#update-the-billing-settings-1)
+    + [clients](#clients-1)
+      - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network-1)
+      - [Fetch the health scores for a given client on this network](#fetch-the-health-scores-for-a-given-client-on-this-network-1)
+    + [ethernet](#ethernet-1)
+      - [Create an AP port profile](#create-an-ap-port-profile-1)
+      - [Update the AP port profile by ID for this network](#update-the-ap-port-profile-by-id-for-this-network-1)
+    + [rfProfiles](#rfprofiles-1)
+      - [List RF profiles for this network](#list-rf-profiles-for-this-network-1)
+      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network-1)
+      - [Return a RF profile](#return-a-rf-profile-1)
+      - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network-1)
+    + [ssids](#ssids-1)
+      - [List the MR SSIDs in a network](#list-the-mr-ssids-in-a-network-1)
+      - [Return a single MR SSID](#return-a-single-mr-ssid-1)
+      - [Update the attributes of an MR SSID](#update-the-attributes-of-an-mr-ssid-1)
+      - [Modify the splash page settings for the given SSID](#modify-the-splash-page-settings-for-the-given-ssid-1)
+      - [Display the traffic shaping settings for a SSID on an MR network](#display-the-traffic-shaping-settings-for-a-ssid-on-an-mr-network-1)
+      - [Update the traffic shaping rules for an SSID on an MR network.](#update-the-traffic-shaping-rules-for-an-ssid-on-an-mr-network-1)
+    + [zigbee](#zigbee-1)
+      - [Update Zigbee Configs for specified network](#update-zigbee-configs-for-specified-network-1)
+ 
+Version **v1.71.0-beta.2** _to_ **v1.71.0-beta.3**
+
+* * *
+
+**Summary of Changes**
+
+**23 - New**
+
+**175 - Updated**
+
+**873 - Total Endpoints**
+
+**593 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ organizations \]
+--------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-security-intrusion-policies/)
+
+#### List the intrusion policies configured for an organization along with base policies.
+
+Operation ID: `getOrganizationApplianceSecurityIntrusionPolicies`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/security/intrusion/policies`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-appliance-security-intrusion-policy/)
+
+#### Create a new intrusion policy for the organization.
+
+Operation ID: `createOrganizationApplianceSecurityIntrusionPolicy`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/appliance/security/intrusion/policies`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-security-intrusion-policies-overviews/)
+
+#### List counts for the intrusion and base policies configured for an organization.
+
+Operation ID: `getOrganizationApplianceSecurityIntrusionPoliciesOverviews`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies/overviews`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/security/intrusion/policies/overviews`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-appliance-security-intrusion-policy/)
+
+#### Delete a single intrusion policy for the organization.
+
+Operation ID: `deleteOrganizationApplianceSecurityIntrusionPolicy`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-appliance-security-intrusion-policy/)
+
+#### Update a single intrusion policy for the organization.
+
+Operation ID: `updateOrganizationApplianceSecurityIntrusionPolicy`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/declare-organization-appliance-security-intrusion-policy-rule-groups-overrides/)
+
+#### Declare the desired rule group overrides for an intrusion policy.
+
+Operation ID: `declareOrganizationApplianceSecurityIntrusionPolicyRuleGroupsOverrides`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/ruleGroups/overrides/declare`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/ruleGroups/overrides/declare`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-appliance-security-intrusion-policy-rule-group-override/)
+
+#### Create a rule group override for an intrusion policy.
+
+Operation ID: `createOrganizationApplianceSecurityIntrusionPolicyRuleGroupOverride`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/ruleGroups/{ruleGroupId}/override`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/ruleGroups/{ruleGroupId}/override`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-appliance-security-intrusion-policy-rule-group-override/)
+
+#### Update a rule group override for an intrusion policy.
+
+Operation ID: `updateOrganizationApplianceSecurityIntrusionPolicyRuleGroupOverride`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/ruleGroups/{ruleGroupId}/override`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/ruleGroups/{ruleGroupId}/override`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/declare-organization-appliance-security-intrusion-policy-rules-overrides/)
+
+#### Declare the desired rule overrides for an intrusion policy.
+
+Operation ID: `declareOrganizationApplianceSecurityIntrusionPolicyRulesOverrides`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/rules/overrides/declare`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/rules/overrides/declare`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-appliance-security-intrusion-policy-rule-override/)
+
+#### Create a rule override for an intrusion policy.
+
+Operation ID: `createOrganizationApplianceSecurityIntrusionPolicyRuleOverride`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/rules/{ruleId}/override`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/rules/{ruleId}/override`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-appliance-security-intrusion-policy-rule-override/)
+
+#### Update a rule override for an intrusion policy.
+
+Operation ID: `updateOrganizationApplianceSecurityIntrusionPolicyRuleOverride`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/rules/{ruleId}/override`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/appliance/security/intrusion/policies/{policyId}/rules/{ruleId}/override`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-security-intrusion-rule-groups/)
+
+#### List the rule groups that belong to a security policy.
+
+Operation ID: `getOrganizationApplianceSecurityIntrusionRuleGroups`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/ruleGroups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/security/intrusion/ruleGroups`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-security-intrusion-rule-groups-overrides/)
+
+#### List the rule group overrides configured for an intrusion policy.
+
+Operation ID: `getOrganizationApplianceSecurityIntrusionRuleGroupsOverrides`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/ruleGroups/overrides`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/security/intrusion/ruleGroups/overrides`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-appliance-security-intrusion-rule-groups-override/)
+
+#### Delete a rule group override for an intrusion policy.
+
+Operation ID: `deleteOrganizationApplianceSecurityIntrusionRuleGroupsOverride`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/ruleGroups/overrides/{overrideId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/appliance/security/intrusion/ruleGroups/overrides/{overrideId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-security-intrusion-rule-groups-overviews/)
+
+#### List counts for the child rule groups and rules for each rule group in a security policy.
+
+Operation ID: `getOrganizationApplianceSecurityIntrusionRuleGroupsOverviews`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/ruleGroups/overviews`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/security/intrusion/ruleGroups/overviews`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-security-intrusion-rules/)
+
+#### List the rules that belong to a security policy.
+
+Operation ID: `getOrganizationApplianceSecurityIntrusionRules`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/rules`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/security/intrusion/rules`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-security-intrusion-rules-overrides/)
+
+#### List the rule overrides configured for an intrusion policy.
+
+Operation ID: `getOrganizationApplianceSecurityIntrusionRulesOverrides`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/rules/overrides`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/security/intrusion/rules/overrides`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-appliance-security-intrusion-rules-override/)
+
+#### Delete a rule override for an intrusion policy.
+
+Operation ID: `deleteOrganizationApplianceSecurityIntrusionRulesOverride`
+
+PATH _`/organizations/{organizationId}/appliance/security/intrusion/rules/overrides/{overrideId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/appliance/security/intrusion/rules/overrides/{overrideId}`  
+> 
+> * * *
+
+* * *
+
+### compute
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-compute-application-deployments/)
+
+#### List the Application Deployment agent configurations for all hosts under this organization
+
+Operation ID: `getOrganizationComputeApplicationDeployments`
+
+PATH _`/organizations/{organizationId}/compute/application/deployments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/compute/application/deployments`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-compute-application-deployments-bulk-create/)
+
+#### Add Application Deployment agents for a list of hosts
+
+Operation ID: `createOrganizationComputeApplicationDeploymentsBulkCreate`
+
+PATH _`/organizations/{organizationId}/compute/application/deployments/bulkCreate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/compute/application/deployments/bulkCreate`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-compute-application-deployment/)
+
+#### Delete a Application Deployment agent from the host
+
+Operation ID: `deleteOrganizationComputeApplicationDeployment`
+
+PATH _`/organizations/{organizationId}/compute/application/deployments/{deploymentId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/compute/application/deployments/{deploymentId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-compute-application-deployment/)
+
+#### Update a Deployment agent configuration
+
+Operation ID: `updateOrganizationComputeApplicationDeployment`
+
+PATH _`/organizations/{organizationId}/compute/application/deployments/{deploymentId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/compute/application/deployments/{deploymentId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-compute-hosts/)
+
+#### Retrieves a list of compute hosts eligible for application deployment within a given organization, filtered by the specified application developer and application name, with optional network ID filtering.
+
+Operation ID: `getOrganizationComputeHosts`
+
+PATH _`/organizations/{organizationId}/compute/hosts`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/compute/hosts`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ administered \]
+------------
+
+### licensing
+
+[Docs](https://developer.cisco.com/meraki/api-v1/batch-administered-licensing-subscription-networks-feature-tiers-update/)
+
+#### Batch change networks to their desired feature tier for specified product types
+
+Operation ID: `batchAdministeredLicensingSubscriptionNetworksFeatureTiersUpdate`
+
+POST _`/administered/licensing/subscription/networks/featureTiers/batchUpdate`_
+
+> \- the response property `errors/items/error` became nullable for the status `200`
+
+* * *
+
+\[ alerts \]
+------------
+
+### settings
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-alerts-settings/)
+
+#### Return the alert configuration for this network
+
+Operation ID: `getNetworkAlertsSettings`
+
+GET _`/networks/{networkId}/alerts/settings`_
+
+> \- the response property `alerts/items/filters/conditions/items/unit` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-alerts-settings/)
+
+#### Update the alert configuration for this network
+
+Operation ID: `updateNetworkAlertsSettings`
+
+PUT _`/networks/{networkId}/alerts/settings`_
+
+> \- the response property `alerts/items/filters/conditions/items/unit` became nullable for the status `200`
+
+> \- the request property `alerts/items/filters/conditions/items/unit` became nullable
+
+* * *
+
+\[ appliance \]
+------------
+
+### connectivityMonitoringDestinations
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-connectivity-monitoring-destinations/)
+
+#### Update the connectivity testing destinations for an MX network
+
+Operation ID: `updateNetworkApplianceConnectivityMonitoringDestinations`
+
+PUT _`/networks/{networkId}/appliance/connectivityMonitoringDestinations`_
+
+> \- the request property `destinations/items/description` became nullable
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-devices-redundancy/)
+
+#### Update MX warm spare settings
+
+Operation ID: `updateNetworkApplianceDevicesRedundancy`
+
+PUT _`/networks/{networkId}/appliance/devices/redundancy`_
+
+> \- the response property `uplink/sharing/vlanId` became nullable for the status `200`
+
+> \- the request property `uplink/sharing/vlanId` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-devices-redundancy-swap/)
+
+#### Swap MX primary and warm spare appliances
+
+Operation ID: `createNetworkApplianceDevicesRedundancySwap`
+
+POST _`/networks/{networkId}/appliance/devices/redundancy/swap`_
+
+> \- the response property `uplink/sharing/vlanId` became nullable for the status `200`
+
+* * *
+
+### interfaces
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l3/)
+
+#### Create wired L3 interface
+
+Operation ID: `createNetworkApplianceInterfacesL3`
+
+POST _`/networks/{networkId}/appliance/interfaces/l3`_
+
+> \- the response property `port/interface/name` became nullable for the status `201`
+
+> \- the response property `port/interface/number` became nullable for the status `201`
+
+> \- the response property `port/interface/slot` became nullable for the status `201`
+
+> \- the response property `port/interface/subslot` became nullable for the status `201`
+
+> \- added the new optional request property `vrf`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l3/)
+
+#### Update wired L3 interface
+
+Operation ID: `updateNetworkApplianceInterfacesL3`
+
+PUT _`/networks/{networkId}/appliance/interfaces/l3/{interfaceId}`_
+
+> \- the response property `port/interface/name` became nullable for the status `200`
+
+> \- the response property `port/interface/number` became nullable for the status `200`
+
+> \- the response property `port/interface/slot` became nullable for the status `200`
+
+> \- the response property `port/interface/subslot` became nullable for the status `200`
+
+> \- added the new optional request property `vrf`
+
+> \- the request property `port/interface/name` became nullable
+
+> \- the request property `port/interface/number` became nullable
+
+> \- the request property `port/interface/slot` became nullable
+
+> \- the request property `port/interface/subslot` became nullable
+
+* * *
+
+### ports
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-ports/)
+
+#### List per-port VLAN settings for all ports of a secure router or security appliance.
+
+Operation ID: `getNetworkAppliancePorts`
+
+GET _`/networks/{networkId}/appliance/ports`_
+
+> \- the response property `items/sgt/id` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-port/)
+
+#### Return per-port VLAN settings for a single secure router or security appliance port.
+
+Operation ID: `getNetworkAppliancePort`
+
+GET _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- the response property `sgt/id` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-port/)
+
+#### Update the per-port VLAN settings for a single secure router or security appliance port.
+
+Operation ID: `updateNetworkAppliancePort`
+
+PUT _`/networks/{networkId}/appliance/ports/{portId}`_
+
+> \- the response property `sgt/id` became nullable for the status `200`
+
+> \- the request property `sgt/id` became nullable
+
+* * *
+
+### sdwan
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-sdwan-internet-policies/)
+
+#### Update SDWAN internet traffic preferences for an MX network
+
+Operation ID: `updateNetworkApplianceSdwanInternetPolicies`
+
+PUT _`/networks/{networkId}/appliance/sdwan/internetPolicies`_
+
+> \- the response property `wanTrafficUplinkPreferences/items/performanceClass/builtinPerformanceClassName` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/performanceClass/customPerformanceClassId` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/performanceClass/type` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/id` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/name` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/type` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/cidr` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/port` became nullable for the status `200`
+
+> \- the request property `wanTrafficUplinkPreferences/items/performanceClass/builtinPerformanceClassName` became nullable
+
+> \- the request property `wanTrafficUplinkPreferences/items/performanceClass/customPerformanceClassId` became nullable
+
+> \- the request property `wanTrafficUplinkPreferences/items/performanceClass/type` became nullable
+
+> \- the request property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications` became nullable
+
+> \- the request property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/id` became nullable
+
+> \- the request property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/name` became nullable
+
+> \- the request property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/type` became nullable
+
+> \- the request property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/cidr` became nullable
+
+> \- the request property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/port` became nullable
+
+* * *
+
+### security
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-security-intrusion/)
+
+#### Returns all supported intrusion settings for an MX network
+
+Operation ID: `getNetworkApplianceSecurityIntrusion`
+
+GET _`/networks/{networkId}/appliance/security/intrusion`_
+
+> \- added the optional property `policy` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-security-intrusion/)
+
+#### Set the supported intrusion settings for an MX network
+
+Operation ID: `updateNetworkApplianceSecurityIntrusion`
+
+PUT _`/networks/{networkId}/appliance/security/intrusion`_
+
+> \- added the new optional request property `policy`
+
+> \- added the optional property `policy` to the response with the `200` status
+
+* * *
+
+### singleLan
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-single-lan/)
+
+#### Update single LAN configuration
+
+Operation ID: `updateNetworkApplianceSingleLan`
+
+PUT _`/networks/{networkId}/appliance/singleLan`_
+
+> \- the request property `vrf` became not nullable
+
+> \- the request property `ipv6/prefixAssignments/items/staticApplianceIp6` became nullable
+
+> \- the request property `ipv6/prefixAssignments/items/staticPrefix` became nullable
+
+* * *
+
+### trafficShaping
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-traffic-shaping-rules/)
+
+#### Display the traffic shaping settings rules for an MX network
+
+Operation ID: `getNetworkApplianceTrafficShapingRules`
+
+GET _`/networks/{networkId}/appliance/trafficShaping/rules`_
+
+> \- the response property `rules/items/dscpTagValue` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-traffic-shaping-rules/)
+
+#### Update the traffic shaping settings rules for an MX network
+
+Operation ID: `updateNetworkApplianceTrafficShapingRules`
+
+PUT _`/networks/{networkId}/appliance/trafficShaping/rules`_
+
+> \- the response property `rules/items/dscpTagValue` became nullable for the status `200`
+
+> \- the request property `rules/items/dscpTagValue` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-traffic-shaping-uplink-bandwidth/)
+
+#### Returns the uplink bandwidth limits for your MX network
+
+Operation ID: `getNetworkApplianceTrafficShapingUplinkBandwidth`
+
+GET _`/networks/{networkId}/appliance/trafficShaping/uplinkBandwidth`_
+
+> \- the response property `bandwidthLimits/cellular/limitDown` became nullable for the status `200`
+
+> \- the response property `bandwidthLimits/cellular/limitUp` became nullable for the status `200`
+
+> \- the response property `bandwidthLimits/wan1/limitDown` became nullable for the status `200`
+
+> \- the response property `bandwidthLimits/wan1/limitUp` became nullable for the status `200`
+
+> \- the response property `bandwidthLimits/wan2/limitDown` became nullable for the status `200`
+
+> \- the response property `bandwidthLimits/wan2/limitUp` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-traffic-shaping-uplink-bandwidth/)
+
+#### Updates the uplink bandwidth settings for your MX network.
+
+Operation ID: `updateNetworkApplianceTrafficShapingUplinkBandwidth`
+
+PUT _`/networks/{networkId}/appliance/trafficShaping/uplinkBandwidth`_
+
+> \- the response property `bandwidthLimits/cellular/limitDown` became nullable for the status `200`
+
+> \- the response property `bandwidthLimits/cellular/limitUp` became nullable for the status `200`
+
+> \- the response property `bandwidthLimits/wan1/limitDown` became nullable for the status `200`
+
+> \- the response property `bandwidthLimits/wan1/limitUp` became nullable for the status `200`
+
+> \- the response property `bandwidthLimits/wan2/limitDown` became nullable for the status `200`
+
+> \- the response property `bandwidthLimits/wan2/limitUp` became nullable for the status `200`
+
+> \- the request property `bandwidthLimits/cellular/limitDown` became nullable
+
+> \- the request property `bandwidthLimits/cellular/limitUp` became nullable
+
+> \- the request property `bandwidthLimits/wan1/limitDown` became nullable
+
+> \- the request property `bandwidthLimits/wan1/limitUp` became nullable
+
+> \- the request property `bandwidthLimits/wan2/limitDown` became nullable
+
+> \- the request property `bandwidthLimits/wan2/limitUp` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-traffic-shaping-uplink-selection/)
+
+#### Show uplink selection settings for an MX network
+
+Operation ID: `getNetworkApplianceTrafficShapingUplinkSelection`
+
+GET _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/id` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/name` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/type` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-traffic-shaping-uplink-selection/)
+
+#### Update uplink selection settings for an MX network
+
+Operation ID: `updateNetworkApplianceTrafficShapingUplinkSelection`
+
+PUT _`/networks/{networkId}/appliance/trafficShaping/uplinkSelection`_
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/id` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/name` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/type` became nullable for the status `200`
+
+* * *
+
+### umbrella
+
+[Docs](https://developer.cisco.com/meraki/api-v1/enable-network-appliance-umbrella-protection/)
+
+#### Enable umbrella protection for an MX network
+
+Operation ID: `enableNetworkApplianceUmbrellaProtection`
+
+POST _`/networks/{networkId}/appliance/umbrella/enableProtection`_
+
+> \- the response property `umbrella/organization/id` became nullable for the status `201`
+
+> \- the response property `umbrella/origin/id` became nullable for the status `201`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/protection-network-appliance-umbrella/)
+
+#### Enable or disable umbrella protection for an appliance network
+
+Operation ID: `protectionNetworkApplianceUmbrella`
+
+PUT _`/networks/{networkId}/appliance/umbrella/protection`_
+
+> \- the response property `umbrella/organization/id` became nullable for the status `200`
+
+> \- the response property `umbrella/origin/id` became nullable for the status `200`
+
+* * *
+
+### vlans
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vlans/)
+
+#### List the VLANs for a Security Appliance network
+
+Operation ID: `getNetworkApplianceVlans`
+
+GET _`/networks/{networkId}/appliance/vlans`_
+
+> \- the response property `items/sgt/id` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-vlan/)
+
+#### Add a VLAN
+
+Operation ID: `createNetworkApplianceVlan`
+
+POST _`/networks/{networkId}/appliance/vlans`_
+
+> \- the response property `sgt/id` became nullable for the status `201`
+
+> \- the request property `ipv6/prefixAssignments/items/staticApplianceIp6` became nullable
+
+> \- the request property `ipv6/prefixAssignments/items/staticPrefix` became nullable
+
+> \- the request property `sgt/id` became nullable
+
+> \- the request property `vrf/id` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vlan/)
+
+#### Return a VLAN
+
+Operation ID: `getNetworkApplianceVlan`
+
+GET _`/networks/{networkId}/appliance/vlans/{vlanId}`_
+
+> \- the response property `sgt/id` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vlan/)
+
+#### Update a VLAN
+
+Operation ID: `updateNetworkApplianceVlan`
+
+PUT _`/networks/{networkId}/appliance/vlans/{vlanId}`_
+
+> \- the response property `sgt/id` became nullable for the status `200`
+
+> \- the request property `ipv6/prefixAssignments/items/staticApplianceIp6` became nullable
+
+> \- the request property `ipv6/prefixAssignments/items/staticPrefix` became nullable
+
+> \- the request property `sgt/id` became nullable
+
+> \- the request property `vrf/id` became nullable
+
+* * *
+
+### vpn
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vpn-bgp/)
+
+#### Return a Hub BGP Configuration
+
+Operation ID: `getNetworkApplianceVpnBgp`
+
+GET _`/networks/{networkId}/appliance/vpn/bgp`_
+
+> \- added the optional property `ipv6` to the response with the `200` status
+
+> \- added the optional property `neighbors/items/explicitOutboundRouteAdvertisement` to the response with the `200` status
+
+> \- added the optional property `neighbors/items/filter` to the response with the `200` status
+
+> \- added the optional property `priorityRoute` to the response with the `200` status
+
+> \- added the optional property `tunnelDownTermination` to the response with the `200` status
+
+> \- added the optional property `vpnAsNumber` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-bgp/)
+
+#### Update a Hub BGP Configuration
+
+Operation ID: `updateNetworkApplianceVpnBgp`
+
+PUT _`/networks/{networkId}/appliance/vpn/bgp`_
+
+> \- added the new optional request property `ipv6`
+
+> \- added the new optional request property `neighbors/items/explicitOutboundRouteAdvertisement`
+
+> \- added the new optional request property `neighbors/items/filter`
+
+> \- added the new optional request property `priorityRoute`
+
+> \- added the new optional request property `tunnelDownTermination`
+
+> \- added the new optional request property `vpnAsNumber`
+
+> \- added the optional property `ipv6` to the response with the `200` status
+
+> \- added the optional property `neighbors/items/explicitOutboundRouteAdvertisement` to the response with the `200` status
+
+> \- added the optional property `neighbors/items/filter` to the response with the `200` status
+
+> \- added the optional property `priorityRoute` to the response with the `200` status
+
+> \- added the optional property `tunnelDownTermination` to the response with the `200` status
+
+> \- added the optional property `vpnAsNumber` to the response with the `200` status
+
+* * *
+
+\[ camera \]
+------------
+
+### qualityRetentionProfiles
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-camera-quality-retention-profiles/)
+
+#### List the quality retention profiles for this network
+
+Operation ID: `getNetworkCameraQualityRetentionProfiles`
+
+GET _`/networks/{networkId}/camera/qualityRetentionProfiles`_
+
+> \- added the optional property `items/axisVideoQuality` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-camera-quality-retention-profile/)
+
+#### Creates new quality retention profile for this network.
+
+Operation ID: `createNetworkCameraQualityRetentionProfile`
+
+POST _`/networks/{networkId}/camera/qualityRetentionProfiles`_
+
+> \- added the optional property `axisVideoQuality` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-camera-quality-retention-profile/)
+
+#### Retrieve a single quality retention profile
+
+Operation ID: `getNetworkCameraQualityRetentionProfile`
+
+GET _`/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}`_
+
+> \- added the optional property `axisVideoQuality` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-camera-quality-retention-profile/)
+
+#### Update an existing quality retention profile for this network.
+
+Operation ID: `updateNetworkCameraQualityRetentionProfile`
+
+PUT _`/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}`_
+
+> \- added the optional property `axisVideoQuality` to the response with the `200` status
+
+* * *
+
+\[ cellularGateway \]
+------------
+
+### connectivityMonitoringDestinations
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-cellular-gateway-connectivity-monitoring-destinations/)
+
+#### Update the connectivity testing destinations for an MG network
+
+Operation ID: `updateNetworkCellularGatewayConnectivityMonitoringDestinations`
+
+PUT _`/networks/{networkId}/cellularGateway/connectivityMonitoringDestinations`_
+
+> \- the request property `destinations/items/description` became nullable
+
+* * *
+
+### uplink
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-cellular-gateway-uplink/)
+
+#### Updates the uplink settings for your MG network.
+
+Operation ID: `updateNetworkCellularGatewayUplink`
+
+PUT _`/networks/{networkId}/cellularGateway/uplink`_
+
+> \- the request property `bandwidthLimits/limitDown` became nullable
+
+> \- the request property `bandwidthLimits/limitUp` became nullable
+
+* * *
+
+\[ clients \]
+------------
+
+### splashAuthorizationStatus
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-client-splash-authorization-status/)
+
+#### Return the splash authorization for a client, for each SSID they've associated with through splash
+
+Operation ID: `getNetworkClientSplashAuthorizationStatus`
+
+GET _`/networks/{networkId}/clients/{clientId}/splashAuthorizationStatus`_
+
+> \- the response property `ssids/0/authorizedAt` became nullable for the status `200`
+
+> \- the response property `ssids/0/expiresAt` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-client-splash-authorization-status/)
+
+#### Update a client's splash authorization
+
+Operation ID: `updateNetworkClientSplashAuthorizationStatus`
+
+PUT _`/networks/{networkId}/clients/{clientId}/splashAuthorizationStatus`_
+
+> \- the response property `ssids/0/authorizedAt` became nullable for the status `200`
+
+> \- the response property `ssids/0/expiresAt` became nullable for the status `200`
+
+* * *
+
+\[ devices \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-appliance-interfaces-ports-update/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `createDeviceApplianceInterfacesPortsUpdate`
+
+POST _`/devices/{serial}/appliance/interfaces/ports/update`_
+
+> \- the response property `downlink/access/policy/type` became nullable for the status `200`
+
+> \- the response property `downlink/sgt/id` became nullable for the status `200`
+
+> \- the response property `interface/slot` became nullable for the status `200`
+
+> \- the response property `interface/subslot` became nullable for the status `200`
+
+> \- the request property `downlink/access/policy/type` became nullable
+
+> \- the request property `downlink/sgt/id` became nullable
+
+> \- the request property `interface/slot` became nullable
+
+> \- the request property `interface/subslot` became nullable
+
+> \- the request property `uplink/type` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-port/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPort`
+
+PUT _`/devices/{serial}/appliance/interfaces/ports/{number}`_
+
+> \- the response property `downlink/access/policy/type` became nullable for the status `200`
+
+> \- the response property `downlink/sgt/id` became nullable for the status `200`
+
+> \- the response property `interface/slot` became nullable for the status `200`
+
+> \- the response property `interface/subslot` became nullable for the status `200`
+
+> \- the request property `downlink/access/policy/type` became nullable
+
+> \- the request property `downlink/sgt/id` became nullable
+
+> \- the request property `uplink/type` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-appliance-prefixes-delegated-vlan-assignments/)
+
+#### Return prefixes assigned to all IPv6 enabled VLANs on an appliance.
+
+Operation ID: `getDeviceAppliancePrefixesDelegatedVlanAssignments`
+
+GET _`/devices/{serial}/appliance/prefixes/delegated/vlanAssignments`_
+
+> \- the response property `items/ipv6/linkLocal/address` became nullable for the status `200`
+
+> \- the response property `items/ipv6/prefix` became nullable for the status `200`
+
+> \- the response property `items/ipv6/solicitedNodeMulticast/address` became nullable for the status `200`
+
+> \- the response property `items/origin/prefix` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-radio-settings/)
+
+#### Update the radio settings of an appliance
+
+Operation ID: `updateDeviceApplianceRadioSettings`
+
+PUT _`/devices/{serial}/appliance/radio/settings`_
+
+> \- the request property `fiveGhzSettings/channel` became nullable
+
+> \- the request property `fiveGhzSettings/channelWidth` became nullable
+
+> \- the request property `fiveGhzSettings/targetPower` became nullable
+
+> \- the request property `twoFourGhzSettings/channel` became nullable
+
+> \- the request property `twoFourGhzSettings/targetPower` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-uplinks-settings/)
+
+#### Update the uplink settings for a secure router or security appliance
+
+Operation ID: `updateDeviceApplianceUplinksSettings`
+
+PUT _`/devices/{serial}/appliance/uplinks/settings`_
+
+> \- the request property `interfaces/wan1/transition/authentication/username` became nullable
+
+> \- the request property `interfaces/wan1/transition/ipv4/local/address` became nullable
+
+> \- the request property `interfaces/wan1/transition/ipv6/borderRelay/address` became nullable
+
+> \- the request property `interfaces/wan1/transition/ipv6/interfaceId` became nullable
+
+> \- the request property `interfaces/wan1/transition/ipv6/ruleServer/address` became nullable
+
+> \- the request property `interfaces/wan1/transition/isp/name` became nullable
+
+> \- the request property `interfaces/wan2/transition/authentication/username` became nullable
+
+> \- the request property `interfaces/wan2/transition/ipv4/local/address` became nullable
+
+> \- the request property `interfaces/wan2/transition/ipv6/borderRelay/address` became nullable
+
+> \- the request property `interfaces/wan2/transition/ipv6/interfaceId` became nullable
+
+> \- the request property `interfaces/wan2/transition/ipv6/ruleServer/address` became nullable
+
+> \- the request property `interfaces/wan2/transition/isp/name` became nullable
+
+* * *
+
+### camera
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-camera-wireless-profiles/)
+
+#### Assign wireless profiles to the given camera
+
+Operation ID: `updateDeviceCameraWirelessProfiles`
+
+PUT _`/devices/{serial}/camera/wirelessProfiles`_
+
+> \- the request property `ids/backup` became nullable
+
+> \- the request property `ids/primary` became nullable
+
+> \- the request property `ids/secondary` became nullable
+
+* * *
+
+### cellular
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-cellular-sims/)
+
+#### Updates the SIM and APN configurations for a cellular device.
+
+Operation ID: `updateDeviceCellularSims`
+
+PUT _`/devices/{serial}/cellular/sims`_
+
+> \- the request property `simFailover/timeout` became nullable
+
+* * *
+
+### liveTools
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-arp-table/)
+
+#### Return an ARP table live tool job.
+
+Operation ID: `getDeviceLiveToolsArpTable`
+
+GET _`/devices/{serial}/liveTools/arpTable/{arpTableId}`_
+
+> \- the response property `entries/items/lastUpdatedAt` became nullable for the status `200`
+
+> \- the response property `entries/items/vlanId` became nullable for the status `200`
+
+* * *
+
+### managementInterface
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-management-interface/)
+
+#### Return the management interface settings for a device
+
+Operation ID: `getDeviceManagementInterface`
+
+GET _`/devices/{serial}/managementInterface`_
+
+> \- the response property `wan1/vrf` became nullable for the status `200`
+
+> \- the response property `wan1/vrf/name` became nullable for the status `200`
+
+> \- the response property `wan2/vrf` became nullable for the status `200`
+
+> \- the response property `wan2/vrf/name` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-management-interface/)
+
+#### Update the management interface settings for a device
+
+Operation ID: `updateDeviceManagementInterface`
+
+PUT _`/devices/{serial}/managementInterface`_
+
+> \- the response property `wan1/vrf` became nullable for the status `200`
+
+> \- the response property `wan1/vrf/name` became nullable for the status `200`
+
+> \- the response property `wan2/vrf` became nullable for the status `200`
+
+> \- the response property `wan2/vrf/name` became nullable for the status `200`
+
+> \- the request property `wan1/vlan` became nullable
+
+> \- the request property `wan2/vlan` became nullable
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-switch-port/)
+
+#### Update a switch port
+
+Operation ID: `updateDeviceSwitchPort`
+
+PUT _`/devices/{serial}/switch/ports/{portId}`_
+
+> \- the request property `profile/id` became nullable
+
+> \- the request property `profile/iname` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-switch-routing-interfaces/)
+
+#### List layer 3 interfaces for a switch
+
+Operation ID: `getDeviceSwitchRoutingInterfaces`
+
+GET _`/devices/{serial}/switch/routing/interfaces`_
+
+> \- the response property `items/ipv6/staticV6Dns2` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-switch-routing-interface/)
+
+#### Create a layer 3 interface for a switch
+
+Operation ID: `createDeviceSwitchRoutingInterface`
+
+POST _`/devices/{serial}/switch/routing/interfaces`_
+
+> \- the response property `ipv6/staticV6Dns2` became nullable for the status `201`
+
+> \- the request property `ipv6/address` became nullable
+
+> \- the request property `ipv6/assignmentMode` became nullable
+
+> \- the request property `ipv6/prefix` became nullable
+
+> \- the request property `ipv6/staticV6Dns2` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-switch-routing-interface/)
+
+#### Return a layer 3 interface for a switch
+
+Operation ID: `getDeviceSwitchRoutingInterface`
+
+GET _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
+
+> \- the response property `ipv6/staticV6Dns2` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-switch-routing-interface/)
+
+#### Update a layer 3 interface for a switch
+
+Operation ID: `updateDeviceSwitchRoutingInterface`
+
+PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}`_
+
+> \- the response property `ipv6/staticV6Dns2` became nullable for the status `200`
+
+> \- the request property `ipv6/address` became nullable
+
+> \- the request property `ipv6/assignmentMode` became nullable
+
+> \- the request property `ipv6/prefix` became nullable
+
+> \- the request property `ipv6/staticV6Dns2` became nullable
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-wireless-radio-afc-position/)
+
+#### Return the position for a wireless device
+
+Operation ID: `getDeviceWirelessRadioAfcPosition`
+
+GET _`/devices/{serial}/wireless/radio/afc/position`_
+
+> \- the response property `height/aboveGround/value` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-wireless-radio-afc-position/)
+
+#### Update the position attributes for this device
+
+Operation ID: `updateDeviceWirelessRadioAfcPosition`
+
+PUT _`/devices/{serial}/wireless/radio/afc/position`_
+
+> \- the response property `height/aboveGround/value` became nullable for the status `200`
+
+> \- the request property `gps/antenna/cableLength` became nullable
+
+> \- the request property `height/aboveGround/value` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-wireless-radio-overrides/)
+
+#### Update 2.4 GHz, 5 GHz, and 6 GHz radio settings (channel, channel width, power, and enable/disable) that override RF profiles.
+
+Operation ID: `updateDeviceWirelessRadioOverrides`
+
+PUT _`/devices/{serial}/wireless/radio/overrides`_
+
+> \- the request property `radios/items/channel` became nullable
+
+> \- the request property `radios/items/channelWidth` became nullable
+
+> \- the request property `radios/items/targetPower` became nullable
+
+> \- the request property `rfProfile/id` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-wireless-radio-settings/)
+
+#### Update 2.4 GHz and 5 GHz radio settings (channel, channel width, power) that override RF profiles
+
+Operation ID: `updateDeviceWirelessRadioSettings`
+
+PUT _`/devices/{serial}/wireless/radio/settings`_
+
+> \- the request property `fiveGhzSettings/channel` became nullable
+
+> \- the request property `fiveGhzSettings/channelWidth` became nullable
+
+> \- the request property `fiveGhzSettings/targetPower` became nullable
+
+> \- the request property `twoFourGhzSettings/channel` became nullable
+
+> \- the request property `twoFourGhzSettings/targetPower` became nullable
+
+* * *
+
+\[ floorPlans \]
+------------
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/batch-network-floor-plans-devices-update/)
+
+#### Update floorplan assignments for a batch of devices
+
+Operation ID: `batchNetworkFloorPlansDevicesUpdate`
+
+POST _`/networks/{networkId}/floorPlans/devices/batchUpdate`_
+
+> \- the request property `assignments/items/floorPlan/id` became nullable
+
+* * *
+
+\[ groupPolicies \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-group-policies/)
+
+#### List the group policies in a network
+
+Operation ID: `getNetworkGroupPolicies`
+
+GET _`/networks/{networkId}/groupPolicies`_
+
+> \- the response property `items/bandwidth/bandwidthLimits/limitDown` became nullable for the status `200`
+
+> \- the response property `items/bandwidth/bandwidthLimits/limitUp` became nullable for the status `200`
+
+> \- the response property `items/firewallAndTrafficShaping/trafficShapingRules/items/dscpTagValue` became nullable for the status `200`
+
+> \- the response property `items/firewallAndTrafficShaping/trafficShapingRules/items/pcpTagValue` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-group-policy/)
+
+#### Create a group policy
+
+Operation ID: `createNetworkGroupPolicy`
+
+POST _`/networks/{networkId}/groupPolicies`_
+
+> \- the response property `bandwidth/bandwidthLimits/limitDown` became nullable for the status `201`
+
+> \- the response property `bandwidth/bandwidthLimits/limitUp` became nullable for the status `201`
+
+> \- the response property `firewallAndTrafficShaping/trafficShapingRules/items/dscpTagValue` became nullable for the status `201`
+
+> \- the response property `firewallAndTrafficShaping/trafficShapingRules/items/pcpTagValue` became nullable for the status `201`
+
+> \- the request property `bandwidth/bandwidthLimits/limitDown` became nullable
+
+> \- the request property `bandwidth/bandwidthLimits/limitUp` became nullable
+
+> \- the request property `firewallAndTrafficShaping/trafficShapingRules/items/dscpTagValue` became nullable
+
+> \- the request property `firewallAndTrafficShaping/trafficShapingRules/items/pcpTagValue` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-group-policy/)
+
+#### Display a group policy
+
+Operation ID: `getNetworkGroupPolicy`
+
+GET _`/networks/{networkId}/groupPolicies/{groupPolicyId}`_
+
+> \- the response property `bandwidth/bandwidthLimits/limitDown` became nullable for the status `200`
+
+> \- the response property `bandwidth/bandwidthLimits/limitUp` became nullable for the status `200`
+
+> \- the response property `firewallAndTrafficShaping/trafficShapingRules/items/dscpTagValue` became nullable for the status `200`
+
+> \- the response property `firewallAndTrafficShaping/trafficShapingRules/items/pcpTagValue` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-group-policy/)
+
+#### Update a group policy
+
+Operation ID: `updateNetworkGroupPolicy`
+
+PUT _`/networks/{networkId}/groupPolicies/{groupPolicyId}`_
+
+> \- the response property `bandwidth/bandwidthLimits/limitDown` became nullable for the status `200`
+
+> \- the response property `bandwidth/bandwidthLimits/limitUp` became nullable for the status `200`
+
+> \- the response property `firewallAndTrafficShaping/trafficShapingRules/items/dscpTagValue` became nullable for the status `200`
+
+> \- the response property `firewallAndTrafficShaping/trafficShapingRules/items/pcpTagValue` became nullable for the status `200`
+
+> \- the request property `bandwidth/bandwidthLimits/limitDown` became nullable
+
+> \- the request property `bandwidth/bandwidthLimits/limitUp` became nullable
+
+> \- the request property `firewallAndTrafficShaping/trafficShapingRules/items/dscpTagValue` became nullable
+
+> \- the request property `firewallAndTrafficShaping/trafficShapingRules/items/pcpTagValue` became nullable
+
+* * *
+
+\[ mqttBrokers \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-mqtt-broker/)
+
+#### Add an MQTT broker
+
+Operation ID: `createNetworkMqttBroker`
+
+POST _`/networks/{networkId}/mqttBrokers`_
+
+> \- the request property `authentication/password` became nullable
+
+> \- the request property `authentication/username` became nullable
+
+> \- the request property `security/tls/caCertificate` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-mqtt-broker/)
+
+#### Update an MQTT broker
+
+Operation ID: `updateNetworkMqttBroker`
+
+PUT _`/networks/{networkId}/mqttBrokers/{mqttBrokerId}`_
+
+> \- the request property `authentication/password` became nullable
+
+> \- the request property `authentication/username` became nullable
+
+> \- the request property `security/tls/caCertificate` became nullable
+
+* * *
+
+\[ organizations \]
+------------
+
+### admins
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-admins/)
+
+#### List the dashboard administrators in this organization
+
+Operation ID: `getOrganizationAdmins`
+
+GET _`/organizations/{organizationId}/admins`_
+
+> \- added the new `camera-sensor` enum value to the `items/orgAccess` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-admin/)
+
+#### Create a new dashboard administrator
+
+Operation ID: `createOrganizationAdmin`
+
+POST _`/organizations/{organizationId}/admins`_
+
+> \- added the new `camera-sensor` enum value to the `orgAccess` response property for the response status `201`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-admin/)
+
+#### Update an administrator
+
+Operation ID: `updateOrganizationAdmin`
+
+PUT _`/organizations/{organizationId}/admins/{adminId}`_
+
+> \- added the new `camera-sensor` enum value to the `orgAccess` response property for the response status `200`
+
+* * *
+
+### api
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-rest-provisioning-pipelines/)
+
+#### List pipelines with operation and status metadata, sorted by pipeline ID
+
+Operation ID: `getOrganizationApiRestProvisioningPipelines`
+
+GET _`/organizations/{organizationId}/api/rest/provisioning/pipelines`_
+
+> \- added the new optional `query` request parameter `endingBefore`
+
+> \- added the new optional `query` request parameter `perPage`
+
+> \- added the new optional `query` request parameter `sortOrder`
+
+> \- added the new optional `query` request parameter `startingAfter`
+
+> \- added the optional property `items/items/operation` to the response with the `200` status
+
+> \- added the optional property `items/items/status` to the response with the `200` status
+
+* * *
+
+### apiRequests
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests/)
+
+#### List the API requests made by an organization
+
+Operation ID: `getOrganizationApiRequests`
+
+GET _`/organizations/{organizationId}/apiRequests`_
+
+> \- the response property `items/client/id` became nullable for the status `200`
+
+* * *
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-l3/)
+
+#### List L3 interfaces across networks for the organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesL3`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/l3`_
+
+> \- the response property `items/items/port/interface/name` became nullable for the status `200`
+
+> \- the response property `items/items/port/interface/number` became nullable for the status `200`
+
+> \- the response property `items/items/port/interface/slot` became nullable for the status `200`
+
+> \- the response property `items/items/port/interface/subslot` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- the response property `items/items/ports/items/downlink/access/policy/type` became nullable for the status `200`
+
+> \- the response property `items/items/ports/items/downlink/sgt/id` became nullable for the status `200`
+
+> \- the response property `items/items/ports/items/interface/slot` became nullable for the status `200`
+
+> \- the response property `items/items/ports/items/interface/subslot` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-redundancy-by-network/)
+
+#### Return MX warm spare settings
+
+Operation ID: `getOrganizationApplianceDevicesRedundancyByNetwork`
+
+GET _`/organizations/{organizationId}/appliance/devices/redundancy/byNetwork`_
+
+> \- the response property `uplink/sharing/vlanId` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-interfaces-packets-overviews-by-device/)
+
+#### Returns packet counter overviews for all interfaces on Secure Routers in the organization, including totals and average rates by packet type over the requested timespan.
+
+Operation ID: `getOrganizationApplianceInterfacesPacketsOverviewsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/interfaces/packets/overviews/byDevice`_
+
+> \- the response property `items/items/interfaces/items/slot` became nullable for the status `200`
+
+> \- the response property `items/items/interfaces/items/subslot` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-sdwan-internet-policies/)
+
+#### Get the SDWAN internet traffic preferences for an MX network
+
+Operation ID: `getOrganizationApplianceSdwanInternetPolicies`
+
+GET _`/organizations/{organizationId}/appliance/sdwan/internetPolicies`_
+
+> \- the response property `wanTrafficUplinkPreferences/items/performanceClass/builtinPerformanceClassName` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/performanceClass/customPerformanceClassId` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/performanceClass/type` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/id` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/name` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/applications/items/type` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/cidr` became nullable for the status `200`
+
+> \- the response property `wanTrafficUplinkPreferences/items/trafficFilters/items/value/destination/port` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-security-intrusion/)
+
+#### Returns all supported intrusion settings for an organization
+
+Operation ID: `getOrganizationApplianceSecurityIntrusion`
+
+GET _`/organizations/{organizationId}/appliance/security/intrusion`_
+
+> \- the response property `allowedRules/items/message` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-appliance-security-intrusion/)
+
+#### Sets supported intrusion settings for an organization
+
+Operation ID: `updateOrganizationApplianceSecurityIntrusion`
+
+PUT _`/organizations/{organizationId}/appliance/security/intrusion`_
+
+> \- the response property `allowedRules/items/message` became nullable for the status `200`
+
+> \- the request property `allowedRules/items/message` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vlans/)
+
+#### List the VLANs for an Organization
+
+Operation ID: `getOrganizationApplianceVlans`
+
+GET _`/organizations/{organizationId}/appliance/vlans`_
+
+> \- the response property `items/sgt/id` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-third-party-v-p-n-peers/)
+
+#### Return the third party VPN peers for an organization
+
+Operation ID: `getOrganizationApplianceVpnThirdPartyVPNPeers`
+
+GET _`/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers`_
+
+> \- added the optional property `peers/items/ebgpNeighbor/allowTransit` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/authentication` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/communityOut` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/explicitOutboundRouteAdvertisement` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/filter` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/filterIn` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/ttlSecurity` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-appliance-vpn-third-party-v-p-n-peers/)
+
+#### Update the third party VPN peers for an organization
+
+Operation ID: `updateOrganizationApplianceVpnThirdPartyVPNPeers`
+
+PUT _`/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers`_
+
+> \- added the optional property `peers/items/ebgpNeighbor/allowTransit` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/authentication` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/communityOut` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/explicitOutboundRouteAdvertisement` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/filter` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/filterIn` to the response with the `200` status
+
+> \- added the optional property `peers/items/ebgpNeighbor/ttlSecurity` to the response with the `200` status
+
+* * *
+
+### assistant
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-threads/)
+
+#### List all active conversation threads for the authenticated user.
+
+Operation ID: `getOrganizationAssistantChatThreads`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads`_
+
+> \- for the `query` request parameter `perPage`, the min was set to `1.00`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-messages/)
+
+#### List messages in a conversation thread.
+
+Operation ID: `getOrganizationAssistantChatThreadMessages`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages`_
+
+> \- for the `query` request parameter `perPage`, the min was set to `1.00`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message-artifact/)
+
+#### Return a single artifact with its full content.
+
+Operation ID: `getOrganizationAssistantChatThreadMessageArtifact`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/artifacts/{artifactId}`_
+
+> \- added the new optional `query` request parameter `page`
+
+> \- added the new optional `query` request parameter `perPage`
+
+> \- added the optional property `pagination` to the response with the `200` status
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts/)
+
+#### Return all health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlerts`
+
+GET _`/organizations/{organizationId}/assurance/alerts`_
+
+> \- added the enum value `telemetry_collector_cert_expiration` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview/)
+
+#### Return overview of active health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlertsOverview`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview`_
+
+> \- added the enum value `telemetry_collector_cert_expiration` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-network/)
+
+#### Return a Summary of Alerts grouped by network and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byNetwork`_
+
+> \- added the enum value `telemetry_collector_cert_expiration` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-type/)
+
+#### Return a Summary of Alerts grouped by type and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByType`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byType`_
+
+> \- added the enum value `telemetry_collector_cert_expiration` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-historical/)
+
+#### Returns historical health alert overviews
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewHistorical`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/historical`_
+
+> \- added the enum value `telemetry_collector_cert_expiration` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-clients-connected-count-history/)
+
+#### Return combined wireless and wired connected client counts over time for a network.
+
+Operation ID: `getOrganizationAssuranceClientsConnectedCountHistory`
+
+GET _`/organizations/{organizationId}/assurance/clients/connectedCountHistory`_
+
+> \- removed the optional property `items/wiredByNode` from the response with the `200` status
+
+> \- added the new optional `query` request parameter `deviceType`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-band/)
+
+#### Summarizes wireless post connection capacity successes and failures by band.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByBand`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byBand`_
+
+> \- the response property `items/items/items/connections/mostImpactedChannel` became nullable for the status `200`
+
+> \- added the optional property `items/items/items/usage` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-os/)
+
+#### Summarizes wireless post connection capacity successes and failures by client OS and driver version.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientOs`_
+
+> \- the response property `items/items/items/driver/vendor` became nullable for the status `200`
+
+> \- the response property `items/items/items/driver/version` became nullable for the status `200`
+
+> \- the response property `items/items/items/driverVersion` became nullable for the status `200`
+
+> \- added the optional property `items/items/items/usage` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-type/)
+
+#### Summarizes wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientType`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientType`_
+
+> \- added the optional property `items/items/items/usage` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-device/)
+
+#### Summarizes wireless post connection capacity successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byDevice`_
+
+> \- the response property `items/items/items/connections/mostImpactedChannel` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-ssid/)
+
+#### Summarizes wireless post connection capacity successes and failures by ssid.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkBySsid`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/bySsid`_
+
+> \- added the optional property `items/items/items/usage` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-insights-by-network/)
+
+#### Provides insights into wireless capacity experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/insights/byNetwork`_
+
+> \- the response property `items/items/items/insights/items/entities` became nullable for the status `200`
+
+> \- the response property `items/items/items/insights/items/failureSubContributor` became nullable for the status `200`
+
+> \- added the new optional `query` request parameter `insights`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-client-os/)
+
+#### Summarizes wireless coverage successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byClientOs`_
+
+> \- the response property `items/items/items/driver/vendor` became nullable for the status `200`
+
+> \- the response property `items/items/items/driver/version` became nullable for the status `200`
+
+> \- the response property `items/items/items/driverVersion` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-insights-by-network/)
+
+#### Provides insights into wireless coverage experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/insights/byNetwork`_
+
+> \- the response property `items/items/items/insights/items/entities` became nullable for the status `200`
+
+> \- added the new optional `query` request parameter `insights`
+
+> \- added the new optional `query` request parameter `subContributor`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-client-os/)
+
+#### Summarizes wireless connection successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byClientOs`_
+
+> \- the response property `items/items/items/driver/vendor` became nullable for the status `200`
+
+> \- the response property `items/items/items/driver/version` became nullable for the status `200`
+
+> \- the response property `items/items/items/driverVersion` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-insights-by-network/)
+
+#### Provides insights into wireless successful connects experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/insights/byNetwork`_
+
+> \- the response property `items/items/items/insights/items/entities` became nullable for the status `200`
+
+> \- the response property `items/items/items/insights/items/failureSubContributor` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-client/)
+
+#### Summarizes wireless time to connect metrics by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClient`_
+
+> \- the response property `items/items/items/byContributor/items/failures/durationInMs/average` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-client-os/)
+
+#### Summarizes wireless connection successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClientOs`_
+
+> \- the response property `items/items/items/driver/vendor` became nullable for the status `200`
+
+> \- the response property `items/items/items/driver/version` became nullable for the status `200`
+
+> \- the response property `items/items/items/driverVersion` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-insights-by-network/)
+
+#### Provides insights into wireless time to connect experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/insights/byNetwork`_
+
+> \- the response property `items/items/items/insights/items/entities` became nullable for the status `200`
+
+* * *
+
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-certificates-authorities/)
+
+#### Delete a certificate authority
+
+Operation ID: `deleteOrganizationCertificatesAuthorities`
+
+DELETE _`/organizations/{organizationId}/certificates/authorities`_
+
+> \- added the optional property `name` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates-authorities/)
+
+#### List certificate authorities for an organization
+
+Operation ID: `getOrganizationCertificatesAuthorities`
+
+GET _`/organizations/{organizationId}/certificates/authorities`_
+
+> \- added the optional property `items/items/authority/name` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-certificates-authority/)
+
+#### Create a certificate authority for an organization
+
+Operation ID: `createOrganizationCertificatesAuthority`
+
+POST _`/organizations/{organizationId}/certificates/authorities`_
+
+> \- added the optional property `result/authority/name` to the response with the `202` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-certificates-authorities/)
+
+#### Trust a newly created certificate authority (transition from untrusted to trusted).
+
+Operation ID: `updateOrganizationCertificatesAuthorities`
+
+PUT _`/organizations/{organizationId}/certificates/authorities`_
+
+> \- added the optional property `authority/name` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates-authorities-job/)
+
+#### Return the status and result of a certificate authority job.
+
+Operation ID: `getOrganizationCertificatesAuthoritiesJob`
+
+GET _`/organizations/{organizationId}/certificates/authorities/jobs/{jobId}`_
+
+> \- added the optional property `result/authority/name` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/revoke-organization-certificates-authorities/)
+
+#### Revoke a trusted feature certificate authority.
+
+Operation ID: `revokeOrganizationCertificatesAuthorities`
+
+POST _`/organizations/{organizationId}/certificates/authorities/revoke`_
+
+> \- added the optional property `authority/name` to the response with the `200` status
+
+* * *
+
+### configTemplates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-config-template-switch-profile-port/)
+
+#### Update a switch template port
+
+Operation ID: `updateOrganizationConfigTemplateSwitchProfilePort`
+
+PUT _`/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports/{portId}`_
+
+> \- the request property `profile/id` became nullable
+
+> \- the request property `profile/iname` became nullable
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-devices/)
+
+#### List devices eligible for Cellular Data Management profile assignment in this organization
+
+Operation ID: `getOrganizationDevicesCellularDataDevices`
+
+GET _`/organizations/{organizationId}/devices/cellular/data/devices`_
+
+> \- the response property `items/items/profile/id` became nullable for the status `200`
+
+> \- the response property `items/items/profile/name` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-geolocations/)
+
+#### List the latest cellular geolocation telemetry for devices in an organization
+
+Operation ID: `getOrganizationDevicesCellularGeolocations`
+
+GET _`/organizations/{organizationId}/devices/cellular/geolocations`_
+
+> \- the response property `items/items/geolocation/lastReportedAt` became nullable for the status `200`
+
+> \- the response property `items/items/geolocation/latitude` became nullable for the status `200`
+
+> \- the response property `items/items/geolocation/longitude` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-uplinks-towers-by-device/)
+
+#### List the latest cellular tower information for devices in an organization
+
+Operation ID: `getOrganizationDevicesCellularUplinksTowersByDevice`
+
+GET _`/organizations/{organizationId}/devices/cellular/uplinks/towers/byDevice`_
+
+> \- the response property `items/items/connection/cell/id` became nullable for the status `200`
+
+> \- the response property `items/items/connection/tac` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-certificates/)
+
+#### List device certificates for the organization
+
+Operation ID: `getOrganizationDevicesCertificates`
+
+GET _`/organizations/{organizationId}/devices/certificates`_
+
+> \- added the new `superseded` enum value to the `items/items/status` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-controller-migrations/)
+
+#### Retrieve device migration statuses in an organization
+
+Operation ID: `getOrganizationDevicesControllerMigrations`
+
+GET _`/organizations/{organizationId}/devices/controller/migrations`_
+
+> \- the response property `items/items/migratedAt` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-software-updates-overviews-by-network/)
+
+#### Returns details about software updates for networks within an organization.
+
+Operation ID: `getOrganizationDevicesSoftwareUpdatesOverviewsByNetwork`
+
+GET _`/organizations/{organizationId}/devices/software/updates/overviews/byNetwork`_
+
+> \- the response property `items/items/productTypes/items/currentVersion/expiresAt` became optional for the status `200`
+
+> \- the response property `items/items/productTypes/items/lastUpdate/fromVersion/expiresAt` became optional for the status `200`
+
+> \- the response property `items/items/productTypes/items/lastUpdate/toVersion/expiresAt` became optional for the status `200`
+
+> \- the response property `items/items/productTypes/items/nextUpdate/fromVersion/expiresAt` became optional for the status `200`
+
+> \- the response property `items/items/productTypes/items/nextUpdate/toVersion/expiresAt` became optional for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-topology-interfaces/)
+
+#### List topology interfaces in an organization, including layer 2 and layer 3 metadata when available.
+
+Operation ID: `getOrganizationDevicesTopologyInterfaces`
+
+GET _`/organizations/{organizationId}/devices/topology/interfaces`_
+
+> \- the response property `items/items/addresses` became nullable for the status `200`
+
+> \- the response property `items/items/link` became nullable for the status `200`
+
+> \- the response property `items/items/status` became nullable for the status `200`
+
+> \- the response property `items/items/vlans` became nullable for the status `200`
+
+> \- the response property `items/items/vrf` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-topology-l2-links/)
+
+#### List layer 2 topology links originating from devices in an organization.
+
+Operation ID: `getOrganizationDevicesTopologyL2Links`
+
+GET _`/organizations/{organizationId}/devices/topology/l2/links`_
+
+> \- the response property `items/items/source/device/id` became nullable for the status `200`
+
+> \- the response property `items/items/source/device/port/id` became nullable for the status `200`
+
+> \- the response property `items/items/target/device/id` became nullable for the status `200`
+
+> \- the response property `items/items/target/device/port/id` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-topology-nodes-discovered/)
+
+#### List topology nodes discovered by LLDP/CDP from devices in an organization, including reported metadata when available.
+
+Operation ID: `getOrganizationDevicesTopologyNodesDiscovered`
+
+GET _`/organizations/{organizationId}/devices/topology/nodes/discovered`_
+
+> \- the response property `items/items/discovered/chassis/id` became nullable for the status `200`
+
+> \- the response property `items/items/discovered/mac` became nullable for the status `200`
+
+> \- the response property `items/items/discovered/system/platform` became nullable for the status `200`
+
+* * *
+
+### firmware
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-firmware-upgrades-by-device/)
+
+#### Get firmware upgrade status for the filtered devices
+
+Operation ID: `getOrganizationFirmwareUpgradesByDevice`
+
+GET _`/organizations/{organizationId}/firmware/upgrades/byDevice`_
+
+> \- the response property `items/upgrade/upgradeBatchId` became nullable for the status `200`
+
+* * *
+
+### iam
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-users-authorizations/)
+
+#### List specific authorizations for the list of Meraki end users.
+
+Operation ID: `getOrganizationIamUsersAuthorizations`
+
+GET _`/organizations/{organizationId}/iam/users/authorizations`_
+
+> \- the response property `items/items/expiresAt` became nullable for the status `200`
+
+> \- the response property `items/items/startsAt` became nullable for the status `200`
+
+* * *
+
+### inventory
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-inventory-devices/)
+
+#### Return the device inventory for an organization
+
+Operation ID: `getOrganizationInventoryDevices`
+
+GET _`/organizations/{organizationId}/inventory/devices`_
+
+> \- the response property `items/eox/status` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-inventory-devices-details/)
+
+#### Return inventory devices with additional site, geolocation, software, licensing, lifecycle, and Catalyst Center-specific fields
+
+Operation ID: `getOrganizationInventoryDevicesDetails`
+
+GET _`/organizations/{organizationId}/inventory/devices/details`_
+
+> \- the response property `items/items/family` became nullable for the status `200`
+
+> \- the response property `items/items/geolocation/latitude` became nullable for the status `200`
+
+> \- the response property `items/items/geolocation/longitude` became nullable for the status `200`
+
+> \- the response property `items/items/health/status` became nullable for the status `200`
+
+> \- the response property `items/items/licensing/model` became nullable for the status `200`
+
+> \- the response property `items/items/lifecycle/hardware/security/support/endsAt` became nullable for the status `200`
+
+> \- the response property `items/items/lifecycle/hardware/support/endsAt` became nullable for the status `200`
+
+> \- the response property `items/items/lifecycle/software/security/support/endsAt` became nullable for the status `200`
+
+> \- the response property `items/items/name` became nullable for the status `200`
+
+> \- the response property `items/items/product/name` became nullable for the status `200`
+
+> \- the response property `items/items/product/type` became nullable for the status `200`
+
+> \- the response property `items/items/role` became nullable for the status `200`
+
+> \- the response property `items/items/site/name` became nullable for the status `200`
+
+> \- the response property `items/items/site/resource/id` became nullable for the status `200`
+
+> \- the response property `items/items/site/resource/type` became nullable for the status `200`
+
+> \- the response property `items/items/software/advisories/counts/bySeverity/critical/total` became nullable for the status `200`
+
+> \- the response property `items/items/software/advisories/counts/bySeverity/high/total` became nullable for the status `200`
+
+> \- the response property `items/items/software/advisories/counts/total` became nullable for the status `200`
+
+> \- the response property `items/items/software/currentVersion/shortName` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-inventory-device/)
+
+#### Return a single device from the inventory of an organization
+
+Operation ID: `getOrganizationInventoryDevice`
+
+GET _`/organizations/{organizationId}/inventory/devices/{serial}`_
+
+> \- the response property `eox/status` became nullable for the status `200`
+
+* * *
+
+### sase
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sase-connectors/)
+
+#### List SSE Connectors for an organization
+
+Operation ID: `getOrganizationSaseConnectors`
+
+GET _`/organizations/{organizationId}/sase/connectors`_
+
+> \- added the new `teardown_in_progress` enum value to the `items/items/state` response property for the response status `200`
+
+* * *
+
+### sensor
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sensor-alerts/)
+
+#### Return a list of sensor alert events
+
+Operation ID: `getOrganizationSensorAlerts`
+
+GET _`/organizations/{organizationId}/sensor/alerts`_
+
+> \- the response property `items/trigger/apparentPower` became nullable for the status `200`
+
+> \- the response property `items/trigger/co2` became nullable for the status `200`
+
+> \- the response property `items/trigger/current` became nullable for the status `200`
+
+> \- the response property `items/trigger/door` became nullable for the status `200`
+
+> \- the response property `items/trigger/frequency` became nullable for the status `200`
+
+> \- the response property `items/trigger/humidity` became nullable for the status `200`
+
+> \- the response property `items/trigger/indoorAirQuality` became nullable for the status `200`
+
+> \- the response property `items/trigger/noise` became nullable for the status `200`
+
+> \- the response property `items/trigger/pm25` became nullable for the status `200`
+
+> \- the response property `items/trigger/powerFactor` became nullable for the status `200`
+
+> \- the response property `items/trigger/realPower` became nullable for the status `200`
+
+> \- the response property `items/trigger/temperature` became nullable for the status `200`
+
+> \- the response property `items/trigger/tvoc` became nullable for the status `200`
+
+> \- the response property `items/trigger/upstreamPower` became nullable for the status `200`
+
+> \- the response property `items/trigger/voltage` became nullable for the status `200`
+
+> \- the response property `items/trigger/water` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sensor-readings-latest/)
+
+#### Return the latest available reading for each metric from each sensor, sorted by sensor serial
+
+Operation ID: `getOrganizationSensorReadingsLatest`
+
+GET _`/organizations/{organizationId}/sensor/readings/latest`_
+
+> \- the response property `items/readings/items/apparentPower` became nullable for the status `200`
+
+> \- the response property `items/readings/items/battery` became nullable for the status `200`
+
+> \- the response property `items/readings/items/button` became nullable for the status `200`
+
+> \- the response property `items/readings/items/co2` became nullable for the status `200`
+
+> \- the response property `items/readings/items/current` became nullable for the status `200`
+
+> \- the response property `items/readings/items/door` became nullable for the status `200`
+
+> \- the response property `items/readings/items/downstreamPower` became nullable for the status `200`
+
+> \- the response property `items/readings/items/frequency` became nullable for the status `200`
+
+> \- the response property `items/readings/items/humidity` became nullable for the status `200`
+
+> \- the response property `items/readings/items/indoorAirQuality` became nullable for the status `200`
+
+> \- the response property `items/readings/items/no2` became nullable for the status `200`
+
+> \- the response property `items/readings/items/noise` became nullable for the status `200`
+
+> \- the response property `items/readings/items/o3` became nullable for the status `200`
+
+> \- the response property `items/readings/items/pm10` became nullable for the status `200`
+
+> \- the response property `items/readings/items/pm25` became nullable for the status `200`
+
+> \- the response property `items/readings/items/powerFactor` became nullable for the status `200`
+
+> \- the response property `items/readings/items/rawTemperature` became nullable for the status `200`
+
+> \- the response property `items/readings/items/realPower` became nullable for the status `200`
+
+> \- the response property `items/readings/items/remoteLockoutSwitch` became nullable for the status `200`
+
+> \- the response property `items/readings/items/temperature` became nullable for the status `200`
+
+> \- the response property `items/readings/items/tvoc` became nullable for the status `200`
+
+> \- the response property `items/readings/items/voltage` became nullable for the status `200`
+
+> \- the response property `items/readings/items/water` became nullable for the status `200`
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-by-switch/)
+
+#### List the switchports in an organization by switch
+
+Operation ID: `getOrganizationSwitchPortsBySwitch`
+
+GET _`/organizations/{organizationId}/switch/ports/bySwitch`_
+
+> \- the response property `items/ports/items/name` became nullable for the status `200`
+
+> \- the response property `items/ports/items/vlan` became nullable for the status `200`
+
+> \- the response property `items/ports/items/voiceVlan` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-ports-profile/)
+
+#### Create a port profile in an organization
+
+Operation ID: `createOrganizationSwitchPortsProfile`
+
+POST _`/organizations/{organizationId}/switch/ports/profiles`_
+
+> \- the response property `authentication/host/mode` became nullable for the status `201`
+
+> \- the response property `port/accessPolicyNumber` became nullable for the status `201`
+
+> \- the request property `authentication/host/mode` became nullable
+
+> \- the request property `port/adaptivePolicyGroupId` became nullable
+
+> \- the request property `port/adaptivePolicyVoiceGroupId` became nullable
+
+> \- the request property `port/vlan` became nullable
+
+> \- the request property `port/voiceVlan` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/batch-organization-switch-ports-profiles-assignments-assign/)
+
+#### Batch assign or unassign port profiles to switch ports
+
+Operation ID: `batchOrganizationSwitchPortsProfilesAssignmentsAssign`
+
+POST _`/organizations/{organizationId}/switch/ports/profiles/assignments/batchAssign`_
+
+> \- the request property `items/items/profileId` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles-assignments-by-port/)
+
+#### List the port profile assignments in an organization, grouped by port
+
+Operation ID: `getOrganizationSwitchPortsProfilesAssignmentsByPort`
+
+GET _`/organizations/{organizationId}/switch/ports/profiles/assignments/byPort`_
+
+> \- the response property `items/items/switch/name` became nullable for the status `200`
+
+> \- the response property `items/items/switch/serial` became nullable for the status `200`
+
+> \- the response property `items/items/template/id` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profiles-assignments-by-switch/)
+
+#### List the port profile assignments in an organization, grouped by switch
+
+Operation ID: `getOrganizationSwitchPortsProfilesAssignmentsBySwitch`
+
+GET _`/organizations/{organizationId}/switch/ports/profiles/assignments/bySwitch`_
+
+> \- the response property `items/items/template/id` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-ports-profiles-automation/)
+
+#### Create a port profile automation for an organization
+
+Operation ID: `createOrganizationSwitchPortsProfilesAutomation`
+
+POST _`/organizations/{organizationId}/switch/ports/profiles/automations`_
+
+> \- the request property `fallbackProfile/id` became nullable
+
+> \- the request property `fallbackProfile/name` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-switch-ports-profiles-automation/)
+
+#### Update a port profile automation in an organization
+
+Operation ID: `updateOrganizationSwitchPortsProfilesAutomation`
+
+PUT _`/organizations/{organizationId}/switch/ports/profiles/automations/{id}`_
+
+> \- the request property `fallbackProfile/id` became nullable
+
+> \- the request property `fallbackProfile/name` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-profile/)
+
+#### Get detailed information about a port profile
+
+Operation ID: `getOrganizationSwitchPortsProfile`
+
+GET _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
+
+> \- the response property `authentication/host/mode` became nullable for the status `200`
+
+> \- the response property `port/accessPolicyNumber` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-switch-ports-profile/)
+
+#### Update a port profile in an organization
+
+Operation ID: `updateOrganizationSwitchPortsProfile`
+
+PUT _`/organizations/{organizationId}/switch/ports/profiles/{id}`_
+
+> \- the response property `authentication/host/mode` became nullable for the status `200`
+
+> \- the response property `port/accessPolicyNumber` became nullable for the status `200`
+
+> \- the request property `authentication/host/mode` became nullable
+
+> \- the request property `port/adaptivePolicyGroupId` became nullable
+
+> \- the request property `port/adaptivePolicyVoiceGroupId` became nullable
+
+> \- the request property `port/vlan` became nullable
+
+> \- the request property `port/voiceVlan` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-ports-statuses-packets-by-device-by-port/)
+
+#### Switch port packets by device and port.
+
+Operation ID: `getOrganizationSwitchPortsStatusesPacketsByDeviceByPort`
+
+GET _`/organizations/{organizationId}/switch/ports/statuses/packets/byDevice/byPort`_
+
+> \- added the optional property `items/ports/items/portId` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-filters-prefix-lists-deploy/)
+
+#### Create or update a prefix list, in addition to its associated rules
+
+Operation ID: `createOrganizationSwitchRoutingBgpFiltersPrefixListsDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/filters/prefixLists/deploy`_
+
+> \- the request property `rules/items/conditions/prefixLength/maximum` became nullable
+
+> \- the request property `rules/items/conditions/prefixLength/minimum` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-groups-address-families-deployments/)
+
+#### List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersGroupsAddressFamiliesDeployments`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/addressFamilies/deployments`_
+
+> \- the response property `items/items/peerGroupProfile/authentication/password` became nullable for the status `200`
+
+> \- added the optional property `items/items/esiMhPair` to the response with the `200` status
+
+> \- added the optional property `items/items/switchFabric` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-peers-groups-deploy/)
+
+#### Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group
+
+Operation ID: `createOrganizationSwitchRoutingBgpPeersGroupsDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/deploy`_
+
+> \- the response property `peerGroupProfile/authentication/password` became nullable for the status `201`
+
+> \- the request property `peerGroupAddressFamilyBindingProfile/advertisement/interval` became nullable
+
+> \- the request property `peerGroupAddressFamilyBindingProfile/softReconfiguration/direction` became nullable
+
+> \- the request property `peerGroupAddressFamilyBindingProfile/weight` became nullable
+
+> \- the request property `peerGroupProfile/ebgp/multihop/maximum` became nullable
+
+> \- the request property `peerGroupProfile/interfaces/loopback/source/id` became nullable
+
+> \- the request property `peerGroupProfile/password` became nullable
+
+> \- the request property `peerGroupProfile/timers/hold` became nullable
+
+> \- the request property `peerGroupProfile/timers/keepalive` became nullable
+
+> \- added the optional property `esiMhPair` to the response with the `201` status
+
+> \- added the optional property `switchFabric` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-groups-deployments/)
+
+#### List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersGroupsDeployments`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/deployments`_
+
+> \- the response property `items/items/peerGroupProfile/authentication/password` became nullable for the status `200`
+
+> \- added the optional property `items/items/esiMhPair` to the response with the `200` status
+
+> \- added the optional property `items/items/switchFabric` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-neighbors/)
+
+#### List the neighbors configured for BGP in the given organization
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersNeighbors`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors`_
+
+> \- the response property `items/items/authentication/password` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-peers-neighbors-deploy/)
+
+#### Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor
+
+Operation ID: `createOrganizationSwitchRoutingBgpPeersNeighborsDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors/deploy`_
+
+> \- the response property `neighbor/authentication/password` became nullable for the status `201`
+
+> \- the request property `neighbor/ebgp/multihop/maximum` became nullable
+
+> \- the request property `neighbor/interfaces/loopback/source/id` became nullable
+
+> \- the request property `neighbor/password` became nullable
+
+> \- the request property `neighborAddressFamilyBinding/softReconfiguration/direction` became nullable
+
+> \- the request property `neighborAddressFamilyBinding/weight` became nullable
+
+> \- added the optional property `esiMhPair` to the response with the `201` status
+
+> \- added the optional property `switchFabric` to the response with the `201` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-neighbors-deployments/)
+
+#### List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersNeighborsDeployments`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors/deployments`_
+
+> \- the response property `items/items/neighbor/authentication/password` became nullable for the status `200`
+
+> \- added the optional property `items/items/esiMhPair` to the response with the `200` status
+
+> \- added the optional property `items/items/switchFabric` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-routers-deploy/)
+
+#### Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile
+
+Operation ID: `createOrganizationSwitchRoutingBgpRoutersDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/routers/deploy`_
+
+> \- the request property `addressFamilyProfile/ebgp/paths/maximum` became nullable
+
+> \- the request property `router/bgpIdentifier/address` became nullable
+
+> \- the request property `router/bgpIdentifier/interfaces/loopback/id` became nullable
+
+* * *
+
+### webhooks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-webhooks-alert-types/)
+
+#### Return a list of alert types to be used with managing webhook alerts
+
+Operation ID: `getOrganizationWebhooksAlertTypes`
+
+GET _`/organizations/{organizationId}/webhooks/alertTypes`_
+
+> \- the response's body type/format changed from `object`/`` to `array`/`` for status `200`
+
+> \- removed the optional property `alertType` from the response with the `200` status
+
+> \- removed the optional property `alertTypeId` from the response with the `200` status
+
+> \- removed the optional property `example` from the response with the `200` status
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-radio-afc-position-by-device/)
+
+#### List the AFC power limits of an organization by device
+
+Operation ID: `getOrganizationWirelessRadioAfcPositionByDevice`
+
+GET _`/organizations/{organizationId}/wireless/radio/afc/position/byDevice`_
+
+> \- the response property `items/height/aboveGround/value` became nullable for the status `200`
+
+* * *
+
+\[ sensor \]
+------------
+
+### alerts
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-sensor-alerts-profile/)
+
+#### Creates a sensor alert profile for a network.
+
+Operation ID: `createNetworkSensorAlertsProfile`
+
+POST _`/networks/{networkId}/sensor/alerts/profiles`_
+
+> \- the request property `schedule/id` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-sensor-alerts-profile/)
+
+#### Updates a sensor alert profile for a network.
+
+Operation ID: `updateNetworkSensorAlertsProfile`
+
+PUT _`/networks/{networkId}/sensor/alerts/profiles/{id}`_
+
+> \- the request property `schedule/id` became nullable
+
+* * *
+
+\[ settings \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-settings/)
+
+#### Update the settings for a network
+
+Operation ID: `updateNetworkSettings`
+
+PUT _`/networks/{networkId}/settings`_
+
+> \- the request property `localStatusPage/authentication/password` became nullable
+
+> \- the request property `localStatusPage/authentication/username` became nullable
+
+* * *
+
+\[ switch \]
+------------
+
+### accessPolicies
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-access-policies/)
+
+#### List the access policies for a switch network
+
+Operation ID: `getNetworkSwitchAccessPolicies`
+
+GET _`/networks/{networkId}/switch/accessPolicies`_
+
+> \- the response property `items/dot1x/controlDirection` became nullable for the status `200`
+
+> \- the response property `items/radius/criticalAuth/dataVlanId` became nullable for the status `200`
+
+> \- the response property `items/radius/criticalAuth/voiceVlanId` became nullable for the status `200`
+
+> \- the response property `items/radius/failedAuthVlanId` became nullable for the status `200`
+
+> \- the response property `items/radius/reAuthenticationInterval` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-switch-access-policy/)
+
+#### Create an access policy for a switch network
+
+Operation ID: `createNetworkSwitchAccessPolicy`
+
+POST _`/networks/{networkId}/switch/accessPolicies`_
+
+> \- the response property `dot1x/controlDirection` became nullable for the status `201`
+
+> \- the response property `radius/criticalAuth/dataVlanId` became nullable for the status `201`
+
+> \- the response property `radius/criticalAuth/voiceVlanId` became nullable for the status `201`
+
+> \- the response property `radius/failedAuthVlanId` became nullable for the status `201`
+
+> \- the response property `radius/reAuthenticationInterval` became nullable for the status `201`
+
+> \- the request property `dot1x/controlDirection` became nullable
+
+> \- the request property `radius/authentication/mode` became nullable
+
+> \- the request property `radius/criticalAuth/dataGroupPolicyId` became nullable
+
+> \- the request property `radius/criticalAuth/dataSgtId` became nullable
+
+> \- the request property `radius/criticalAuth/dataVlanId` became nullable
+
+> \- the request property `radius/criticalAuth/voiceGroupPolicyId` became nullable
+
+> \- the request property `radius/criticalAuth/voiceSgtId` became nullable
+
+> \- the request property `radius/criticalAuth/voiceVlanId` became nullable
+
+> \- the request property `radius/failedAuthGroupPolicyId` became nullable
+
+> \- the request property `radius/failedAuthSgtId` became nullable
+
+> \- the request property `radius/failedAuthVlanId` became nullable
+
+> \- the request property `radius/preAuthenticationGroupPolicyId` became nullable
+
+> \- the request property `radius/reAuthenticationInterval` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-access-policy/)
+
+#### Return a specific access policy for a switch network
+
+Operation ID: `getNetworkSwitchAccessPolicy`
+
+GET _`/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}`_
+
+> \- the response property `dot1x/controlDirection` became nullable for the status `200`
+
+> \- the response property `radius/criticalAuth/dataVlanId` became nullable for the status `200`
+
+> \- the response property `radius/criticalAuth/voiceVlanId` became nullable for the status `200`
+
+> \- the response property `radius/failedAuthVlanId` became nullable for the status `200`
+
+> \- the response property `radius/reAuthenticationInterval` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-access-policy/)
+
+#### Update an access policy for a switch network
+
+Operation ID: `updateNetworkSwitchAccessPolicy`
+
+PUT _`/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}`_
+
+> \- the response property `dot1x/controlDirection` became nullable for the status `200`
+
+> \- the response property `radius/criticalAuth/dataVlanId` became nullable for the status `200`
+
+> \- the response property `radius/criticalAuth/voiceVlanId` became nullable for the status `200`
+
+> \- the response property `radius/failedAuthVlanId` became nullable for the status `200`
+
+> \- the response property `radius/reAuthenticationInterval` became nullable for the status `200`
+
+> \- the request property `dot1x/controlDirection` became nullable
+
+> \- the request property `radius/authentication/mode` became nullable
+
+> \- the request property `radius/criticalAuth/dataGroupPolicyId` became nullable
+
+> \- the request property `radius/criticalAuth/dataSgtId` became nullable
+
+> \- the request property `radius/criticalAuth/dataVlanId` became nullable
+
+> \- the request property `radius/criticalAuth/voiceGroupPolicyId` became nullable
+
+> \- the request property `radius/criticalAuth/voiceSgtId` became nullable
+
+> \- the request property `radius/criticalAuth/voiceVlanId` became nullable
+
+> \- the request property `radius/failedAuthGroupPolicyId` became nullable
+
+> \- the request property `radius/failedAuthSgtId` became nullable
+
+> \- the request property `radius/failedAuthVlanId` became nullable
+
+> \- the request property `radius/preAuthenticationGroupPolicyId` became nullable
+
+> \- the request property `radius/reAuthenticationInterval` became nullable
+
+* * *
+
+### ports
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-ports-profiles/)
+
+#### List the port profiles in a network
+
+Operation ID: `getNetworkSwitchPortsProfiles`
+
+GET _`/networks/{networkId}/switch/ports/profiles`_
+
+> \- the response property `items/authentication/host/mode` became nullable for the status `200`
+
+> \- the response property `items/port/accessPolicyNumber` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-switch-ports-profile/)
+
+#### Create a port profile in a network
+
+Operation ID: `createNetworkSwitchPortsProfile`
+
+POST _`/networks/{networkId}/switch/ports/profiles`_
+
+> \- the response property `authentication/host/mode` became nullable for the status `201`
+
+> \- the response property `port/accessPolicyNumber` became nullable for the status `201`
+
+> \- the request property `authentication/host/mode` became nullable
+
+> \- the request property `port/adaptivePolicyGroupId` became nullable
+
+> \- the request property `port/adaptivePolicyVoiceGroupId` became nullable
+
+> \- the request property `port/vlan` became nullable
+
+> \- the request property `port/voiceVlan` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-ports-profile/)
+
+#### Update a port profile in a network
+
+Operation ID: `updateNetworkSwitchPortsProfile`
+
+PUT _`/networks/{networkId}/switch/ports/profiles/{id}`_
+
+> \- the response property `authentication/host/mode` became nullable for the status `200`
+
+> \- the response property `port/accessPolicyNumber` became nullable for the status `200`
+
+> \- the request property `authentication/host/mode` became nullable
+
+> \- the request property `port/adaptivePolicyGroupId` became nullable
+
+> \- the request property `port/adaptivePolicyVoiceGroupId` became nullable
+
+> \- the request property `port/vlan` became nullable
+
+> \- the request property `port/voiceVlan` became nullable
+
+* * *
+
+### stacks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-stack-routing-interfaces/)
+
+#### List layer 3 interfaces for a switch stack
+
+Operation ID: `getNetworkSwitchStackRoutingInterfaces`
+
+GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
+
+> \- the response property `items/ipv6/staticV6Dns2` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-switch-stack-routing-interface/)
+
+#### Create a layer 3 interface for a switch stack
+
+Operation ID: `createNetworkSwitchStackRoutingInterface`
+
+POST _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces`_
+
+> \- the response property `ipv6/staticV6Dns2` became nullable for the status `201`
+
+> \- the request property `ipv6/address` became nullable
+
+> \- the request property `ipv6/assignmentMode` became nullable
+
+> \- the request property `ipv6/prefix` became nullable
+
+> \- the request property `ipv6/staticV6Dns2` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-stack-routing-interface/)
+
+#### Return a layer 3 interface from a switch stack
+
+Operation ID: `getNetworkSwitchStackRoutingInterface`
+
+GET _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
+
+> \- the response property `ipv6/staticV6Dns2` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-stack-routing-interface/)
+
+#### Update a layer 3 interface for a switch stack
+
+Operation ID: `updateNetworkSwitchStackRoutingInterface`
+
+PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}`_
+
+> \- the response property `ipv6/staticV6Dns2` became nullable for the status `200`
+
+> \- the request property `ipv6/address` became nullable
+
+> \- the request property `ipv6/assignmentMode` became nullable
+
+> \- the request property `ipv6/prefix` became nullable
+
+> \- the request property `ipv6/staticV6Dns2` became nullable
+
+* * *
+
+\[ vlanProfiles \]
+------------
+
+### assignments
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-vlan-profiles-assignments-by-device/)
+
+#### Get the assigned VLAN Profiles for devices in a network
+
+Operation ID: `getNetworkVlanProfilesAssignmentsByDevice`
+
+GET _`/networks/{networkId}/vlanProfiles/assignments/byDevice`_
+
+> \- added the optional property `items/configurationSource` to the response with the `200` status
+
+* * *
+
+\[ wireless \]
+------------
+
+### billing
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-billing/)
+
+#### Update the billing settings
+
+Operation ID: `updateNetworkWirelessBilling`
+
+PUT _`/networks/{networkId}/wireless/billing`_
+
+> \- the request property `plans/items/bandwidthLimits/limitDown` became nullable
+
+> \- the request property `plans/items/bandwidthLimits/limitUp` became nullable
+
+* * *
+
+### clients
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-clients-health-scores/)
+
+#### Fetch the health scores for all clients on this network
+
+Operation ID: `getNetworkWirelessClientsHealthScores`
+
+GET _`/networks/{networkId}/wireless/clients/healthScores`_
+
+> \- the response property `items/onboarding/latest` became nullable for the status `200`
+
+> \- the response property `items/performance/currentConnection` became nullable for the status `200`
+
+> \- the response property `items/performance/latest` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-client-health-scores/)
+
+#### Fetch the health scores for a given client on this network
+
+Operation ID: `getNetworkWirelessClientHealthScores`
+
+GET _`/networks/{networkId}/wireless/clients/{clientId}/healthScores`_
+
+> \- the response property `onboarding/latest` became nullable for the status `200`
+
+> \- the response property `performance/currentConnection` became nullable for the status `200`
+
+> \- the response property `performance/latest` became nullable for the status `200`
+
+* * *
+
+### ethernet
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-ethernet-ports-profile/)
+
+#### Create an AP port profile
+
+Operation ID: `createNetworkWirelessEthernetPortsProfile`
+
+POST _`/networks/{networkId}/wireless/ethernet/ports/profiles`_
+
+> \- the request property `ports/items/ssid` became nullable
+
+> \- the request property `usbPorts/items/ssid` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ethernet-ports-profile/)
+
+#### Update the AP port profile by ID for this network
+
+Operation ID: `updateNetworkWirelessEthernetPortsProfile`
+
+PUT _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
+
+> \- the request property `ports/items/ssid` became nullable
+
+> \- the request property `usbPorts/items/ssid` became nullable
+
+* * *
+
+### rfProfiles
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-rf-profiles/)
+
+#### List RF profiles for this network
+
+Operation ID: `getNetworkWirelessRfProfiles`
+
+GET _`/networks/{networkId}/wireless/rfProfiles`_
+
+> \- the response property `fiveGhzSettings/rxsop` became nullable for the status `200`
+
+> \- the response property `sixGhzSettings/rxsop` became nullable for the status `200`
+
+> \- the response property `twoFourGhzSettings/rxsop` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-rf-profile/)
+
+#### Creates new RF profile for this network
+
+Operation ID: `createNetworkWirelessRfProfile`
+
+POST _`/networks/{networkId}/wireless/rfProfiles`_
+
+> \- the response property `fiveGhzSettings/rxsop` became nullable for the status `201`
+
+> \- the response property `sixGhzSettings/rxsop` became nullable for the status `201`
+
+> \- the response property `twoFourGhzSettings/rxsop` became nullable for the status `201`
+
+> \- the request property `fiveGhzSettings/rxsop` became nullable
+
+> \- the request property `sixGhzSettings/rxsop` became nullable
+
+> \- the request property `twoFourGhzSettings/rxsop` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-rf-profile/)
+
+#### Return a RF profile
+
+Operation ID: `getNetworkWirelessRfProfile`
+
+GET _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
+
+> \- the response property `fiveGhzSettings/rxsop` became nullable for the status `200`
+
+> \- the response property `sixGhzSettings/rxsop` became nullable for the status `200`
+
+> \- the response property `twoFourGhzSettings/rxsop` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-rf-profile/)
+
+#### Updates specified RF profile for this network
+
+Operation ID: `updateNetworkWirelessRfProfile`
+
+PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
+
+> \- the response property `fiveGhzSettings/rxsop` became nullable for the status `200`
+
+> \- the response property `sixGhzSettings/rxsop` became nullable for the status `200`
+
+> \- the response property `twoFourGhzSettings/rxsop` became nullable for the status `200`
+
+> \- the request property `fiveGhzSettings/rxsop` became nullable
+
+> \- the request property `sixGhzSettings/rxsop` became nullable
+
+> \- the request property `twoFourGhzSettings/rxsop` became nullable
+
+* * *
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssids/)
+
+#### List the MR SSIDs in a network
+
+Operation ID: `getNetworkWirelessSsids`
+
+GET _`/networks/{networkId}/wireless/ssids`_
+
+> \- the response property `items/localAuthFallback/serverCaCertificate/contents` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssid/)
+
+#### Return a single MR SSID
+
+Operation ID: `getNetworkWirelessSsid`
+
+GET _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- the response property `localAuthFallback/serverCaCertificate/contents` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid/)
+
+#### Update the attributes of an MR SSID
+
+Operation ID: `updateNetworkWirelessSsid`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- the response property `localAuthFallback/serverCaCertificate/contents` became nullable for the status `200`
+
+> \- the request property `activeDirectory/credentials/logonName` became nullable
+
+> \- the request property `activeDirectory/credentials/password` became nullable
+
+> \- the request property `gre/key` became nullable
+
+> \- the request property `ldap/baseDistinguishedName` became nullable
+
+> \- the request property `ldap/credentials/distinguishedName` became nullable
+
+> \- the request property `ldap/credentials/password` became nullable
+
+> \- the request property `ldap/serverCaCertificate/contents` became nullable
+
+> \- the request property `localAuthFallback/serverCaCertificate/contents` became nullable
+
+> \- the request property `localRadius/certificateAuthentication/clientRootCaCertificate/contents` became nullable
+
+> \- the request property `localRadius/certificateAuthentication/ocspResponderUrl` became nullable
+
+> \- the request property `radiusAccountingServers/items/caCertificate` became nullable
+
+> \- the request property `radiusServers/items/caCertificate` became nullable
+
+> \- the request property `radiusServers/items/openRoamingCertificateId` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-splash-settings/)
+
+#### Modify the splash page settings for the given SSID
+
+Operation ID: `updateNetworkWirelessSsidSplashSettings`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}/splash/settings`_
+
+> \- the request property `splashImage/md5` became nullable
+
+> \- the request property `splashLogo/md5` became nullable
+
+> \- the request property `splashPrepaidFront/md5` became nullable
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssid-traffic-shaping-rules/)
+
+#### Display the traffic shaping settings for a SSID on an MR network
+
+Operation ID: `getNetworkWirelessSsidTrafficShapingRules`
+
+GET _`/networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules`_
+
+> \- the response property `rules/items/dscpTagValue` became nullable for the status `200`
+
+> \- the response property `rules/items/pcpTagValue` became nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-traffic-shaping-rules/)
+
+#### Update the traffic shaping rules for an SSID on an MR network.
+
+Operation ID: `updateNetworkWirelessSsidTrafficShapingRules`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules`_
+
+> \- the response property `rules/items/dscpTagValue` became nullable for the status `200`
+
+> \- the response property `rules/items/pcpTagValue` became nullable for the status `200`
+
+> \- the request property `rules/items/dscpTagValue` became nullable
+
+> \- the request property `rules/items/pcpTagValue` became nullable
+
+* * *
+
+### zigbee
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-zigbee/)
+
+#### Update Zigbee Configs for specified network
+
+Operation ID: `updateNetworkWirelessZigbee`
+
+PUT _`/networks/{networkId}/wireless/zigbee`_
+
+> \- the request property `iotController/serial` became nullable
+
+* * *
+
+
+---
+
 ## v1.71.0-beta.2
 
 
