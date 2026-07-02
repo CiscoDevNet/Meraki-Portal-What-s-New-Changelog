@@ -1,6 +1,714 @@
 
 ---
 
+## v1.72.0-beta.0
+
+
+- [Added](#added)
+  * [\[ organizations \]](#-organizations-)
+    + [appliance](#appliance)
+      - [Retrieve the HTTPS Inspection state for all security appliances in an organization.](#retrieve-the-https-inspection-state-for-all-security-appliances-in-an-organization)
+      - [Upload an HTTPS Inspection certificate to MX devices in the same organization](#upload-an-https-inspection-certificate-to-mx-devices-in-the-same-organization)
+    + [assurance](#assurance)
+      - [Summarizes wired connection successes and failures by server.](#summarizes-wired-connection-successes-and-failures-by-server)
+    + [devices](#devices)
+      - [List the available software upgrade versions for an organization.](#list-the-available-software-upgrade-versions-for-an-organization)
+      - [Provide changelogs for specified versions or, if unspecified, for all versions in the organization, including reference to the last and next versions.](#provide-changelogs-for-specified-versions-or-if-unspecified-for-all-versions-in-the-organization-including-reference-to-the-last-and-next-versions)
+- [Changed](#changed)
+  * [\[ camera \]](#-camera--1)
+    + [qualityRetentionProfiles](#qualityretentionprofiles-1)
+      - [Creates new quality retention profile for this network.](#creates-new-quality-retention-profile-for-this-network-1)
+      - [Update an existing quality retention profile for this network.](#update-an-existing-quality-retention-profile-for-this-network-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [assurance](#assurance-1)
+      - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-1)
+      - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-1)
+      - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-1)
+      - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-1)
+      - [Returns historical health alert overviews](#returns-historical-health-alert-overviews-1)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-1)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-1)
+      - [Summarizes wireless connection successes and failures by network.](#summarizes-wireless-connection-successes-and-failures-by-network-1)
+      - [Summarizes wireless connection successes and failures by band.](#summarizes-wireless-connection-successes-and-failures-by-band-1)
+      - [Summarizes wireless connection successes and failures by client.](#summarizes-wireless-connection-successes-and-failures-by-client-1)
+      - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-1)
+      - [Summarizes wireless connection successes and failures by client type.](#summarizes-wireless-connection-successes-and-failures-by-client-type-1)
+      - [Summarizes wireless connection successes and failures by device.](#summarizes-wireless-connection-successes-and-failures-by-device-1)
+      - [Time-series of wireless connection successes and failures by network.](#time-series-of-wireless-connection-successes-and-failures-by-network-1)
+      - [Summarizes wireless connection successes and failures by server.](#summarizes-wireless-connection-successes-and-failures-by-server-1)
+      - [Summarizes wireless connection successes and failures by ssid.](#summarizes-wireless-connection-successes-and-failures-by-ssid-1)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-1)
+      - [Summarizes wireless time to connect metrics by network.](#summarizes-wireless-time-to-connect-metrics-by-network-1)
+      - [Summarizes wireless connection successes and failures by band.](#summarizes-wireless-connection-successes-and-failures-by-band-1)
+      - [Summarizes wireless time to connect metrics by client.](#summarizes-wireless-time-to-connect-metrics-by-client-1)
+      - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-1)
+      - [Summarizes wireless connection successes and failures by client type.](#summarizes-wireless-connection-successes-and-failures-by-client-type-1)
+      - [Summarizes wireless connection time to connect metrics by device.](#summarizes-wireless-connection-time-to-connect-metrics-by-device-1)
+      - [Time-series of wireless time to connect by network.](#time-series-of-wireless-time-to-connect-by-network-1)
+      - [Summarizes wireless connection time to connect metrics by server.](#summarizes-wireless-connection-time-to-connect-metrics-by-server-1)
+      - [Summarizes wireless connection time to connect metrics by ssid.](#summarizes-wireless-connection-time-to-connect-metrics-by-ssid-1)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-1)
+    + [campusGateway](#campusgateway-1)
+      - [Get the details of campus gateway clusters](#get-the-details-of-campus-gateway-clusters-1)
+      - [List SSIDs tunneling through Campus Gateway clusters](#list-ssids-tunneling-through-campus-gateway-clusters-1)
+      - [List the details of APs tunneling through the Campus Gateway clusters](#list-the-details-of-aps-tunneling-through-the-campus-gateway-clusters-1)
+    + [devices](#devices-1)
+      - [List the Opportunistic Pcap settings of an organization by network](#list-the-opportunistic-pcap-settings-of-an-organization-by-network-1)
+    + [sase](#sase-1)
+  * [\[ syslogServers \]](#-syslogservers--1)
+    + [general](#general-1)
+      - [List the syslog servers for a network](#list-the-syslog-servers-for-a-network-1)
+      - [Update the syslog servers for a network](#update-the-syslog-servers-for-a-network-1)
+  * [\[ wireless \]](#-wireless--1)
+    + [opportunisticPcap](#opportunisticpcap-1)
+      - [Update the Opportunistic Pcap settings for a wireless network](#update-the-opportunistic-pcap-settings-for-a-wireless-network-1)
+ 
+Version **v1.71.0-beta.3** _to_ **v1.72.0-beta.0**
+
+* * *
+
+**Summary of Changes**
+
+**5 - New**
+
+**37 - Updated**
+
+**855 - Total Endpoints**
+
+**581 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ organizations \]
+--------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/httpsi-organization-appliance-security/)
+
+#### Retrieve the HTTPS Inspection state for all security appliances in an organization.
+
+Operation ID: `httpsiOrganizationApplianceSecurity`
+
+PATH _`/organizations/{organizationId}/appliance/security/httpsi`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/security/httpsi`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/certificates-organization-appliance-security-httpsi/)
+
+#### Upload an HTTPS Inspection certificate to MX devices in the same organization
+
+Operation ID: `certificatesOrganizationApplianceSecurityHttpsi`
+
+PATH _`/organizations/{organizationId}/appliance/security/httpsi/certificates`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/appliance/security/httpsi/certificates`  
+> 
+> * * *
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-server/)
+
+#### Summarizes wired connection successes and failures by server.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByServer`
+
+PATH _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byServer`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byServer`  
+> 
+> * * *
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-software-versions/)
+
+#### List the available software upgrade versions for an organization.
+
+Operation ID: `getOrganizationDevicesSoftwareVersions`
+
+PATH _`/organizations/{organizationId}/devices/software/versions`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/software/versions`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-software-versions-changelogs/)
+
+#### Provide changelogs for specified versions or, if unspecified, for all versions in the organization, including reference to the last and next versions.
+
+Operation ID: `getOrganizationDevicesSoftwareVersionsChangelogs`
+
+PATH _`/organizations/{organizationId}/devices/software/versions/changelogs`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/devices/software/versions/changelogs`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ camera \]
+------------
+
+### qualityRetentionProfiles
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-camera-quality-retention-profile/)
+
+#### Creates new quality retention profile for this network.
+
+Operation ID: `createNetworkCameraQualityRetentionProfile`
+
+POST _`/networks/{networkId}/camera/qualityRetentionProfiles`_
+
+> \- added the new optional request property `videoSettings/MV14`
+
+> \- added the new optional request property `videoSettings/MV24`
+
+> \- added the new optional request property `videoSettings/MV34`
+
+> \- added the new optional request property `videoSettings/MV54N`
+
+> \- added the new optional request property `videoSettings/MV64`
+
+> \- added the new optional request property `videoSettings/MV74`
+
+> \- added the new optional request property `videoSettings/MV94`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-camera-quality-retention-profile/)
+
+#### Update an existing quality retention profile for this network.
+
+Operation ID: `updateNetworkCameraQualityRetentionProfile`
+
+PUT _`/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}`_
+
+> \- added the new optional request property `videoSettings/MV14`
+
+> \- added the new optional request property `videoSettings/MV24`
+
+> \- added the new optional request property `videoSettings/MV34`
+
+> \- added the new optional request property `videoSettings/MV54N`
+
+> \- added the new optional request property `videoSettings/MV64`
+
+> \- added the new optional request property `videoSettings/MV74`
+
+> \- added the new optional request property `videoSettings/MV94`
+
+* * *
+
+\[ organizations \]
+------------
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts/)
+
+#### Return all health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlerts`
+
+GET _`/organizations/{organizationId}/assurance/alerts`_
+
+> \- added the enum value `modular_supervisor_node_group_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview/)
+
+#### Return overview of active health alerts for an organization
+
+Operation ID: `getOrganizationAssuranceAlertsOverview`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview`_
+
+> \- added the enum value `modular_supervisor_node_group_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-network/)
+
+#### Return a Summary of Alerts grouped by network and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byNetwork`_
+
+> \- added the enum value `modular_supervisor_node_group_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-by-type/)
+
+#### Return a Summary of Alerts grouped by type and severity
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewByType`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/byType`_
+
+> \- added the enum value `modular_supervisor_node_group_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-overview-historical/)
+
+#### Returns historical health alert overviews
+
+Operation ID: `getOrganizationAssuranceAlertsOverviewHistorical`
+
+GET _`/organizations/{organizationId}/assurance/alerts/overview/historical`_
+
+> \- added the enum value `modular_supervisor_node_group_mismatch` to the property `items/` of the `query` request parameter `types`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-insights-by-network/)
+
+#### Provides insights into wireless capacity experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/insights/byNetwork`_
+
+> \- the response property `items/items/items/insights/items/failureContributor` became nullable for the status `200`
+
+> \- added the optional property `items/items/items/insights/items/bullets` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-insights-by-network/)
+
+#### Provides insights into wireless coverage experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/insights/byNetwork`_
+
+> \- the response property `items/items/items/insights/items/failureContributor` became nullable for the status `200`
+
+> \- added the optional property `items/items/items/insights/items/bullets` to the response with the `200` status
+
+> \- added the optional property `items/items/items/insights/items/failureSubContributor` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network/)
+
+#### Summarizes wireless connection successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-band/)
+
+#### Summarizes wireless connection successes and failures by band.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByBand`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byBand`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-client/)
+
+#### Summarizes wireless connection successes and failures by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byClient`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-client-os/)
+
+#### Summarizes wireless connection successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byClientOs`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-client-type/)
+
+#### Summarizes wireless connection successes and failures by client type.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByClientType`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byClientType`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-device/)
+
+#### Summarizes wireless connection successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byDevice`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-interval/)
+
+#### Time-series of wireless connection successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByInterval`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byInterval`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-server/)
+
+#### Summarizes wireless connection successes and failures by server.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkByServer`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/byServer`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network-by-ssid/)
+
+#### Summarizes wireless connection successes and failures by ssid.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsByNetworkBySsid`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/byNetwork/bySsid`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-insights-by-network/)
+
+#### Provides insights into wireless successful connects experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/insights/byNetwork`_
+
+> \- the response property `items/items/items/insights/items/failureContributor` became nullable for the status `200`
+
+> \- the response property `items/items/items/insights/items/failureReason` became nullable for the status `200`
+
+> \- added the new optional `query` request parameter `variant`
+
+> \- added the optional property `items/items/items/insights/items/bullets` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network/)
+
+#### Summarizes wireless time to connect metrics by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-band/)
+
+#### Summarizes wireless connection successes and failures by band.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByBand`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byBand`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-client/)
+
+#### Summarizes wireless time to connect metrics by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClient`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-client-os/)
+
+#### Summarizes wireless connection successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClientOs`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-client-type/)
+
+#### Summarizes wireless connection successes and failures by client type.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByClientType`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byClientType`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-device/)
+
+#### Summarizes wireless connection time to connect metrics by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byDevice`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-interval/)
+
+#### Time-series of wireless time to connect by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByInterval`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byInterval`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-server/)
+
+#### Summarizes wireless connection time to connect metrics by server.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkByServer`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/byServer`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-by-network-by-ssid/)
+
+#### Summarizes wireless connection time to connect metrics by ssid.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectByNetworkBySsid`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/byNetwork/bySsid`_
+
+> \- added the new optional `query` request parameter `variant`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-insights-by-network/)
+
+#### Provides insights into wireless time to connect experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/insights/byNetwork`_
+
+> \- the response property `items/items/items/insights/items/failureContributor` became nullable for the status `200`
+
+> \- added the new optional `query` request parameter `variant`
+
+> \- added the optional property `items/items/items/insights/items/bullets` to the response with the `200` status
+
+> \- added the optional property `items/items/items/insights/items/failureReason` to the response with the `200` status
+
+> \- added the optional property `items/items/items/insights/items/failureSubContributor` to the response with the `200` status
+
+* * *
+
+### campusGateway
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-clusters/)
+
+#### Get the details of campus gateway clusters
+
+Operation ID: `getOrganizationCampusGatewayClusters`
+
+GET _`/organizations/{organizationId}/campusGateway/clusters`_
+
+> \- the endpoint scheme security `oauth2: [wireless:config:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-clusters-ssids/)
+
+#### List SSIDs tunneling through Campus Gateway clusters
+
+Operation ID: `getOrganizationCampusGatewayClustersSsids`
+
+GET _`/organizations/{organizationId}/campusGateway/clusters/ssids`_
+
+> \- the endpoint scheme security `oauth2: [wireless:config:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-connections/)
+
+#### List the details of APs tunneling through the Campus Gateway clusters
+
+Operation ID: `getOrganizationCampusGatewayConnections`
+
+GET _`/organizations/{organizationId}/campusGateway/connections`_
+
+> \- the endpoint scheme security `oauth2: [wireless:telemetry:read]` was added to the API
+
+> \- added the required property `items/items/campusGateways/items/priority` to the response with the `200` status
+
+> \- added the required property `items/items/tunnelAdmin` to the response with the `200` status
+
+> \- added the required property `items/items/tunnelSchedule` to the response with the `200` status
+
+> \- added the required property `items/items/tunnelStatus` to the response with the `200` status
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-packet-capture-opportunistic-by-network/)
+
+#### List the Opportunistic Pcap settings of an organization by network
+
+Operation ID: `getOrganizationDevicesPacketCaptureOpportunisticByNetwork`
+
+GET _`/organizations/{organizationId}/devices/packetCapture/opportunistic/byNetwork`_
+
+> \- added the optional property `items/productType` to the response with the `200` status
+
+> \- added the optional property `items/url` to the response with the `200` status
+
+* * *
+
+### sase
+
+POST _`/organizations/{organizationId}/sase/sites/enroll`_
+
+> \- api path removed without deprecation
+
+* * *
+
+\[ syslogServers \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-syslog-servers/)
+
+#### List the syslog servers for a network
+
+Operation ID: `getNetworkSyslogServers`
+
+GET _`/networks/{networkId}/syslogServers`_
+
+> \- endpoint deprecated
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-syslog-servers/)
+
+#### Update the syslog servers for a network
+
+Operation ID: `updateNetworkSyslogServers`
+
+PUT _`/networks/{networkId}/syslogServers`_
+
+> \- endpoint deprecated
+
+* * *
+
+\[ wireless \]
+------------
+
+### opportunisticPcap
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-opportunistic-pcap/)
+
+#### Update the Opportunistic Pcap settings for a wireless network
+
+Operation ID: `updateNetworkWirelessOpportunisticPcap`
+
+PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
+
+> \- added the optional property `productType` to the response with the `200` status
+
+> \- added the optional property `url` to the response with the `200` status
+
+* * *
+
+
+---
+
 ## v1.71.0-beta.3
 
 
