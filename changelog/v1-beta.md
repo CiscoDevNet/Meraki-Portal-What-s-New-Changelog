@@ -1,6 +1,538 @@
 
 ---
 
+## v1.72.0-beta.2
+
+
+- [Changed](#changed)
+  * [\[ organizations \]](#-organizations--1)
+    + [assistant](#assistant-1)
+      - [List the AI assistant's available capabilities and agents for this organization.](#list-the-ai-assistants-available-capabilities-and-agents-for-this-organization-1)
+      - [Create a synchronous AI assistant chat completion](#create-a-synchronous-ai-assistant-chat-completion-1)
+      - [List all active conversation threads for the authenticated user.](#list-all-active-conversation-threads-for-the-authenticated-user-1)
+      - [Create a conversation thread for multi-turn AI assistant interactions.](#create-a-conversation-thread-for-multi-turn-ai-assistant-interactions-1)
+      - [Delete a conversation thread and all its messages.](#delete-a-conversation-thread-and-all-its-messages-1)
+      - [Return a single conversation thread.](#return-a-single-conversation-thread-1)
+      - [Update the name of a conversation thread.](#update-the-name-of-a-conversation-thread-1)
+      - [List messages in a conversation thread.](#list-messages-in-a-conversation-thread-1)
+      - [Create a new chat message in an existing thread.](#create-a-new-chat-message-in-an-existing-thread-1)
+      - [Return a single message in a conversation thread.](#return-a-single-message-in-a-conversation-thread-1)
+      - [List artifacts attached to a specific message](#list-artifacts-attached-to-a-specific-message-1)
+      - [Return a single artifact with its full content.](#return-a-single-artifact-with-its-full-content-1)
+      - [Return all feedback entries previously submitted for a specific message in a thread.](#return-all-feedback-entries-previously-submitted-for-a-specific-message-in-a-thread-1)
+      - [Submit or replace feedback for a specific assistant message.](#submit-or-replace-feedback-for-a-specific-assistant-message-1)
+    + [assurance](#assurance-1)
+      - [Summarizes wireless post connection capacity successes and failures by band.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-band-1)
+      - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-1)
+      - [Summarizes wireless post connection capacity successes and failures by client OS and driver version.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-client-os-and-driver-version-1)
+      - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-1)
+      - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device-1)
+      - [Summarizes wireless post connection capacity successes and failures by ssid.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-ssid-1)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-1)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-1)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-1)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-1)
+    + [devices](#devices-1)
+      - [Retrieves packet capture analysis result for a specific packet capture task.](#retrieves-packet-capture-analysis-result-for-a-specific-packet-capture-task-1)
+    + [nac](#nac-1)
+      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-1)
+      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-1)
+      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-1)
+    + [sase](#sase-1)
+      - [Attach sites in this organization to Secure Access](#attach-sites-in-this-organization-to-secure-access-1)
+    + [wireless](#wireless-1)
+      - [List the wireless device telemetry of an organization](#list-the-wireless-device-telemetry-of-an-organization-1)
+  * [\[ trafficShaping \]](#-trafficshaping--1)
+    + [dscpTaggingOptions](#dscptaggingoptions-1)
+      - [Returns the available DSCP tagging options for your traffic shaping rules.](#returns-the-available-dscp-tagging-options-for-your-traffic-shaping-rules-1)
+  * [\[ wireless \]](#-wireless--1)
+    + [ssids](#ssids-1)
+      - [List the device type group policies for the SSID](#list-the-device-type-group-policies-for-the-ssid-1)
+      - [Update the device type group policies for the SSID](#update-the-device-type-group-policies-for-the-ssid-1)
+ 
+Version **v1.72.0-beta.1** _to_ **v1.72.0-beta.2**
+
+* * *
+
+**Summary of Changes**
+
+**0 - New**
+
+**33 - Updated**
+
+**850 - Total Endpoints**
+
+**578 - Total Paths**
+
+* * *
+
+* * *
+
+Changed
+=======
+
+\[ organizations \]
+------------
+
+### assistant
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-capabilities/)
+
+#### List the AI assistant's available capabilities and agents for this organization.
+
+Operation ID: `getOrganizationAssistantCapabilities`
+
+GET _`/organizations/{organizationId}/assistant/capabilities`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-completion/)
+
+#### Create a synchronous AI assistant chat completion
+
+Operation ID: `createOrganizationAssistantChatCompletion`
+
+POST _`/organizations/{organizationId}/assistant/chat/completions`_
+
+> \- the response property `messageId` became nullable for the status `201`
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:write]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-threads/)
+
+#### List all active conversation threads for the authenticated user.
+
+Operation ID: `getOrganizationAssistantChatThreads`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-thread/)
+
+#### Create a conversation thread for multi-turn AI assistant interactions.
+
+Operation ID: `createOrganizationAssistantChatThread`
+
+POST _`/organizations/{organizationId}/assistant/chat/threads`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:write]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-assistant-chat-thread/)
+
+#### Delete a conversation thread and all its messages.
+
+Operation ID: `deleteOrganizationAssistantChatThread`
+
+DELETE _`/organizations/{organizationId}/assistant/chat/threads/{threadId}`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:write]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread/)
+
+#### Return a single conversation thread.
+
+Operation ID: `getOrganizationAssistantChatThread`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-assistant-chat-thread/)
+
+#### Update the name of a conversation thread.
+
+Operation ID: `updateOrganizationAssistantChatThread`
+
+PUT _`/organizations/{organizationId}/assistant/chat/threads/{threadId}`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:write]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-messages/)
+
+#### List messages in a conversation thread.
+
+Operation ID: `getOrganizationAssistantChatThreadMessages`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-thread-message/)
+
+#### Create a new chat message in an existing thread.
+
+Operation ID: `createOrganizationAssistantChatThreadMessage`
+
+POST _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:write]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message/)
+
+#### Return a single message in a conversation thread.
+
+Operation ID: `getOrganizationAssistantChatThreadMessage`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message-artifacts/)
+
+#### List artifacts attached to a specific message
+
+Operation ID: `getOrganizationAssistantChatThreadMessageArtifacts`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/artifacts`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message-artifact/)
+
+#### Return a single artifact with its full content.
+
+Operation ID: `getOrganizationAssistantChatThreadMessageArtifact`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/artifacts/{artifactId}`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message-feedback/)
+
+#### Return all feedback entries previously submitted for a specific message in a thread.
+
+Operation ID: `getOrganizationAssistantChatThreadMessageFeedback`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/feedback`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-thread-message-feedback/)
+
+#### Submit or replace feedback for a specific assistant message.
+
+Operation ID: `createOrganizationAssistantChatThreadMessageFeedback`
+
+POST _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/feedback`_
+
+> \- the endpoint scheme security `oauth2: [dashboard:general:telemetry:write]` was added to the API
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-band/)
+
+#### Summarizes wireless post connection capacity successes and failures by band.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByBand`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byBand`_
+
+> \- added the optional property `items/items/items/impactedClientsUsage` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client/)
+
+#### Summarizes wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClient`_
+
+> \- added the optional property `items/items/items/client/impactedClientsUsage` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-os/)
+
+#### Summarizes wireless post connection capacity successes and failures by client OS and driver version.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/impactedClientsUsage` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-type/)
+
+#### Summarizes wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientType`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientType`_
+
+> \- added the optional property `items/items/items/impactedClientsUsage` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-device/)
+
+#### Summarizes wireless post connection capacity successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byDevice`_
+
+> \- added the optional property `items/items/items/device/impactedClientsUsage` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-ssid/)
+
+#### Summarizes wireless post connection capacity successes and failures by ssid.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkBySsid`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/bySsid`_
+
+> \- added the optional property `items/items/items/impactedClientsUsage` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-insights-by-network/)
+
+#### Provides insights into wireless capacity experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/insights/byNetwork`_
+
+> \- deleted the `query` request parameter `insights`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-insights-by-network/)
+
+#### Provides insights into wireless coverage experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/insights/byNetwork`_
+
+> \- deleted the `query` request parameter `insights`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-insights-by-network/)
+
+#### Provides insights into wireless successful connects experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/insights/byNetwork`_
+
+> \- deleted the `query` request parameter `insights`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-insights-by-network/)
+
+#### Provides insights into wireless time to connect experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/insights/byNetwork`_
+
+> \- deleted the `query` request parameter `insights`
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-packet-capture-task/)
+
+#### Retrieves packet capture analysis result for a specific packet capture task.
+
+Operation ID: `getOrganizationDevicesPacketCaptureTask`
+
+GET _`/organizations/{organizationId}/devices/packetCaptures/{packetId}/tasks/{id}`_
+
+> \- removed the optional property `analyzers` from the response with the `200` status
+
+> \- removed the optional property `fileName` from the response with the `200` status
+
+> \- removed the optional property `filePathUrl` from the response with the `200` status
+
+> \- removed the optional property `summary` from the response with the `200` status
+
+> \- added the new `completed` enum value to the `status` response property for the response status `200`
+
+> \- added the new `failed` enum value to the `status` response property for the response status `200`
+
+> \- added the new `pending` enum value to the `status` response property for the response status `200`
+
+> \- added the new `unknown` enum value to the `status` response property for the response status `200`
+
+> \- added the optional property `result/analyzers` to the response with the `200` status
+
+> \- added the optional property `result/error` to the response with the `200` status
+
+> \- added the optional property `result/fileName` to the response with the `200` status
+
+> \- added the optional property `result/filePathUrl` to the response with the `200` status
+
+> \- added the optional property `result/summary` to the response with the `200` status
+
+* * *
+
+### nac
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-authorization-policies/)
+
+#### Get all nac authorization policies for this organization
+
+Operation ID: `getOrganizationNacAuthorizationPolicies`
+
+GET _`/organizations/{organizationId}/nac/authorization/policies`_
+
+> \- added the optional property `items/rules/items/authorizationProfile/ipsk/isMasked` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-authorization-policy-rule/)
+
+#### Create a rule in an authorization policy set of an organization
+
+Operation ID: `createOrganizationNacAuthorizationPolicyRule`
+
+POST _`/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules`_
+
+> \- added the new optional request property `authorizationProfile/ipsk/isMasked`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-authorization-policy-rule/)
+
+#### Update an existing rule of an authorization policy set within an organization
+
+Operation ID: `updateOrganizationNacAuthorizationPolicyRule`
+
+PUT _`/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`_
+
+> \- added the new optional request property `authorizationProfile/ipsk/isMasked`
+
+* * *
+
+### sase
+
+[Docs](https://developer.cisco.com/meraki/api-v1/attach-organization-sase-sites/)
+
+#### Attach sites in this organization to Secure Access
+
+Operation ID: `attachOrganizationSaseSites`
+
+POST _`/organizations/{organizationId}/sase/sites/attach`_
+
+> \- request body became required
+
+> \- the request property `items` became required
+
+> \- the request property `items/items/network` became required
+
+> \- the request property `items/items/region` became required
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-devices-telemetry/)
+
+#### List the wireless device telemetry of an organization
+
+Operation ID: `getOrganizationWirelessDevicesTelemetry`
+
+GET _`/organizations/{organizationId}/wireless/devices/telemetry`_
+
+> \- added the optional property `items/items/boot` to the response with the `200` status
+
+* * *
+
+\[ trafficShaping \]
+------------
+
+### dscpTaggingOptions
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-traffic-shaping-dscp-tagging-options/)
+
+#### Returns the available DSCP tagging options for your traffic shaping rules.
+
+Operation ID: `getNetworkTrafficShapingDscpTaggingOptions`
+
+GET _`/networks/{networkId}/trafficShaping/dscpTaggingOptions`_
+
+> \- added the optional property `items/description` to the response with the `200` status
+
+> \- added the optional property `items/dscpTagValue` to the response with the `200` status
+
+* * *
+
+\[ wireless \]
+------------
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssid-device-type-group-policies/)
+
+#### List the device type group policies for the SSID
+
+Operation ID: `getNetworkWirelessSsidDeviceTypeGroupPolicies`
+
+GET _`/networks/{networkId}/wireless/ssids/{number}/deviceTypeGroupPolicies`_
+
+> \- added the optional property `deviceTypePolicies` to the response with the `200` status
+
+> \- added the optional property `enabled` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid-device-type-group-policies/)
+
+#### Update the device type group policies for the SSID
+
+Operation ID: `updateNetworkWirelessSsidDeviceTypeGroupPolicies`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}/deviceTypeGroupPolicies`_
+
+> \- added the optional property `deviceTypePolicies` to the response with the `200` status
+
+> \- added the optional property `enabled` to the response with the `200` status
+
+* * *
+
+
+---
+
 ## v1.72.0-beta.1
 
 
