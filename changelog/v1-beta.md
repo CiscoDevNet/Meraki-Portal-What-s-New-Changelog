@@ -1,6 +1,665 @@
 
 ---
 
+## v1.72.0-beta.3
+
+
+- [Added](#added)
+  * [\[ administered \]](#-administered-)
+    + [assistant](#assistant)
+      - [Create a synchronous AI assistant chat completion for user-wide threads](#create-a-synchronous-ai-assistant-chat-completion-for-user-wide-threads)
+      - [List all active user-wide conversation threads for the authenticated user.](#list-all-active-user-wide-conversation-threads-for-the-authenticated-user)
+      - [Create a user-wide conversation thread for multi-turn AI assistant interactions.](#create-a-user-wide-conversation-thread-for-multi-turn-ai-assistant-interactions)
+      - [Delete a user-wide conversation thread and all its messages.](#delete-a-user-wide-conversation-thread-and-all-its-messages)
+      - [Return a single user-wide conversation thread.](#return-a-single-user-wide-conversation-thread)
+      - [Update the name of a user-wide conversation thread.](#update-the-name-of-a-user-wide-conversation-thread)
+      - [List messages in a user-wide conversation thread.](#list-messages-in-a-user-wide-conversation-thread)
+      - [Create a new chat message in an existing user-wide thread.](#create-a-new-chat-message-in-an-existing-user-wide-thread)
+      - [Return a single message in a user-wide conversation thread.](#return-a-single-message-in-a-user-wide-conversation-thread)
+  * [\[ appliance \]](#-appliance-)
+    + [ports](#ports)
+      - [Create a shared MX port RADIUS server for a network](#create-a-shared-mx-port-radius-server-for-a-network)
+      - [Delete a network-owned shared MX port RADIUS server](#delete-a-network-owned-shared-mx-port-radius-server)
+      - [Update a shared MX port RADIUS server for a network](#update-a-shared-mx-port-radius-server-for-a-network)
+  * [\[ organizations \]](#-organizations-)
+    + [appliance](#appliance)
+      - [List shared MX port RADIUS servers by network](#list-shared-mx-port-radius-servers-by-network)
+    + [assurance](#assurance)
+      - [List the alert profiles for this organization](#list-the-alert-profiles-for-this-organization)
+      - [Create an alert profile](#create-an-alert-profile)
+      - [Delete an alert profile for this organization](#delete-an-alert-profile-for-this-organization)
+      - [Update an alert profile](#update-an-alert-profile)
+    + [iam](#iam)
+      - [List administrator login attempts for the organization (Dashboard Login Attempts)](#list-administrator-login-attempts-for-the-organization-dashboard-login-attempts)
+    + [wireless](#wireless)
+      - [Returns an array of objects, each containing OWE transition pairs for the corresponding network](#returns-an-array-of-objects-each-containing-owe-transition-pairs-for-the-corresponding-network)
+- [Changed](#changed)
+  * [\[ devices \]](#-devices--1)
+    + [certificates](#certificates-1)
+      - [Revoke a device certificate](#revoke-a-device-certificate-1)
+    + [switch](#switch-1)
+      - [List the switch ports for a switch](#list-the-switch-ports-for-a-switch-1)
+      - [Return a switch port](#return-a-switch-port-1)
+      - [Update a switch port](#update-a-switch-port-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [assistant](#assistant-1)
+    + [certificates](#certificates-1)
+      - [List certificate authorities for an organization](#list-certificate-authorities-for-an-organization-1)
+      - [Trust a newly created certificate authority (transition from untrusted to trusted).](#trust-a-newly-created-certificate-authority-transition-from-untrusted-to-trusted-1)
+      - [Revoke a trusted feature certificate authority.](#revoke-a-trusted-feature-certificate-authority-1)
+    + [devices](#devices-1)
+      - [List device certificates for the organization](#list-device-certificates-for-the-organization-1)
+      - [Returns details about software updates for networks within an organization.](#returns-details-about-software-updates-for-networks-within-an-organization-1)
+    + [summary](#summary-1)
+      - [List the client and status overview information for the networks in an organization](#list-the-client-and-status-overview-information-for-the-networks-in-an-organization-1)
+    + [switch](#switch-1)
+      - [List switch templates running IOS XE Catalyst firmware.](#list-switch-templates-running-ios-xe-catalyst-firmware-1)
+      - [Clone existing switch templates into a destination template network.](#clone-existing-switch-templates-into-a-destination-template-network-1)
+  * [\[ sm \]](#-sm--1)
+    + [profiles](#profiles-1)
+      - [List profiles in a network](#list-profiles-in-a-network-1)
+ 
+Version **v1.72.0-beta.2** _to_ **v1.72.0-beta.3**
+
+* * *
+
+**Summary of Changes**
+
+**19 - New**
+
+**14 - Updated**
+
+**869 - Total Endpoints**
+
+**590 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ administered \]
+--------------
+
+### assistant
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-administered-assistant-chat-completion/)
+
+#### Create a synchronous AI assistant chat completion for user-wide threads
+
+Operation ID: `createAdministeredAssistantChatCompletion`
+
+PATH _`/administered/assistant/chat/completions`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/administered/assistant/chat/completions`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-administered-assistant-chat-threads/)
+
+#### List all active user-wide conversation threads for the authenticated user.
+
+Operation ID: `getAdministeredAssistantChatThreads`
+
+PATH _`/administered/assistant/chat/threads`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/administered/assistant/chat/threads`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-administered-assistant-chat-thread/)
+
+#### Create a user-wide conversation thread for multi-turn AI assistant interactions.
+
+Operation ID: `createAdministeredAssistantChatThread`
+
+PATH _`/administered/assistant/chat/threads`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/administered/assistant/chat/threads`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-administered-assistant-chat-thread/)
+
+#### Delete a user-wide conversation thread and all its messages.
+
+Operation ID: `deleteAdministeredAssistantChatThread`
+
+PATH _`/administered/assistant/chat/threads/{threadId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/administered/assistant/chat/threads/{threadId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-administered-assistant-chat-thread/)
+
+#### Return a single user-wide conversation thread.
+
+Operation ID: `getAdministeredAssistantChatThread`
+
+PATH _`/administered/assistant/chat/threads/{threadId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/administered/assistant/chat/threads/{threadId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-administered-assistant-chat-thread/)
+
+#### Update the name of a user-wide conversation thread.
+
+Operation ID: `updateAdministeredAssistantChatThread`
+
+PATH _`/administered/assistant/chat/threads/{threadId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/administered/assistant/chat/threads/{threadId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-administered-assistant-chat-thread-messages/)
+
+#### List messages in a user-wide conversation thread.
+
+Operation ID: `getAdministeredAssistantChatThreadMessages`
+
+PATH _`/administered/assistant/chat/threads/{threadId}/messages`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/administered/assistant/chat/threads/{threadId}/messages`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-administered-assistant-chat-thread-message/)
+
+#### Create a new chat message in an existing user-wide thread.
+
+Operation ID: `createAdministeredAssistantChatThreadMessage`
+
+PATH _`/administered/assistant/chat/threads/{threadId}/messages`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/administered/assistant/chat/threads/{threadId}/messages`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-administered-assistant-chat-thread-message/)
+
+#### Return a single message in a user-wide conversation thread.
+
+Operation ID: `getAdministeredAssistantChatThreadMessage`
+
+PATH _`/administered/assistant/chat/threads/{threadId}/messages/{messageId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/administered/assistant/chat/threads/{threadId}/messages/{messageId}`  
+> 
+> * * *
+
+* * *
+
+\[ appliance \]
+--------------
+
+### ports
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-ports-radius-server/)
+
+#### Create a shared MX port RADIUS server for a network
+
+Operation ID: `createNetworkAppliancePortsRadiusServer`
+
+PATH _`/networks/{networkId}/appliance/ports/radius/servers`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/networks/{networkId}/appliance/ports/radius/servers`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-network-appliance-ports-radius-server/)
+
+#### Delete a network-owned shared MX port RADIUS server
+
+Operation ID: `deleteNetworkAppliancePortsRadiusServer`
+
+PATH _`/networks/{networkId}/appliance/ports/radius/servers/{serverId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/networks/{networkId}/appliance/ports/radius/servers/{serverId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-ports-radius-server/)
+
+#### Update a shared MX port RADIUS server for a network
+
+Operation ID: `updateNetworkAppliancePortsRadiusServer`
+
+PATH _`/networks/{networkId}/appliance/ports/radius/servers/{serverId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/networks/{networkId}/appliance/ports/radius/servers/{serverId}`  
+> 
+> * * *
+
+* * *
+
+\[ organizations \]
+--------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-ports-radius-servers-by-network/)
+
+#### List shared MX port RADIUS servers by network
+
+Operation ID: `getOrganizationAppliancePortsRadiusServersByNetwork`
+
+PATH _`/organizations/{organizationId}/appliance/ports/radius/servers/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/ports/radius/servers/byNetwork`  
+> 
+> * * *
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-alerts-profiles/)
+
+#### List the alert profiles for this organization
+
+Operation ID: `getOrganizationAssuranceAlertsProfiles`
+
+PATH _`/organizations/{organizationId}/assurance/alerts/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/alerts/profiles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assurance-alerts-profile/)
+
+#### Create an alert profile
+
+Operation ID: `createOrganizationAssuranceAlertsProfile`
+
+PATH _`/organizations/{organizationId}/assurance/alerts/profiles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/assurance/alerts/profiles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-organization-assurance-alerts-profile/)
+
+#### Delete an alert profile for this organization
+
+Operation ID: `deleteOrganizationAssuranceAlertsProfile`
+
+PATH _`/organizations/{organizationId}/assurance/alerts/profiles/{profileId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/assurance/alerts/profiles/{profileId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-assurance-alerts-profile/)
+
+#### Update an alert profile
+
+Operation ID: `updateOrganizationAssuranceAlertsProfile`
+
+PATH _`/organizations/{organizationId}/assurance/alerts/profiles/{profileId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/assurance/alerts/profiles/{profileId}`  
+> 
+> * * *
+
+* * *
+
+### iam
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-iam-admins-administrators-logins-history/)
+
+#### List administrator login attempts for the organization (Dashboard Login Attempts)
+
+Operation ID: `getOrganizationIamAdminsAdministratorsLoginsHistory`
+
+PATH _`/organizations/{organizationId}/iam/admins/administrators/logins/history`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/iam/admins/administrators/logins/history`  
+> 
+> * * *
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-owe-by-network/)
+
+#### Returns an array of objects, each containing OWE transition pairs for the corresponding network
+
+Operation ID: `getOrganizationWirelessSsidsOweByNetwork`
+
+PATH _`/organizations/{organizationId}/wireless/ssids/owe/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/ssids/owe/byNetwork`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ devices \]
+------------
+
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/revoke-device-certificate/)
+
+#### Revoke a device certificate
+
+Operation ID: `revokeDeviceCertificate`
+
+POST _`/devices/{serial}/certificates/{certificateSerial}/revoke`_
+
+> \- removed the `catalyst_radsec` enum value from the `result/feature/type` response property for the response status `200`
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-switch-ports/)
+
+#### List the switch ports for a switch
+
+Operation ID: `getDeviceSwitchPorts`
+
+GET _`/devices/{serial}/switch/ports`_
+
+> \- added the new `Disabled` enum value to the `items/udld` response property for the response status `200`
+
+> \- added the new `N/A` enum value to the `items/udld` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-switch-port/)
+
+#### Return a switch port
+
+Operation ID: `getDeviceSwitchPort`
+
+GET _`/devices/{serial}/switch/ports/{portId}`_
+
+> \- added the new `Disabled` enum value to the `udld` response property for the response status `200`
+
+> \- added the new `N/A` enum value to the `udld` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-switch-port/)
+
+#### Update a switch port
+
+Operation ID: `updateDeviceSwitchPort`
+
+PUT _`/devices/{serial}/switch/ports/{portId}`_
+
+> \- added the new `Disabled` enum value to the `udld` response property for the response status `200`
+
+> \- added the new `N/A` enum value to the `udld` response property for the response status `200`
+
+* * *
+
+\[ organizations \]
+------------
+
+### assistant
+
+GET _`/organizations/{organizationId}/assistant/queryLimits`_
+
+> \- api path removed without deprecation
+
+* * *
+
+### certificates
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-certificates-authorities/)
+
+#### List certificate authorities for an organization
+
+Operation ID: `getOrganizationCertificatesAuthorities`
+
+GET _`/organizations/{organizationId}/certificates/authorities`_
+
+> \- removed the `catalyst_radsec` enum value from the `items/items/feature/type` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-certificates-authorities/)
+
+#### Trust a newly created certificate authority (transition from untrusted to trusted).
+
+Operation ID: `updateOrganizationCertificatesAuthorities`
+
+PUT _`/organizations/{organizationId}/certificates/authorities`_
+
+> \- removed the `catalyst_radsec` enum value from the `feature/type` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/revoke-organization-certificates-authorities/)
+
+#### Revoke a trusted feature certificate authority.
+
+Operation ID: `revokeOrganizationCertificatesAuthorities`
+
+POST _`/organizations/{organizationId}/certificates/authorities/revoke`_
+
+> \- removed the `catalyst_radsec` enum value from the `feature/type` response property for the response status `200`
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-certificates/)
+
+#### List device certificates for the organization
+
+Operation ID: `getOrganizationDevicesCertificates`
+
+GET _`/organizations/{organizationId}/devices/certificates`_
+
+> \- removed the enum value `catalyst_radsec` from the property `items/` of the `query` request parameter `featureTypes`
+
+> \- removed the `catalyst_radsec` enum value from the `items/items/feature/type` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-software-updates-overviews-by-network/)
+
+#### Returns details about software updates for networks within an organization.
+
+Operation ID: `getOrganizationDevicesSoftwareUpdatesOverviewsByNetwork`
+
+GET _`/organizations/{organizationId}/devices/software/updates/overviews/byNetwork`_
+
+> \- the response property `items/items/productTypes/items/lastUpdate` became nullable for the status `200`
+
+> \- the response property `items/items/productTypes/items/nextUpdate` became nullable for the status `200`
+
+> \- the response property `items/items/productTypes/items/lastUpdate` became required for the status `200`
+
+> \- the response property `items/items/productTypes/items/nextUpdate` became required for the status `200`
+
+* * *
+
+### summary
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-summary-top-networks-by-status/)
+
+#### List the client and status overview information for the networks in an organization
+
+Operation ID: `getOrganizationSummaryTopNetworksByStatus`
+
+GET _`/organizations/{organizationId}/summary/top/networks/byStatus`_
+
+> \- added the optional property `items/permissions` to the response with the `200` status
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/aurora2-organization-switch-switch-templates/)
+
+#### List switch templates running IOS XE Catalyst firmware.
+
+Operation ID: `aurora2OrganizationSwitchSwitchTemplates`
+
+GET _`/organizations/{organizationId}/switch/aurora2SwitchTemplates`_
+
+> \- added the optional property `items/configTemplateId` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/clone-organization-switch-profiles-to-template-network/)
+
+#### Clone existing switch templates into a destination template network.
+
+Operation ID: `cloneOrganizationSwitchProfilesToTemplateNetwork`
+
+POST _`/organizations/{organizationId}/switch/cloneProfilesToTemplateNetwork`_
+
+> \- request body became required
+
+> \- the request property `profileIds` became required
+
+> \- the request property `templateNodeGroupId` became required
+
+* * *
+
+\[ sm \]
+------------
+
+### profiles
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-sm-profiles/)
+
+#### List profiles in a network
+
+Operation ID: `getNetworkSmProfiles`
+
+GET _`/networks/{networkId}/sm/profiles`_
+
+> \- added the new optional `query` request parameter `endingBefore`
+
+> \- added the new optional `query` request parameter `perPage`
+
+> \- added the new optional `query` request parameter `startingAfter`
+
+> \- the response header `link` was added for the status `200`
+
+* * *
+
+
+---
+
 ## v1.72.0-beta.2
 
 
