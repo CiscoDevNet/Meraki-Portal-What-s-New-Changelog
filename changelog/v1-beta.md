@@ -1,6 +1,551 @@
 
 ---
 
+## v1.72.0-beta.4
+
+
+- [Added](#added)
+  * [\[ organizations \]](#-organizations-)
+    + [appliance](#appliance)
+      - [Returns MX port profile assignments](#returns-mx-port-profile-assignments)
+    + [campusGateway](#campusgateway)
+      - [List available campus gateway clusters that can be used for wireless network tunneling](#list-available-campus-gateway-clusters-that-can-be-used-for-wireless-network-tunneling)
+    + [sase](#sase)
+      - [Detach sites in this organization from Secure Access](#detach-sites-in-this-organization-from-secure-access)
+  * [\[ wireless \]](#-wireless-)
+    + [ssids](#ssids)
+      - [Update the OWE transition pairs for a network](#update-the-owe-transition-pairs-for-a-network)
+- [Changed](#changed)
+  * [\[ appliance \]](#-appliance--1)
+    + [vpn](#vpn-1)
+      - [Update a Hub BGP Configuration](#update-a-hub-bgp-configuration-1)
+  * [\[ camera \]](#-camera--1)
+    + [qualityRetentionProfiles](#qualityretentionprofiles-1)
+      - [Creates new quality retention profile for this network.](#creates-new-quality-retention-profile-for-this-network-1)
+      - [Update an existing quality retention profile for this network.](#update-an-existing-quality-retention-profile-for-this-network-1)
+  * [\[ devices \]](#-devices--1)
+    + [appliance](#appliance-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+    + [liveTools](#livetools-1)
+      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job-1)
+  * [\[ firmwareUpgrades \]](#-firmwareupgrades--1)
+    + [general](#general-1)
+      - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network-1)
+    + [rollbacks](#rollbacks-1)
+      - [Rollback a Firmware Upgrade For A Network](#rollback-a-firmware-upgrade-for-a-network-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [api](#api-1)
+      - [List pipelines with operation and status metadata, sorted by pipeline ID](#list-pipelines-with-operation-and-status-metadata-sorted-by-pipeline-id-1)
+    + [appliance](#appliance-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+    + [assurance](#assurance-1)
+      - [Returns the most impacted wireless experience networks with client counts, impacted experience metrics, and the top failure contributor for each network.](#returns-the-most-impacted-wireless-experience-networks-with-client-counts-impacted-experience-metrics-and-the-top-failure-contributor-for-each-network-1)
+      - [Returns the most impacted wireless experience metrics, including client counts, top failure contributor, and most impacted networks for each metric.](#returns-the-most-impacted-wireless-experience-metrics-including-client-counts-top-failure-contributor-and-most-impacted-networks-for-each-metric-1)
+    + [devices](#devices-1)
+      - [List cellular data management profiles in this organization](#list-cellular-data-management-profiles-in-this-organization-1)
+      - [Add a cellular data management profile to this organization](#add-a-cellular-data-management-profile-to-this-organization-1)
+      - [Update a Cellular Data Management Profile](#update-a-cellular-data-management-profile-1)
+    + [sase](#sase-1)
+      - [Update the configuration for a site](#update-the-configuration-for-a-site-1)
+    + [wireless](#wireless-1)
+      - [Show the status of this organization's radios, categorized by network and device](#show-the-status-of-this-organizations-radios-categorized-by-network-and-device-1)
+      - [List the SSID profile assignments in an organization, grouped by network](#list-the-ssid-profile-assignments-in-an-organization-grouped-by-network-1)
+  * [\[ wireless \]](#-wireless--1)
+    + [rfProfiles](#rfprofiles-1)
+      - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network-1)
+    + [ssids](#ssids-1)
+      - [List the MR SSIDs in a network](#list-the-mr-ssids-in-a-network-1)
+      - [Return a single MR SSID](#return-a-single-mr-ssid-1)
+      - [Update the attributes of an MR SSID](#update-the-attributes-of-an-mr-ssid-1)
+ 
+Version **v1.72.0-beta.3** _to_ **v1.72.0-beta.4**
+
+* * *
+
+**Summary of Changes**
+
+**4 - New**
+
+**23 - Updated**
+
+**854 - Total Endpoints**
+
+**580 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ organizations \]
+--------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-profiles-assignments/)
+
+#### Returns MX port profile assignments
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsProfilesAssignments`
+
+PATH _`/organizations/{organizationId}/appliance/devices/interfaces/ports/profiles/assignments`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/devices/interfaces/ports/profiles/assignments`  
+> 
+> * * *
+
+* * *
+
+### campusGateway
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-clusters-tunnelable/)
+
+#### List available campus gateway clusters that can be used for wireless network tunneling
+
+Operation ID: `getOrganizationCampusGatewayClustersTunnelable`
+
+PATH _`/organizations/{organizationId}/campusGateway/clusters/tunnelable`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/clusters/tunnelable`  
+> 
+> * * *
+
+* * *
+
+### sase
+
+[Docs](https://developer.cisco.com/meraki/api-v1/detach-organization-sase-sites/)
+
+#### Detach sites in this organization from Secure Access
+
+Operation ID: `detachOrganizationSaseSites`
+
+PATH _`/organizations/{organizationId}/sase/sites/detach`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/sase/sites/detach`  
+> 
+> * * *
+
+* * *
+
+\[ wireless \]
+--------------
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssids-owe/)
+
+#### Update the OWE transition pairs for a network
+
+Operation ID: `updateNetworkWirelessSsidsOwe`
+
+PATH _`/networks/{networkId}/wireless/ssids/owe`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/networks/{networkId}/wireless/ssids/owe`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+------------
+
+### vpn
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-bgp/)
+
+#### Update a Hub BGP Configuration
+
+Operation ID: `updateNetworkApplianceVpnBgp`
+
+PUT _`/networks/{networkId}/appliance/vpn/bgp`_
+
+> \- the request property `priorityRoute` became not nullable
+
+* * *
+
+\[ camera \]
+------------
+
+### qualityRetentionProfiles
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-camera-quality-retention-profile/)
+
+#### Creates new quality retention profile for this network.
+
+Operation ID: `createNetworkCameraQualityRetentionProfile`
+
+POST _`/networks/{networkId}/camera/qualityRetentionProfiles`_
+
+> \- removed the request property `videoSettings/MV14`
+
+> \- removed the request property `videoSettings/MV24`
+
+> \- removed the request property `videoSettings/MV34`
+
+> \- removed the request property `videoSettings/MV54N`
+
+> \- removed the request property `videoSettings/MV64`
+
+> \- removed the request property `videoSettings/MV74`
+
+> \- removed the request property `videoSettings/MV94`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-camera-quality-retention-profile/)
+
+#### Update an existing quality retention profile for this network.
+
+Operation ID: `updateNetworkCameraQualityRetentionProfile`
+
+PUT _`/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}`_
+
+> \- removed the request property `videoSettings/MV14`
+
+> \- removed the request property `videoSettings/MV24`
+
+> \- removed the request property `videoSettings/MV34`
+
+> \- removed the request property `videoSettings/MV54N`
+
+> \- removed the request property `videoSettings/MV64`
+
+> \- removed the request property `videoSettings/MV74`
+
+> \- removed the request property `videoSettings/MV94`
+
+* * *
+
+\[ devices \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-appliance-interfaces-ports-update/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `createDeviceApplianceInterfacesPortsUpdate`
+
+POST _`/devices/{serial}/appliance/interfaces/ports/update`_
+
+> \- added the new optional request property `profile`
+
+> \- added the optional property `profile` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-port/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPort`
+
+PUT _`/devices/{serial}/appliance/interfaces/ports/{number}`_
+
+> \- added the new optional request property `profile`
+
+> \- added the optional property `profile` to the response with the `200` status
+
+* * *
+
+### liveTools
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-arp-table/)
+
+#### Return an ARP table live tool job.
+
+Operation ID: `getDeviceLiveToolsArpTable`
+
+GET _`/devices/{serial}/liveTools/arpTable/{arpTableId}`_
+
+> \- the response property `entries/items/interface` became nullable for the status `200`
+
+> \- the response property `error` became nullable for the status `200`
+
+* * *
+
+\[ firmwareUpgrades \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-firmware-upgrades/)
+
+#### Update firmware upgrade information for a network
+
+Operation ID: `updateNetworkFirmwareUpgrades`
+
+PUT _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- removed the request property `products/campusGateway/nextUpgrade/predownload`
+
+* * *
+
+### rollbacks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-firmware-upgrades-rollback/)
+
+#### Rollback a Firmware Upgrade For A Network
+
+Operation ID: `createNetworkFirmwareUpgradesRollback`
+
+POST _`/networks/{networkId}/firmwareUpgrades/rollbacks`_
+
+> \- added the new `campusGateway` enum value to the `product` response property for the response status `200`
+
+> \- added the new `campusGateway` enum value to the request property `product`
+
+* * *
+
+\[ organizations \]
+------------
+
+### api
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-rest-provisioning-pipelines/)
+
+#### List pipelines with operation and status metadata, sorted by pipeline ID
+
+Operation ID: `getOrganizationApiRestProvisioningPipelines`
+
+GET _`/organizations/{organizationId}/api/rest/provisioning/pipelines`_
+
+> \- added the new `syncMultiCloudConnectors` enum value to the `items/items/operation/id` response property for the response status `200`
+
+* * *
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- added the optional property `items/items/ports/items/profile` to the response with the `200` status
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-most-impacted-networks/)
+
+#### Returns the most impacted wireless experience networks with client counts, impacted experience metrics, and the top failure contributor for each network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceMostImpactedNetworks`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/mostImpactedNetworks`_
+
+> \- removed the optional property `items/items/impactedClients` from the response with the `200` status
+
+> \- added the optional property `items/items/clients` to the response with the `200` status
+
+> \- added the optional property `items/items/experienceMetrics` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-most-impacted-x-ms/)
+
+#### Returns the most impacted wireless experience metrics, including client counts, top failure contributor, and most impacted networks for each metric.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceMostImpactedXMs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/mostImpactedXMs`_
+
+> \- removed the optional property `items/items/experienceMetric/counts` from the response with the `200` status
+
+> \- added the optional property `items/items/experienceMetric/clients` to the response with the `200` status
+
+> \- added the optional property `items/items/experienceMetric/failureContributor` to the response with the `200` status
+
+> \- added the optional property `items/items/experienceMetric/networks` to the response with the `200` status
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-profiles/)
+
+#### List cellular data management profiles in this organization
+
+Operation ID: `getOrganizationDevicesCellularDataProfiles`
+
+GET _`/organizations/{organizationId}/devices/cellular/data/profiles`_
+
+> \- added the new `esim` enum value to the `items/items/rules/items/slot` response property for the response status `200`
+
+> \- removed the `sim3` enum value from the `items/items/rules/items/slot` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-devices-cellular-data-profile/)
+
+#### Add a cellular data management profile to this organization
+
+Operation ID: `createOrganizationDevicesCellularDataProfile`
+
+POST _`/organizations/{organizationId}/devices/cellular/data/profiles`_
+
+> \- removed the enum value `sim3` of the request property `rules/items/slot`
+
+> \- added the new `esim` enum value to the `rules/items/slot` response property for the response status `200`
+
+> \- added the new `esim` enum value to the request property `rules/items/slot`
+
+> \- removed the `sim3` enum value from the `rules/items/slot` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-devices-cellular-data-profile/)
+
+#### Update a Cellular Data Management Profile
+
+Operation ID: `updateOrganizationDevicesCellularDataProfile`
+
+PUT _`/organizations/{organizationId}/devices/cellular/data/profiles/{profileId}`_
+
+> \- removed the enum value `sim3` of the request property `rules/items/slot`
+
+> \- added the new `esim` enum value to the `rules/items/slot` response property for the response status `200`
+
+> \- added the new `esim` enum value to the request property `rules/items/slot`
+
+> \- removed the `sim3` enum value from the `rules/items/slot` response property for the response status `200`
+
+* * *
+
+### sase
+
+DELETE _`/organizations/{organizationId}/sase/sites/detach`_
+
+> \- api removed without deprecation
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-sase-site/)
+
+#### Update the configuration for a site
+
+Operation ID: `updateOrganizationSaseSite`
+
+PUT _`/organizations/{organizationId}/sase/sites/{siteId}`_
+
+> \- request body became optional
+
+> \- the request property `siteId` became optional
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-radio-status-by-network/)
+
+#### Show the status of this organization's radios, categorized by network and device
+
+Operation ID: `getOrganizationWirelessRadioStatusByNetwork`
+
+GET _`/organizations/{organizationId}/wireless/radio/status/byNetwork`_
+
+> \- the endpoint scheme security `oauth2: [wireless:telemetry:read]` was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles-assignments-by-network/)
+
+#### List the SSID profile assignments in an organization, grouped by network
+
+Operation ID: `getOrganizationWirelessSsidsProfilesAssignmentsByNetwork`
+
+GET _`/organizations/{organizationId}/wireless/ssids/profiles/assignments/byNetwork`_
+
+> \- added the optional property `clientsUrl` to the response with the `200` status
+
+* * *
+
+\[ wireless \]
+------------
+
+### rfProfiles
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-rf-profile/)
+
+#### Updates specified RF profile for this network
+
+Operation ID: `updateNetworkWirelessRfProfile`
+
+PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
+
+> \- added the new optional request property `fiveGhzSettings/axEnabled`
+
+* * *
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssids/)
+
+#### List the MR SSIDs in a network
+
+Operation ID: `getNetworkWirelessSsids`
+
+GET _`/networks/{networkId}/wireless/ssids`_
+
+> \- added the optional property `items/campusGateway` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssid/)
+
+#### Return a single MR SSID
+
+Operation ID: `getNetworkWirelessSsid`
+
+GET _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- added the optional property `campusGateway` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid/)
+
+#### Update the attributes of an MR SSID
+
+Operation ID: `updateNetworkWirelessSsid`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- added the optional property `campusGateway` to the response with the `200` status
+
+* * *
+
+
+---
+
 ## v1.72.0-beta.3
 
 
