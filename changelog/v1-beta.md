@@ -1,6 +1,745 @@
 
 ---
 
+## v1.73.0-beta.0
+
+
+- [Added](#added)
+  * [\[ organizations \]](#-organizations-)
+    + [assurance](#assurance)
+      - [Returns the most impacted wired experience metrics, including client counts, top failure contributor, and most impacted networks for each metric.](#returns-the-most-impacted-wired-experience-metrics-including-client-counts-top-failure-contributor-and-most-impacted-networks-for-each-metric)
+    + [nac](#nac)
+      - [Retrieve a CRL for an existing CA through Certificate Validation](#retrieve-a-crl-for-an-existing-ca-through-certificate-validation)
+- [Changed](#changed)
+  * [\[ administered \]](#-administered--1)
+    + [assistant](#assistant-1)
+      - [Create a new chat message in an existing user-wide thread.](#create-a-new-chat-message-in-an-existing-user-wide-thread-1)
+  * [\[ appliance \]](#-appliance--1)
+    + [devices](#devices-1)
+      - [Update MX warm spare settings](#update-mx-warm-spare-settings-1)
+      - [Swap MX primary and warm spare appliances](#swap-mx-primary-and-warm-spare-appliances-1)
+    + [staticRoutes](#staticroutes-1)
+      - [Add a static route for an MX or teleworker network](#add-a-static-route-for-an-mx-or-teleworker-network-1)
+    + [vpn](#vpn-1)
+      - [Return a Hub BGP Configuration](#return-a-hub-bgp-configuration-1)
+      - [Update a Hub BGP Configuration](#update-a-hub-bgp-configuration-1)
+  * [\[ firmwareUpgrades \]](#-firmwareupgrades--1)
+    + [general](#general-1)
+      - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network-1)
+      - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network-1)
+  * [\[ organizations \]](#-organizations--1)
+    + [appliance](#appliance-1)
+      - [Return MX warm spare settings](#return-mx-warm-spare-settings-1)
+    + [assistant](#assistant-1)
+      - [Create a new chat message in an existing thread.](#create-a-new-chat-message-in-an-existing-thread-1)
+    + [assurance](#assurance-1)
+      - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-1)
+      - [Summarizes wireless post connection capacity successes and failures by band.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-band-1)
+      - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-1)
+      - [Summarizes wireless post connection capacity successes and failures by client OS and driver version.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-client-os-and-driver-version-1)
+      - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-1)
+      - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device-1)
+      - [Summarizes wireless post connection capacity successes and failures by ssid.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-ssid-1)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-1)
+      - [Summarizes wireless coverage successes and failures by network.](#summarizes-wireless-coverage-successes-and-failures-by-network-1)
+      - [Summarizes wireless coverage successes and failures by band.](#summarizes-wireless-coverage-successes-and-failures-by-band-1)
+      - [Summarizes wireless coverage successes and failures by client.](#summarizes-wireless-coverage-successes-and-failures-by-client-1)
+      - [Summarizes wireless coverage successes and failures by client OS.](#summarizes-wireless-coverage-successes-and-failures-by-client-os-1)
+      - [Summarizes wireless coverage successes and failures by client type.](#summarizes-wireless-coverage-successes-and-failures-by-client-type-1)
+      - [Summarizes wireless coverage successes and failures by device.](#summarizes-wireless-coverage-successes-and-failures-by-device-1)
+      - [Summarizes wireless coverage successes and failures by SSID.](#summarizes-wireless-coverage-successes-and-failures-by-ssid-1)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-1)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-1)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-1)
+    + [earlyAccess](#earlyaccess-1)
+      - [List the available early access features for organization](#list-the-available-early-access-features-for-organization-1)
+    + [nac](#nac-1)
+      - [Gets all certificates for an organization and can filter by certificate status, expiry date and last used date](#gets-all-certificates-for-an-organization-and-can-filter-by-certificate-status-expiry-date-and-last-used-date-1)
+      - [Upload a CRL through Certificate Validation](#upload-a-crl-through-certificate-validation-1)
+      - [Import certificate for this organization or validate without persisting](#import-certificate-for-this-organization-or-validate-without-persisting-1)
+      - [Update certificate configuration by certificateId for this organization](#update-certificate-configuration-by-certificateid-for-this-organization-1)
+  * [\[ wireless \]](#-wireless--1)
+    + [rfProfiles](#rfprofiles-1)
+      - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network-1)
+      - [Updates specified RF profile for this network](#updates-specified-rf-profile-for-this-network-1)
+    + [ssids](#ssids-1)
+      - [List the MR SSIDs in a network](#list-the-mr-ssids-in-a-network-1)
+      - [Return a single MR SSID](#return-a-single-mr-ssid-1)
+      - [Update the attributes of an MR SSID](#update-the-attributes-of-an-mr-ssid-1)
+ 
+Version **v1.72.0-beta.4** _to_ **v1.73.0-beta.0**
+
+* * *
+
+**Summary of Changes**
+
+**2 - New**
+
+**38 - Updated**
+
+**852 - Total Endpoints**
+
+**579 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ organizations \]
+--------------
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-most-impacted-x-ms/)
+
+#### Returns the most impacted wired experience metrics, including client counts, top failure contributor, and most impacted networks for each metric.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceMostImpactedXMs`
+
+PATH _`/organizations/{organizationId}/assurance/wired/experience/mostImpactedXMs`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/assurance/wired/experience/mostImpactedXMs`  
+> 
+> * * *
+
+* * *
+
+### nac
+
+[Docs](https://developer.cisco.com/meraki/api-v1/retrieve-organization-nac-certificates-authorities-crls/)
+
+#### Retrieve a CRL for an existing CA through Certificate Validation
+
+Operation ID: `retrieveOrganizationNacCertificatesAuthoritiesCrls`
+
+PATH _`/organizations/{organizationId}/nac/certificates/authorities/crls/retrieve`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/nac/certificates/authorities/crls/retrieve`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ administered \]
+------------
+
+### assistant
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-administered-assistant-chat-thread-message/)
+
+#### Create a new chat message in an existing user-wide thread.
+
+Operation ID: `createAdministeredAssistantChatThreadMessage`
+
+POST _`/administered/assistant/chat/threads/{threadId}/messages`_
+
+> \- added the new optional request property `platform`
+
+* * *
+
+\[ appliance \]
+------------
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-devices-redundancy/)
+
+#### Update MX warm spare settings
+
+Operation ID: `updateNetworkApplianceDevicesRedundancy`
+
+PUT _`/networks/{networkId}/appliance/devices/redundancy`_
+
+> \- removed the request property `uplink/loadBalancing`
+
+> \- removed the optional property `uplink/loadBalancing` from the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-devices-redundancy-swap/)
+
+#### Swap MX primary and warm spare appliances
+
+Operation ID: `createNetworkApplianceDevicesRedundancySwap`
+
+POST _`/networks/{networkId}/appliance/devices/redundancy/swap`_
+
+> \- removed the optional property `uplink/loadBalancing` from the response with the `200` status
+
+* * *
+
+### staticRoutes
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-static-route/)
+
+#### Add a static route for an MX or teleworker network
+
+Operation ID: `createNetworkApplianceStaticRoute`
+
+POST _`/networks/{networkId}/appliance/staticRoutes`_
+
+> \- added the new optional request property `enabled`
+
+* * *
+
+### vpn
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-appliance-vpn-bgp/)
+
+#### Return a Hub BGP Configuration
+
+Operation ID: `getNetworkApplianceVpnBgp`
+
+GET _`/networks/{networkId}/appliance/vpn/bgp`_
+
+> \- removed the optional property `vpnAsNumber` from the response with the `200` status
+
+> \- added the optional property `localAsNumber` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-vpn-bgp/)
+
+#### Update a Hub BGP Configuration
+
+Operation ID: `updateNetworkApplianceVpnBgp`
+
+PUT _`/networks/{networkId}/appliance/vpn/bgp`_
+
+> \- removed the request property `vpnAsNumber`
+
+> \- removed the optional property `vpnAsNumber` from the response with the `200` status
+
+> \- added the new optional request property `localAsNumber`
+
+> \- added the optional property `localAsNumber` to the response with the `200` status
+
+* * *
+
+\[ firmwareUpgrades \]
+------------
+
+### general
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-firmware-upgrades/)
+
+#### Get firmware upgrade information for a network
+
+Operation ID: `getNetworkFirmwareUpgrades`
+
+GET _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- removed the optional property `products/wireless/nextUpgrade/upgradeStrategy` from the response with the `200` status
+
+> \- added the optional property `products/campusGateway/nextUpgrade/strategy` to the response with the `200` status
+
+> \- added the optional property `products/wireless/nextUpgrade/strategy` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-firmware-upgrades/)
+
+#### Update firmware upgrade information for a network
+
+Operation ID: `updateNetworkFirmwareUpgrades`
+
+PUT _`/networks/{networkId}/firmwareUpgrades`_
+
+> \- removed the request property `products/campusGateway/nextUpgrade/upgradeStrategy`
+
+> \- removed the request property `products/wireless/nextUpgrade/upgradeStrategy`
+
+> \- removed the optional property `products/wireless/nextUpgrade/upgradeStrategy` from the response with the `200` status
+
+> \- added the new optional request property `featureLossAcknowledgements`
+
+> \- added the new optional request property `products/campusGateway/nextUpgrade/strategy`
+
+> \- added the new optional request property `products/wireless/nextUpgrade/strategy`
+
+> \- added the optional property `products/campusGateway/nextUpgrade/strategy` to the response with the `200` status
+
+> \- added the optional property `products/wireless/nextUpgrade/strategy` to the response with the `200` status
+
+* * *
+
+\[ organizations \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-redundancy-by-network/)
+
+#### Return MX warm spare settings
+
+Operation ID: `getOrganizationApplianceDevicesRedundancyByNetwork`
+
+GET _`/organizations/{organizationId}/appliance/devices/redundancy/byNetwork`_
+
+> \- removed the optional property `uplink/loadBalancing` from the response with the `200` status
+
+* * *
+
+### assistant
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-thread-message/)
+
+#### Create a new chat message in an existing thread.
+
+Operation ID: `createOrganizationAssistantChatThreadMessage`
+
+POST _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages`_
+
+> \- added the new optional request property `platform`
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network/)
+
+#### Summarizes wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/mostImpactedChannel` to the response with the `200` status
+
+> \- added the optional property `items/items/items/byContributor/items/mostImpactedChannel` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-band/)
+
+#### Summarizes wireless post connection capacity successes and failures by band.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByBand`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byBand`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/mostImpactedChannel` to the response with the `200` status
+
+> \- added the optional property `items/items/items/byContributor/items/mostImpactedChannel` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client/)
+
+#### Summarizes wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClient`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/mostImpactedChannel` to the response with the `200` status
+
+> \- added the optional property `items/items/items/byContributor/items/mostImpactedChannel` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-os/)
+
+#### Summarizes wireless post connection capacity successes and failures by client OS and driver version.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/mostImpactedChannel` to the response with the `200` status
+
+> \- added the optional property `items/items/items/byContributor/items/mostImpactedChannel` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-client-type/)
+
+#### Summarizes wireless post connection capacity successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByClientType`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byClientType`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/mostImpactedChannel` to the response with the `200` status
+
+> \- added the optional property `items/items/items/byContributor/items/mostImpactedChannel` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-device/)
+
+#### Summarizes wireless post connection capacity successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/byDevice`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/mostImpactedChannel` to the response with the `200` status
+
+> \- added the optional property `items/items/items/byContributor/items/mostImpactedChannel` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-by-network-by-ssid/)
+
+#### Summarizes wireless post connection capacity successes and failures by ssid.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityByNetworkBySsid`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/byNetwork/bySsid`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor/items/mostImpactedChannel` to the response with the `200` status
+
+> \- added the optional property `items/items/items/byContributor/items/mostImpactedChannel` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-insights-by-network/)
+
+#### Provides insights into wireless capacity experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/insights/byNetwork`_
+
+> \- the response property `items/items/items/insights/items/entities` became not nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network/)
+
+#### Summarizes wireless coverage successes and failures by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-band/)
+
+#### Summarizes wireless coverage successes and failures by band.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByBand`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byBand`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-client/)
+
+#### Summarizes wireless coverage successes and failures by client.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byClient`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-client-os/)
+
+#### Summarizes wireless coverage successes and failures by client OS.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByClientOs`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byClientOs`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-client-type/)
+
+#### Summarizes wireless coverage successes and failures by client type.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByClientType`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byClientType`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-device/)
+
+#### Summarizes wireless coverage successes and failures by device.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkByDevice`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/byDevice`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-by-network-by-ssid/)
+
+#### Summarizes wireless coverage successes and failures by SSID.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageByNetworkBySsid`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/byNetwork/bySsid`_
+
+> \- added the optional property `items/items/items/byContributor/items/bySubContributor` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-insights-by-network/)
+
+#### Provides insights into wireless coverage experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/insights/byNetwork`_
+
+> \- removed the enum value `Transient weak signal` from the `query` request parameter `contributor`
+
+> \- added the new enum value `Weak signal` to the `query` request parameter `contributor`
+
+> \- the response property `items/items/items/insights/items/entities` became not nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-insights-by-network/)
+
+#### Provides insights into wireless successful connects experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/insights/byNetwork`_
+
+> \- added the new optional `query` request parameter `insights`
+
+> \- the response property `items/items/items/insights/items/entities` became not nullable for the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-insights-by-network/)
+
+#### Provides insights into wireless time to connect experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/insights/byNetwork`_
+
+> \- the response property `items/items/items/insights/items/entities` became not nullable for the status `200`
+
+* * *
+
+### earlyAccess
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-early-access-features/)
+
+#### List the available early access features for organization
+
+Operation ID: `getOrganizationEarlyAccessFeatures`
+
+GET _`/organizations/{organizationId}/earlyAccess/features`_
+
+> \- added the optional property `items/advantage` to the response with the `200` status
+
+> \- added the optional property `items/advantageTrial` to the response with the `200` status
+
+* * *
+
+### nac
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-certificates/)
+
+#### Gets all certificates for an organization and can filter by certificate status, expiry date and last used date
+
+Operation ID: `getOrganizationNacCertificates`
+
+GET _`/organizations/{organizationId}/nac/certificates`_
+
+> \- added the optional property `profile/crl` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-certificates-authorities-crl/)
+
+#### Upload a CRL through Certificate Validation
+
+Operation ID: `createOrganizationNacCertificatesAuthoritiesCrl`
+
+POST _`/organizations/{organizationId}/nac/certificates/authorities/crls`_
+
+> \- removed the success response with the status `201`
+
+> \- removed the request property `caId`
+
+> \- removed the request property `content`
+
+> \- removed the request property `isDelta`
+
+> \- the endpoint scheme security `oauth2: [dashboard:iam:config:write]` was added to the API
+
+> \- added the new optional request property `crlBody`
+
+> \- added the new optional request property `fileName`
+
+> \- added the new optional request property `trustedCertificateId`
+
+> \- request body became optional
+
+> \- added the success response with the status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-certificates-import/)
+
+#### Import certificate for this organization or validate without persisting
+
+Operation ID: `createOrganizationNacCertificatesImport`
+
+POST _`/organizations/{organizationId}/nac/certificates/import`_
+
+> \- added the optional property `profile/crl` to the response with the `200` status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-certificate/)
+
+#### Update certificate configuration by certificateId for this organization
+
+Operation ID: `updateOrganizationNacCertificate`
+
+PUT _`/organizations/{organizationId}/nac/certificates/{certificateId}`_
+
+> \- removed the optional property `bypassExpiryDate` from the response with the `200` status
+
+> \- removed the optional property `identity` from the response with the `200` status
+
+> \- removed the optional property `isLocalAuth` from the response with the `200` status
+
+> \- removed the optional property `isTrustedAnchor` from the response with the `200` status
+
+> \- removed the optional property `profileId` from the response with the `200` status
+
+> \- removed the optional property `status` from the response with the `200` status
+
+> \- added the new optional request property `profile/cdpUrl`
+
+> \- added the new optional request property `profile/crl`
+
+> \- added the optional property `canBeDeleted` to the response with the `200` status
+
+> \- added the optional property `certificateChainId` to the response with the `200` status
+
+> \- added the optional property `certificateId` to the response with the `200` status
+
+> \- added the optional property `description` to the response with the `200` status
+
+> \- added the optional property `fields` to the response with the `200` status
+
+> \- added the optional property `lastUsedAt` to the response with the `200` status
+
+> \- added the optional property `parentCertificateId` to the response with the `200` status
+
+> \- added the optional property `profile` to the response with the `200` status
+
+> \- added the optional property `source` to the response with the `200` status
+
+> \- a breaking change was detected but the major version did not increase, from `1.72.0-beta.4` to `1.73.0-beta.0`
+
+* * *
+
+\[ wireless \]
+------------
+
+### rfProfiles
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-rf-profile/)
+
+#### Creates new RF profile for this network
+
+Operation ID: `createNetworkWirelessRfProfile`
+
+POST _`/networks/{networkId}/wireless/rfProfiles`_
+
+> \- added the new optional request property `dot11be/mode`
+
+> \- added the new optional request property `dot11be/ssids`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-rf-profile/)
+
+#### Updates specified RF profile for this network
+
+Operation ID: `updateNetworkWirelessRfProfile`
+
+PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
+
+> \- added the new optional request property `dot11be/mode`
+
+> \- added the new optional request property `dot11be/ssids`
+
+* * *
+
+### ssids
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssids/)
+
+#### List the MR SSIDs in a network
+
+Operation ID: `getNetworkWirelessSsids`
+
+GET _`/networks/{networkId}/wireless/ssids`_
+
+> \- removed the `Google Apps domain` enum value from the `items/splashPage` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-ssid/)
+
+#### Return a single MR SSID
+
+Operation ID: `getNetworkWirelessSsid`
+
+GET _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- removed the `Google Apps domain` enum value from the `splashPage` response property for the response status `200`
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ssid/)
+
+#### Update the attributes of an MR SSID
+
+Operation ID: `updateNetworkWirelessSsid`
+
+PUT _`/networks/{networkId}/wireless/ssids/{number}`_
+
+> \- removed the enum value `Google Apps domain` of the request property `splashPage`
+
+> \- removed the `Google Apps domain` enum value from the `splashPage` response property for the response status `200`
+
+* * *
+
+
+---
+
 ## v1.72.0-beta.4
 
 
