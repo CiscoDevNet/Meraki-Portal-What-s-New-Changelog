@@ -34,7 +34,7 @@ test('uses the operation ID for Meraki API documentation links', () => {
   const releaseNotes = fs.readFileSync(outputPath, 'utf8');
   assert.match(
     releaseNotes,
-    /\[\*\*Changelog\*\*\]\(\.\.\/v1-73-0\/\)/
+    /\[\*\*Changelog\*\*\]\(\/meraki\/whats-new\/v1-73-0\/\)/
   );
   assert.match(
     releaseNotes,
