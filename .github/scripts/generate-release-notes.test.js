@@ -34,6 +34,10 @@ test('uses the operation ID for Meraki API documentation links', () => {
   const releaseNotes = fs.readFileSync(outputPath, 'utf8');
   assert.match(
     releaseNotes,
+    /\[\*\*Changelog\*\*\]\(#august-2026\)/
+  );
+  assert.match(
+    releaseNotes,
     /https:\/\/developer\.cisco\.com\/meraki\/api-v1\/get-organization-wireless-clients-usage-by-network\//
   );
 });
