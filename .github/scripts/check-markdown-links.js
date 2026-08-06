@@ -91,6 +91,7 @@ for (const file of files) {
       }
       if (!/^https?:/.test(url)) {
         if (url.startsWith('/')) continue;
+        if (/^\.\.\/v\d+(?:-[a-z0-9]+)+\/$/i.test(url)) continue;
         const target = path.resolve(path.dirname(file), decodeURIComponent(url.split('#')[0]));
         if (!fs.existsSync(target)) errors.push(`${location}: missing file ${url}`);
         continue;

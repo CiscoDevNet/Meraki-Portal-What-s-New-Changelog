@@ -17,3 +17,13 @@ test('reports a Markdown link whose local heading target is missing', () => {
   assert.equal(result.status, 1);
   assert.match(result.stderr, /broken\.md:3: missing anchor #missing/);
 });
+
+test('accepts a relative PubHub version route', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'meraki-link-check-'));
+  const markdownPath = path.join(tempDir, 'release-notes.md');
+  fs.writeFileSync(markdownPath, '[Changelog](../v1-73-0/)\n');
+
+  const result = spawnSync(process.execPath, [scriptPath, markdownPath], { encoding: 'utf8' });
+
+  assert.equal(result.status, 0, result.stderr);
+});

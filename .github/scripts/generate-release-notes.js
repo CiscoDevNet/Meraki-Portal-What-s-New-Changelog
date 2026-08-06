@@ -244,9 +244,9 @@ function generateReleaseNotes(sections, version, branch) {
   markdown += `# ${month} ${year}\n\n`;
   markdown += `Meraki API Release Notes **${version}**\n\n`;
 
-  // Link to the release's section without coupling the content to a host.
-  const monthAnchor = `${month.toLowerCase()}-${year}`;
-  markdown += `[**Changelog**](#${monthAnchor})\n\n`;
+  // Link to the sibling version page without coupling the content to a host.
+  const versionSlug = version.replace(/\./g, '-').toLowerCase();
+  markdown += `[**Changelog**](../${versionSlug}/)\n\n`;
 
   // Summary
   markdown += `## Summary\n\n`;
