@@ -24,6 +24,8 @@ The automation workflow **automatically detects** new releases from the meraki/o
 
 - **detect-versions.js** - Detects latest releases from meraki/openapi and determines what needs updating
 - **generate-release-notes.js** - Parses oasdiff changelog and creates user-friendly release notes
+- **fix-markdown-anchors.js** - Renumbers duplicate heading anchors after composite changelogs are prepended
+- **check-markdown-links.js** - Checks local targets, heading anchors, and Meraki operation URL slugs
 - **update-changelog-config.js** - Updates `changelog/changelog-config.json` with new version entries
 - **update-annual-document.js** - Prepends release notes to annual markdown files (e.g., `documents/2026.md`)
 
@@ -119,6 +121,21 @@ node update-changelog-config.js v1.68.0 master v1.68.0.md
 cp ../../documents/2026.md ../../documents/2026.md.bak
 node update-annual-document.js test-release-notes.md v1.68.0 master
 # Review the changes, then restore backup if needed
+```
+
+#### 6. Validate generated links
+
+Run from the repository root:
+
+```bash
+node --test .github/scripts/*.test.js
+node .github/scripts/check-markdown-links.js
+```
+
+When prepending content to a composite changelog, normalize its duplicate heading anchors first:
+
+```bash
+node .github/scripts/fix-markdown-anchors.js changelog/v1-beta.md
 ```
 
 ## How It Works

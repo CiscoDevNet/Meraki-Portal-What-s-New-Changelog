@@ -12,6 +12,7 @@
 
 const fs = require('fs');
 const https = require('https');
+const { operationIdToDocUrl } = require('./operation-doc-url');
 
 // Parse command line arguments
 const [simpleChangelogPath, oldVersion, newVersion, outputPath] = process.argv.slice(2);
@@ -171,21 +172,29 @@ function groupEndpoints(endpoints) {
  */
 function generateTOC(groups) {
   let toc = '';
+  const anchorCounts = new Map();
+
+  function allocateAnchor(text) {
+    const base = generateAnchor(text);
+    const count = anchorCounts.get(base) || 0;
+    anchorCounts.set(base, count + 1);
+    return count === 0 ? base : `${base}-${count}`;
+  }
 
   // Added section
   if (Object.keys(groups.added).length > 0) {
-    toc += '- [Added](#added)\n';
+    toc += `- [Added](#${allocateAnchor('Added')})\n`;
 
     Object.keys(groups.added).sort().forEach(module => {
-      const moduleAnchor = generateAnchor(`[ ${module} ]`);
+      const moduleAnchor = allocateAnchor(`[ ${module} ]`);
       toc += `  * [\\[ ${module} \\]](#${moduleAnchor})\n`;
 
       Object.keys(groups.added[module]).sort().forEach(resource => {
-        toc += `    + [${resource}](#${generateAnchor(resource)})\n`;
+        toc += `    + [${resource}](#${allocateAnchor(resource)})\n`;
 
         groups.added[module][resource].forEach(endpoint => {
           if (endpoint.operationSummary) {
-            toc += `      - [${endpoint.operationSummary}](#${generateAnchor(endpoint.operationSummary)})\n`;
+            toc += `      - [${endpoint.operationSummary}](#${allocateAnchor(endpoint.operationSummary)})\n`;
           }
         });
       });
@@ -194,18 +203,18 @@ function generateTOC(groups) {
 
   // Changed section
   if (Object.keys(groups.changed).length > 0) {
-    toc += '- [Changed](#changed)\n';
+    toc += `- [Changed](#${allocateAnchor('Changed')})\n`;
 
     Object.keys(groups.changed).sort().forEach(module => {
-      const moduleAnchor = generateAnchor(`[ ${module} ]`);
-      toc += `  * [\\[ ${module} \\]](#${moduleAnchor}-1)\n`;
+      const moduleAnchor = allocateAnchor(`[ ${module} ]`);
+      toc += `  * [\\[ ${module} \\]](#${moduleAnchor})\n`;
 
       Object.keys(groups.changed[module]).sort().forEach(resource => {
-        toc += `    + [${resource}](#${generateAnchor(resource)}-1)\n`;
+        toc += `    + [${resource}](#${allocateAnchor(resource)})\n`;
 
         groups.changed[module][resource].forEach(endpoint => {
           if (endpoint.operationSummary) {
-            toc += `      - [${endpoint.operationSummary}](#${generateAnchor(endpoint.operationSummary)}-1)\n`;
+            toc += `      - [${endpoint.operationSummary}](#${allocateAnchor(endpoint.operationSummary)})\n`;
           }
         });
       });
@@ -219,14 +228,7 @@ function generateTOC(groups) {
  * Generate doc URL from operation ID
  */
 function generateDocUrl(operationId) {
-  if (!operationId) return null;
-
-  const slug = operationId
-    .replace(/([A-Z])/g, '-$1')
-    .toLowerCase()
-    .replace(/^-/, '');
-
-  return `https://developer.cisco.com/meraki/api-v1/${slug}/`;
+  return operationIdToDocUrl(operationId);
 }
 
 /**

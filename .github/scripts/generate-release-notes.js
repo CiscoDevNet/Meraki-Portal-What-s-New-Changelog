@@ -12,6 +12,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { operationIdToDocUrl } = require('./operation-doc-url');
 
 // Parse command line arguments
 const [changelogPath, version, branch, outputPath] = process.argv.slice(2);
@@ -25,16 +26,10 @@ if (!changelogPath || !version || !branch || !outputPath) {
 const changelog = fs.readFileSync(changelogPath, 'utf8');
 
 /**
- * Generate Cisco Developer Portal URL from endpoint path
+ * Generate Cisco Developer Portal URL from an OpenAPI operation ID
  */
-function generateDocUrl(method, path) {
-  // Extract the resource name from the path
-  // E.g., /networks/{networkId}/appliance/vlans -> appliance-vlans
-  const parts = path.split('/').filter(p => p && !p.startsWith('{'));
-  const resource = parts.slice(1).join('-'); // Skip first part (usually 'networks' or 'organizations')
-
-  const methodLower = method.toLowerCase();
-  return `https://developer.cisco.com/meraki/api-v1/${methodLower}-${resource}/`;
+function generateDocUrl(operationId) {
+  return operationIdToDocUrl(operationId);
 }
 
 /**
@@ -274,8 +269,11 @@ function generateReleaseNotes(sections, version, branch) {
 
         grouped[category][subcategory].forEach(endpoint => {
           const description = generateDescription(endpoint);
-          const url = generateDocUrl(endpoint.method, endpoint.path);
-          markdown += `- ${description}, [${endpoint.method} ${endpoint.path}](${url})\n`;
+          const url = generateDocUrl(endpoint.operationId);
+          const operation = `${endpoint.method} ${endpoint.path}`;
+          markdown += url
+            ? `- ${description}, [${operation}](${url})\n`
+            : `- ${description}, \`${operation}\`\n`;
         });
         markdown += `\n`;
       });
@@ -295,8 +293,11 @@ function generateReleaseNotes(sections, version, branch) {
 
         grouped[category][subcategory].forEach(endpoint => {
           const description = generateDescription(endpoint);
-          const url = generateDocUrl(endpoint.method, endpoint.path);
-          markdown += `- ${description}, [${endpoint.method} ${endpoint.path}](${url})\n`;
+          const url = generateDocUrl(endpoint.operationId);
+          const operation = `${endpoint.method} ${endpoint.path}`;
+          markdown += url
+            ? `- ${description}, [${operation}](${url})\n`
+            : `- ${description}, \`${operation}\`\n`;
 
           // Add change details (limit to first 3 for brevity)
           const changesToShow = endpoint.changes.slice(0, 3);

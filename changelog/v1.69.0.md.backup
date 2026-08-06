@@ -1,0 +1,339 @@
+# API Changelog 1.68.0 vs. 1.69.0
+
+
+## API Changes
+
+### GET /devices/{serial}/camera/clip
+-  endpoint added
+
+
+### GET /devices/{serial}/lossAndLatencyHistory
+-  added the new enum value 'wan4' to the 'query' request parameter 'uplink'
+
+
+### GET /devices/{serial}/wireless/latencyStats
+-  added the optional property 'latencyStats' to the response with the '200' status
+-  added the optional property 'serial' to the response with the '200' status
+
+
+### GET /networks/{networkId}/appliance/security/intrusion
+- :warning: added the new 'detection' enum value to the 'mode' response property for the response status '200'
+- :warning: added the new 'disabled' enum value to the 'mode' response property for the response status '200'
+- :warning: added the new 'prevention' enum value to the 'mode' response property for the response status '200'
+
+
+### PUT /networks/{networkId}/appliance/uplinks/nat
+-  endpoint added
+
+
+### POST /networks/{networkId}/appliance/vlans
+-  added the new optional request property 'uplinks'
+
+
+### PUT /networks/{networkId}/appliance/vlans/{vlanId}
+-  added the new optional request property 'uplinks'
+
+
+### GET /networks/{networkId}/appliance/vpn/bgp
+-  added the optional property 'neighbors/items/communityOut' to the response with the '200' status
+-  added the optional property 'neighbors/items/filterIn' to the response with the '200' status
+-  added the optional property 'routerId' to the response with the '200' status
+
+
+### PUT /networks/{networkId}/appliance/vpn/bgp
+-  added the new optional request property 'neighbors/items/communityOut'
+-  added the new optional request property 'neighbors/items/filterIn'
+-  added the new optional request property 'routerId'
+-  added the optional property 'neighbors/items/communityOut' to the response with the '200' status
+-  added the optional property 'neighbors/items/filterIn' to the response with the '200' status
+-  added the optional property 'routerId' to the response with the '200' status
+
+
+### GET /networks/{networkId}/appliance/vpn/siteToSiteVpn
+-  added the optional property 'hostTranslations' to the response with the '200' status
+
+
+### PUT /networks/{networkId}/appliance/vpn/siteToSiteVpn
+-  added the new optional request property 'hostTranslations'
+-  added the optional property 'hostTranslations' to the response with the '200' status
+
+
+### GET /networks/{networkId}/clients/{clientId}/splashAuthorizationStatus
+-  added the optional property 'ssids' to the response with the '200' status
+
+
+### PUT /networks/{networkId}/clients/{clientId}/splashAuthorizationStatus
+-  added the optional property 'ssids' to the response with the '200' status
+
+
+### GET /networks/{networkId}/firmwareUpgrades
+-  added the optional property 'products/wireless/nextUpgrade/predownload' to the response with the '200' status
+
+
+### PUT /networks/{networkId}/firmwareUpgrades
+-  added the new optional request property 'products/wireless/nextUpgrade/predownload'
+-  added the optional property 'products/wireless/nextUpgrade/predownload' to the response with the '200' status
+
+
+### POST /networks/{networkId}/firmwareUpgrades/rollbacks
+-  added the new optional request property 'predownload'
+-  added the optional property 'predownload' to the response with the '200' status
+
+
+### GET /networks/{networkId}/wireless/clients/connectionStats
+-  added the optional property '/items/connectionStats' to the response with the '200' status
+-  added the optional property '/items/mac' to the response with the '200' status
+
+
+### GET /networks/{networkId}/wireless/clients/latencyStats
+-  added the optional property '/items/latencyStats' to the response with the '200' status
+-  added the optional property '/items/mac' to the response with the '200' status
+
+
+### GET /networks/{networkId}/wireless/clients/{clientId}/latencyStats
+-  added the optional property 'latencyStats' to the response with the '200' status
+-  added the optional property 'mac' to the response with the '200' status
+
+
+### GET /networks/{networkId}/wireless/devices/latencyStats
+-  added the optional property '/items/latencyStats' to the response with the '200' status
+-  added the optional property '/items/serial' to the response with the '200' status
+
+
+### GET /networks/{networkId}/wireless/electronicShelfLabel
+-  added the optional property 'sepioo' to the response with the '200' status
+
+
+### PUT /networks/{networkId}/wireless/electronicShelfLabel
+-  added the optional property 'sepioo' to the response with the '200' status
+
+
+### GET /networks/{networkId}/wireless/electronicShelfLabel/configuredDevices
+-  added the optional property '/items/sepioo' to the response with the '200' status
+
+
+### GET /networks/{networkId}/wireless/latencyStats
+-  added the optional property 'backgroundTraffic' to the response with the '200' status
+-  added the optional property 'bestEffortTraffic' to the response with the '200' status
+-  added the optional property 'videoTraffic' to the response with the '200' status
+-  added the optional property 'voiceTraffic' to the response with the '200' status
+
+
+### GET /networks/{networkId}/wireless/settings
+-  added the optional property 'upgrade' to the response with the '200' status
+
+
+### PUT /networks/{networkId}/wireless/settings
+-  added the new optional request property 'upgrade'
+-  added the optional property 'upgrade' to the response with the '200' status
+
+
+### PUT /networks/{networkId}/wireless/ssids/{number}
+-  added the new optional request property 'ssidAdminAccessible'
+
+
+### GET /networks/{networkId}/wireless/ssids/{number}/vpn
+-  added the optional property 'concentrator' to the response with the '200' status
+-  added the optional property 'failover' to the response with the '200' status
+-  added the optional property 'splitTunnel' to the response with the '200' status
+
+
+### PUT /networks/{networkId}/wireless/ssids/{number}/vpn
+-  added the optional property 'concentrator' to the response with the '200' status
+-  added the optional property 'failover' to the response with the '200' status
+-  added the optional property 'splitTunnel' to the response with the '200' status
+
+
+### POST /organizations/{organizationId}/alerts/profiles
+-  added the new 'wan4' enum value to the request property 'alertCondition/interface'
+
+
+### PUT /organizations/{organizationId}/alerts/profiles/{alertConfigId}
+-  added the new 'wan4' enum value to the request property 'alertCondition/interface'
+
+
+### GET /organizations/{organizationId}/api/rest/provisioning/pipelines/jobs
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/api/rest/provisioning/pipelines/jobs/overviews/byPipeline
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/appliance/security/intrusion
+-  added the optional property 'allowedRules' to the response with the '200' status
+
+
+### PUT /organizations/{organizationId}/appliance/security/intrusion
+-  added the optional property 'allowedRules' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/appliance/uplinks/nat/byNetwork
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/appliance/vpn/statuses
+-  added the optional property '/items/merakiVpnPeers/items/priority' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/alerts
+-  added the new enum value 'experience_metrics' to the 'query' request parameter 'category'
+
+
+### GET /organizations/{organizationId}/assurance/alerts/overview
+-  added the new enum value 'experience_metrics' to the 'query' request parameter 'category'
+
+
+### GET /organizations/{organizationId}/assurance/alerts/overview/byNetwork
+-  added the new enum value 'experience_metrics' to the 'query' request parameter 'category'
+-  added the required property 'items/items/lastAlertedAt' to the response with the '200' status
+
+
+### GET /organizations/{organizationId}/assurance/alerts/overview/byType
+-  added the new enum value 'experience_metrics' to the 'query' request parameter 'category'
+
+
+### GET /organizations/{organizationId}/assurance/alerts/overview/historical
+-  added the new enum value 'experience_metrics' to the 'query' request parameter 'category'
+
+
+### GET /organizations/{organizationId}/policies/global/firewall/applicationCategories
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/policies/global/firewall/rulesets
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/policies/global/firewall/rulesets
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/policies/global/firewall/rulesets/rules
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/policies/global/firewall/rulesets/rules
+-  endpoint added
+
+
+### DELETE /organizations/{organizationId}/policies/global/firewall/rulesets/rules/{ruleId}
+-  endpoint added
+
+
+### PUT /organizations/{organizationId}/policies/global/firewall/rulesets/rules/{ruleId}
+-  endpoint added
+
+
+### DELETE /organizations/{organizationId}/policies/global/firewall/rulesets/{rulesetId}
+-  endpoint added
+
+
+### PUT /organizations/{organizationId}/policies/global/firewall/rulesets/{rulesetId}
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/policies/global/group/policies
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/policies/global/group/policies
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/policies/global/group/policies/adaptivePolicyGroups/assign
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/policies/global/group/policies/adaptivePolicyGroups/assignments
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/policies/global/group/policies/adaptivePolicyGroups/remove
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/policies/global/group/policies/appliance/vlans/assign
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/policies/global/group/policies/appliance/vlans/assignments
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/policies/global/group/policies/appliance/vlans/assignments/byVlan
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/policies/global/group/policies/appliance/vlans/remove
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/policies/global/group/policies/firewall/rulesets/assignments
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/policies/global/group/policies/firewall/rulesets/assignments
+-  endpoint added
+
+
+### DELETE /organizations/{organizationId}/policies/global/group/policies/firewall/rulesets/assignments/{assignmentId}
+-  endpoint added
+
+
+### PUT /organizations/{organizationId}/policies/global/group/policies/firewall/rulesets/assignments/{assignmentId}
+-  endpoint added
+
+
+### DELETE /organizations/{organizationId}/policies/global/group/policies/{policyId}
+-  endpoint added
+
+
+### PUT /organizations/{organizationId}/policies/global/group/policies/{policyId}
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/sase/connectors
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/sase/connectors/batchCreate
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/sase/connectors/batchDelete
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/sase/regions
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/sase/sites
+-  endpoint added
+
+
+### POST /organizations/{organizationId}/sase/sites/attach
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/sase/sites/connectivity/history/bySite
+-  endpoint added
+
+
+### GET /organizations/{organizationId}/sase/sites/connectivity/overview
+-  endpoint added
+
+
+### DELETE /organizations/{organizationId}/sase/sites/detach
+-  endpoint added
+
+
+### PUT /organizations/{organizationId}/sase/sites/{siteId}
+-  endpoint added
+
+
+
+
+
+

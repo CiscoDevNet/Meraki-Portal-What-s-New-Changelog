@@ -217,6 +217,12 @@ jobs:
 
           echo "✅ Updated annual document"
 
+      - name: Validate generated hyperlinks
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          node --test .github/scripts/*.test.js
+          node .github/scripts/check-markdown-links.js
+
       - name: Configure git
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
@@ -375,6 +381,13 @@ jobs:
             "${CHANGELOG_FILE}"
 
           echo "✅ Updated changelog config"
+
+      - name: Normalize and validate generated hyperlinks
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          node .github/scripts/fix-markdown-anchors.js "changelog/${CHANGELOG_FILE}"
+          node --test .github/scripts/*.test.js
+          node .github/scripts/check-markdown-links.js
 
       - name: Configure git
         if: steps.check_changes.outputs.has_changes == 'true'
