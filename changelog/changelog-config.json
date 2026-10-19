@@ -9,258 +9,351 @@
       "title": "Generally Available",
       "items": [
         {
+          "title": "v1.75.1",
+          "content": "v1.75.1.md"
+        },
+        {
+          "title": "v1.75.0",
+          "content": "v1.75.0.md"
+        },
+        {
+          "title": "v1.74.0",
           "content": "v1.74.0.md"
         },
         {
+          "title": "v1.73.0",
           "content": "v1.73.0.md"
         },
         {
+          "title": "v1.72.0",
           "content": "v1.72.0.md"
         },
         {
+          "title": "v1.71.0",
           "content": "v1.71.0.md"
         },
         {
+          "title": "v1.70.0",
           "content": "v1.70.0.md"
         },
         {
+          "title": "v1.69.0",
           "content": "v1.69.0.md"
         },
         {
+          "title": "v1.68.0",
           "content": "v1.68.0.md"
         },
         {
+          "title": "v1.67.0",
           "content": "v1.67.0.md"
         },
         {
+          "title": "v1.66.0",
           "content": "v1.66.0.md"
         },
         {
+          "title": "v1.65.0",
           "content": "v1.65.0.md"
         },
         {
+          "title": "v1.64.0",
           "content": "v1.64.0.md"
         },
         {
+          "title": "v1.63.0",
           "content": "v1.63.0.md"
         },
         {
+          "title": "v1.62.0",
           "content": "v1.62.0.md"
         },
         {
+          "title": "v1.61.0",
           "content": "v1.61.0.md"
         },
         {
+          "title": "v1.60.0",
           "content": "v1.60.0.md"
         },
         {
+          "title": "v1.59.0",
           "content": "v1.59.0.md"
         },
         {
+          "title": "v1.59.0",
           "content": "v1.59.0.md"
         },
         {
+          "title": "v1.58.0",
           "content": "v1.58.0.md"
         },
         {
+          "title": "v1.57.0",
           "content": "v1.57.0.md"
         },
         {
+          "title": "v1.56.0",
           "content": "v1.56.0.md"
         },
         {
+          "title": "v1.55.0",
           "content": "v1.55.0.md"
         },
         {
+          "title": "v1.54.0",
           "content": "v1.54.0.md"
         },
         {
+          "title": "v1.53.0",
           "content": "v1.53.0.md"
         },
         {
+          "title": "v1.52.0",
           "content": "v1.52.0.md"
         },
         {
+          "title": "v1.51.1",
           "content": "v1.51.1.md"
         },
         {
+          "title": "v1.50.0",
           "content": "v1.50.0.md"
         },
         {
+          "title": "v1.49.0",
           "content": "v1.49.0.md"
         },
         {
+          "title": "v1.48.0",
           "content": "v1.48.0.md"
         },
         {
+          "title": "v1.47.0",
           "content": "v1.47.0.md"
         },
         {
+          "title": "v1.46.0",
           "content": "v1.46.0.md"
         },
         {
+          "title": "v1.45.0",
           "content": "v1.45.0.md"
         },
         {
+          "title": "v1.44.0",
           "content": "v1.44.0.md"
         },
         {
+          "title": "v1.43.0",
           "content": "v1.43.0.md"
         },
         {
+          "title": "v1.42.0",
           "content": "v1.42.0.md"
         },
         {
+          "title": "v1.41.0",
           "content": "v1.41.0.md"
         },
         {
+          "title": "v1.40.0",
           "content": "v1.40.0.md"
         },
         {
+          "title": "v1.39.0",
           "content": "v1.39.0.md"
         },
         {
+          "title": "v1.38.0",
           "content": "v1.38.0.md"
         },
         {
+          "title": "v1.37.0",
           "content": "v1.37.0.md"
         },
         {
+          "title": "v1.36.0",
           "content": "v1.36.0.md"
         },
         {
+          "title": "v1.35.0",
           "content": "v1.35.0.md"
         },
         {
+          "title": "v1.34.0",
           "content": "v1.34.0.md"
         },
         {
+          "title": "v1.33.0",
           "content": "v1.33.0.md"
         },
         {
+          "title": "v1.32.0",
           "content": "v1.32.0.md"
         },
         {
+          "title": "v1.31.0",
           "content": "v1.31.0.md"
         },
         {
+          "title": "v1.30.0",
           "content": "v1.30.0.md"
         },
         {
+          "title": "v1.29.0",
           "content": "v1.29.0.md"
         },
         {
+          "title": "v1.28.0",
           "content": "v1.28.0.md"
         },
         {
+          "title": "v1.27.0",
           "content": "v1.27.0.md"
         },
         {
+          "title": "v1.26.0",
           "content": "v1.26.0.md"
         },
         {
+          "title": "v1.25.0",
           "content": "v1.25.0.md"
         },
         {
+          "title": "v1.24.0",
           "content": "v1.24.0.md"
         },
         {
+          "title": "v1.23.0",
           "content": "v1.23.0.md"
         },
         {
+          "title": "v1.22.0",
           "content": "v1.22.0.md"
         },
         {
+          "title": "v1.21.0",
           "content": "v1.21.0.md"
         },
         {
+          "title": "v1.20.0",
           "content": "v1.20.0.md"
         },
         {
+          "title": "v1.19.0",
           "content": "v1.19.0.md"
         },
         {
+          "title": "v1.18.0",
           "content": "v1.18.0.md"
         },
         {
+          "title": "v1.17.0",
           "content": "v1.17.0.md"
         },
         {
+          "title": "v1.16.0",
           "content": "v1.16.0.md"
         },
         {
+          "title": "v1.15.0",
           "content": "v1.15.0.md"
         },
         {
+          "title": "v1.14.0",
           "content": "v1.14.0.md"
         },
         {
+          "title": "v1.13.0",
           "content": "v1.13.0.md"
         },
         {
+          "title": "v1.12.0",
           "content": "v1.12.0.md"
         },
         {
+          "title": "v1.11.0",
           "content": "v1.11.0.md"
         },
         {
+          "title": "v1.10.0",
           "content": "v1.10.0.md"
         },
         {
+          "title": "v1.8.0",
           "content": "v1.8.0.md"
         },
         {
+          "title": "v1.7.0",
           "content": "v1.7.0.md"
         },
         {
+          "title": "v1.6.0",
           "content": "v1.6.0.md"
         },
         {
+          "title": "v1.5.0",
           "content": "v1.5.0.md"
         },
         {
+          "title": "v1.4.0",
           "content": "v1.4.0.md"
         },
         {
+          "title": "v1.3.0",
           "content": "v1.3.0.md"
         },
         {
+          "title": "v1.2.0",
           "content": "v1.2.0.md"
         },
         {
+          "title": "v1.1.0",
           "content": "v1.1.0.md"
         },
         {
+          "title": "v1.0.0",
           "content": "v1.0.0.md"
         },
         {
+          "title": "v0.11.0",
           "content": "v0.11.0.md"
         },
         {
+          "title": "v0.10.0",
           "content": "v0.10.0.md"
         },
         {
+          "title": "v0.9.0",
           "content": "v0.9.0.md"
         },
         {
+          "title": "v0.8.0",
           "content": "v0.8.0.md"
         },
         {
+          "title": "v0.7.0",
           "content": "v0.7.0.md"
         },
         {
+          "title": "v0.6.0",
           "content": "v0.6.0.md"
         },
         {
+          "title": "v0.5.0",
           "content": "v0.5.0.md"
         },
         {
+          "title": "v0.4.0",
           "content": "v0.4.0.md"
         },
         {
+          "title": "v0.3.0",
           "content": "v0.3.0.md"
         },
         {
+          "title": "v0.2.0",
           "content": "v0.2.0.md"
         }
       ]
@@ -269,6 +362,7 @@
       "title": "Beta",
       "items": [
         {
+          "title": "v1-beta",
           "content": "v1-beta.md"
         }
       ]

@@ -123,14 +123,32 @@ jobs:
           echo "BRANCH=master" >> $GITHUB_ENV
           echo "CHANGELOG_FILE=${{ needs.detect.outputs.ga_new_version }}.md" >> $GITHUB_ENV
 
+      - name: Download and normalize OpenAPI specs
+        run: |
+          SPEC_DIR="${RUNNER_TEMP}/openapi-specs"
+          mkdir -p "$SPEC_DIR"
+
+          curl --fail --location --silent --show-error --retry 3 --max-time 60 \
+            "https://raw.githubusercontent.com/meraki/openapi/${OLD_VERSION}/openapi/spec3.json" \
+            --output "$SPEC_DIR/old.json"
+          curl --fail --location --silent --show-error --retry 3 --max-time 60 \
+            "https://raw.githubusercontent.com/meraki/openapi/${NEW_VERSION}/openapi/spec3.json" \
+            --output "$SPEC_DIR/new.json"
+
+          node .github/scripts/normalize-openapi-spec.js "$SPEC_DIR/old.json" "$SPEC_DIR/old-normalized.json"
+          node .github/scripts/normalize-openapi-spec.js "$SPEC_DIR/new.json" "$SPEC_DIR/new-normalized.json"
+
+          echo "OLD_SPEC=$SPEC_DIR/old-normalized.json" >> "$GITHUB_ENV"
+          echo "NEW_SPEC=$SPEC_DIR/new-normalized.json" >> "$GITHUB_ENV"
+
       - name: Check for changes with oasdiff
         id: check_changes
         run: |
           echo "Checking for changes from ${OLD_VERSION} to ${NEW_VERSION}..."
 
           oasdiff changelog \
-            "https://raw.githubusercontent.com/meraki/openapi/${OLD_VERSION}/openapi/spec3.json" \
-            "https://raw.githubusercontent.com/meraki/openapi/${NEW_VERSION}/openapi/spec3.json" \
+            "$OLD_SPEC" \
+            "$NEW_SPEC" \
             --format markdown \
             --include-path-params \
             > CHANGELOG-TEMP.md
@@ -150,8 +168,8 @@ jobs:
           echo "Generating breaking changes report..."
 
           oasdiff changelog \
-            "https://raw.githubusercontent.com/meraki/openapi/${OLD_VERSION}/openapi/spec3.json" \
-            "https://raw.githubusercontent.com/meraki/openapi/${NEW_VERSION}/openapi/spec3.json" \
+            "$OLD_SPEC" \
+            "$NEW_SPEC" \
             --format markdown \
             --level ERR \
             --include-path-params \
@@ -166,7 +184,8 @@ jobs:
             "CHANGELOG-TEMP.md" \
             "${OLD_VERSION}" \
             "${NEW_VERSION}" \
-            "CHANGELOG-VERBOSE.md"
+            "CHANGELOG-VERBOSE.md" \
+            "$NEW_SPEC"
 
           # Replace simple changelog with verbose version
           mv CHANGELOG-VERBOSE.md CHANGELOG-TEMP.md
@@ -189,7 +208,8 @@ jobs:
             "changelog/${CHANGELOG_FILE}" \
             "${NEW_VERSION}" \
             "${BRANCH}" \
-            "RELEASE-NOTES-TEMP.md"
+            "RELEASE-NOTES-TEMP.md" \
+            "$NEW_SPEC"
 
           echo "✅ Generated release notes"
 
@@ -303,14 +323,32 @@ jobs:
           echo "BRANCH=v1-beta" >> $GITHUB_ENV
           echo "CHANGELOG_FILE=v1-beta.md" >> $GITHUB_ENV
 
+      - name: Download and normalize OpenAPI specs
+        run: |
+          SPEC_DIR="${RUNNER_TEMP}/openapi-specs"
+          mkdir -p "$SPEC_DIR"
+
+          curl --fail --location --silent --show-error --retry 3 --max-time 60 \
+            "https://raw.githubusercontent.com/meraki/openapi/${OLD_VERSION}/openapi/spec3.json" \
+            --output "$SPEC_DIR/old.json"
+          curl --fail --location --silent --show-error --retry 3 --max-time 60 \
+            "https://raw.githubusercontent.com/meraki/openapi/${NEW_VERSION}/openapi/spec3.json" \
+            --output "$SPEC_DIR/new.json"
+
+          node .github/scripts/normalize-openapi-spec.js "$SPEC_DIR/old.json" "$SPEC_DIR/old-normalized.json"
+          node .github/scripts/normalize-openapi-spec.js "$SPEC_DIR/new.json" "$SPEC_DIR/new-normalized.json"
+
+          echo "OLD_SPEC=$SPEC_DIR/old-normalized.json" >> "$GITHUB_ENV"
+          echo "NEW_SPEC=$SPEC_DIR/new-normalized.json" >> "$GITHUB_ENV"
+
       - name: Check for changes with oasdiff
         id: check_changes
         run: |
           echo "Checking for changes from ${OLD_VERSION} to ${NEW_VERSION}..."
 
           oasdiff changelog \
-            "https://raw.githubusercontent.com/meraki/openapi/${OLD_VERSION}/openapi/spec3.json" \
-            "https://raw.githubusercontent.com/meraki/openapi/${NEW_VERSION}/openapi/spec3.json" \
+            "$OLD_SPEC" \
+            "$NEW_SPEC" \
             --format markdown \
             --include-path-params \
             > CHANGELOG-TEMP.md
@@ -333,7 +371,8 @@ jobs:
             "CHANGELOG-TEMP.md" \
             "${OLD_VERSION}" \
             "${NEW_VERSION}" \
-            "CHANGELOG-VERBOSE.md"
+            "CHANGELOG-VERBOSE.md" \
+            "$NEW_SPEC"
 
           # Replace simple changelog with verbose version
           mv CHANGELOG-VERBOSE.md CHANGELOG-TEMP.md
@@ -366,7 +405,8 @@ jobs:
             "changelog/${CHANGELOG_FILE}" \
             "${NEW_VERSION}" \
             "${BRANCH}" \
-            "RELEASE-NOTES-TEMP.md"
+            "RELEASE-NOTES-TEMP.md" \
+            "$NEW_SPEC"
 
           echo "✅ Generated release notes"
 

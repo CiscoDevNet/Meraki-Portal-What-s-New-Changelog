@@ -80,9 +80,26 @@ function updateConfig(version, branch, filename) {
     config.items.push(targetSection);
   }
 
+  // Fill titles for manually maintained entries while this section is updated.
+  let configUpdated = false;
+  targetSection.items.forEach(item => {
+    if (!item.title && item.content) {
+      item.title = isBeta
+        ? 'v1-beta'
+        : path.basename(item.content, path.extname(item.content));
+      configUpdated = true;
+    }
+  });
+
   // Check for duplicates
   const existingEntry = targetSection.items.find(item => item.content === filename);
   if (existingEntry) {
+    if (configUpdated) {
+      fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2) + '\n', 'utf8');
+      console.log(`✅ Added missing titles to entries in ${sectionTitle}`);
+      return true;
+    }
+
     console.log(`⚠️  Entry for ${filename} already exists in config, skipping...`);
     return false;
   }
@@ -92,12 +109,12 @@ function updateConfig(version, branch, filename) {
     // For beta, just replace or add the v1-beta.md entry
     const betaIndex = targetSection.items.findIndex(item => item.content === 'v1-beta.md');
     if (betaIndex === -1) {
-      targetSection.items.unshift({ content: 'v1-beta.md' });
+      targetSection.items.unshift({ title: 'v1-beta', content: 'v1-beta.md' });
     }
     // No need to update since we update the same file
   } else {
     // For GA, add the new version at the beginning
-    targetSection.items.unshift({ content: filename });
+    targetSection.items.unshift({ title: version, content: filename });
 
     // Sort to ensure newest first (in case items are out of order)
     targetSection.items.sort((a, b) => compareVersions(a.content, b.content));

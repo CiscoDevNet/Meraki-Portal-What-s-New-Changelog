@@ -7,7 +7,7 @@
  * formatted for the annual markdown files (e.g., 2026.md).
  *
  * Usage:
- *   node generate-release-notes.js <changelog.md> <version> <branch> <output.md>
+ *   node generate-release-notes.js <changelog.md> <version> <branch> <output.md> [spec.json]
  */
 
 const fs = require('fs');
@@ -15,10 +15,10 @@ const path = require('path');
 const { operationIdToDocUrl } = require('./operation-doc-url');
 
 // Parse command line arguments
-const [changelogPath, version, branch, outputPath] = process.argv.slice(2);
+const [changelogPath, version, branch, outputPath, specPath] = process.argv.slice(2);
 
 if (!changelogPath || !version || !branch || !outputPath) {
-  console.error('Usage: node generate-release-notes.js <changelog.md> <version> <branch> <output.md>');
+  console.error('Usage: node generate-release-notes.js <changelog.md> <version> <branch> <output.md> [spec.json]');
   process.exit(1);
 }
 
@@ -230,7 +230,14 @@ function generateDescription(endpoint) {
 /**
  * Generate release notes markdown
  */
-function generateReleaseNotes(sections, version, branch) {
+function countSpecOperations(spec) {
+  const methods = new Set(['get', 'post', 'put', 'patch', 'delete', 'options', 'head', 'trace']);
+  return Object.values(spec.paths || {}).reduce((count, pathItem) => (
+    count + Object.keys(pathItem || {}).filter(key => methods.has(key.toLowerCase())).length
+  ), 0);
+}
+
+function generateReleaseNotes(sections, version, branch, operationCount) {
   let markdown = '';
 
   // Determine month and year
@@ -250,10 +257,11 @@ function generateReleaseNotes(sections, version, branch) {
 
   // Summary
   markdown += `## Summary\n\n`;
-  const totalOperations = sections.stats.new + sections.stats.modified + 850; // Approximate baseline
   markdown += `- ${sections.stats.new} new operations added\n`;
   markdown += `- ${sections.stats.modified} operations enhanced\n`;
-  markdown += `- ${totalOperations} total operations available\n`;
+  if (operationCount !== null) {
+    markdown += `- ${operationCount} total operations available\n`;
+  }
   markdown += `\n`;
 
   // What's New section
@@ -327,7 +335,9 @@ try {
   console.log(`Found ${sections.stats.modified} modified endpoints`);
 
   console.log('Generating release notes...');
-  const releaseNotes = generateReleaseNotes(sections, version, branch);
+  const spec = specPath ? JSON.parse(fs.readFileSync(specPath, 'utf8')) : null;
+  const operationCount = spec ? countSpecOperations(spec) : null;
+  const releaseNotes = generateReleaseNotes(sections, version, branch, operationCount);
 
   fs.writeFileSync(outputPath, releaseNotes, 'utf8');
   console.log(`✅ Release notes written to ${outputPath}`);

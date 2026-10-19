@@ -7,7 +7,7 @@
  * with table of contents, grouping, operation details, and examples.
  *
  * Usage:
- *   node format-changelog.js <simple-changelog.md> <old-version> <new-version> <output.md>
+ *   node format-changelog.js <simple-changelog.md> <old-version> <new-version> <output.md> [spec.json]
  */
 
 const fs = require('fs');
@@ -15,10 +15,10 @@ const https = require('https');
 const { operationIdToDocUrl } = require('./operation-doc-url');
 
 // Parse command line arguments
-const [simpleChangelogPath, oldVersion, newVersion, outputPath] = process.argv.slice(2);
+const [simpleChangelogPath, oldVersion, newVersion, outputPath, specPath] = process.argv.slice(2);
 
 if (!simpleChangelogPath || !oldVersion || !newVersion || !outputPath) {
-  console.error('Usage: node format-changelog.js <simple-changelog.md> <old-version> <new-version> <output.md>');
+  console.error('Usage: node format-changelog.js <simple-changelog.md> <old-version> <new-version> <output.md> [spec.json]');
   process.exit(1);
 }
 
@@ -380,10 +380,14 @@ async function main() {
     const endpoints = parseSimpleChangelog(simpleChangelog);
 
     console.log(`Found ${endpoints.length} endpoints`);
-    console.log('Fetching OpenAPI spec...');
-
-    // Fetch the new version spec to get operation details
-    const spec = await fetchOpenAPISpec(newVersion);
+    let spec;
+    if (specPath) {
+      console.log(`Reading OpenAPI spec from ${specPath}...`);
+      spec = JSON.parse(fs.readFileSync(specPath, 'utf8'));
+    } else {
+      console.log('Fetching OpenAPI spec...');
+      spec = await fetchOpenAPISpec(newVersion);
+    }
 
     console.log('Enriching endpoints with operation details...');
 

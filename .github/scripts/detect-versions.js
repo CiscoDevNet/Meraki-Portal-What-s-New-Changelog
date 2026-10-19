@@ -194,9 +194,8 @@ detectVersions()
     console.log('\n=== Result ===');
     console.log(JSON.stringify(result, null, 2));
 
-    // Exit with code 0 if any updates needed, 1 if nothing to do
-    const hasUpdates = result.ga !== null || result.beta !== null;
-    process.exit(hasUpdates ? 0 : 1);
+    // A successful scan is successful whether or not updates are needed.
+    process.exit(0);
   })
   .catch((error) => {
     console.error('❌ Error detecting versions:', error.message);

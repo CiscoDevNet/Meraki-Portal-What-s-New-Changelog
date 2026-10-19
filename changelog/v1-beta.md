@@ -1,22 +1,2795 @@
 
 ---
 
-## v1.74.0-beta.4
-
+## v1.75.1-beta.0
 
 - [Added](#added)
   * [\[ organizations \]](#-organizations-)
+    + [mcf](#mcf)
+      - [Lists the organization's MCN AutoVPN connectors.](#lists-the-organizations-mcn-autovpn-connectors)
+      - [Starts asynchronous reconciliation of MCN AutoVPN connectors and available regions.](#starts-asynchronous-reconciliation-of-mcn-autovpn-connectors-and-available-regions)
+      - [Starts asynchronous organization-wide AutoVPN site-to-cloud offboarding.](#starts-asynchronous-organization-wide-autovpn-site-to-cloud-offboarding)
+      - [Lists Meraki networks discoverable for AutoVPN site-to-cloud connectivity.](#lists-meraki-networks-discoverable-for-autovpn-site-to-cloud-connectivity)
+      - [Lists Meraki networks eligible for AutoVPN site-to-cloud onboarding.](#lists-meraki-networks-eligible-for-autovpn-site-to-cloud-onboarding)
+      - [Starts asynchronous AutoVPN site-to-cloud onboarding for the requested spoke networks.](#starts-asynchronous-autovpn-site-to-cloud-onboarding-for-the-requested-spoke-networks)
+      - [Detaches a Meraki AutoVPN spoke from its MCN regions.](#detaches-a-meraki-autovpn-spoke-from-its-mcn-regions)
+      - [Returns the AutoVPN hub budget for a Meraki spoke network.](#returns-the-autovpn-hub-budget-for-a-meraki-spoke-network)
+      - [Replaces the complete desired MCN region set for a Meraki AutoVPN spoke.](#replaces-the-complete-desired-mcn-region-set-for-a-meraki-autovpn-spoke)
+- [Changed](#changed)
+  * [\[ administered \]](#-administered-)
+    + [assistant](#assistant)
+      - [Create a synchronous AI assistant chat completion for user-wide threads](#create-a-synchronous-ai-assistant-chat-completion-for-user-wide-threads)
+      - [List all active user-wide conversation threads for the authenticated user.](#list-all-active-user-wide-conversation-threads-for-the-authenticated-user)
+      - [Return a single user-wide conversation thread.](#return-a-single-user-wide-conversation-thread)
+      - [List messages in a user-wide conversation thread.](#list-messages-in-a-user-wide-conversation-thread)
+      - [Create a new chat message in an existing user-wide thread.](#create-a-new-chat-message-in-an-existing-user-wide-thread)
+      - [Return a single message in a user-wide conversation thread.](#return-a-single-message-in-a-user-wide-conversation-thread)
+  * [\[ organizations \]](#-organizations--1)
+    + [assistant](#assistant-1)
+      - [Create a synchronous AI assistant chat completion](#create-a-synchronous-ai-assistant-chat-completion)
+      - [List all active conversation threads for the authenticated user.](#list-all-active-conversation-threads-for-the-authenticated-user)
+      - [Return a single conversation thread.](#return-a-single-conversation-thread)
+      - [List messages in a conversation thread.](#list-messages-in-a-conversation-thread)
+      - [Create a new chat message in an existing thread.](#create-a-new-chat-message-in-an-existing-thread)
+      - [Return a single message in a conversation thread.](#return-a-single-message-in-a-conversation-thread)
+      - [List artifacts attached to a specific message](#list-artifacts-attached-to-a-specific-message)
+    + [assurance](#assurance)
+      - [Returns network server health in organization by server.](#returns-network-server-health-in-organization-by-server)
+      - [Summarizes wired connection successes and failures by client.](#summarizes-wired-connection-successes-and-failures-by-client)
+    + [mcf](#mcf-1)
+      - [Returns the MCN organization record associated with the Meraki Dashboard organization identified by `organizationId`](#returns-the-mcn-organization-record-associated-with-the-meraki-dashboard-organization-identified-by-organizationid)
+      - [Returns Meraki and Manual IPsec records represented as MCN Sites for site-to-cloud connectivity in the specified organization](#returns-meraki-and-manual-ipsec-records-represented-as-mcn-sites-for-site-to-cloud-connectivity-in-the-specified-organization)
+      - [Returns one organization-owned Meraki or Manual IPsec record represented as an MCN Site](#returns-one-organization-owned-meraki-or-manual-ipsec-record-represented-as-an-mcn-site)
+    + [nac](#nac)
+      - [Get all known clients for the organization](#get-all-known-clients-for-the-organization)
+      - [Get all known client groups for the organization](#get-all-known-client-groups-for-the-organization)
+    + [spaces](#spaces)
+      - [List the buildings belonging to the organization](#list-the-buildings-belonging-to-the-organization)
+    + [switch](#switch)
+      - [List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges](#list-all-bgp-deployment-information-for-multiple-peer-groups-or-address-families-configured-in-the-given-organization-including-profile-information-peer-group-address-family-information-neighbors-and-listen-ranges)
+      - [List the listen ranges configured for BGP in the given organization](#list-the-listen-ranges-configured-for-bgp-in-the-given-organization)
+      - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router)
+    + [wireless](#wireless)
+      - [List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices](#list-the-most-recent-ethernet-link-speed-duplex-aggregation-and-power-mode-and-status-information-for-wireless-devices)
+  * [\[ spaces \]](#-spaces-)
+    + [sites](#sites)
+      - [Create a new building](#create-a-new-building)
+      - [Update a building](#update-a-building)
+  * [\[ switch \]](#-switch-)
+    + [accessPolicies](#accesspolicies)
+      - [List the access policies for a switch network](#list-the-access-policies-for-a-switch-network)
+      - [Create an access policy for a switch network](#create-an-access-policy-for-a-switch-network)
+      - [Return a specific access policy for a switch network](#return-a-specific-access-policy-for-a-switch-network)
+      - [Update an access policy for a switch network](#update-an-access-policy-for-a-switch-network)
+ 
+Version **v1.75.0-beta.1** _to_ **v1.75.1-beta.0**
+
+* * *
+
+**Summary of Changes**
+
+**9 - New**
+
+**31 - Updated**
+
+**859 - Total Endpoints**
+
+**584 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ organizations \]
+--------------
+
+### mcf
+
+[Docs](https://developer.cisco.com/meraki/api-v1/list-autovpn-connectors/)
+
+#### Lists the organization's MCN AutoVPN connectors.
+
+Operation ID: `listAutovpnConnectors`
+
+PATH _`/organizations/{organizationId}/mcf/autovpn/connectors`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/mcf/autovpn/connectors`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/sync-autovpn-connectors/)
+
+#### Starts asynchronous reconciliation of MCN AutoVPN connectors and available regions.
+
+Operation ID: `syncAutovpnConnectors`
+
+PATH _`/organizations/{organizationId}/mcf/autovpn/connectors/sync`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/mcf/autovpn/connectors/sync`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/disable-autovpn-site-to-cloud/)
+
+#### Starts asynchronous organization-wide AutoVPN site-to-cloud offboarding.
+
+Operation ID: `disableAutovpnSiteToCloud`
+
+PATH _`/organizations/{organizationId}/mcf/autovpn/siteToCloud`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/mcf/autovpn/siteToCloud`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/list-autovpn-sites/)
+
+#### Lists Meraki networks discoverable for AutoVPN site-to-cloud connectivity.
+
+Operation ID: `listAutovpnSites`
+
+PATH _`/organizations/{organizationId}/mcf/autovpn/sites`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/mcf/autovpn/sites`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/list-autovpn-enrollable-sites/)
+
+#### Lists Meraki networks eligible for AutoVPN site-to-cloud onboarding.
+
+Operation ID: `listAutovpnEnrollableSites`
+
+PATH _`/organizations/{organizationId}/mcf/autovpn/sites/enrollable`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/mcf/autovpn/sites/enrollable`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/onboard-autovpn-sites/)
+
+#### Starts asynchronous AutoVPN site-to-cloud onboarding for the requested spoke networks.
+
+Operation ID: `onboardAutovpnSites`
+
+PATH _`/organizations/{organizationId}/mcf/autovpn/sites/onboard`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/mcf/autovpn/sites/onboard`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/offboard-autovpn-spoke/)
+
+#### Detaches a Meraki AutoVPN spoke from its MCN regions.
+
+Operation ID: `offboardAutovpnSpoke`
+
+PATH _`/organizations/{organizationId}/mcf/autovpn/spokes/{networkId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/organizations/{organizationId}/mcf/autovpn/spokes/{networkId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-autovpn-spoke-hub-budget/)
+
+#### Returns the AutoVPN hub budget for a Meraki spoke network.
+
+Operation ID: `getAutovpnSpokeHubBudget`
+
+PATH _`/organizations/{organizationId}/mcf/autovpn/spokes/{networkId}/hubBudget`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/mcf/autovpn/spokes/{networkId}/hubBudget`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/replace-autovpn-spoke-regions/)
+
+#### Replaces the complete desired MCN region set for a Meraki AutoVPN spoke.
+
+Operation ID: `replaceAutovpnSpokeRegions`
+
+PATH _`/organizations/{organizationId}/mcf/autovpn/spokes/{networkId}/regions`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/organizations/{organizationId}/mcf/autovpn/spokes/{networkId}/regions`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ administered \]
+------------
+
+### assistant
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-administered-assistant-chat-completion/)
+
+#### Create a synchronous AI assistant chat completion for user-wide threads
+
+Operation ID: `createAdministeredAssistantChatCompletion`
+
+POST _`/administered/assistant/chat/completions`_
+
+> \- added the optional property 'tag' to the response with the '201' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-administered-assistant-chat-threads/)
+
+#### List all active user-wide conversation threads for the authenticated user.
+
+Operation ID: `getAdministeredAssistantChatThreads`
+
+GET _`/administered/assistant/chat/threads`_
+
+> \- the response property 'items/items/tag' became nullable for the status '200'
+
+> \- the 'items/items/dateModified' response's property type/format changed from 'number'/'float' to 'string'/'date-time' for status '200'
+
+> \- removed the optional property 'meta/count' from the response with the '200' status
+
+> \- removed the optional property 'meta/remaining' from the response with the '200' status
+
+> \- removed the optional property 'meta/total' from the response with the '200' status
+
+> \- added the optional property 'meta/counts' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-administered-assistant-chat-thread/)
+
+#### Return a single user-wide conversation thread.
+
+Operation ID: `getAdministeredAssistantChatThread`
+
+GET _`/administered/assistant/chat/threads/{threadId}`_
+
+> \- the response property 'tag' became nullable for the status '200'
+
+> \- the 'dateModified' response's property type/format changed from 'number'/'float' to 'string'/'date-time' for status '200'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-administered-assistant-chat-thread-messages/)
+
+#### List messages in a user-wide conversation thread.
+
+Operation ID: `getAdministeredAssistantChatThreadMessages`
+
+GET _`/administered/assistant/chat/threads/{threadId}/messages`_
+
+> \- the response property 'items/items/format' became nullable for the status '200'
+
+> \- the response property 'items/items/tag' became nullable for the status '200'
+
+> \- the 'items/items/timestamp' response's property type/format changed from 'number'/'float' to 'string'/'date-time' for status '200'
+
+> \- removed the optional property 'items/items/id' from the response with the '200' status
+
+> \- removed the optional property 'meta/count' from the response with the '200' status
+
+> \- removed the optional property 'meta/remaining' from the response with the '200' status
+
+> \- removed the optional property 'meta/total' from the response with the '200' status
+
+> \- added the optional property 'items/items/messageId' to the response with the '200' status
+
+> \- added the optional property 'meta/counts' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-administered-assistant-chat-thread-message/)
+
+#### Create a new chat message in an existing user-wide thread.
+
+Operation ID: `createAdministeredAssistantChatThreadMessage`
+
+POST _`/administered/assistant/chat/threads/{threadId}/messages`_
+
+> \- the response property 'threadId' became nullable for the status '202'
+
+> \- the 'messageId' response's property type/format changed from 'integer'/'' to 'string'/'' for status '202'
+
+> \- the 'threadId' response's property type/format changed from 'integer'/'' to 'string'/'' for status '202'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-administered-assistant-chat-thread-message/)
+
+#### Return a single message in a user-wide conversation thread.
+
+Operation ID: `getAdministeredAssistantChatThreadMessage`
+
+GET _`/administered/assistant/chat/threads/{threadId}/messages/{messageId}`_
+
+> \- the response property 'format' became nullable for the status '200'
+
+> \- the response property 'tag' became nullable for the status '200'
+
+> \- the 'timestamp' response's property type/format changed from 'number'/'float' to 'string'/'date-time' for status '200'
+
+> \- removed the optional property 'id' from the response with the '200' status
+
+> \- added the optional property 'messageId' to the response with the '200' status
+
+* * *
+
+\[ organizations \]
+------------
+
+### assistant
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-completion/)
+
+#### Create a synchronous AI assistant chat completion
+
+Operation ID: `createOrganizationAssistantChatCompletion`
+
+POST _`/organizations/{organizationId}/assistant/chat/completions`_
+
+> \- added the optional property 'tag' to the response with the '201' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-threads/)
+
+#### List all active conversation threads for the authenticated user.
+
+Operation ID: `getOrganizationAssistantChatThreads`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads`_
+
+> \- the response property 'items/items/tag' became nullable for the status '200'
+
+> \- the 'items/items/dateModified' response's property type/format changed from 'number'/'float' to 'string'/'date-time' for status '200'
+
+> \- removed the optional property 'meta/count' from the response with the '200' status
+
+> \- removed the optional property 'meta/remaining' from the response with the '200' status
+
+> \- removed the optional property 'meta/total' from the response with the '200' status
+
+> \- added the optional property 'meta/counts' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread/)
+
+#### Return a single conversation thread.
+
+Operation ID: `getOrganizationAssistantChatThread`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}`_
+
+> \- the response property 'tag' became nullable for the status '200'
+
+> \- the 'dateModified' response's property type/format changed from 'number'/'float' to 'string'/'date-time' for status '200'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-messages/)
+
+#### List messages in a conversation thread.
+
+Operation ID: `getOrganizationAssistantChatThreadMessages`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages`_
+
+> \- the response property 'items/items/format' became nullable for the status '200'
+
+> \- the response property 'items/items/tag' became nullable for the status '200'
+
+> \- the 'items/items/timestamp' response's property type/format changed from 'number'/'float' to 'string'/'date-time' for status '200'
+
+> \- removed the optional property 'items/items/id' from the response with the '200' status
+
+> \- removed the optional property 'meta/count' from the response with the '200' status
+
+> \- removed the optional property 'meta/remaining' from the response with the '200' status
+
+> \- removed the optional property 'meta/total' from the response with the '200' status
+
+> \- added the optional property 'items/items/messageId' to the response with the '200' status
+
+> \- added the optional property 'meta/counts' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-assistant-chat-thread-message/)
+
+#### Create a new chat message in an existing thread.
+
+Operation ID: `createOrganizationAssistantChatThreadMessage`
+
+POST _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages`_
+
+> \- the response property 'threadId' became nullable for the status '202'
+
+> \- the 'messageId' response's property type/format changed from 'integer'/'' to 'string'/'' for status '202'
+
+> \- the 'threadId' response's property type/format changed from 'integer'/'' to 'string'/'' for status '202'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message/)
+
+#### Return a single message in a conversation thread.
+
+Operation ID: `getOrganizationAssistantChatThreadMessage`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}`_
+
+> \- the response property 'format' became nullable for the status '200'
+
+> \- the response property 'tag' became nullable for the status '200'
+
+> \- the 'timestamp' response's property type/format changed from 'number'/'float' to 'string'/'date-time' for status '200'
+
+> \- removed the optional property 'id' from the response with the '200' status
+
+> \- added the optional property 'messageId' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assistant-chat-thread-message-artifacts/)
+
+#### List artifacts attached to a specific message
+
+Operation ID: `getOrganizationAssistantChatThreadMessageArtifacts`
+
+GET _`/organizations/{organizationId}/assistant/chat/threads/{threadId}/messages/{messageId}/artifacts`_
+
+> \- removed the optional property 'artifacts' from the response with the '200' status
+
+> \- removed the optional property 'messageId' from the response with the '200' status
+
+> \- added the new optional 'query' request parameter 'offset'
+
+> \- added the new optional 'query' request parameter 'perPage'
+
+> \- added the optional property 'items' to the response with the '200' status
+
+> \- added the optional property 'meta' to the response with the '200' status
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-network-services-server-health-by-server/)
+
+#### Returns network server health in organization by server.
+
+Operation ID: `getOrganizationAssuranceNetworkServicesServerHealthByServer`
+
+GET _`/organizations/{organizationId}/assurance/networkServices/serverHealth/byServer`_
+
+> \- added the optional property 'items/items/server/traffic' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wired-experience-successful-connections-by-network-by-client/)
+
+#### Summarizes wired connection successes and failures by client.
+
+Operation ID: `getOrganizationAssuranceWiredExperienceSuccessfulConnectionsByNetworkByClient`
+
+GET _`/organizations/{organizationId}/assurance/wired/experience/successfulConnections/byNetwork/byClient`_
+
+> \- added the optional property '/items/items/items/client/accessPoint' to the response with the '200' status
+
+* * *
+
+### mcf
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-mcf-organization/)
+
+#### Returns the MCN organization record associated with the Meraki Dashboard organization identified by `organizationId`
+
+Operation ID: `getMcfOrganization`
+
+GET _`/organizations/{organizationId}/mcf`_
+
+> \- removed the optional property 'trial/creditAmount' from the response with the '200' status
+
+> \- removed the optional property 'trial/lastRollupAt' from the response with the '200' status
+
+> \- removed the optional property 'trial/trialEndsAt' from the response with the '200' status
+
+> \- removed the optional property 'trial/trialUsage' from the response with the '200' status
+
+> \- removed the optional property 'trial/usage' from the response with the '200' status
+
+> \- removed the 'new' enum value from the 'status' response property for the response status '200'
+
+> \- removed the 'subscription' enum value from the 'status' response property for the response status '200'
+
+> \- removed the 'subscription_commit_exceeded' enum value from the 'status' response property for the response status '200'
+
+> \- removed the 'subscription_expired' enum value from the 'status' response property for the response status '200'
+
+> \- removed the 'subscription_grace_period' enum value from the 'status' response property for the response status '200'
+
+> \- removed the 'trial_credit_90_percent_used' enum value from the 'status' response property for the response status '200'
+
+> \- removed the 'trial_credit_exceeded' enum value from the 'status' response property for the response status '200'
+
+> \- removed the 'trial_credit_half_used' enum value from the 'status' response property for the response status '200'
+
+> \- removed the 'trial_expired' enum value from the 'status' response property for the response status '200'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/list-sites/)
+
+#### Returns Meraki and Manual IPsec records represented as MCN Sites for site-to-cloud connectivity in the specified organization
+
+Operation ID: `listSites`
+
+GET _`/organizations/{organizationId}/mcf/sites`_
+
+> \- added the optional property 'items/items/regions' to the response with the '200' status
+
+> \- added the optional property 'items/items/siteType' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-site/)
+
+#### Returns one organization-owned Meraki or Manual IPsec record represented as an MCN Site
+
+Operation ID: `getSite`
+
+GET _`/organizations/{organizationId}/mcf/sites/{siteId}`_
+
+> \- added the optional property 'regions' to the response with the '200' status
+
+> \- added the optional property 'siteType' to the response with the '200' status
+
+* * *
+
+### nac
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-clients/)
+
+#### Get all known clients for the organization
+
+Operation ID: `getOrganizationNacClients`
+
+GET _`/organizations/{organizationId}/nac/clients`_
+
+> \- added the new optional 'query' request parameter 'excludeGroups'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-clients-groups/)
+
+#### Get all known client groups for the organization
+
+Operation ID: `getOrganizationNacClientsGroups`
+
+GET _`/organizations/{organizationId}/nac/clients/groups`_
+
+> \- added the new optional 'query' request parameter 'excludeMembers'
+
+* * *
+
+### spaces
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-spaces-sites-buildings/)
+
+#### List the buildings belonging to the organization
+
+Operation ID: `getOrganizationSpacesSitesBuildings`
+
+GET _`/organizations/{organizationId}/spaces/sites/buildings`_
+
+> \- added the optional property 'items/items/updatedAt' to the response with the '200' status
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-groups-address-families-deployments/)
+
+#### List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersGroupsAddressFamiliesDeployments`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/addressFamilies/deployments`_
+
+> \- removed the optional property 'items/items/listenRanges/items/enabled' from the response with the '200' status
+
+> \- added the optional property 'items/items/listenRanges/items/peering' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-listen-ranges/)
+
+#### List the listen ranges configured for BGP in the given organization
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersListenRanges`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/listenRanges`_
+
+> \- removed the optional property 'items/items/enabled' from the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-routers-peers-deploy/)
+
+#### Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router
+
+Operation ID: `createOrganizationSwitchRoutingBgpRoutersPeersDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/routers/peers/deploy`_
+
+> \- removed the request property 'peerGroups/items/listenRanges/items/enabled'
+
+> \- removed the optional property 'peerGroups/items/listenRanges/items/enabled' from the response with the '200' status
+
+> \- added the new optional request property 'peerGroups/items/listenRanges/items/peering'
+
+> \- added the optional property 'peerGroups/items/listenRanges/items/peering' to the response with the '200' status
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-devices-ethernet-statuses/)
+
+#### List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices
+
+Operation ID: `getOrganizationWirelessDevicesEthernetStatuses`
+
+GET _`/organizations/{organizationId}/wireless/devices/ethernet/statuses`_
+
+> \- added the optional property '/items/ports/items/poe/granted' to the response with the '200' status
+
+> \- added the optional property '/items/ports/items/poe/isActive' to the response with the '200' status
+
+> \- added the optional property '/items/ports/items/poe/protocol' to the response with the '200' status
+
+> \- added the optional property '/items/ports/items/poe/requested' to the response with the '200' status
+
+> \- added the optional property '/items/power/draw' to the response with the '200' status
+
+> \- added the optional property '/items/power/reportedAt' to the response with the '200' status
+
+* * *
+
+\[ spaces \]
+------------
+
+### sites
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-spaces-sites-building/)
+
+#### Create a new building
+
+Operation ID: `createNetworkSpacesSitesBuilding`
+
+POST _`/networks/{networkId}/spaces/sites/buildings`_
+
+> \- added the optional property 'updatedAt' to the response with the '201' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-spaces-sites-building/)
+
+#### Update a building
+
+Operation ID: `updateNetworkSpacesSitesBuilding`
+
+PUT _`/networks/{networkId}/spaces/sites/buildings/{buildingId}`_
+
+> \- added the optional property 'updatedAt' to the response with the '200' status
+
+* * *
+
+\[ switch \]
+------------
+
+### accessPolicies
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-access-policies/)
+
+#### List the access policies for a switch network
+
+Operation ID: `getNetworkSwitchAccessPolicies`
+
+GET _`/networks/{networkId}/switch/accessPolicies`_
+
+> \- the response property '/items/radius/preAuthenticationGroupPolicyId' became nullable for the status '200'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-switch-access-policy/)
+
+#### Create an access policy for a switch network
+
+Operation ID: `createNetworkSwitchAccessPolicy`
+
+POST _`/networks/{networkId}/switch/accessPolicies`_
+
+> \- the response property 'radius/preAuthenticationGroupPolicyId' became nullable for the status '201'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-switch-access-policy/)
+
+#### Return a specific access policy for a switch network
+
+Operation ID: `getNetworkSwitchAccessPolicy`
+
+GET _`/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}`_
+
+> \- the response property 'radius/preAuthenticationGroupPolicyId' became nullable for the status '200'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-access-policy/)
+
+#### Update an access policy for a switch network
+
+Operation ID: `updateNetworkSwitchAccessPolicy`
+
+PUT _`/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}`_
+
+> \- the response property 'radius/preAuthenticationGroupPolicyId' became nullable for the status '200'
+
+* * *
+
+
+---
+
+## v1.75.0-beta.1
+
+- [Added](#added-1)
+  * [\[ appliance \]](#-appliance-)
+    + [security](#security)
+      - [Update HTTPS inspection configuration for a network.](#update-https-inspection-configuration-for-a-network)
+  * [\[ devices \]](#-devices-)
+    + [liveTools](#livetools)
+      - [Enqueue a live tool job to fetch route details from a device.](#enqueue-a-live-tool-job-to-fetch-route-details-from-a-device)
+      - [Return a route details live tool job for a device.](#return-a-route-details-live-tool-job-for-a-device)
+  * [\[ organizations \]](#-organizations-)
+    + [appliance](#appliance)
+      - [List HTTPS inspection status and configuration for appliances in the organization.](#list-https-inspection-status-and-configuration-for-appliances-in-the-organization)
+      - [Returns Site-to-site VPN stats (loss, latency, jitter, MOS) for all VPN connections in an organization](#returns-site-to-site-vpn-stats-loss-latency-jitter-mos-for-all-vpn-connections-in-an-organization)
+- [Changed](#changed-1)
+  * [\[ appliance \]](#-appliance--1)
+    + [interfaces](#interfaces)
+      - [Create wired L3 interface](#create-wired-l3-interface)
+      - [Update wired L3 interface](#update-wired-l3-interface)
+  * [\[ devices \]](#-devices--1)
+    + [appliance](#appliance-1)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
+    + [cellular](#cellular)
+      - [Return the SIM and APN configurations for a cellular device.](#return-the-sim-and-apn-configurations-for-a-cellular-device)
+      - [Updates the SIM and APN configurations for a cellular device.](#updates-the-sim-and-apn-configurations-for-a-cellular-device)
+    + [liveTools](#livetools-1)
+      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job)
+  * [\[ organizations \]](#-organizations--1)
+    + [apiRequests](#apirequests)
+      - [List the API requests made by an organization](#list-the-api-requests-made-by-an-organization)
+    + [appliance](#appliance-2)
+      - [List L3 interfaces across networks for the organization](#list-l3-interfaces-across-networks-for-the-organization)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization)
+      - [Retrieve the HTTPS Inspection state for all security appliances in an organization.](#retrieve-the-https-inspection-state-for-all-security-appliances-in-an-organization)
+      - [Upload an HTTPS Inspection certificate to MX devices in the same organization](#upload-an-https-inspection-certificate-to-mx-devices-in-the-same-organization)
+      - [Fetch uplink NAT settings of each network in the organization](#fetch-uplink-nat-settings-of-each-network-in-the-organization)
+      - [Get the list of available IPsec SLA policies for an organization](#get-the-list-of-available-ipsec-sla-policies-for-an-organization)
+      - [Return the third party VPN peers for an organization](#return-the-third-party-vpn-peers-for-an-organization)
+      - [Update the third party VPN peers for an organization](#update-the-third-party-vpn-peers-for-an-organization)
+    + [devices](#devices)
+      - [List cellular data management profiles in this organization](#list-cellular-data-management-profiles-in-this-organization)
+      - [List Cellular Data Management Profile assignments in this organization](#list-cellular-data-management-profile-assignments-in-this-organization)
+    + [insight](#insight)
+      - [List the monitored media servers for this organization](#list-the-monitored-media-servers-for-this-organization)
+    + [policies](#policies)
+      - [List Organization-Wide Policy Firewall Rules](#list-organization-wide-policy-firewall-rules)
+      - [Create an Organization-Wide Policy Firewall Rule](#create-an-organization-wide-policy-firewall-rule)
+      - [Update an Organization-Wide Policy Firewall Rule](#update-an-organization-wide-policy-firewall-rule)
+    + [sm](#sm)
+      - [List the Limited Access Roles for an organization](#list-the-limited-access-roles-for-an-organization)
+    + [splash](#splash)
+      - [List Splash Themes](#list-splash-themes)
+    + [wireless](#wireless-1)
+      - [Returns the current Air Marshal settings for this network](#returns-the-current-air-marshal-settings-for-this-network)
+      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
+      - [List the L2 isolation allow list MAC entry in an organization](#list-the-l2-isolation-allow-list-mac-entry-in-an-organization)
+      - [Returns the SSID profiles for an organization](#returns-the-ssid-profiles-for-an-organization)
+      - [Create a new SSID profile in an organization](#create-a-new-ssid-profile-in-an-organization)
+      - [List the SSID profile assignments in an organization](#list-the-ssid-profile-assignments-in-an-organization)
+      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization)
+      - [Update this SSID profile](#update-this-ssid-profile)
+      - [Return list of Zigbee configs](#return-list-of-zigbee-configs)
+      - [List the Zigbee wireless devices for an organization or the supplied network(s)](#list-the-zigbee-wireless-devices-for-an-organization-or-the-supplied-networks)
+      - [Return the list of door locks for a network](#return-the-list-of-door-locks-for-a-network)
+  * [\[ wireless \]](#-wireless-)
+    + [electronicShelfLabel](#electronicshelflabel)
+      - [Return the ESL settings of a wireless network](#return-the-esl-settings-of-a-wireless-network)
+ 
+Version **v1.75.0-beta.0** _to_ **v1.75.0-beta.1**
+
+* * *
+
+**Summary of Changes**
+
+**5 - New**
+
+**36 - Updated**
+
+**855 - Total Endpoints**
+
+**581 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ appliance \]
+--------------
+
+### security
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-security-https-inspection/)
+
+#### Update HTTPS inspection configuration for a network.
+
+Operation ID: `updateNetworkApplianceSecurityHttpsInspection`
+
+PATH _`/networks/{networkId}/appliance/security/httpsInspection`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/networks/{networkId}/appliance/security/httpsInspection`  
+> 
+> * * *
+
+* * *
+
+\[ devices \]
+--------------
+
+### liveTools
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-live-tools-route-detail/)
+
+#### Enqueue a live tool job to fetch route details from a device.
+
+Operation ID: `createDeviceLiveToolsRouteDetail`
+
+PATH _`/devices/{serial}/liveTools/route/details`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/devices/{serial}/liveTools/route/details`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-route-detail/)
+
+#### Return a route details live tool job for a device.
+
+Operation ID: `getDeviceLiveToolsRouteDetail`
+
+PATH _`/devices/{serial}/liveTools/route/details/{jobId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/devices/{serial}/liveTools/route/details/{jobId}`  
+> 
+> * * *
+
+* * *
+
+\[ organizations \]
+--------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-security-https-inspection-by-network/)
+
+#### List HTTPS inspection status and configuration for appliances in the organization.
+
+Operation ID: `getOrganizationApplianceSecurityHttpsInspectionByNetwork`
+
+PATH _`/organizations/{organizationId}/appliance/security/httpsInspection/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/security/httpsInspection/byNetwork`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-site-to-site-vpn-performance-by-tunnel-by-interval/)
+
+#### Returns Site-to-site VPN stats (loss, latency, jitter, MOS) for all VPN connections in an organization
+
+Operation ID: `getOrganizationApplianceVpnSiteToSiteVpnPerformanceByTunnelByInterval`
+
+PATH _`/organizations/{organizationId}/appliance/vpn/siteToSiteVpn/performance/byTunnel/byInterval`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/appliance/vpn/siteToSiteVpn/performance/byTunnel/byInterval`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ appliance \]
+------------
+
+### interfaces
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l3/)
+
+#### Create wired L3 interface
+
+Operation ID: `createNetworkApplianceInterfacesL3`
+
+POST _`/networks/{networkId}/appliance/interfaces/l3`_
+
+> \- added the new optional request property 'name'
+
+> \- added the optional property 'name' to the response with the '201' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l3/)
+
+#### Update wired L3 interface
+
+Operation ID: `updateNetworkApplianceInterfacesL3`
+
+PUT _`/networks/{networkId}/appliance/interfaces/l3/{interfaceId}`_
+
+> \- added the new optional request property 'name'
+
+> \- added the optional property 'name' to the response with the '200' status
+
+* * *
+
+\[ devices \]
+------------
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-device-appliance-interfaces-ports-update/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `createDeviceApplianceInterfacesPortsUpdate`
+
+POST _`/devices/{serial}/appliance/interfaces/ports/update`_
+
+> \- added the new optional request property 'downlink/l3Subtype'
+
+> \- added the new optional request property 'downlink/vlan'
+
+> \- added the optional property 'downlink/l3Subtype' to the response with the '200' status
+
+> \- added the optional property 'downlink/vlan' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-appliance-interfaces-port/)
+
+#### Update configurations for an appliance's specified port
+
+Operation ID: `updateDeviceApplianceInterfacesPort`
+
+PUT _`/devices/{serial}/appliance/interfaces/ports/{number}`_
+
+> \- added the new optional request property 'downlink/l3Subtype'
+
+> \- added the new optional request property 'downlink/vlan'
+
+> \- added the optional property 'downlink/l3Subtype' to the response with the '200' status
+
+> \- added the optional property 'downlink/vlan' to the response with the '200' status
+
+* * *
+
+### cellular
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-cellular-sims/)
+
+#### Return the SIM and APN configurations for a cellular device.
+
+Operation ID: `getDeviceCellularSims`
+
+GET _`/devices/{serial}/cellular/sims`_
+
+> \- removed the optional property 'sims/items/apns/items/ip' from the response with the '200' status
+
+> \- added the optional property 'sims/items/ips' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-cellular-sims/)
+
+#### Updates the SIM and APN configurations for a cellular device.
+
+Operation ID: `updateDeviceCellularSims`
+
+PUT _`/devices/{serial}/cellular/sims`_
+
+> \- removed the request property 'sims/items/apns/items/ip'
+
+> \- removed the optional property 'sims/items/apns/items/ip' from the response with the '200' status
+
+> \- added the optional property 'sims/items/ips' to the response with the '200' status
+
+* * *
+
+### liveTools
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-device-live-tools-arp-table/)
+
+#### Return an ARP table live tool job.
+
+Operation ID: `getDeviceLiveToolsArpTable`
+
+GET _`/devices/{serial}/liveTools/arpTable/{arpTableId}`_
+
+> \- removed the optional property 'entries/items/vrfName' from the response with the '200' status
+
+> \- added the optional property 'entries/items/vrf' to the response with the '200' status
+
+* * *
+
+\[ organizations \]
+------------
+
+### apiRequests
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-api-requests/)
+
+#### List the API requests made by an organization
+
+Operation ID: `getOrganizationApiRequests`
+
+GET _`/organizations/{organizationId}/apiRequests`_
+
+> \- the response property '/items/adminId' became nullable for the status '200'
+
+* * *
+
+### appliance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-l3/)
+
+#### List L3 interfaces across networks for the organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesL3`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/l3`_
+
+> \- added the optional property 'items/items/name' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-ports-by-device/)
+
+#### Returns port configurations for appliances in a given organization
+
+Operation ID: `getOrganizationApplianceDevicesInterfacesPortsByDevice`
+
+GET _`/organizations/{organizationId}/appliance/devices/interfaces/ports/byDevice`_
+
+> \- added the optional property 'items/items/ports/items/downlink/l3Subtype' to the response with the '200' status
+
+> \- added the optional property 'items/items/ports/items/downlink/vlan' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/httpsi-organization-appliance-security/)
+
+#### Retrieve the HTTPS Inspection state for all security appliances in an organization.
+
+Operation ID: `httpsiOrganizationApplianceSecurity`
+
+GET _`/organizations/{organizationId}/appliance/security/httpsi`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/certificates-organization-appliance-security-httpsi/)
+
+#### Upload an HTTPS Inspection certificate to MX devices in the same organization
+
+Operation ID: `certificatesOrganizationApplianceSecurityHttpsi`
+
+POST _`/organizations/{organizationId}/appliance/security/httpsi/certificates`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-uplinks-nat-by-network/)
+
+#### Fetch uplink NAT settings of each network in the organization
+
+Operation ID: `getOrganizationApplianceUplinksNatByNetwork`
+
+GET _`/organizations/{organizationId}/appliance/uplinks/nat/byNetwork`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-site-to-site-ipsec-peers-slas/)
+
+#### Get the list of available IPsec SLA policies for an organization
+
+Operation ID: `getOrganizationApplianceVpnSiteToSiteIpsecPeersSlas`
+
+GET _`/organizations/{organizationId}/appliance/vpn/siteToSite/ipsec/peers/slas`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-vpn-third-party-vpn-peers/)
+
+#### Return the third party VPN peers for an organization
+
+Operation ID: `getOrganizationApplianceVpnThirdPartyVPNPeers`
+
+GET _`/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers`_
+
+> \- added the optional property 'peers/items/ebgpNeighbor/vrf' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-appliance-vpn-third-party-vpn-peers/)
+
+#### Update the third party VPN peers for an organization
+
+Operation ID: `updateOrganizationApplianceVpnThirdPartyVPNPeers`
+
+PUT _`/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers`_
+
+> \- added the new optional request property 'peers/items/ebgpNeighbor/vrf'
+
+> \- added the optional property 'peers/items/ebgpNeighbor/vrf' to the response with the '200' status
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-profiles/)
+
+#### List cellular data management profiles in this organization
+
+Operation ID: `getOrganizationDevicesCellularDataProfiles`
+
+GET _`/organizations/{organizationId}/devices/cellular/data/profiles`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-cellular-data-profiles-assignments/)
+
+#### List Cellular Data Management Profile assignments in this organization
+
+Operation ID: `getOrganizationDevicesCellularDataProfilesAssignments`
+
+GET _`/organizations/{organizationId}/devices/cellular/data/profiles/assignments`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+### insight
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-insight-monitored-media-servers/)
+
+#### List the monitored media servers for this organization
+
+Operation ID: `getOrganizationInsightMonitoredMediaServers`
+
+GET _`/organizations/{organizationId}/insight/monitoredMediaServers`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+### policies
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-policies-global-firewall-rulesets-rules/)
+
+#### List Organization-Wide Policy Firewall Rules
+
+Operation ID: `getOrganizationPoliciesGlobalFirewallRulesetsRules`
+
+GET _`/organizations/{organizationId}/policies/global/firewall/rulesets/rules`_
+
+> \- added the optional property 'items/items/logging' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-policies-global-firewall-rulesets-rule/)
+
+#### Create an Organization-Wide Policy Firewall Rule
+
+Operation ID: `createOrganizationPoliciesGlobalFirewallRulesetsRule`
+
+POST _`/organizations/{organizationId}/policies/global/firewall/rulesets/rules`_
+
+> \- added the new optional request property 'logging'
+
+> \- added the optional property 'logging' to the response with the '201' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-policies-global-firewall-rulesets-rule/)
+
+#### Update an Organization-Wide Policy Firewall Rule
+
+Operation ID: `updateOrganizationPoliciesGlobalFirewallRulesetsRule`
+
+PUT _`/organizations/{organizationId}/policies/global/firewall/rulesets/rules/{ruleId}`_
+
+> \- added the new optional request property 'logging'
+
+> \- added the optional property 'logging' to the response with the '200' status
+
+* * *
+
+### sm
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-sm-admins-roles/)
+
+#### List the Limited Access Roles for an organization
+
+Operation ID: `getOrganizationSmAdminsRoles`
+
+GET _`/organizations/{organizationId}/sm/admins/roles`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+### splash
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-splash-themes/)
+
+#### List Splash Themes
+
+Operation ID: `getOrganizationSplashThemes`
+
+GET _`/organizations/{organizationId}/splash/themes`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-air-marshal-settings-by-network/)
+
+#### Returns the current Air Marshal settings for this network
+
+Operation ID: `getOrganizationWirelessAirMarshalSettingsByNetwork`
+
+GET _`/organizations/{organizationId}/wireless/airMarshal/settings/byNetwork`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-radio-rrm-by-network/)
+
+#### List the AutoRF settings of an organization by network
+
+Operation ID: `getOrganizationWirelessRadioRrmByNetwork`
+
+GET _`/organizations/{organizationId}/wireless/radio/rrm/byNetwork`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-firewall-isolation-allowlist-entries/)
+
+#### List the L2 isolation allow list MAC entry in an organization
+
+Operation ID: `getOrganizationWirelessSsidsFirewallIsolationAllowlistEntries`
+
+GET _`/organizations/{organizationId}/wireless/ssids/firewall/isolation/allowlist/entries`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles/)
+
+#### Returns the SSID profiles for an organization
+
+Operation ID: `getOrganizationWirelessSsidsProfiles`
+
+GET _`/organizations/{organizationId}/wireless/ssids/profiles`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+> \- removed the 'afp' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'airplay' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'apple_screen_share' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'bittorrent' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ftp' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'google_chromecast' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ichat' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'itunes' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'printers' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'samba' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'scanner' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'spotify' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ssh' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-wireless-ssids-profile/)
+
+#### Create a new SSID profile in an organization
+
+Operation ID: `createOrganizationWirelessSsidsProfile`
+
+POST _`/organizations/{organizationId}/wireless/ssids/profiles`_
+
+> \- removed the enum value 'afp' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'airplay' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'apple_screen_share' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'bittorrent' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'ftp' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'google_chromecast' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'ichat' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'itunes' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'printers' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'samba' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'scanner' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'spotify' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'ssh' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the 'afp' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'airplay' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'apple_screen_share' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'bittorrent' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ftp' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'google_chromecast' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ichat' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'itunes' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'printers' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'samba' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'scanner' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'spotify' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ssh' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles-assignments/)
+
+#### List the SSID profile assignments in an organization
+
+Operation ID: `getOrganizationWirelessSsidsProfilesAssignments`
+
+GET _`/organizations/{organizationId}/wireless/ssids/profiles/assignments`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-ssids-profiles-overviews/)
+
+#### Returns the SSID profiles' overview information for an organization
+
+Operation ID: `getOrganizationWirelessSsidsProfilesOverviews`
+
+GET _`/organizations/{organizationId}/wireless/ssids/profiles/overviews`_
+
+> \- removed the 'afp' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'airplay' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'apple_screen_share' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'bittorrent' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ftp' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'google_chromecast' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ichat' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'itunes' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'printers' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'samba' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'scanner' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'spotify' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ssh' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-wireless-ssids-profile/)
+
+#### Update this SSID profile
+
+Operation ID: `updateOrganizationWirelessSsidsProfile`
+
+PUT _`/organizations/{organizationId}/wireless/ssids/profiles/{id}`_
+
+> \- removed the enum value 'afp' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'airplay' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'apple_screen_share' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'bittorrent' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'ftp' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'google_chromecast' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'ichat' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'itunes' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'printers' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'samba' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'scanner' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'spotify' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the enum value 'ssh' of the request property 'ssid/addressing/mdns/rules/items/services/items/'
+
+> \- removed the 'afp' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'airplay' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'apple_screen_share' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'bittorrent' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ftp' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'google_chromecast' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ichat' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'itunes' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'printers' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'samba' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'scanner' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'spotify' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+> \- removed the 'ssh' enum value from the 'ssid/addressing/mdns/rules/items/services/items/' response property for the response status '200'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-zigbee-by-network/)
+
+#### Return list of Zigbee configs
+
+Operation ID: `getOrganizationWirelessZigbeeByNetwork`
+
+GET _`/organizations/{organizationId}/wireless/zigbee/byNetwork`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-zigbee-devices/)
+
+#### List the Zigbee wireless devices for an organization or the supplied network(s)
+
+Operation ID: `getOrganizationWirelessZigbeeDevices`
+
+GET _`/organizations/{organizationId}/wireless/zigbee/devices`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-zigbee-door-locks/)
+
+#### Return the list of door locks for a network
+
+Operation ID: `getOrganizationWirelessZigbeeDoorLocks`
+
+GET _`/organizations/{organizationId}/wireless/zigbee/doorLocks`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+\[ wireless \]
+------------
+
+### electronicShelfLabel
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-network-wireless-electronic-shelf-label/)
+
+#### Return the ESL settings of a wireless network
+
+Operation ID: `getNetworkWirelessElectronicShelfLabel`
+
+GET _`/networks/{networkId}/wireless/electronicShelfLabel`_
+
+> \- the endpoint scheme security 'oauth2' was added to the API
+
+* * *
+
+
+---
+
+## v1.75.0-beta.0
+
+- [Added](#added-2)
+  * [\[ organizations \]](#-organizations-)
     + [campusGateway](#campusgateway)
+      - [Return the latest CPU load averages reported by Campus Gateway devices.](#return-the-latest-cpu-load-averages-reported-by-campus-gateway-devices)
+    + [summary](#summary)
+      - [Lists daily consumer metrics for networks.](#lists-daily-consumer-metrics-for-networks)
+      - [Lists available device categories for sustainability metrics with their corresponding device types.](#lists-available-device-categories-for-sustainability-metrics-with-their-corresponding-device-types)
+      - [Lists summary consumer metrics aggregated by device category.](#lists-summary-consumer-metrics-aggregated-by-device-category)
+      - [Lists summary consumer metrics for devices.](#lists-summary-consumer-metrics-for-devices)
+      - [Lists summary consumer metrics for networks.](#lists-summary-consumer-metrics-for-networks)
+      - [Returns aggregated consumer metrics for all networks in the organization](#returns-aggregated-consumer-metrics-for-all-networks-in-the-organization)
+    + [switch](#switch-1)
+      - [Create a device-scoped software update batch for up to 50 selected Cloud Monitoring for Catalyst switches](#create-a-device-scoped-software-update-batch-for-up-to-50-selected-cloud-monitoring-for-catalyst-switches)
+      - [Cancel pending device-scoped software updates within one or more batches before execution begins](#cancel-pending-device-scoped-software-updates-within-one-or-more-batches-before-execution-begins)
+      - [List software update statuses for Cloud Monitoring for Catalyst switches in one paginated device table](#list-software-update-statuses-for-cloud-monitoring-for-catalyst-switches-in-one-paginated-device-table)
+      - [Returns a paginated list of accessible Cloud Monitoring for Catalyst switches and the complete list of destination software versions for each switch](#returns-a-paginated-list-of-accessible-cloud-monitoring-for-catalyst-switches-and-the-complete-list-of-destination-software-versions-for-each-switch)
+    + [wireless](#wireless-2)
+      - [List the IoT role for each device in an organization](#list-the-iot-role-for-each-device-in-an-organization)
+      - [List the IoT role configurations for networks in an organization](#list-the-iot-role-configurations-for-networks-in-an-organization)
+      - [Retrieve a list of asset tracking settings per floor plan.](#retrieve-a-list-of-asset-tracking-settings-per-floor-plan)
+      - [Retrieve a list of asset tracking groups used in asset tracking.](#retrieve-a-list-of-asset-tracking-groups-used-in-asset-tracking)
+      - [Retrieve a list of ranging jobs that measure the distances between APs by performing ranging operations.](#retrieve-a-list-of-ranging-jobs-that-measure-the-distances-between-aps-by-performing-ranging-operations)
+      - [List the ranging measurements](#list-the-ranging-measurements)
+  * [\[ wireless \]](#-wireless-)
+    + [devices](#devices-1)
+      - [Batch update IoT roles for a list of devices in a network](#batch-update-iot-roles-for-a-list-of-devices-in-a-network)
+    + [iot](#iot)
+      - [Update the IoT roles for a wireless network](#update-the-iot-roles-for-a-wireless-network)
+    + [location](#location)
+      - [Update asset tracking settings for a specific floor plan.](#update-asset-tracking-settings-for-a-specific-floor-plan)
+      - [Delete all the asset tracking groups for a floor plan in a network](#delete-all-the-asset-tracking-groups-for-a-floor-plan-in-a-network)
+      - [Create asset tracking groups for a floor plan in a network](#create-asset-tracking-groups-for-a-floor-plan-in-a-network)
+      - [Schedule ranging jobs for one or more floor plans in a network](#schedule-ranging-jobs-for-one-or-more-floor-plans-in-a-network)
+- [Changed](#changed-2)
+  * [\[ devices \]](#-devices-)
+    + [switch](#switch-2)
+      - [Update a layer 3 interface DHCP configuration for a switch](#update-a-layer-3-interface-dhcp-configuration-for-a-switch)
+  * [\[ organizations \]](#-organizations--1)
+    + [admins](#admins)
+      - [Create a new dashboard administrator](#create-a-new-dashboard-administrator)
+      - [Update an administrator](#update-an-administrator)
+    + [assurance](#assurance-1)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network)
+    + [campusGateway](#campusgateway-1)
+      - [List the details of APs tunneling through the Campus Gateway clusters](#list-the-details-of-aps-tunneling-through-the-campus-gateway-clusters)
+      - [List the count of connections(APs) with tunneling status up and down through the Campus Gateway clusters](#list-the-count-of-connectionsaps-with-tunneling-status-up-and-down-through-the-campus-gateway-clusters)
+    + [devices](#devices-2)
+      - [List layer 2 topology links originating from devices in an organization.](#list-layer-2-topology-links-originating-from-devices-in-an-organization)
+    + [mcf](#mcf-2)
+      - [Returns organization connection, VPC, Site, and region counts derived from Zero Trust Routing and tunnel health.](#returns-organization-connection-vpc-site-and-region-counts-derived-from-zero-trust-routing-and-tunnel-health)
+    + [nac](#nac-1)
+      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization)
+      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization)
+      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization)
+    + [switch](#switch-3)
+      - [List the BGP peer groups configured in the given organization](#list-the-bgp-peer-groups-configured-in-the-given-organization)
+      - [List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges](#list-all-bgp-deployment-information-for-multiple-peer-groups-or-address-families-configured-in-the-given-organization-including-profile-information-peer-group-address-family-information-neighbors-and-listen-ranges-1)
+      - [Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group](#create-or-update-a-peer-group-in-addition-to-an-associated-peer-group-profile-peer-group-address-family-binding-peer-group-address-family-binding-profile-and-routing-policies-associated-with-the-peer-group)
+      - [List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies](#list-all-bgp-deployment-information-for-peer-groups-configured-in-the-given-organization-including-peer-group-address-family-information-as-well-as-routing-policies)
+      - [Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor](#create-or-update-a-neighor-in-addition-to-an-associated-neighbor-address-family-binding-and-routing-policies-associated-with-the-neighbor)
+      - [List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies](#list-all-bgp-deployment-information-for-neighbors-configured-in-the-given-organization-including-address-family-information-as-well-as-routing-policies)
+      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile)
+      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families)
+  * [\[ switch \]](#-switch-)
+    + [stacks](#stacks)
+      - [Update a layer 3 interface DHCP configuration for a switch stack](#update-a-layer-3-interface-dhcp-configuration-for-a-switch-stack)
+  * [\[ wireless \]](#-wireless--1)
+    + [electronicShelfLabel](#electronicshelflabel-1)
+      - [Update the ESL settings of a wireless network](#update-the-esl-settings-of-a-wireless-network)
+    + [ethernet](#ethernet)
+      - [Create an AP port profile](#create-an-ap-port-profile)
+      - [Update the AP port profile by ID for this network](#update-the-ap-port-profile-by-id-for-this-network)
+ 
+Version **v1.74.0-beta.4** _to_ **v1.75.0-beta.0**
+
+* * *
+
+**Summary of Changes**
+
+**23 - New**
+
+**26 - Updated**
+
+**873 - Total Endpoints**
+
+**593 - Total Paths**
+
+* * *
+
+* * *
+
+Added
+=====
+
+\[ organizations \]
+--------------
+
+### campusGateway
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-devices-system-cpu-load/)
+
+#### Return the latest CPU load averages reported by Campus Gateway devices.
+
+Operation ID: `getOrganizationCampusGatewayDevicesSystemCpuLoad`
+
+PATH _`/organizations/{organizationId}/campusGateway/devices/system/cpu/load`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/campusGateway/devices/system/cpu/load`  
+> 
+> * * *
+
+* * *
+
+### summary
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-summary-sustainability-daily-consumer-metrics-networks/)
+
+#### Lists daily consumer metrics for networks.
+
+Operation ID: `getOrganizationSummarySustainabilityDailyConsumerMetricsNetworks`
+
+PATH _`/organizations/{organizationId}/summary/sustainability/dailyConsumerMetrics/networks`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/summary/sustainability/dailyConsumerMetrics/networks`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-summary-sustainability-summary-consumer-metrics-device-categories/)
+
+#### Lists available device categories for sustainability metrics with their corresponding device types.
+
+Operation ID: `getOrganizationSummarySustainabilitySummaryConsumerMetricsDeviceCategories`
+
+PATH _`/organizations/{organizationId}/summary/sustainability/summaryConsumerMetrics/deviceCategories`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/summary/sustainability/summaryConsumerMetrics/deviceCategories`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-summary-sustainability-summary-consumer-metrics-device-categories-aggregated/)
+
+#### Lists summary consumer metrics aggregated by device category.
+
+Operation ID: `getOrganizationSummarySustainabilitySummaryConsumerMetricsDeviceCategoriesAggregated`
+
+PATH _`/organizations/{organizationId}/summary/sustainability/summaryConsumerMetrics/deviceCategories/aggregated`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/summary/sustainability/summaryConsumerMetrics/deviceCategories/aggregated`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-summary-sustainability-summary-consumer-metrics-devices/)
+
+#### Lists summary consumer metrics for devices.
+
+Operation ID: `getOrganizationSummarySustainabilitySummaryConsumerMetricsDevices`
+
+PATH _`/organizations/{organizationId}/summary/sustainability/summaryConsumerMetrics/devices`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/summary/sustainability/summaryConsumerMetrics/devices`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-summary-sustainability-summary-consumer-metrics-networks/)
+
+#### Lists summary consumer metrics for networks.
+
+Operation ID: `getOrganizationSummarySustainabilitySummaryConsumerMetricsNetworks`
+
+PATH _`/organizations/{organizationId}/summary/sustainability/summaryConsumerMetrics/networks`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/summary/sustainability/summaryConsumerMetrics/networks`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-summary-sustainability-summary-consumer-metrics-networks-aggregated/)
+
+#### Returns aggregated consumer metrics for all networks in the organization
+
+Operation ID: `getOrganizationSummarySustainabilitySummaryConsumerMetricsNetworksAggregated`
+
+PATH _`/organizations/{organizationId}/summary/sustainability/summaryConsumerMetrics/networks/aggregated`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/summary/sustainability/summaryConsumerMetrics/networks/aggregated`  
+> 
+> * * *
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-devices-software-update-batch/)
+
+#### Create a device-scoped software update batch for up to 50 selected Cloud Monitoring for Catalyst switches
+
+Operation ID: `createOrganizationSwitchDevicesSoftwareUpdateBatch`
+
+PATH _`/organizations/{organizationId}/switch/devices/software/updates/batches`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/switch/devices/software/updates/batches`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/cancel-organization-switch-devices-software-update-batches/)
+
+#### Cancel pending device-scoped software updates within one or more batches before execution begins
+
+Operation ID: `cancelOrganizationSwitchDevicesSoftwareUpdateBatches`
+
+PATH _`/organizations/{organizationId}/switch/devices/software/updates/batches/cancel`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/organizations/{organizationId}/switch/devices/software/updates/batches/cancel`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-devices-software-update-statuses-by-device/)
+
+#### List software update statuses for Cloud Monitoring for Catalyst switches in one paginated device table
+
+Operation ID: `getOrganizationSwitchDevicesSoftwareUpdateStatusesByDevice`
+
+PATH _`/organizations/{organizationId}/switch/devices/software/updates/statuses/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/switch/devices/software/updates/statuses/byDevice`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-devices-software-versions-targets-by-device/)
+
+#### Returns a paginated list of accessible Cloud Monitoring for Catalyst switches and the complete list of destination software versions for each switch
+
+Operation ID: `getOrganizationSwitchDevicesSoftwareVersionsTargetsByDevice`
+
+PATH _`/organizations/{organizationId}/switch/devices/software/versions/targets/byDevice`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/switch/devices/software/versions/targets/byDevice`  
+> 
+> * * *
+
+* * *
+
+### wireless
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-devices-iot-roles/)
+
+#### List the IoT role for each device in an organization
+
+Operation ID: `getOrganizationWirelessDevicesIotRoles`
+
+PATH _`/organizations/{organizationId}/wireless/devices/iot/roles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/devices/iot/roles`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-iot-roles-by-network/)
+
+#### List the IoT role configurations for networks in an organization
+
+Operation ID: `getOrganizationWirelessIotRolesByNetwork`
+
+PATH _`/organizations/{organizationId}/wireless/iot/roles/byNetwork`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/iot/roles/byNetwork`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-location-asset-tracking-floor-plans/)
+
+#### Retrieve a list of asset tracking settings per floor plan.
+
+Operation ID: `getOrganizationWirelessLocationAssetTrackingFloorPlans`
+
+PATH _`/organizations/{organizationId}/wireless/location/assetTracking/floorPlans`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/location/assetTracking/floorPlans`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-location-asset-tracking-groups/)
+
+#### Retrieve a list of asset tracking groups used in asset tracking.
+
+Operation ID: `getOrganizationWirelessLocationAssetTrackingGroups`
+
+PATH _`/organizations/{organizationId}/wireless/location/assetTracking/groups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/location/assetTracking/groups`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-location-ranging-jobs/)
+
+#### Retrieve a list of ranging jobs that measure the distances between APs by performing ranging operations.
+
+Operation ID: `getOrganizationWirelessLocationRangingJobs`
+
+PATH _`/organizations/{organizationId}/wireless/location/ranging/jobs`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/location/ranging/jobs`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-wireless-location-ranging-measurements/)
+
+#### List the ranging measurements
+
+Operation ID: `getOrganizationWirelessLocationRangingMeasurements`
+
+PATH _`/organizations/{organizationId}/wireless/location/ranging/measurements`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **GET** `/organizations/{organizationId}/wireless/location/ranging/measurements`  
+> 
+> * * *
+
+* * *
+
+\[ wireless \]
+--------------
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/batch-network-wireless-devices-iot-roles-update/)
+
+#### Batch update IoT roles for a list of devices in a network
+
+Operation ID: `batchNetworkWirelessDevicesIotRolesUpdate`
+
+PATH _`/networks/{networkId}/wireless/devices/iot/roles/batchUpdate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/networks/{networkId}/wireless/devices/iot/roles/batchUpdate`  
+> 
+> * * *
+
+* * *
+
+### iot
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-iot-roles/)
+
+#### Update the IoT roles for a wireless network
+
+Operation ID: `updateNetworkWirelessIotRoles`
+
+PATH _`/networks/{networkId}/wireless/iot/roles`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/networks/{networkId}/wireless/iot/roles`  
+> 
+> * * *
+
+* * *
+
+### location
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-location-asset-tracking-floor-plan/)
+
+#### Update asset tracking settings for a specific floor plan.
+
+Operation ID: `updateNetworkWirelessLocationAssetTrackingFloorPlan`
+
+PATH _`/networks/{networkId}/wireless/location/assetTracking/floorPlans/{floorPlanId}`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **PUT** `/networks/{networkId}/wireless/location/assetTracking/floorPlans/{floorPlanId}`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-network-wireless-location-asset-tracking-floor-plan-groups/)
+
+#### Delete all the asset tracking groups for a floor plan in a network
+
+Operation ID: `deleteNetworkWirelessLocationAssetTrackingFloorPlanGroups`
+
+PATH _`/networks/{networkId}/wireless/location/assetTracking/floorPlans/{floorPlanId}/groups`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **DELETE** `/networks/{networkId}/wireless/location/assetTracking/floorPlans/{floorPlanId}/groups`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-location-asset-tracking-floor-plan-groups-batch-create/)
+
+#### Create asset tracking groups for a floor plan in a network
+
+Operation ID: `createNetworkWirelessLocationAssetTrackingFloorPlanGroupsBatchCreate`
+
+PATH _`/networks/{networkId}/wireless/location/assetTracking/floorPlans/{floorPlanId}/groups/batchCreate`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/networks/{networkId}/wireless/location/assetTracking/floorPlans/{floorPlanId}/groups/batchCreate`  
+> 
+> * * *
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-location-ranging-jobs-batch/)
+
+#### Schedule ranging jobs for one or more floor plans in a network
+
+Operation ID: `createNetworkWirelessLocationRangingJobsBatch`
+
+PATH _`/networks/{networkId}/wireless/location/ranging/jobs/batch`_
+
+> \- Path added  
+>   
+> \- New endpoint
+> 
+> **POST** `/networks/{networkId}/wireless/location/ranging/jobs/batch`  
+> 
+> * * *
+
+* * *
+
+Changed
+=======
+
+\[ devices \]
+------------
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-device-switch-routing-interface-dhcp/)
+
+#### Update a layer 3 interface DHCP configuration for a switch
+
+Operation ID: `updateDeviceSwitchRoutingInterfaceDhcp`
+
+PUT _`/devices/{serial}/switch/routing/interfaces/{interfaceId}/dhcp`_
+
+> \- the request property 'dhcpDomainName' became nullable
+
+* * *
+
+\[ organizations \]
+------------
+
+### admins
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-admin/)
+
+#### Create a new dashboard administrator
+
+Operation ID: `createOrganizationAdmin`
+
+POST _`/organizations/{organizationId}/admins`_
+
+> \- added the new optional request property 'networks/items/packetCaptureAllowed'
+
+> \- added the new optional request property 'networks/items/switchPortTags'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-admin/)
+
+#### Update an administrator
+
+Operation ID: `updateOrganizationAdmin`
+
+PUT _`/organizations/{organizationId}/admins/{adminId}`_
+
+> \- added the new optional request property 'networks/items/packetCaptureAllowed'
+
+> \- added the new optional request property 'networks/items/switchPortTags'
+
+* * *
+
+### assurance
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-channel-availability-insights-by-network/)
+
+#### Provides insights into wireless capacity experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceChannelAvailabilityInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/channelAvailability/insights/byNetwork`_
+
+> \- added the new enum value 'rca_v2' to the 'query' request parameter 'insights'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-coverage-insights-by-network/)
+
+#### Provides insights into wireless coverage experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceCoverageInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/coverage/insights/byNetwork`_
+
+> \- added the new enum value 'rca_v2' to the 'query' request parameter 'insights'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-insights-by-network/)
+
+#### Provides insights into wireless successful connects experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceSuccessfulConnectsInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/successfulConnects/insights/byNetwork`_
+
+> \- added the new enum value 'rca_v2' to the 'query' request parameter 'insights'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-time-to-connect-insights-by-network/)
+
+#### Provides insights into wireless time to connect experience by network.
+
+Operation ID: `getOrganizationAssuranceWirelessExperienceTimeToConnectInsightsByNetwork`
+
+GET _`/organizations/{organizationId}/assurance/wireless/experience/timeToConnect/insights/byNetwork`_
+
+> \- added the new enum value 'rca_v2' to the 'query' request parameter 'insights'
+
+* * *
+
+### campusGateway
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-connections/)
+
+#### List the details of APs tunneling through the Campus Gateway clusters
+
+Operation ID: `getOrganizationCampusGatewayConnections`
+
+GET _`/organizations/{organizationId}/campusGateway/connections`_
+
+> \- added the new optional 'query' request parameter 'campusGatewayPriorities'
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-campus-gateway-connections-overview/)
+
+#### List the count of connections(APs) with tunneling status up and down through the Campus Gateway clusters
+
+Operation ID: `getOrganizationCampusGatewayConnectionsOverview`
+
+GET _`/organizations/{organizationId}/campusGateway/connections/overview`_
+
+> \- added the new optional 'query' request parameter 'campusGatewayPriorities'
+
+* * *
+
+### devices
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-topology-l2-links/)
+
+#### List layer 2 topology links originating from devices in an organization.
+
+Operation ID: `getOrganizationDevicesTopologyL2Links`
+
+GET _`/organizations/{organizationId}/devices/topology/l2/links`_
+
+> \- added the optional property 'items/items/isStpDisabled' to the response with the '200' status
+
+* * *
+
+### mcf
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-summary/)
+
+#### Returns organization connection, VPC, Site, and region counts derived from Zero Trust Routing and tunnel health.
+
+Operation ID: `getSummary`
+
+GET _`/organizations/{organizationId}/mcf/summary`_
+
+> \- removed the optional property 'regions/unknown' from the response with the '200' status
+
+> \- removed the optional property 'sites/unknown' from the response with the '200' status
+
+> \- removed the optional property 'vpcs/unknown' from the response with the '200' status
+
+* * *
+
+### nac
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-nac-authorization-policies/)
+
+#### Get all nac authorization policies for this organization
+
+Operation ID: `getOrganizationNacAuthorizationPolicies`
+
+GET _`/organizations/{organizationId}/nac/authorization/policies`_
+
+> \- removed the optional property '/items/counts' from the response with the '200' status
+
+> \- removed the optional property '/items/rules/items/counts' from the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-nac-authorization-policy-rule/)
+
+#### Create a rule in an authorization policy set of an organization
+
+Operation ID: `createOrganizationNacAuthorizationPolicyRule`
+
+POST _`/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules`_
+
+> \- removed the optional property 'counts' from the response with the '201' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-organization-nac-authorization-policy-rule/)
+
+#### Update an existing rule of an authorization policy set within an organization
+
+Operation ID: `updateOrganizationNacAuthorizationPolicyRule`
+
+PUT _`/organizations/{organizationId}/nac/authorization/policies/{policyId}/rules/{ruleId}`_
+
+> \- removed the optional property 'counts' from the response with the '200' status
+
+* * *
+
+### switch
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-groups/)
+
+#### List the BGP peer groups configured in the given organization
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersGroups`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/groups`_
+
+> \- removed the optional property 'items/items/profile' from the response with the '200' status
+
+> \- added the optional property 'items/items/authentication' to the response with the '200' status
+
+> \- added the optional property 'items/items/autonomousSystem' to the response with the '200' status
+
+> \- added the optional property 'items/items/description' to the response with the '200' status
+
+> \- added the optional property 'items/items/ebgp' to the response with the '200' status
+
+> \- added the optional property 'items/items/interfaces' to the response with the '200' status
+
+> \- added the optional property 'items/items/timers' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-groups-address-families-deployments/)
+
+#### List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersGroupsAddressFamiliesDeployments`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/addressFamilies/deployments`_
+
+> \- removed the optional property 'items/items/peerGroup' from the response with the '200' status
+
+> \- removed the optional property 'items/items/peerGroupAddressFamilyBinding' from the response with the '200' status
+
+> \- removed the optional property 'items/items/peerGroupAddressFamilyBindingProfile' from the response with the '200' status
+
+> \- removed the optional property 'items/items/peerGroupProfile' from the response with the '200' status
+
+> \- added the optional property 'items/items/advertisement' to the response with the '200' status
+
+> \- added the optional property 'items/items/authentication' to the response with the '200' status
+
+> \- added the optional property 'items/items/autonomousSystem' to the response with the '200' status
+
+> \- added the optional property 'items/items/communityAttribute' to the response with the '200' status
+
+> \- added the optional property 'items/items/description' to the response with the '200' status
+
+> \- added the optional property 'items/items/ebgp' to the response with the '200' status
+
+> \- added the optional property 'items/items/interfaces' to the response with the '200' status
+
+> \- added the optional property 'items/items/name' to the response with the '200' status
+
+> \- added the optional property 'items/items/nextHop' to the response with the '200' status
+
+> \- added the optional property 'items/items/peerGroupId' to the response with the '200' status
+
+> \- added the optional property 'items/items/removePrivateAs' to the response with the '200' status
+
+> \- added the optional property 'items/items/routeReflector' to the response with the '200' status
+
+> \- added the optional property 'items/items/softReconfiguration' to the response with the '200' status
+
+> \- added the optional property 'items/items/timers' to the response with the '200' status
+
+> \- added the optional property 'items/items/weight' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-peers-groups-deploy/)
+
+#### Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group
+
+Operation ID: `createOrganizationSwitchRoutingBgpPeersGroupsDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/deploy`_
+
+> \- removed the request property 'peerGroup'
+
+> \- removed the request property 'peerGroupAddressFamilyBinding'
+
+> \- removed the request property 'peerGroupAddressFamilyBindingProfile'
+
+> \- removed the request property 'peerGroupProfile'
+
+> \- removed the optional property 'peerGroup' from the response with the '201' status
+
+> \- removed the optional property 'peerGroupAddressFamilyBinding' from the response with the '201' status
+
+> \- removed the optional property 'peerGroupAddressFamilyBindingProfile' from the response with the '201' status
+
+> \- removed the optional property 'peerGroupProfile' from the response with the '201' status
+
+> \- added the new optional request property 'advertisement'
+
+> \- added the new optional request property 'autonomousSystem'
+
+> \- added the new optional request property 'communityAttribute'
+
+> \- added the new optional request property 'description'
+
+> \- added the new optional request property 'ebgp'
+
+> \- added the new optional request property 'interfaces'
+
+> \- added the new optional request property 'name'
+
+> \- added the new optional request property 'nextHop'
+
+> \- added the new optional request property 'password'
+
+> \- added the new optional request property 'peerGroupId'
+
+> \- added the new optional request property 'removePrivateAs'
+
+> \- added the new optional request property 'routeReflector'
+
+> \- added the new optional request property 'softReconfiguration'
+
+> \- added the new optional request property 'timers'
+
+> \- added the new optional request property 'weight'
+
+> \- added the optional property 'advertisement' to the response with the '201' status
+
+> \- added the optional property 'authentication' to the response with the '201' status
+
+> \- added the optional property 'autonomousSystem' to the response with the '201' status
+
+> \- added the optional property 'communityAttribute' to the response with the '201' status
+
+> \- added the optional property 'description' to the response with the '201' status
+
+> \- added the optional property 'ebgp' to the response with the '201' status
+
+> \- added the optional property 'interfaces' to the response with the '201' status
+
+> \- added the optional property 'name' to the response with the '201' status
+
+> \- added the optional property 'nextHop' to the response with the '201' status
+
+> \- added the optional property 'peerGroupId' to the response with the '201' status
+
+> \- added the optional property 'removePrivateAs' to the response with the '201' status
+
+> \- added the optional property 'routeReflector' to the response with the '201' status
+
+> \- added the optional property 'softReconfiguration' to the response with the '201' status
+
+> \- added the optional property 'timers' to the response with the '201' status
+
+> \- added the optional property 'weight' to the response with the '201' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-groups-deployments/)
+
+#### List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersGroupsDeployments`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/groups/deployments`_
+
+> \- removed the optional property 'items/items/deployments/items/peerGroupAddressFamilyBinding' from the response with the '200' status
+
+> \- removed the optional property 'items/items/deployments/items/peerGroupAddressFamilyBindingProfile' from the response with the '200' status
+
+> \- removed the optional property 'items/items/peerGroup' from the response with the '200' status
+
+> \- removed the optional property 'items/items/peerGroupProfile' from the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/advertisement' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/authentication' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/autonomousSystem' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/communityAttribute' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/description' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/ebgp' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/interfaces' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/nextHop' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/removePrivateAs' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/routeReflector' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/softReconfiguration' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/timers' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/weight' to the response with the '200' status
+
+> \- added the optional property 'items/items/name' to the response with the '200' status
+
+> \- added the optional property 'items/items/peerGroupId' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-peers-neighbors-deploy/)
+
+#### Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor
+
+Operation ID: `createOrganizationSwitchRoutingBgpPeersNeighborsDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors/deploy`_
+
+> \- removed the request property 'neighbor'
+
+> \- removed the request property 'neighborAddressFamilyBinding'
+
+> \- removed the optional property 'neighbor' from the response with the '201' status
+
+> \- removed the optional property 'neighborAddressFamilyBinding' from the response with the '201' status
+
+> \- added the new optional request property 'address'
+
+> \- added the new optional request property 'advertisement'
+
+> \- added the new optional request property 'description'
+
+> \- added the new optional request property 'ebgp'
+
+> \- added the new optional request property 'interfaces'
+
+> \- added the new optional request property 'neighborId'
+
+> \- added the new optional request property 'password'
+
+> \- added the new optional request property 'peering'
+
+> \- added the new optional request property 'softReconfiguration'
+
+> \- added the new optional request property 'weight'
+
+> \- added the optional property 'address' to the response with the '201' status
+
+> \- added the optional property 'advertisement' to the response with the '201' status
+
+> \- added the optional property 'authentication' to the response with the '201' status
+
+> \- added the optional property 'description' to the response with the '201' status
+
+> \- added the optional property 'ebgp' to the response with the '201' status
+
+> \- added the optional property 'interfaces' to the response with the '201' status
+
+> \- added the optional property 'neighborId' to the response with the '201' status
+
+> \- added the optional property 'peering' to the response with the '201' status
+
+> \- added the optional property 'softReconfiguration' to the response with the '201' status
+
+> \- added the optional property 'weight' to the response with the '201' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-peers-neighbors-deployments/)
+
+#### List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies
+
+Operation ID: `getOrganizationSwitchRoutingBgpPeersNeighborsDeployments`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/peers/neighbors/deployments`_
+
+> \- removed the optional property 'items/items/deployments/items/neighborAddressFamilyBinding' from the response with the '200' status
+
+> \- removed the optional property 'items/items/neighbor' from the response with the '200' status
+
+> \- added the optional property 'items/items/address' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/advertisement' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/authentication' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/description' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/ebgp' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/interfaces' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/peering' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/softReconfiguration' to the response with the '200' status
+
+> \- added the optional property 'items/items/deployments/items/weight' to the response with the '200' status
+
+> \- added the optional property 'items/items/neighborId' to the response with the '200' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-organization-switch-routing-bgp-routers-deploy/)
+
+#### Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile
+
+Operation ID: `createOrganizationSwitchRoutingBgpRoutersDeploy`
+
+POST _`/organizations/{organizationId}/switch/routing/bgp/routers/deploy`_
+
+> \- removed the request property 'addressFamilyProfile'
+
+> \- removed the optional property 'addressFamilyProfile' from the response with the '201' status
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-switch-routing-bgp-routers-deployments/)
+
+#### List all BGP deployment information for routers configured in a given organization, including all address families
+
+Operation ID: `getOrganizationSwitchRoutingBgpRoutersDeployments`
+
+GET _`/organizations/{organizationId}/switch/routing/bgp/routers/deployments`_
+
+> \- removed the optional property 'items/items/deployments/items/addressFamilyProfile' from the response with the '200' status
+
+* * *
+
+\[ switch \]
+------------
+
+### stacks
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-switch-stack-routing-interface-dhcp/)
+
+#### Update a layer 3 interface DHCP configuration for a switch stack
+
+Operation ID: `updateNetworkSwitchStackRoutingInterfaceDhcp`
+
+PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}/dhcp`_
+
+> \- the request property 'dhcpDomainName' became nullable
+
+* * *
+
+\[ wireless \]
+------------
+
+### electronicShelfLabel
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-electronic-shelf-label/)
+
+#### Update the ESL settings of a wireless network
+
+Operation ID: `updateNetworkWirelessElectronicShelfLabel`
+
+PUT _`/networks/{networkId}/wireless/electronicShelfLabel`_
+
+> \- added the new optional request property 'sepioo'
+
+* * *
+
+### ethernet
+
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-wireless-ethernet-ports-profile/)
+
+#### Create an AP port profile
+
+Operation ID: `createNetworkWirelessEthernetPortsProfile`
+
+POST _`/networks/{networkId}/wireless/ethernet/ports/profiles`_
+
+> \- the request property 'usbPorts/items/enabled' became required
+
+* * *
+
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-wireless-ethernet-ports-profile/)
+
+#### Update the AP port profile by ID for this network
+
+Operation ID: `updateNetworkWirelessEthernetPortsProfile`
+
+PUT _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
+
+> \- the request property 'usbPorts/items/enabled' became required
+
+* * *
+
+
+---
+
+## v1.74.0-beta.4
+
+
+- [Added](#added-3)
+  * [\[ organizations \]](#-organizations-)
+    + [campusGateway](#campusgateway-2)
       - [List mDNS service definitions visible to the caller in an organization.](#list-mdns-service-definitions-visible-to-the-caller-in-an-organization)
       - [List active mDNS service assignments on concrete SSIDs visible to the caller.](#list-active-mdns-service-assignments-on-concrete-ssids-visible-to-the-caller)
       - [Create an organization-scoped custom mDNS service definition.](#create-an-organization-scoped-custom-mdns-service-definition)
       - [Delete an organization-scoped custom mDNS service definition.](#delete-an-organization-scoped-custom-mdns-service-definition)
       - [Update an organization-scoped custom mDNS service definition.](#update-an-organization-scoped-custom-mdns-service-definition)
-    + [mcf](#mcf)
+    + [mcf](#mcf-3)
       - [Replace the principal for an existing cloud integration while preserving integration, account, and network state](#replace-the-principal-for-an-existing-cloud-integration-while-preserving-integration-account-and-network-state)
       - [Returns the aggregate values required to populate organization summary
 cards](#returns-the-aggregate-values-required-to-populate-organization-summary-cards)
-    + [policies](#policies)
+    + [policies](#policies-1)
       - [List all available Network Enforcement Targets for an Organization and their associated Organization-Wide Policies if applicable](#list-all-available-network-enforcement-targets-for-an-organization-and-their-associated-organization-wide-policies-if-applicable)
       - [List Network Enforcement Target Assignments for Organization-Wide policies for the specified organization](#list-network-enforcement-target-assignments-for-organization-wide-policies-for-the-specified-organization)
       - [Assign Network Enforcement Targets to an Organization-Wide Policy](#assign-network-enforcement-targets-to-an-organization-wide-policy)
@@ -24,16 +2797,16 @@ cards](#returns-the-aggregate-values-required-to-populate-organization-summary-c
   * [\[ spaces \]](#-spaces-)
     + [auth](#auth)
       - [Set the Spaces token](#set-the-spaces-token)
-- [Changed](#changed)
+- [Changed](#changed-3)
   * [\[ devices \]](#-devices-)
-    + [appliance](#appliance)
+    + [appliance](#appliance-3)
       - [Return the uplink settings for a secure router or security appliance](#return-the-uplink-settings-for-a-secure-router-or-security-appliance)
       - [Update the uplink settings for a secure router or security appliance](#update-the-uplink-settings-for-a-secure-router-or-security-appliance)
     + [claim](#claim)
       - [Claim a vMX into a network](#claim-a-vmx-into-a-network)
-    + [switch](#switch)
+    + [switch](#switch-4)
       - [Return a layer 3 interface DHCP configuration for a switch](#return-a-layer-3-interface-dhcp-configuration-for-a-switch)
-      - [Update a layer 3 interface DHCP configuration for a switch](#update-a-layer-3-interface-dhcp-configuration-for-a-switch)
+      - [Update a layer 3 interface DHCP configuration for a switch](#update-a-layer-3-interface-dhcp-configuration-for-a-switch-1)
       - [List layer 3 static routes for a switch](#list-layer-3-static-routes-for-a-switch)
       - [Create a layer 3 static route for a switch](#create-a-layer-3-static-route-for-a-switch)
       - [Return a layer 3 static route for a switch](#return-a-layer-3-static-route-for-a-switch)
@@ -49,13 +2822,13 @@ cards](#returns-the-aggregate-values-required-to-populate-organization-summary-c
     + [api](#api)
       - [List pipelines with operation and status metadata, sorted by pipeline ID](#list-pipelines-with-operation-and-status-metadata-sorted-by-pipeline-id)
       - [Retrieves pipeline overviews with aggregated job status counts](#retrieves-pipeline-overviews-with-aggregated-job-status-counts)
-    + [assurance](#assurance)
+    + [assurance](#assurance-2)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity)
       - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity)
       - [Returns historical health alert overviews](#returns-historical-health-alert-overviews)
-      - [Summarizes wired connection successes and failures by client.](#summarizes-wired-connection-successes-and-failures-by-client)
+      - [Summarizes wired connection successes and failures by client.](#summarizes-wired-connection-successes-and-failures-by-client-1)
     + [brandingPolicies](#brandingpolicies)
       - [List the branding policies of an organization](#list-the-branding-policies-of-an-organization)
       - [Add a new branding policy to an organization](#add-a-new-branding-policy-to-an-organization)
@@ -66,24 +2839,24 @@ cards](#returns-the-aggregate-values-required-to-populate-organization-summary-c
       - [Create a new configuration template](#create-a-new-configuration-template)
       - [Return a single configuration template](#return-a-single-configuration-template)
       - [Update a configuration template](#update-a-configuration-template)
-    + [devices](#devices)
+    + [devices](#devices-3)
       - [List the devices in an organization that have been assigned to a network.](#list-the-devices-in-an-organization-that-have-been-assigned-to-a-network)
     + [iam](#iam)
       - [Create an identity provider for an organization](#create-an-identity-provider-for-an-organization)
       - [Create a Meraki user](#create-a-meraki-user)
       - [Update an identity provider](#update-an-identity-provider)
-    + [mcf](#mcf-1)
-      - [Returns the MCN organization record associated with the Meraki Dashboard organization identified by `organizationId`](#returns-the-mcn-organization-record-associated-with-the-meraki-dashboard-organization-identified-by-organizationid)
+    + [mcf](#mcf-4)
+      - [Returns the MCN organization record associated with the Meraki Dashboard organization identified by `organizationId`](#returns-the-mcn-organization-record-associated-with-the-meraki-dashboard-organization-identified-by-organizationid-1)
       - [Returns aligned aggregate and member BGP-session-health series for
 onboarded VPCs and Sites in the requested trailing window](#returns-aligned-aggregate-and-member-bgp-session-health-series-for-onboarded-vpcs-and-sites-in-the-requested-trailing-window)
       - [Returns organization event logs ordered by event time and event ID,
 newest first](#returns-organization-event-logs-ordered-by-event-time-and-event-id-newest-first)
       - [Returns aligned aggregate and member tunnel-health series for onboarded
 VPCs and Sites in the requested trailing window](#returns-aligned-aggregate-and-member-tunnel-health-series-for-onboarded-vpcs-and-sites-in-the-requested-trailing-window)
-    + [policies](#policies-1)
-      - [List Organization-Wide Policy Firewall Rules](#list-organization-wide-policy-firewall-rules)
-      - [Create an Organization-Wide Policy Firewall Rule](#create-an-organization-wide-policy-firewall-rule)
-      - [Update an Organization-Wide Policy Firewall Rule](#update-an-organization-wide-policy-firewall-rule)
+    + [policies](#policies-2)
+      - [List Organization-Wide Policy Firewall Rules](#list-organization-wide-policy-firewall-rules-1)
+      - [Create an Organization-Wide Policy Firewall Rule](#create-an-organization-wide-policy-firewall-rule-1)
+      - [Update an Organization-Wide Policy Firewall Rule](#update-an-organization-wide-policy-firewall-rule-1)
       - [Commit staged Organization-Wide Policy Ruleset Assignments](#commit-staged-organization-wide-policy-ruleset-assignments)
     + [saml](#saml)
       - [Create a SAML IdP for your organization.](#create-a-saml-idp-for-your-organization)
@@ -91,7 +2864,7 @@ VPCs and Sites in the requested trailing window](#returns-aligned-aggregate-and-
     + [snmp](#snmp)
       - [Return the SNMP settings for an organization](#return-the-snmp-settings-for-an-organization)
       - [Update the SNMP settings for an organization](#update-the-snmp-settings-for-an-organization)
-    + [switch](#switch-1)
+    + [switch](#switch-5)
       - [Create a port profile in an organization](#create-a-port-profile-in-an-organization)
       - [Update a port profile in an organization](#update-a-port-profile-in-an-organization)
       - [List layer 3 static routes for switches in an organization](#list-layer-3-static-routes-for-switches-in-an-organization)
@@ -99,9 +2872,9 @@ VPCs and Sites in the requested trailing window](#returns-aligned-aggregate-and-
     + [ports](#ports)
       - [Create a port profile in a network](#create-a-port-profile-in-a-network)
       - [Update a port profile in a network](#update-a-port-profile-in-a-network)
-    + [stacks](#stacks)
+    + [stacks](#stacks-1)
       - [Return a layer 3 interface DHCP configuration for a switch stack](#return-a-layer-3-interface-dhcp-configuration-for-a-switch-stack)
-      - [Update a layer 3 interface DHCP configuration for a switch stack](#update-a-layer-3-interface-dhcp-configuration-for-a-switch-stack)
+      - [Update a layer 3 interface DHCP configuration for a switch stack](#update-a-layer-3-interface-dhcp-configuration-for-a-switch-stack-1)
       - [List layer 3 static routes for a switch stack](#list-layer-3-static-routes-for-a-switch-stack)
       - [Create a layer 3 static route for a switch stack](#create-a-layer-3-static-route-for-a-switch-stack)
       - [Return a layer 3 static route for a switch stack](#return-a-layer-3-static-route-for-a-switch-stack)
@@ -1317,24 +4090,24 @@ PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes/{
 ## v1.74.0-beta.3
 
 
-- [Changed](#changed-1)
+- [Changed](#changed-4)
   * [\[ administered \]](#-administered-)
-    + [assistant](#assistant)
-      - [Create a synchronous AI assistant chat completion for user-wide threads](#create-a-synchronous-ai-assistant-chat-completion-for-user-wide-threads)
+    + [assistant](#assistant-2)
+      - [Create a synchronous AI assistant chat completion for user-wide threads](#create-a-synchronous-ai-assistant-chat-completion-for-user-wide-threads-1)
   * [\[ appliance \]](#-appliance-)
     + [trafficShaping](#trafficshaping)
       - [Display the traffic shaping settings rules for a Security Appliance or Secure Router network](#display-the-traffic-shaping-settings-rules-for-a-security-appliance-or-secure-router-network)
       - [Update the traffic shaping settings rules for a Security Appliance or Secure Router network](#update-the-traffic-shaping-settings-rules-for-a-security-appliance-or-secure-router-network)
   * [\[ devices \]](#-devices-)
-    + [switch](#switch-2)
+    + [switch](#switch-6)
       - [List layer 3 interfaces for a switch](#list-layer-3-interfaces-for-a-switch)
       - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch)
       - [Return a layer 3 interface for a switch](#return-a-layer-3-interface-for-a-switch)
       - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch)
   * [\[ organizations \]](#-organizations-)
-    + [assistant](#assistant-1)
-      - [Create a synchronous AI assistant chat completion](#create-a-synchronous-ai-assistant-chat-completion)
-    + [assurance](#assurance-1)
+    + [assistant](#assistant-3)
+      - [Create a synchronous AI assistant chat completion](#create-a-synchronous-ai-assistant-chat-completion-1)
+    + [assurance](#assurance-3)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-1)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-1)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-1)
@@ -1358,7 +4131,7 @@ PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes/{
       - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization)
       - [Import certificate for this organization](#import-certificate-for-this-organization)
       - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization)
-    + [nac](#nac)
+    + [nac](#nac-2)
       - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization)
       - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions)
     + [networks](#networks)
@@ -1366,11 +4139,11 @@ PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes/{
     + [snmp](#snmp-1)
       - [Return the SNMP settings for an organization](#return-the-snmp-settings-for-an-organization-1)
       - [Update the SNMP settings for an organization](#update-the-snmp-settings-for-an-organization-1)
-    + [switch](#switch-3)
-      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile)
-      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families)
+    + [switch](#switch-7)
+      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-1)
+      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-1)
   * [\[ switch \]](#-switch-)
-    + [stacks](#stacks-1)
+    + [stacks](#stacks-2)
       - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack)
       - [Return a layer 3 interface from a switch stack](#return-a-layer-3-interface-from-a-switch-stack)
@@ -2151,25 +4924,25 @@ PUT _`/networks/{networkId}/vlanProfiles/{iname}`_
 ## v1.74.0-beta.2
 
 
-- [Added](#added-1)
+- [Added](#added-4)
   * [\[ devices \]](#-devices-)
-    + [wireless](#wireless)
+    + [wireless](#wireless-3)
       - [Replace the complete list of preferred gateways for this device](#replace-the-complete-list-of-preferred-gateways-for-this-device)
   * [\[ organizations \]](#-organizations-)
-    + [switch](#switch-4)
+    + [switch](#switch-8)
       - [List switch update retry candidates in an organization.](#list-switch-update-retry-candidates-in-an-organization)
-    + [wireless](#wireless-1)
+    + [wireless](#wireless-4)
       - [List preferred gateways for this organization by device](#list-preferred-gateways-for-this-organization-by-device)
-- [Changed](#changed-2)
+- [Changed](#changed-5)
   * [\[ appliance \]](#-appliance-)
-    + [security](#security)
+    + [security](#security-1)
       - [Returns all supported intrusion settings for an MX network](#returns-all-supported-intrusion-settings-for-an-mx-network)
       - [Set the supported intrusion settings for an MX network](#set-the-supported-intrusion-settings-for-an-mx-network)
     + [vpn](#vpn)
       - [Return the site-to-site VPN settings of a network](#return-the-site-to-site-vpn-settings-of-a-network)
       - [Update the site-to-site VPN settings of a network](#update-the-site-to-site-vpn-settings-of-a-network)
   * [\[ organizations \]](#-organizations--1)
-    + [assurance](#assurance-2)
+    + [assurance](#assurance-4)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-2)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-2)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-2)
@@ -2179,10 +4952,10 @@ PUT _`/networks/{networkId}/vlanProfiles/{iname}`_
       - [Return all the ports of a switch template](#return-all-the-ports-of-a-switch-template)
       - [Return a switch template port](#return-a-switch-template-port)
       - [Update a switch template port](#update-a-switch-template-port)
-    + [nac](#nac-1)
-      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization)
-      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization)
-      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization)
+    + [nac](#nac-3)
+      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-1)
+      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-1)
+      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-1)
       - [Gets all certificates for an organization and can filter by certificate status, expiry date and last used date](#gets-all-certificates-for-an-organization-and-can-filter-by-certificate-status-expiry-date-and-last-used-date)
       - [Get all the organization's CRL.It's possible to filter results by CRL issuers (CA) or CRL's ID - see caIds and crlIds query parameters.This endpoint could be used for 'show' action when you specify a single CRL ID in crlIds parameter](#get-all-the-organizations-crlits-possible-to-filter-results-by-crl-issuers-ca-or-crls-id---see-caids-and-crlids-query-parametersthis-endpoint-could-be-used-for-show-action-when-you-specify-a-single-crl-id-in-crlids-parameter)
       - [Upload a CRL through Certificate Validation](#upload-a-crl-through-certificate-validation)
@@ -2191,10 +4964,10 @@ PUT _`/networks/{networkId}/vlanProfiles/{iname}`_
       - [Import certificate for this organization or validate without persisting](#import-certificate-for-this-organization-or-validate-without-persisting)
       - [Get counts of Enabled, Disabled, Expired and Last Used certificates for this organization](#get-counts-of-enabled-disabled-expired-and-last-used-certificates-for-this-organization)
       - [Update certificate configuration by certificateId for this organization](#update-certificate-configuration-by-certificateid-for-this-organization)
-      - [Get all known clients for the organization](#get-all-known-clients-for-the-organization)
+      - [Get all known clients for the organization](#get-all-known-clients-for-the-organization-1)
       - [Create a client for the organization](#create-a-client-for-the-organization)
       - [Bulk upload of clients, client groups and their associations for the organization](#bulk-upload-of-clients-client-groups-and-their-associations-for-the-organization)
-      - [Get all known client groups for the organization](#get-all-known-client-groups-for-the-organization)
+      - [Get all known client groups for the organization](#get-all-known-client-groups-for-the-organization-1)
       - [Create a client group for the organization](#create-a-client-group-for-the-organization)
       - [Update an existing client group for the organization with bulk member operations](#update-an-existing-client-group-for-the-organization-with-bulk-member-operations)
       - [Get overview data for all known clients for the organization](#get-overview-data-for-all-known-clients-for-the-organization)
@@ -2204,17 +4977,17 @@ PUT _`/networks/{networkId}/vlanProfiles/{iname}`_
       - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions-1)
     + [routing](#routing)
       - [Update an organization-wide VRF (Virtual Routing and Forwarding)](#update-an-organization-wide-vrf-virtual-routing-and-forwarding)
-    + [switch](#switch-5)
-      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-1)
-      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-1)
-    + [wireless](#wireless-2)
-      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network)
+    + [switch](#switch-9)
+      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-2)
+      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-2)
+    + [wireless](#wireless-5)
+      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network-1)
   * [\[ switch \]](#-switch-)
-    + [accessPolicies](#accesspolicies)
-      - [List the access policies for a switch network](#list-the-access-policies-for-a-switch-network)
-      - [Create an access policy for a switch network](#create-an-access-policy-for-a-switch-network)
-      - [Return a specific access policy for a switch network](#return-a-specific-access-policy-for-a-switch-network)
-      - [Update an access policy for a switch network](#update-an-access-policy-for-a-switch-network)
+    + [accessPolicies](#accesspolicies-1)
+      - [List the access policies for a switch network](#list-the-access-policies-for-a-switch-network-1)
+      - [Create an access policy for a switch network](#create-an-access-policy-for-a-switch-network-1)
+      - [Return a specific access policy for a switch network](#return-a-specific-access-policy-for-a-switch-network-1)
+      - [Update an access policy for a switch network](#update-an-access-policy-for-a-switch-network-1)
   * [\[ wireless \]](#-wireless-)
     + [radio](#radio)
       - [Update the AutoRF settings for a wireless network](#update-the-autorf-settings-for-a-wireless-network)
@@ -3007,39 +5780,39 @@ PUT _`/networks/{networkId}/wireless/radio/rrm`_
 ## v1.74.0-beta.1
 
 
-- [Added](#added-2)
+- [Added](#added-5)
   * [\[ organizations \]](#-organizations-)
-    + [appliance](#appliance-1)
+    + [appliance](#appliance-4)
       - [List MX appliance port RADIUS settings by network](#list-mx-appliance-port-radius-settings-by-network)
-    + [assurance](#assurance-3)
+    + [assurance](#assurance-5)
       - [Summarizes wired connection successes and failures by VLAN.](#summarizes-wired-connection-successes-and-failures-by-vlan)
-    + [mcf](#mcf-2)
+    + [mcf](#mcf-5)
       - [Replaces secret material for an existing Microsoft Azure or Google Cloud integration after validating that the credential belongs to the existing principal](#replaces-secret-material-for-an-existing-microsoft-azure-or-google-cloud-integration-after-validating-that-the-credential-belongs-to-the-existing-principal)
       - [Lists cloud accounts, networks, and subnets that discovery no longer
 observes and that require confirmation or teardown tracking](#lists-cloud-accounts-networks-and-subnets-that-discovery-no-longer-observes-and-that-require-confirmation-or-teardown-tracking)
       - [Accepts up to 100 explicitly identified resources or selects at most 100
 top-level matches](#accepts-up-to-100-explicitly-identified-resources-or-selects-at-most-100-top-level-matches)
       - [Confirms one discovery-missing account, network, or subnet](#confirms-one-discovery-missing-account-network-or-subnet)
-    + [wireless](#wireless-3)
+    + [wireless](#wireless-6)
       - [List a paginated snapshot of current radio status for wireless devices in an organization](#list-a-paginated-snapshot-of-current-radio-status-for-wireless-devices-in-an-organization)
   * [\[ wireless \]](#-wireless-)
     + [ssids](#ssids)
       - [Display the overrides for this SSID](#display-the-overrides-for-this-ssid)
       - [Update the overrides for this SSID](#update-the-overrides-for-this-ssid)
-- [Changed](#changed-3)
+- [Changed](#changed-6)
   * [\[ devices \]](#-devices-)
-    + [liveTools](#livetools)
+    + [liveTools](#livetools-2)
       - [Enqueue a job to perform a ARP table request for the device](#enqueue-a-job-to-perform-a-arp-table-request-for-the-device)
-      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job)
-    + [switch](#switch-6)
+      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job-1)
+    + [switch](#switch-10)
       - [List layer 3 interfaces for a switch](#list-layer-3-interfaces-for-a-switch-1)
       - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch-1)
       - [Return a layer 3 interface for a switch](#return-a-layer-3-interface-for-a-switch-1)
       - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch-1)
   * [\[ organizations \]](#-organizations--1)
-    + [appliance](#appliance-2)
+    + [appliance](#appliance-5)
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization)
-    + [assurance](#assurance-4)
+    + [assurance](#assurance-6)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-3)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-3)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-3)
@@ -3048,10 +5821,10 @@ top-level matches](#accepts-up-to-100-explicitly-identified-resources-or-selects
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-3)
       - [Time-series of wireless post connection capacity successes and failures by network.](#time-series-of-wireless-post-connection-capacity-successes-and-failures-by-network)
       - [Time-series of wireless coverage successes and failures by network.](#time-series-of-wireless-coverage-successes-and-failures-by-network)
-    + [devices](#devices-1)
+    + [devices](#devices-4)
       - [List the most recent status information for power modules in rackmount MX and MS devices that support them](#list-the-most-recent-status-information-for-power-modules-in-rackmount-mx-and-ms-devices-that-support-them)
-    + [mcf](#mcf-3)
-      - [Returns the MCN organization record associated with the Meraki Dashboard organization identified by `organizationId`](#returns-the-mcn-organization-record-associated-with-the-meraki-dashboard-organization-identified-by-organizationid-1)
+    + [mcf](#mcf-6)
+      - [Returns the MCN organization record associated with the Meraki Dashboard organization identified by `organizationId`](#returns-the-mcn-organization-record-associated-with-the-meraki-dashboard-organization-identified-by-organizationid-2)
       - [Returns account records discovered through cloud integrations for the
 specified Meraki Dashboard organization](#returns-account-records-discovered-through-cloud-integrations-for-the-specified-meraki-dashboard-organization)
       - [Returns the discovered account identified by `accountId`](#returns-the-discovered-account-identified-by-accountid)
@@ -3115,18 +5888,18 @@ contribution](#transitions-the-organization-scoped-intent-to-pending_delete-and-
 selections, and current asynchronous realization status.](#returns-one-organization-scoped-zero-trust-routing-intent-its-endpoint-selections-and-current-asynchronous-realization-status)
     + [secureConnect](#secureconnect)
       - [Provides a list of private resources for an organization.](#provides-a-list-of-private-resources-for-an-organization)
-    + [switch](#switch-7)
+    + [switch](#switch-11)
       - [Create a port profile in an organization](#create-a-port-profile-in-an-organization-1)
       - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile)
       - [Update a port profile in an organization](#update-a-port-profile-in-an-organization-1)
-    + [wireless](#wireless-4)
-      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization)
+    + [wireless](#wireless-7)
+      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization-1)
   * [\[ switch \]](#-switch-)
     + [ports](#ports-1)
       - [List the port profiles in a network](#list-the-port-profiles-in-a-network)
       - [Create a port profile in a network](#create-a-port-profile-in-a-network-1)
       - [Update a port profile in a network](#update-a-port-profile-in-a-network-1)
-    + [stacks](#stacks-2)
+    + [stacks](#stacks-3)
       - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack-1)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack-1)
       - [Return a layer 3 interface from a switch stack](#return-a-layer-3-interface-from-a-switch-stack-1)
@@ -4528,22 +7301,22 @@ PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
 ## v1.74.0-beta.0
 
 
-- [Added](#added-3)
+- [Added](#added-6)
   * [\[ organizations \]](#-organizations-)
-    + [assurance](#assurance-5)
+    + [assurance](#assurance-7)
       - [Returns the wireless experience networks with the most impacted clients, including client counts, impacted experience metrics, and the top failure contributor for each network.](#returns-the-wireless-experience-networks-with-the-most-impacted-clients-including-client-counts-impacted-experience-metrics-and-the-top-failure-contributor-for-each-network)
-- [Changed](#changed-4)
+- [Changed](#changed-7)
   * [\[ appliance \]](#-appliance-)
-    + [interfaces](#interfaces)
-      - [Update wired L3 interface](#update-wired-l3-interface)
+    + [interfaces](#interfaces-1)
+      - [Update wired L3 interface](#update-wired-l3-interface-1)
     + [vlans](#vlans)
       - [Add a VLAN](#add-a-vlan)
   * [\[ devices \]](#-devices-)
-    + [appliance](#appliance-3)
+    + [appliance](#appliance-6)
       - [Return the uplink settings for a secure router or security appliance](#return-the-uplink-settings-for-a-secure-router-or-security-appliance-1)
       - [Update the uplink settings for a secure router or security appliance](#update-the-uplink-settings-for-a-secure-router-or-security-appliance-1)
   * [\[ organizations \]](#-organizations--1)
-    + [assurance](#assurance-6)
+    + [assurance](#assurance-8)
       - [Returns network server health in organization by server type.](#returns-network-server-health-in-organization-by-server-type)
       - [Summarizes wireless connection successes and failures by network.](#summarizes-wireless-connection-successes-and-failures-by-network)
       - [Summarizes wireless connection successes and failures by band.](#summarizes-wireless-connection-successes-and-failures-by-band)
@@ -4558,9 +7331,9 @@ PUT _`/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{in
     + [inventory](#inventory)
       - [Return the device inventory for an organization](#return-the-device-inventory-for-an-organization)
       - [Return a single device from the inventory of an organization](#return-a-single-device-from-the-inventory-of-an-organization)
-    + [nac](#nac-2)
+    + [nac](#nac-4)
       - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions-2)
-    + [wireless](#wireless-5)
+    + [wireless](#wireless-8)
       - [List access point client count at the moment in an organization](#list-access-point-client-count-at-the-moment-in-an-organization)
  
 Version **v1.73.0-beta.3** _to_ **v1.74.0-beta.0**
@@ -5029,9 +7802,9 @@ GET _`/organizations/{organizationId}/wireless/clients/overview/byDevice`_
 ## v1.73.0-beta.3
 
 
-- [Added](#added-4)
+- [Added](#added-7)
   * [\[ organizations \]](#-organizations-)
-    + [mcf](#mcf-4)
+    + [mcf](#mcf-7)
       - [Return the MCF details stored for the Meraki organization identified by organizationId](#return-the-mcf-details-stored-for-the-meraki-organization-identified-by-organizationid)
       - [List accounts](#list-accounts)
       - [Delete an account](#delete-an-account)
@@ -5086,30 +7859,30 @@ under each resource entry](#returns-tunnel-status-grouped-by-vpc-or-site-with-me
       - [Get a single Zero Trust Routing intent by ID](#get-a-single-zero-trust-routing-intent-by-id)
     + [sase](#sase)
       - [Create a provisioning pipeline that bulk updates multiple already attached Secure Access sites to one selected region.](#create-a-provisioning-pipeline-that-bulk-updates-multiple-already-attached-secure-access-sites-to-one-selected-region)
-- [Changed](#changed-5)
+- [Changed](#changed-8)
   * [\[ organizations \]](#-organizations--1)
     + [api](#api-1)
       - [List pipelines with operation and status metadata, sorted by pipeline ID](#list-pipelines-with-operation-and-status-metadata-sorted-by-pipeline-id-1)
       - [Retrieves pipeline overviews with aggregated job status counts](#retrieves-pipeline-overviews-with-aggregated-job-status-counts-1)
-    + [assurance](#assurance-7)
+    + [assurance](#assurance-9)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-4)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-4)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-4)
       - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-4)
       - [Returns historical health alert overviews](#returns-historical-health-alert-overviews-4)
-    + [campusGateway](#campusgateway-1)
+    + [campusGateway](#campusgateway-3)
       - [Update MCG cluster-network tunnel settings for multiple networks](#update-mcg-cluster-network-tunnel-settings-for-multiple-networks)
     + [certificates](#certificates-1)
       - [Gets all or specific certificates for an organization](#gets-all-or-specific-certificates-for-an-organization-1)
       - [List certificate authorities for an organization](#list-certificate-authorities-for-an-organization)
       - [Import certificate for this organization](#import-certificate-for-this-organization-1)
       - [Update a certificate's description for an organization](#update-a-certificates-description-for-an-organization-1)
-    + [devices](#devices-2)
+    + [devices](#devices-5)
       - [Returns details about software updates for networks within an organization.](#returns-details-about-software-updates-for-networks-within-an-organization)
     + [inventory](#inventory-1)
       - [Return inventory devices with additional site, geolocation, software, licensing, lifecycle, and Catalyst Center-specific fields](#return-inventory-devices-with-additional-site-geolocation-software-licensing-lifecycle-and-catalyst-center-specific-fields)
       - [Preview the results and status of an order claim by the secure order id](#preview-the-results-and-status-of-an-order-claim-by-the-secure-order-id)
-    + [wireless](#wireless-6)
+    + [wireless](#wireless-9)
       - [List access point client count at the moment in an organization](#list-access-point-client-count-at-the-moment-in-an-organization-1)
  
 Version **v1.73.0-beta.2** _to_ **v1.73.0-beta.3**
@@ -6302,15 +9075,15 @@ GET _`/organizations/{organizationId}/wireless/clients/overview/byDevice`_
 ## v1.73.0-beta.2
 
 
-- [Added](#added-5)
+- [Added](#added-8)
   * [\[ organizations \]](#-organizations-)
-    + [assurance](#assurance-8)
+    + [assurance](#assurance-10)
       - [Return default RCA content for an Assurance alert type](#return-default-rca-content-for-an-assurance-alert-type)
-    + [campusGateway](#campusgateway-2)
+    + [campusGateway](#campusgateway-4)
       - [Update MCG cluster-network tunnel settings for multiple networks](#update-mcg-cluster-network-tunnel-settings-for-multiple-networks-1)
-- [Changed](#changed-6)
+- [Changed](#changed-9)
   * [\[ devices \]](#-devices-)
-    + [liveTools](#livetools-1)
+    + [liveTools](#livetools-3)
       - [Return a routing table live tool lookup job for a device](#return-a-routing-table-live-tool-lookup-job-for-a-device)
   * [\[ firmwareUpgrades \]](#-firmwareupgrades-)
     + [staged](#staged)
@@ -6320,7 +9093,7 @@ GET _`/organizations/{organizationId}/wireless/clients/overview/byDevice`_
       - [Postpone by 1 week all pending staged upgrade stages for a network](#postpone-by-1-week-all-pending-staged-upgrade-stages-for-a-network)
       - [Rollback a Staged Upgrade Event for a network](#rollback-a-staged-upgrade-event-for-a-network)
   * [\[ organizations \]](#-organizations--1)
-    + [assurance](#assurance-9)
+    + [assurance](#assurance-11)
       - [Returns network server health in organization by server type and by interval.](#returns-network-server-health-in-organization-by-server-type-and-by-interval)
       - [Summarizes wireless connection successes and failures by network.](#summarizes-wireless-connection-successes-and-failures-by-network-1)
       - [Summarizes wireless connection successes and failures by band.](#summarizes-wireless-connection-successes-and-failures-by-band-1)
@@ -6331,7 +9104,7 @@ GET _`/organizations/{organizationId}/wireless/clients/overview/byDevice`_
       - [Time-series of wireless connection successes and failures by network.](#time-series-of-wireless-connection-successes-and-failures-by-network-1)
       - [Summarizes wireless connection successes and failures by server.](#summarizes-wireless-connection-successes-and-failures-by-server-1)
       - [Summarizes wireless connection successes and failures by ssid.](#summarizes-wireless-connection-successes-and-failures-by-ssid-1)
-      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-1)
       - [Summarizes wireless time to connect metrics by network.](#summarizes-wireless-time-to-connect-metrics-by-network)
       - [Summarizes wireless connection successes and failures by band.](#summarizes-wireless-connection-successes-and-failures-by-band-2)
       - [Summarizes wireless time to connect metrics by client.](#summarizes-wireless-time-to-connect-metrics-by-client)
@@ -6341,25 +9114,25 @@ GET _`/organizations/{organizationId}/wireless/clients/overview/byDevice`_
       - [Time-series of wireless time to connect by network.](#time-series-of-wireless-time-to-connect-by-network-1)
       - [Summarizes wireless connection time to connect metrics by server.](#summarizes-wireless-connection-time-to-connect-metrics-by-server)
       - [Summarizes wireless connection time to connect metrics by ssid.](#summarizes-wireless-connection-time-to-connect-metrics-by-ssid)
-      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network)
-    + [campusGateway](#campusgateway-3)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-1)
+    + [campusGateway](#campusgateway-5)
       - [List all the MCG cluster-network tunnel settings](#list-all-the-mcg-cluster-network-tunnel-settings)
-    + [devices](#devices-3)
+    + [devices](#devices-6)
       - [Returns details about software updates for networks within an organization.](#returns-details-about-software-updates-for-networks-within-an-organization-1)
     + [routing](#routing-1)
       - [List existing organization-wide VRFs (Virtual Routing and Forwarding).](#list-existing-organization-wide-vrfs-virtual-routing-and-forwarding)
       - [Add an organization-wide VRF (Virtual Routing and Forwarding)](#add-an-organization-wide-vrf-virtual-routing-and-forwarding)
       - [Update an organization-wide VRF (Virtual Routing and Forwarding)](#update-an-organization-wide-vrf-virtual-routing-and-forwarding-1)
-    + [sites](#sites)
+    + [sites](#sites-1)
       - [Lists unified site resources for an organization across Meraki networks and Catalyst Center sites](#lists-unified-site-resources-for-an-organization-across-meraki-networks-and-catalyst-center-sites)
-    + [switch](#switch-8)
+    + [switch](#switch-12)
       - [List the filter lists configured for BGP in the given organization](#list-the-filter-lists-configured-for-bgp-in-the-given-organization)
       - [Create or update a filter list, in addition to its associated rules](#create-or-update-a-filter-list-in-addition-to-its-associated-rules)
       - [List the filter list rules configured for BGP in the given organization](#list-the-filter-list-rules-configured-for-bgp-in-the-given-organization)
       - [List the prefix lists configured for BGP in the given organization](#list-the-prefix-lists-configured-for-bgp-in-the-given-organization)
       - [Create or update a prefix list, in addition to its associated rules](#create-or-update-a-prefix-list-in-addition-to-its-associated-rules)
       - [List the prefix list rules configured for BGP in the given organization](#list-the-prefix-list-rules-configured-for-bgp-in-the-given-organization)
-    + [wireless](#wireless-7)
+    + [wireless](#wireless-10)
       - [Return a list of radio overrides](#return-a-list-of-radio-overrides)
   * [\[ switch \]](#-switch-)
     + [alternateManagementInterface](#alternatemanagementinterface)
@@ -6976,26 +9749,26 @@ PUT _`/networks/{networkId}/switch/alternateManagementInterface`_
 ## v1.73.0-beta.1
 
 
-- [Added](#added-6)
+- [Added](#added-9)
   * [\[ administered \]](#-administered-)
     + [organizations](#organizations)
       - [Resolve the authenticated caller admin's permissions across multiple organizations](#resolve-the-authenticated-caller-admins-permissions-across-multiple-organizations)
   * [\[ organizations \]](#-organizations-)
-    + [assurance](#assurance-10)
+    + [assurance](#assurance-12)
       - [Provides insights into wired successful connections experience by network.](#provides-insights-into-wired-successful-connections-experience-by-network)
-    + [nac](#nac-3)
+    + [nac](#nac-5)
       - [Get a CRL, including its revoked serial numbers](#get-a-crl-including-its-revoked-serial-numbers-1)
-    + [spaces](#spaces)
-      - [List the buildings belonging to the organization](#list-the-buildings-belonging-to-the-organization)
+    + [spaces](#spaces-1)
+      - [List the buildings belonging to the organization](#list-the-buildings-belonging-to-the-organization-1)
       - [Get point-in-time overview statistics for buildings, floors, maps, and wireless device placement](#get-point-in-time-overview-statistics-for-buildings-floors-maps-and-wireless-device-placement)
-    + [wireless](#wireless-8)
+    + [wireless](#wireless-11)
       - [List radio transmit power capabilities by model for an organization](#list-radio-transmit-power-capabilities-by-model-for-an-organization)
   * [\[ spaces \]](#-spaces-)
-    + [sites](#sites-1)
-      - [Create a new building](#create-a-new-building)
+    + [sites](#sites-2)
+      - [Create a new building](#create-a-new-building-1)
       - [Delete a building](#delete-a-building)
-      - [Update a building](#update-a-building)
-- [Changed](#changed-7)
+      - [Update a building](#update-a-building-1)
+- [Changed](#changed-10)
   * [\[ administered \]](#-administered--1)
     + [licensing](#licensing)
       - [Retrieve the list of purchasable entitlements](#retrieve-the-list-of-purchasable-entitlements)
@@ -7003,42 +9776,42 @@ PUT _`/networks/{networkId}/switch/alternateManagementInterface`_
     + [ssids](#ssids-1)
       - [Update the attributes of an MX SSID](#update-the-attributes-of-an-mx-ssid)
   * [\[ devices \]](#-devices-)
-    + [appliance](#appliance-4)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
-    + [cellular](#cellular)
-      - [Return the SIM and APN configurations for a cellular device.](#return-the-sim-and-apn-configurations-for-a-cellular-device)
-      - [Updates the SIM and APN configurations for a cellular device.](#updates-the-sim-and-apn-configurations-for-a-cellular-device)
-    + [liveTools](#livetools-2)
+    + [appliance](#appliance-7)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-2)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-3)
+    + [cellular](#cellular-1)
+      - [Return the SIM and APN configurations for a cellular device.](#return-the-sim-and-apn-configurations-for-a-cellular-device-1)
+      - [Updates the SIM and APN configurations for a cellular device.](#updates-the-sim-and-apn-configurations-for-a-cellular-device-1)
+    + [liveTools](#livetools-4)
       - [Enqueue a job to perform a routing table lookup request for a device](#enqueue-a-job-to-perform-a-routing-table-lookup-request-for-a-device)
       - [Return a routing table live tool lookup job for a device](#return-a-routing-table-live-tool-lookup-job-for-a-device-1)
-    + [switch](#switch-9)
+    + [switch](#switch-13)
       - [List the switch ports for a switch](#list-the-switch-ports-for-a-switch)
       - [Return a switch port](#return-a-switch-port)
       - [Update a switch port](#update-a-switch-port)
-    + [wireless](#wireless-9)
+    + [wireless](#wireless-12)
       - [Return the radio overrides of a device](#return-the-radio-overrides-of-a-device)
       - [Update 2.4 GHz, 5 GHz, and 6 GHz radio settings (channel, channel width, power, and enable/disable) that override RF profiles](#update-24-ghz-5-ghz-and-6-ghz-radio-settings-channel-channel-width-power-and-enabledisable-that-override-rf-profiles)
   * [\[ organizations \]](#-organizations--1)
-    + [appliance](#appliance-5)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization)
-      - [Return the third party VPN peers for an organization](#return-the-third-party-vpn-peers-for-an-organization)
-      - [Update the third party VPN peers for an organization](#update-the-third-party-vpn-peers-for-an-organization)
-    + [assurance](#assurance-11)
+    + [appliance](#appliance-8)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
+      - [Return the third party VPN peers for an organization](#return-the-third-party-vpn-peers-for-an-organization-1)
+      - [Update the third party VPN peers for an organization](#update-the-third-party-vpn-peers-for-an-organization-1)
+    + [assurance](#assurance-13)
       - [Returns the most impacted wired experience metrics, including client counts, top failure contributor, and most impacted networks for each metric.](#returns-the-most-impacted-wired-experience-metrics-including-client-counts-top-failure-contributor-and-most-impacted-networks-for-each-metric)
-      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network)
-      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-1)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-1)
       - [Returns the most impacted wireless experience networks with client counts, impacted experience metrics, and the top failure contributor for each network.](#returns-the-most-impacted-wireless-experience-networks-with-client-counts-impacted-experience-metrics-and-the-top-failure-contributor-for-each-network)
       - [Returns the most impacted wireless experience metrics, including client counts, top failure contributor, and most impacted networks for each metric.](#returns-the-most-impacted-wireless-experience-metrics-including-client-counts-top-failure-contributor-and-most-impacted-networks-for-each-metric)
-      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-1)
-    + [devices](#devices-4)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-2)
+    + [devices](#devices-7)
       - [Returns details about software updates for networks within an organization.](#returns-details-about-software-updates-for-networks-within-an-organization-2)
-    + [nac](#nac-4)
-      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-1)
-      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-1)
-      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-1)
+    + [nac](#nac-6)
+      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-2)
+      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-2)
+      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-2)
       - [Get all the organization's CRL descriptors (metadata only - revocation list data is excluded)](#get-all-the-organizations-crl-descriptors-metadata-only---revocation-list-data-is-excluded-1)
-      - [Get all known clients for the organization](#get-all-known-clients-for-the-organization-1)
+      - [Get all known clients for the organization](#get-all-known-clients-for-the-organization-2)
       - [Create a client for the organization](#create-a-client-for-the-organization-1)
       - [Bulk Update of existing clients for the organization](#bulk-update-of-existing-clients-for-the-organization)
       - [Update an existing client for the organization](#update-an-existing-client-for-the-organization-1)
@@ -7046,7 +9819,7 @@ PUT _`/networks/{networkId}/switch/alternateManagementInterface`_
       - [List existing organization-wide VRFs (Virtual Routing and Forwarding) overviews.](#list-existing-organization-wide-vrfs-virtual-routing-and-forwarding-overviews)
     + [secureConnect](#secureconnect-1)
       - [Creates an export for a provided timestamp interval.](#creates-an-export-for-a-provided-timestamp-interval)
-    + [switch](#switch-10)
+    + [switch](#switch-14)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch)
       - [List the autonomous systems configured for BGP in the given organization](#list-the-autonomous-systems-configured-for-bgp-in-the-given-organization)
       - [Create an autonomous system](#create-an-autonomous-system)
@@ -7057,19 +9830,19 @@ PUT _`/networks/{networkId}/switch/alternateManagementInterface`_
       - [List the prefix lists configured for BGP in the given organization](#list-the-prefix-lists-configured-for-bgp-in-the-given-organization-1)
       - [Create or update a prefix list, in addition to its associated rules](#create-or-update-a-prefix-list-in-addition-to-its-associated-rules-1)
       - [List the prefix list rules configured for BGP in the given organization](#list-the-prefix-list-rules-configured-for-bgp-in-the-given-organization-1)
-      - [List the BGP peer groups configured in the given organization](#list-the-bgp-peer-groups-configured-in-the-given-organization)
-      - [List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges](#list-all-bgp-deployment-information-for-multiple-peer-groups-or-address-families-configured-in-the-given-organization-including-profile-information-peer-group-address-family-information-neighbors-and-listen-ranges)
-      - [Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group](#create-or-update-a-peer-group-in-addition-to-an-associated-peer-group-profile-peer-group-address-family-binding-peer-group-address-family-binding-profile-and-routing-policies-associated-with-the-peer-group)
-      - [List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies](#list-all-bgp-deployment-information-for-peer-groups-configured-in-the-given-organization-including-peer-group-address-family-information-as-well-as-routing-policies)
-      - [List the listen ranges configured for BGP in the given organization](#list-the-listen-ranges-configured-for-bgp-in-the-given-organization)
+      - [List the BGP peer groups configured in the given organization](#list-the-bgp-peer-groups-configured-in-the-given-organization-1)
+      - [List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges](#list-all-bgp-deployment-information-for-multiple-peer-groups-or-address-families-configured-in-the-given-organization-including-profile-information-peer-group-address-family-information-neighbors-and-listen-ranges-2)
+      - [Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group](#create-or-update-a-peer-group-in-addition-to-an-associated-peer-group-profile-peer-group-address-family-binding-peer-group-address-family-binding-profile-and-routing-policies-associated-with-the-peer-group-1)
+      - [List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies](#list-all-bgp-deployment-information-for-peer-groups-configured-in-the-given-organization-including-peer-group-address-family-information-as-well-as-routing-policies-1)
+      - [List the listen ranges configured for BGP in the given organization](#list-the-listen-ranges-configured-for-bgp-in-the-given-organization-1)
       - [List the neighbors configured for BGP in the given organization](#list-the-neighbors-configured-for-bgp-in-the-given-organization)
-      - [Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor](#create-or-update-a-neighor-in-addition-to-an-associated-neighbor-address-family-binding-and-routing-policies-associated-with-the-neighbor)
-      - [List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies](#list-all-bgp-deployment-information-for-neighbors-configured-in-the-given-organization-including-address-family-information-as-well-as-routing-policies)
+      - [Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor](#create-or-update-a-neighor-in-addition-to-an-associated-neighbor-address-family-binding-and-routing-policies-associated-with-the-neighbor-1)
+      - [List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies](#list-all-bgp-deployment-information-for-neighbors-configured-in-the-given-organization-including-address-family-information-as-well-as-routing-policies-1)
       - [List the routers configured in the given organization](#list-the-routers-configured-in-the-given-organization)
-      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-2)
-      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-2)
-      - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router)
-    + [wireless](#wireless-10)
+      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-3)
+      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-3)
+      - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router-1)
+    + [wireless](#wireless-13)
       - [Return a list of radio overrides](#return-a-list-of-radio-overrides-1)
   * [\[ wireless \]](#-wireless-)
     + [rfProfiles](#rfprofiles)
@@ -8520,18 +11293,18 @@ PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
 ## v1.73.0-beta.0
 
 
-- [Added](#added-7)
+- [Added](#added-10)
   * [\[ organizations \]](#-organizations-)
-    + [assurance](#assurance-12)
+    + [assurance](#assurance-14)
       - [Returns the most impacted wired experience metrics, including client counts, top failure contributor, and most impacted networks for each metric.](#returns-the-most-impacted-wired-experience-metrics-including-client-counts-top-failure-contributor-and-most-impacted-networks-for-each-metric-1)
-    + [nac](#nac-5)
+    + [nac](#nac-7)
       - [Retrieve a CRL for an existing CA through Certificate Validation](#retrieve-a-crl-for-an-existing-ca-through-certificate-validation)
-- [Changed](#changed-8)
+- [Changed](#changed-11)
   * [\[ administered \]](#-administered--1)
-    + [assistant](#assistant-2)
-      - [Create a new chat message in an existing user-wide thread.](#create-a-new-chat-message-in-an-existing-user-wide-thread)
+    + [assistant](#assistant-4)
+      - [Create a new chat message in an existing user-wide thread.](#create-a-new-chat-message-in-an-existing-user-wide-thread-1)
   * [\[ appliance \]](#-appliance--1)
-    + [devices](#devices-5)
+    + [devices](#devices-8)
       - [Update MX warm spare settings](#update-mx-warm-spare-settings)
       - [Swap MX primary and warm spare appliances](#swap-mx-primary-and-warm-spare-appliances)
     + [staticRoutes](#staticroutes)
@@ -8544,11 +11317,11 @@ PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
       - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network)
       - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network)
   * [\[ organizations \]](#-organizations--1)
-    + [appliance](#appliance-6)
+    + [appliance](#appliance-9)
       - [Return MX warm spare settings](#return-mx-warm-spare-settings)
-    + [assistant](#assistant-3)
-      - [Create a new chat message in an existing thread.](#create-a-new-chat-message-in-an-existing-thread)
-    + [assurance](#assurance-13)
+    + [assistant](#assistant-5)
+      - [Create a new chat message in an existing thread.](#create-a-new-chat-message-in-an-existing-thread-1)
+    + [assurance](#assurance-15)
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-4)
       - [Summarizes wireless post connection capacity successes and failures by band.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-band-1)
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-5)
@@ -8556,7 +11329,7 @@ PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-6)
       - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device-1)
       - [Summarizes wireless post connection capacity successes and failures by ssid.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-ssid-1)
-      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-1)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-2)
       - [Summarizes wireless coverage successes and failures by network.](#summarizes-wireless-coverage-successes-and-failures-by-network-1)
       - [Summarizes wireless coverage successes and failures by band.](#summarizes-wireless-coverage-successes-and-failures-by-band-1)
       - [Summarizes wireless coverage successes and failures by client.](#summarizes-wireless-coverage-successes-and-failures-by-client-1)
@@ -8564,12 +11337,12 @@ PUT _`/networks/{networkId}/wireless/rfProfiles/{rfProfileId}`_
       - [Summarizes wireless coverage successes and failures by client type.](#summarizes-wireless-coverage-successes-and-failures-by-client-type-1)
       - [Summarizes wireless coverage successes and failures by device.](#summarizes-wireless-coverage-successes-and-failures-by-device-1)
       - [Summarizes wireless coverage successes and failures by SSID.](#summarizes-wireless-coverage-successes-and-failures-by-ssid-1)
-      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-1)
-      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-1)
-      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-2)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-2)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-2)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-3)
     + [earlyAccess](#earlyaccess)
       - [List the available early access features for organization](#list-the-available-early-access-features-for-organization)
-    + [nac](#nac-6)
+    + [nac](#nac-8)
       - [Gets all certificates for an organization and can filter by certificate status, expiry date and last used date](#gets-all-certificates-for-an-organization-and-can-filter-by-certificate-status-expiry-date-and-last-used-date-1)
       - [Upload a CRL through Certificate Validation](#upload-a-crl-through-certificate-validation-1)
       - [Import certificate for this organization or validate without persisting](#import-certificate-for-this-organization-or-validate-without-persisting-1)
@@ -9259,18 +12032,18 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
 ## v1.72.0-beta.4
 
 
-- [Added](#added-8)
+- [Added](#added-11)
   * [\[ organizations \]](#-organizations-)
-    + [appliance](#appliance-7)
+    + [appliance](#appliance-10)
       - [Returns MX port profile assignments](#returns-mx-port-profile-assignments)
-    + [campusGateway](#campusgateway-4)
+    + [campusGateway](#campusgateway-6)
       - [List available campus gateway clusters that can be used for wireless network tunneling](#list-available-campus-gateway-clusters-that-can-be-used-for-wireless-network-tunneling)
     + [sase](#sase-1)
       - [Detach sites in this organization from Secure Access](#detach-sites-in-this-organization-from-secure-access)
   * [\[ wireless \]](#-wireless-)
     + [ssids](#ssids-3)
       - [Update the OWE transition pairs for a network](#update-the-owe-transition-pairs-for-a-network)
-- [Changed](#changed-9)
+- [Changed](#changed-12)
   * [\[ appliance \]](#-appliance--1)
     + [vpn](#vpn-2)
       - [Update a Hub BGP Configuration](#update-a-hub-bgp-configuration-1)
@@ -9279,11 +12052,11 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
       - [Creates new quality retention profile for this network.](#creates-new-quality-retention-profile-for-this-network)
       - [Update an existing quality retention profile for this network.](#update-an-existing-quality-retention-profile-for-this-network)
   * [\[ devices \]](#-devices--1)
-    + [appliance](#appliance-8)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-2)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-3)
-    + [liveTools](#livetools-3)
-      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job-1)
+    + [appliance](#appliance-11)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-4)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-5)
+    + [liveTools](#livetools-5)
+      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job-2)
   * [\[ firmwareUpgrades \]](#-firmwareupgrades--1)
     + [general](#general-3)
       - [Update firmware upgrade information for a network](#update-firmware-upgrade-information-for-a-network-1)
@@ -9292,18 +12065,18 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
   * [\[ organizations \]](#-organizations--1)
     + [api](#api-2)
       - [List pipelines with operation and status metadata, sorted by pipeline ID](#list-pipelines-with-operation-and-status-metadata-sorted-by-pipeline-id-2)
-    + [appliance](#appliance-9)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
-    + [assurance](#assurance-14)
+    + [appliance](#appliance-12)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-2)
+    + [assurance](#assurance-16)
       - [Returns the most impacted wireless experience networks with client counts, impacted experience metrics, and the top failure contributor for each network.](#returns-the-most-impacted-wireless-experience-networks-with-client-counts-impacted-experience-metrics-and-the-top-failure-contributor-for-each-network-1)
       - [Returns the most impacted wireless experience metrics, including client counts, top failure contributor, and most impacted networks for each metric.](#returns-the-most-impacted-wireless-experience-metrics-including-client-counts-top-failure-contributor-and-most-impacted-networks-for-each-metric-1)
-    + [devices](#devices-6)
-      - [List cellular data management profiles in this organization](#list-cellular-data-management-profiles-in-this-organization)
+    + [devices](#devices-9)
+      - [List cellular data management profiles in this organization](#list-cellular-data-management-profiles-in-this-organization-1)
       - [Add a cellular data management profile to this organization](#add-a-cellular-data-management-profile-to-this-organization)
       - [Update a Cellular Data Management Profile](#update-a-cellular-data-management-profile)
     + [sase](#sase-2)
       - [Update the configuration for a site](#update-the-configuration-for-a-site)
-    + [wireless](#wireless-11)
+    + [wireless](#wireless-14)
       - [Show the status of this organization's radios, categorized by network and device](#show-the-status-of-this-organizations-radios-categorized-by-network-and-device)
       - [List the SSID profile assignments in an organization, grouped by network](#list-the-ssid-profile-assignments-in-an-organization-grouped-by-network)
   * [\[ wireless \]](#-wireless--1)
@@ -9804,55 +12577,55 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
 ## v1.72.0-beta.3
 
 
-- [Added](#added-9)
+- [Added](#added-12)
   * [\[ administered \]](#-administered-)
-    + [assistant](#assistant-4)
-      - [Create a synchronous AI assistant chat completion for user-wide threads](#create-a-synchronous-ai-assistant-chat-completion-for-user-wide-threads-1)
-      - [List all active user-wide conversation threads for the authenticated user.](#list-all-active-user-wide-conversation-threads-for-the-authenticated-user)
+    + [assistant](#assistant-6)
+      - [Create a synchronous AI assistant chat completion for user-wide threads](#create-a-synchronous-ai-assistant-chat-completion-for-user-wide-threads-2)
+      - [List all active user-wide conversation threads for the authenticated user.](#list-all-active-user-wide-conversation-threads-for-the-authenticated-user-1)
       - [Create a user-wide conversation thread for multi-turn AI assistant interactions.](#create-a-user-wide-conversation-thread-for-multi-turn-ai-assistant-interactions)
       - [Delete a user-wide conversation thread and all its messages.](#delete-a-user-wide-conversation-thread-and-all-its-messages)
-      - [Return a single user-wide conversation thread.](#return-a-single-user-wide-conversation-thread)
+      - [Return a single user-wide conversation thread.](#return-a-single-user-wide-conversation-thread-1)
       - [Update the name of a user-wide conversation thread.](#update-the-name-of-a-user-wide-conversation-thread)
-      - [List messages in a user-wide conversation thread.](#list-messages-in-a-user-wide-conversation-thread)
-      - [Create a new chat message in an existing user-wide thread.](#create-a-new-chat-message-in-an-existing-user-wide-thread-1)
-      - [Return a single message in a user-wide conversation thread.](#return-a-single-message-in-a-user-wide-conversation-thread)
+      - [List messages in a user-wide conversation thread.](#list-messages-in-a-user-wide-conversation-thread-1)
+      - [Create a new chat message in an existing user-wide thread.](#create-a-new-chat-message-in-an-existing-user-wide-thread-2)
+      - [Return a single message in a user-wide conversation thread.](#return-a-single-message-in-a-user-wide-conversation-thread-1)
   * [\[ appliance \]](#-appliance-)
     + [ports](#ports-2)
       - [Create a shared MX port RADIUS server for a network](#create-a-shared-mx-port-radius-server-for-a-network)
       - [Delete a network-owned shared MX port RADIUS server](#delete-a-network-owned-shared-mx-port-radius-server)
       - [Update a shared MX port RADIUS server for a network](#update-a-shared-mx-port-radius-server-for-a-network)
   * [\[ organizations \]](#-organizations-)
-    + [appliance](#appliance-10)
+    + [appliance](#appliance-13)
       - [List shared MX port RADIUS servers by network](#list-shared-mx-port-radius-servers-by-network)
-    + [assurance](#assurance-15)
+    + [assurance](#assurance-17)
       - [List the alert profiles for this organization](#list-the-alert-profiles-for-this-organization)
       - [Create an alert profile](#create-an-alert-profile)
       - [Delete an alert profile for this organization](#delete-an-alert-profile-for-this-organization)
       - [Update an alert profile](#update-an-alert-profile)
     + [iam](#iam-1)
       - [List administrator login attempts for the organization (Dashboard Login Attempts)](#list-administrator-login-attempts-for-the-organization-dashboard-login-attempts)
-    + [wireless](#wireless-12)
+    + [wireless](#wireless-15)
       - [Returns an array of objects, each containing OWE transition pairs for the corresponding network](#returns-an-array-of-objects-each-containing-owe-transition-pairs-for-the-corresponding-network)
-- [Changed](#changed-10)
+- [Changed](#changed-13)
   * [\[ devices \]](#-devices--1)
     + [certificates](#certificates-2)
       - [Revoke a device certificate](#revoke-a-device-certificate)
-    + [switch](#switch-11)
+    + [switch](#switch-15)
       - [List the switch ports for a switch](#list-the-switch-ports-for-a-switch-1)
       - [Return a switch port](#return-a-switch-port-1)
       - [Update a switch port](#update-a-switch-port-1)
   * [\[ organizations \]](#-organizations--1)
-    + [assistant](#assistant-5)
+    + [assistant](#assistant-7)
     + [certificates](#certificates-3)
       - [List certificate authorities for an organization](#list-certificate-authorities-for-an-organization-1)
       - [Trust a newly created certificate authority (transition from untrusted to trusted).](#trust-a-newly-created-certificate-authority-transition-from-untrusted-to-trusted)
       - [Revoke a trusted feature certificate authority.](#revoke-a-trusted-feature-certificate-authority)
-    + [devices](#devices-7)
+    + [devices](#devices-10)
       - [List device certificates for the organization](#list-device-certificates-for-the-organization)
       - [Returns details about software updates for networks within an organization.](#returns-details-about-software-updates-for-networks-within-an-organization-3)
-    + [summary](#summary)
+    + [summary](#summary-1)
       - [List the client and status overview information for the networks in an organization](#list-the-client-and-status-overview-information-for-the-networks-in-an-organization)
-    + [switch](#switch-12)
+    + [switch](#switch-16)
       - [List switch templates running IOS XE Catalyst firmware.](#list-switch-templates-running-ios-xe-catalyst-firmware)
       - [Clone existing switch templates into a destination template network.](#clone-existing-switch-templates-into-a-destination-template-network)
   * [\[ sm \]](#-sm--1)
@@ -10463,43 +13236,43 @@ GET _`/networks/{networkId}/sm/profiles`_
 ## v1.72.0-beta.2
 
 
-- [Changed](#changed-11)
+- [Changed](#changed-14)
   * [\[ organizations \]](#-organizations--1)
-    + [assistant](#assistant-6)
+    + [assistant](#assistant-8)
       - [List the AI assistant's available capabilities and agents for this organization.](#list-the-ai-assistants-available-capabilities-and-agents-for-this-organization)
-      - [Create a synchronous AI assistant chat completion](#create-a-synchronous-ai-assistant-chat-completion-1)
-      - [List all active conversation threads for the authenticated user.](#list-all-active-conversation-threads-for-the-authenticated-user)
+      - [Create a synchronous AI assistant chat completion](#create-a-synchronous-ai-assistant-chat-completion-2)
+      - [List all active conversation threads for the authenticated user.](#list-all-active-conversation-threads-for-the-authenticated-user-1)
       - [Create a conversation thread for multi-turn AI assistant interactions.](#create-a-conversation-thread-for-multi-turn-ai-assistant-interactions)
       - [Delete a conversation thread and all its messages.](#delete-a-conversation-thread-and-all-its-messages)
-      - [Return a single conversation thread.](#return-a-single-conversation-thread)
+      - [Return a single conversation thread.](#return-a-single-conversation-thread-1)
       - [Update the name of a conversation thread.](#update-the-name-of-a-conversation-thread)
-      - [List messages in a conversation thread.](#list-messages-in-a-conversation-thread)
-      - [Create a new chat message in an existing thread.](#create-a-new-chat-message-in-an-existing-thread-1)
-      - [Return a single message in a conversation thread.](#return-a-single-message-in-a-conversation-thread)
-      - [List artifacts attached to a specific message](#list-artifacts-attached-to-a-specific-message)
+      - [List messages in a conversation thread.](#list-messages-in-a-conversation-thread-1)
+      - [Create a new chat message in an existing thread.](#create-a-new-chat-message-in-an-existing-thread-2)
+      - [Return a single message in a conversation thread.](#return-a-single-message-in-a-conversation-thread-1)
+      - [List artifacts attached to a specific message](#list-artifacts-attached-to-a-specific-message-1)
       - [Return a single artifact with its full content.](#return-a-single-artifact-with-its-full-content)
       - [Return all feedback entries previously submitted for a specific message in a thread.](#return-all-feedback-entries-previously-submitted-for-a-specific-message-in-a-thread)
       - [Submit or replace feedback for a specific assistant message.](#submit-or-replace-feedback-for-a-specific-assistant-message)
-    + [assurance](#assurance-16)
+    + [assurance](#assurance-18)
       - [Summarizes wireless post connection capacity successes and failures by band.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-band-2)
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-7)
       - [Summarizes wireless post connection capacity successes and failures by client OS and driver version.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-client-os-and-driver-version-2)
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-8)
       - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device-2)
       - [Summarizes wireless post connection capacity successes and failures by ssid.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-ssid-2)
-      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-2)
-      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-2)
-      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-2)
-      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-3)
-    + [devices](#devices-8)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-3)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-3)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-3)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-4)
+    + [devices](#devices-11)
       - [Retrieves packet capture analysis result for a specific packet capture task.](#retrieves-packet-capture-analysis-result-for-a-specific-packet-capture-task)
-    + [nac](#nac-7)
-      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-2)
-      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-2)
-      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-2)
+    + [nac](#nac-9)
+      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-3)
+      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-3)
+      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-3)
     + [sase](#sase-3)
       - [Attach sites in this organization to Secure Access](#attach-sites-in-this-organization-to-secure-access)
-    + [wireless](#wireless-13)
+    + [wireless](#wireless-16)
       - [List the wireless device telemetry of an organization](#list-the-wireless-device-telemetry-of-an-organization)
   * [\[ trafficShaping \]](#-trafficshaping--1)
     + [dscpTaggingOptions](#dscptaggingoptions)
@@ -10995,22 +13768,22 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}/deviceTypeGroupPolicies`_
 ## v1.72.0-beta.1
 
 
-- [Added](#added-10)
+- [Added](#added-13)
   * [\[ organizations \]](#-organizations-)
-    + [policies](#policies-2)
+    + [policies](#policies-3)
       - [Commit staged Organization-Wide Policy Ruleset Assignments](#commit-staged-organization-wide-policy-ruleset-assignments-1)
-- [Changed](#changed-12)
+- [Changed](#changed-15)
   * [\[ devices \]](#-devices--1)
-    + [liveTools](#livetools-4)
-      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job-2)
+    + [liveTools](#livetools-6)
+      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job-3)
       - [Enqueue a job to request the MAC table from the device](#enqueue-a-job-to-request-the-mac-table-from-the-device)
       - [Return a MAC table live tool job.](#return-a-mac-table-live-tool-job)
       - [Enqueue a job to perform a routing table request for the device](#enqueue-a-job-to-perform-a-routing-table-request-for-the-device)
       - [Return an routing table live tool job.](#return-an-routing-table-live-tool-job)
-    + [switch](#switch-13)
+    + [switch](#switch-17)
       - [Return the status for all the ports of a switch](#return-the-status-for-all-the-ports-of-a-switch)
   * [\[ organizations \]](#-organizations--1)
-    + [assurance](#assurance-17)
+    + [assurance](#assurance-19)
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-9)
       - [Summarizes wireless post connection capacity successes and failures by band.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-band-3)
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-10)
@@ -11032,24 +13805,24 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}/deviceTypeGroupPolicies`_
       - [Add Application Deployment agents for a list of hosts](#add-application-deployment-agents-for-a-list-of-hosts)
       - [Update a Deployment agent configuration](#update-a-deployment-agent-configuration)
       - [Retrieves a list of compute hosts eligible for application deployment within a given organization, filtered by the specified application developer and application name, with optional network ID filtering.](#retrieves-a-list-of-compute-hosts-eligible-for-application-deployment-within-a-given-organization-filtered-by-the-specified-application-developer-and-application-name-with-optional-network-id-filtering)
-    + [devices](#devices-9)
+    + [devices](#devices-12)
       - [List topology interfaces in an organization, including layer 2 and layer 3 metadata when available.](#list-topology-interfaces-in-an-organization-including-layer-2-and-layer-3-metadata-when-available)
-    + [nac](#nac-8)
+    + [nac](#nac-10)
       - [List the NAC Sessions for this organization](#list-the-nac-sessions-for-this-organization-2)
       - [Return the details of selected NAC Sessions](#return-the-details-of-selected-nac-sessions-3)
-    + [policies](#policies-3)
+    + [policies](#policies-4)
       - [List Organization-Wide Policy Firewall Rulesets](#list-organization-wide-policy-firewall-rulesets)
-      - [Create an Organization-Wide Policy Firewall Rule](#create-an-organization-wide-policy-firewall-rule-1)
-      - [Update an Organization-Wide Policy Firewall Rule](#update-an-organization-wide-policy-firewall-rule-1)
+      - [Create an Organization-Wide Policy Firewall Rule](#create-an-organization-wide-policy-firewall-rule-2)
+      - [Update an Organization-Wide Policy Firewall Rule](#update-an-organization-wide-policy-firewall-rule-2)
       - [List Organization-Wide Policy Ruleset Assignments](#list-organization-wide-policy-ruleset-assignments)
       - [Create an Organization-Wide Policy Ruleset Assignment](#create-an-organization-wide-policy-ruleset-assignment)
     + [sase](#sase-4)
       - [Delete SSE Connectors by ID](#delete-sse-connectors-by-id)
       - [Attach sites in this organization to Secure Access](#attach-sites-in-this-organization-to-secure-access-1)
       - [Detach sites in this organization from Secure Access](#detach-sites-in-this-organization-from-secure-access-1)
-    + [switch](#switch-14)
+    + [switch](#switch-18)
       - [List the switchports in an organization](#list-the-switchports-in-an-organization)
-    + [wireless](#wireless-14)
+    + [wireless](#wireless-17)
       - [Show the by-network RF Health score overview information for the organization in the given interval](#show-the-by-network-rf-health-score-overview-information-for-the-organization-in-the-given-interval)
   * [\[ webhooks \]](#-webhooks--1)
     + [httpServers](#httpservers)
@@ -11816,30 +14589,30 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
 ## v1.72.0-beta.0
 
 
-- [Added](#added-11)
+- [Added](#added-14)
   * [\[ organizations \]](#-organizations-)
-    + [appliance](#appliance-11)
-      - [Retrieve the HTTPS Inspection state for all security appliances in an organization.](#retrieve-the-https-inspection-state-for-all-security-appliances-in-an-organization)
-      - [Upload an HTTPS Inspection certificate to MX devices in the same organization](#upload-an-https-inspection-certificate-to-mx-devices-in-the-same-organization)
-    + [assurance](#assurance-18)
+    + [appliance](#appliance-14)
+      - [Retrieve the HTTPS Inspection state for all security appliances in an organization.](#retrieve-the-https-inspection-state-for-all-security-appliances-in-an-organization-1)
+      - [Upload an HTTPS Inspection certificate to MX devices in the same organization](#upload-an-https-inspection-certificate-to-mx-devices-in-the-same-organization-1)
+    + [assurance](#assurance-20)
       - [Summarizes wired connection successes and failures by server.](#summarizes-wired-connection-successes-and-failures-by-server)
-    + [devices](#devices-10)
+    + [devices](#devices-13)
       - [List the available software upgrade versions for an organization.](#list-the-available-software-upgrade-versions-for-an-organization)
       - [Provide changelogs for specified versions or, if unspecified, for all versions in the organization, including reference to the last and next versions.](#provide-changelogs-for-specified-versions-or-if-unspecified-for-all-versions-in-the-organization-including-reference-to-the-last-and-next-versions)
-- [Changed](#changed-13)
+- [Changed](#changed-16)
   * [\[ camera \]](#-camera--1)
     + [qualityRetentionProfiles](#qualityretentionprofiles-1)
       - [Creates new quality retention profile for this network.](#creates-new-quality-retention-profile-for-this-network-1)
       - [Update an existing quality retention profile for this network.](#update-an-existing-quality-retention-profile-for-this-network-1)
   * [\[ organizations \]](#-organizations--1)
-    + [assurance](#assurance-19)
+    + [assurance](#assurance-21)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-5)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-5)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-5)
       - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-5)
       - [Returns historical health alert overviews](#returns-historical-health-alert-overviews-5)
-      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-3)
-      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-3)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-4)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-4)
       - [Summarizes wireless connection successes and failures by network.](#summarizes-wireless-connection-successes-and-failures-by-network-2)
       - [Summarizes wireless connection successes and failures by band.](#summarizes-wireless-connection-successes-and-failures-by-band-3)
       - [Summarizes wireless connection successes and failures by client.](#summarizes-wireless-connection-successes-and-failures-by-client-2)
@@ -11849,7 +14622,7 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
       - [Time-series of wireless connection successes and failures by network.](#time-series-of-wireless-connection-successes-and-failures-by-network-2)
       - [Summarizes wireless connection successes and failures by server.](#summarizes-wireless-connection-successes-and-failures-by-server-2)
       - [Summarizes wireless connection successes and failures by ssid.](#summarizes-wireless-connection-successes-and-failures-by-ssid-2)
-      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-3)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-4)
       - [Summarizes wireless time to connect metrics by network.](#summarizes-wireless-time-to-connect-metrics-by-network-1)
       - [Summarizes wireless connection successes and failures by band.](#summarizes-wireless-connection-successes-and-failures-by-band-4)
       - [Summarizes wireless time to connect metrics by client.](#summarizes-wireless-time-to-connect-metrics-by-client-1)
@@ -11859,12 +14632,12 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
       - [Time-series of wireless time to connect by network.](#time-series-of-wireless-time-to-connect-by-network-2)
       - [Summarizes wireless connection time to connect metrics by server.](#summarizes-wireless-connection-time-to-connect-metrics-by-server-1)
       - [Summarizes wireless connection time to connect metrics by ssid.](#summarizes-wireless-connection-time-to-connect-metrics-by-ssid-1)
-      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-4)
-    + [campusGateway](#campusgateway-5)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-5)
+    + [campusGateway](#campusgateway-7)
       - [Get the details of campus gateway clusters](#get-the-details-of-campus-gateway-clusters)
       - [List SSIDs tunneling through Campus Gateway clusters](#list-ssids-tunneling-through-campus-gateway-clusters)
-      - [List the details of APs tunneling through the Campus Gateway clusters](#list-the-details-of-aps-tunneling-through-the-campus-gateway-clusters)
-    + [devices](#devices-11)
+      - [List the details of APs tunneling through the Campus Gateway clusters](#list-the-details-of-aps-tunneling-through-the-campus-gateway-clusters-1)
+    + [devices](#devices-14)
       - [List the Opportunistic Pcap settings of an organization by network](#list-the-opportunistic-pcap-settings-of-an-organization-by-network)
     + [sase](#sase-5)
   * [\[ syslogServers \]](#-syslogservers--1)
@@ -12524,9 +15297,9 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
 ## v1.71.0-beta.3
 
 
-- [Added](#added-12)
+- [Added](#added-15)
   * [\[ organizations \]](#-organizations-)
-    + [appliance](#appliance-12)
+    + [appliance](#appliance-15)
       - [List the intrusion policies configured for an organization along with base policies.](#list-the-intrusion-policies-configured-for-an-organization-along-with-base-policies)
       - [Create a new intrusion policy for the organization.](#create-a-new-intrusion-policy-for-the-organization)
       - [List counts for the intrusion and base policies configured for an organization.](#list-counts-for-the-intrusion-and-base-policies-configured-for-an-organization)
@@ -12551,7 +15324,7 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
       - [Delete a Application Deployment agent from the host](#delete-a-application-deployment-agent-from-the-host)
       - [Update a Deployment agent configuration](#update-a-deployment-agent-configuration-1)
       - [Retrieves a list of compute hosts eligible for application deployment within a given organization, filtered by the specified application developer and application name, with optional network ID filtering.](#retrieves-a-list-of-compute-hosts-eligible-for-application-deployment-within-a-given-organization-filtered-by-the-specified-application-developer-and-application-name-with-optional-network-id-filtering-1)
-- [Changed](#changed-14)
+- [Changed](#changed-17)
   * [\[ administered \]](#-administered--1)
     + [licensing](#licensing-1)
       - [Batch change networks to their desired feature tier for specified product types](#batch-change-networks-to-their-desired-feature-tier-for-specified-product-types)
@@ -12562,19 +15335,19 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
   * [\[ appliance \]](#-appliance--1)
     + [connectivityMonitoringDestinations](#connectivitymonitoringdestinations)
       - [Update the connectivity testing destinations for an MX network](#update-the-connectivity-testing-destinations-for-an-mx-network)
-    + [devices](#devices-12)
+    + [devices](#devices-15)
       - [Update MX warm spare settings](#update-mx-warm-spare-settings-1)
       - [Swap MX primary and warm spare appliances](#swap-mx-primary-and-warm-spare-appliances-1)
-    + [interfaces](#interfaces-1)
-      - [Create wired L3 interface](#create-wired-l3-interface)
-      - [Update wired L3 interface](#update-wired-l3-interface-1)
+    + [interfaces](#interfaces-2)
+      - [Create wired L3 interface](#create-wired-l3-interface-1)
+      - [Update wired L3 interface](#update-wired-l3-interface-2)
     + [ports](#ports-3)
       - [List per-port VLAN settings for all ports of a secure router or security appliance.](#list-per-port-vlan-settings-for-all-ports-of-a-secure-router-or-security-appliance)
       - [Return per-port VLAN settings for a single secure router or security appliance port.](#return-per-port-vlan-settings-for-a-single-secure-router-or-security-appliance-port)
       - [Update the per-port VLAN settings for a single secure router or security appliance port.](#update-the-per-port-vlan-settings-for-a-single-secure-router-or-security-appliance-port)
     + [sdwan](#sdwan)
       - [Update SDWAN internet traffic preferences for an MX network](#update-sdwan-internet-traffic-preferences-for-an-mx-network)
-    + [security](#security-1)
+    + [security](#security-2)
       - [Returns all supported intrusion settings for an MX network](#returns-all-supported-intrusion-settings-for-an-mx-network-1)
       - [Set the supported intrusion settings for an MX network](#set-the-supported-intrusion-settings-for-an-mx-network-1)
     + [singleLan](#singlelan)
@@ -12613,34 +15386,34 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
       - [Return the splash authorization for a client, for each SSID they've associated with through splash](#return-the-splash-authorization-for-a-client-for-each-ssid-theyve-associated-with-through-splash)
       - [Update a client's splash authorization](#update-a-clients-splash-authorization)
   * [\[ devices \]](#-devices--1)
-    + [appliance](#appliance-13)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-4)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-5)
+    + [appliance](#appliance-16)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-6)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-7)
       - [Return prefixes assigned to all IPv6 enabled VLANs on an appliance.](#return-prefixes-assigned-to-all-ipv6-enabled-vlans-on-an-appliance)
       - [Update the radio settings of an appliance](#update-the-radio-settings-of-an-appliance)
       - [Update the uplink settings for a secure router or security appliance](#update-the-uplink-settings-for-a-secure-router-or-security-appliance-2)
     + [camera](#camera)
       - [Assign wireless profiles to the given camera](#assign-wireless-profiles-to-the-given-camera)
-    + [cellular](#cellular-1)
-      - [Updates the SIM and APN configurations for a cellular device.](#updates-the-sim-and-apn-configurations-for-a-cellular-device-1)
-    + [liveTools](#livetools-5)
-      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job-3)
+    + [cellular](#cellular-2)
+      - [Updates the SIM and APN configurations for a cellular device.](#updates-the-sim-and-apn-configurations-for-a-cellular-device-2)
+    + [liveTools](#livetools-7)
+      - [Return an ARP table live tool job.](#return-an-arp-table-live-tool-job-4)
     + [managementInterface](#managementinterface)
       - [Return the management interface settings for a device](#return-the-management-interface-settings-for-a-device)
       - [Update the management interface settings for a device](#update-the-management-interface-settings-for-a-device)
-    + [switch](#switch-15)
+    + [switch](#switch-19)
       - [Update a switch port](#update-a-switch-port-2)
       - [List layer 3 interfaces for a switch](#list-layer-3-interfaces-for-a-switch-2)
       - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch-2)
       - [Return a layer 3 interface for a switch](#return-a-layer-3-interface-for-a-switch-2)
       - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch-2)
-    + [wireless](#wireless-15)
+    + [wireless](#wireless-18)
       - [Return the position for a wireless device](#return-the-position-for-a-wireless-device)
       - [Update the position attributes for this device](#update-the-position-attributes-for-this-device)
       - [Update 2.4 GHz, 5 GHz, and 6 GHz radio settings (channel, channel width, power, and enable/disable) that override RF profiles.](#update-24-ghz-5-ghz-and-6-ghz-radio-settings-channel-channel-width-power-and-enabledisable-that-override-rf-profiles-1)
       - [Update 2.4 GHz and 5 GHz radio settings (channel, channel width, power) that override RF profiles](#update-24-ghz-and-5-ghz-radio-settings-channel-channel-width-power-that-override-rf-profiles)
   * [\[ floorPlans \]](#-floorplans--1)
-    + [devices](#devices-13)
+    + [devices](#devices-16)
       - [Update floorplan assignments for a batch of devices](#update-floorplan-assignments-for-a-batch-of-devices)
   * [\[ groupPolicies \]](#-grouppolicies--1)
     + [general](#general-5)
@@ -12653,30 +15426,30 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
       - [Add an MQTT broker](#add-an-mqtt-broker)
       - [Update an MQTT broker](#update-an-mqtt-broker)
   * [\[ organizations \]](#-organizations--1)
-    + [admins](#admins)
+    + [admins](#admins-1)
       - [List the dashboard administrators in this organization](#list-the-dashboard-administrators-in-this-organization)
-      - [Create a new dashboard administrator](#create-a-new-dashboard-administrator)
-      - [Update an administrator](#update-an-administrator)
+      - [Create a new dashboard administrator](#create-a-new-dashboard-administrator-1)
+      - [Update an administrator](#update-an-administrator-1)
     + [api](#api-3)
       - [List pipelines with operation and status metadata, sorted by pipeline ID](#list-pipelines-with-operation-and-status-metadata-sorted-by-pipeline-id-3)
-    + [apiRequests](#apirequests)
-      - [List the API requests made by an organization](#list-the-api-requests-made-by-an-organization)
-    + [appliance](#appliance-14)
-      - [List L3 interfaces across networks for the organization](#list-l3-interfaces-across-networks-for-the-organization)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-2)
+    + [apiRequests](#apirequests-1)
+      - [List the API requests made by an organization](#list-the-api-requests-made-by-an-organization-1)
+    + [appliance](#appliance-17)
+      - [List L3 interfaces across networks for the organization](#list-l3-interfaces-across-networks-for-the-organization-1)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-3)
       - [Return MX warm spare settings](#return-mx-warm-spare-settings-1)
       - [Returns packet counter overviews for all interfaces on Secure Routers in the organization, including totals and average rates by packet type over the requested timespan.](#returns-packet-counter-overviews-for-all-interfaces-on-secure-routers-in-the-organization-including-totals-and-average-rates-by-packet-type-over-the-requested-timespan)
       - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network)
       - [Returns all supported intrusion settings for an organization](#returns-all-supported-intrusion-settings-for-an-organization)
       - [Sets supported intrusion settings for an organization](#sets-supported-intrusion-settings-for-an-organization)
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization-1)
-      - [Return the third party VPN peers for an organization](#return-the-third-party-vpn-peers-for-an-organization-1)
-      - [Update the third party VPN peers for an organization](#update-the-third-party-vpn-peers-for-an-organization-1)
-    + [assistant](#assistant-7)
-      - [List all active conversation threads for the authenticated user.](#list-all-active-conversation-threads-for-the-authenticated-user-1)
-      - [List messages in a conversation thread.](#list-messages-in-a-conversation-thread-1)
+      - [Return the third party VPN peers for an organization](#return-the-third-party-vpn-peers-for-an-organization-2)
+      - [Update the third party VPN peers for an organization](#update-the-third-party-vpn-peers-for-an-organization-2)
+    + [assistant](#assistant-9)
+      - [List all active conversation threads for the authenticated user.](#list-all-active-conversation-threads-for-the-authenticated-user-2)
+      - [List messages in a conversation thread.](#list-messages-in-a-conversation-thread-2)
       - [Return a single artifact with its full content.](#return-a-single-artifact-with-its-full-content-1)
-    + [assurance](#assurance-20)
+    + [assurance](#assurance-22)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-6)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-6)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-6)
@@ -12688,14 +15461,14 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-12)
       - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device-4)
       - [Summarizes wireless post connection capacity successes and failures by ssid.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-ssid-4)
-      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-4)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-5)
       - [Summarizes wireless coverage successes and failures by client OS.](#summarizes-wireless-coverage-successes-and-failures-by-client-os-3)
-      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-4)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-5)
       - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-7)
-      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-4)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-5)
       - [Summarizes wireless time to connect metrics by client.](#summarizes-wireless-time-to-connect-metrics-by-client-2)
       - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-8)
-      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-5)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-6)
     + [certificates](#certificates-4)
       - [Delete a certificate authority](#delete-a-certificate-authority)
       - [List certificate authorities for an organization](#list-certificate-authorities-for-an-organization-2)
@@ -12705,7 +15478,7 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
       - [Revoke a trusted feature certificate authority.](#revoke-a-trusted-feature-certificate-authority-1)
     + [configTemplates](#configtemplates-2)
       - [Update a switch template port](#update-a-switch-template-port-1)
-    + [devices](#devices-14)
+    + [devices](#devices-17)
       - [List devices eligible for Cellular Data Management profile assignment in this organization](#list-devices-eligible-for-cellular-data-management-profile-assignment-in-this-organization)
       - [List the latest cellular geolocation telemetry for devices in an organization](#list-the-latest-cellular-geolocation-telemetry-for-devices-in-an-organization)
       - [List the latest cellular tower information for devices in an organization](#list-the-latest-cellular-tower-information-for-devices-in-an-organization)
@@ -12713,7 +15486,7 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
       - [Retrieve device migration statuses in an organization](#retrieve-device-migration-statuses-in-an-organization)
       - [Returns details about software updates for networks within an organization.](#returns-details-about-software-updates-for-networks-within-an-organization-4)
       - [List topology interfaces in an organization, including layer 2 and layer 3 metadata when available.](#list-topology-interfaces-in-an-organization-including-layer-2-and-layer-3-metadata-when-available-1)
-      - [List layer 2 topology links originating from devices in an organization.](#list-layer-2-topology-links-originating-from-devices-in-an-organization)
+      - [List layer 2 topology links originating from devices in an organization.](#list-layer-2-topology-links-originating-from-devices-in-an-organization-1)
       - [List topology nodes discovered by LLDP/CDP from devices in an organization, including reported metadata when available.](#list-topology-nodes-discovered-by-lldpcdp-from-devices-in-an-organization-including-reported-metadata-when-available)
     + [firmware](#firmware)
       - [Get firmware upgrade status for the filtered devices](#get-firmware-upgrade-status-for-the-filtered-devices)
@@ -12728,7 +15501,7 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
     + [sensor](#sensor)
       - [Return a list of sensor alert events](#return-a-list-of-sensor-alert-events)
       - [Return the latest available reading for each metric from each sensor, sorted by sensor serial](#return-the-latest-available-reading-for-each-metric-from-each-sensor-sorted-by-sensor-serial)
-    + [switch](#switch-16)
+    + [switch](#switch-20)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch-1)
       - [Create a port profile in an organization](#create-a-port-profile-in-an-organization-2)
       - [Batch assign or unassign port profiles to switch ports](#batch-assign-or-unassign-port-profiles-to-switch-ports)
@@ -12740,16 +15513,16 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
       - [Update a port profile in an organization](#update-a-port-profile-in-an-organization-2)
       - [Switch port packets by device and port.](#switch-port-packets-by-device-and-port)
       - [Create or update a prefix list, in addition to its associated rules](#create-or-update-a-prefix-list-in-addition-to-its-associated-rules-2)
-      - [List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges](#list-all-bgp-deployment-information-for-multiple-peer-groups-or-address-families-configured-in-the-given-organization-including-profile-information-peer-group-address-family-information-neighbors-and-listen-ranges-1)
-      - [Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group](#create-or-update-a-peer-group-in-addition-to-an-associated-peer-group-profile-peer-group-address-family-binding-peer-group-address-family-binding-profile-and-routing-policies-associated-with-the-peer-group-1)
-      - [List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies](#list-all-bgp-deployment-information-for-peer-groups-configured-in-the-given-organization-including-peer-group-address-family-information-as-well-as-routing-policies-1)
+      - [List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges](#list-all-bgp-deployment-information-for-multiple-peer-groups-or-address-families-configured-in-the-given-organization-including-profile-information-peer-group-address-family-information-neighbors-and-listen-ranges-3)
+      - [Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group](#create-or-update-a-peer-group-in-addition-to-an-associated-peer-group-profile-peer-group-address-family-binding-peer-group-address-family-binding-profile-and-routing-policies-associated-with-the-peer-group-2)
+      - [List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies](#list-all-bgp-deployment-information-for-peer-groups-configured-in-the-given-organization-including-peer-group-address-family-information-as-well-as-routing-policies-2)
       - [List the neighbors configured for BGP in the given organization](#list-the-neighbors-configured-for-bgp-in-the-given-organization-1)
-      - [Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor](#create-or-update-a-neighor-in-addition-to-an-associated-neighbor-address-family-binding-and-routing-policies-associated-with-the-neighbor-1)
-      - [List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies](#list-all-bgp-deployment-information-for-neighbors-configured-in-the-given-organization-including-address-family-information-as-well-as-routing-policies-1)
-      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-3)
+      - [Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor](#create-or-update-a-neighor-in-addition-to-an-associated-neighbor-address-family-binding-and-routing-policies-associated-with-the-neighbor-2)
+      - [List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies](#list-all-bgp-deployment-information-for-neighbors-configured-in-the-given-organization-including-address-family-information-as-well-as-routing-policies-2)
+      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-4)
     + [webhooks](#webhooks)
       - [Return a list of alert types to be used with managing webhook alerts](#return-a-list-of-alert-types-to-be-used-with-managing-webhook-alerts)
-    + [wireless](#wireless-16)
+    + [wireless](#wireless-19)
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device)
   * [\[ sensor \]](#-sensor--1)
     + [alerts](#alerts)
@@ -12759,16 +15532,16 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
     + [general](#general-7)
       - [Update the settings for a network](#update-the-settings-for-a-network)
   * [\[ switch \]](#-switch--1)
-    + [accessPolicies](#accesspolicies-1)
-      - [List the access policies for a switch network](#list-the-access-policies-for-a-switch-network-1)
-      - [Create an access policy for a switch network](#create-an-access-policy-for-a-switch-network-1)
-      - [Return a specific access policy for a switch network](#return-a-specific-access-policy-for-a-switch-network-1)
-      - [Update an access policy for a switch network](#update-an-access-policy-for-a-switch-network-1)
+    + [accessPolicies](#accesspolicies-2)
+      - [List the access policies for a switch network](#list-the-access-policies-for-a-switch-network-2)
+      - [Create an access policy for a switch network](#create-an-access-policy-for-a-switch-network-2)
+      - [Return a specific access policy for a switch network](#return-a-specific-access-policy-for-a-switch-network-2)
+      - [Update an access policy for a switch network](#update-an-access-policy-for-a-switch-network-2)
     + [ports](#ports-4)
       - [List the port profiles in a network](#list-the-port-profiles-in-a-network-1)
       - [Create a port profile in a network](#create-a-port-profile-in-a-network-2)
       - [Update a port profile in a network](#update-a-port-profile-in-a-network-2)
-    + [stacks](#stacks-3)
+    + [stacks](#stacks-4)
       - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack-2)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack-2)
       - [Return a layer 3 interface from a switch stack](#return-a-layer-3-interface-from-a-switch-stack-2)
@@ -12782,9 +15555,9 @@ PUT _`/networks/{networkId}/wireless/opportunisticPcap`_
     + [clients](#clients)
       - [Fetch the health scores for all clients on this network](#fetch-the-health-scores-for-all-clients-on-this-network)
       - [Fetch the health scores for a given client on this network](#fetch-the-health-scores-for-a-given-client-on-this-network)
-    + [ethernet](#ethernet)
-      - [Create an AP port profile](#create-an-ap-port-profile)
-      - [Update the AP port profile by ID for this network](#update-the-ap-port-profile-by-id-for-this-network)
+    + [ethernet](#ethernet-1)
+      - [Create an AP port profile](#create-an-ap-port-profile-1)
+      - [Update the AP port profile by ID for this network](#update-the-ap-port-profile-by-id-for-this-network-1)
     + [rfProfiles](#rfprofiles-3)
       - [List RF profiles for this network](#list-rf-profiles-for-this-network-1)
       - [Creates new RF profile for this network](#creates-new-rf-profile-for-this-network-2)
@@ -16409,14 +19182,14 @@ PUT _`/networks/{networkId}/wireless/zigbee`_
 ## v1.71.0-beta.2
 
 
-- [Added](#added-13)
+- [Added](#added-16)
   * [\[ devices \]](#-devices-)
     + [certificates](#certificates-5)
       - [Revoke a device certificate](#revoke-a-device-certificate-1)
   * [\[ organizations \]](#-organizations-)
-    + [assistant](#assistant-8)
+    + [assistant](#assistant-10)
       - [Get query limits for the AI assistant for this organization.](#get-query-limits-for-the-ai-assistant-for-this-organization)
-    + [assurance](#assurance-21)
+    + [assurance](#assurance-23)
       - [Returns the most impacted wireless experience metrics and the top failure contributor for each metric/network pair.](#returns-the-most-impacted-wireless-experience-metrics-and-the-top-failure-contributor-for-each-metricnetwork-pair)
     + [certificates](#certificates-6)
       - [Delete a certificate authority](#delete-a-certificate-authority-1)
@@ -16426,17 +19199,17 @@ PUT _`/networks/{networkId}/wireless/zigbee`_
       - [Return the status and result of a certificate authority job.](#return-the-status-and-result-of-a-certificate-authority-job-1)
       - [Revoke a trusted feature certificate authority.](#revoke-a-trusted-feature-certificate-authority-2)
       - [Return full certificate revocation lists (CRLs) for the organization's certificate authorities](#return-full-certificate-revocation-lists-crls-for-the-organizations-certificate-authorities)
-    + [devices](#devices-15)
+    + [devices](#devices-18)
       - [List device certificates for the organization](#list-device-certificates-for-the-organization-2)
-- [Changed](#changed-15)
+- [Changed](#changed-18)
   * [\[ appliance \]](#-appliance--1)
-    + [interfaces](#interfaces-2)
-      - [Create wired L3 interface](#create-wired-l3-interface-1)
-      - [Update wired L3 interface](#update-wired-l3-interface-2)
+    + [interfaces](#interfaces-3)
+      - [Create wired L3 interface](#create-wired-l3-interface-2)
+      - [Update wired L3 interface](#update-wired-l3-interface-3)
   * [\[ devices \]](#-devices--1)
-    + [appliance](#appliance-15)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-6)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-7)
+    + [appliance](#appliance-18)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-8)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-9)
     + [general](#general-8)
       - [Return a single device](#return-a-single-device)
       - [Update the attributes of a device](#update-the-attributes-of-a-device)
@@ -16447,11 +19220,11 @@ PUT _`/networks/{networkId}/wireless/zigbee`_
       - [Delete a push profile](#delete-a-push-profile)
       - [Create a new push receiver profile](#create-a-new-push-receiver-profile)
       - [Delete a push receiver profile](#delete-a-push-receiver-profile)
-    + [appliance](#appliance-16)
-      - [List L3 interfaces across networks for the organization](#list-l3-interfaces-across-networks-for-the-organization-1)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-3)
-    + [assistant](#assistant-9)
-    + [assurance](#assurance-22)
+    + [appliance](#appliance-19)
+      - [List L3 interfaces across networks for the organization](#list-l3-interfaces-across-networks-for-the-organization-2)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-4)
+    + [assistant](#assistant-11)
+    + [assurance](#assurance-24)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-7)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-7)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-7)
@@ -16462,19 +19235,19 @@ PUT _`/networks/{networkId}/wireless/zigbee`_
       - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-9)
       - [Summarizes wireless time to connect metrics by client.](#summarizes-wireless-time-to-connect-metrics-by-client-3)
       - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-10)
-      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-6)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-7)
     + [policyObjects](#policyobjects)
       - [Lists Policy Objects belonging to the organization.](#lists-policy-objects-belonging-to-the-organization)
       - [Creates a new Policy Object](#creates-a-new-policy-object)
       - [Shows details of a Policy Object.](#shows-details-of-a-policy-object)
       - [Updates a Policy Object](#updates-a-policy-object)
-    + [switch](#switch-17)
+    + [switch](#switch-21)
       - [List the switchports in an organization by switch](#list-the-switchports-in-an-organization-by-switch-2)
-      - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router-1)
+      - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router-2)
     + [webhooks](#webhooks-1)
       - [Add an HTTP server to an organization](#add-an-http-server-to-an-organization)
       - [Delete an HTTP server from an organization](#delete-an-http-server-from-an-organization)
-    + [wireless](#wireless-17)
+    + [wireless](#wireless-20)
       - [List the wireless device telemetry of an organization](#list-the-wireless-device-telemetry-of-an-organization-1)
   * [\[ wireless \]](#-wireless--1)
     + [rfProfiles](#rfprofiles-4)
@@ -17589,36 +20362,36 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
 ## v1.71.0-beta.1
 
 
-- [Changed](#changed-16)
+- [Changed](#changed-19)
   * [\[ devices \]](#-devices--1)
-    + [appliance](#appliance-17)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-8)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-9)
+    + [appliance](#appliance-20)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-10)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-11)
   * [\[ organizations \]](#-organizations--1)
     + [api](#api-5)
       - [Retrieves pipeline overviews with aggregated job status counts](#retrieves-pipeline-overviews-with-aggregated-job-status-counts-2)
-    + [appliance](#appliance-18)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-4)
-    + [assistant](#assistant-10)
+    + [appliance](#appliance-21)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-5)
+    + [assistant](#assistant-12)
       - [Create a chat completion with the AI assistant](#create-a-chat-completion-with-the-ai-assistant)
-    + [assurance](#assurance-23)
+    + [assurance](#assurance-25)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-8)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-8)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-8)
       - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-8)
       - [Returns historical health alert overviews](#returns-historical-health-alert-overviews-8)
     + [sase](#sase-7)
-    + [switch](#switch-18)
+    + [switch](#switch-22)
       - [Create a port profile in an organization](#create-a-port-profile-in-an-organization-3)
       - [List the prefix list rules configured for BGP in the given organization](#list-the-prefix-list-rules-configured-for-bgp-in-the-given-organization-2)
-      - [List the BGP peer groups configured in the given organization](#list-the-bgp-peer-groups-configured-in-the-given-organization-1)
-      - [List the listen ranges configured for BGP in the given organization](#list-the-listen-ranges-configured-for-bgp-in-the-given-organization-1)
+      - [List the BGP peer groups configured in the given organization](#list-the-bgp-peer-groups-configured-in-the-given-organization-2)
+      - [List the listen ranges configured for BGP in the given organization](#list-the-listen-ranges-configured-for-bgp-in-the-given-organization-2)
       - [List the neighbors configured for BGP in the given organization](#list-the-neighbors-configured-for-bgp-in-the-given-organization-2)
-    + [wireless](#wireless-18)
-      - [Returns the SSID profiles for an organization](#returns-the-ssid-profiles-for-an-organization)
-      - [Create a new SSID profile in an organization](#create-a-new-ssid-profile-in-an-organization)
-      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization-1)
-      - [Update this SSID profile](#update-this-ssid-profile)
+    + [wireless](#wireless-21)
+      - [Returns the SSID profiles for an organization](#returns-the-ssid-profiles-for-an-organization-1)
+      - [Create a new SSID profile in an organization](#create-a-new-ssid-profile-in-an-organization-1)
+      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization-2)
+      - [Update this SSID profile](#update-this-ssid-profile-1)
   * [\[ switch \]](#-switch--1)
     + [ports](#ports-5)
       - [Create a port profile in a network](#create-a-port-profile-in-a-network-3)
@@ -17957,39 +20730,39 @@ POST _`/networks/{networkId}/switch/ports/profiles`_
 ## v1.71.0-beta.0
 
 
-- [Added](#added-14)
+- [Added](#added-17)
   * [\[ devices \]](#-devices-)
-    + [liveTools](#livetools-6)
+    + [liveTools](#livetools-8)
       - [Enqueues a live tool job that retrieves details about a device's overall power usage](#enqueues-a-live-tool-job-that-retrieves-details-about-a-devices-overall-power-usage)
       - [Retrieve the status and results of a previously created live tool job fetching details about a device's overall power usage.](#retrieve-the-status-and-results-of-a-previously-created-live-tool-job-fetching-details-about-a-devices-overall-power-usage)
   * [\[ organizations \]](#-organizations-)
-    + [assistant](#assistant-11)
+    + [assistant](#assistant-13)
       - [List the AI assistant's available capabilities and agents for this organization.](#list-the-ai-assistants-available-capabilities-and-agents-for-this-organization-1)
       - [Create a chat completion with the AI assistant](#create-a-chat-completion-with-the-ai-assistant-1)
-      - [List all active conversation threads for the authenticated user.](#list-all-active-conversation-threads-for-the-authenticated-user-2)
+      - [List all active conversation threads for the authenticated user.](#list-all-active-conversation-threads-for-the-authenticated-user-3)
       - [Create a new conversation thread.](#create-a-new-conversation-thread)
       - [Delete a conversation thread and all its messages.](#delete-a-conversation-thread-and-all-its-messages-1)
-      - [Return a single conversation thread.](#return-a-single-conversation-thread-1)
+      - [Return a single conversation thread.](#return-a-single-conversation-thread-2)
       - [Update the name of a conversation thread.](#update-the-name-of-a-conversation-thread-1)
-      - [List messages in a conversation thread.](#list-messages-in-a-conversation-thread-2)
+      - [List messages in a conversation thread.](#list-messages-in-a-conversation-thread-3)
       - [Create a new chat message in a thread.](#create-a-new-chat-message-in-a-thread)
-      - [Return a single message in a conversation thread.](#return-a-single-message-in-a-conversation-thread-1)
-      - [List artifacts attached to a specific message](#list-artifacts-attached-to-a-specific-message-1)
+      - [Return a single message in a conversation thread.](#return-a-single-message-in-a-conversation-thread-2)
+      - [List artifacts attached to a specific message](#list-artifacts-attached-to-a-specific-message-2)
       - [Return a single artifact with its full content.](#return-a-single-artifact-with-its-full-content-2)
       - [Return all feedback entries previously submitted for a specific message in a thread.](#return-all-feedback-entries-previously-submitted-for-a-specific-message-in-a-thread-1)
       - [Submit or replace feedback for a specific assistant message.](#submit-or-replace-feedback-for-a-specific-assistant-message-1)
       - [Get query limits for the AI assistant for this organization.](#get-query-limits-for-the-ai-assistant-for-this-organization-1)
-    + [assurance](#assurance-24)
+    + [assurance](#assurance-26)
       - [Returns the most impacted wireless experience networks and the top failure contributor for each network.](#returns-the-most-impacted-wireless-experience-networks-and-the-top-failure-contributor-for-each-network)
-- [Changed](#changed-17)
+- [Changed](#changed-20)
   * [\[ devices \]](#-devices--1)
-    + [appliance](#appliance-19)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-10)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-11)
+    + [appliance](#appliance-22)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-12)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-13)
     + [camera](#camera-1)
       - [Returns quality and retention settings for the given camera](#returns-quality-and-retention-settings-for-the-given-camera)
       - [Update quality and retention settings for the given camera](#update-quality-and-retention-settings-for-the-given-camera)
-    + [liveTools](#livetools-7)
+    + [liveTools](#livetools-9)
       - [Enqueue a job to perform a routing table lookup request for a device](#enqueue-a-job-to-perform-a-routing-table-lookup-request-for-a-device-1)
       - [Return a routing table live tool lookup job for a device](#return-a-routing-table-live-tool-lookup-job-for-a-device-2)
       - [Enqueue a routing table summary job for a device](#enqueue-a-routing-table-summary-job-for-a-device)
@@ -17997,14 +20770,14 @@ POST _`/networks/{networkId}/switch/ports/profiles`_
   * [\[ organizations \]](#-organizations--1)
     + [api](#api-6)
       - [Retrieves pipeline overviews with aggregated job status counts](#retrieves-pipeline-overviews-with-aggregated-job-status-counts-3)
-    + [appliance](#appliance-20)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-5)
-    + [assurance](#assurance-25)
+    + [appliance](#appliance-23)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-6)
+    + [assurance](#assurance-27)
       - [Return combined wireless and wired connected client counts over time for a network.](#return-combined-wireless-and-wired-connected-client-counts-over-time-for-a-network-1)
       - [Summarizes wireless post connection capacity successes and failures by band.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-band-5)
       - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device-5)
       - [Returns organization wireless experience metrics overview grouped by network.](#returns-organization-wireless-experience-metrics-overview-grouped-by-network)
-    + [campusGateway](#campusgateway-6)
+    + [campusGateway](#campusgateway-8)
       - [List networks tunneling through Campus Gateway clusters with their AP, ssids and client counts](#list-networks-tunneling-through-campus-gateway-clusters-with-their-ap-ssids-and-client-counts)
     + [clone](#clone)
       - [Create a new organization by cloning the addressed organization](#create-a-new-organization-by-cloning-the-addressed-organization)
@@ -18018,10 +20791,10 @@ POST _`/networks/{networkId}/switch/ports/profiles`_
     + [loginSecurity](#loginsecurity)
       - [Returns the login security settings for an organization.](#returns-the-login-security-settings-for-an-organization)
       - [Update the login security settings for an organization](#update-the-login-security-settings-for-an-organization)
-    + [switch](#switch-19)
+    + [switch](#switch-23)
       - [List the filter list rules configured for BGP in the given organization](#list-the-filter-list-rules-configured-for-bgp-in-the-given-organization-2)
-      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-4)
-      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-3)
+      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-5)
+      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-4)
  
 Version **v1.70.0-beta.3** _to_ **v1.71.0-beta.0**
 
@@ -18809,21 +21582,21 @@ GET _`/organizations/{organizationId}/switch/routing/bgp/routers/deployments`_
 ## v1.70.0-beta.3
 
 
-- [Added](#added-15)
+- [Added](#added-18)
   * [\[ appliance \]](#-appliance-)
     + [umbrella](#umbrella-1)
       - [Specify one or more domain names to be excluded from being routed to Cisco Umbrella.](#specify-one-or-more-domain-names-to-be-excluded-from-being-routed-to-cisco-umbrella)
   * [\[ devices \]](#-devices-)
-    + [liveTools](#livetools-8)
+    + [liveTools](#livetools-10)
       - [Enqueue a job to retrieve port status for a device](#enqueue-a-job-to-retrieve-port-status-for-a-device)
       - [Return a port status live tool job.](#return-a-port-status-live-tool-job)
   * [\[ organizations \]](#-organizations-)
-    + [appliance](#appliance-21)
+    + [appliance](#appliance-24)
       - [Return time-series digital optical monitoring (DOM) readings for ports on each DOM-enabled Catalyst appliance in an organization.](#return-time-series-digital-optical-monitoring-dom-readings-for-ports-on-each-dom-enabled-catalyst-appliance-in-an-organization)
       - [Returns packet counter overviews for all interfaces on Secure Routers in the organization, including totals and average rates by packet type over the requested timespan.](#returns-packet-counter-overviews-for-all-interfaces-on-secure-routers-in-the-organization-including-totals-and-average-rates-by-packet-type-over-the-requested-timespan-1)
     + [automate](#automate)
       - [Generate a single use short lived code that can be used to retrieve the identity of the current user in the organization.](#generate-a-single-use-short-lived-code-that-can-be-used-to-retrieve-the-identity-of-the-current-user-in-the-organization)
-- [Changed](#changed-18)
+- [Changed](#changed-21)
   * [\[ appliance \]](#-appliance--1)
     + [ports](#ports-6)
       - [List per-port VLAN settings for all ports of a secure router or security appliance.](#list-per-port-vlan-settings-for-all-ports-of-a-secure-router-or-security-appliance-1)
@@ -18844,25 +21617,25 @@ GET _`/organizations/{organizationId}/switch/routing/bgp/routers/deployments`_
     + [ssids](#ssids-9)
       - [Update the mDNS gateway settings and rules for a SSID and cluster](#update-the-mdns-gateway-settings-and-rules-for-a-ssid-and-cluster)
   * [\[ devices \]](#-devices--1)
-    + [liveTools](#livetools-9)
+    + [liveTools](#livetools-11)
   * [\[ organizations \]](#-organizations--1)
     + [api](#api-7)
       - [Retrieves pipeline overviews with aggregated job status counts](#retrieves-pipeline-overviews-with-aggregated-job-status-counts-4)
-    + [appliance](#appliance-22)
+    + [appliance](#appliance-25)
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization-2)
-    + [assurance](#assurance-26)
-      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-5)
+    + [assurance](#assurance-28)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-6)
     + [secureConnect](#secureconnect-2)
       - [Creates an export for a provided timestamp interval.](#creates-an-export-for-a-provided-timestamp-interval-1)
-    + [switch](#switch-20)
+    + [switch](#switch-24)
       - [List the filter lists configured for BGP in the given organization](#list-the-filter-lists-configured-for-bgp-in-the-given-organization-2)
       - [Create or update a filter list, in addition to its associated rules](#create-or-update-a-filter-list-in-addition-to-its-associated-rules-2)
-    + [wireless](#wireless-19)
+    + [wireless](#wireless-22)
       - [Returns an array of objects, each containing client exclusion enablement statuses for one SSID](#returns-an-array-of-objects-each-containing-client-exclusion-enablement-statuses-for-one-ssid)
-      - [Returns the SSID profiles for an organization](#returns-the-ssid-profiles-for-an-organization-1)
-      - [Create a new SSID profile in an organization](#create-a-new-ssid-profile-in-an-organization-1)
-      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization-2)
-      - [Update this SSID profile](#update-this-ssid-profile-1)
+      - [Returns the SSID profiles for an organization](#returns-the-ssid-profiles-for-an-organization-2)
+      - [Create a new SSID profile in an organization](#create-a-new-ssid-profile-in-an-organization-2)
+      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization-3)
+      - [Update this SSID profile](#update-this-ssid-profile-2)
   * [\[ switch \]](#-switch--1)
     + [linkAggregations](#linkaggregations)
       - [Create a link aggregation group](#create-a-link-aggregation-group)
@@ -19459,7 +22232,7 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`_
 ## v1.70.0-beta.2
 
 
-- [Added](#added-16)
+- [Added](#added-19)
   * [\[ appliance \]](#-appliance-)
     + [umbrella](#umbrella-3)
       - [Remove one umbrella policy from your network.](#remove-one-umbrella-policy-from-your-network)
@@ -19480,18 +22253,18 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`_
       - [Delete a push receiver profile](#delete-a-push-receiver-profile-1)
       - [Update a push receiver profile](#update-a-push-receiver-profile)
       - [List of push topics](#list-of-push-topics)
-    + [appliance](#appliance-23)
-      - [List L3 interfaces across networks for the organization](#list-l3-interfaces-across-networks-for-the-organization-2)
+    + [appliance](#appliance-26)
+      - [List L3 interfaces across networks for the organization](#list-l3-interfaces-across-networks-for-the-organization-3)
       - [Return source-to-hub VRF mappings for site-to-site VPN within an organization.](#return-source-to-hub-vrf-mappings-for-site-to-site-vpn-within-an-organization)
-    + [assurance](#assurance-27)
+    + [assurance](#assurance-29)
       - [Summarizes wired connection successes and failures by client type.](#summarizes-wired-connection-successes-and-failures-by-client-type)
       - [Provides root-cause diagnostics for wireless successful connects experience by network.](#provides-root-cause-diagnostics-for-wireless-successful-connects-experience-by-network)
-    + [campusGateway](#campusgateway-7)
+    + [campusGateway](#campusgateway-9)
       - [List all the MCG cluster-network tunnel settings](#list-all-the-mcg-cluster-network-tunnel-settings-1)
       - [Update MCG cluster-network tunnel settings for multiple networks](#update-mcg-cluster-network-tunnel-settings-for-multiple-networks-2)
-    + [devices](#devices-16)
+    + [devices](#devices-19)
       - [List topology interfaces in an organization, including layer 2 and layer 3 metadata when available.](#list-topology-interfaces-in-an-organization-including-layer-2-and-layer-3-metadata-when-available-2)
-      - [List layer 2 topology links originating from devices in an organization.](#list-layer-2-topology-links-originating-from-devices-in-an-organization-1)
+      - [List layer 2 topology links originating from devices in an organization.](#list-layer-2-topology-links-originating-from-devices-in-an-organization-2)
       - [List topology nodes discovered by LLDP/CDP from devices in an organization, including reported metadata when available.](#list-topology-nodes-discovered-by-lldpcdp-from-devices-in-an-organization-including-reported-metadata-when-available-1)
     + [iam](#iam-3)
       - [List effective Catalyst Center access groups for the requested Catalyst Center administrators in the specified organization](#list-effective-catalyst-center-access-groups-for-the-requested-catalyst-center-administrators-in-the-specified-organization)
@@ -19500,9 +22273,9 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`_
       - [Return inventory devices with additional site, geolocation, software, licensing, lifecycle, and Catalyst Center-specific fields](#return-inventory-devices-with-additional-site-geolocation-software-licensing-lifecycle-and-catalyst-center-specific-fields-2)
     + [routing](#routing-3)
       - [List existing organization-wide VRFs (Virtual Routing and Forwarding) overviews.](#list-existing-organization-wide-vrfs-virtual-routing-and-forwarding-overviews-1)
-    + [sites](#sites-2)
+    + [sites](#sites-3)
       - [Lists unified site resources for an organization across Meraki networks and Catalyst Center sites](#lists-unified-site-resources-for-an-organization-across-meraki-networks-and-catalyst-center-sites-1)
-- [Changed](#changed-19)
+- [Changed](#changed-22)
   * [\[ appliance \]](#-appliance--1)
     + [sdwan](#sdwan-1)
       - [Update SDWAN internet traffic preferences for an MX network](#update-sdwan-internet-traffic-preferences-for-an-mx-network-1)
@@ -19523,17 +22296,17 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`_
     + [general](#general-10)
       - [Return the client associated with the given identifier](#return-the-client-associated-with-the-given-identifier)
   * [\[ devices \]](#-devices--1)
-    + [appliance](#appliance-24)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-12)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-13)
+    + [appliance](#appliance-27)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-14)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-15)
   * [\[ organizations \]](#-organizations--1)
     + [api](#api-9)
       - [List pipeline IDs for the organization, with optional status and timespan filtering](#list-pipeline-ids-for-the-organization-with-optional-status-and-timespan-filtering)
-    + [appliance](#appliance-25)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-6)
+    + [appliance](#appliance-28)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-7)
       - [Get the SDWAN internet traffic preferences for an MX network](#get-the-sdwan-internet-traffic-preferences-for-an-mx-network-1)
       - [List Umbrella policy IDs applied to MX networks in the organization](#list-umbrella-policy-ids-applied-to-mx-networks-in-the-organization)
-    + [assurance](#assurance-28)
+    + [assurance](#assurance-30)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-9)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-9)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-9)
@@ -19548,7 +22321,7 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`_
       - [List existing organization-wide VRFs (Virtual Routing and Forwarding).](#list-existing-organization-wide-vrfs-virtual-routing-and-forwarding-1)
       - [Add an organization-wide VRF (Virtual Routing and Forwarding)](#add-an-organization-wide-vrf-virtual-routing-and-forwarding-1)
       - [Update an organization-wide VRF (Virtual Routing and Forwarding)](#update-an-organization-wide-vrf-virtual-routing-and-forwarding-2)
-    + [switch](#switch-21)
+    + [switch](#switch-25)
       - [Create a port profile in an organization](#create-a-port-profile-in-an-organization-4)
       - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile-2)
       - [Update a port profile in an organization](#update-a-port-profile-in-an-organization-3)
@@ -19560,11 +22333,11 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}/policies/clientExclusion`_
       - [Create a port profile in a network](#create-a-port-profile-in-a-network-4)
       - [Update a port profile in a network](#update-a-port-profile-in-a-network-3)
   * [\[ wireless \]](#-wireless--1)
-    + [ethernet](#ethernet-1)
+    + [ethernet](#ethernet-2)
       - [List the AP port profiles for this network](#list-the-ap-port-profiles-for-this-network)
-      - [Create an AP port profile](#create-an-ap-port-profile-1)
+      - [Create an AP port profile](#create-an-ap-port-profile-2)
       - [Show the AP port profile by ID for this network](#show-the-ap-port-profile-by-id-for-this-network)
-      - [Update the AP port profile by ID for this network](#update-the-ap-port-profile-by-id-for-this-network-1)
+      - [Update the AP port profile by ID for this network](#update-the-ap-port-profile-by-id-for-this-network-2)
  
 Version **v1.70.0-beta.1** _to_ **v1.70.0-beta.2**
 
@@ -20807,12 +23580,12 @@ PUT _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
 ## v1.70.0-beta.1
 
 
-- [Added](#added-17)
+- [Added](#added-20)
   * [\[ devices \]](#-devices-)
     + [json](#json)
       - [Extraction of the legacy nodes JSON endpoint for a network](#extraction-of-the-legacy-nodes-json-endpoint-for-a-network)
   * [\[ organizations \]](#-organizations-)
-    + [assurance](#assurance-29)
+    + [assurance](#assurance-31)
       - [Summarizes wired connection successes and failures by client OS.](#summarizes-wired-connection-successes-and-failures-by-client-os-1)
     + [networks](#networks-1)
       - [List the network groups in an organization](#list-the-network-groups-in-an-organization-1)
@@ -20824,7 +23597,7 @@ PUT _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
       - [Remove networks from a network group](#remove-networks-from-a-network-group)
     + [openRoaming](#openroaming)
       - [Delete an open roaming certificate.](#delete-an-open-roaming-certificate)
-- [Changed](#changed-20)
+- [Changed](#changed-23)
   * [\[ firmwareUpgrades \]](#-firmwareupgrades--1)
     + [general](#general-11)
       - [Get firmware upgrade information for a network](#get-firmware-upgrade-information-for-a-network-1)
@@ -20838,15 +23611,15 @@ PUT _`/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}`_
   * [\[ organizations \]](#-organizations--1)
     + [api](#api-10)
       - [Retrieves pipeline overviews with aggregated job status counts](#retrieves-pipeline-overviews-with-aggregated-job-status-counts-5)
-    + [appliance](#appliance-26)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-7)
-    + [assurance](#assurance-30)
+    + [appliance](#appliance-29)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-8)
+    + [assurance](#assurance-32)
       - [Summarizes wired connection successes and failures by network.](#summarizes-wired-connection-successes-and-failures-by-network-1)
-      - [Summarizes wired connection successes and failures by client.](#summarizes-wired-connection-successes-and-failures-by-client-1)
+      - [Summarizes wired connection successes and failures by client.](#summarizes-wired-connection-successes-and-failures-by-client-2)
       - [Summarizes wired connection successes and failures by device.](#summarizes-wired-connection-successes-and-failures-by-device-1)
       - [Summarizes wireless post connection capacity successes and failures by client OS and driver version.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-client-os-and-driver-version-7)
       - [Summarizes wireless coverage successes and failures by client OS.](#summarizes-wireless-coverage-successes-and-failures-by-client-os-5)
-      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-5)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-6)
       - [Returns organization wireless experience metrics overview grouped by network.](#returns-organization-wireless-experience-metrics-overview-grouped-by-network-1)
       - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-11)
       - [Summarizes wireless connection successes and failures by client OS.](#summarizes-wireless-connection-successes-and-failures-by-client-os-12)
@@ -21418,41 +24191,41 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
 ## v1.70.0-beta.0
 
 
-- [Added](#added-18)
+- [Added](#added-21)
   * [\[ campusGateway \]](#-campusgateway-)
     + [clusters](#clusters)
       - [Delete a cluster](#delete-a-cluster)
   * [\[ devices \]](#-devices-)
-    + [appliance](#appliance-27)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-14)
-    + [cellular](#cellular-2)
+    + [appliance](#appliance-30)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-16)
+    + [cellular](#cellular-3)
       - [Update the cellular band masks for a device](#update-the-cellular-band-masks-for-a-device)
   * [\[ organizations \]](#-organizations-)
-    + [assurance](#assurance-31)
+    + [assurance](#assurance-33)
       - [Return combined wireless and wired connected client counts over time for a network.](#return-combined-wireless-and-wired-connected-client-counts-over-time-for-a-network-2)
-    + [campusGateway](#campusgateway-8)
+    + [campusGateway](#campusgateway-10)
       - [List the details of a Failover Targets for a Campus Gateway cluster](#list-the-details-of-a-failover-targets-for-a-campus-gateway-cluster)
       - [Get available backup cluster targets for campus gateway failover configuration](#get-available-backup-cluster-targets-for-campus-gateway-failover-configuration)
       - [List networks tunneling through Campus Gateway clusters with their AP, ssids and client counts](#list-networks-tunneling-through-campus-gateway-clusters-with-their-ap-ssids-and-client-counts-1)
       - [Provisions a cluster,adds campus gateways to it and associate/dissociate failover targets.](#provisions-a-clusteradds-campus-gateways-to-it-and-associatedissociate-failover-targets)
       - [List SSIDs tunneling through Campus Gateway clusters](#list-ssids-tunneling-through-campus-gateway-clusters-1)
-      - [List the details of APs tunneling through the Campus Gateway clusters](#list-the-details-of-aps-tunneling-through-the-campus-gateway-clusters-1)
-      - [List the count of connections(APs) with tunneling status up and down through the Campus Gateway clusters](#list-the-count-of-connectionsaps-with-tunneling-status-up-and-down-through-the-campus-gateway-clusters)
-    + [devices](#devices-17)
+      - [List the details of APs tunneling through the Campus Gateway clusters](#list-the-details-of-aps-tunneling-through-the-campus-gateway-clusters-2)
+      - [List the count of connections(APs) with tunneling status up and down through the Campus Gateway clusters](#list-the-count-of-connectionsaps-with-tunneling-status-up-and-down-through-the-campus-gateway-clusters-1)
+    + [devices](#devices-20)
       - [Assign devices to a Cellular Data Management Profile in batch](#assign-devices-to-a-cellular-data-management-profile-in-batch)
-- [Changed](#changed-21)
+- [Changed](#changed-24)
   * [\[ appliance \]](#-appliance--1)
     + [firewall](#firewall)
       - [Return the firewall settings for this network](#return-the-firewall-settings-for-this-network)
       - [Update the firewall settings for this network](#update-the-firewall-settings-for-this-network)
-    + [interfaces](#interfaces-3)
+    + [interfaces](#interfaces-4)
       - [Create wired L3 interface configuration](#create-wired-l3-interface-configuration)
       - [Update wired L3 interface configuration](#update-wired-l3-interface-configuration)
   * [\[ devices \]](#-devices--1)
-    + [appliance](#appliance-28)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-15)
-    + [cellular](#cellular-3)
-    + [switch](#switch-22)
+    + [appliance](#appliance-31)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-17)
+    + [cellular](#cellular-4)
+    + [switch](#switch-26)
       - [Cycle a set of switch ports on non-Catalyst MS devices](#cycle-a-set-of-switch-ports-on-non-catalyst-ms-devices)
     + [syslog](#syslog)
       - [Updates the syslog servers configuration for a network.](#updates-the-syslog-servers-configuration-for-a-network)
@@ -21461,10 +24234,10 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
       - [Return a network](#return-a-network)
       - [Update a network](#update-a-network)
   * [\[ organizations \]](#-organizations--1)
-    + [appliance](#appliance-29)
+    + [appliance](#appliance-32)
       - [Listing of L3 Interface Configurations across networks for the organization](#listing-of-l3-interface-configurations-across-networks-for-the-organization)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-8)
-    + [assurance](#assurance-32)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-9)
+    + [assurance](#assurance-34)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-10)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-10)
       - [Return a Summary of Alerts grouped by network and severity](#return-a-summary-of-alerts-grouped-by-network-and-severity-10)
@@ -21477,10 +24250,10 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
       - [Summarizes wireless coverage successes and failures by client.](#summarizes-wireless-coverage-successes-and-failures-by-client-3)
       - [Summarizes wireless coverage successes and failures by device.](#summarizes-wireless-coverage-successes-and-failures-by-device-3)
       - [Summarizes wireless coverage successes and failures by SSID.](#summarizes-wireless-coverage-successes-and-failures-by-ssid-3)
-    + [devices](#devices-18)
+    + [devices](#devices-21)
       - [List devices eligible for Cellular Data Management profile assignment in this organization](#list-devices-eligible-for-cellular-data-management-profile-assignment-in-this-organization-1)
       - [Add a cellular data management profile to this organization](#add-a-cellular-data-management-profile-to-this-organization-1)
-      - [List Cellular Data Management Profile assignments in this organization](#list-cellular-data-management-profile-assignments-in-this-organization)
+      - [List Cellular Data Management Profile assignments in this organization](#list-cellular-data-management-profile-assignments-in-this-organization-1)
       - [Unassign devices from a Cellular Data Management Profile in batch](#unassign-devices-from-a-cellular-data-management-profile-in-batch)
       - [Update a Cellular Data Management Profile](#update-a-cellular-data-management-profile-1)
       - [List current cellular data usage for devices in this organization](#list-current-cellular-data-usage-for-devices-in-this-organization)
@@ -22582,23 +25355,23 @@ POST _`/networks/{networkId}/unbind`_
 ## v1.69.0-beta.4
 
 
-- [Added](#added-19)
+- [Added](#added-22)
   * [\[ devices \]](#-devices-)
-    + [appliance](#appliance-30)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-16)
-    + [cellular](#cellular-4)
+    + [appliance](#appliance-33)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-18)
+    + [cellular](#cellular-5)
       - [Update the cellular band masks for a device](#update-the-cellular-band-masks-for-a-device-1)
-    + [liveTools](#livetools-10)
+    + [liveTools](#livetools-12)
       - [Enqueue a job to perform a cycle port for the device on the specified ports](#enqueue-a-job-to-perform-a-cycle-port-for-the-device-on-the-specified-ports)
       - [Return a cycle port live tool job.](#return-a-cycle-port-live-tool-job)
   * [\[ organizations \]](#-organizations-)
-    + [appliance](#appliance-31)
+    + [appliance](#appliance-34)
       - [Return the VRF setting for an organization.](#return-the-vrf-setting-for-an-organization)
       - [Update the VRF setting for an organization.](#update-the-vrf-setting-for-an-organization)
-    + [assurance](#assurance-33)
-      - [Summarizes wired connection successes and failures by client.](#summarizes-wired-connection-successes-and-failures-by-client-2)
+    + [assurance](#assurance-35)
+      - [Summarizes wired connection successes and failures by client.](#summarizes-wired-connection-successes-and-failures-by-client-3)
       - [Summarizes wired connection successes and failures by device.](#summarizes-wired-connection-successes-and-failures-by-device-2)
-- [Changed](#changed-22)
+- [Changed](#changed-25)
   * [\[ appliance \]](#-appliance--1)
     + [firewall](#firewall-1)
       - [List the MX L7 firewall rules for an MX network](#list-the-mx-l7-firewall-rules-for-an-mx-network)
@@ -22624,19 +25397,19 @@ POST _`/networks/{networkId}/unbind`_
       - [Return the site-to-site VPN settings of a network](#return-the-site-to-site-vpn-settings-of-a-network-2)
       - [Update the site-to-site VPN settings of a network](#update-the-site-to-site-vpn-settings-of-a-network-2)
   * [\[ devices \]](#-devices--1)
-    + [appliance](#appliance-32)
+    + [appliance](#appliance-35)
       - [Return current delegated IPv6 prefixes on an appliance.](#return-current-delegated-ipv6-prefixes-on-an-appliance)
       - [Return prefixes assigned to all IPv6 enabled VLANs on an appliance.](#return-prefixes-assigned-to-all-ipv6-enabled-vlans-on-an-appliance-1)
-    + [cellular](#cellular-5)
-    + [liveTools](#livetools-11)
+    + [cellular](#cellular-6)
+    + [liveTools](#livetools-13)
   * [\[ organizations \]](#-organizations--1)
-    + [appliance](#appliance-33)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-9)
+    + [appliance](#appliance-36)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-10)
       - [List the VLANs for an Organization](#list-the-vlans-for-an-organization-3)
-    + [assurance](#assurance-34)
+    + [assurance](#assurance-36)
       - [Summarizes wired connection successes and failures by network.](#summarizes-wired-connection-successes-and-failures-by-network-2)
-    + [devices](#devices-19)
-      - [List cellular data management profiles in this organization](#list-cellular-data-management-profiles-in-this-organization-1)
+    + [devices](#devices-22)
+      - [List cellular data management profiles in this organization](#list-cellular-data-management-profiles-in-this-organization-2)
       - [List the latest cellular geolocation telemetry for devices in an organization](#list-the-latest-cellular-geolocation-telemetry-for-devices-in-an-organization-1)
     + [iam](#iam-5)
     + [webhooks](#webhooks-2)
@@ -23261,41 +26034,41 @@ GET _`/organizations/{organizationId}/webhooks/logs`_
 ## v1.69.0-beta.3
 
 
-- [Added](#added-20)
+- [Added](#added-23)
   * [\[ organizations \]](#-organizations-)
-    + [assurance](#assurance-35)
+    + [assurance](#assurance-37)
       - [Returns count of impacted wireless devices per network on a given organization and time range.](#returns-count-of-impacted-wireless-devices-per-network-on-a-given-organization-and-time-range)
       - [Summarizes wired connection successes and failures by network.](#summarizes-wired-connection-successes-and-failures-by-network-3)
       - [Time-series of wired connection successes and failures by network.](#time-series-of-wired-connection-successes-and-failures-by-network-1)
-    + [campusGateway](#campusgateway-9)
+    + [campusGateway](#campusgateway-11)
       - [Returns client usage details for campus gateway clusters within an organization.](#returns-client-usage-details-for-campus-gateway-clusters-within-an-organization)
-    + [devices](#devices-20)
+    + [devices](#devices-23)
       - [Bulk update the attributes related to positions for provided devices](#bulk-update-the-attributes-related-to-positions-for-provided-devices)
       - [Returns details about software updates for networks within an organization.](#returns-details-about-software-updates-for-networks-within-an-organization-5)
     + [iam](#iam-6)
       - [List the authenticated caller admin's permissions for an organization](#list-the-authenticated-caller-admins-permissions-for-an-organization-1)
-    + [sites](#sites-3)
-      - [List the buildings belonging to the organization](#list-the-buildings-belonging-to-the-organization-1)
-    + [wireless](#wireless-20)
+    + [sites](#sites-4)
+      - [List the buildings belonging to the organization](#list-the-buildings-belonging-to-the-organization-2)
+    + [wireless](#wireless-23)
       - [Summarize the number of wireless clients impacted by connection failures on network SSIDs, across an organization.](#summarize-the-number-of-wireless-clients-impacted-by-connection-failures-on-network-ssids-across-an-organization)
       - [Returns client usage details for wireless networks within an organization.](#returns-client-usage-details-for-wireless-networks-within-an-organization)
       - [Returns client usage details for wireless network SSIDs within an organization.](#returns-client-usage-details-for-wireless-network-ssids-within-an-organization)
       - [Returns client usage details for SSIDs within an organization.](#returns-client-usage-details-for-ssids-within-an-organization)
-      - [Returns the SSID profiles for an organization](#returns-the-ssid-profiles-for-an-organization-2)
-      - [Create a new SSID profile in an organization](#create-a-new-ssid-profile-in-an-organization-2)
+      - [Returns the SSID profiles for an organization](#returns-the-ssid-profiles-for-an-organization-3)
+      - [Create a new SSID profile in an organization](#create-a-new-ssid-profile-in-an-organization-3)
       - [Unassigns the SSID profile assigned to an SSID](#unassigns-the-ssid-profile-assigned-to-an-ssid)
-      - [List the SSID profile assignments in an organization](#list-the-ssid-profile-assignments-in-an-organization)
+      - [List the SSID profile assignments in an organization](#list-the-ssid-profile-assignments-in-an-organization-1)
       - [Assigns an SSID profile to an SSID in the organization](#assigns-an-ssid-profile-to-an-ssid-in-the-organization)
       - [List the SSID profile assignments in an organization, grouped by network](#list-the-ssid-profile-assignments-in-an-organization-grouped-by-network-1)
-      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization-3)
+      - [Returns the SSID profiles' overview information for an organization](#returns-the-ssid-profiles-overview-information-for-an-organization-4)
       - [Delete an SSID profile](#delete-an-ssid-profile)
-      - [Update this SSID profile](#update-this-ssid-profile-2)
+      - [Update this SSID profile](#update-this-ssid-profile-3)
   * [\[ sites \]](#-sites-)
     + [buildings](#buildings)
-      - [Create a new building](#create-a-new-building-1)
+      - [Create a new building](#create-a-new-building-2)
       - [Delete a building](#delete-a-building-1)
-      - [Update a building](#update-a-building-1)
-- [Changed](#changed-23)
+      - [Update a building](#update-a-building-2)
+- [Changed](#changed-26)
   * [\[ appliance \]](#-appliance--1)
     + [firewall](#firewall-2)
       - [Return the L3 firewall rules for an MX network](#return-the-l3-firewall-rules-for-an-mx-network)
@@ -23313,18 +26086,18 @@ GET _`/organizations/{organizationId}/webhooks/logs`_
     + [general](#general-17)
       - [Return the client associated with the given identifier](#return-the-client-associated-with-the-given-identifier-1)
   * [\[ devices \]](#-devices--1)
-    + [appliance](#appliance-34)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-17)
+    + [appliance](#appliance-37)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-19)
       - [Return the uplink settings for a secure router or security appliance](#return-the-uplink-settings-for-a-secure-router-or-security-appliance-2)
       - [Update the uplink settings for a secure router or security appliance](#update-the-uplink-settings-for-a-secure-router-or-security-appliance-3)
-    + [liveTools](#livetools-12)
+    + [liveTools](#livetools-14)
       - [Return an OSPF neighbors live tool job.](#return-an-ospf-neighbors-live-tool-job)
-    + [switch](#switch-23)
+    + [switch](#switch-27)
       - [List layer 3 interfaces for a switch](#list-layer-3-interfaces-for-a-switch-3)
       - [Create a layer 3 interface for a switch](#create-a-layer-3-interface-for-a-switch-3)
       - [Return a layer 3 interface for a switch](#return-a-layer-3-interface-for-a-switch-3)
       - [Update a layer 3 interface for a switch](#update-a-layer-3-interface-for-a-switch-3)
-    + [wireless](#wireless-21)
+    + [wireless](#wireless-24)
       - [Return the position for a wireless device](#return-the-position-for-a-wireless-device-1)
       - [Update the position attributes for this device](#update-the-position-attributes-for-this-device-1)
   * [\[ floorPlans \]](#-floorplans--1)
@@ -23335,9 +26108,9 @@ GET _`/organizations/{organizationId}/webhooks/logs`_
       - [Find a floor plan by ID](#find-a-floor-plan-by-id-1)
       - [Update a floor plan's geolocation and other meta data](#update-a-floor-plans-geolocation-and-other-meta-data-1)
   * [\[ organizations \]](#-organizations--1)
-    + [appliance](#appliance-35)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-10)
-    + [assurance](#assurance-36)
+    + [appliance](#appliance-38)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-11)
+    + [assurance](#assurance-38)
       - [Given a client, return current topology](#given-a-client-return-current-topology)
       - [Returns the top wireless service-level insights for the specified time window, including each network and the impacted client count per metric.](#returns-the-top-wireless-service-level-insights-for-the-specified-time-window-including-each-network-and-the-impacted-client-count-per-metric)
       - [Summarizes wireless connection successes and failures by client.](#summarizes-wireless-connection-successes-and-failures-by-client-3)
@@ -23348,7 +26121,7 @@ GET _`/organizations/{organizationId}/webhooks/logs`_
       - [Summarizes wireless connection time to connect metrics by ssid.](#summarizes-wireless-connection-time-to-connect-metrics-by-ssid-2)
     + [inventory](#inventory-4)
     + [sase](#sase-8)
-    + [wireless](#wireless-22)
+    + [wireless](#wireless-25)
       - [Returns the current Air Marshal rules for this organization](#returns-the-current-air-marshal-rules-for-this-organization)
       - [List access point client count at the moment in an organization](#list-access-point-client-count-at-the-moment-in-an-organization-2)
       - [Show the by-network client information for the organization in the given interval](#show-the-by-network-client-information-for-the-organization-in-the-given-interval)
@@ -23357,7 +26130,7 @@ GET _`/organizations/{organizationId}/webhooks/logs`_
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-1)
       - [List the RF profiles of an organization by device](#list-the-rf-profiles-of-an-organization-by-device)
   * [\[ switch \]](#-switch--1)
-    + [stacks](#stacks-4)
+    + [stacks](#stacks-5)
       - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack-3)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack-3)
       - [Return a layer 3 interface from a switch stack](#return-a-layer-3-interface-from-a-switch-stack-3)
@@ -24612,11 +27385,11 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
 ## v1.69.0-beta.2
 
 
-- [Added](#added-21)
+- [Added](#added-24)
   * [\[ organizations \]](#-organizations-)
     + [api](#api-11)
       - [List pipeline IDs for the organization, with optional status and timespan filtering](#list-pipeline-ids-for-the-organization-with-optional-status-and-timespan-filtering-1)
-    + [assurance](#assurance-37)
+    + [assurance](#assurance-39)
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-14)
       - [Summarizes wireless post connection capacity successes and failures by band.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-band-6)
       - [Summarizes wireless post connection capacity successes and failures by network.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-network-15)
@@ -24625,8 +27398,8 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
       - [Summarizes wireless post connection capacity successes and failures by device.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-device-7)
       - [Time-series of wireless post connection capacity successes and failures by network.](#time-series-of-wireless-post-connection-capacity-successes-and-failures-by-network-1)
       - [Summarizes wireless post connection capacity successes and failures by ssid.](#summarizes-wireless-post-connection-capacity-successes-and-failures-by-ssid-6)
-      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-5)
-    + [devices](#devices-21)
+      - [Provides insights into wireless capacity experience by network.](#provides-insights-into-wireless-capacity-experience-by-network-6)
+    + [devices](#devices-24)
       - [Provides devices that are available to be assigned to a given Cellular Data Management Profile](#provides-devices-that-are-available-to-be-assigned-to-a-given-cellular-data-management-profile)
       - [Listing of Cellular Data Management Profiles for the organization.](#listing-of-cellular-data-management-profiles-for-the-organization)
       - [Add a Cellular Data Management Profile to the organization.](#add-a-cellular-data-management-profile-to-the-organization)
@@ -24637,19 +27410,19 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
       - [Update a Cellular Data Management Profile](#update-a-cellular-data-management-profile-2)
       - [Provides current usage statistics for devices in the organization](#provides-current-usage-statistics-for-devices-in-the-organization)
       - [Provides the cellular data usage history per device and per SIM.](#provides-the-cellular-data-usage-history-per-device-and-per-sim)
-    + [nac](#nac-9)
-      - [Get all known clients for the organization](#get-all-known-clients-for-the-organization-2)
+    + [nac](#nac-11)
+      - [Get all known clients for the organization](#get-all-known-clients-for-the-organization-3)
       - [Create a client for the organization](#create-a-client-for-the-organization-2)
       - [Delete existing client(s) for the organization](#delete-existing-clients-for-the-organization)
       - [Bulk Update of existing clients for the organization](#bulk-update-of-existing-clients-for-the-organization-1)
       - [Bulk upload of clients, client groups and their associations for the organization](#bulk-upload-of-clients-client-groups-and-their-associations-for-the-organization-1)
-      - [Get all known client groups for the organization](#get-all-known-client-groups-for-the-organization-1)
+      - [Get all known client groups for the organization](#get-all-known-client-groups-for-the-organization-2)
       - [Create a client group for the organization](#create-a-client-group-for-the-organization-1)
       - [Delete an existing client group for the organization](#delete-an-existing-client-group-for-the-organization)
       - [Update an existing client group for the organization with bulk member operations](#update-an-existing-client-group-for-the-organization-with-bulk-member-operations-1)
       - [Get overview data for all known clients for the organization](#get-overview-data-for-all-known-clients-for-the-organization-1)
       - [Update an existing client for the organization](#update-an-existing-client-for-the-organization-2)
-- [Changed](#changed-24)
+- [Changed](#changed-27)
   * [\[ appliance \]](#-appliance--1)
     + [firewall](#firewall-3)
       - [Return the cellular firewall rules for an MX network](#return-the-cellular-firewall-rules-for-an-mx-network)
@@ -24668,31 +27441,31 @@ PUT _`/networks/{networkId}/wireless/ssids/{number}`_
       - [Creates new quality retention profile for this network.](#creates-new-quality-retention-profile-for-this-network-3)
       - [Update an existing quality retention profile for this network.](#update-an-existing-quality-retention-profile-for-this-network-3)
   * [\[ organizations \]](#-organizations--1)
-    + [appliance](#appliance-36)
+    + [appliance](#appliance-39)
       - [Returns an overview of uplink statuses](#returns-an-overview-of-uplink-statuses)
-      - [Return the third party VPN peers for an organization](#return-the-third-party-vpn-peers-for-an-organization-2)
-      - [Update the third party VPN peers for an organization](#update-the-third-party-vpn-peers-for-an-organization-2)
-    + [assurance](#assurance-38)
+      - [Return the third party VPN peers for an organization](#return-the-third-party-vpn-peers-for-an-organization-3)
+      - [Update the third party VPN peers for an organization](#update-the-third-party-vpn-peers-for-an-organization-3)
+    + [assurance](#assurance-40)
       - [Return all health alerts for an organization](#return-all-health-alerts-for-an-organization-11)
       - [Return overview of active health alerts for an organization](#return-overview-of-active-health-alerts-for-an-organization-11)
       - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-11)
       - [Return a singular Health Alert by its id](#return-a-singular-health-alert-by-its-id)
       - [Given a client, return current topology](#given-a-client-return-current-topology-1)
       - [Summarizes wireless coverage successes and failures by client.](#summarizes-wireless-coverage-successes-and-failures-by-client-4)
-      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-6)
+      - [Provides insights into wireless coverage experience by network.](#provides-insights-into-wireless-coverage-experience-by-network-7)
       - [Summarizes wireless connection successes and failures by client.](#summarizes-wireless-connection-successes-and-failures-by-client-4)
-      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-6)
+      - [Provides insights into wireless successful connects experience by network.](#provides-insights-into-wireless-successful-connects-experience-by-network-7)
       - [Summarizes wireless time to connect metrics by client.](#summarizes-wireless-time-to-connect-metrics-by-client-5)
-      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-7)
+      - [Provides insights into wireless time to connect experience by network.](#provides-insights-into-wireless-time-to-connect-experience-by-network-8)
       - [Return workflows filtered by organization ID, network ID, type, and category](#return-workflows-filtered-by-organization-id-network-id-type-and-category)
-    + [devices](#devices-22)
+    + [devices](#devices-25)
       - [Enqueues a task for a specific packet capture](#enqueues-a-task-for-a-specific-packet-capture)
       - [Retrieves packet capture analysis result for a specific packet capture task.](#retrieves-packet-capture-analysis-result-for-a-specific-packet-capture-task-1)
     + [inventory](#inventory-5)
       - [Return the device inventory for an organization](#return-the-device-inventory-for-an-organization-2)
       - [Return a single device from the inventory of an organization](#return-a-single-device-from-the-inventory-of-an-organization-2)
       - [Preview the results and status of an order claim by the secure order id](#preview-the-results-and-status-of-an-order-claim-by-the-secure-order-id-1)
-    + [switch](#switch-24)
+    + [switch](#switch-28)
       - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization)
       - [List the port profiles in an organization](#list-the-port-profiles-in-an-organization-1)
       - [Returns Spanning Tree configuration settings](#returns-spanning-tree-configuration-settings)
@@ -25925,36 +28698,36 @@ GET _`/networks/{networkId}/trafficShaping/applicationCategories`_
 ## v1.69.0-beta.1
 
 
-- [Added](#added-22)
+- [Added](#added-25)
   * [\[ appliance \]](#-appliance-)
-    + [devices](#devices-23)
+    + [devices](#devices-26)
       - [Update MX warm spare settings](#update-mx-warm-spare-settings-2)
       - [Swap MX primary and warm spare appliances](#swap-mx-primary-and-warm-spare-appliances-2)
   * [\[ devices \]](#-devices-)
-    + [liveTools](#livetools-13)
+    + [liveTools](#livetools-15)
       - [Enqueue a job to retrieve port status for a device](#enqueue-a-job-to-retrieve-port-status-for-a-device-1)
       - [Return a port status live tool job.](#return-a-port-status-live-tool-job-1)
   * [\[ organizations \]](#-organizations-)
-    + [appliance](#appliance-37)
+    + [appliance](#appliance-40)
       - [Return MX warm spare settings](#return-mx-warm-spare-settings-2)
-    + [wireless](#wireless-23)
+    + [wireless](#wireless-26)
       - [Get sticky client events within the specified timespan.](#get-sticky-client-events-within-the-specified-timespan)
-- [Changed](#changed-25)
+- [Changed](#changed-28)
   * [\[ appliance \]](#-appliance--1)
     + [contentFiltering](#contentfiltering)
       - [List all available content filtering categories for an MX network](#list-all-available-content-filtering-categories-for-an-mx-network)
     + [umbrella](#umbrella-5)
       - [Remove one umbrella policy from your network.](#remove-one-umbrella-policy-from-your-network-1)
   * [\[ organizations \]](#-organizations--1)
-    + [assurance](#assurance-39)
+    + [assurance](#assurance-41)
       - [Return a Summary of Alerts grouped by type and severity](#return-a-summary-of-alerts-grouped-by-type-and-severity-12)
       - [Returns counts of online, offline, and recovered devices by product type, along with offline intervals for impacted devices in the organization.](#returns-counts-of-online-offline-and-recovered-devices-by-product-type-along-with-offline-intervals-for-impacted-devices-in-the-organization)
       - [Returns organization wireless experience metrics overview grouped by network.](#returns-organization-wireless-experience-metrics-overview-grouped-by-network-2)
-    + [switch](#switch-25)
+    + [switch](#switch-29)
       - [Create a port profile in an organization](#create-a-port-profile-in-an-organization-5)
       - [Get detailed information about a port profile](#get-detailed-information-about-a-port-profile-3)
       - [Update a port profile in an organization](#update-a-port-profile-in-an-organization-4)
-    + [wireless](#wireless-24)
+    + [wireless](#wireless-27)
       - [List the wireless device telemetry of an organization](#list-the-wireless-device-telemetry-of-an-organization-2)
   * [\[ switch \]](#-switch--1)
     + [ports](#ports-9)
@@ -26482,7 +29255,7 @@ PUT _`/networks/{networkId}/switch/settings`_
 
 
 
- - [Added](#added-23)
+ - [Added](#added-26)
   * [\[ wirelessController \]](#-wirelesscontroller-)
     + [regulatoryDomain](#regulatorydomain)
       - [Generate the regulatory domain package](#generate-the-regulatory-domain-package)
@@ -26510,7 +29283,7 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Retrieve the status of an ADE sync job](#retrieve-the-status-of-an-ade-sync-job)
       - [Retrieve the status of an ADE sync job](#retrieve-the-status-of-an-ade-sync-job-1)
   * [\[ secureConnect \]](#-secureconnect-)
-    + [sites](#sites-4)
+    + [sites](#sites-5)
       - [List sites in this organization](#list-sites-in-this-organization)
       - [List sites in this organization](#list-sites-in-this-organization-1)
       - [Enroll sites in this organization to Secure Connect. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.](#enroll-sites-in-this-organization-to-secure-connect-for-an-organization-a-maximum-of-4000-sites-can-be-enrolled-if-they-are-in-spoke-mode-or-a-maximum-of-10-sites-can-be-enrolled-in-hub-mode)
@@ -26577,11 +29350,11 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Get all attributes by dictionary ID](#get-all-attributes-by-dictionary-id)
       - [Get all attributes by dictionary ID](#get-all-attributes-by-dictionary-id-1)
     + [authorization](#authorization)
-      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-3)
+      - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-4)
       - [Get all nac authorization policies for this organization](#get-all-nac-authorization-policies-for-this-organization-1)
-      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-3)
+      - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-4)
       - [Create a rule in an authorization policy set of an organization](#create-a-rule-in-an-authorization-policy-set-of-an-organization-1)
-      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-3)
+      - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-4)
       - [Update an existing rule of an authorization policy set within an organization](#update-an-existing-rule-of-an-authorization-policy-set-within-an-organization-1)
       - [Delete a rule in an authorization policy set of an organization](#delete-a-rule-in-an-authorization-policy-set-of-an-organization)
     + [certificates](#certificates-8)
@@ -26657,7 +29430,7 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Return the specified video wall.](#return-the-specified-video-wall-1)
       - [Returns video wall link to the specified video wall id](#returns-video-wall-link-to-the-specified-video-wall-id)
       - [Returns video wall link to the specified video wall id. If a timestamp is supplied, it links to that timestamp.](#returns-video-wall-link-to-the-specified-video-wall-id-if-a-timestamp-is-supplied-it-links-to-that-timestamp)
-    + [devices](#devices-24)
+    + [devices](#devices-27)
       - [Lists all the capabilities of cameras in this organization](#lists-all-the-capabilities-of-cameras-in-this-organization)
       - [Lists all the capabilities of cameras in this organization](#lists-all-the-capabilities-of-cameras-in-this-organization-1)
   * [\[ devices \]](#-devices-)
@@ -26784,13 +29557,13 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Enroll sites in this organization to Secure Access. For an organization, a maximum of 4000 sites can be enrolled if they are in spoke mode or a maximum of 10 sites can be enrolled in hub mode.](#enroll-sites-in-this-organization-to-secure-access-for-an-organization-a-maximum-of-4000-sites-can-be-enrolled-if-they-are-in-spoke-mode-or-a-maximum-of-10-sites-can-be-enrolled-in-hub-mode)
       - [Update the configuration for a site](#update-the-configuration-for-a-site-1)
       - [Update the configuration for a site. Currently, only supports updating default route enablement.](#update-the-configuration-for-a-site-currently-only-supports-updating-default-route-enablement)
-    + [policies](#policies-4)
+    + [policies](#policies-5)
       - [List application categories with their associated applications](#list-application-categories-with-their-associated-applications)
       - [List application categories with their associated applications](#list-application-categories-with-their-associated-applications-1)
       - [List Organization-Wide Policy Firewall Rulesets](#list-organization-wide-policy-firewall-rulesets-1)
       - [List Organization-Wide Policy Firewall Rulesets](#list-organization-wide-policy-firewall-rulesets-1)
       - [Create an Organization-Wide Policy Firewall Ruleset](#create-an-organization-wide-policy-firewall-ruleset)
-      - [Create an Organization-Wide Policy Firewall Rule](#create-an-organization-wide-policy-firewall-rule-2)
+      - [Create an Organization-Wide Policy Firewall Rule](#create-an-organization-wide-policy-firewall-rule-3)
       - [List Organization-Wide Policy Firewall Rules](#list-organization-wide-policy-firewall-rules)
       - [Create an Organization-Wide Policy Firewall Rule](#create-an-organization-wide-policy-firewall-rule-1)
       - [Delete an Organization-Wide Policy Firewall Rule](#delete-an-organization-wide-policy-firewall-rule)
@@ -26876,7 +29649,7 @@ PUT _`/networks/{networkId}/switch/settings`_
     + [fetchTableQuery](#fetchtablequery)
       - [Returns the table data for a given timespan](#returns-the-table-data-for-a-given-timespan)
       - [Returns the table data for a given timespan](#returns-the-table-data-for-a-given-timespan-1)
-    + [apiRequests](#apirequests-1)
+    + [apiRequests](#apirequests-2)
       - [Lists API request response codes and their counts aggregated by admin](#lists-api-request-response-codes-and-their-counts-aggregated-by-admin)
       - [Lists API request response codes and their counts aggregated by admin](#lists-api-request-response-codes-and-their-counts-aggregated-by-admin-1)
       - [Lists API request response codes and their counts aggregated by application](#lists-api-request-response-codes-and-their-counts-aggregated-by-application)
@@ -26888,7 +29661,7 @@ PUT _`/networks/{networkId}/switch/settings`_
     + [snmp](#snmp-2)
       - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization)
       - [Retrieve the SNMP trap configuration for the networks in an organization](#retrieve-the-snmp-trap-configuration-for-the-networks-in-an-organization-1)
-    + [devices](#devices-25)
+    + [devices](#devices-28)
       - [Returns counts of online, offline, and recovered devices by product type, along with offline intervals for impacted devices in the organization.](#returns-counts-of-online-offline-and-recovered-devices-by-product-type-along-with-offline-intervals-for-impacted-devices-in-the-organization-1)
       - [Returns counts of online, offline, and recovered devices by product type, along with offline intervals for impacted devices in the organization.](#returns-counts-of-online-offline-and-recovered-devices-by-product-type-along-with-offline-intervals-for-impacted-devices-in-the-organization-1)
       - [Returns the history of device boots in reverse chronological order (most recent first)](#returns-the-history-of-device-boots-in-reverse-chronological-order-most-recent-first)
@@ -26934,7 +29707,7 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers)
       - [Return list of scanning API receivers](#return-list-of-scanning-api-receivers-1)
       - [Set the list of scanning API receivers. Old receivers will be removed](#set-the-list-of-scanning-api-receivers-old-receivers-will-be-removed)
-    + [devices](#devices-26)
+    + [devices](#devices-29)
       - [Updates the syslog servers configuration for a network.](#updates-the-syslog-servers-configuration-for-a-network-1)
       - [Updates the syslog servers configuration for a network.](#updates-the-syslog-servers-configuration-for-a-network-1)
   * [\[ wireless \]](#-wireless-)
@@ -26972,7 +29745,7 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-4)
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-2)
       - [List the AFC power limits of an organization by device](#list-the-afc-power-limits-of-an-organization-by-device-3)
-      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network-1)
+      - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network-2)
       - [List the AutoRF settings of an organization by network](#list-the-autorf-settings-of-an-organization-by-network-1)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization)
       - [List the channel planning activities of an organization](#list-the-channel-planning-activities-of-an-organization-1)
@@ -26987,7 +29760,7 @@ PUT _`/networks/{networkId}/switch/settings`_
     + [healthScores](#healthscores)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network)
       - [Fetch the health scores for a given AP on this network](#fetch-the-health-scores-for-a-given-ap-on-this-network-1)
-    + [devices](#devices-27)
+    + [devices](#devices-30)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network)
       - [Fetch the health scores of all APs on this network](#fetch-the-health-scores-of-all-aps-on-this-network-1)
       - [List the most recent AP accelerometer status information for wireless devices that support it.](#list-the-most-recent-ap-accelerometer-status-information-for-wireless-devices-that-support-it)
@@ -27071,7 +29844,7 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Return RA Guard settings](#return-ra-guard-settings)
       - [Return RA Guard settings. Blocked servers are applied when default policy is allowed, and vice versa for allowed servers and blocked default policy.](#return-ra-guard-settings-blocked-servers-are-applied-when-default-policy-is-allowed-and-vice-versa-for-allowed-servers-and-blocked-default-policy)
       - [Update RA Guard settings](#update-ra-guard-settings)
-    + [devices](#devices-28)
+    + [devices](#devices-31)
       - [Return a historical record of packet transmission and loss, broken down by protocol, for insight into switch device health.](#return-a-historical-record-of-packet-transmission-and-loss-broken-down-by-protocol-for-insight-into-switch-device-health)
       - [Return a historical record of packet transmission and loss, broken down by protocol, for insight into switch device health.](#return-a-historical-record-of-packet-transmission-and-loss-broken-down-by-protocol-for-insight-into-switch-device-health-1)
     + [clients](#clients-5)
@@ -27081,7 +29854,7 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Get IP assignment for all clients in the organization](#get-ip-assignment-for-all-clients-in-the-organization-3)
       - [Switch port status by client.](#switch-port-status-by-client)
       - [Switch port status by client.](#switch-port-status-by-client-1)
-    + [stacks](#stacks-5)
+    + [stacks](#stacks-6)
       - [Update switch port mirrors for switch stacks](#update-switch-port-mirrors-for-switch-stacks)
       - [Update switch port mirrors for switch stacks](#update-switch-port-mirrors-for-switch-stacks-1)
       - [List the port mirror configurations in an organization by switch](#list-the-port-mirror-configurations-in-an-organization-by-switch)
@@ -27115,33 +29888,33 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [List the prefix list rules configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-the-prefix-list-rules-configured-for-bgp-in-the-given-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
       - [Delete a prefix list](#delete-a-prefix-list)
       - [Delete a prefix list. Border Gateway Protocol requires IOS XE 17.18 or higher](#delete-a-prefix-list-border-gateway-protocol-requires-ios-xe-1718-or-higher)
-      - [List the BGP peer groups configured in the given organization](#list-the-bgp-peer-groups-configured-in-the-given-organization-2)
+      - [List the BGP peer groups configured in the given organization](#list-the-bgp-peer-groups-configured-in-the-given-organization-3)
       - [List the BGP peer groups configured in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-the-bgp-peer-groups-configured-in-the-given-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
-      - [List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges](#list-all-bgp-deployment-information-for-multiple-peer-groups-or-address-families-configured-in-the-given-organization-including-profile-information-peer-group-address-family-information-neighbors-and-listen-ranges-2)
+      - [List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges](#list-all-bgp-deployment-information-for-multiple-peer-groups-or-address-families-configured-in-the-given-organization-including-profile-information-peer-group-address-family-information-neighbors-and-listen-ranges-4)
       - [List all BGP deployment information for multiple peer groups or address families configured in the given organization, including profile information, peer group address family information, neighbors, and listen ranges. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-all-bgp-deployment-information-for-multiple-peer-groups-or-address-families-configured-in-the-given-organization-including-profile-information-peer-group-address-family-information-neighbors-and-listen-ranges-border-gateway-protocol-requires-ios-xe-1718-or-higher)
-      - [Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group](#create-or-update-a-peer-group-in-addition-to-an-associated-peer-group-profile-peer-group-address-family-binding-peer-group-address-family-binding-profile-and-routing-policies-associated-with-the-peer-group-2)
+      - [Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group](#create-or-update-a-peer-group-in-addition-to-an-associated-peer-group-profile-peer-group-address-family-binding-peer-group-address-family-binding-profile-and-routing-policies-associated-with-the-peer-group-3)
       - [Create or update a peer group, in addition to an associated peer group profile, peer group address family binding, peer group address family binding profile and routing policies associated with the peer group. Border Gateway Protocol requires IOS XE 17.18 or higher](#create-or-update-a-peer-group-in-addition-to-an-associated-peer-group-profile-peer-group-address-family-binding-peer-group-address-family-binding-profile-and-routing-policies-associated-with-the-peer-group-border-gateway-protocol-requires-ios-xe-1718-or-higher)
-      - [List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies](#list-all-bgp-deployment-information-for-peer-groups-configured-in-the-given-organization-including-peer-group-address-family-information-as-well-as-routing-policies-2)
+      - [List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies](#list-all-bgp-deployment-information-for-peer-groups-configured-in-the-given-organization-including-peer-group-address-family-information-as-well-as-routing-policies-3)
       - [List all BGP deployment information for peer groups configured in the given organization, including peer group address family information, as well as routing policies. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-all-bgp-deployment-information-for-peer-groups-configured-in-the-given-organization-including-peer-group-address-family-information-as-well-as-routing-policies-border-gateway-protocol-requires-ios-xe-1718-or-higher)
       - [List the overview of the BGP peer groups configured in the given organization](#list-the-overview-of-the-bgp-peer-groups-configured-in-the-given-organization)
       - [List the overview of the BGP peer groups configured in the given organization](#list-the-overview-of-the-bgp-peer-groups-configured-in-the-given-organization-1)
-      - [List the listen ranges configured for BGP in the given organization](#list-the-listen-ranges-configured-for-bgp-in-the-given-organization-2)
+      - [List the listen ranges configured for BGP in the given organization](#list-the-listen-ranges-configured-for-bgp-in-the-given-organization-3)
       - [List the listen ranges configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-the-listen-ranges-configured-for-bgp-in-the-given-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
       - [List the neighbors configured for BGP in the given organization](#list-the-neighbors-configured-for-bgp-in-the-given-organization-3)
       - [List the neighbors configured for BGP in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-the-neighbors-configured-for-bgp-in-the-given-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
-      - [Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor](#create-or-update-a-neighor-in-addition-to-an-associated-neighbor-address-family-binding-and-routing-policies-associated-with-the-neighbor-2)
+      - [Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor](#create-or-update-a-neighor-in-addition-to-an-associated-neighbor-address-family-binding-and-routing-policies-associated-with-the-neighbor-3)
       - [Create or update a neighor, in addition to an associated neighbor address family binding and routing policies associated with the neighbor. Border Gateway Protocol requires IOS XE 17.18 or higher](#create-or-update-a-neighor-in-addition-to-an-associated-neighbor-address-family-binding-and-routing-policies-associated-with-the-neighbor-border-gateway-protocol-requires-ios-xe-1718-or-higher)
-      - [List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies](#list-all-bgp-deployment-information-for-neighbors-configured-in-the-given-organization-including-address-family-information-as-well-as-routing-policies-2)
+      - [List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies](#list-all-bgp-deployment-information-for-neighbors-configured-in-the-given-organization-including-address-family-information-as-well-as-routing-policies-3)
       - [List all BGP deployment information for neighbors configured in the given organization, including address family information, as well as routing policies. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-all-bgp-deployment-information-for-neighbors-configured-in-the-given-organization-including-address-family-information-as-well-as-routing-policies-border-gateway-protocol-requires-ios-xe-1718-or-higher)
       - [List the routers configured in the given organization](#list-the-routers-configured-in-the-given-organization-1)
       - [List the routers configured in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-the-routers-configured-in-the-given-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
-      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-5)
+      - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-6)
       - [Create a BGP router, in addition to an associated address family, address family prefixes, and address family profile. This is helpful for the initial deployment of a BGP router.. Border Gateway Protocol requires IOS XE 17.18 or higher](#create-a-bgp-router-in-addition-to-an-associated-address-family-address-family-prefixes-and-address-family-profile-this-is-helpful-for-the-initial-deployment-of-a-bgp-router-border-gateway-protocol-requires-ios-xe-1718-or-higher)
-      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-4)
+      - [List all BGP deployment information for routers configured in a given organization, including all address families](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-5)
       - [List all BGP deployment information for routers configured in a given organization, including all address families. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-all-bgp-deployment-information-for-routers-configured-in-a-given-organization-including-all-address-families-border-gateway-protocol-requires-ios-xe-1718-or-higher)
       - [List the overview of the routers configured in the given organization](#list-the-overview-of-the-routers-configured-in-the-given-organization)
       - [List the overview of the routers configured in the given organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#list-the-overview-of-the-routers-configured-in-the-given-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
-      - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router-2)
+      - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router-3)
       - [Create and update listen ranges, update peers' enabled flag, and delete peer groups for a BGP router. Border Gateway Protocol requires IOS XE 17.18 or higher](#create-and-update-listen-ranges-update-peers-enabled-flag-and-delete-peer-groups-for-a-bgp-router-border-gateway-protocol-requires-ios-xe-1718-or-higher)
       - [Delete a router from an organization](#delete-a-router-from-an-organization)
       - [Delete a router from an organization. Border Gateway Protocol requires IOS XE 17.18 or higher](#delete-a-router-from-an-organization-border-gateway-protocol-requires-ios-xe-1718-or-higher)
@@ -27202,7 +29975,7 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules)
       - [Returns a list of all sensor schedules.](#returns-a-list-of-all-sensor-schedules-1)
   * [\[ appliance \]](#-appliance-)
-    + [policies](#policies-5)
+    + [policies](#policies-6)
       - [Assign VLANs to a policy](#assign-vlans-to-a-policy)
       - [Assign VLANs to a policy](#assign-vlans-to-a-policy-1)
       - [List appliance VLAN policy assignments](#list-appliance-vlan-policy-assignments)
@@ -27225,18 +29998,18 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Update umbrella policies applied to MX network.](#update-umbrella-policies-applied-to-mx-network-1)
       - [Enable or disable umbrella protection for an MX network](#enable-or-disable-umbrella-protection-for-an-mx-network)
       - [Enable or disable umbrella protection for an MX network. When disabling, the umbrella property will be omitted from the response.](#enable-or-disable-umbrella-protection-for-an-mx-network-when-disabling-the-umbrella-property-will-be-omitted-from-the-response)
-    + [interfaces](#interfaces-4)
-      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-18)
+    + [interfaces](#interfaces-5)
+      - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-20)
       - [Update configurations for an appliance's specified port](#update-configurations-for-an-appliances-specified-port-1)
       - [Create wired L3 interface configuration](#create-wired-l3-interface-configuration-1)
       - [Create wired L3 interface configuration](#create-wired-l3-interface-configuration-1)
       - [Update wired L3 interface configuration](#update-wired-l3-interface-configuration-1)
       - [Update wired L3 interface configuration](#update-wired-l3-interface-configuration-1)
       - [Delete wired L3 interface configuration](#delete-wired-l3-interface-configuration)
-    + [devices](#devices-29)
+    + [devices](#devices-32)
       - [Listing of L3 Interface Configurations across networks for the organization](#listing-of-l3-interface-configurations-across-networks-for-the-organization-1)
       - [Listing of L3 Interface Configurations across networks for the organization](#listing-of-l3-interface-configurations-across-networks-for-the-organization-1)
-      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-11)
+      - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-12)
       - [Returns port configurations for appliances in a given organization](#returns-port-configurations-for-appliances-in-a-given-organization-1)
       - [Return the appliance utilization history for devices in the organization](#return-the-appliance-utilization-history-for-devices-in-the-organization)
       - [Return the appliance utilization history for devices in the organization. Only primary MX devices are supported.](#return-the-appliance-utilization-history-for-devices-in-the-organization-only-primary-mx-devices-are-supported)
@@ -27255,15 +30028,15 @@ PUT _`/networks/{networkId}/switch/settings`_
     + [uplinks](#uplinks)
       - [Update uplink NAT settings of the specified network](#update-uplink-nat-settings-of-the-specified-network)
       - [Update uplink NAT settings of the specified network](#update-uplink-nat-settings-of-the-specified-network-1)
-      - [Fetch uplink NAT settings of each network in the organization](#fetch-uplink-nat-settings-of-each-network-in-the-organization)
       - [Fetch uplink NAT settings of each network in the organization](#fetch-uplink-nat-settings-of-each-network-in-the-organization-1)
-- [Changed](#changed-26)
+      - [Fetch uplink NAT settings of each network in the organization](#fetch-uplink-nat-settings-of-each-network-in-the-organization-1)
+- [Changed](#changed-29)
   * [\[ insight \]](#-insight--1)
     + [applications](#applications-1)
       - [Add an Insight tracked application](#add-an-insight-tracked-application)
       - [Add an Insight tracked application](#add-an-insight-tracked-application-1)
   * [\[ organizations \]](#-organizations--1)
-    + [summary](#summary-1)
+    + [summary](#summary-2)
       - [Return the top 10 appliances sorted by utilization over given time range.](#return-the-top-10-appliances-sorted-by-utilization-over-given-time-range)
       - [Return metrics for organization's top 10 clients by data usage (in mb) over given time range.](#return-metrics-for-organizations-top-10-clients-by-data-usage-in-mb-over-given-time-range)
       - [Return metrics for organization's top clients by data usage (in mb) over given time range, grouped by manufacturer.](#return-metrics-for-organizations-top-clients-by-data-usage-in-mb-over-given-time-range-grouped-by-manufacturer)
@@ -27274,7 +30047,7 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Return metrics for organization's top 10 switches by energy usage over given time range](#return-metrics-for-organizations-top-10-switches-by-energy-usage-over-given-time-range)
     + [networks](#networks-3)
       - [Create a network](#create-a-network-1)
-    + [devices](#devices-30)
+    + [devices](#devices-33)
       - [List the availability history information for devices in an organization.](#list-the-availability-history-information-for-devices-in-an-organization)
       - [List the status of every Meraki device in the organization](#list-the-status-of-every-meraki-device-in-the-organization)
     + [clients](#clients-6)
@@ -27304,7 +30077,7 @@ PUT _`/networks/{networkId}/switch/settings`_
       - [Update the bluetooth settings for a wireless device](#update-the-bluetooth-settings-for-a-wireless-device)
       - [Update the Bluetooth settings for a network](#update-the-bluetooth-settings-for-a-network-1)
   * [\[ switch \]](#-switch--1)
-    + [stacks](#stacks-6)
+    + [stacks](#stacks-7)
       - [Create a layer 3 interface for a switch stack](#create-a-layer-3-interface-for-a-switch-stack-4)
       - [List layer 3 interfaces for a switch stack](#list-layer-3-interfaces-for-a-switch-stack-4)
       - [Return a layer 3 interface from a switch stack](#return-a-layer-3-interface-from-a-switch-stack-4)
@@ -27345,7 +30118,7 @@ PUT _`/networks/{networkId}/switch/settings`_
     + [trafficShaping](#trafficshaping-5)
       - [Display VPN exclusion rules for MX networks.](#display-vpn-exclusion-rules-for-mx-networks)
       - [Update VPN exclusion rules for an MX network.](#update-vpn-exclusion-rules-for-an-mx-network)
-- [Changed](#changed-27)
+- [Changed](#changed-30)
   * [\[ appliance \]](#-appliance--2)
     + [trafficShaping](#trafficshaping-6)
       - [Display VPN exclusion rules for MX networks.](#display-vpn-exclusion-rules-for-mx-networks-1)

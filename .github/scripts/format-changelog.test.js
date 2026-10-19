@@ -53,3 +53,37 @@ test('does not add duplicate suffixes when Changed headings are unique', () => {
   assert.match(changelog, /\+ \[earlyAccess\]\(#earlyaccess\)/);
   assert.doesNotMatch(changelog, /\+ \[earlyAccess\]\(#earlyaccess-1\)/);
 });
+
+test('formats from a provided local OpenAPI spec without fetching the version', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'meraki-format-local-spec-'));
+  const inputPath = path.join(tempDir, 'simple.md');
+  const specPath = path.join(tempDir, 'spec.json');
+  const outputPath = path.join(tempDir, 'verbose.md');
+
+  fs.writeFileSync(inputPath, [
+    '### GET /organizations/{organizationId}/earlyAccess/features',
+    '- response schema changed',
+    ''
+  ].join('\n'));
+  fs.writeFileSync(specPath, JSON.stringify({ paths: {
+    '/organizations/{organizationId}/earlyAccess/features': { get: {
+      operationId: 'getOrganizationEarlyAccessFeatures',
+      summary: 'List early access features',
+      responses: {}
+    } }
+  } }));
+
+  const result = spawnSync(process.execPath, [
+    scriptPath,
+    inputPath,
+    'v1.75.0',
+    'v1.75.1',
+    outputPath,
+    specPath
+  ], { encoding: 'utf8' });
+
+  assert.equal(result.status, 0, result.stderr);
+  const changelog = fs.readFileSync(outputPath, 'utf8');
+  assert.match(changelog, /List early access features/);
+  assert.match(changelog, /getOrganizationEarlyAccessFeatures/);
+});

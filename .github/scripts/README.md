@@ -11,6 +11,8 @@ The automation workflow **automatically detects** new releases from the meraki/o
 4. Prepends release notes to the current year's markdown file
 5. **Skips processing if no changes are detected**
 
+Before comparison, the workflow downloads both versioned OpenAPI specs and writes normalized copies under the runner's temporary directory. The normalizer converts numeric-string `minimum` and `maximum` values to numbers for oasdiff compatibility; it does not modify upstream specs. The formatter and release-notes generator use the downloaded new-version spec for endpoint details and the exact total operation count.
+
 ### Key Features
 - ✅ **Fully Automatic**: Runs daily, no manual intervention needed
 - ✅ **Smart Detection**: Only processes new releases that don't have changelogs
@@ -27,6 +29,7 @@ The automation workflow **automatically detects** new releases from the meraki/o
 - **fix-markdown-anchors.js** - Renumbers duplicate heading anchors after composite changelogs are prepended
 - **check-markdown-links.js** - Checks local targets, heading anchors, and Meraki operation URL slugs
 - **update-changelog-config.js** - Updates `changelog/changelog-config.json` with new version entries
+- **normalize-openapi-spec.js** - Creates a local spec copy with numeric `minimum` and `maximum` values normalized for oasdiff
 - **update-annual-document.js** - Prepends release notes to annual markdown files (e.g., `documents/2026.md`)
 
 ### Workflow
@@ -69,6 +72,8 @@ This is useful for:
 - Processing a specific version range
 - Testing the automation
 - Backfilling historical changelogs
+
+If multiple releases were missed, run manual mode for each adjacent version range in release order. Automatic mode only compares the latest tag with its immediate predecessor.
 
 ### Local Testing
 
