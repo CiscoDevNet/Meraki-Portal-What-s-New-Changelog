@@ -251,9 +251,9 @@ function generateReleaseNotes(sections, version, branch, operationCount) {
   markdown += `# ${month} ${year}\n\n`;
   markdown += `Meraki API Release Notes **${version}**\n\n`;
 
-  // Link to the version page without coupling the content to a host.
+  // Link to the production changelog page using the canonical absolute URL.
   const versionSlug = version.replace(/\./g, '-').toLowerCase();
-  markdown += `[**Changelog**](/meraki/whats-new/${versionSlug}/)\n\n`;
+  markdown += `[**Changelog**](https://developer.cisco.com/meraki/whats-new/${versionSlug}/)\n\n`;
 
   // Summary
   markdown += `## Summary\n\n`;
