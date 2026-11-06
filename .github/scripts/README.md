@@ -27,7 +27,7 @@ Before comparison, the workflow downloads both versioned OpenAPI specs and write
 - **detect-versions.js** - Detects latest releases from meraki/openapi and determines what needs updating
 - **generate-release-notes.js** - Parses oasdiff changelog and creates user-friendly release notes
 - **fix-markdown-anchors.js** - Renumbers duplicate heading anchors after composite changelogs are prepended
-- **check-markdown-links.js** - Checks local targets, heading anchors, and Meraki operation URL slugs
+- **check-markdown-links.js** - Checks local targets, heading anchors, and Meraki operation URL slugs across all changelog and annual release-note Markdown files
 - **update-changelog-config.js** - Updates `changelog/changelog-config.json` with new version entries
 - **normalize-openapi-spec.js** - Creates a local spec copy with numeric `minimum` and `maximum` values normalized for oasdiff
 - **update-annual-document.js** - Prepends release notes to annual markdown files (e.g., `documents/2026.md`)

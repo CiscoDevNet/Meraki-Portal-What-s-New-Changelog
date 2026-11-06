@@ -7,10 +7,11 @@ const { operationIdToDocUrl } = require('./operation-doc-url');
 const explicitFiles = process.argv.slice(2);
 const files = explicitFiles.length
   ? explicitFiles
-  : fs.readdirSync('changelog')
-    .filter(name => name.endsWith('.md'))
-    .map(name => `changelog/${name}`)
-    .concat('documents/2026.md');
+  : ['changelog', 'documents']
+    .flatMap(directory => fs.readdirSync(directory)
+      .filter(name => name.endsWith('.md'))
+      .map(name => `${directory}/${name}`))
+    .sort();
 
 function slugBase(value) {
   return value
@@ -47,11 +48,13 @@ function collectAnchors(lines) {
 
 function collectOperationIds(markdownFiles) {
   const operations = new Map();
+  const operationIds = new Set();
   for (const file of markdownFiles.filter(file => file.startsWith('changelog/'))) {
     const lines = fs.readFileSync(file, 'utf8').split('\n');
     for (let index = 0; index < lines.length; index++) {
       const id = lines[index].match(/^Operation ID: `([^`]+)`/);
       if (!id) continue;
+      operationIds.add(id[1]);
       for (let look = index + 1; look < Math.min(index + 12, lines.length); look++) {
         const endpoint = lines[look].match(/^(?:> )?\*?\*?(GET|POST|PUT|DELETE|PATCH)\*?\*? (?:_)?`([^`]+)`/);
         if (endpoint) {
@@ -61,10 +64,10 @@ function collectOperationIds(markdownFiles) {
       }
     }
   }
-  return operations;
+  return { operations, operationIds };
 }
 
-const operations = collectOperationIds(files);
+const { operations, operationIds } = collectOperationIds(files);
 const errors = [];
 let checked = 0;
 
@@ -85,6 +88,7 @@ for (const file of files) {
       const url = match[2] || match[3];
       const location = `${file}:${index + 1}`;
       if (url.startsWith('#')) {
+        if (/^##!v\d+(?:-\d+)+(?:-[a-z0-9]+)*$/i.test(url)) continue;
         const anchor = decodeURIComponent(url.slice(1)).toLowerCase();
         if (!anchors.has(anchor)) errors.push(`${location}: missing anchor ${url}`);
         continue;
@@ -97,11 +101,12 @@ for (const file of files) {
         continue;
       }
       if (!url.startsWith('https://developer.cisco.com/meraki/api-v1/')) continue;
+      if (url.includes('/#!')) continue;
 
       let operationId = null;
       const endpoint = label.match(/^(GET|POST|PUT|DELETE|PATCH)\s+(.+)$/);
       if (endpoint) operationId = operations.get(`${endpoint[1]} ${endpoint[2]}`);
-      if (/^[a-z][A-Za-z0-9]+$/.test(label)) operationId = label;
+      if (operationIds.has(label)) operationId = label;
       if (label === 'Docs') {
         for (let look = index + 1; look < Math.min(index + 8, lines.length); look++) {
           const id = lines[look].match(/^Operation ID: `([^`]+)`/);

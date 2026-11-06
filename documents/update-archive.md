@@ -126,7 +126,7 @@ Meraki access points with an integrated Bluetooth Low Energy radio have the abil
 When combined with a map of access points in the dashboard, the CMX Location API will report Bluetooth client locations as devices on a given floorplan. The location API delivers data in real-time from the Meraki cloud and can be used to detect WiFi devices (associated and non-associated) in real-time. This allows third-party applications to provide asset tracking and analytics using battery-based Bluetooth tags or wearables like fitness monitors. In addition to the API, Bluetooth-enabled devices like smartphones hear a BLE Beacon emitted by the Meraki access point, and an app on the smartphone can detect it’s distance from the access points using Beacon ranging.
 
 
-[Bluetooth Low Energy (BLE) Guide](/meraki/guides/ble-scanning-api/#bluetooth-scanning-api)
+[Bluetooth Low Energy (BLE) Guide](https://developer.cisco.com/meraki/scanning-api/bluetooth-scanning/)
 
 **Bluetooth Location API Data Elements:**
 

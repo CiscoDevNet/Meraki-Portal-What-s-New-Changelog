@@ -1,0 +1,752 @@
+{
+  "result": {
+    "analyzer_results": [
+      {
+        "analyzer": "link",
+        "findings": [
+          {
+            "location": {
+              "column": 55,
+              "file_path": "documents/2022.md",
+              "line": 23,
+              "link_target": "(https://developer.cisco.com/meraki/api-v1/#!get-administered-identities-me)",
+              "link_text": "API Docs",
+              "tree_path": "Release Notes > 2022"
+            },
+            "message": "Relative link target does not exist",
+            "resource_path": "documents/2022.md",
+            "rule": "broken-relative-file-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 17,
+              "file_path": "documents/2021.md",
+              "line": 98,
+              "link_target": "#!v1-14-0-beta-0",
+              "link_text": "Changelog",
+              "tree_path": "Release Notes > 2021"
+            },
+            "message": "Target page does not exist",
+            "resource_path": "documents/2021.md",
+            "rule": "broken-hashbang-link",
+            "severity": "warning",
+            "suggestions": [
+              "Check the navigation tree for the correct page URL and update the `#!` link target"
+            ]
+          },
+          {
+            "location": {
+              "column": 42,
+              "file_path": "documents/2019.md",
+              "line": 366,
+              "link_target": "/meraki/build/meraki-automation-demo-using-webex-teams/",
+              "link_text": "Network Automation using WebEx Teams",
+              "tree_path": "Release Notes > 2019"
+            },
+            "message": "Relative link target does not exist",
+            "resource_path": "documents/2019.md",
+            "rule": "broken-relative-file-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 36,
+              "file_path": "documents/update-archive.md",
+              "line": 129,
+              "link_target": "/meraki/guides/ble-scanning-api/#bluetooth-scanning-api",
+              "link_text": "Bluetooth Low Energy (BLE) Guide",
+              "tree_path": "Release Notes > Archive"
+            },
+            "message": "Relative link target does not exist",
+            "resource_path": "documents/update-archive.md",
+            "rule": "broken-relative-file-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 67,
+              "file_path": "documents/2026.md",
+              "line": 54,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l3/",
+              "link_text": "POST /networks/{networkId}/appliance/interfaces/l3",
+              "tree_path": "Release Notes > 2026"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2026.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 80,
+              "file_path": "documents/2026.md",
+              "line": 1629,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l3/",
+              "link_text": "PUT /networks/{networkId}/appliance/interfaces/l3/{interfaceId}",
+              "tree_path": "Release Notes > 2026"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2026.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 128,
+              "file_path": "documents/2023.md",
+              "line": 317,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/api-reference-early-access-api-platform-livetools-ping-create-device-live-tools-ping/",
+              "link_text": "ping",
+              "tree_path": "Release Notes > 2023"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2023.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 288,
+              "file_path": "documents/2023.md",
+              "line": 317,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/api-reference-early-access-api-platform-configure-actionbatches-create-organization-action-batch/",
+              "link_text": "action batch",
+              "tree_path": "Release Notes > 2023"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2023.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 22,
+              "file_path": "documents/2021.md",
+              "line": 426,
+              "link_target": "https://apps.meraki.io/details/servicenow-connector/",
+              "link_text": "Meraki Marketplace",
+              "tree_path": "Release Notes > 2021"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2021.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 144,
+              "file_path": "documents/2020.md",
+              "line": 512,
+              "link_target": "https://github.com/meraki/meraki-python-sdk",
+              "link_text": "SDK",
+              "tree_path": "Release Notes > 2020"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2020.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 74,
+              "file_path": "documents/2020.md",
+              "line": 513,
+              "link_target": "https://api.meraki.com/api/v0/openapiSpec",
+              "link_text": "OpenAPI specification",
+              "tree_path": "Release Notes > 2020"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2020.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 44,
+              "file_path": "documents/2019.md",
+              "line": 270,
+              "link_target": "https://create.meraki.io/networks/%7BnetworkId%7D/groupPolicies/%7BgroupPolicyId%7D",
+              "link_text": "Update a group policy",
+              "tree_path": "Release Notes > 2019"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2019.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 321,
+              "file_path": "documents/2018.md",
+              "line": 49,
+              "link_target": "https://documenter.getpostman.com/view/897512/RWaLwTY4",
+              "link_text": "Postman collection",
+              "tree_path": "Release Notes > 2018"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2018.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 49,
+              "file_path": "documents/2018.md",
+              "line": 112,
+              "link_target": "https://documenter.getpostman.com/view/897512/2To9xm#whats-new",
+              "link_text": "Postman Collection",
+              "tree_path": "Release Notes > 2018"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2018.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 331,
+              "file_path": "documents/2018.md",
+              "line": 163,
+              "link_target": "https://documenter.getpostman.com/view/897512/2To9xm#afe8868d-0fa1-45e0-bf10-299dffaac918",
+              "link_text": "Postman collection",
+              "tree_path": "Release Notes > 2018"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2018.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 66,
+              "file_path": "documents/2018.md",
+              "line": 167,
+              "link_target": "https://create.meraki.io/build/splunk/",
+              "link_text": "Create Custom Analytics Dashboards with Meraki and Splunk",
+              "tree_path": "Release Notes > 2018"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2018.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 59,
+              "file_path": "documents/2018.md",
+              "line": 179,
+              "link_target": "https://create.meraki.io/build/yelp/#meraki-mr-setup-for-yelp-wi-fi",
+              "link_text": "Configure your Meraki Network to Support Yelp WiFi",
+              "tree_path": "Release Notes > 2018"
+            },
+            "message": "External link is broken",
+            "resource_path": "documents/2018.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1.76.0.md",
+              "line": 426,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l3/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Generally Available > v1.76.0"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1.76.0.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1.74.0.md",
+              "line": 249,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l3/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Generally Available > v1.74.0"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1.74.0.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 568,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l3/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 584,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l3/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 6671,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-l3/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 7849,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/get-organization-devices-topology-l2-links/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 13002,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/get-organization-assurance-wireless-experience-successful-connects-by-network/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 13753,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-discover-integration/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 13771,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-get-integration-statuses/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 13933,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-list-sites/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 13987,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-get-site/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 14005,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-list-tags/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 14097,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-get-vpc-onboarding-batch/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 14115,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-list-vpcs/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 14133,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-offboard-vpcs/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 14151,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-onboard-vpcs/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 14169,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-list-vpc-subnets/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 14259,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/mcf-create-ztr-intent/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          },
+          {
+            "location": {
+              "column": 8,
+              "file_path": "changelog/v1-beta.md",
+              "line": 28241,
+              "link_target": "https://developer.cisco.com/meraki/api-v1/batch-organization-campus-gateway-clusters-tunneling-by-cluster-by-network-update/",
+              "link_text": "Docs",
+              "tree_path": "API Changelog > Beta > v1-beta"
+            },
+            "message": "External link is broken",
+            "resource_path": "changelog/v1-beta.md",
+            "rule": "broken-external-link",
+            "severity": "warning"
+          }
+        ],
+        "status": "succeeded",
+        "summary": {
+          "findings_by_severity": {
+            "error": 0,
+            "warning": 36,
+            "info": 0
+          },
+          "total_findings": 36
+        }
+      },
+      {
+        "analyzer": "toc",
+        "findings": [],
+        "status": "succeeded",
+        "summary": {
+          "findings_by_severity": {
+            "error": 0,
+            "warning": 0,
+            "info": 0
+          },
+          "total_findings": 0
+        }
+      },
+      {
+        "analyzer": "asset",
+        "findings": [],
+        "status": "succeeded",
+        "summary": {
+          "findings_by_severity": {
+            "error": 0,
+            "warning": 0,
+            "info": 0
+          },
+          "total_findings": 0
+        }
+      },
+      {
+        "analyzer": "markdown",
+        "findings": [
+          {
+            "location": {
+              "column": 1,
+              "file_path": "documents/2018.md",
+              "line": 99
+            },
+            "message": "Code block is missing a language tag",
+            "resource_path": "documents/2018.md",
+            "rule": "missing-code-lang",
+            "severity": "warning",
+            "suggestions": [
+              "Add a language tag after the opening fence, e.g. ` ```json `. Common tags: `json`, `bash`, `python`, `yaml`, `javascript`"
+            ]
+          }
+        ],
+        "status": "succeeded",
+        "summary": {
+          "findings_by_severity": {
+            "error": 0,
+            "warning": 1,
+            "info": 0
+          },
+          "total_findings": 1
+        }
+      },
+      {
+        "analyzer": "acrolinx",
+        "findings": [],
+        "status": "succeeded",
+        "summary": {
+          "findings_by_severity": {
+            "error": 0,
+            "warning": 0,
+            "info": 0
+          },
+          "total_findings": 0
+        }
+      }
+    ],
+    "request": {
+      "analyzers": [
+        "link",
+        "toc",
+        "asset",
+        "markdown",
+        "acrolinx"
+      ],
+      "commit": "ee8cb54850c7dc695edb5959e3dac813b8d4cf6f",
+      "force_scan": true,
+      "project_type": "docs"
+    },
+    "scan": {
+      "completed_at": "2026-11-06T16:55:28.973Z",
+      "project": {
+        "code_name": "Meraki-Portal-What-s-New-Changelog"
+      },
+      "scan_id": "Meraki-Portal-What-s-New-Changelog_20261106T165455133Z",
+      "started_at": "2026-11-06T16:54:55.133Z",
+      "status": "succeeded"
+    },
+    "summary": {
+      "checks": [
+        {
+          "check_id": "config-missing",
+          "name": "Missing TOC File",
+          "status": "passed",
+          "count": 0,
+          "enforcement": "blocking"
+        },
+        {
+          "check_id": "config-invalid-json",
+          "name": "Malformed TOC JSON",
+          "status": "passed",
+          "count": 0,
+          "enforcement": "blocking"
+        },
+        {
+          "check_id": "config-invalid-structure",
+          "name": "Invalid TOC Structure",
+          "status": "passed",
+          "count": 0,
+          "enforcement": "blocking"
+        },
+        {
+          "check_id": "missing-content-file",
+          "name": "Missing Content File",
+          "status": "passed",
+          "count": 0,
+          "threshold": 0,
+          "operator": ">",
+          "enforcement": "blocking"
+        },
+        {
+          "check_id": "missing-asset",
+          "name": "Missing Asset File",
+          "status": "passed",
+          "count": 0,
+          "threshold": 0,
+          "operator": ">",
+          "enforcement": "blocking"
+        },
+        {
+          "check_id": "toc-circular-reference",
+          "name": "Circular Reference Detection",
+          "status": "passed",
+          "count": 0,
+          "enforcement": "blocking"
+        },
+        {
+          "check_id": "skipped-heading-level",
+          "name": "Skipped Heading Level",
+          "status": "passed",
+          "count": 0,
+          "threshold": 0,
+          "operator": ">",
+          "enforcement": "informational"
+        },
+        {
+          "check_id": "missing-code-lang",
+          "name": "Missing Code Block Language",
+          "status": "failed",
+          "count": 1,
+          "threshold": 0,
+          "operator": ">",
+          "enforcement": "informational"
+        },
+        {
+          "check_id": "openapi-file-size-exceeded",
+          "name": "File Size Exceeded",
+          "status": "passed",
+          "count": 0,
+          "enforcement": "required"
+        },
+        {
+          "check_id": "broken-hashbang-link",
+          "name": "Broken Hashbang Links",
+          "status": "failed",
+          "count": 1,
+          "threshold": 0,
+          "operator": ">",
+          "enforcement": "informational"
+        },
+        {
+          "check_id": "broken-relative-file-link",
+          "name": "Broken Relative File Links",
+          "status": "failed",
+          "count": 3,
+          "threshold": 0,
+          "operator": ">",
+          "enforcement": "informational"
+        },
+        {
+          "check_id": "broken-external-link",
+          "name": "Broken External Links",
+          "status": "failed",
+          "count": 32,
+          "threshold": 0,
+          "operator": ">",
+          "enforcement": "informational"
+        },
+        {
+          "check_id": "acrolinx-score-low",
+          "name": "Low Acrolinx Score",
+          "status": "passed",
+          "count": 0,
+          "threshold": 0,
+          "analyzer_threshold": 80,
+          "operator": ">",
+          "enforcement": "informational"
+        }
+      ],
+      "checks_failed": 4,
+      "checks_failed_blocking": 0,
+      "checks_passed": 9,
+      "failed_analyzers": 0,
+      "findings_by_severity": {
+        "error": 0,
+        "warning": 37,
+        "info": 0
+      },
+      "scan_failed": false,
+      "skipped_analyzers": 0,
+      "succeeded_analyzers": 5,
+      "total_analyzers": 5,
+      "total_findings": 37
+    }
+  },
+  "reuse_mode": "completed",
+  "scan": {
+    "completedAt": "2026-11-06T16:55:28.973Z",
+    "project": {
+      "kind": "codeName",
+      "value": "Meraki-Portal-What-s-New-Changelog"
+    },
+    "scanId": "Meraki-Portal-What-s-New-Changelog_20261106T165455133Z",
+    "startedAt": "2026-11-06T16:54:55.133Z",
+    "status": "succeeded"
+  }
+}

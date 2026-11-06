@@ -565,7 +565,7 @@ PUT _`/networks/{networkId}/appliance/alternateManagementInterface`_
 
 ### interfaces
 
-[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l3/)
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l-3/)
 
 #### Create wired L3 interface
 
@@ -581,7 +581,7 @@ POST _`/networks/{networkId}/appliance/interfaces/l3`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l3/)
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l-3/)
 
 #### Update wired L3 interface
 
@@ -6532,7 +6532,7 @@ Changed
 
 ### interfaces
 
-[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l3/)
+[Docs](https://developer.cisco.com/meraki/api-v1/create-network-appliance-interfaces-l-3/)
 
 #### Create wired L3 interface
 
@@ -6546,7 +6546,7 @@ POST _`/networks/{networkId}/appliance/interfaces/l3`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l3/)
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l-3/)
 
 #### Update wired L3 interface
 
@@ -6668,7 +6668,7 @@ GET _`/organizations/{organizationId}/apiRequests`_
 
 ### appliance
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-l3/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-appliance-devices-interfaces-l-3/)
 
 #### List L3 interfaces across networks for the organization
 
@@ -7846,7 +7846,7 @@ GET _`/organizations/{organizationId}/campusGateway/connections/overview`_
 
 ### devices
 
-[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-topology-l2-links/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-devices-topology-l-2-links/)
 
 #### List layer 2 topology links originating from devices in an organization.
 
@@ -12919,7 +12919,7 @@ Changed
 
 ### interfaces
 
-[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l3/)
+[Docs](https://developer.cisco.com/meraki/api-v1/update-network-appliance-interfaces-l-3/)
 
 #### Update wired L3 interface
 
@@ -13442,7 +13442,7 @@ Added
 
 ### mcf
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-organization/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization/)
 
 #### Return the MCF details stored for the Meraki organization identified by organizationId
 
@@ -13460,7 +13460,7 @@ PATH _`/organizations/{organizationId}/mcf`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-accounts/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-accounts/)
 
 #### List accounts
 
@@ -13478,7 +13478,7 @@ PATH _`/organizations/{organizationId}/mcf/accounts`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-delete-account/)
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-account/)
 
 #### Delete an account
 
@@ -13496,7 +13496,7 @@ PATH _`/organizations/{organizationId}/mcf/accounts/{accountId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-account/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-account/)
 
 #### Return an account
 
@@ -13514,7 +13514,7 @@ PATH _`/organizations/{organizationId}/mcf/accounts/{accountId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-account-statuses/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-account-statuses/)
 
 #### Return account statuses
 
@@ -13532,7 +13532,7 @@ PATH _`/organizations/{organizationId}/mcf/accounts/{accountId}/statuses`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-bgp-session-status/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-bgp-session-status/)
 
 #### Returns BGP session status grouped by VPC or Site, with member series
 nested under each resource entry
@@ -13551,7 +13551,7 @@ PATH _`/organizations/{organizationId}/mcf/bgpSessionStatus`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-organization-config/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-organization-config/)
 
 #### Return MCF configuration for the Meraki organization identified by organizationId.
 
@@ -13569,7 +13569,7 @@ PATH _`/organizations/{organizationId}/mcf/config`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-event-logs/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-event-logs/)
 
 #### Return a page of event-log rows for the organization, newest first
 
@@ -13587,7 +13587,7 @@ PATH _`/organizations/{organizationId}/mcf/eventLogs`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-event-log-facets/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-event-log-facets/)
 
 #### Return the available values and per-value counts for every filter
 dimension under the current chip selection
@@ -13606,7 +13606,7 @@ PATH _`/organizations/{organizationId}/mcf/eventLogs/facets`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-event-log-histogram/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-event-log-histogram/)
 
 #### Return a time-bucketed count of event-log rows for the organization
 
@@ -13624,7 +13624,7 @@ PATH _`/organizations/{organizationId}/mcf/eventLogs/histogram`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-integrations/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-integrations/)
 
 #### Return all integrations
 
@@ -13642,7 +13642,7 @@ PATH _`/organizations/{organizationId}/mcf/integrations`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-create-integration/)
+[Docs](https://developer.cisco.com/meraki/api-v1/create-integration/)
 
 #### Create an integration
 
@@ -13660,7 +13660,7 @@ PATH _`/organizations/{organizationId}/mcf/integrations`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-preview-azure-accounts/)
+[Docs](https://developer.cisco.com/meraki/api-v1/preview-azure-accounts/)
 
 #### Validate proposed Azure credentials and return accessible subscriptions without creating or modifying application state
 
@@ -13678,7 +13678,7 @@ PATH _`/organizations/{organizationId}/mcf/integrations/accounts/azure/preview`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-preview-gcp-accounts/)
+[Docs](https://developer.cisco.com/meraki/api-v1/preview-gcp-accounts/)
 
 #### Validate proposed GCP credentials and return accessible projects without creating or modifying application state
 
@@ -13696,7 +13696,7 @@ PATH _`/organizations/{organizationId}/mcf/integrations/accounts/gcp/preview`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-delete-integration/)
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-integration/)
 
 #### Delete an integration
 
@@ -13714,7 +13714,7 @@ PATH _`/organizations/{organizationId}/mcf/integrations/{integrationId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-integration/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-integration/)
 
 #### Return an integration
 
@@ -13732,7 +13732,7 @@ PATH _`/organizations/{organizationId}/mcf/integrations/{integrationId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-update-integration/)
+[Docs](https://developer.cisco.com/meraki/api-v1/update-integration/)
 
 #### Update an integration
 
@@ -13750,7 +13750,7 @@ PATH _`/organizations/{organizationId}/mcf/integrations/{integrationId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-discover-integration/)
+[Docs](https://developer.cisco.com/meraki/api-v1/discover-integration/)
 
 #### Discover an integration
 
@@ -13768,7 +13768,7 @@ PATH _`/organizations/{organizationId}/mcf/integrations/{integrationId}/discover
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-integration-statuses/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-integration-statuses/)
 
 #### Return an integration statuses
 
@@ -13786,7 +13786,7 @@ PATH _`/organizations/{organizationId}/mcf/integrations/{integrationId}/statuses
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-regions/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-regions/)
 
 #### List regions
 
@@ -13804,7 +13804,7 @@ PATH _`/organizations/{organizationId}/mcf/regions`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-removed-resources/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-removed-resources/)
 
 #### List discovery-driven resources pending removal confirmation.
 
@@ -13822,7 +13822,7 @@ PATH _`/organizations/{organizationId}/mcf/removed-resources`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-confirm-removed-resources-bulk/)
+[Docs](https://developer.cisco.com/meraki/api-v1/confirm-removed-resources-bulk/)
 
 #### Confirm a bounded explicit removed-resource selection.
 
@@ -13840,7 +13840,7 @@ PATH _`/organizations/{organizationId}/mcf/removed-resources/bulk/confirm`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-confirm-removed-resource/)
+[Docs](https://developer.cisco.com/meraki/api-v1/confirm-removed-resource/)
 
 #### Confirm removal for one discovery-driven resource.
 
@@ -13858,7 +13858,7 @@ PATH _`/organizations/{organizationId}/mcf/removed-resources/{resourceType}/{res
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-route-table-associations/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-route-table-associations/)
 
 #### List route table associations
 
@@ -13876,7 +13876,7 @@ PATH _`/organizations/{organizationId}/mcf/routeTableAssociations`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-route-table-association/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-route-table-association/)
 
 #### Get a route table association
 
@@ -13894,7 +13894,7 @@ PATH _`/organizations/{organizationId}/mcf/routeTableAssociations/{associationId
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-route-tables/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-route-tables/)
 
 #### List route tables
 
@@ -13912,7 +13912,7 @@ PATH _`/organizations/{organizationId}/mcf/routeTables`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-route-table/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-route-table/)
 
 #### Get a route table
 
@@ -13930,7 +13930,7 @@ PATH _`/organizations/{organizationId}/mcf/routeTables/{routeTableId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-sites/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-sites/)
 
 #### List Sites
 
@@ -13948,7 +13948,7 @@ PATH _`/organizations/{organizationId}/mcf/sites`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-site-subnets/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-site-subnets/)
 
 #### List Site subnets
 
@@ -13966,7 +13966,7 @@ PATH _`/organizations/{organizationId}/mcf/sites/subnets`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-site-subnet/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-site-subnet/)
 
 #### Get a Site subnet
 
@@ -13984,7 +13984,7 @@ PATH _`/organizations/{organizationId}/mcf/sites/subnets/{subnetId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-site/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-site/)
 
 #### Get a Site
 
@@ -14002,7 +14002,7 @@ PATH _`/organizations/{organizationId}/mcf/sites/{siteId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-tags/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-tags/)
 
 #### List tags
 
@@ -14020,7 +14020,7 @@ PATH _`/organizations/{organizationId}/mcf/tags`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-create-tag/)
+[Docs](https://developer.cisco.com/meraki/api-v1/create-tag/)
 
 #### Finds or creates the canonical tag identity for the exact organization,
 key, value, and type tuple
@@ -14039,7 +14039,7 @@ PATH _`/organizations/{organizationId}/mcf/tags`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-tag/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-tag/)
 
 #### Get a tag
 
@@ -14057,7 +14057,7 @@ PATH _`/organizations/{organizationId}/mcf/tags/{tagId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-tunnel-status/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-tunnel-status/)
 
 #### Returns tunnel status grouped by VPC or Site, with member series nested
 under each resource entry
@@ -14076,7 +14076,7 @@ PATH _`/organizations/{organizationId}/mcf/tunnelStatus`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-vpc-onboarding-batches/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-vpc-onboarding-batches/)
 
 #### List VPC onboarding batches
 
@@ -14094,7 +14094,7 @@ PATH _`/organizations/{organizationId}/mcf/vpcOnboardingBatches`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-vpc-onboarding-batch/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-vpc-onboarding-batch/)
 
 #### Get a VPC onboarding batch
 
@@ -14112,7 +14112,7 @@ PATH _`/organizations/{organizationId}/mcf/vpcOnboardingBatches/{batchId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-vpcs/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-vpcs/)
 
 #### List VPCs
 
@@ -14130,7 +14130,7 @@ PATH _`/organizations/{organizationId}/mcf/vpcs`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-offboard-vpcs/)
+[Docs](https://developer.cisco.com/meraki/api-v1/offboard-vpcs/)
 
 #### Offboard VPCs
 
@@ -14148,7 +14148,7 @@ PATH _`/organizations/{organizationId}/mcf/vpcs/offboard`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-onboard-vpcs/)
+[Docs](https://developer.cisco.com/meraki/api-v1/onboard-vpcs/)
 
 #### Onboard VPCs
 
@@ -14166,7 +14166,7 @@ PATH _`/organizations/{organizationId}/mcf/vpcs/onboard`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-vpc-subnets/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-vpc-subnets/)
 
 #### List VPC subnets
 
@@ -14184,7 +14184,7 @@ PATH _`/organizations/{organizationId}/mcf/vpcs/subnets`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-vpc-subnet/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-vpc-subnet/)
 
 #### Get a VPC subnet
 
@@ -14202,7 +14202,7 @@ PATH _`/organizations/{organizationId}/mcf/vpcs/subnets/{subnetId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-vpc/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-vpc/)
 
 #### Get a VPC
 
@@ -14220,7 +14220,7 @@ PATH _`/organizations/{organizationId}/mcf/vpcs/{vpcId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-vpc-onboarding-states/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-vpc-onboarding-states/)
 
 #### Get VPC onboarding states
 
@@ -14238,7 +14238,7 @@ PATH _`/organizations/{organizationId}/mcf/vpcs/{vpcId}/onboarding/states`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-list-ztr-intents/)
+[Docs](https://developer.cisco.com/meraki/api-v1/list-ztr-intents/)
 
 #### List Zero Trust Routing intents for the organization.
 
@@ -14256,7 +14256,7 @@ PATH _`/organizations/{organizationId}/mcf/ztrIntents`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-create-ztr-intent/)
+[Docs](https://developer.cisco.com/meraki/api-v1/create-ztr-intent/)
 
 #### Create a Zero Trust Routing intent
 
@@ -14274,7 +14274,7 @@ PATH _`/organizations/{organizationId}/mcf/ztrIntents`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-delete-ztr-intent/)
+[Docs](https://developer.cisco.com/meraki/api-v1/delete-ztr-intent/)
 
 #### Delete a ZTR intent by ID
 
@@ -14292,7 +14292,7 @@ PATH _`/organizations/{organizationId}/mcf/ztrIntents/{ztrIntentId}`_
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/mcf-get-ztr-intent/)
+[Docs](https://developer.cisco.com/meraki/api-v1/get-ztr-intent/)
 
 #### Get a single Zero Trust Routing intent by ID
 
@@ -28238,7 +28238,7 @@ PATH _`/organizations/{organizationId}/campusGateway/clusters/tunneling/byCluste
 
 * * *
 
-[Docs](https://developer.cisco.com/meraki/api-v1/batch-organization-campus-gateway-clusters-tunneling-by-cluster-by-network-update/)
+[Docs](https://developer.cisco.com/meraki/api-v1/batch-organization-campus-gateway-clusters-tunneling-update/)
 
 #### Update MCG cluster-network tunnel settings for multiple networks
 
